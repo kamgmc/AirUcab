@@ -1,5 +1,5 @@
 --Lugar lu_id, lu_nombre, lu_tipo, lu_lugar;
-
+--Primero corran la del País colocando todo lo demás en comentario sino les da error creando los estados
 INSERT INTO public."Lugar" (lu_nombre, lu_tipo, lu_lugar) VALUES ('Venezuela','Pai',NULL);
 
 --ESTADOS
