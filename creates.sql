@@ -10,13 +10,11 @@ create table Rol_de_sistema(
 	sr_nombre varchar(30) not null,
 	constraint Pk_rol_sistema primary key(sr_id)
 );
-
 create table Permiso(
 	pe_id serial,
 	pe_nombre varchar(30) not null,
 	constraint Pk_permiso primary key(pe_id)
 );
-
 create table Rol_permiso(
 	rp_id serial,
 	rp_permiso serial not null,
@@ -25,17 +23,15 @@ create table Rol_permiso(
 	constraint Fk_rp_rol foreign key(rp_rol) references Rol_de_sistema(sr_id),
 	constraint Fk_rp_permiso foreign key(rp_permiso) references Permiso(pe_id)
 );
-
 create table Lugar(
     lu_id serial,
-    lu_nombre varchar(30) not null,
+    lu_nombre varchar(50) not null,
     lu_tipo varchar(9) not null,
-    lu_lugar serial,
+    lu_lugar integer,
     constraint Pk_lugar primary key(lu_id),
     constraint Fk_lu_lugar foreign key(lu_lugar) references Lugar(lu_id),
 	constraint check_lu_tipo check(lu_tipo IN ('Pais','Estado','Municipio','Parroquia'))
 );
-
 create table Sede(
 	se_id serial,
 	se_nombre varchar(30) not null,
@@ -45,7 +41,6 @@ create table Sede(
 	constraint Pk_sede primary key(se_id),
 	constraint Fk_se_lugar foreign key(se_lugar) references Lugar(lu_id)
 );
-
 create table Zona(
 	zo_id serial,
 	zo_nombre varchar(30) not null,
