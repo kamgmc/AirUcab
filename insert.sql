@@ -1564,4 +1564,4 @@ INSERT INTO Sede (se_nombre, se_area, se_principal, se_lugar) VALUES ('AirUcab C
 INSERT INTO Sede (se_nombre, se_area, se_principal, se_lugar) VALUES ('AirUcab Valencia',47234.465,FALSE,1016);
 INSERT INTO Sede (se_nombre, se_area, se_principal, se_lugar) VALUES ('AirUcab Maracay',11456.14,FALSE,65);
 INSERT INTO Sede (se_nombre, se_area, se_principal, se_lugar) VALUES ('AirUcab Guatire',12312.45,FALSE,1041);
-INSERT INTO Sede (se_nombre, se_area, se_principal, se_lugar) VALUES ('AirUcab Colón',945124.23,FALSE,344);
+INSERT INTO Sede (se_nombre, se_area, se_principal, se_lugar) VALUES ('AirUcab Colón',900,FALSE,344);
