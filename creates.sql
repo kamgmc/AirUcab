@@ -29,10 +29,11 @@ create table Rol_permiso(
 create table Lugar(
     lu_id serial,
     lu_nombre varchar(30) not null,
-    lu_tipo varchar(3) not null,
+    lu_tipo varchar(9) not null,
     lu_lugar serial,
     constraint Pk_lugar primary key(lu_id),
     constraint Fk_lu_lugar foreign key(lu_lugar) references Lugar(lu_id)
+	constraint check_lu_tipo check(lu_tipo IN ('Pais','Estado','Municipio','Parroquia'));
 );
 
 create table Sede(
