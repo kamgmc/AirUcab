@@ -36,7 +36,7 @@ create table Sede(
 	se_id serial,
 	se_nombre varchar(30) not null,
 	se_area numeric(10,3),
-	se_principal numeric(1,0) not null,
+	se_principal boolean not null,
 	se_lugar serial not null,
 	constraint Pk_sede primary key(se_id),
 	constraint Fk_se_lugar foreign key(se_lugar) references Lugar(lu_id)
