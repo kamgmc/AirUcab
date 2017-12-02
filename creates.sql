@@ -89,7 +89,7 @@ create table Beneficiario(
 	be_ci numeric(8,0) not null,
 	be_nombre varchar(30) not null,
 	be_apellido varchar(30) not null,
-	be_empleado numeric(8,0) not null,
+	be_empleado integer not null,
 	constraint Pk_beneficiario primary key(be_id),
 	constraint check_be_nacionalidad check(be_nacionalidad IN ('V','E','P')),
 	constraint Fk_be_empleado foreign key(be_empleado) references Empleado(em_ci)
@@ -99,23 +99,26 @@ create table Experiencia(
 	ex_id serial,
 	ex_descripcion text not null,
 	ex_years numeric(2,1) not null,
-	ex_empleado numeric(8,0) not null,
+	ex_empleado integer not null,
 	constraint Pk_experiencia primary key(ex_id),
 	constraint Fk_ex_empleado foreign key(ex_empleado) references Empleado(em_ci)
 );
 create table Cliente(
-	cl_rif numeric(9,0),
+	cl_id serial,
+	cl_tipo_rif char(1) not null,
+	cl_rif numeric(9,0) not null,
 	cl_nombre varchar(30) not null,
 	cl_pagina_web varchar(50),
 	cl_fecha_inicio date not null,
 	cl_direccion integer not null,
-	constraint Pk_cliente primary key(cl_rif),
+	constraint Pk_cliente primary key(cl_id),
+	constraint check_cl_tipo_rif check(cl_tipo_rif IN ('G','J','V','E')),
 	constraint Fk_cl_direccion foreign key (cl_direccion) references Lugar(lu_id)
 );
 create table Factura_venta(
 	fv_id serial,
 	fv_fecha date not null,
-	fv_cliente numeric(9,0) not null,
+	fv_cliente integer not null,
 	constraint Pk_factura_venta primary key(fv_id),
 	constraint Fk_fv_cliente foreign key(fv_cliente) references Cliente(cl_rif)
 );
