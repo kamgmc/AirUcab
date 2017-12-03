@@ -92,7 +92,7 @@ create table Beneficiario(
 	be_empleado integer not null,
 	constraint Pk_beneficiario primary key(be_id),
 	constraint check_be_nacionalidad check(be_nacionalidad IN ('V','E','P')),
-	constraint Fk_be_empleado foreign key(be_empleado) references Empleado(em_ci)
+	constraint Fk_be_empleado foreign key(be_empleado) references Empleado(em_id)
 );
 create unique index be_cedula on Beneficiario (be_nacionalidad,be_ci);
 create table Experiencia(
@@ -101,7 +101,7 @@ create table Experiencia(
 	ex_years numeric(2,1) not null,
 	ex_empleado integer not null,
 	constraint Pk_experiencia primary key(ex_id),
-	constraint Fk_ex_empleado foreign key(ex_empleado) references Empleado(em_ci)
+	constraint Fk_ex_empleado foreign key(ex_empleado) references Empleado(em_id)
 );
 create table Cliente(
 	cl_id serial,
@@ -120,7 +120,7 @@ create table Factura_venta(
 	fv_fecha date not null,
 	fv_cliente integer not null,
 	constraint Pk_factura_venta primary key(fv_id),
-	constraint Fk_fv_cliente foreign key(fv_cliente) references Cliente(cl_rif)
+	constraint Fk_fv_cliente foreign key(fv_cliente) references Cliente(cl_id)
 );
 create table Detalle_factura_venta(
 	dfv_id serial,
@@ -130,6 +130,33 @@ create table Detalle_factura_venta(
 	constraint Pk_detalle_factura_venta primary key(dfv_id),
 	constraint Fk_dfv_factura_venta foreign key(dfv_factura_venta) references Factura_venta(fv_id)
 );
-create table (
-	
+create table Proveedor(
+	po_id serial,
+    po_tipo_rif char(1) not null,
+    po_rif numeric(9,0) not null,
+    po_nombre varchar(30) not null,
+    po_pagina_web varchar(50),
+    po_fecha_ini date not null,
+    po_direccion integer not null,
+    constraint Pk_proveedor primary key(po_id),
+    constraint check_po_tipo_rif check(po_tipo_rif IN('G','J','V','E')),
+    constraint Fk_po_direccion foreign key(po_direccion) references Lugar(lu_id)
+);
+create table Tipo_contacto(
+	ct_id serial,
+	ct_nombre varchar(30),
+	constraint Pk_tipo_contacto primary key(ct_id)
+);
+create table Contacto(
+	co_id serial,
+	co_valor varchar(50) not null,
+	co_tipo integer not null,
+	co_cliente integer,
+	co_empleado integer,
+	co_proveedor integer,
+	constraint Pk_contacto primary key(co_id),
+	constraint Fk_co_tipo_contacto foreign key(co_tipo) references Tipo_contacto(ct_id),
+	constraint Fk_co_cliente foreign key(co_cliente) references Cliente(cl_id),
+	constraint Fk_co_empleado foreign key(co_empleado) references Empleado(em_id),
+	constraint Fk_co_proveedor foreign key(co_proveedor) references Proveedor(po_id)
 );
