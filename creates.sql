@@ -207,16 +207,6 @@ create table Modelo_avion(
     constraint Pk_modelo_avion primary key(am_id),
     constraint check_am_fuselaje_tipo check(am_fuselaje_tipo IN ('Ancho','Normal'))
 );
-create table m_avion_m_motor(
-	mmt_id serial,
-    mmt_cantidad numeric(3,0) not null,
-    mmt_m_avion integer not null,
-    mmt_m_motor integer not null,
-    constraint Pk_m_avion_m_motor primary key(mmt_id),
-    constraint check_mmt_cantidad check(mmt_cantidad > 0),
-    constraint Fk_mmt_m_avion foreign key(mmt_m_avion) references Modelo_avion(am_id),
-    constraint Fk_mmt_m_motor foreign key(mmt_m_motor) references Modelo_motor(mm_id)
-);
 create table Distribucion(
 	di_id serial,
 	di_nombre varchar(30) not null,
@@ -242,4 +232,14 @@ create table Submodelo_avion(
     as_modelo_avion integer not null,
     constraint Pk_submodelo_avion primary key(as_id),
     constraint Fk_as_modelo_avion foreign key(as_modelo_avion) references Modelo_avion(am_id)
+);
+create table s_avion_m_motor(
+	smt_id serial,
+    smt_cantidad numeric(3,0) not null,
+    smt_s_avion integer not null,
+    smt_m_motor integer not null,
+    constraint Pk_m_avion_m_motor primary key(smt_id),
+    constraint check_smt_cantidad check(smt_cantidad > 0),
+    constraint Fk_smt_s_avion foreign key(smt_s_avion) references Submodelo_avion(as_id),
+    constraint Fk_smt_m_motor foreign key(smt_m_motor) references Modelo_motor(mm_id)
 );
