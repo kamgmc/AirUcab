@@ -230,3 +230,16 @@ create table Distribucion(
     constraint check_di_capacidad_pasajeros check(di_capacidad_pasajeros > 0),
     constraint Fk_di_modelo_avion foreign key(di_modelo_avion) references Modelo_avion(am_id)
 );
+create table Submodelo_avion(
+	as_id serial,
+    as_peso_maximo_despegue numeric(5,1) not null,
+	as_peso_vacio numeric(5,1) not null,
+	as_velocidad_crucero numeric(4,2) not null,
+	as_carrera_despegue_peso_maximo numeric(4,2) not null,
+	as_autonomia_peso_maximo_despegue numeric(4,2) not null,
+	as_capacidad_combustible numeric(5,1) not null,
+	as_alcance_carga_maxima numeric(4,2) not null,
+    as_modelo_avion integer not null,
+    constraint Pk_submodelo_avion primary key(as_id),
+    constraint Fk_as_modelo_avion foreign key(as_modelo_avion) references Modelo_avion(am_id)
+);
