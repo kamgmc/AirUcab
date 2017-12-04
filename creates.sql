@@ -47,7 +47,7 @@ create table Zona(
 	zo_tipo varchar(15) not null,
 	zo_sede integer not null,
 	constraint Pk_zona primary key(zo_id),
-	constraint check_zo_tipo check(zo_tipo in ('ensamblaje','prueba')),
+	constraint check_zo_tipo check(zo_tipo in ('Ensamblaje','Prueba')),
 	constraint Fk_zo_sede foreign key(zo_sede) references Sede(se_id)
 );
 create table Titulacion(
@@ -115,6 +115,7 @@ create table Cliente(
 	constraint check_cl_tipo_rif check(cl_tipo_rif IN ('G','J','V','E')),
 	constraint Fk_cl_direccion foreign key (cl_direccion) references Lugar(lu_id)
 );
+create unique index cl_Rif on Cliente (cl_tipo_rif,cl_rif);
 create table Factura_venta(
 	fv_id serial,
 	fv_fecha date not null,
@@ -142,6 +143,7 @@ create table Proveedor(
     constraint check_po_tipo_rif check(po_tipo_rif IN('G','J','V','E')),
     constraint Fk_po_direccion foreign key(po_direccion) references Lugar(lu_id)
 );
+create unique index po_Rif on Proveedor (po_tipo_rif,po_rif);
 create table Tipo_contacto(
 	ct_id serial,
 	ct_nombre varchar(30),
@@ -159,4 +161,59 @@ create table Contacto(
 	constraint Fk_co_cliente foreign key(co_cliente) references Cliente(cl_id),
 	constraint Fk_co_empleado foreign key(co_empleado) references Empleado(em_id),
 	constraint Fk_co_proveedor foreign key(co_proveedor) references Proveedor(po_id)
+);
+create table Marca_motor(
+	mb_id serial,
+    mb_nombre varchar(30) not null,
+    constraint Pk_marca_motor primary key(mb_id)
+);
+create table Modelo_motor(
+	mm_id serial,
+    mm_nombre varchar(30) not null,
+    mm_tipo varchar(7) not null,
+    mm_empuje_max numeric(4,2) not null,
+    mm_empuje_normal numeric(4,2) not null,
+    mm_empuje_crucero numeric (4,2) not null,
+    mm_longitud numeric(3,2) not null,
+    mm_diametro_aspa numeric(2,2),
+    mm_marca integer not null,
+    constraint Pk_modelo_motor primary key(mm_id),
+    constraint check_mm_tipo check(mm_tipo IN ('Hélice','Reactor')),
+    constraint Fk_mm_marca foreign key(mm_marca) references Marca_motor(mb_id)
+);
+create table Modelo_avion(
+	am_id serial,
+    am_nombre varchar(30) not null,
+    am_longitud numeric(4,2) not null,
+    am_envergadura numeric(4,2) not null,
+    am_altura numeric(4,2) not null,
+    am_ala_superficie numeric(4,1) not null,
+    am_ala_altura numeric(4,2) not null,
+    am_peso_aterrizaje_max numeric(6,1) not null,
+    am_alcance numeric(4,2) not null,
+    am_velocidad_max numeric(4,2) not null,
+    am_techo_servicio numeric(6,1) not null,
+    am_regimen_ascenso numeric(4,1) not null,
+    am_numero_pasillos numeric(2,0) not null,
+    am_fuselaje_tipo varchar(5) not null,
+    am_fuselaje_altura numeric(4,1) not null,
+    am_cabina_altura numeric(4,1) not null,
+    am_cabina_ancho numeric(4,1) not null,
+    am_carga_volumen numeric(4,2) not null,
+    am_capacidad_pilotos numeric(1,0) not null,
+    am_capacidad_asistentes numeric(2,0) not null,
+    am_carrera_despegue numeric(4,2) not null,
+    am_tiempo_estimado date not null,
+    constraint Pk_modelo_avion primary key(am_id),
+    constraint check_am_fuselaje_tipo check(am_fuselaje_tipo IN ('Ancho','Normal'))
+);
+create table m_avion_m_motor(
+	mmt_id serial,
+    mmt_cantidad numeric(3,0) not null,
+    mmt_m_avion integer not null,
+    mmt_m_motor integer not null,
+    constraint Pk_m_avion_m_motor primary key(mmt_id),
+    constraint check_mmt_cantidad check(mmt_cantidad > 0),
+    constraint Fk_mmt_m_avion foreign key(mmt_m_avion) references Modelo_avion(am_id),
+    constraint Fk_mmt_m_motor foreign key(mmt_m_motor) references Modelo_motor(mm_id)
 );
