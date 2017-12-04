@@ -233,7 +233,7 @@ create table Submodelo_avion(
     constraint Pk_submodelo_avion primary key(as_id),
     constraint Fk_as_modelo_avion foreign key(as_modelo_avion) references Modelo_avion(am_id)
 );
-create table s_avion_m_motor(
+create table S_avion_m_motor(
 	smt_id serial,
     smt_cantidad numeric(3,0) not null,
     smt_s_avion integer not null,
@@ -242,4 +242,36 @@ create table s_avion_m_motor(
     constraint check_smt_cantidad check(smt_cantidad > 0),
     constraint Fk_smt_s_avion foreign key(smt_s_avion) references Submodelo_avion(as_id),
     constraint Fk_smt_m_motor foreign key(smt_m_motor) references Modelo_motor(mm_id)
+);
+create table Tipo_ala(
+	wt_id serial,
+    wt_nombre varchar(30) not null,
+    constraint Pk_tipo_ala primary key(wt_id)
+);
+create table Tipo_estabilizador(
+	et_id serial,
+    et_nombre varchar(30) not null,
+    constraint Pk_tipo_estabilizador primary key(et_id)
+);
+create table Modelo_pieza(
+    pm_id serial,
+    pm_nombre varchar(30) not null,
+    pm_tiempo_estimado date not null,
+    pm_modelo_pieza integer,
+    pm_tipo_ala integer,
+    pm_tipo_estabilizador integer,
+    constraint Pk_modelo_pieza primary key(pm_id),
+    constraint Fk_pm_modelo_pieza foreign key(pm_modelo_pieza) references Modelo_pieza(pm_id),
+    constraint Fk_pm_tipo_ala foreign key(pm_tipo_ala) references Tipo_ala(wt_id),
+    constraint Fk_pm_tipo_estabilizador foreign key(pm_tipo_estabilizador) references Tipo_estabilizador(et_id)
+);
+create table s_avion_m_pieza(
+	sp_id serial,
+    sp_cantidad numeric(3,0) not null,
+    sp_submodelo_avion integer not null,
+    sp_modelo_pieza integer not null,
+    constraint Pk_s_avion_m_pieza primary key(sp_id),
+    constraint check_sp_cantidad check(sp_cantidad > 0),
+    constraint Fk_sp_submodelo_avion foreign key(sp_submodelo_avion) references Submodelo_avion(as_id),
+    constraint Fk_sp_modelo_pieza foreign key(sp_modelo_pieza) references Modelo_pieza(pm_id)
 );
