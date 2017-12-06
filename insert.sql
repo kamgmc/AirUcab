@@ -1,6 +1,5 @@
---Lugar lu_id, lu_nombre, lu_tipo, lu_lugar;
-INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Venezuela','Pais',NULL);
-
+--LUGAR
+INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Venezuela','País',NULL);
 --ESTADOS
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Distrito Capital','Estado','1');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Amazonas','Estado','1');
@@ -26,7 +25,6 @@ INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Trujillo','Estado','1'
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Vargas','Estado','1');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Yaracuy','Estado','1');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Zulia','Estado','1');
-
 --MUNICIPIOS
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Libertador','Municipio','2');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Alto Orinoco','Municipio','3');
@@ -363,11 +361,7 @@ INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Santa Rita','Municipio
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Simón Bolívar','Municipio','25');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Sucre','Municipio','25');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Valmore Rodríguez','Municipio','25');
-
-
-
 --PARROQUIAS
-
 --DISTRITO CAPITAL
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('23 de Enero','Parroquia','26');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Alta Gracia','Parroquia','26');
@@ -391,7 +385,6 @@ INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('San Pedro','Parroquia'
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Santa Rosalía','Parroquia','26');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Santa Teresa','Parroquia','26');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Sucre','Parroquia','26');
-
 --AMAZONAS
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Alto Orinoco','Parroquia','27');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Huachamacare','Parroquia','27');
@@ -422,7 +415,6 @@ INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Casiquiare','Parroquia
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Cocuy','Parroquia','33');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('San Carlos de Río Negro','Parroquia','33');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Solano','Parroquia','33');
-
 --ANZOÁTEGUI
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Anaco','Parroquia','34');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('San Joaquín','Parroquia','34');
@@ -482,7 +474,6 @@ INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Edmundo Barrios','Parr
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Miguel Otero Silva','Parroquia','53');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Puerto la Cruz','Parroquia','54');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Pozuelos','Parroquia','54');
-
 --APURE
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Achaguas','Parroquia','55');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Apurito','Parroquia','55');
@@ -510,7 +501,6 @@ INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('San Camilo','Parroquia
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Urdaneta','Parroquia','60');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Elorza','Parroquia','61');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('La Trinidad','Parroquia','61');
-
 --ARAGUA
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Bolívar','Parroquia','62');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Camatagua','Parroquia','63');
@@ -617,7 +607,6 @@ INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('El Regalo','Parroquia'
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Puerto Nutrias','Parroquia','91');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Santa Catalina','Parroquia','91');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Simón Bolívar','Parroquia','91');
-
 --BOLÍVAR
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Cachamay','Parroquia','92');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Chirica','Parroquia','92');
@@ -666,7 +655,6 @@ INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Aripao','Parroquia','1
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Guarataro','Parroquia','102');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Las Majadas','Parroquia','102');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Moitaco','Parroquia','102');
-
 --CARABOBO
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Bejuma','Parroquia','103');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Canoabo','Parroquia','103');
@@ -706,7 +694,6 @@ INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('San Blas','Parroquia',
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('San José','Parroquia','116');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Santa Rosa','Parroquia','116');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Negro Primero','Parroquia','116');
-
 --COJEDES
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Cojedes','Parroquia','117');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Juan de Mata Suárez','Parroquia','117');
@@ -723,7 +710,6 @@ INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('San Carlos de Austria'
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Juan Ángel Bravo','Parroquia','124');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Manuel Manrique','Parroquia','124');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('General en Jefe José Laurencio Silva','Parroquia','125');
-
 --DELTA AMACURO
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Curiapo','Parroquia','126');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Almirante Luis Brión','Parroquia','126');
@@ -745,7 +731,6 @@ INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Monseñor Argimiro Gar
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Virgen del Valle','Parroquia','129');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('San Rafael','Parroquia','129');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Juan Millan','Parroquia','129');
-
 --FALCÓN
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Capadare','Parroquia','130');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('La Pastora','Parroquia','130');
@@ -831,7 +816,6 @@ INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('La Ciénaga','Parroqui
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('La Soledad','Parroquia','154');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Pueblo Cumarebo','Parroquia','154');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Zazárida','Parroquia','154');
-
 --GUÁRICO
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Camaguán','Parroquia','155');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Puerto Miranda','Parroquia','155');
@@ -872,7 +856,6 @@ INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Cazorla','Parroquia','
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('San José de Guaribe','Parroquia','168');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Santa María de Ipire','Parroquia','169');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Altamira','Parroquia','169');
-
 --LARA
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Quebrada Honda de Guache','Parroquia','170');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Pio Tamayo','Parroquia','170');
@@ -932,7 +915,6 @@ INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Xaguas','Parroquia','1
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Siquisique','Parroquia','178');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('San Miguel','Parroquia','178');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Moroturo','Parroquia','178');
-
 --MÉRIDA
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Presidente Betancourt','Parroquia','179');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Presidente Páez','Parroquia','179');
@@ -1020,7 +1002,6 @@ INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Nueva Bolivia','Parroq
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Santa Apolonia','Parroquia','200');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Caño el Tigre','Parroquia','201');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Zea','Parroquia','201');
-
 --MIRANDA
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Araguita','Parroquia','202');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Arévalo González','Parroquia','202');
@@ -1077,7 +1058,6 @@ INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('La Dolorita','Parroqui
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Petare','Parroquia','221');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Guatire','Parroquia','222');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Bolívar','Parroquia','222');
-
 --MONAGAS
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('San Antonio de Maturín','Parroquia','223');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('San Francisco de Maturín','Parroquia','223');
@@ -1123,7 +1103,6 @@ INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Morón','Parroquia','2
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Barrancas','Parroquia','234');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Los Barrancos de Fajardo','Parroquia','234');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Uracoa','Parroquia','235');
-
 --NUEVA ESPARTA
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Antolín del Campo','Parroquia','236');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Arismendi','Parroquia','237');
@@ -1147,7 +1126,6 @@ INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Tubores','Parroquia','
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Los Barales','Parroquia','245');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Vicente Fuentes','Parroquia','246');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Villalba','Parroquia','246');
-
 --PORTUGUESA
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Agua Blanca','Parroquia','247');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Araure','Parroquia','248');
@@ -1189,7 +1167,6 @@ INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Villa Bruzual','Parroq
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Canelones','Parroquia','260');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Santa Cruz','Parroquia','260');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('San Isidro Labrador','Parroquia','260');
-
 --SUCRE
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Mariño','Parroquia','261');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Rómulo Gallegos','Parroquia','261');
@@ -1248,7 +1225,6 @@ INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Cristóbal Colón','Pa
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Bideau','Parroquia','275');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Punta de Piedras','Parroquia','275');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Guiria','Parroquia','275');
-
 --TÁCHIRA
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Cordero','Parroquia','276');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Las Mesas','Parroquia','277');
@@ -1316,7 +1292,6 @@ INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Cárdenas','Parroquia'
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Juan Pablo Peñaloza','Parroquia','304');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Potosi','Parroquia','304');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Pregonero','Parroquia','304');
-
 --TRUJILLO
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Araguaney','Parroquia','305');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('El Jaguito','Parroquia','305');
@@ -1411,7 +1386,6 @@ INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('La Puerta','Parroquia'
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Mendoza del Valle de Momboy','Parroquia','324');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Mercedes Díaz','Parroquia','324');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('San Luis','Parroquia','324');
-
 --VARGAS
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Caraballeda','Parroquia','325');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Carayaca','Parroquia','325');
@@ -1424,7 +1398,6 @@ INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Macuto','Parroquia','3
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Maiquetía','Parroquia','325');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Naiguatá','Parroquia','325');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Urimare','Parroquia','325');
-
 --YARACUY
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Aristides Bastidas','Parroquia','326');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Bolívar','Parroquia','327');
@@ -1447,7 +1420,6 @@ INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Sucre','Parroquia','33
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Urachiche','Parroquia','338');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('El Guayabo','Parroquia','339');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Farriar','Parroquia','339');
-
 --ZULIA
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Isla de Toas','Parroquia','340');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Monagas','Parroquia','340');
@@ -1558,10 +1530,40 @@ INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('El Batey','Parroquia',
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Rafael Urdaneta','Parroquia','360');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('La Victoria','Parroquia','360');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Raúl Cuenca','Parroquia','360');
-
 --SEDES
 INSERT INTO Sede (se_nombre, se_area, se_principal, se_lugar) VALUES ('AirUcab Catia la Mar',500000.23,TRUE,1369);
 INSERT INTO Sede (se_nombre, se_area, se_principal, se_lugar) VALUES ('AirUcab Valencia',47234.465,FALSE,116);
 INSERT INTO Sede (se_nombre, se_area, se_principal, se_lugar) VALUES ('AirUcab Maracay',11456.14,FALSE,65);
 INSERT INTO Sede (se_nombre, se_area, se_principal, se_lugar) VALUES ('AirUcab Guatire',12312.45,FALSE,1041);
 INSERT INTO Sede (se_nombre, se_area, se_principal, se_lugar) VALUES ('AirUcab Colón',945124.23,FALSE,344);
+--ZONAS
+INSERT INTO Zona (zo_nombre, zo_tipo, zo_sede) VALUES ('Ensamble de Motor','Ensamblaje',1);
+INSERT INTO Zona (zo_nombre, zo_tipo, zo_sede) VALUES ('Prueba de Material','Prueba',1);
+INSERT INTO Zona (zo_nombre, zo_tipo, zo_sede) VALUES ('Ensamble de Alas','Ensamblaje',3);
+INSERT INTO Zona (zo_nombre, zo_tipo, zo_sede) VALUES ('Ensamble de Fuselaje','Ensamblaje',5);
+INSERT INTO Zona (zo_nombre, zo_tipo, zo_sede) VALUES ('Ensamblaje del Avión','Ensamblaje',5);
+--CARGOS
+INSERT INTO Cargo (er_nombre) VALUES ('CEO');
+INSERT INTO Cargo (er_nombre) VALUES ('Gerente');
+INSERT INTO Cargo (er_nombre) VALUES ('Supervisor');
+INSERT INTO Cargo (er_nombre) VALUES ('Limpieza');
+INSERT INTO Cargo (er_nombre) VALUES ('Mensajero');
+INSERT INTO Cargo (er_nombre) VALUES ('Vigilante');
+--CLIENTES
+INSERT INTO Cliente (cl_tipo_rif,cl_rif,cl_nombre,cl_pagina_web,cl_fecha_inicio,cl_direccion) VALUES ('J',194673159,'Avior','https://www.aviorair.com','1994-12-02',395);
+INSERT INTO Cliente (cl_tipo_rif,cl_rif,cl_nombre,cl_pagina_web,cl_fecha_inicio,cl_direccion) VALUES ('G',354789412,'Conviasa','www.conviasa.aero','1996-03-22',1465);
+INSERT INTO Cliente (cl_tipo_rif,cl_rif,cl_nombre,cl_pagina_web,cl_fecha_inicio,cl_direccion) VALUES ('E',264852357,'Santa Bárbara Airlines','www.sbairlines.com','2001-08-14',951);
+INSERT INTO Cliente (cl_tipo_rif,cl_rif,cl_nombre,cl_pagina_web,cl_fecha_inicio,cl_direccion) VALUES ('V',798462159,'Aeropostal','www.aeropostal.com','2006-10-08',624);
+INSERT INTO Cliente (cl_tipo_rif,cl_rif,cl_nombre,cl_pagina_web,cl_fecha_inicio,cl_direccion) VALUES ('V',345854318,'Aserca','www.asercaairlines.com','2015-04-24',495);
+--ROLES DE SISTEMA
+INSERT INTO Rol_de_sistema (sr_nombre) VALUES ('Administrador');
+INSERT INTO Rol_de_sistema (sr_nombre) VALUES ('Gerente');
+INSERT INTO Rol_de_sistema (sr_nombre) VALUES ('Supervisor');
+INSERT INTO Rol_de_sistema (sr_nombre) VALUES ('Empleado');
+INSERT INTO Rol_de_sistema (sr_nombre) VALUES ('Usuario Anónimo');
+--TITULACIÓN
+INSERT INTO Titulacion (ti_nombre) VALUES ('Ingeniero');
+INSERT INTO Titulacion (ti_nombre) VALUES ('TSU');
+INSERT INTO Titulacion (ti_nombre) VALUES ('Bachiller');
+INSERT INTO Titulacion (ti_nombre) VALUES ('Licenciado');
+INSERT INTO Titulacion (ti_nombre) VALUES ('Arquitecto');
