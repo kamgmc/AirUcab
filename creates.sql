@@ -30,7 +30,7 @@ create table Lugar(
 	lu_lugar integer,
 	constraint Pk_lugar primary key(lu_id),
 	constraint Fk_lu_lugar foreign key(lu_lugar) references Lugar(lu_id),
-	constraint check_lu_tipo check(lu_tipo IN ('País','Estado','Municipio','Parroquia'))
+	constraint Check_lu_tipo check(lu_tipo IN ('País','Estado','Municipio','Parroquia'))
 );
 create table Sede(
 	se_id serial,
@@ -40,7 +40,7 @@ create table Sede(
 	se_lugar integer not null,
 	constraint Pk_sede primary key(se_id),
 	constraint Fk_se_lugar foreign key(se_lugar) references Lugar(lu_id),
-	constraint check_se_area check(se_area > 0)
+	constraint Check_se_area check(se_area > 0)
 );
 create table Zona(
 	zo_id serial,
@@ -48,7 +48,7 @@ create table Zona(
 	zo_tipo varchar(15) not null,
 	zo_sede integer not null,
 	constraint Pk_zona primary key(zo_id),
-	constraint check_zo_tipo check(zo_tipo in ('Ensamblaje','Prueba')),
+	constraint Check_zo_tipo check(zo_tipo in ('Ensamblaje','Prueba')),
 	constraint Fk_zo_sede foreign key(zo_sede) references Sede(se_id)
 );
 create table Titulacion(
@@ -76,15 +76,15 @@ create table Empleado(
 	em_zona integer not null,
 	em_direccion integer not null,
 	constraint Pk_empleado primary key(em_id),
-	constraint check_em_nacionalidad check(em_nacionalidad IN ('V','E','P')),
-	constraint check_em_ci check(em_ci > 0),
+	constraint Check_em_nacionalidad check(em_nacionalidad IN ('V','E','P')),
+	constraint Check_em_ci check(em_ci > 0),
 	constraint Fk_em_titulacion foreign key(em_titulacion) references Titulacion(ti_id),
 	constraint Fk_em_cargo foreign key(em_cargo) references Cargo (er_id),
 	constraint Fk_em_rol foreign key(em_rol) references Rol_de_sistema(sr_id),
 	constraint Fk_em_zona foreign key(em_zona) references Zona(zo_id),
 	constraint Fk_em_direccion foreign key(em_direccion) references Lugar(lu_id)
 );
-create unique index em_cedula on Empleado (em_nacionalidad,em_ci);
+create unique index Em_cedula on Empleado (em_nacionalidad,em_ci);
 create table Beneficiario(
 	be_id serial,
 	be_nacionalidad char(1) not null,
@@ -93,18 +93,18 @@ create table Beneficiario(
 	be_apellido varchar(30) not null,
 	be_empleado integer not null,
 	constraint Pk_beneficiario primary key(be_id),
-	constraint check_be_nacionalidad check(be_nacionalidad IN ('V','E','P')),
-	constraint check_be_ci check(be_ci > 0),
+	constraint Check_be_nacionalidad check(be_nacionalidad IN ('V','E','P')),
+	constraint Check_be_ci check(be_ci > 0),
 	constraint Fk_be_empleado foreign key(be_empleado) references Empleado(em_id)
 );
-create unique index be_cedula on Beneficiario (be_nacionalidad,be_ci);
+create unique index Be_cedula on Beneficiario (be_nacionalidad,be_ci);
 create table Experiencia(
 	ex_id serial,
 	ex_descripcion text not null,
 	ex_years numeric(2,1) not null,
 	ex_empleado integer not null,
 	constraint Pk_experiencia primary key(ex_id),
-	constraint check_ex_years check(ex_years >= 0),
+	constraint Check_ex_years check(ex_years >= 0),
 	constraint Fk_ex_empleado foreign key(ex_empleado) references Empleado(em_id)
 );
 create table Cliente(
@@ -116,11 +116,11 @@ create table Cliente(
 	cl_fecha_inicio date not null,
 	cl_direccion integer not null,
 	constraint Pk_cliente primary key(cl_id),
-	constraint check_cl_tipo_rif check(cl_tipo_rif IN ('G','J','V','E')),
-	constraint check_cl_rif check(cl_rif > 0),
+	constraint Check_cl_tipo_rif check(cl_tipo_rif IN ('G','J','V','E')),
+	constraint Check_cl_rif check(cl_rif > 0),
 	constraint Fk_cl_direccion foreign key (cl_direccion) references Lugar(lu_id)
 );
-create unique index cl_Rif on Cliente (cl_tipo_rif,cl_rif);
+create unique index Cl_Rif on Cliente (cl_tipo_rif,cl_rif);
 create table Factura_venta(
 	fv_id serial,
 	fv_fecha date not null,
@@ -133,23 +133,23 @@ create table Detalle_factura_venta(
 	dfv_precio numeric(10,3) not null,
 	dfv_factura_venta integer not null,
 	constraint Pk_detalle_factura_venta primary key(dfv_id),
-	constraint check_dfv_precio check(dfv_precio > 0),
+	constraint Check_dfv_precio check(dfv_precio > 0),
 	constraint Fk_dfv_factura_venta foreign key(dfv_factura_venta) references Factura_venta(fv_id)
 );
 create table Proveedor(
 	po_id serial,
-    po_tipo_rif char(1) not null,
-    po_rif numeric(9,0) not null,
-    po_nombre varchar(30) not null,
-    po_pagina_web varchar(50),
-    po_fecha_ini date not null,
-    po_direccion integer not null,
-    constraint Pk_proveedor primary key(po_id),
-    constraint check_po_tipo_rif check(po_tipo_rif IN('G','J','V','E')),
-	constraint check_po_rif check(po_rif > 0),
-    constraint Fk_po_direccion foreign key(po_direccion) references Lugar(lu_id)
+	po_tipo_rif char(1) not null,
+	po_rif numeric(9,0) not null,
+	po_nombre varchar(30) not null,
+	po_pagina_web varchar(50),
+	po_fecha_ini date not null,
+	po_direccion integer not null,
+	constraint Pk_proveedor primary key(po_id),
+	constraint Check_po_tipo_rif check(po_tipo_rif IN('G','J','V','E')),
+	constraint Check_po_rif check(po_rif > 0),
+	constraint Fk_po_direccion foreign key(po_direccion) references Lugar(lu_id)
 );
-create unique index po_Rif on Proveedor (po_tipo_rif,po_rif);
+create unique index Po_Rif on Proveedor (po_tipo_rif,po_rif);
 create table Tipo_contacto(
 	ct_id serial,
 	ct_nombre varchar(30) not null,
@@ -167,124 +167,124 @@ create table Contacto(
 	constraint Fk_co_cliente foreign key(co_cliente) references Cliente(cl_id),
 	constraint Fk_co_empleado foreign key(co_empleado) references Empleado(em_id),
 	constraint Fk_co_proveedor foreign key(co_proveedor) references Proveedor(po_id),
-	constraint check_co_arco check(co_cliente IS not null or co_empleado IS not null or co_proveedor IS not null)
+	constraint Check_co_arco check(co_cliente IS not null or co_empleado IS not null or co_proveedor IS not null)
 );
 create table Marca_motor(
 	mb_id serial,
-    mb_nombre varchar(30) not null,
-    constraint Pk_marca_motor primary key(mb_id)
+	mb_nombre varchar(30) not null,
+	constraint Pk_marca_motor primary key(mb_id)
 );
 create table Modelo_motor(
 	mm_id serial,
-    mm_nombre varchar(30) not null,
-    mm_tipo varchar(7) not null,
-    mm_empuje_max numeric(4,2) not null,
-    mm_empuje_normal numeric(4,2) not null,
-    mm_empuje_crucero numeric (4,2) not null,
-    mm_longitud numeric(3,2) not null,
-    mm_diametro_aspa numeric(2,2),
-    mm_marca integer not null,
-    constraint Pk_modelo_motor primary key(mm_id),
-    constraint check_mm_tipo check(mm_tipo IN ('Hélice','Reactor')),
-	constraint check_mm_empuje_max check(mm_empuje_max > 0),
-	constraint check_mm_empuje_normal check(mm_empuje_normal > 0),
-	constraint check_mm_empuje_crucero check(mm_empuje_crucero > 0),
-	constraint check_mm_longitud check(mm_longitud > 0),
-	constraint check_mm_diametro_aspa check(mm_diametro_aspa > 0),
-    constraint Fk_mm_marca foreign key(mm_marca) references Marca_motor(mb_id)
+	mm_nombre varchar(30) not null,
+	mm_tipo varchar(7) not null,
+	mm_empuje_max numeric(4,2) not null,
+	mm_empuje_normal numeric(4,2) not null,
+	mm_empuje_crucero numeric (4,2) not null,
+	mm_longitud numeric(3,2) not null,
+	mm_diametro_aspa numeric(2,2),
+	mm_marca integer not null,
+	constraint Pk_modelo_motor primary key(mm_id),
+	constraint Check_mm_tipo check(mm_tipo IN ('Hélice','Reactor')),
+	constraint Check_mm_empuje_max check(mm_empuje_max > 0),
+	constraint Check_mm_empuje_normal check(mm_empuje_normal > 0),
+	constraint Check_mm_empuje_crucero check(mm_empuje_crucero > 0),
+	constraint Check_mm_longitud check(mm_longitud > 0),
+	constraint Check_mm_diametro_aspa check(mm_diametro_aspa > 0),
+	constraint Fk_mm_marca foreign key(mm_marca) references Marca_motor(mb_id)
 );
 create table Modelo_avion(
 	am_id serial,
-    am_nombre varchar(30) not null,
-    am_longitud numeric(4,2) not null,
-    am_envergadura numeric(4,2) not null,
-    am_altura numeric(4,2) not null,
-    am_ala_superficie numeric(4,1) not null,
-    am_ala_altura numeric(4,2) not null,
+	am_nombre varchar(30) not null,
+	am_longitud numeric(4,2) not null,
+	am_envergadura numeric(4,2) not null,
+	am_altura numeric(4,2) not null,
+	am_ala_superficie numeric(4,1) not null,
+	am_ala_altura numeric(4,2) not null,
 	am_ala_flecha numeric(4,2) not null,
-    am_peso_aterrizaje_max numeric(6,1) not null,
-    am_alcance numeric(4,2) not null,
-    am_velocidad_max numeric(4,2) not null,
-    am_techo_servicio numeric(6,1) not null,
-    am_regimen_ascenso numeric(4,1) not null,
-    am_numero_pasillos numeric(2,0) not null,
-    am_fuselaje_tipo varchar(5) not null,
-    am_fuselaje_altura numeric(4,1) not null,
+	am_peso_aterrizaje_max numeric(6,1) not null,
+	am_alcance numeric(4,2) not null,
+	am_velocidad_max numeric(4,2) not null,
+	am_techo_servicio numeric(6,1) not null,
+	am_regimen_ascenso numeric(4,1) not null,
+	am_numero_pasillos numeric(2,0) not null,
+	am_fuselaje_tipo varchar(5) not null,
+	am_fuselaje_altura numeric(4,1) not null,
 	am_fuselaje_ancho numeric(4,1) not null,
-    am_cabina_altura numeric(4,1) not null,
-    am_cabina_ancho numeric(4,1) not null,
-    am_carga_volumen numeric(4,2) not null,
-    am_capacidad_pilotos numeric(1,0) not null,
-    am_capacidad_asistentes numeric(2,0) not null,
-    am_carrera_despegue numeric(4,2) not null,
-    am_tiempo_estimado date not null,
-    constraint Pk_modelo_avion primary key(am_id),
-	constraint check_am_longitud check(am_longitud > 0),
-	constraint check_am_envergadura check(am_envergadura > 0),
-	constraint check_am_altura check(am_altura > 0),
-	constraint check_am_ala_superficie check(am_ala_superficie > 0),
-	constraint check_am_ala_altura check(am_ala_altura > 0),
-	constraint check_am_ala_flecha check(am_ala_flecha > 0),
-	constraint check_am_peso_aterrizaje_max check(am_peso_aterrizaje_max > 0),
-	constraint check_am_alcance check(am_alcance > 0),
-	constraint check_am_velocidad_max check(am_velocidad_max > 0),
-	constraint check_am_techo_servicio check(am_techo_servicio > 0),
-	constraint check_am_regimen_ascenso check(am_regimen_ascenso > 0),
-	constraint check_am_numero_pasillos check(am_numero_pasillos > 0),
-	constraint check_am_fuselaje_altura check(am_fuselaje_altura > 0),
-	constraint check_am_fuselaje_ancho check(am_fuselaje_ancho > 0),
-	constraint check_am_cabina_altura check(am_cabina_altura > 0),
-	constraint check_am_cabina_ancho check(am_cabina_ancho > 0),
-	constraint check_am_carga_volumen check(am_carga_volumen > 0),
-	constraint check_am_capacidad_pilotos check(am_capacidad_pilotos > 0),
-	constraint check_am_capacidad_asistentes check(am_capacidad_asistentes > 0),
-	constraint check_am_carrera_despegue check(am_carrera_despegue > 0),
-    constraint check_am_fuselaje_tipo check(am_fuselaje_tipo IN ('Ancho','Normal'))
+	am_cabina_altura numeric(4,1) not null,
+	am_cabina_ancho numeric(4,1) not null,
+	am_carga_volumen numeric(4,2) not null,
+	am_capacidad_pilotos numeric(1,0) not null,
+	am_capacidad_asistentes numeric(2,0) not null,
+	am_carrera_despegue numeric(4,2) not null,
+	am_tiempo_estimado date not null,
+	constraint Pk_modelo_avion primary key(am_id),
+	constraint Check_am_longitud check(am_longitud > 0),
+	constraint Check_am_envergadura check(am_envergadura > 0),
+	constraint Check_am_altura check(am_altura > 0),
+	constraint Check_am_ala_superficie check(am_ala_superficie > 0),
+	constraint Check_am_ala_altura check(am_ala_altura > 0),
+	constraint Check_am_ala_flecha check(am_ala_flecha > 0),
+	constraint Check_am_peso_aterrizaje_max check(am_peso_aterrizaje_max > 0),
+	constraint Check_am_alcance check(am_alcance > 0),
+	constraint Check_am_velocidad_max check(am_velocidad_max > 0),
+	constraint Check_am_techo_servicio check(am_techo_servicio > 0),
+	constraint Check_am_regimen_ascenso check(am_regimen_ascenso > 0),
+	constraint Check_am_numero_pasillos check(am_numero_pasillos > 0),
+	constraint Check_am_fuselaje_altura check(am_fuselaje_altura > 0),
+	constraint Check_am_fuselaje_ancho check(am_fuselaje_ancho > 0),
+	constraint Check_am_cabina_altura check(am_cabina_altura > 0),
+	constraint Check_am_cabina_ancho check(am_cabina_ancho > 0),
+	constraint Check_am_carga_volumen check(am_carga_volumen > 0),
+	constraint Check_am_capacidad_pilotos check(am_capacidad_pilotos > 0),
+	constraint Check_am_capacidad_asistentes check(am_capacidad_asistentes > 0),
+	constraint Check_am_carrera_despegue check(am_carrera_despegue > 0),
+	constraint Check_am_fuselaje_tipo check(am_fuselaje_tipo IN ('Ancho','Normal'))
 );
 create table Distribucion(
 	di_id serial,
 	di_nombre varchar(30) not null,
-    di_numero_clases numeric(1,0) not null,
-    di_capacidad_pasajeros numeric(4,0) not null,
-    di_distancia_asientos numeric(3,2) not null,
-    di_ancho_asientos numeric(3,2) not null,
-    di_modelo_avion integer not null,
-    constraint Pk_distribucion primary key(di_id),
-    constraint check_di_numero_clases check(di_numero_clases > 0),
-    constraint check_di_capacidad_pasajeros check(di_capacidad_pasajeros > 0),
-	constraint check_di_distancia_asientos check(di_distancia_asientos > 0),
-	constraint check_di_ancho_asientos check(di_ancho_asientos > 0),
-    constraint Fk_di_modelo_avion foreign key(di_modelo_avion) references Modelo_avion(am_id)
+	di_numero_clases numeric(1,0) not null,
+	di_capacidad_pasajeros numeric(4,0) not null,
+	di_distancia_asientos numeric(3,2) not null,
+	di_ancho_asientos numeric(3,2) not null,
+	di_modelo_avion integer not null,
+	constraint Pk_distribucion primary key(di_id),
+	constraint Check_di_numero_clases check(di_numero_clases > 0),
+	constraint Check_di_capacidad_pasajeros check(di_capacidad_pasajeros > 0),
+	constraint Check_di_distancia_asientos check(di_distancia_asientos > 0),
+	constraint Check_di_ancho_asientos check(di_ancho_asientos > 0),
+	constraint Fk_di_modelo_avion foreign key(di_modelo_avion) references Modelo_avion(am_id)
 );
 create table Submodelo_avion(
 	as_id serial,
-    as_peso_maximo_despegue numeric(5,1) not null,
+	as_peso_maximo_despegue numeric(5,1) not null,
 	as_peso_vacio numeric(5,1) not null,
 	as_velocidad_crucero numeric(4,2) not null,
 	as_carrera_despegue_peso_maximo numeric(4,2) not null,
 	as_autonomia_peso_maximo_despegue numeric(4,2) not null,
 	as_capacidad_combustible numeric(5,1) not null,
 	as_alcance_carga_maxima numeric(4,2) not null,
-    as_modelo_avion integer not null,
-    constraint Pk_submodelo_avion primary key(as_id),
-	constraint check_as_peso_maximo_despegue check(as_peso_maximo_despegue > 0),
-	constraint check_as_peso_vacio check(as_peso_vacio > 0),
-	constraint check_as_velocidad_crucero check(as_velocidad_crucero > 0),
-	constraint check_as_carrera_despegue_peso_maximo check(as_carrera_despegue_peso_maximo > 0),
-	constraint check_as_autonomia_peso_maximo_despegue check(as_autonomia_peso_maximo_despegue > 0),
-	constraint check_as_capacidad_combustible check(as_capacidad_combustible > 0),
-	constraint check_as_alcance_carga_maxima check(as_alcance_carga_maxima > 0),
-    constraint Fk_as_modelo_avion foreign key(as_modelo_avion) references Modelo_avion(am_id)
+	as_modelo_avion integer not null,
+	constraint Pk_submodelo_avion primary key(as_id),
+	constraint Check_as_peso_maximo_despegue check(as_peso_maximo_despegue > 0),
+	constraint Check_as_peso_vacio check(as_peso_vacio > 0),
+	constraint Check_as_velocidad_crucero check(as_velocidad_crucero > 0),
+	constraint Check_as_carrera_despegue_peso_maximo check(as_carrera_despegue_peso_maximo > 0),
+	constraint Check_as_autonomia_peso_maximo_despegue check(as_autonomia_peso_maximo_despegue > 0),
+	constraint Check_as_capacidad_combustible check(as_capacidad_combustible > 0),
+	constraint Check_as_alcance_carga_maxima check(as_alcance_carga_maxima > 0),
+	constraint Fk_as_modelo_avion foreign key(as_modelo_avion) references Modelo_avion(am_id)
 );
 create table S_avion_m_motor(
 	smt_id serial,
-    smt_cantidad numeric(3,0) not null,
-    smt_submodelo_avion integer not null,
-    smt_modelo_motor integer not null,
-    constraint Pk_m_avion_m_motor primary key(smt_id),
-    constraint check_smt_cantidad check(smt_cantidad > 0),
-    constraint Fk_smt_submodelo_avion foreign key(smt_submodelo_avion) references Submodelo_avion(as_id),
-    constraint Fk_smt_modelo_motor foreign key(smt_modelo_motor) references Modelo_motor(mm_id)
+	smt_cantidad numeric(3,0) not null,
+	smt_submodelo_avion integer not null,
+	smt_modelo_motor integer not null,
+	constraint Pk_m_avion_m_motor primary key(smt_id),
+	constraint Check_smt_cantidad check(smt_cantidad > 0),
+	constraint Fk_smt_submodelo_avion foreign key(smt_submodelo_avion) references Submodelo_avion(as_id),
+	constraint Fk_smt_modelo_motor foreign key(smt_modelo_motor) references Modelo_motor(mm_id)
 );
 create table Tipo_ala(
 	wt_id serial,
@@ -314,7 +314,7 @@ create table S_avion_m_pieza(
     sp_submodelo_avion integer not null,
     sp_modelo_pieza integer not null,
     constraint Pk_s_avion_m_pieza primary key(sp_id),
-    constraint check_sp_cantidad check(sp_cantidad > 0),
+    constraint Check_sp_cantidad check(sp_cantidad > 0),
     constraint Fk_sp_submodelo_avion foreign key(sp_submodelo_avion) references Submodelo_avion(as_id),
     constraint Fk_sp_modelo_pieza foreign key(sp_modelo_pieza) references Modelo_pieza(pm_id)
 );
@@ -325,7 +325,7 @@ create table Prueba(
 	pr_zona integer not null,
 	pr_empleado integer not null,
 	constraint Pk_prueba primary key(pr_id),
-	constraint check_pr_tipo check(pr_tipo IN ('Prueba','Ensamblaje')),
+	constraint Check_pr_tipo check(pr_tipo IN ('Prueba','Ensamblaje')),
 	constraint Fk_pr_zona foreign key(pr_zona) references Zona(zo_id),
 	constraint Fk_pr_empleado foreign key(pr_empleado) references Empleado(em_id)
 );
@@ -351,7 +351,7 @@ create table Detalle_factura_compra(
 	dfc_precio numeric(7,2),
 	dfc_factura_compra integer not null,
 	constraint Pk_detalle_factura_compra primary key(dfc_id),
-	constraint check_dfc_precio check(dfc_precio > 0),
+	constraint Check_dfc_precio check(dfc_precio > 0),
 	constraint Fk_dfc_factura_compra foreign key(dfc_factura_compra) references Factura_compra(fc_id)
 );
 create table Tipo_pago(
@@ -362,8 +362,8 @@ create table Tipo_pago(
 	pt_tc_cod numeric(3,0),
 	pt_tc_fecha date,
 	constraint Pk_tipo_pago primary key (pt_id),
-	constraint check_pt_tipo check(pt_tipo > 0),
-	constraint check_pt_tc_cod check(pt_tc_cod > 0)
+	constraint Check_pt_tipo check(pt_tipo > 0),
+	constraint Check_pt_tc_cod check(pt_tc_cod > 0)
 );
 create table Pago(
 	pa_id serial,
@@ -373,11 +373,11 @@ create table Pago(
 	pa_factura_venta integer,
 	pa_factura_compra integer,
 	constraint Pk_pago primary key(pa_id),
-	constraint check_pa_monto check(pa_monto > 0),
+	constraint Check_pa_monto check(pa_monto > 0),
 	constraint Fk_pa_tipo_pago foreign key(pa_tipo_pago) references Tipo_pago(pt_id),
 	constraint Fk_pa_factura_venta foreign key(pa_factura_venta) references Factura_venta(fv_id),
 	constraint Fk_pa_factura_compra foreign key(pa_factura_compra) references Factura_compra(fc_id),
-	constraint check_pa_arco check (pa_factura_venta IS not null or pa_factura_compra IS not null)
+	constraint Check_pa_arco check (pa_factura_venta IS not null or pa_factura_compra IS not null)
 );
 create table Tipo_material(
 	mt_id serial,
@@ -390,7 +390,7 @@ create table T_material_m_pieza(
     tmm_tipo_material integer not null,
     tmm_modelo_pieza integer not null,
     constraint Pk_t_material_m_pieza primary key(tmm_id),
-    constraint check_tmm_cantidad check(tmm_cantidad > 0),
+    constraint Check_tmm_cantidad check(tmm_cantidad > 0),
     constraint Fk_tmm_tipo_material foreign key(tmm_tipo_material) references Tipo_material(mt_id),
     constraint Fk_tmm_modelo_pieza foreign key (tmm_modelo_pieza) references Modelo_pieza(pm_id)
 );
@@ -501,5 +501,5 @@ create table Traslado(
     constraint Fk_tr_zona_recibe foreign key(tr_zona_recibe) references Zona(zo_id),
     constraint Fk_tr_pieza foreign key(tr_pieza) references Pieza(p_id),
     constraint Fk_tr_material foreign key(tr_material) references Material(m_id),
-    constraint check_tr_arco check(tr_pieza IS not null or tr_material IS not null)
+    constraint Check_tr_arco check(tr_pieza IS not null or tr_material IS not null)
 );
