@@ -1,6 +1,7 @@
 Drop table Traslado;
 Drop table Prueba_pieza;
 Drop table Status_material;
+Drop table Prueba_material;
 Drop table Material;
 Drop table Status_pieza;
 Drop table Pieza;
