@@ -13,7 +13,7 @@ create table Rol_sistema(
 create table Permiso(
 	pe_id serial,
 	pe_nombre varchar(35) not null,
-	pe_iniciales varchar(5) not null,
+	pe_iniciales varchar(5) unique not null,
 	constraint Pk_permiso primary key(pe_id)
 );
 create table Rol_permiso(
@@ -21,7 +21,7 @@ create table Rol_permiso(
 	rp_permiso integer not null,
 	rp_rol integer not null,
 	constraint Pk_RolPermiso primary key(rp_id),
-	constraint Fk_rp_rol foreign key(rp_rol) references Rol_de_sistema(sr_id),
+	constraint Fk_rp_rol foreign key(rp_rol) references Rol_sistema(sr_id),
 	constraint Fk_rp_permiso foreign key(rp_permiso) references Permiso(pe_id)
 );
 create table Lugar(
@@ -81,7 +81,7 @@ create table Empleado(
 	constraint Check_em_ci check(em_ci > 0),
 	constraint Fk_em_titulacion foreign key(em_titulacion) references Titulacion(ti_id),
 	constraint Fk_em_cargo foreign key(em_cargo) references Cargo (er_id),
-	constraint Fk_em_rol foreign key(em_rol) references Rol_de_sistema(sr_id),
+	constraint Fk_em_rol foreign key(em_rol) references Rol_sistema(sr_id),
 	constraint Fk_em_zona foreign key(em_zona) references Zona(zo_id),
 	constraint Fk_em_direccion foreign key(em_direccion) references Lugar(lu_id)
 );
@@ -310,14 +310,14 @@ create table Modelo_pieza(
     constraint Fk_pm_tipo_estabilizador foreign key(pm_tipo_estabilizador) references Tipo_estabilizador(et_id)
 );
 create table S_avion_m_pieza(
-	sp_id serial,
-    sp_cantidad numeric(3,0) not null,
-    sp_submodelo_avion integer not null,
-    sp_modelo_pieza integer not null,
-    constraint Pk_s_avion_m_pieza primary key(sp_id),
-    constraint Check_sp_cantidad check(sp_cantidad > 0),
-    constraint Fk_sp_submodelo_avion foreign key(sp_submodelo_avion) references Submodelo_avion(as_id),
-    constraint Fk_sp_modelo_pieza foreign key(sp_modelo_pieza) references Modelo_pieza(pm_id)
+	smp_id serial,
+    smp_cantidad numeric(3,0) not null,
+    smp_submodelo_avion integer not null,
+    smp_modelo_pieza integer not null,
+    constraint Pk_s_avion_m_pieza primary key(smp_id),
+    constraint Check_smp_cantidad check(smp_cantidad > 0),
+    constraint Fk_smp_submodelo_avion foreign key(smp_submodelo_avion) references Submodelo_avion(as_id),
+    constraint Fk_smp_modelo_pieza foreign key(smp_modelo_pieza) references Modelo_pieza(pm_id)
 );
 create table Prueba(
 	pr_id serial,
