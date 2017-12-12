@@ -5,14 +5,15 @@ create table Status(
 	st_nombre varchar(30) not null,
 	constraint Pk_status primary key(st_id)
 );
-create table Rol_de_sistema(
+create table Rol_sistema(
 	sr_id serial,
 	sr_nombre varchar(30) not null,
 	constraint Pk_rol_sistema primary key(sr_id)
 );
 create table Permiso(
 	pe_id serial,
-	pe_nombre varchar(30) not null,
+	pe_nombre varchar(35) not null,
+	pe_iniciales varchar(5) not null,
 	constraint Pk_permiso primary key(pe_id)
 );
 create table Rol_permiso(
@@ -464,6 +465,18 @@ create table Material(
     constraint Fk_m_tipo_material foreign key(m_tipo_material) references Tipo_material(mt_id),
     constraint Fk_m_detalle_factura_compra foreign key(m_detalle_factura_compra) references Detalle_factura_compra(dfc_id),
 	constraint Fk_m_pieza foreign key(m_pieza) references Pieza(p_id)
+);
+create table Prueba_material(
+	prm_id serial,
+    prm_fecha_ini date not null,
+    prm_fecha_fin date not null,
+    prm_material integer not null,
+    prm_prueba integer not null,
+    prm_status integer not null,
+    constraint Pk_prueba_material primary key(prm_id),
+    constraint Fk_prm_material foreign key(prm_material) references Material(m_id),
+    constraint Fk_prm_prueba foreign key(prm_prueba) references Prueba(pr_id),
+    constraint Fk_prm_status foreign key(prm_status) references Status(st_id)
 );
 create table Status_material(
 	sm_id serial,
