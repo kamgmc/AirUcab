@@ -1550,20 +1550,256 @@ INSERT INTO Cargo (er_nombre) VALUES ('Limpieza');
 INSERT INTO Cargo (er_nombre) VALUES ('Mensajero');
 INSERT INTO Cargo (er_nombre) VALUES ('Vigilante');
 --CLIENTES
-INSERT INTO Cliente (cl_tipo_rif,cl_rif,cl_nombre,cl_pagina_web,cl_fecha_inicio,cl_direccion) VALUES ('J',194673159,'Avior','https://www.aviorair.com','1994-12-02',395);
-INSERT INTO Cliente (cl_tipo_rif,cl_rif,cl_nombre,cl_pagina_web,cl_fecha_inicio,cl_direccion) VALUES ('G',354789412,'Conviasa','www.conviasa.aero','1996-03-22',1465);
+INSERT INTO Cliente (cl_tipo_rif,cl_rif,cl_nombre,cl_pagina_web,cl_fecha_inicio,cl_direccion) VALUES ('J',302097843,'Avior','https://www.aviorair.com','1994-12-02',395);
+INSERT INTO Cliente (cl_tipo_rif,cl_rif,cl_nombre,cl_pagina_web,cl_fecha_inicio,cl_direccion) VALUES ('G',200077743,'Conviasa','www.conviasa.aero','1996-03-22',1465);
 INSERT INTO Cliente (cl_tipo_rif,cl_rif,cl_nombre,cl_pagina_web,cl_fecha_inicio,cl_direccion) VALUES ('E',264852357,'Santa Bárbara Airlines','www.sbairlines.com','2001-08-14',951);
-INSERT INTO Cliente (cl_tipo_rif,cl_rif,cl_nombre,cl_pagina_web,cl_fecha_inicio,cl_direccion) VALUES ('V',798462159,'Aeropostal','www.aeropostal.com','2006-10-08',624);
-INSERT INTO Cliente (cl_tipo_rif,cl_rif,cl_nombre,cl_pagina_web,cl_fecha_inicio,cl_direccion) VALUES ('V',345854318,'Aserca','www.asercaairlines.com','2015-04-24',495);
+INSERT INTO Cliente (cl_tipo_rif,cl_rif,cl_nombre,cl_pagina_web,cl_fecha_inicio,cl_direccion) VALUES ('J',303994911,'Aeropostal','www.aeropostal.com','2006-10-08',624);
+INSERT INTO Cliente (cl_tipo_rif,cl_rif,cl_nombre,cl_pagina_web,cl_fecha_inicio,cl_direccion) VALUES ('J',075035593,'Aserca','www.asercaairlines.com','2015-04-24',495);
 --ROLES DE SISTEMA
-INSERT INTO Rol_de_sistema (sr_nombre) VALUES ('Administrador');
-INSERT INTO Rol_de_sistema (sr_nombre) VALUES ('Gerente');
-INSERT INTO Rol_de_sistema (sr_nombre) VALUES ('Supervisor');
-INSERT INTO Rol_de_sistema (sr_nombre) VALUES ('Empleado');
-INSERT INTO Rol_de_sistema (sr_nombre) VALUES ('Usuario Anónimo');
+INSERT INTO Rol_sistema (sr_nombre) VALUES ('Administrador');
+INSERT INTO Rol_sistema (sr_nombre) VALUES ('Gerente');
+INSERT INTO Rol_sistema (sr_nombre) VALUES ('Supervisor');
+INSERT INTO Rol_sistema (sr_nombre) VALUES ('Empleado');
+INSERT INTO Rol_sistema (sr_nombre) VALUES ('Usuario Anónimo');
 --TITULACIÓN
 INSERT INTO Titulacion (ti_nombre) VALUES ('Ingeniero');
 INSERT INTO Titulacion (ti_nombre) VALUES ('TSU');
 INSERT INTO Titulacion (ti_nombre) VALUES ('Bachiller');
 INSERT INTO Titulacion (ti_nombre) VALUES ('Licenciado');
 INSERT INTO Titulacion (ti_nombre) VALUES ('Arquitecto');
+--PERMISOS DEL SISTEMA
+--STATUS
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear status','st_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver status','st_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar status','st_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar status','st_d');
+--ROL_SISTEMA
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear rol de sistema','sr_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver rol de sistema','sr_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar rol de sistema','sr_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar rol de sistema','sr_d');
+--PERMISO
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear Permiso','pe_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver Permiso','pe_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar Permiso','pe_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar Permiso','pe_d');
+--ROL_PERMISO
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear rol - permiso','rp_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver rol - permiso','rp_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar rol - permiso','rp_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar rol - permiso','rp_d');
+--LUGAR
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear lugar','lu_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver lugar','lu_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar lugar','lu_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar lugar','lu_d');
+--SEDE
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear sede','se_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver sede','se_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar sede','se_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar sede','se_d');
+--ZONA
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear zona','zo_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver zona','zo_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar zona','zo_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar zona','zo_d');
+--TITULACION
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear titulacion','ti_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver titulacion','ti_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar titulacion','ti_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar titulacion','ti_d');
+--CARGO
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear cargo','er_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver cargo','er_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar cargo','er_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar cargo','er_d');
+--EMPLEADO
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear empleado','em_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver empleado','em_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar empleado','em_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar empleado','em_d');
+--BENEFICIARIO
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear beneficiario','be_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver beneficiario','be_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar beneficiario','be_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar beneficiario','be_d');
+--EXPERIENCIA
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear experiencia','ex_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver experiencia','ex_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar experiencia','ex_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar experiencia','ex_d');
+--CLIENTE
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear cliente','cl_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver cliente','cl_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar cliente','cl_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar cliente','cl_d');
+--FACTURA_VENTA
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear factura de venta','fv_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver factura de venta','fv_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar factura de venta','fv_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar factura de venta','fv_d');
+--DETALLE_FACTURA_VENTA
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear detalle factura de venta','dfv_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver detalle factura de venta','dfv_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar detalle factura de venta','dfv_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar detalle factura de venta','dfv_d');
+--PROVEEDOR
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear proveedor','po_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver proveedor','po_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar proveedor','po_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar proveedor','po_d');
+--TIPO_CONTACTO
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear tipo de contacto','ct_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver tipo de contacto','ct_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar tipo de contacto','ct_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar tipo de contacto','ct_d');
+--CONTACTO
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear contacto','co_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver contacto','co_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar contacto','co_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar contacto','co_d');
+--MARCA_MOTOR
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear marca de motor','mb_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver marca de motor','mb_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar marca de motor','mb_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar marca de motor','mb_d');
+--MODELO_MOTOR
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear modelo de motor','mm_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver modelo de motor','mm_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar modelo de motor','mm_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar modelo de motor','mm_d');
+--MODELO_AVION
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear modelo de avion','am_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver modelo de avion','am_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar modelo de avion','am_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar modelo de avion','am_d');
+--DISTRIBUCION
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear distribucion','di_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver distribucion','di_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar distribucion','di_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar distribucion','di_d');
+--SUBMODELO_AVION
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear submodelo de avion','as_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver submodelo de avion','as_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar submodelo de avion','as_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar submodelo de avion','as_d');
+--S_AVION_M_MOTOR
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear s avion - m motor','smt_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver s avion - m motor','smt_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar s avion - m motor','smt_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar s avion - m motor','smt_d');
+--TIPO_ALA
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear tipo de ala','wt_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver tipo de ala','wt_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar tipo de ala','wt_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar tipo de ala','wt_d');
+--TIPO_ESTABILIZADOR
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear tipo de estabilizador','et_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver tipo de estabilizador','et_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar tipo de estabilizador','et_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar tipo de estabilizador','et_d');
+--MODELO_PIEZA
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear modelo de pieza','pm_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver modelo de pieza','pm_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar modelo de pieza','pm_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar modelo de pieza','pm_d');
+--S_AVION_M_PIEZA
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear s avion - m pieza','smp_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver s avion - m pieza','smp_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar s avion - m pieza','smp_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar s avion - m pieza','smp_d');
+--PRUEBA
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear prueba','pr_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver prueba','pr_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar prueba','pr_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar prueba','pr_d');
+--STATUS_PRUEBA
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear status prueba','sp_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver status prueba','sp_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar status prueba','sp_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar status prueba','sp_d');
+--FACTURA_COMPRA
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear factura de compra','fc_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver factura de compra','fc_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar factura de compra','fc_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar factura de compra','fc_d');
+--DETALLE_FACTURA_COMPRA
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear detalle factura de compra','dfc_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver detalle factura de compra','dfc_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar detalle factura de compra','dfc_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar detalle factura de compra','dfc_d');
+--TIPO_PAGO
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear tipo de pago','pt_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver tipo de pago','pt_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar tipo de pago','pt_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar tipo de pago','pt_d');
+--PAGO
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear pago','pa_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver pago','pa_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar pago','pa_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar pago','pa_d');
+--TIPO_MATERIAL
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear tipo de material','mt_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver tipo de material','mt_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar tipo de material','mt_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar tipo de material','mt_d');
+--T_MATERIAL_M_PIEZA
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear t material - m pieza','tmm_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver t material - m pieza','tmm_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar t material - m pieza','tmm_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar t material - m pieza','tmm_d');
+--AVION
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear avion','a_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver avion','a_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar avion','a_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar avion','a_d');
+--STATUS_AVION
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear status avion','sa_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver status avion','sa_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar status avion','sa_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar status avion','sa_d');
+--MOTOR
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear motor','mo_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver motor','mo_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar motor','mo_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar motor','mo_d');
+--STATUS_MOTOR
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear status motor','stm_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver status motor','stm_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar status motor','stm_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar status motor','stm_d');
+--PIEZA
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear pieza','p_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver pieza','p_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar pieza','p_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar pieza','p_d');
+--STATUS_PIEZA
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear status pieza','spi_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver status pieza','spi_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar status pieza','spi_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar status pieza','spi_d');
+--MATERIAL
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear material','m_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver material','m_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar material','m_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar material','m_d');
+--PRUEBA_MATERIAL
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear prueba material','prm_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver prueba material','prm_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar prueba material','prm_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar prueba material','prm_d');
+--STATUS_MATERIAL
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear status material','sm_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver status material','sm_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar status material','sm_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar status material','sm_d');
+--PRUEBA_PIEZA
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear prueba pieza','pp_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver prueba pieza','pp_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar prueba pieza','pp_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar prueba pieza','pp_d');
+--TRASLADO
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear traslado','tr_c');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver traslado','tr_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar traslado','tr_u');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar traslado','tr_d');
