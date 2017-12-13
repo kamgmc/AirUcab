@@ -1,0 +1,8 @@
+factura_venta
+detalle_factura_venta
+proveedor
+empleado
+experiencia
+beneficiario
+tipo_contacto
+contacto
