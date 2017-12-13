@@ -1,8 +1,8 @@
 factura_venta
 detalle_factura_venta
 proveedor
+tipo_contacto
+contacto
 empleado
 experiencia
 beneficiario
-tipo_contacto
-contacto
