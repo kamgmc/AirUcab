@@ -1549,6 +1549,8 @@ INSERT INTO Cargo (er_nombre) VALUES ('Supervisor');
 INSERT INTO Cargo (er_nombre) VALUES ('Limpieza');
 INSERT INTO Cargo (er_nombre) VALUES ('Mensajero');
 INSERT INTO Cargo (er_nombre) VALUES ('Vigilante');
+INSERT INTO Cargo (er_nombre) VALUES ('Ensamblador');
+INSERT INTO Cargo (er_nombre) VALUES ('Tester');
 --CLIENTES
 INSERT INTO Cliente (cl_tipo_rif,cl_rif,cl_nombre,cl_pagina_web,cl_fecha_inicio,cl_direccion) VALUES ('J',302097843,'Avior','https://www.aviorair.com','1994-12-02',395);
 INSERT INTO Cliente (cl_tipo_rif,cl_rif,cl_nombre,cl_pagina_web,cl_fecha_inicio,cl_direccion) VALUES ('G',200077743,'Conviasa','www.conviasa.aero','1996-03-22',1465);
