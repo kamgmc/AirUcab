@@ -49,4 +49,3 @@ Drop table Rol_permiso;
 Drop table Permiso;
 Drop table Rol_sistema;
 Drop table Status;
-Drop database AirUcab;
