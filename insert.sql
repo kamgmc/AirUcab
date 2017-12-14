@@ -1530,45 +1530,6 @@ INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('El Batey','Parroquia',
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Rafael Urdaneta','Parroquia','360');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('La Victoria','Parroquia','360');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Raúl Cuenca','Parroquia','360');
---SEDES
-INSERT INTO Sede (se_nombre, se_area, se_principal, se_lugar) VALUES ('AirUcab Catia la Mar',500000.23,TRUE,1369);
-INSERT INTO Sede (se_nombre, se_area, se_principal, se_lugar) VALUES ('AirUcab Valencia',47234.465,FALSE,116);
-INSERT INTO Sede (se_nombre, se_area, se_principal, se_lugar) VALUES ('AirUcab Maracay',11456.14,FALSE,65);
-INSERT INTO Sede (se_nombre, se_area, se_principal, se_lugar) VALUES ('AirUcab Guatire',12312.45,FALSE,1041);
-INSERT INTO Sede (se_nombre, se_area, se_principal, se_lugar) VALUES ('AirUcab Colón',945124.23,FALSE,344);
---ZONAS
-INSERT INTO Zona (zo_nombre, zo_tipo, zo_sede) VALUES ('Ensamble de Motor','Ensamblaje',1);
-INSERT INTO Zona (zo_nombre, zo_tipo, zo_sede) VALUES ('Prueba de Material','Prueba',1);
-INSERT INTO Zona (zo_nombre, zo_tipo, zo_sede) VALUES ('Ensamble de Alas','Ensamblaje',3);
-INSERT INTO Zona (zo_nombre, zo_tipo, zo_sede) VALUES ('Ensamble de Fuselaje','Ensamblaje',5);
-INSERT INTO Zona (zo_nombre, zo_tipo, zo_sede) VALUES ('Ensamblaje del Avión','Ensamblaje',5);
---CARGOS
-INSERT INTO Cargo (er_nombre) VALUES ('CEO');
-INSERT INTO Cargo (er_nombre) VALUES ('Gerente');
-INSERT INTO Cargo (er_nombre) VALUES ('Supervisor');
-INSERT INTO Cargo (er_nombre) VALUES ('Limpieza');
-INSERT INTO Cargo (er_nombre) VALUES ('Mensajero');
-INSERT INTO Cargo (er_nombre) VALUES ('Vigilante');
-INSERT INTO Cargo (er_nombre) VALUES ('Ensamblador');
-INSERT INTO Cargo (er_nombre) VALUES ('Tester');
---CLIENTES
-INSERT INTO Cliente (cl_tipo_rif,cl_rif,cl_nombre,cl_pagina_web,cl_fecha_inicio,cl_direccion) VALUES ('J',302097843,'Avior','https://www.aviorair.com','1994-12-02',395);
-INSERT INTO Cliente (cl_tipo_rif,cl_rif,cl_nombre,cl_pagina_web,cl_fecha_inicio,cl_direccion) VALUES ('G',200077743,'Conviasa','www.conviasa.aero','1996-03-22',1465);
-INSERT INTO Cliente (cl_tipo_rif,cl_rif,cl_nombre,cl_pagina_web,cl_fecha_inicio,cl_direccion) VALUES ('E',264852357,'Santa Bárbara Airlines','www.sbairlines.com','2001-08-14',951);
-INSERT INTO Cliente (cl_tipo_rif,cl_rif,cl_nombre,cl_pagina_web,cl_fecha_inicio,cl_direccion) VALUES ('J',303994911,'Aeropostal','www.aeropostal.com','2006-10-08',624);
-INSERT INTO Cliente (cl_tipo_rif,cl_rif,cl_nombre,cl_pagina_web,cl_fecha_inicio,cl_direccion) VALUES ('J',075035593,'Aserca','www.asercaairlines.com','2015-04-24',495);
---ROLES DE SISTEMA
-INSERT INTO Rol_sistema (sr_nombre) VALUES ('Administrador');
-INSERT INTO Rol_sistema (sr_nombre) VALUES ('Gerente');
-INSERT INTO Rol_sistema (sr_nombre) VALUES ('Supervisor');
-INSERT INTO Rol_sistema (sr_nombre) VALUES ('Empleado');
-INSERT INTO Rol_sistema (sr_nombre) VALUES ('Usuario Anónimo');
---TITULACIÓN
-INSERT INTO Titulacion (ti_nombre) VALUES ('Ingeniero');
-INSERT INTO Titulacion (ti_nombre) VALUES ('TSU');
-INSERT INTO Titulacion (ti_nombre) VALUES ('Bachiller');
-INSERT INTO Titulacion (ti_nombre) VALUES ('Licenciado');
-INSERT INTO Titulacion (ti_nombre) VALUES ('Arquitecto');
 --PERMISOS DEL SISTEMA
 --STATUS
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear status','st_c');
@@ -1805,3 +1766,90 @@ INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear traslado','tr_c');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver traslado','tr_r');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar traslado','tr_u');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar traslado','tr_d');
+--TIPO_CONTACTO
+INSERT INTO Tipo_contacto (ct_nombre) VALUES ('Movil');
+INSERT INTO Tipo_contacto (ct_nombre) VALUES ('Fijo');
+INSERT INTO Tipo_contacto (ct_nombre) VALUES ('Correo electonico');
+INSERT INTO Tipo_contacto (ct_nombre) VALUES ('Twitter');
+INSERT INTO Tipo_contacto (ct_nombre) VALUES ('Fax');
+--SEDES
+INSERT INTO Sede (se_nombre, se_area, se_principal, se_lugar) VALUES ('AirUcab Catia la Mar',500000.23,TRUE,1369);
+INSERT INTO Sede (se_nombre, se_area, se_principal, se_lugar) VALUES ('AirUcab Valencia',47234.465,FALSE,116);
+INSERT INTO Sede (se_nombre, se_area, se_principal, se_lugar) VALUES ('AirUcab Maracay',11456.14,FALSE,65);
+INSERT INTO Sede (se_nombre, se_area, se_principal, se_lugar) VALUES ('AirUcab Guatire',12312.45,FALSE,1041);
+INSERT INTO Sede (se_nombre, se_area, se_principal, se_lugar) VALUES ('AirUcab Colón',945124.23,FALSE,344);
+--ZONAS
+INSERT INTO Zona (zo_nombre, zo_tipo, zo_sede) VALUES ('Ensamble de Motor','Ensamblaje',1);
+INSERT INTO Zona (zo_nombre, zo_tipo, zo_sede) VALUES ('Prueba de Material','Prueba',1);
+INSERT INTO Zona (zo_nombre, zo_tipo, zo_sede) VALUES ('Ensamble de Alas','Ensamblaje',3);
+INSERT INTO Zona (zo_nombre, zo_tipo, zo_sede) VALUES ('Ensamble de Fuselaje','Ensamblaje',5);
+INSERT INTO Zona (zo_nombre, zo_tipo, zo_sede) VALUES ('Ensamblaje del Avión','Ensamblaje',5);
+--CARGOS
+INSERT INTO Cargo (er_nombre) VALUES ('CEO');
+INSERT INTO Cargo (er_nombre) VALUES ('Gerente');
+INSERT INTO Cargo (er_nombre) VALUES ('Supervisor');
+INSERT INTO Cargo (er_nombre) VALUES ('Limpieza');
+INSERT INTO Cargo (er_nombre) VALUES ('Mensajero');
+INSERT INTO Cargo (er_nombre) VALUES ('Vigilante');
+INSERT INTO Cargo (er_nombre) VALUES ('Ensamblador');
+INSERT INTO Cargo (er_nombre) VALUES ('Tester');
+--ROLES DE SISTEMA
+INSERT INTO Rol_sistema (sr_nombre) VALUES ('Administrador');
+INSERT INTO Rol_sistema (sr_nombre) VALUES ('Gerente');
+INSERT INTO Rol_sistema (sr_nombre) VALUES ('Supervisor');
+INSERT INTO Rol_sistema (sr_nombre) VALUES ('Empleado');
+INSERT INTO Rol_sistema (sr_nombre) VALUES ('Usuario Anónimo');
+--TITULACIÓN
+INSERT INTO Titulacion (ti_nombre) VALUES ('Ingeniero');
+INSERT INTO Titulacion (ti_nombre) VALUES ('TSU');
+INSERT INTO Titulacion (ti_nombre) VALUES ('Bachiller');
+INSERT INTO Titulacion (ti_nombre) VALUES ('Licenciado');
+INSERT INTO Titulacion (ti_nombre) VALUES ('Arquitecto');
+--CLIENTES
+INSERT INTO Cliente (cl_tipo_rif,cl_rif,cl_nombre,cl_pagina_web,cl_fecha_inicio,cl_direccion) VALUES ('J',302097843,'Avior','https://www.aviorair.com','1994-12-02',395);
+INSERT INTO Cliente (cl_tipo_rif,cl_rif,cl_nombre,cl_pagina_web,cl_fecha_inicio,cl_direccion) VALUES ('G',200077743,'Conviasa','www.conviasa.aero','1996-03-22',1465);
+INSERT INTO Cliente (cl_tipo_rif,cl_rif,cl_nombre,cl_pagina_web,cl_fecha_inicio,cl_direccion) VALUES ('E',264852357,'Santa Bárbara Airlines','www.sbairlines.com','2001-08-14',951);
+INSERT INTO Cliente (cl_tipo_rif,cl_rif,cl_nombre,cl_pagina_web,cl_fecha_inicio,cl_direccion) VALUES ('J',303994911,'Aeropostal','www.aeropostal.com','2006-10-08',624);
+INSERT INTO Cliente (cl_tipo_rif,cl_rif,cl_nombre,cl_pagina_web,cl_fecha_inicio,cl_direccion) VALUES ('J',075035593,'Aserca','www.asercaairlines.com','2015-04-24',495);
+--PROVEEDORES
+INSERT INTO Proveedor (po_tipo_rif,po_rif,po_nombre,po_pagina_web,po_fecha_ini,po_direccion) VALUES ('J',124685735,'Fibra de Carbono C.A.','www.fibras.com.ve','2005-05-05',1233);
+INSERT INTO Proveedor (po_tipo_rif,po_rif,po_nombre,po_pagina_web,po_fecha_ini,po_direccion) VALUES ('J',352648745,'Tornillos y todo lo demás C.A.','www.tornillos.com.ve','2007-09-01',1321);
+INSERT INTO Proveedor (po_tipo_rif,po_rif,po_nombre,po_pagina_web,po_fecha_ini,po_direccion) VALUES ('J',457821659,'Tapiceria de asientos C.A.','www.tapiasientos.com.ve','2004-04-08',1247);
+INSERT INTO Proveedor (po_tipo_rif,po_rif,po_nombre,po_fecha_ini,po_direccion) VALUES ('V',246857852,'Cables y más cables','2014-09-29',900);
+INSERT INTO Proveedor (po_tipo_rif,po_rif,po_nombre,po_pagina_web,po_fecha_ini,po_direccion) VALUES ('J',321475685,'Cauchos, llantas o neumáticos','www.rueditas.com.ve','2015-11-24',642);
+--EMPLEADO
+INSERT INTO Empleado (em_nacionalidad,em_ci,em_nombre,em_apellido,em_fecha_ingreso,em_usuario,em_clave,em_titulacion,em_cargo,em_rol,em_zona,em_direccion) VALUES ('V',9512648,'Pedro','Pérez','1999-12-02','admin','123',1,1,1,1,210);
+INSERT INTO Empleado (em_nacionalidad,em_ci,em_nombre,em_apellido,em_fecha_ingreso,em_usuario,em_clave,em_titulacion,em_cargo,em_rol,em_zona,em_direccion,em_gerencia) VALUES ('V',1427427,'Maria','Mendez','2001-06-30','usuario','clave',1,2,2,1,1369,1);
+INSERT INTO Empleado (em_nacionalidad,em_ci,em_nombre,em_apellido,em_fecha_ingreso,em_usuario,em_clave,em_titulacion,em_cargo,em_rol,em_zona,em_direccion,em_supervisa) VALUES ('E',1234863,'Juan','Jaspe','2014-04-13','jaspe14','juan1',1,3,3,3,508,3);
+INSERT INTO Empleado (em_nacionalidad,em_ci,em_nombre,em_apellido,em_fecha_ingreso,em_usuario,em_clave,em_titulacion,em_cargo,em_rol,em_zona,em_direccion) VALUES ('P',2465416,'Anais','Andrade','2014-09-28','andrade14','anais1',2,7,4,4,1420);
+INSERT INTO Empleado (em_nacionalidad,em_ci,em_nombre,em_apellido,em_fecha_ingreso,em_usuario,em_clave,em_titulacion,em_cargo,em_rol,em_zona,em_direccion) VALUES ('V',1021456,'Gabriel','Gomez','2016-01-14','gomez16','gabriel1',3,5,5,1,1369);
+--CONTACTO
+INSERT INTO Contacto (co_valor,co_tipo,co_empleado) VALUES ('0424-2145875',1,1);
+INSERT INTO Contacto (co_valor,co_tipo,co_empleado) VALUES ('0212-5451324',2,1);
+INSERT INTO Contacto (co_valor,co_tipo,co_cliente) VALUES ('0244-5110648',2,4);
+INSERT INTO Contacto (co_valor,co_tipo,co_cliente) VALUES ('gerencia.general@aeropostal.com.ve',3,4);
+INSERT INTO Contacto (co_valor,co_tipo,co_proveedor) VALUES ('loco3',4,5);
+--BENEFICIARIO
+INSERT INTO Beneficiario (be_nacionalidad,be_ci,be_nombre,be_apellido,be_empleado) VALUES ('V',29455613,'Mariam','Pérez',1);
+INSERT INTO Beneficiario (be_nacionalidad,be_ci,be_nombre,be_apellido,be_empleado) VALUES ('V',29451215,'Miriam','Pérez',1);
+INSERT INTO Beneficiario (be_nacionalidad,be_ci,be_nombre,be_apellido,be_empleado) VALUES ('V',30264841,'Daniel','Matínez',2);
+INSERT INTO Beneficiario (be_nacionalidad,be_ci,be_nombre,be_apellido,be_empleado) VALUES ('V',30458460,'David','Matínez',2);
+INSERT INTO Beneficiario (be_nacionalidad,be_ci,be_nombre,be_apellido,be_empleado) VALUES ('V',28156123,'Valeria','Jaspe',3);
+--EXPERIENCIA
+INSERT INTO Experiencia (ex_descripcion,ex_years,ex_empleado) VALUES ('Jefe de producción en sistemas aeronauticos',5,1);
+INSERT INTO Experiencia (ex_descripcion,ex_years,ex_empleado) VALUES ('Vicepresidente en Motores C.A.',6.2,1);
+INSERT INTO Experiencia (ex_descripcion,ex_years,ex_empleado) VALUES ('Gerente administrativo en General Motors C.A.',4,2);
+INSERT INTO Experiencia (ex_descripcion,ex_years,ex_empleado) VALUES ('Ingeniero aeroespacial en Alitas C.A.',3.6,3);
+INSERT INTO Experiencia (ex_descripcion,ex_years,ex_empleado) VALUES ('Ingeniero mecánico en Fuselaje C.A.',2.4,4);
+--FACTURA_VENTA
+INSERT INTO Factura_venta (fv_fecha,fv_cliente) VALUES ('2016-06-28',1);
+INSERT INTO Factura_venta (fv_fecha,fv_cliente) VALUES ('2017-01-11',2);
+INSERT INTO Factura_venta (fv_fecha,fv_cliente) VALUES ('2017-09-02',3);
+INSERT INTO Factura_venta (fv_fecha,fv_cliente) VALUES ('2017-11-15',4);
+INSERT INTO Factura_venta (fv_fecha,fv_cliente) VALUES ('2017-12-02',5);
+--DETALLE_FACTURA_VENTA
+INSERT INTO Detalle_factura_venta (dfv_precio,dfv_factura_venta) VALUES (1234678.911,1);
+INSERT INTO Detalle_factura_venta (dfv_precio,dfv_factura_venta) VALUES (845626.999,2);
+INSERT INTO Detalle_factura_venta (dfv_precio,dfv_factura_venta) VALUES (4658412.96,3);
+INSERT INTO Detalle_factura_venta (dfv_precio,dfv_factura_venta) VALUES (2658426.11,4);
+INSERT INTO Detalle_factura_venta (dfv_precio,dfv_factura_venta) VALUES (9541254.235,5);
