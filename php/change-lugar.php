@@ -3,7 +3,7 @@ include 'conexion.php';//Archivo que establece una coneccion con la base de dato
 
 	if(isset($_GET['create'])){
 		
-		$nombre = htmlentities($_POST['create'], ENT_QUOTES); //Nombre del lugar, se le aplica una funcion para eliminar caracteres especiales
+		$nombre = htmlentities($_POST['nombre'], ENT_QUOTES); //Nombre del lugar, se le aplica una funcion para eliminar caracteres especiales
 		$tipo = $_POST['tipo']; //Tipo de lugar
 		
 		if($_POST['lugar'] > 0)  //Si existe una referencia a lugar esta sera un numero mayor a cero
@@ -19,7 +19,7 @@ include 'conexion.php';//Archivo que establece una coneccion con la base de dato
 	}
 	if(isset($_GET['update'])){
 		
-		$nombre = htmlentities($_POST['create'], ENT_QUOTES); 
+		$nombre = htmlentities($_POST['nombre'], ENT_QUOTES); 
 		$tipo = $_POST['tipo']; 
 		
 		if($_POST['lugar'] > 0) 
