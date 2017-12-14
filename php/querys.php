@@ -1,6 +1,22 @@
-<?php  include 'conexion.php';
-
-	function crearLugar( $nombre , $tipo, $lugar ){
+<?php  include_once 'conexion.php';
+//Querys de Status
+	function insertarStatus( $nombre ){
+		$nombre = htmlentities($nombre, ENT_QUOTES);
+		$qry = "INSERT INTO Status (st_nombre) VALUES ('".$nombre."')";
+		return pg_query($conexion, $qry);
+	}
+	function editarStatus( $id, $nombre ){
+		$nombre = htmlentities($nombre, ENT_QUOTES);
+		$qry = "UPDATE Status SET st_nombre='".$nombre."' WHERE st_id=".$id;
+		return pg_query($conexion, $qry);
+	}
+	function eliminarStatus( $id ){
+		$nombre = htmlentities($nombre, ENT_QUOTES);
+		$qry = "DELETE FROM Status WHERE st_id=".$id;
+		return pg_query($conexion, $qry);
+	}
+// Querys de Lugar
+	function insertarLugar( $nombre , $tipo, $lugar ){
 		$nombre = htmlentities($nombre, ENT_QUOTES);
 		if($lugar <= 0)  
 			$lugar = "NULL";
