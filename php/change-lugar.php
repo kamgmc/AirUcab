@@ -15,6 +15,7 @@ include 'conexion.php';//Archivo que establece una coneccion con la base de dato
 		
 		if(pg_query( $conexion, $qry )) //pg_query envia el query a la base de datos para ser ejecutada
 			print "Se ha agregado un nuevo Lugar";
+		
 	}
 	if(isset($_GET['update'])){
 		
@@ -30,6 +31,14 @@ include 'conexion.php';//Archivo que establece una coneccion con la base de dato
 		
 		if(pg_query( $conexion, $qry )) 
 			print "Se ha modificado el Lugar ".$_GET['update'];
+		
 	}
-
+	if(isset($_GET['delete'])){
+		
+		$qry = "DELETE FROM Lugar where lu_id=".$_GET['delete'];
+		
+		if(pg_query( $conexion, $qry )) 
+			print "Se ha eliminado el Lugar ".$_GET['delete'];
+		
+	}
 ?>
