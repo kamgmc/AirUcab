@@ -2,12 +2,12 @@ create database AirUcab WITH ENCODING = 'UTF8';
 
 create table Status(
 	st_id serial,
-	st_nombre varchar(30) not null,
+	st_nombre varchar(30) unique not null,
 	constraint Pk_status primary key(st_id)
 );
 create table Rol_sistema(
 	sr_id serial,
-	sr_nombre varchar(30) not null,
+	sr_nombre varchar(30) unique not null,
 	constraint Pk_rol_sistema primary key(sr_id)
 );
 create table Permiso(
@@ -54,12 +54,12 @@ create table Zona(
 );
 create table Titulacion(
 	ti_id serial,
-	ti_nombre varchar(30) not null,
+	ti_nombre varchar(30) unique not null,
 	constraint Pk_titulacion primary key(ti_id)
 );
 create table Cargo(
 	er_id serial,
-	er_nombre varchar(30) not null,
+	er_nombre varchar(30) unique not null,
 	constraint Pk_cargo primary key(er_id)
 );
 create table Empleado(
@@ -157,7 +157,7 @@ create table Proveedor(
 create unique index Po_Rif on Proveedor (po_tipo_rif,po_rif);
 create table Tipo_contacto(
 	ct_id serial,
-	ct_nombre varchar(30) not null,
+	ct_nombre varchar(30) unique not null,
 	constraint Pk_tipo_contacto primary key(ct_id)
 );
 create table Contacto(
@@ -176,7 +176,7 @@ create table Contacto(
 );
 create table Marca_motor(
 	mb_id serial,
-	mb_nombre varchar(30) not null,
+	mb_nombre varchar(30) unique not null,
 	constraint Pk_marca_motor primary key(mb_id)
 );
 create table Modelo_motor(
@@ -200,7 +200,7 @@ create table Modelo_motor(
 );
 create table Modelo_avion(
 	am_id serial,
-	am_nombre varchar(30) not null,
+	am_nombre varchar(30) unique not null,
 	am_longitud numeric(4,2) not null,
 	am_envergadura numeric(4,2) not null,
 	am_altura numeric(4,2) not null,
@@ -293,17 +293,17 @@ create table S_avion_m_motor(
 );
 create table Tipo_ala(
 	wt_id serial,
-    wt_nombre varchar(30) not null,
+    wt_nombre varchar(30) unique not null,
     constraint Pk_tipo_ala primary key(wt_id)
 );
 create table Tipo_estabilizador(
 	et_id serial,
-    et_nombre varchar(30) not null,
+    et_nombre varchar(30) unique not null,
     constraint Pk_tipo_estabilizador primary key(et_id)
 );
 create table Modelo_pieza(
     pm_id serial,
-    pm_nombre varchar(30) not null,
+    pm_nombre varchar(30) unique not null,
     pm_tiempo_estimado date not null,
     pm_modelo_pieza integer,
     pm_tipo_ala integer,
@@ -386,7 +386,7 @@ create table Pago(
 );
 create table Tipo_material(
 	mt_id serial,
-    mt_nombre varchar(30) not null,
+    mt_nombre varchar(30) unique not null,
     constraint Pk_tipo_material primary key(mt_id)
 );
 create table T_material_m_pieza(
