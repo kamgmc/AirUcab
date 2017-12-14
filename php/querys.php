@@ -53,6 +53,19 @@
 		$qry = "DELETE FROM Permiso WHERE pe_id=".$id;
 		return pg_query($conexion, $qry);
 	}
+//Querys de Rol - permiso
+	function insertarRolPermiso( $rol, $permiso ){
+		$qry = "INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES (".$rol.",".$permiso.")";
+		return pg_query($conexion, $qry);
+	}
+	function editarRolPermiso( $id, $rol, $permiso ){
+		$qry = "UPDATE Rol_permiso SET rp_rol=".$rol.", rp_permiso=".$permiso." WHERE rp_id=".$id;
+		return pg_query($conexion, $qry);
+	}
+	function eliminarRolPermiso( $id ){
+		$qry = "DELETE FROM Rol_permiso WHERE rp_id=".$id;
+		return pg_query($conexion, $qry);
+	}
 // Querys de Lugar
 	function insertarLugar( $nombre , $tipo, $lugar ){
 		$nombre = htmlentities($nombre, ENT_QUOTES);
