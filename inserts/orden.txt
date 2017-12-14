@@ -1,8 +1,16 @@
-factura_venta
-detalle_factura_venta
-proveedor
-tipo_contacto
-empleado
-contacto
-experiencia
-beneficiario
+Lugar
+Permiso
+Tipo de Contacto
+Sede
+Zona
+Cargo
+Rol de Sistema
+Titulacion
+Cliente
+Proveedor
+Empleado
+Contacto
+Beneficiario
+Experiencia
+Factura de venta
+Detalle factura venta
