@@ -1541,11 +1541,6 @@ INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear rol de sistema','sr_
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver rol de sistema','sr_r');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar rol de sistema','sr_u');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar rol de sistema','sr_d');
---PERMISO
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear Permiso','pe_c');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver Permiso','pe_r');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar Permiso','pe_u');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar Permiso','pe_d');
 --ROL_PERMISO
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear rol - permiso','rp_c');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver rol - permiso','rp_r');
@@ -1601,11 +1596,6 @@ INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear factura de venta','f
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver factura de venta','fv_r');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar factura de venta','fv_u');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar factura de venta','fv_d');
---DETALLE_FACTURA_VENTA
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear detalle factura de venta','dfv_c');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver detalle factura de venta','dfv_r');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar detalle factura de venta','dfv_u');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar detalle factura de venta','dfv_d');
 --PROVEEDOR
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear proveedor','po_c');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver proveedor','po_r');
@@ -1686,11 +1676,6 @@ INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear factura de compra','
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver factura de compra','fc_r');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar factura de compra','fc_u');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar factura de compra','fc_d');
---DETALLE_FACTURA_COMPRA
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear detalle factura de compra','dfc_c');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver detalle factura de compra','dfc_r');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar detalle factura de compra','dfc_u');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar detalle factura de compra','dfc_d');
 --TIPO_PAGO
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear tipo de pago','pt_c');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver tipo de pago','pt_r');
@@ -1847,9 +1832,3 @@ INSERT INTO Factura_venta (fv_fecha,fv_cliente) VALUES ('2017-01-11',2);
 INSERT INTO Factura_venta (fv_fecha,fv_cliente) VALUES ('2017-09-02',3);
 INSERT INTO Factura_venta (fv_fecha,fv_cliente) VALUES ('2017-11-15',4);
 INSERT INTO Factura_venta (fv_fecha,fv_cliente) VALUES ('2017-12-02',5);
---DETALLE_FACTURA_VENTA
-INSERT INTO Detalle_factura_venta (dfv_precio,dfv_factura_venta) VALUES (1234678.911,1);
-INSERT INTO Detalle_factura_venta (dfv_precio,dfv_factura_venta) VALUES (845626.999,2);
-INSERT INTO Detalle_factura_venta (dfv_precio,dfv_factura_venta) VALUES (4658412.96,3);
-INSERT INTO Detalle_factura_venta (dfv_precio,dfv_factura_venta) VALUES (2658426.11,4);
-INSERT INTO Detalle_factura_venta (dfv_precio,dfv_factura_venta) VALUES (9541254.235,5);
