@@ -232,7 +232,7 @@ create table Modelo_avion(
 	constraint Check_am_cabina_ancho check(am_cabina_ancho > 0),
 	constraint Check_am_carga_volumen check(am_carga_volumen > 0),
 	constraint Check_am_capacidad_pilotos check(am_capacidad_pilotos > 0),
-	constraint Check_am_capacidad_asistentes check(am_capacidad_asistentes > 0),
+	constraint Check_am_capacidad_asistentes check(am_capacidad_asistentes >= 0),
 	constraint Check_am_carrera_despegue check(am_carrera_despegue > 0),
 	constraint Check_am_fuselaje_tipo check(am_fuselaje_tipo IN ('Ancho','Normal'))
 );
