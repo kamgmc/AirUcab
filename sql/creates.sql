@@ -200,7 +200,7 @@ create table Modelo_avion(
 	am_ala_flecha numeric(4,2) not null,
 	am_peso_aterrizaje_max numeric(6,1) not null,
 	am_alcance numeric(6,2) not null,
-	am_velocidad_max numeric(4,2) not null,
+	am_velocidad_max numeric(5,2) not null,
 	am_techo_servicio numeric(6,1) not null,
 	am_regimen_ascenso numeric(4,1) not null,
 	am_numero_pasillos numeric(2,0) not null,
