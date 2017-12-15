@@ -133,14 +133,6 @@ create table Factura_venta(
 	constraint Pk_factura_venta primary key(fv_id),
 	constraint Fk_fv_cliente foreign key(fv_cliente) references Cliente(cl_id)
 );
-create table Detalle_factura_venta(
-	dfv_id serial,
-	dfv_precio numeric(10,3) not null,
-	dfv_factura_venta integer not null,
-	constraint Pk_detalle_factura_venta primary key(dfv_id),
-	constraint Check_dfv_precio check(dfv_precio > 0),
-	constraint Fk_dfv_factura_venta foreign key(dfv_factura_venta) references Factura_venta(fv_id)
-);
 create table Proveedor(
 	po_id serial,
 	po_tipo_rif char(1) not null,
@@ -205,30 +197,28 @@ create table Modelo_avion(
 	am_envergadura numeric(4,2) not null,
 	am_altura numeric(4,2) not null,
 	am_ala_superficie numeric(4,1) not null,
-	am_ala_altura numeric(4,2) not null,
 	am_ala_flecha numeric(4,2) not null,
 	am_peso_aterrizaje_max numeric(6,1) not null,
-	am_alcance numeric(6,2) not null,
+	am_alcance numeric(4,2) not null,
 	am_velocidad_max numeric(4,2) not null,
 	am_techo_servicio numeric(6,1) not null,
 	am_regimen_ascenso numeric(4,1) not null,
 	am_numero_pasillos numeric(2,0) not null,
-	am_fuselaje_tipo varchar(6) not null,
-	am_fuselaje_altura numeric(4,2) not null,
-	am_fuselaje_ancho numeric(4,2) not null,
-	am_cabina_altura numeric(4,2) not null,
-	am_cabina_ancho numeric(4,2) not null,
+	am_fuselaje_tipo varchar(5) not null,
+	am_fuselaje_altura numeric(4,1) not null,
+	am_fuselaje_ancho numeric(4,1) not null,
+	am_cabina_altura numeric(4,1) not null,
+	am_cabina_ancho numeric(4,1) not null,
 	am_carga_volumen numeric(4,2) not null,
 	am_capacidad_pilotos numeric(1,0) not null,
 	am_capacidad_asistentes numeric(2,0) not null,
-	am_carrera_despegue numeric(5) not null,
+	am_carrera_despegue numeric(4,2) not null,
 	am_tiempo_estimado date not null,
 	constraint Pk_modelo_avion primary key(am_id),
 	constraint Check_am_longitud check(am_longitud > 0),
 	constraint Check_am_envergadura check(am_envergadura > 0),
 	constraint Check_am_altura check(am_altura > 0),
 	constraint Check_am_ala_superficie check(am_ala_superficie > 0),
-	constraint Check_am_ala_altura check(am_ala_altura > 0),
 	constraint Check_am_ala_flecha check(am_ala_flecha > 0),
 	constraint Check_am_peso_aterrizaje_max check(am_peso_aterrizaje_max > 0),
 	constraint Check_am_alcance check(am_alcance > 0),
@@ -251,8 +241,8 @@ create table Distribucion(
 	di_nombre varchar(30) not null,
 	di_numero_clases numeric(1,0) not null,
 	di_capacidad_pasajeros numeric(4,0) not null,
-	di_distancia_asientos numeric(3,1) not null,
-	di_ancho_asientos numeric(3,1) not null,
+	di_distancia_asientos numeric(3,2) not null,
+	di_ancho_asientos numeric(3,2) not null,
 	di_modelo_avion integer not null,
 	constraint Pk_distribucion primary key(di_id),
 	constraint Check_di_numero_clases check(di_numero_clases > 0),
@@ -351,14 +341,6 @@ create table Factura_compra(
 	constraint Pk_factura_compra primary key(fc_id),
 	constraint Fk_fc_proveedor foreign key(fc_proveedor) references Proveedor(po_id)
 );
-create table Detalle_factura_compra(
-	dfc_id serial,
-	dfc_precio numeric(7,2),
-	dfc_factura_compra integer not null,
-	constraint Pk_detalle_factura_compra primary key(dfc_id),
-	constraint Check_dfc_precio check(dfc_precio > 0),
-	constraint Fk_dfc_factura_compra foreign key(dfc_factura_compra) references Factura_compra(fc_id)
-);
 create table Tipo_pago(
 	pt_id serial,
 	pt_tipo numeric(1,0) not null,
@@ -403,11 +385,13 @@ create table Avion(
 	a_id serial,
     a_fecha_ini date not null,
     a_fecha_fin date not null,
-    a_detalle_factura_venta integer not null,
+    a_factura_venta integer not null,
     a_submodelo_avion integer not null,
+	a_precio numeric(8,2) not null,
     constraint Pk_avion primary key(a_id),
-    constraint Fk_a_detalle_factura_venta foreign key(a_detalle_factura_venta) references Detalle_factura_venta(dfv_id),
-    constraint Fk_a_submodelo_avion foreign key(a_submodelo_avion) references Submodelo_avion(as_id)
+    constraint Fk_a_factura_venta foreign key(a_factura_venta) references Factura_venta(fv_id),
+    constraint Fk_a_submodelo_avion foreign key(a_submodelo_avion) references Submodelo_avion(as_id),
+	constraint Check_a_precio check(a_precio > 0)
 );
 create table Status_avion(
 	sa_id serial,
@@ -463,12 +447,14 @@ create table Material(
 	m_id serial,
     m_fecha date not null,
     m_tipo_material integer not null,
-    m_detalle_factura_compra integer not null,
+    m_factura_compra integer not null,
 	m_pieza integer not null,
+	m_precio numeric(4,2) not null,
     constraint Pk_material primary key(m_id),
     constraint Fk_m_tipo_material foreign key(m_tipo_material) references Tipo_material(mt_id),
-    constraint Fk_m_detalle_factura_compra foreign key(m_detalle_factura_compra) references Detalle_factura_compra(dfc_id),
-	constraint Fk_m_pieza foreign key(m_pieza) references Pieza(p_id)
+    constraint Fk_m_factura_compra foreign key(m_factura_compra) references Factura_compra(fc_id),
+	constraint Fk_m_pieza foreign key(m_pieza) references Pieza(p_id),
+	constraint Check_m_precio check(m_precio > 0)
 );
 create table Prueba_material(
 	prm_id serial,
