@@ -175,7 +175,7 @@ create table Modelo_motor(
 	mm_id serial,
 	mm_nombre varchar(30) not null,
 	mm_tipo varchar(7) not null,
-	mm_empuje_max numeric(4,2) not null,
+	mm_empuje_max numeric(5,2) not null,
 	mm_empuje_normal numeric(4,2) not null,
 	mm_empuje_crucero numeric (4,2) not null,
 	mm_longitud numeric(3,2) not null,
