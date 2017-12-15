@@ -221,7 +221,7 @@ create table Modelo_avion(
 	am_carga_volumen numeric(4,2) not null,
 	am_capacidad_pilotos numeric(1,0) not null,
 	am_capacidad_asistentes numeric(2,0) not null,
-	am_carrera_despegue numeric(4,2) not null,
+	am_carrera_despegue numeric(5) not null,
 	am_tiempo_estimado date not null,
 	constraint Pk_modelo_avion primary key(am_id),
 	constraint Check_am_longitud check(am_longitud > 0),
