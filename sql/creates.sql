@@ -179,7 +179,7 @@ create table Modelo_motor(
 	mm_empuje_normal numeric(4,2) not null,
 	mm_empuje_crucero numeric (4,2) not null,
 	mm_longitud numeric(3,2) not null,
-	mm_diametro_aspa numeric(2,2),
+	mm_diametro_aspa numeric(4,2),
 	mm_marca integer not null,
 	constraint Pk_modelo_motor primary key(mm_id),
 	constraint Check_mm_tipo check(mm_tipo IN ('Hélice','Reactor')),
