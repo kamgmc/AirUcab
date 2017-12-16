@@ -13,4 +13,9 @@ Contacto
 Beneficiario
 Experiencia
 Factura de venta
-Detalle factura venta
+Modelo avion
+Distribucion
+Submodelo avion
+Marca motor
+Modelo motor
+S avion m motor
