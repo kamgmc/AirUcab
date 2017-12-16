@@ -1,0 +1,85 @@
+/* TAB CUSTOMIZATION */
+
+
+/* Ocultamos los botones de los tabs exclusivamente */
+.no-display {
+  display: none;
+}
+.label {
+  display: inline-block;
+  margin: 0 0 -1px;
+  padding: 15px 25px;
+  font-weight: 600;
+  text-align: center;
+  color: #bbb;
+  border: 1px solid transparent;
+}
+.sectiontab {
+  background: #fff;
+  display: none;
+  padding: 20px 0 0;
+  border: 1px solid #363082; 
+}
+
+.label:before {
+  font-family: fontawesome;
+  font-weight: normal;
+  margin-right: 10px; 
+}
+
+.font-big{
+  font-size: 1rem;
+}
+
+.label:hover {
+  color: #786CE9;
+  cursor: pointer; 
+}
+
+input:checked + .label {
+  background: #fff;
+  color: #555;
+  border: 1px solid #363082;
+  border-top: 6px solid #786CE9;
+  border-bottom: 1px solid #F9FBFC; 
+}
+
+#tab0:checked ~ #content0,
+#tab1:checked ~ #content1,
+#tab2:checked ~ #content2,
+#tab3:checked ~ #content3,
+#tab4:checked ~ #content4 {
+  display: block; 
+}
+
+.table-hover tbody tr:hover {
+    background-color: #bbbadc;
+  }
+
+.btn-md {
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.pull-right {
+  float: right;
+}
+.table thead tr th + .text-middle {
+  vertical-align: middle;
+}
+.table thead td + .text-middle {
+  vertical-align: middle;
+  text-align: center;
+}
+
+/* Regla para facilitar el modal en NUEVO ROL */
+
+@media (min-width: 768px) {
+  .modal-xl {
+    width: 90vw;
+   max-width:2000px;
+  }
+}
+
+

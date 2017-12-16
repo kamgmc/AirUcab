@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AirUCAB - Main</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Fontastic Custom icon font-->
+    <link rel="stylesheet" href="css/fontastic.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Poppins -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="css/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="favicon.png">
+
+  </head>
+  <body>
+    <div class="page home-page">
+      <!-- Main Navbar-->
+      <header class="header">
+        <nav class="navbar">
+          
+          <div class="container-fluid">
+            <div class="navbar-holder d-flex align-items-center justify-content-between">
+              <!-- Navbar Header-->
+              <div class="navbar-header">
+                <!-- Navbar Brand --><a href="empleados.html" class="navbar-brand">
+                  <div class="brand-text brand-big"><span>Air</span><strong>UCAB</strong></div>
+                  <div class="brand-text brand-small"><strong>AU</strong></div></a>
+                <!-- Toggle Button--><a id="toggle-btn" href="#" class="menu-btn active"><span></span><span></span><span></span></a>
+              </div>
+              <!-- Navbar Menu -->
+              <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+                
+                <!-- Logout    -->
+                <li class="nav-item"><a href="login.html" class="nav-link logout">Cerrar Sesion<i class="fa fa-sign-out"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <div class="page-content d-flex align-items-stretch">
+        <!-- Side Navbar -->
+        <nav class="side-navbar">
+          <!-- Sidebar Header-->
+          <div class="sidebar-header d-flex align-items-center">
+            <div class="avatar"><img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
+            <div class="title">
+              <h1 class="h4">Abuelo Fdz</h1>
+              <p>Director Operaciones</p>
+            </div>
+          </div>
+          <!-- Sidebar Navidation Menus-->
+          <ul class="list-unstyled">
+            <li class="active"> <a href="empleados.html"><i class="icon-man-people-streamline-user"></i>Empleados</a></li>
+            <li> <a href="clientes.html"> <i class="fa fa-address-book-o" aria-hidden="true"></i>Clientes</a></li>
+            <li> <a href="proveedores.html"> <i class="fa fa-truck" aria-hidden="true"></i>Proveedores</a></li>
+            <li> <a href="ventas.html"> <i class="fa fa-plane" aria-hidden="true"></i>Ventas </a></li>
+            <li> <a href="forms.html"> <i class="fa fa-cog" aria-hidden="true"></i>Compras </a></li>
+          </ul>
+          
+        </nav>
+        <div class="content-inner">
+          
+          
+          <!-- TABS SECTION-->
+          <section>
+            <div class="container-fluid">
+
+            <input id="tab0" type="radio" name="tabs" class="no-display" checked>
+            <label for="tab0" class="label"><i class="fa fa-id-card-o" aria-hidden="true"></i> Empleados</label>
+
+            <input id="tab1" type="radio" name="tabs" class="no-display">
+            <label for="tab1" class="label"><i class="icon-map-streamline-user" aria-hidden="true"></i> Roles</label>
+              
+            <input id="tab2" type="radio" name="tabs" class="no-display">
+            <label for="tab2" class="label"><i class="fa fa-university" aria-hidden="true"></i>
+
+ Permisos</label>              
+            
+            <!-- TAB ACTUALES -->
+
+
+            <section id="content0" class="sectiontab">
+               <!-- Filtrador-->
+                <div class="container-fluid">
+                  <div class="row">
+                  <div class="card col-lg-12">
+                    <div class="row">
+                    <div class="card-body col-lg-5">
+                      <h3 class="h4">MOSTRAR SOLO LOS USUARIOS QUE</h3>
+                      <form class="form-horizontal">
+                        <div class="row">
+                          <label class="col-sm-3 form-control-label">rol</label>
+                          <div class="col-sm-9 select">
+                            <select name="account" class="form-control">
+                              <option>option 1</option>
+                              <option>option 2</option>
+                              <option>option 3</option>
+                              <option>option 4</option>
+                            </select>
+                          </div>
+
+                        </div>
+                        <div class="row">
+                          <label class="col-sm-3 form-control-label">permiso</label>
+                          <div class="col-sm-9 select">
+                            <select name="account" class="form-control">
+                              <option>option 1</option>
+                              <option>option 2</option>
+                              <option>option 3</option>
+                              <option>option 4</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <label class="col-sm-3 form-control-label">estado</label>
+                          <div class="col-sm-9 select">
+                            <select name="account" class="form-control">
+                              <option>option 1</option>
+                              <option>option 2</option>
+                              <option>option 3</option>
+                              <option>option 4</option>
+                            </select>
+                          </div>
+                        </div>
+                        
+                      </form>
+                    </div>
+                    <div class=" card-body col-lg-4">
+                      <div class="form-group row">
+                          <div class="col-sm-9">
+                            <br> 
+                            <input type="submit" value="Filtrar" class="btn btn-primary">
+                          </div>
+                        </div>
+                    </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+                <!-- Filtrador ENDS -->
+
+
+                <!-- ACCIONISTA -->
+                <div class="container-fluid">
+                  <div class="row">
+                  <div class="card col-lg-12">
+                    <div class="row">
+                    <div class="card-body col-lg-5">
+                      <h3 class="h4">ACCIONAR OPCIONES</h3>
+                      <form class="form-horizontal">
+                        <div class="row">
+                          <div class="col-sm-12 select">
+                            <select name="account" class="form-control">
+                              <option>Desbloquear a los usuarios seleccionados</option>
+                              <option>option 2</option>
+                              <option>option 3</option>
+                              <option>option 4</option>
+                            </select>
+                          </div>
+
+                        </div>
+                        
+                        
+                      </form>
+                    </div>
+                    <div class=" card-body col-lg-4">
+                      <div class="form-group row">
+                          <div class="col-sm-9">
+                            <br> 
+                            <input type="submit" value="Ejecutar" class="btn btn-primary">
+                          </div>
+                        </div>
+                    </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+
+                
+                <!-- TABLE STARTS -->
+                <div class="col-md-12">
+                   <div class="card">
+                      
+                      
+                      <div class="card-body">
+                         <table class="table table-striped table-sm table-hover">
+                            <thead>
+                               <tr>
+                                  <td>
+                                    <div class="i-checks">
+                                      <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                    </div>
+                                  </td>
+                                  <th>NOMBRE USUARIO</th>
+                                  <th>ESTADO</th>
+                                  <th>ROLES</th>
+                                  <th>MIEMBRO DURANTE</th>
+                                  <th class="text-center">Accion</th>
+                               </tr>
+                            </thead>
+                            <tbody>
+                               <tr>
+                                  <td>
+                                    <div class="i-checks">
+                                      <input id="checkboxCustom1" type="checkbox" value="" class="checkbox-template">
+                                    </div>
+                                  </td>
+                                  <td>Gerente General</td>
+                                  <td>Activo</td>
+                                  <td>loco</td>
+                                  <td>2mins, 3segs</td>
+                                  <td class="text-center">
+                                    <a href="" data-toggle="modal" data-target="#myModalEmpleado">
+                                      <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="" data-toggle="modal" data-target="#myModalBorrar">   
+                                      <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    </a>
+                                  </td>
+                               </tr>
+                               <tr>
+                               <td>
+                                <div class="i-checks">
+                                  <input id="checkboxCustom1" type="checkbox" value="" class="checkbox-template">
+                                </div>
+                              </td>
+                               <td>Jacob</td>
+                               <td>Thornton</td>
+                               <td>loco</td>
+                               <td>2mins, 3segs</td>
+                               <td class="text-center">
+                                  <a href="" data-toggle="modal" data-target="#myModalEmpleado">
+                                    <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                  </a>   
+                                  <a href="" data-toggle="modal" data-target="#myModalBorrar">
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                  </a>
+                               </td>
+                               </tr>
+                               <tr>
+                                <td>
+                                  <div class="i-checks">
+                                    <input id="checkboxCustom1" type="checkbox" value="" class="checkbox-template">
+                                  </div>
+                                </td>
+                               <td>Larry</td>
+                               <td>the Bird</td>
+                               <td>loco</td>
+                               <td>2mins, 3segs</td>
+                               <td class="text-center">
+                                  <a href="" data-toggle="modal" data-target="#myModalEmpleado">
+                                    <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                  </a>   
+                                  <a href="" data-toggle="modal" data-target="#myModalBorrar">
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                  </a>
+                               </td>
+                               </tr>
+                               <tr>
+                                <td>
+                                  <div class="i-checks">
+                                    <input id="checkboxCustom1" type="checkbox" value="" class="checkbox-template">
+                                  </div>
+                                </td>
+                               <td>Mark</td>
+                               <td>Otto</td>
+                               <td>loco</td>
+                               <td>2mins, 3segs</td>
+                               <td class="text-center">
+                                  <a href="" data-toggle="modal" data-target="#myModalEmpleado">
+                                    <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                  </a>   
+                                  <a href="" data-toggle="modal" data-target="#myModalBorrar">
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                  </a>
+                               </td>
+                               </tr>
+                               <tr>
+                                <td>
+                                  <div class="i-checks">
+                                    <input id="checkboxCustom1" type="checkbox" value="" class="checkbox-template">
+                                  </div>
+                                </td>
+                               <td>Jacob</td>
+                               <td>Thornton</td>
+                               <td>loco</td>
+                               <td>2mins, 3segs</td>
+                               <td class="text-center"> 
+                                <a href="" data-toggle="modal" data-target="#myModalEmpleado">
+                                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                </a>  
+                                <a href="" data-toggle="modal" data-target="#myModalBorrar">
+                                  <i class="fa fa-trash-o" aria-hidden="true"></i></td>
+                               </tr>
+                               <tr>
+                                <td>
+                                  <div class="i-checks">
+                                    <input id="checkboxCustom1" type="checkbox" value="" class="checkbox-template">
+                                  </div>
+                                </td>
+                               <td>Larry</td>
+                               <td>the Bird</td>
+                               <td>loco</td>
+                               <td>2mins, 3segs</td>
+                               <td class="text-center">
+                                  <a href="" data-toggle="modal" data-target="#myModalEmpleado">
+                                    <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                  </a>   
+                                  <a href="" data-toggle="modal" data-target="#myModalBorrar">
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                  </a>
+                               </td>
+                               </tr>
+                            </tbody>
+                         </table>
+                         
+                      </div>
+                   </div>
+                </div>
+                <!-- TABLE ENDS -->
+
+            </section>
+
+
+            <!-- Modal Empleado -->
+                         <div id="myModalEmpleado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+                            <div role="document" class="modal-dialog modal-xl">
+                               <div class="modal-content">
+                                  <div class="modal-header">
+                                     <h4 id="exampleModalLabel" class="modal-title">INFORMACION PERSONAL</h4>
+                                     <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                                  </div>
+                                  <div class="modal-body">
+
+
+                                    <div class="container-fluid">
+                                      <div class="row">
+                                      <div class="card col-lg-12">
+                                        <div class="row">
+                                        <div class="card-body col-lg-6">
+                                          
+                                          <div class="row">
+                                            <div class="col-lg-4">
+                                              <h3>Nombre</h3>
+                                            </div>
+                                            <div class="col-lg-8">
+                                              ALEXANDER FERNANDEZ
+                                            </div>
+                                          </div>
+                                          <div class="row">
+                                            <div class="col-lg-4">
+                                              <h3>Contacto</h3>
+                                            </div>
+                                            <div class="col-lg-8">
+                                              ALEXANDER FERNANDEZ
+                                            </div>
+                                          </div>
+                                          <div class="row">
+                                            <div class="col-lg-4">
+                                              <h3>Beneficiarios</h3>
+                                            </div>
+                                            <div class="col-lg-8">
+                                              ALEXANDER FERNANDEZ
+                                            </div>
+                                          </div>
+                                          <div class="row">
+                                            <div class="col-lg-4">
+                                              <h3>Experiencia</h3>
+                                            </div>
+                                            <div class="col-lg-8">
+                                              ALEXANDER FERNANDEZ
+                                            </div>
+                                          </div>
+
+                                        </div>
+
+                                        <div class=" card-body col-lg-6">
+                                          
+                                        </div>
+                                      </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                     
+
+                                     
+                                  </div>
+                                  <div class="modal-footer">
+                                     <button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
+                                     <button type="button" class="btn btn-primary">Cambiar</button>
+                                  </div>
+                               </div>
+                            </div>
+                         </div>
+                         <!-- Modal Empleado ENDS -->
+
+
+
+                         <!-- Modal Borrar -->
+                         <div id="myModalBorrar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+                            <div role="document" class="modal-dialog">
+                               <div class="modal-content">
+                                  <div class="modal-header">
+                                     <h4 id="exampleModalLabel" class="modal-title">Esta seguro que desea borrar al usuario?</h4>
+                                     <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                                  </div>
+                                  <!-- <div class="modal-body">
+
+
+                                    Estas segirp
+                                     
+
+                                     
+                                  </div> -->
+                                  <div class="modal-footer">
+                                     <button type="button" data-dismiss="modal" class="btn btn-secondary">Cancelar</button>
+                                     <button type="button" class="btn btn-primary">Borrar</button>
+                                  </div>
+                               </div>
+                            </div>
+                         </div>
+                         <!-- Modal Borrar ENDS -->
+
+
+
+
+
+
+
+
+            <section id="content1" class="sectiontab">
+              <div class="pad-left">
+              
+                <!-- TABLE STARTS -->
+                <div class="col-md-12">
+                   <div class="card">
+                      
+                      <div class="card-header d-flex align-items-center">
+                         <h3 class="h4">Roles de Usuario</h3>
+                      </div>
+                      <div class="card-body">
+                         <table class="table table-striped table-sm table-hover">
+                            <thead>
+                               <tr>
+                                  <th>Nombre</th>
+                                  <th class="text-center">Acciones</th>
+                               </tr>
+                            </thead>
+                            <tbody>
+                               <tr>
+                                  <td>Administrador</td>
+                                  <td class="text-center">
+                                    <a href="" data-toggle="modal" data-target="#myModalNombre">
+                                      <i class="fa fa-cogs" aria-hidden="true"></i>
+                                    </a>   
+                                    <a href="" data-toggle="modal" data-target="#myModalPermiso">
+                                      <i class="fa fa-university" aria-hidden="true"></i>
+                                    </a>
+                                  </td>
+                               </tr>
+                               <tr>
+                               <td>Gerente</td>
+                               <td class="text-center">
+                                  <a href="" data-toggle="modal" data-target="#myModalNombre">
+                                    <i class="fa fa-cogs" aria-hidden="true"></i>
+                                  </a>   
+                                  <a href="" data-toggle="modal" data-target="#myModalPermiso">
+                                    <i class="fa fa-university" aria-hidden="true"></i>
+                                  </a>
+                               </td>
+                               </tr>
+                               <tr>
+                               <td>Director Operaciones</td>
+                               <td class="text-center">
+                                  <a href="" data-toggle="modal" data-target="#myModalNombre">
+                                    <i class="fa fa-cogs" aria-hidden="true"></i>
+                                  </a>   
+                                  <a href="" data-toggle="modal" data-target="#myModalPermiso">
+                                    <i class="fa fa-university" aria-hidden="true"></i>
+                                  </a>
+                               </td>
+                               </tr>
+                               
+                            </tbody>
+                         </table>
+                         <!-- Boton para Modal -->
+                         <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary btn-md pull-right">Nuevo Rol </button>
+                         <!-- Modal-->
+                         <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+                            <div role="document" class="modal-dialog">
+                               <div class="modal-content">
+                                  <div class="modal-header">
+                                     <h4 id="exampleModalLabel" class="modal-title">Nuevo Rol</h4>
+                                     <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                                  </div>
+                                  <div class="modal-body">
+                                     <p>Introduzca los datos necesarios</p>
+                                     <form>
+                                        <div class="form-group">
+                                           <input type="email" placeholder="Nombre de Rol" class="form-control">
+                                        </div>
+                                     </form>
+                                     
+                                  </div>
+                                  <div class="modal-footer">
+                                     <button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
+                                     <button type="button" class="btn btn-primary">Crear</button>
+                                  </div>
+                               </div>
+                            </div>
+                         </div>
+                         <!-- Modal ENDS -->
+                         <!-- Modal Cambio Nombre-->
+                         <div id="myModalNombre" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+                            <div role="document" class="modal-dialog">
+                               <div class="modal-content">
+                                  <div class="modal-header">
+                                     <h4 id="exampleModalLabel" class="modal-title">Cambio Nombre Rol</h4>
+                                     <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                                  </div>
+                                  <div class="modal-body">
+                                     <p>Introduzca los datos necesarios</p>
+                                     <form>
+                                        <div class="form-group">
+                                           <input type="email" placeholder="Nombre de Rol" class="form-control">
+                                        </div>
+                                     </form>
+                                     
+                                  </div>
+                                  <div class="modal-footer">
+                                     <button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
+                                     <button type="button" class="btn btn-primary">Cambiar</button>
+                                  </div>
+                               </div>
+                            </div>
+                         </div>
+                         <!-- Modal Cambio NombreENDS -->
+                         
+                         <!-- Modal Permisos-->
+                         <div id="myModalPermiso" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+                            <div role="document" class="modal-dialog modal-xl">
+                               <div class="modal-content">
+                                  <div class="modal-header">
+                                     <h4 id="exampleModalLabel" class="modal-title">PERMISOS</h4>
+                                     <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                                  </div>
+                                  <div class="modal-body">
+                                     <!-- TABLE MODAL PERMISOS STARTS -->
+                                      <div class="col-md-12">
+                                         <div class="card">
+                                            
+                                            
+                                            <div class="card-body">
+                                               <table class="table table-striped table-sm table-hover">
+                                                  <thead>
+                                                     <tr>
+                                                        <th class="font-big text-center text-middle">Permiso</th>
+                                                        <th class="font-big text-center text-middle">Administrador</th>
+                                                        <th class="font-big text-center text-middle">Gerente</th>
+                                                        <th class="font-big text-center text-middle">Director<br>Operaciones</th>
+                                                     </tr>
+                                                  </thead>
+                                                  <tbody>
+                                                     <tr>
+                                                        <td><strong>BLOQUEO</strong></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                     </tr>
+                                                     <tr>
+                                                       <td>Administrar bloqueo a otros usuarios</td>
+                                                       <td>
+                                                          <div class="i-checks" >
+                                                              <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                                            </div>
+                                                       
+                                                        </td>
+                                                       <td>
+                                                          <div class="i-checks">
+                                                            <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                                          </div>
+                                                        </td>
+                                                        <td>
+                                                          <div class="i-checks">
+                                                            <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                                          </div>
+                                                        </td>
+                                                     </tr>
+                                                     <tr>
+                                                        <td><strong>BLOQUEO</strong></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                     </tr>
+                                                     <tr>
+                                                       <td>Administrar bloqueo a otros usuarios</td>
+                                                       <td>
+                                                          <div class="i-checks" >
+                                                              <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                                            </div>
+                                                       
+                                                        </td>
+                                                       <td>
+                                                          <div class="i-checks">
+                                                            <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                                          </div>
+                                                        </td>
+                                                        <td>
+                                                          <div class="i-checks">
+                                                            <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                                          </div>
+                                                        </td>
+                                                     </tr>
+                                                     <tr>
+                                                        <td><strong>BLOQUEO</strong></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                     </tr>
+                                                     <tr>
+                                                       <td>Administrar bloqueo a otros usuarios</td>
+                                                       <td>
+                                                          <div class="i-checks" >
+                                                              <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                                            </div>
+                                                       
+                                                        </td>
+                                                       <td>
+                                                          <div class="i-checks">
+                                                            <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                                          </div>
+                                                        </td>
+                                                        <td>
+                                                          <div class="i-checks">
+                                                            <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                                          </div>
+                                                        </td>
+                                                     </tr>
+                                                     <tr>
+                                                        <td><strong>BLOQUEO</strong></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                     </tr>
+                                                     <tr>
+                                                       <td>Administrar bloqueo a otros usuarios</td>
+                                                       <td>
+                                                          <div class="i-checks" >
+                                                              <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                                            </div>
+                                                       
+                                                        </td>
+                                                       <td>
+                                                          <div class="i-checks">
+                                                            <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                                          </div>
+                                                        </td>
+                                                        <td>
+                                                          <div class="i-checks">
+                                                            <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                                          </div>
+                                                        </td>
+                                                     </tr>
+                                                     <tr>
+                                                        <td><strong>BLOQUEO</strong></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                     </tr>
+                                                     <tr>
+                                                       <td>Administrar bloqueo a otros usuarios</td>
+                                                       <td>
+                                                          <div class="i-checks" >
+                                                              <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                                            </div>
+                                                       
+                                                        </td>
+                                                       <td>
+                                                          <div class="i-checks">
+                                                            <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                                          </div>
+                                                        </td>
+                                                        <td>
+                                                          <div class="i-checks">
+                                                            <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                                          </div>
+                                                        </td>
+                                                     </tr>
+                                                     <tr>
+                                                        <td><strong>BLOQUEO</strong></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                     </tr>
+                                                     <tr>
+                                                       <td>Administrar bloqueo a otros usuarios</td>
+                                                       <td>
+                                                          <div class="i-checks" >
+                                                              <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                                            </div>
+                                                       
+                                                        </td>
+                                                       <td>
+                                                          <div class="i-checks">
+                                                            <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                                          </div>
+                                                        </td>
+                                                        <td>
+                                                          <div class="i-checks">
+                                                            <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                                          </div>
+                                                        </td>
+                                                     </tr>
+                                                     <tr>
+                                                        <td><strong>BLOQUEO</strong></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                     </tr>
+                                                     <tr>
+                                                       <td>Administrar bloqueo a otros usuarios</td>
+                                                       <td>
+                                                          <div class="i-checks" >
+                                                              <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                                            </div>
+                                                       
+                                                        </td>
+                                                       <td>
+                                                          <div class="i-checks">
+                                                            <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                                          </div>
+                                                        </td>
+                                                        <td>
+                                                          <div class="i-checks">
+                                                            <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                                          </div>
+                                                        </td>
+                                                     </tr>
+                                                     <tr>
+                                                        <td><strong>BLOQUEO</strong></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                     </tr>
+                                                     <tr>
+                                                       <td>Administrar bloqueo a otros usuarios</td>
+                                                       <td>
+                                                          <div class="i-checks" >
+                                                              <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                                            </div>
+                                                       
+                                                        </td>
+                                                       <td>
+                                                          <div class="i-checks">
+                                                            <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                                          </div>
+                                                        </td>
+                                                        <td>
+                                                          <div class="i-checks">
+                                                            <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                                          </div>
+                                                        </td>
+                                                     </tr>
+                                                     <tr>
+                                                        <td><strong>BLOQUEO</strong></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                     </tr>
+                                                     <tr>
+                                                       <td>Administrar bloqueo a otros usuarios</td>
+                                                       <td>
+                                                          <div class="i-checks" >
+                                                              <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                                            </div>
+                                                       
+                                                        </td>
+                                                       <td>
+                                                          <div class="i-checks">
+                                                            <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                                          </div>
+                                                        </td>
+                                                        <td>
+                                                          <div class="i-checks">
+                                                            <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                                          </div>
+                                                        </td>
+                                                     </tr>
+                                                  </tbody>
+                                               </table>
+                                               
+                                            </div>
+                                         </div>
+                                      </div>
+                                      <!-- TABLE MODAL PERMISOS ENDS -->
+                                     
+                                  </div>
+                                  <div class="modal-footer">
+                                     <button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
+                                     <button type="button" class="btn btn-primary">Cambiar</button>
+                                  </div>
+                               </div>
+                            </div>
+                         </div>
+                         <!-- Modal Permisos ENDS -->
+                      </div>
+                   </div>
+                </div>
+                <!-- TABLE ENDS -->
+              </div>
+            </section>
+              
+            <!-- /TAB ACTUALES -->
+
+
+            <!-- TAB RECICLADOS -->
+
+
+            <section id="content2" class="sectiontab">
+              <div class="pad-left">
+              
+                <!-- TABLE STARTS -->
+                <div class="col-md-12">
+                   <div class="card">
+                      
+                      
+                      <div class="card-body">
+                         <table class="table table-striped table-sm table-hover">
+                            <thead>
+                               <tr>
+                                  <th class="font-big text-center text-middle">Permiso</th>
+                                  <th class="font-big text-center text-middle">Administrador</th>
+                                  <th class="font-big text-center text-middle">Gerente</th>
+                                  <th class="font-big text-center text-middle">Director<br>Operaciones</th>
+                               </tr>
+                            </thead>
+                            <tbody>
+                               <tr>
+                                  <td><strong>BLOQUEO</strong></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                               </tr>
+                               <tr>
+                                 <td>Administrar bloqueo a otros usuarios</td>
+                                 <td>
+                                    <div class="i-checks" >
+                                        <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                      </div>
+                                 
+                                  </td>
+                                 <td>
+                                    <div class="i-checks">
+                                      <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div class="i-checks">
+                                      <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                    </div>
+                                  </td>
+                               </tr>
+                               <tr>
+                                  <td><strong>BLOQUEO</strong></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                               </tr>
+                               <tr>
+                                 <td>Administrar bloqueo a otros usuarios</td>
+                                 <td>
+                                    <div class="i-checks" >
+                                        <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                      </div>
+                                 
+                                  </td>
+                                 <td>
+                                    <div class="i-checks">
+                                      <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div class="i-checks">
+                                      <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                    </div>
+                                  </td>
+                               </tr>
+                               <tr>
+                                  <td><strong>BLOQUEO</strong></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                               </tr>
+                               <tr>
+                                 <td>Administrar bloqueo a otros usuarios</td>
+                                 <td>
+                                    <div class="i-checks" >
+                                        <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                      </div>
+                                 
+                                  </td>
+                                 <td>
+                                    <div class="i-checks">
+                                      <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div class="i-checks">
+                                      <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                    </div>
+                                  </td>
+                               </tr>
+                               <tr>
+                                  <td><strong>BLOQUEO</strong></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                               </tr>
+                               <tr>
+                                 <td>Administrar bloqueo a otros usuarios</td>
+                                 <td>
+                                    <div class="i-checks" >
+                                        <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                      </div>
+                                 
+                                  </td>
+                                 <td>
+                                    <div class="i-checks">
+                                      <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div class="i-checks">
+                                      <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                    </div>
+                                  </td>
+                               </tr>
+                               <tr>
+                                  <td><strong>BLOQUEO</strong></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                               </tr>
+                               <tr>
+                                 <td>Administrar bloqueo a otros usuarios</td>
+                                 <td>
+                                    <div class="i-checks" >
+                                        <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                      </div>
+                                 
+                                  </td>
+                                 <td>
+                                    <div class="i-checks">
+                                      <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div class="i-checks">
+                                      <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                    </div>
+                                  </td>
+                               </tr>
+                               <tr>
+                                  <td><strong>BLOQUEO</strong></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                               </tr>
+                               <tr>
+                                 <td>Administrar bloqueo a otros usuarios</td>
+                                 <td>
+                                    <div class="i-checks" >
+                                        <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                      </div>
+                                 
+                                  </td>
+                                 <td>
+                                    <div class="i-checks">
+                                      <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div class="i-checks">
+                                      <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                    </div>
+                                  </td>
+                               </tr>
+                               <tr>
+                                  <td><strong>BLOQUEO</strong></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                               </tr>
+                               <tr>
+                                 <td>Administrar bloqueo a otros usuarios</td>
+                                 <td>
+                                    <div class="i-checks" >
+                                        <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                      </div>
+                                 
+                                  </td>
+                                 <td>
+                                    <div class="i-checks">
+                                      <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div class="i-checks">
+                                      <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                    </div>
+                                  </td>
+                               </tr>
+                               <tr>
+                                  <td><strong>BLOQUEO</strong></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                               </tr>
+                               <tr>
+                                 <td>Administrar bloqueo a otros usuarios</td>
+                                 <td>
+                                    <div class="i-checks" >
+                                        <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                      </div>
+                                 
+                                  </td>
+                                 <td>
+                                    <div class="i-checks">
+                                      <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div class="i-checks">
+                                      <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                    </div>
+                                  </td>
+                               </tr>
+                               <tr>
+                                  <td><strong>BLOQUEO</strong></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                               </tr>
+                               <tr>
+                                 <td>Administrar bloqueo a otros usuarios</td>
+                                 <td>
+                                    <div class="i-checks" >
+                                        <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                      </div>
+                                 
+                                  </td>
+                                 <td>
+                                    <div class="i-checks">
+                                      <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div class="i-checks">
+                                      <input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template">
+                                    </div>
+                                  </td>
+                               </tr>
+                            </tbody>
+                         </table>
+                         
+                      </div>
+                   </div>
+                </div>
+                <!-- TABLE ENDS -->
+              </div>
+            </section>
+              
+            
+            </div>
+          </section>
+
+
+
+
+          
+        </div>
+      </div>
+      <!-- Page Footer-->
+          <footer class="main-footer">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-sm-6">
+                  <p>AirUCAB &copy; 2017-2018</p>
+                </div>
+                <div class="col-sm-6 text-right">
+                  <p>Diseño por <a href="" class="external">AK</a></p>
+                </div>
+              </div>
+            </div>
+          </footer>
+    </div>
+    <!-- Javascript files-->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="vendor/popper.js/umd/popper.min.js"> </script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
+    <script src="js/front.js"></script>
+  </body>
+</html>
