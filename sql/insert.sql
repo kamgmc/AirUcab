@@ -2067,12 +2067,18 @@ INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor)
 --AU802D
 INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor)
 					 VALUES (2,5,5);
+INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor)
+					 VALUES (2,6,5);
+INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor)
+					 VALUES (2,7,5);
 --AU802E
 INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor)
-					 VALUES (2,6,6);
+					 VALUES (2,8,6);
 --AU802F
 INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor)
-					 VALUES (2,7,7);
+					 VALUES (2,9,7);
+INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor)
+					 VALUES (2,10,7);
 --AU747PLUS
 INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor)
 					 VALUES (2,11,8);
