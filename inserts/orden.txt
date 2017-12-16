@@ -19,3 +19,5 @@ Submodelo avion
 Marca motor
 Modelo motor
 S avion m motor
+Tipo ala
+Tipo estabilizador
