@@ -1791,17 +1791,17 @@ INSERT INTO Titulacion (ti_nombre) VALUES ('Bachiller');
 INSERT INTO Titulacion (ti_nombre) VALUES ('Licenciado');
 INSERT INTO Titulacion (ti_nombre) VALUES ('Arquitecto');
 --CLIENTES
-INSERT INTO Cliente (cl_tipo_rif,cl_rif,cl_nombre,cl_pagina_web,cl_fecha_inicio,cl_direccion) VALUES ('J',302097843,'Avior','https://www.aviorair.com','1994-12-02',395);
-INSERT INTO Cliente (cl_tipo_rif,cl_rif,cl_nombre,cl_pagina_web,cl_fecha_inicio,cl_direccion) VALUES ('G',200077743,'Conviasa','www.conviasa.aero','1996-03-22',1465);
-INSERT INTO Cliente (cl_tipo_rif,cl_rif,cl_nombre,cl_pagina_web,cl_fecha_inicio,cl_direccion) VALUES ('E',264852357,'Santa Bárbara Airlines','www.sbairlines.com','2001-08-14',951);
-INSERT INTO Cliente (cl_tipo_rif,cl_rif,cl_nombre,cl_pagina_web,cl_fecha_inicio,cl_direccion) VALUES ('J',303994911,'Aeropostal','www.aeropostal.com','2006-10-08',624);
-INSERT INTO Cliente (cl_tipo_rif,cl_rif,cl_nombre,cl_pagina_web,cl_fecha_inicio,cl_direccion) VALUES ('J',075035593,'Aserca','www.asercaairlines.com','2015-04-24',495);
+INSERT INTO Cliente (cl_tipo_rif,cl_rif,cl_nombre,cl_pagina_web,cl_fecha_inicio,cl_direccion,cl_nota) VALUES ('J',302097843,'Avior','https://www.aviorair.com','1994-12-02',395,'Nota de avior');
+INSERT INTO Cliente (cl_tipo_rif,cl_rif,cl_nombre,cl_pagina_web,cl_fecha_inicio,cl_direccion,cl_nota) VALUES ('G',200077743,'Conviasa','www.conviasa.aero','1996-03-22',1465,'Nota de conviasa');
+INSERT INTO Cliente (cl_tipo_rif,cl_rif,cl_nombre,cl_pagina_web,cl_fecha_inicio,cl_direccion,cl_nota) VALUES ('E',264852357,'Santa Bárbara Airlines','www.sbairlines.com','2001-08-14',951,'Nota de SBA');
+INSERT INTO Cliente (cl_tipo_rif,cl_rif,cl_nombre,cl_pagina_web,cl_fecha_inicio,cl_direccion,cl_nota) VALUES ('J',303994911,'Aeropostal','www.aeropostal.com','2006-10-08',624,'Nota de Aeropostal');
+INSERT INTO Cliente (cl_tipo_rif,cl_rif,cl_nombre,cl_pagina_web,cl_fecha_inicio,cl_direccion,cl_nota) VALUES ('J',075035593,'Aserca','www.asercaairlines.com','2015-04-24',495,'Nota de Aserca');
 --PROVEEDORES
-INSERT INTO Proveedor (po_tipo_rif,po_rif,po_nombre,po_pagina_web,po_fecha_ini,po_direccion) VALUES ('J',124685735,'Fibra de Carbono C.A.','www.fibras.com.ve','2005-05-05',1233);
-INSERT INTO Proveedor (po_tipo_rif,po_rif,po_nombre,po_pagina_web,po_fecha_ini,po_direccion) VALUES ('J',352648745,'Tornillos y todo lo demás C.A.','www.tornillos.com.ve','2007-09-01',1321);
-INSERT INTO Proveedor (po_tipo_rif,po_rif,po_nombre,po_pagina_web,po_fecha_ini,po_direccion) VALUES ('J',457821659,'Tapiceria de asientos C.A.','www.tapiasientos.com.ve','2004-04-08',1247);
+INSERT INTO Proveedor (po_tipo_rif,po_rif,po_nombre,po_pagina_web,po_fecha_ini,po_direccion,po_nota) VALUES ('J',124685735,'Fibra de Carbono C.A.','www.fibras.com.ve','2005-05-05',1233,'Fibras de alta calidad');
+INSERT INTO Proveedor (po_tipo_rif,po_rif,po_nombre,po_pagina_web,po_fecha_ini,po_direccion,po_nota) VALUES ('J',352648745,'Tornillos y todo lo demás C.A.','www.tornillos.com.ve','2007-09-01',1321,'Cumplen con la fecha de entrega');
+INSERT INTO Proveedor (po_tipo_rif,po_rif,po_nombre,po_pagina_web,po_fecha_ini,po_direccion,po_nota) VALUES ('J',457821659,'Tapiceria de asientos C.A.','www.tapiasientos.com.ve','2004-04-08',1247,'Esto es una nota');
 INSERT INTO Proveedor (po_tipo_rif,po_rif,po_nombre,po_fecha_ini,po_direccion) VALUES ('V',246857852,'Cables y más cables','2014-09-29',900);
-INSERT INTO Proveedor (po_tipo_rif,po_rif,po_nombre,po_pagina_web,po_fecha_ini,po_direccion) VALUES ('J',321475685,'Cauchos, llantas o neumáticos','www.rueditas.com.ve','2015-11-24',642);
+INSERT INTO Proveedor (po_tipo_rif,po_rif,po_nombre,po_pagina_web,po_fecha_ini,po_direccion,po_nota) VALUES ('J',321475685,'Cauchos, llantas o neumáticos','www.rueditas.com.ve','2015-11-24',642,'Ruedas que ruedan');
 --EMPLEADO
 INSERT INTO Empleado (em_nacionalidad,em_ci,em_nombre,em_apellido,em_fecha_ingreso,em_usuario,em_clave,em_titulacion,em_cargo,em_rol,em_zona,em_direccion) VALUES ('V',9512648,'Pedro','Pérez','1999-12-02','admin','123',1,1,1,1,210);
 INSERT INTO Empleado (em_nacionalidad,em_ci,em_nombre,em_apellido,em_fecha_ingreso,em_usuario,em_clave,em_titulacion,em_cargo,em_rol,em_zona,em_direccion,em_gerencia) VALUES ('V',1427427,'Maria','Mendez','2001-06-30','usuario','clave',1,2,2,1,1369,1);
