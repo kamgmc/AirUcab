@@ -87,3 +87,7 @@ input:checked + .label {
     line-height: 8;
     border-radius: 0rem;
 }
+
+.lpad-top {
+  padding-top: 12px;
+}
