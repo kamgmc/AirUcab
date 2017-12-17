@@ -1,5 +1,3 @@
-create database AirUcab WITH ENCODING = 'UTF8';
-
 create table Status(
 	st_id serial,
 	st_nombre varchar(30) unique not null,
