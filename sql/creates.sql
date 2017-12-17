@@ -1,5 +1,3 @@
-create database AirUcab WITH ENCODING = 'UTF8';
-
 create table Status(
 	st_id serial,
 	st_nombre varchar(30) unique not null,
@@ -78,6 +76,7 @@ create table Empleado(
 	em_direccion integer not null,
 	em_supervisa integer,
 	em_gerencia integer,
+    em_nota varchar(280),
 	constraint Pk_empleado primary key(em_id),
 	constraint Check_em_nacionalidad check(em_nacionalidad IN ('V','E','P')),
 	constraint Check_em_ci check(em_ci > 0),
