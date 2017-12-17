@@ -64,8 +64,8 @@
             <li> <a href="empleados.html"><i class="icon-man-people-streamline-user"></i>Empleados</a></li>
             <li> <a href="clientes.html"> <i class="fa fa-address-book-o" aria-hidden="true"></i>Clientes</a></li>
             <li> <a href="proveedores.html"> <i class="fa fa-truck" aria-hidden="true"></i>Proveedores</a></li>
-            <li class="active"> <a href="ventas.html"> <i class="fa fa-plane" aria-hidden="true"></i>Ventas </a></li>
-            <li> <a href="compras.html"> <i class="fa fa-cog" aria-hidden="true"></i>Compras </a></li>
+            <li> <a href="ventas.html"> <i class="fa fa-plane" aria-hidden="true"></i>Ventas </a></li>
+            <li class="active"> <a href="compras.html"> <i class="fa fa-cog" aria-hidden="true"></i>Compras </a></li>
           </ul>
           
         </nav>
@@ -77,10 +77,10 @@
             <div class="container-fluid">
 
             <input id="tab0" type="radio" name="tabs" class="no-display" checked>
-            <label for="tab0" class="label"><i class="fa fa-plane" aria-hidden="true"></i> Ventas</label>
+            <label for="tab0" class="label"><i class="fa fa-cog" aria-hidden="true"></i> Compras</label>
      
             
-            <!-- TAB Ventas -->
+            <!-- TAB Compras -->
 
 
             <section id="content0" class="sectiontab">
@@ -91,10 +91,10 @@
                 <div class="card col-lg-12">
                   <div class="row">
                   <div class="card-body col-lg-5">
-                    <h3 class="h4">MOSTRAR SOLO VENTAS QUE</h3>
+                    <h3 class="h4">MOSTRAR SOLO COMRPAS QUE</h3>
                     <form class="form-horizontal">
                       <div class="row">
-                        <label class="col-sm-3 form-control-label">Cliente</label>
+                        <label class="col-sm-3 form-control-label">Proveedor</label>
                         <div class="col-sm-9 select">
                           <select name="account" class="form-control">
                             <option>option 1</option>
@@ -106,7 +106,7 @@
 
                       </div>
                       <div class="row">
-                        <label class="col-sm-3 form-control-label">Avion</label>
+                        <label class="col-sm-3 form-control-label">Material</label>
                         <div class="col-sm-9 select">
                           <select name="account" class="form-control">
                             <option>option 1</option>
@@ -153,15 +153,11 @@
                             <thead>
                                <tr>
                                   <th>ID</th>
-                                  <th>CLIENTE</th>
-                                  <th>MODELO AVION</th>
-                                  <th>SUBMODELO</th>
-                                  <th>DISTRIBUCION</th>
-                                  <th>FECHA INICIO</th>
-                                  <th>FECHA FINAL</th>
+                                  <th>PROVEEDOR</th>
+                                  <th>MATERIAL</th>
+                                  <th>FECHA</th>
                                   <th>CANTIDAD</th>
                                   <th>PRECIO UNITARIO</th>
-                                  <th>ESTATUS</th>
                                   <th class="text-center">Accion</th>
                                </tr>
                             </thead>
@@ -169,14 +165,10 @@
                                <tr>
                                   <td>002</td>
                                   <td>Lex Fdz</td>
-                                  <td>AU80</td>
-                                  <td>LW</td>
-                                  <td>Civil</td>
+                                  <td>Arena Blanca</td>
                                   <td>14/12/2017</td>
-                                  <td>null</td>
-                                  <td>3</td>
-                                  <td>1800 $</td>
-                                  <td><span class="badge badge-primary">Evaluacion</span></td>
+                                  <td>500 u</td>
+                                  <td>15 $</td>
                                   <td class="text-center">
                                     <a href="" data-toggle="modal" data-target="#myModalDetalle">
                                       <i class="fa fa-file-text-o" aria-hidden="true"></i>
@@ -189,14 +181,10 @@
                                <tr>
                                   <td>002</td>
                                   <td>Lex Fdz</td>
-                                  <td>AU80</td>
-                                  <td>LW</td>
-                                  <td>Civil</td>
+                                  <td>Arena Blanca</td>
                                   <td>14/12/2017</td>
-                                  <td>null</td>
-                                  <td>3</td>
-                                  <td>1800 $</td>
-                                  <td><span class="badge badge-primary">Evaluacion</span></td>
+                                  <td>500 u</td>
+                                  <td>15 $</td>
                                   <td class="text-center">
                                     <a href="" data-toggle="modal" data-target="#myModalDetalle">
                                       <i class="fa fa-file-text-o" aria-hidden="true"></i>
@@ -209,14 +197,10 @@
                                <tr>
                                   <td>002</td>
                                   <td>Lex Fdz</td>
-                                  <td>AU80</td>
-                                  <td>LW</td>
-                                  <td>Civil</td>
+                                  <td>Arena Blanca</td>
                                   <td>14/12/2017</td>
-                                  <td>null</td>
-                                  <td>3</td>
-                                  <td>1800 $</td>
-                                  <td><span class="badge badge-primary">Evaluacion</span></td>
+                                  <td>500 u</td>
+                                  <td>15 $</td>
                                   <td class="text-center">
                                     <a href="" data-toggle="modal" data-target="#myModalDetalle">
                                       <i class="fa fa-file-text-o" aria-hidden="true"></i>
@@ -229,14 +213,10 @@
                                <tr>
                                   <td>002</td>
                                   <td>Lex Fdz</td>
-                                  <td>AU80</td>
-                                  <td>LW</td>
-                                  <td>Civil</td>
+                                  <td>Arena Blanca</td>
                                   <td>14/12/2017</td>
-                                  <td>null</td>
-                                  <td>3</td>
-                                  <td>1800 $</td>
-                                  <td><span class="badge badge-primary">Evaluacion</span></td>
+                                  <td>500 u</td>
+                                  <td>15 $</td>
                                   <td class="text-center">
                                     <a href="" data-toggle="modal" data-target="#myModalDetalle">
                                       <i class="fa fa-file-text-o" aria-hidden="true"></i>
@@ -249,14 +229,10 @@
                                <tr>
                                   <td>002</td>
                                   <td>Lex Fdz</td>
-                                  <td>AU80</td>
-                                  <td>LW</td>
-                                  <td>Civil</td>
+                                  <td>Arena Blanca</td>
                                   <td>14/12/2017</td>
-                                  <td>null</td>
-                                  <td>3</td>
-                                  <td>1800 $</td>
-                                  <td><span class="badge badge-primary">Evaluacion</span></td>
+                                  <td>500 u</td>
+                                  <td>15 $</td>
                                   <td class="text-center">
                                     <a href="" data-toggle="modal" data-target="#myModalDetalle">
                                       <i class="fa fa-file-text-o" aria-hidden="true"></i>
@@ -269,14 +245,10 @@
                                <tr>
                                   <td>002</td>
                                   <td>Lex Fdz</td>
-                                  <td>AU80</td>
-                                  <td>LW</td>
-                                  <td>Civil</td>
+                                  <td>Arena Blanca</td>
                                   <td>14/12/2017</td>
-                                  <td>null</td>
-                                  <td>3</td>
-                                  <td>1800 $</td>
-                                  <td><span class="badge badge-primary">Evaluacion</span></td>
+                                  <td>500 u</td>
+                                  <td>15 $</td>
                                   <td class="text-center">
                                     <a href="" data-toggle="modal" data-target="#myModalDetalle">
                                       <i class="fa fa-file-text-o" aria-hidden="true"></i>
@@ -289,14 +261,10 @@
                                <tr>
                                   <td>002</td>
                                   <td>Lex Fdz</td>
-                                  <td>AU80</td>
-                                  <td>LW</td>
-                                  <td>Civil</td>
+                                  <td>Arena Blanca</td>
                                   <td>14/12/2017</td>
-                                  <td>null</td>
-                                  <td>3</td>
-                                  <td>1800 $</td>
-                                  <td><span class="badge badge-primary">Evaluacion</span></td>
+                                  <td>500 u</td>
+                                  <td>15 $</td>
                                   <td class="text-center">
                                     <a href="" data-toggle="modal" data-target="#myModalDetalle">
                                       <i class="fa fa-file-text-o" aria-hidden="true"></i>
@@ -309,14 +277,10 @@
                                <tr>
                                   <td>002</td>
                                   <td>Lex Fdz</td>
-                                  <td>AU80</td>
-                                  <td>LW</td>
-                                  <td>Civil</td>
+                                  <td>Arena Blanca</td>
                                   <td>14/12/2017</td>
-                                  <td>null</td>
-                                  <td>3</td>
-                                  <td>1800 $</td>
-                                  <td><span class="badge badge-primary">Evaluacion</span></td>
+                                  <td>500 u</td>
+                                  <td>15 $</td>
                                   <td class="text-center">
                                     <a href="" data-toggle="modal" data-target="#myModalDetalle">
                                       <i class="fa fa-file-text-o" aria-hidden="true"></i>
@@ -329,14 +293,26 @@
                                <tr>
                                   <td>002</td>
                                   <td>Lex Fdz</td>
-                                  <td>AU80</td>
-                                  <td>LW</td>
-                                  <td>Civil</td>
+                                  <td>Arena Blanca</td>
                                   <td>14/12/2017</td>
-                                  <td>null</td>
-                                  <td>3</td>
-                                  <td>1800 $</td>
-                                  <td><span class="badge badge-primary">Evaluacion</span></td>
+                                  <td>500 u</td>
+                                  <td>15 $</td>
+                                  <td class="text-center">
+                                    <a href="" data-toggle="modal" data-target="#myModalDetalle">
+                                      <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="" data-toggle="modal" data-target="#myModalBorrarVenta">   
+                                      <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    </a>
+                                  </td>
+                               </tr>
+                               <tr>
+                                  <td>002</td>
+                                  <td>Lex Fdz</td>
+                                  <td>Arena Blanca</td>
+                                  <td>14/12/2017</td>
+                                  <td>500 u</td>
+                                  <td>15 $</td>
                                   <td class="text-center">
                                     <a href="" data-toggle="modal" data-target="#myModalDetalle">
                                       <i class="fa fa-file-text-o" aria-hidden="true"></i>
@@ -355,15 +331,15 @@
                 <!-- TABLE ENDS -->
 
             </section>
-            <!-- TAB Ventas ENDS -->
+            <!-- TAB Compra ENDS -->
 
 
-            <!-- Modal Detalle Venta  -->
+            <!-- Modal Detalle Compra  -->
                          <div id="myModalDetalle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
                             <div role="document" class="modal-dialog modal-xl">
                                <div class="modal-content">
                                   <div class="modal-header">
-                                     <h4 id="exampleModalLabel" class="modal-title">DETALLE VENTA</h4>
+                                     <h4 id="exampleModalLabel" class="modal-title">DETALLE COMPRA</h4>
                                      <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
                                   </div>
                                   <div class="modal-body">
@@ -378,23 +354,23 @@
                                         <div class="card-body col-lg-6">
                                           <div class="row">
                                             <div class="col-lg-4">
-                                              <h3>Factura Venta</h3>
+                                              <h3>Factura Compra</h3>
                                             </div>
                                             <div class="col-lg-8">
                                               001
                                             </div>
                                           </div>
-                                          <div class="row">
+                                          <!-- <div class="row">
                                             <div class="col-lg-4">
                                               <h3>ESTATUS</h3>
                                             </div>
                                             <div class="col-lg-8">
                                               <span class="badge badge-primary font-big">Evaluacion</span>
                                             </div>
-                                          </div>
+                                          </div> -->
                                           <div class="row">
                                             <div class="col-lg-4">
-                                              <h3>Cliente</h3>
+                                              <h3>Proveedor</h3>
                                             </div>
                                             <div class="col-lg-8">
                                               LEX FDZ CORP. S.A.
@@ -402,7 +378,7 @@
                                           </div>
                                           <div class="row">
                                             <div class="col-lg-4">
-                                              <h3>CI/RIF Cliente</h3>
+                                              <h3>CI/RIF Proveedor</h3>
                                             </div>
                                             <div class="col-lg-8">
                                               J-79698576-7
@@ -410,28 +386,13 @@
                                           </div>
                                           <div class="row">
                                             <div class="col-lg-4">
-                                              <h3>Modelo Avion</h3>
+                                              <h3>Material</h3>
                                             </div>
                                             <div class="col-lg-8">
-                                              AU80
+                                              Arena Blanca
                                             </div>
                                           </div>
-                                          <div class="row">
-                                            <div class="col-lg-4">
-                                              <h3>Submodelo Avion</h3>
-                                            </div>
-                                            <div class="col-lg-8">
-                                              LW
-                                            </div>
-                                          </div>
-                                          <div class="row">
-                                            <div class="col-lg-4">
-                                              <h3>Distribucion</h3>
-                                            </div>
-                                            <div class="col-lg-8">
-                                              Civil
-                                            </div>
-                                          </div>
+                                          
                                           
                                         </div>
                                         <!-- Columna izquierda ENDS -->
@@ -443,15 +404,15 @@
                                               <h3>Cantidad</h3>
                                             </div>
                                             <div class="col-lg-8">
-                                              3
+                                              50 u
                                             </div>
                                           </div>
                                           <div class="row">
                                             <div class="col-lg-4">
-                                              <h3>Monto por Avion</h3>
+                                              <h3>Monto Unitario</h3>
                                             </div>
                                             <div class="col-lg-8">
-                                              1800 $
+                                              15 $
                                             </div>
                                           </div>
                                           <div class="row">
@@ -459,23 +420,15 @@
                                               <h3>Monto Total</h3>
                                             </div>
                                             <div class="col-lg-8">
-                                              5400 $
+                                              750 $
                                             </div>
                                           </div>
                                           <div class="row">
                                             <div class="col-lg-4">
-                                              <h3>Fecha Inicio</h3>
+                                              <h3>Fecha</h3>
                                             </div>
                                             <div class="col-lg-8">
                                               14/12/2017
-                                            </div>
-                                          </div>
-                                          <div class="row">
-                                            <div class="col-lg-4">
-                                              <h3>Fecha Final</h3>
-                                            </div>
-                                            <div class="col-lg-8">
-                                              null
                                             </div>
                                           </div>
                                           <div class="row">
@@ -491,7 +444,7 @@
                                               <h3>Nota</h3>
                                             </div>
                                             <div class="col-lg-8">
-                                              Cliente requiere fotos de supervision en el ensamblaje de Ala derecha.
+                                              Proveedor enviara los camiones despues de acreditado el pago, con 1 semana de tiempo estimado de llegada.
                                             </div>
                                           </div>
                                         </div>
@@ -509,7 +462,7 @@
                                   </div>
                                   <div class="modal-footer">
                                      <button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
-                                     <button type="button" data-toggle="modal" data-target="#myModalVentaEditar" class="btn btn-primary">Editar</button>
+                                     <button type="button" data-toggle="modal" data-target="#myModalCompraEditar" class="btn btn-primary">Editar</button>
                                   </div>
                                </div>
                             </div>
@@ -557,11 +510,11 @@
 
 
                          <!-- Modal Venta Editar -->
-                         <div id="myModalVentaEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+                         <div id="myModalCompraEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
                             <div role="document" class="modal-dialog modal-xl">
                                <div class="modal-content">
                                   <div class="modal-header">
-                                     <h4 id="exampleModalLabel" class="modal-title">DETALLE VENTA</h4>
+                                     <h4 id="exampleModalLabel" class="modal-title">DETALLE COMPRA</h4>
                                      <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
                                   </div>
                                   <div class="modal-body">
@@ -575,20 +528,20 @@
 
                                           <div class="form-group row">
                                             <label class="col-sm-3 form-control-label">
-                                              <h3>Factura Venta</h3>
+                                              <h3>Factura Compra</h3>
                                             </label>
                                             <div class="col-sm-9">
                                               <input type="text" disabled="" placeholder="No modificable" class="form-control">
                                             </div>
                                           </div>
-                                          <div class="form-group row">
+                                          <!-- <div class="form-group row">
                                             <label class="col-sm-3 form-control-label">
                                               <h3>ESTATUS</h3>
-                                            </label>
+                                            </label> -->
                                             <!-- Traer de la tabla de Status las opciones -->
                                             <!-- Creo que su seleccion deberia ser automatica por parte del sistema solo en este caso porque este pasa a -->
                                             <!-- finalizado cuando los otros STATUS de cada material y cada avion comprado pasan a Finalizado -->
-                                            <div class="col-sm-9 select">
+                                            <!-- <div class="col-sm-9 select">
                                               <select name="account" class="form-control">
                                                 <option>En Progreso</option>
                                                 <option>Evaluacion</option>
@@ -596,10 +549,10 @@
                                                 <option>Finalizado</option>
                                               </select>
                                             </div>
-                                          </div>
+                                          </div> -->
                                           <div class="form-group row">
                                             <label class="col-sm-3 form-control-label">
-                                              <h3>Cliente</h3>
+                                              <h3>Proveedor</h3>
                                             </label>
                                             <!-- Traer de la tabla de clientes las opciones -->
                                             <div class="col-sm-9 select">
@@ -622,45 +575,18 @@
                                           </div>
                                           <div class="form-group row">
                                             <label class="col-sm-3 form-control-label">
-                                              <h3>Modelo Avion</h3>
+                                              <h3>Material</h3>
                                             </label>
                                             <!-- Traer de la tabla de modelo avion las opciones -->
                                             <div class="col-sm-9 select">
                                               <select name="account" class="form-control">
-                                                <option>AU80</option>
-                                                <option>Au808</option>
-                                                <option>AU988</option>
+                                                <option>Arena Blanca</option>
+                                                <option>Cal</option>
+                                                <option>Tornillos</option>
                                               </select>
                                             </div>
                                           </div>
-                                          <div class="form-group row">
-                                            <label class="col-sm-3 form-control-label">
-                                              <h3>Submodelo Avion</h3>
-                                            </label>
-                                            <!-- Traer de la tabla de submodelo avion las opciones -->
-                                            <div class="col-sm-9 select">
-                                              <select name="account" class="form-control">
-                                                <option>LW</option>
-                                                <option>Standar</option>
-                                                <option>Big</option>
-                                              </select>
-                                              <span class="help-block-none"><small>Seleccionar Modelo Avion primero.</small></span>
-                                            </div>
-                                          </div>
-                                          <div class="form-group row">
-                                            <label class="col-sm-3 form-control-label">
-                                              <h3>Distribucion</h3>
-                                            </label>
-                                            <!-- Traer de la tabla de distribucion avion las opciones -->
-                                            <div class="col-sm-9 select">
-                                              <select name="account" class="form-control">
-                                                <option>Civil</option>
-                                                <option>Militar</option>
-                                                <option>Empresarial</option>
-                                              </select>
-                                              <span class="help-block-none"><small>Seleccionar Modelo Avion primero.</small></span>
-                                            </div>
-                                          </div>
+                                          
                                         </div>
 
                                         <div class=" card-body col-lg-6">
@@ -670,7 +596,7 @@
                                               <h3>Cantidad</h3>
                                             </label>
                                             <div class="col-sm-9">
-                                              <input type="text" placeholder="Introduzca cantidad de Aviones" class="form-control">
+                                              <input type="text" placeholder="Introduzca cantidad de unidades" class="form-control">
                                             </div>
                                           </div>
                                           <div class="form-group row">
@@ -678,23 +604,14 @@
                                               <h3>Precio Unitario</h3>
                                             </label>
                                             <div class="col-sm-9">
-                                              <input type="text" placeholder="Introduzca precio por Avion" class="form-control">
+                                              <input type="text" placeholder="Introduzca precio por unidad" class="form-control">
                                             </div>
                                           </div>
                                           <div class="form-group row">
                                             <label class="col-sm-3 form-control-label">
-                                              <h3>Fecha Inicio</h3>
+                                              <h3>Fecha</h3>
                                             </label>
                                             <!-- Esto podemos hacerlo automatizado, que salve la fecha de creacion como fecha inicio -->
-                                            <div class="col-sm-9">
-                                              <input type="text" disabled="" placeholder="No modificable" class="form-control">
-                                            </div>
-                                          </div>
-                                          <div class="form-group row">
-                                            <label class="col-sm-3 form-control-label">
-                                              <h3>Fecha Final</h3>
-                                            </label>
-                                            <!-- Esto es OBLIGATORIAMENTE AUTOMATICO cuando el STATUS cambie a finalizado -->
                                             <div class="col-sm-9">
                                               <input type="text" disabled="" placeholder="No modificable" class="form-control">
                                             </div>
