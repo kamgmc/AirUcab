@@ -1808,7 +1808,6 @@ INSERT INTO Empleado (em_nacionalidad,em_ci,em_nombre,em_apellido,em_fecha_ingre
 INSERT INTO Empleado (em_nacionalidad,em_ci,em_nombre,em_apellido,em_fecha_ingreso,em_usuario,em_clave,em_titulacion,em_cargo,em_rol,em_zona,em_direccion,em_supervisa) VALUES ('E',1234863,'Juan','Jaspe','2014-04-13','jaspe14','juan1',1,3,3,3,508,3);
 INSERT INTO Empleado (em_nacionalidad,em_ci,em_nombre,em_apellido,em_fecha_ingreso,em_usuario,em_clave,em_titulacion,em_cargo,em_rol,em_zona,em_direccion) VALUES ('P',2465416,'Anais','Andrade','2014-09-28','andrade14','anais1',2,7,4,4,1420);
 INSERT INTO Empleado (em_nacionalidad,em_ci,em_nombre,em_apellido,em_fecha_ingreso,em_usuario,em_clave,em_titulacion,em_cargo,em_rol,em_zona,em_direccion) VALUES ('V',1021456,'Gabriel','Gomez','2016-01-14','gomez16','gabriel1',3,5,5,1,1369);
-
 --CONTACTO
 INSERT INTO Contacto (co_valor,co_tipo,co_empleado) VALUES ('0424-2145875',1,1);
 INSERT INTO Contacto (co_valor,co_tipo,co_empleado) VALUES ('0212-5451324',2,1);
@@ -1833,130 +1832,110 @@ INSERT INTO Factura_venta (fv_fecha,fv_cliente) VALUES ('2017-01-11',2);
 INSERT INTO Factura_venta (fv_fecha,fv_cliente) VALUES ('2017-09-02',3);
 INSERT INTO Factura_venta (fv_fecha,fv_cliente) VALUES ('2017-11-15',4);
 INSERT INTO Factura_venta (fv_fecha,fv_cliente) VALUES ('2017-12-02',5);
---TIPO_ALA
-INSERT INTO Tipo_ala (wt_nombre) VALUES ('Recta');
-INSERT INTO Tipo_ala (wt_nombre) VALUES ('Trapezoidal');
-INSERT INTO Tipo_ala (wt_nombre) VALUES ('Elíptica');
-INSERT INTO Tipo_ala (wt_nombre) VALUES ('Flecha');
-INSERT INTO Tipo_ala (wt_nombre) VALUES ('Flecha invertida');
-INSERT INTO Tipo_ala (wt_nombre) VALUES ('Doble flecha');
-INSERT INTO Tipo_ala (wt_nombre) VALUES ('Flecha variable');
-INSERT INTO Tipo_ala (wt_nombre) VALUES ('Delta');
-INSERT INTO Tipo_ala (wt_nombre) VALUES ('Delta con canard');
-INSERT INTO Tipo_ala (wt_nombre) VALUES ('Delta con timones');
-INSERT INTO Tipo_ala (wt_nombre) VALUES ('Doble delta');
-INSERT INTO Tipo_ala (wt_nombre) VALUES ('Ojival');
---TIPO_ESTABILIZADOR
-INSERT INTO Tipo_estabilizador (et_nombre) VALUES ('Estandar');
-INSERT INTO Tipo_estabilizador (et_nombre) VALUES ('T');
-INSERT INTO Tipo_estabilizador (et_nombre) VALUES ('Cruz');
-INSERT INTO Tipo_estabilizador (et_nombre) VALUES ('Dos verticales');
-INSERT INTO Tipo_estabilizador (et_nombre) VALUES ('Tres verticales');
-INSERT INTO Tipo_estabilizador (et_nombre) VALUES ('V');
 --MODELO_AVION
 --AU802
-INSERT INTO Modelo_avion (am_nombre, am_longitud, am_envergadura, am_altura, am_ala_superficie, am_ala_flecha, am_peso_aterrizaje_max, am_alcance, am_velocidad_max, am_techo_servicio, am_regimen_ascenso, am_numero_pasillos, am_fuselaje_tipo, am_fuselaje_altura, am_fuselaje_ancho, am_cabina_altura, am_cabina_ancho, am_carga_volumen, am_capacidad_pilotos, am_capacidad_asistentes, am_carrera_despegue, am_tiempo_estimado) VALUES ('AU802',28.6,28.3,11.3,140,25,45000,5000,876,10700,16.5,2,'Normal',4.01,3.76,2.20,3.54,18.4,2,4,1225,'2018-01-22');
+INSERT INTO Modelo_avion (am_nombre,am_longitud,am_envergadura,am_altura,am_ala_superficie,am_ala_flecha,am_peso_aterrizaje_max,am_alcance,am_velocidad_max,am_techo_servicio,am_regimen_ascenso,am_numero_pasillos,am_fuselaje_tipo,am_fuselaje_altura,am_fuselaje_ancho,am_cabina_altura,am_cabina_ancho,am_carga_volumen,am_capacidad_pilotos,am_capacidad_asistentes,am_carrera_despegue,am_tiempo_estimado) VALUES('AU802',28.6,28.3,11.3,140,25,45000,5000,876,10700,16.5,2,'Normal',4.01,3.76,2.20,3.54,18.4,2,4,1225,155);
 --AU802A
-INSERT INTO Modelo_avion (am_nombre, am_longitud, am_envergadura, am_altura, am_ala_superficie, am_ala_flecha, am_peso_aterrizaje_max, am_alcance, am_velocidad_max, am_techo_servicio, am_regimen_ascenso, am_numero_pasillos, am_fuselaje_tipo, am_fuselaje_altura, am_fuselaje_ancho, am_cabina_altura, am_cabina_ancho, am_carga_volumen, am_capacidad_pilotos, am_capacidad_asistentes, am_carrera_despegue, am_tiempo_estimado) VALUES('AU802A',36.5,28.9,11.1,140,25,56250,5000,876,11300,16.5,2,'Normal',4.01,3.76,2.20,3.54,38.9,2,4,1300,'2018-01-22');
+INSERT INTO Modelo_avion (am_nombre,am_longitud,am_envergadura,am_altura,am_ala_superficie,am_ala_flecha,am_peso_aterrizaje_max,am_alcance,am_velocidad_max,am_techo_servicio,am_regimen_ascenso,am_numero_pasillos,am_fuselaje_tipo,am_fuselaje_altura,am_fuselaje_ancho,am_cabina_altura,am_cabina_ancho,am_carga_volumen,am_capacidad_pilotos,am_capacidad_asistentes,am_carrera_despegue,am_tiempo_estimado) VALUES('AU802A',36.5,28.9,11.1,140,25,56250,5000,876,11300,16.5,2,'Normal',4.01,3.76,2.20,3.54,38.9,2,4,1300,155);
 --AU802B
-INSERT INTO Modelo_avion (am_nombre, am_longitud, am_envergadura, am_altura, am_ala_superficie, am_ala_flecha, am_peso_aterrizaje_max, am_alcance, am_velocidad_max, am_techo_servicio, am_regimen_ascenso, am_numero_pasillos, am_fuselaje_tipo, am_fuselaje_altura, am_fuselaje_ancho, am_cabina_altura, am_cabina_ancho, am_carga_volumen, am_capacidad_pilotos, am_capacidad_asistentes, am_carrera_despegue, am_tiempo_estimado) VALUES('AU802B',31.1,28.9,11.1,140,25,50000,5000,876,11300,16.5,2,'Normal',4.01,3.76,2.20,3.54,23.3,2,4,1300,'2018-01-22');
+INSERT INTO Modelo_avion (am_nombre,am_longitud,am_envergadura,am_altura,am_ala_superficie,am_ala_flecha,am_peso_aterrizaje_max,am_alcance,am_velocidad_max,am_techo_servicio,am_regimen_ascenso,am_numero_pasillos,am_fuselaje_tipo,am_fuselaje_altura,am_fuselaje_ancho,am_cabina_altura,am_cabina_ancho,am_carga_volumen,am_capacidad_pilotos,am_capacidad_asistentes,am_carrera_despegue,am_tiempo_estimado) VALUES('AU802B',31.1,28.9,11.1,140,25,50000,5000,876,11300,16.5,2,'Normal',4.01,3.76,2.20,3.54,23.3,2,4,1300,155);
 --AU802C
-INSERT INTO Modelo_avion (am_nombre, am_longitud, am_envergadura, am_altura, am_ala_superficie, am_ala_flecha, am_peso_aterrizaje_max, am_alcance, am_velocidad_max, am_techo_servicio, am_regimen_ascenso, am_numero_pasillos, am_fuselaje_tipo, am_fuselaje_altura, am_fuselaje_ancho, am_cabina_altura, am_cabina_ancho, am_carga_volumen, am_capacidad_pilotos, am_capacidad_asistentes, am_carrera_despegue, am_tiempo_estimado) VALUES('AU802C',31.2,35.7,12.6,140,25.02,55000,5000,876,12500,16.5,2,'Normal',4.01,3.76,2.20,3.54,21.4,2,4,1300,'2018-01-22');
+INSERT INTO Modelo_avion (am_nombre,am_longitud,am_envergadura,am_altura,am_ala_superficie,am_ala_flecha,am_peso_aterrizaje_max,am_alcance,am_velocidad_max,am_techo_servicio,am_regimen_ascenso,am_numero_pasillos,am_fuselaje_tipo,am_fuselaje_altura,am_fuselaje_ancho,am_cabina_altura,am_cabina_ancho,am_carga_volumen,am_capacidad_pilotos,am_capacidad_asistentes,am_carrera_despegue,am_tiempo_estimado) VALUES('AU802C',31.2,35.7,12.6,140,25.02,55000,5000,876,12500,16.5,2,'Normal',4.01,3.76,2.20,3.54,21.4,2,4,1300,155);
 --AU802D
-INSERT INTO Modelo_avion (am_nombre, am_longitud, am_envergadura, am_altura, am_ala_superficie, am_ala_flecha, am_peso_aterrizaje_max, am_alcance, am_velocidad_max, am_techo_servicio, am_regimen_ascenso, am_numero_pasillos, am_fuselaje_tipo, am_fuselaje_altura, am_fuselaje_ancho, am_cabina_altura, am_cabina_ancho, am_carga_volumen, am_capacidad_pilotos, am_capacidad_asistentes, am_carrera_despegue, am_tiempo_estimado) VALUES('AU802D',33.6,35.7,12.5,140,25.02,58600,5000,876,12500,16.5,2,'Normal',4.01,3.76,2.20,3.54,27.3,2,4,1300,'2018-01-22');
+INSERT INTO Modelo_avion (am_nombre,am_longitud,am_envergadura,am_altura,am_ala_superficie,am_ala_flecha,am_peso_aterrizaje_max,am_alcance,am_velocidad_max,am_techo_servicio,am_regimen_ascenso,am_numero_pasillos,am_fuselaje_tipo,am_fuselaje_altura,am_fuselaje_ancho,am_cabina_altura,am_cabina_ancho,am_carga_volumen,am_capacidad_pilotos,am_capacidad_asistentes,am_carrera_despegue,am_tiempo_estimado) VALUES('AU802D',33.6,35.7,12.5,140,25.02,58600,5000,876,12500,16.5,2,'Normal',4.01,3.76,2.20,3.54,27.3,2,4,1300,155);
 --AU802E
-INSERT INTO Modelo_avion (am_nombre, am_longitud, am_envergadura, am_altura, am_ala_superficie, am_ala_flecha, am_peso_aterrizaje_max, am_alcance, am_velocidad_max, am_techo_servicio, am_regimen_ascenso, am_numero_pasillos, am_fuselaje_tipo, am_fuselaje_altura, am_fuselaje_ancho, am_cabina_altura, am_cabina_ancho, am_carga_volumen, am_capacidad_pilotos, am_capacidad_asistentes, am_carrera_despegue, am_tiempo_estimado) VALUES('AU802E',39.5,35.7,12.5,140,25.02,66350,5000,876,12500,16.5,2,'Normal',4.01,3.76,2.20,3.54,45.1,2,4,1300,'2018-01-22');
+INSERT INTO Modelo_avion (am_nombre,am_longitud,am_envergadura,am_altura,am_ala_superficie,am_ala_flecha,am_peso_aterrizaje_max,am_alcance,am_velocidad_max,am_techo_servicio,am_regimen_ascenso,am_numero_pasillos,am_fuselaje_tipo,am_fuselaje_altura,am_fuselaje_ancho,am_cabina_altura,am_cabina_ancho,am_carga_volumen,am_capacidad_pilotos,am_capacidad_asistentes,am_carrera_despegue,am_tiempo_estimado) VALUES('AU802E',39.5,35.7,12.5,140,25.02,66350,5000,876,12500,16.5,2,'Normal',4.01,3.76,2.20,3.54,45.1,2,4,1300,155);
 --AU802F
-INSERT INTO Modelo_avion (am_nombre, am_longitud, am_envergadura, am_altura, am_ala_superficie, am_ala_flecha, am_peso_aterrizaje_max, am_alcance, am_velocidad_max, am_techo_servicio, am_regimen_ascenso, am_numero_pasillos, am_fuselaje_tipo, am_fuselaje_altura, am_fuselaje_ancho, am_cabina_altura, am_cabina_ancho, am_carga_volumen, am_capacidad_pilotos, am_capacidad_asistentes, am_carrera_despegue, am_tiempo_estimado) VALUES('AU802F',42.1,35.7,12.5,140,25.02,66350,5000,876,12500,16.5,2,'Normal',4.01,3.76,2.20,3.54,52.5,2,4,1300,'2018-01-22');
+INSERT INTO Modelo_avion (am_nombre,am_longitud,am_envergadura,am_altura,am_ala_superficie,am_ala_flecha,am_peso_aterrizaje_max,am_alcance,am_velocidad_max,am_techo_servicio,am_regimen_ascenso,am_numero_pasillos,am_fuselaje_tipo,am_fuselaje_altura,am_fuselaje_ancho,am_cabina_altura,am_cabina_ancho,am_carga_volumen,am_capacidad_pilotos,am_capacidad_asistentes,am_carrera_despegue,am_tiempo_estimado) VALUES('AU802F',42.1,35.7,12.5,140,25.02,66350,5000,876,12500,16.5,2,'Normal',4.01,3.76,2.20,3.54,52.5,2,4,1300,155);
 --AU747PLUS
-INSERT INTO Modelo_avion (am_nombre, am_longitud, am_envergadura, am_altura, am_ala_superficie, am_ala_flecha, am_peso_aterrizaje_max, am_alcance, am_velocidad_max, am_techo_servicio, am_regimen_ascenso, am_numero_pasillos, am_fuselaje_tipo, am_fuselaje_altura, am_fuselaje_ancho, am_cabina_altura, am_cabina_ancho, am_carga_volumen, am_capacidad_pilotos, am_capacidad_asistentes, am_carrera_despegue, am_tiempo_estimado) VALUES('AU747 Plus',70.66,59.64,19.3,140,25.02,66350,5000,945,12500,16.5,3,'Ancho',8.01,6.76,4.20,5.54,72.5,2,1,1300,'2018-01-22');
+INSERT INTO Modelo_avion (am_nombre,am_longitud,am_envergadura,am_altura,am_ala_superficie,am_ala_flecha,am_peso_aterrizaje_max,am_alcance,am_velocidad_max,am_techo_servicio,am_regimen_ascenso,am_numero_pasillos,am_fuselaje_tipo,am_fuselaje_altura,am_fuselaje_ancho,am_cabina_altura,am_cabina_ancho,am_carga_volumen,am_capacidad_pilotos,am_capacidad_asistentes,am_carrera_despegue,am_tiempo_estimado) VALUES('AU747Plus',70.66,59.64,19.3,140,25.02,66350,5000,945,12500,16.5,3,'Ancho',8.01,6.76,4.20,5.54,72.5,2,1,1300,217);
 --AU747PLATINIUM
-INSERT INTO Modelo_avion (am_nombre, am_longitud, am_envergadura, am_altura, am_ala_superficie, am_ala_flecha, am_peso_aterrizaje_max, am_alcance, am_velocidad_max, am_techo_servicio, am_regimen_ascenso, am_numero_pasillos, am_fuselaje_tipo, am_fuselaje_altura, am_fuselaje_ancho, am_cabina_altura, am_cabina_ancho, am_carga_volumen, am_capacidad_pilotos, am_capacidad_asistentes, am_carrera_despegue, am_tiempo_estimado) VALUES('AU747 Platinium',70.66,59.64,19.3,140,25.02,66350,5000,945,12500,16.5,3,'Ancho',8.01,6.76,4.20,5.54,72.5,2,1,1300,'2018-01-22');
+INSERT INTO Modelo_avion (am_nombre,am_longitud,am_envergadura,am_altura,am_ala_superficie,am_ala_flecha,am_peso_aterrizaje_max,am_alcance,am_velocidad_max,am_techo_servicio,am_regimen_ascenso,am_numero_pasillos,am_fuselaje_tipo,am_fuselaje_altura,am_fuselaje_ancho,am_cabina_altura,am_cabina_ancho,am_carga_volumen,am_capacidad_pilotos,am_capacidad_asistentes,am_carrera_despegue,am_tiempo_estimado) VALUES('AU747Platinium',70.66,59.64,19.3,140,25.02,66350,5000,945,12500,16.5,3,'Ancho',8.01,6.76,4.20,5.54,72.5,2,1,1300,217);
 --AU747GOLD
-INSERT INTO Modelo_avion (am_nombre, am_longitud, am_envergadura, am_altura, am_ala_superficie, am_ala_flecha, am_peso_aterrizaje_max, am_alcance, am_velocidad_max, am_techo_servicio, am_regimen_ascenso, am_numero_pasillos, am_fuselaje_tipo, am_fuselaje_altura, am_fuselaje_ancho, am_cabina_altura, am_cabina_ancho, am_carga_volumen, am_capacidad_pilotos, am_capacidad_asistentes, am_carrera_despegue, am_tiempo_estimado) VALUES('AU747 Gold',70.66,59.64,19.3,140,25.02,66350,5000,945,12500,16.5,3,'Ancho',8.01,6.76,4.20,5.54,72.5,2,1,1300,'2018-01-22');
+INSERT INTO Modelo_avion (am_nombre,am_longitud,am_envergadura,am_altura,am_ala_superficie,am_ala_flecha,am_peso_aterrizaje_max,am_alcance,am_velocidad_max,am_techo_servicio,am_regimen_ascenso,am_numero_pasillos,am_fuselaje_tipo,am_fuselaje_altura,am_fuselaje_ancho,am_cabina_altura,am_cabina_ancho,am_carga_volumen,am_capacidad_pilotos,am_capacidad_asistentes,am_carrera_despegue,am_tiempo_estimado) VALUES('AU747Gold',70.66,59.64,19.3,140,25.02,66350,5000,945,12500,16.5,3,'Ancho',8.01,6.76,4.20,5.54,72.5,2,1,1300,217);
 --AU747SILVER
-INSERT INTO Modelo_avion (am_nombre, am_longitud, am_envergadura, am_altura, am_ala_superficie, am_ala_flecha, am_peso_aterrizaje_max, am_alcance, am_velocidad_max, am_techo_servicio, am_regimen_ascenso, am_numero_pasillos, am_fuselaje_tipo, am_fuselaje_altura, am_fuselaje_ancho, am_cabina_altura, am_cabina_ancho, am_carga_volumen, am_capacidad_pilotos, am_capacidad_asistentes, am_carrera_despegue, am_tiempo_estimado) VALUES('AU747 Silver',70.66,64.4,19.4,140,25.02,66350,5000,978,12500,16.5,3,'Ancho',8.01,6.76,4.20,5.54,72.5,2,0,1300,'2018-01-22');
+INSERT INTO Modelo_avion (am_nombre,am_longitud,am_envergadura,am_altura,am_ala_superficie,am_ala_flecha,am_peso_aterrizaje_max,am_alcance,am_velocidad_max,am_techo_servicio,am_regimen_ascenso,am_numero_pasillos,am_fuselaje_tipo,am_fuselaje_altura,am_fuselaje_ancho,am_cabina_altura,am_cabina_ancho,am_carga_volumen,am_capacidad_pilotos,am_capacidad_asistentes,am_carrera_despegue,am_tiempo_estimado) VALUES('AU747Silver',70.66,64.4,19.4,140,25.02,66350,5000,978,12500,16.5,3,'Ancho',8.01,6.76,4.20,5.54,72.5,2,0,1300,217);
 --AU747SILVERB
-INSERT INTO Modelo_avion (am_nombre, am_longitud, am_envergadura, am_altura, am_ala_superficie, am_ala_flecha, am_peso_aterrizaje_max, am_alcance, am_velocidad_max, am_techo_servicio, am_regimen_ascenso, am_numero_pasillos, am_fuselaje_tipo, am_fuselaje_altura, am_fuselaje_ancho, am_cabina_altura, am_cabina_ancho, am_carga_volumen, am_capacidad_pilotos, am_capacidad_asistentes, am_carrera_despegue, am_tiempo_estimado) VALUES('AU747 SilverB',76.4,68.5,19.4,140,25.02,66350,5000,978,12500,16.5,3,'Ancho',8.01,6.76,4.20,5.54,72.5,2,0,1300,'2018-01-22');
+INSERT INTO Modelo_avion (am_nombre,am_longitud,am_envergadura,am_altura,am_ala_superficie,am_ala_flecha,am_peso_aterrizaje_max,am_alcance,am_velocidad_max,am_techo_servicio,am_regimen_ascenso,am_numero_pasillos,am_fuselaje_tipo,am_fuselaje_altura,am_fuselaje_ancho,am_cabina_altura,am_cabina_ancho,am_carga_volumen,am_capacidad_pilotos,am_capacidad_asistentes,am_carrera_despegue,am_tiempo_estimado) VALUES('AU747SilverB',76.4,68.5,19.4,140,25.02,66350,5000,978,12500,16.5,3,'Ancho',8.01,6.76,4.20,5.54,72.5,2,0,1300,217);
 --AU80
-INSERT INTO Modelo_avion (am_nombre, am_longitud, am_envergadura, am_altura, am_ala_superficie, am_ala_flecha, am_peso_aterrizaje_max, am_alcance, am_velocidad_max, am_techo_servicio, am_regimen_ascenso, am_numero_pasillos, am_fuselaje_tipo, am_fuselaje_altura, am_fuselaje_ancho, am_cabina_altura, am_cabina_ancho, am_carga_volumen, am_capacidad_pilotos, am_capacidad_asistentes, am_carrera_despegue, am_tiempo_estimado) VALUES('AU80',44.1,39.9,12.9,140,25,45000,6820,1000,10700,16.5,2,'Normal',4.01,3.76,2.20,3.54,18.4,2,0,1225,'2018-01-22');                   
+INSERT INTO Modelo_avion (am_nombre,am_longitud,am_envergadura,am_altura,am_ala_superficie,am_ala_flecha,am_peso_aterrizaje_max,am_alcance,am_velocidad_max,am_techo_servicio,am_regimen_ascenso,am_numero_pasillos,am_fuselaje_tipo,am_fuselaje_altura,am_fuselaje_ancho,am_cabina_altura,am_cabina_ancho,am_carga_volumen,am_capacidad_pilotos,am_capacidad_asistentes,am_carrera_despegue,am_tiempo_estimado) VALUES('AU80',44.1,39.9,12.9,140,25,45000,6820,1000,10700,16.5,2,'Normal',4.01,3.76,2.20,3.54,18.4,2,0,1225,217);                   
 --AU801
-INSERT INTO Modelo_avion (am_nombre, am_longitud, am_envergadura, am_altura, am_ala_superficie, am_ala_flecha, am_peso_aterrizaje_max, am_alcance, am_velocidad_max, am_techo_servicio, am_regimen_ascenso, am_numero_pasillos, am_fuselaje_tipo, am_fuselaje_altura, am_fuselaje_ancho, am_cabina_altura, am_cabina_ancho, am_carga_volumen, am_capacidad_pilotos, am_capacidad_asistentes, am_carrera_despegue, am_tiempo_estimado) VALUES('AU801',46.7,32.9,10.4,153,25,45000,4450,1000,13000,14.9,2,'Normal',4.01,3.76,2.20,3.54,18.4,2,5,1225,'2018-01-22');   
+INSERT INTO Modelo_avion (am_nombre,am_longitud,am_envergadura,am_altura,am_ala_superficie,am_ala_flecha,am_peso_aterrizaje_max,am_alcance,am_velocidad_max,am_techo_servicio,am_regimen_ascenso,am_numero_pasillos,am_fuselaje_tipo,am_fuselaje_altura,am_fuselaje_ancho,am_cabina_altura,am_cabina_ancho,am_carga_volumen,am_capacidad_pilotos,am_capacidad_asistentes,am_carrera_despegue,am_tiempo_estimado) VALUES('AU801',46.7,32.9,10.4,153,25,45000,4450,1000,13000,14.9,2,'Normal',4.01,3.76,2.20,3.54,18.4,2,5,1225,217);   
 --DISTRIBUCION
 --AU802
-INSERT INTO Distribucion (di_nombre, di_numero_clases, di_capacidad_pasajeros, di_distancia_asientos, di_ancho_asientos, di_modelo_avion) VALUES ('Densa',1,118,76,43.7,1);
-INSERT INTO Distribucion (di_nombre, di_numero_clases, di_capacidad_pasajeros, di_distancia_asientos, di_ancho_asientos, di_modelo_avion) VALUES ('Estandar',1,104,86,43.7,1);
+INSERT INTO Distribucion (di_nombre,di_numero_clases,di_capacidad_pasajeros,di_distancia_asientos,di_ancho_asientos,di_modelo_avion) VALUES ('Densa',1,118,76,43.7,1);
+INSERT INTO Distribucion (di_nombre,di_numero_clases,di_capacidad_pasajeros,di_distancia_asientos,di_ancho_asientos,di_modelo_avion) VALUES ('Estandar',1,104,86,43.7,1);
 --AU802A
-INSERT INTO Distribucion (di_nombre, di_numero_clases, di_capacidad_pasajeros, di_distancia_asientos, di_ancho_asientos, di_modelo_avion) VALUES ('Densa',1,168,76,43.7,2);
-INSERT INTO Distribucion (di_nombre, di_numero_clases, di_capacidad_pasajeros, di_distancia_asientos, di_ancho_asientos, di_modelo_avion) VALUES ('Estandar',1,159,81,43.7,2);
+INSERT INTO Distribucion (di_nombre,di_numero_clases,di_capacidad_pasajeros,di_distancia_asientos,di_ancho_asientos,di_modelo_avion) VALUES ('Densa',1,168,76,43.7,2);
+INSERT INTO Distribucion (di_nombre,di_numero_clases,di_capacidad_pasajeros,di_distancia_asientos,di_ancho_asientos,di_modelo_avion) VALUES ('Estandar',1,159,81,43.7,2);
 --AU802B
-INSERT INTO Distribucion (di_nombre, di_numero_clases, di_capacidad_pasajeros, di_distancia_asientos, di_ancho_asientos, di_modelo_avion) VALUES ('Densa',1,132,76,43.7,3);
-INSERT INTO Distribucion (di_nombre, di_numero_clases, di_capacidad_pasajeros, di_distancia_asientos, di_ancho_asientos, di_modelo_avion) VALUES ('Estandar',1,123,81,43.7,3);
+INSERT INTO Distribucion (di_nombre,di_numero_clases,di_capacidad_pasajeros,di_distancia_asientos,di_ancho_asientos,di_modelo_avion) VALUES ('Densa',1,132,76,43.7,3);
+INSERT INTO Distribucion (di_nombre,di_numero_clases,di_capacidad_pasajeros,di_distancia_asientos,di_ancho_asientos,di_modelo_avion) VALUES ('Estandar',1,123,81,43.7,3);
 --AU802C
-INSERT INTO Distribucion (di_nombre, di_numero_clases, di_capacidad_pasajeros, di_distancia_asientos, di_ancho_asientos, di_modelo_avion) VALUES ('Densa',1,132,76,43.7,4);
-INSERT INTO Distribucion (di_nombre, di_numero_clases, di_capacidad_pasajeros, di_distancia_asientos, di_ancho_asientos, di_modelo_avion) VALUES ('Estandar',1,123,81,43.7,4);
+INSERT INTO Distribucion (di_nombre,di_numero_clases,di_capacidad_pasajeros,di_distancia_asientos,di_ancho_asientos,di_modelo_avion) VALUES ('Densa',1,132,76,43.7,4);
+INSERT INTO Distribucion (di_nombre,di_numero_clases,di_capacidad_pasajeros,di_distancia_asientos,di_ancho_asientos,di_modelo_avion) VALUES ('Estandar',1,123,81,43.7,4);
 --AU802D
-INSERT INTO Distribucion (di_nombre, di_numero_clases, di_capacidad_pasajeros, di_distancia_asientos, di_ancho_asientos, di_modelo_avion) VALUES ('Densa',1,149,76,43.7,5);
-INSERT INTO Distribucion (di_nombre, di_numero_clases, di_capacidad_pasajeros, di_distancia_asientos, di_ancho_asientos, di_modelo_avion) VALUES ('Estandar',1,140,81,43.7,5);
+INSERT INTO Distribucion (di_nombre,di_numero_clases,di_capacidad_pasajeros,di_distancia_asientos,di_ancho_asientos,di_modelo_avion) VALUES ('Densa',1,149,76,43.7,5);
+INSERT INTO Distribucion (di_nombre,di_numero_clases,di_capacidad_pasajeros,di_distancia_asientos,di_ancho_asientos,di_modelo_avion) VALUES ('Estandar',1,140,81,43.7,5);
 --AU802E
-INSERT INTO Distribucion (di_nombre, di_numero_clases, di_capacidad_pasajeros, di_distancia_asientos, di_ancho_asientos, di_modelo_avion) VALUES ('Densa',1,189,76,43.7,6);
-INSERT INTO Distribucion (di_nombre, di_numero_clases, di_capacidad_pasajeros, di_distancia_asientos, di_ancho_asientos, di_modelo_avion) VALUES ('Estandar',1,175,81,43.7,6);
-INSERT INTO Distribucion (di_nombre, di_numero_clases, di_capacidad_pasajeros, di_distancia_asientos, di_ancho_asientos, di_modelo_avion) VALUES ('Estandar',2,162,81,43.7,6);
+INSERT INTO Distribucion (di_nombre,di_numero_clases,di_capacidad_pasajeros,di_distancia_asientos,di_ancho_asientos,di_modelo_avion) VALUES ('Densa',1,189,76,43.7,6);
+INSERT INTO Distribucion (di_nombre,di_numero_clases,di_capacidad_pasajeros,di_distancia_asientos,di_ancho_asientos,di_modelo_avion) VALUES ('Estandar',1,175,81,43.7,6);
+INSERT INTO Distribucion (di_nombre,di_numero_clases,di_capacidad_pasajeros,di_distancia_asientos,di_ancho_asientos,di_modelo_avion) VALUES ('Estandar',2,162,81,43.7,6);
 --AU802F
-INSERT INTO Distribucion (di_nombre, di_numero_clases, di_capacidad_pasajeros, di_distancia_asientos, di_ancho_asientos, di_modelo_avion) VALUES ('Densa',1,204,76,43.7,7);
-INSERT INTO Distribucion (di_nombre, di_numero_clases, di_capacidad_pasajeros, di_distancia_asientos, di_ancho_asientos, di_modelo_avion) VALUES ('Estandar',1,177,81,43.7,7);
-INSERT INTO Distribucion (di_nombre, di_numero_clases, di_capacidad_pasajeros, di_distancia_asientos, di_ancho_asientos, di_modelo_avion) VALUES ('Alta Densidad',1,215,71,43.7,7);
+INSERT INTO Distribucion (di_nombre,di_numero_clases,di_capacidad_pasajeros,di_distancia_asientos,di_ancho_asientos,di_modelo_avion) VALUES ('Densa',1,204,76,43.7,7);
+INSERT INTO Distribucion (di_nombre,di_numero_clases,di_capacidad_pasajeros,di_distancia_asientos,di_ancho_asientos,di_modelo_avion) VALUES ('Estandar',1,177,81,43.7,7);
+INSERT INTO Distribucion (di_nombre,di_numero_clases,di_capacidad_pasajeros,di_distancia_asientos,di_ancho_asientos,di_modelo_avion) VALUES ('Alta Densidad',1,215,71,43.7,7);
 --AU747PLUS
-INSERT INTO Distribucion (di_nombre, di_numero_clases, di_capacidad_pasajeros, di_distancia_asientos, di_ancho_asientos, di_modelo_avion) VALUES ('Densa',2,452,76,43.7,8);
-INSERT INTO Distribucion (di_nombre, di_numero_clases, di_capacidad_pasajeros, di_distancia_asientos, di_ancho_asientos, di_modelo_avion) VALUES ('Estandar',3,366,81,43.7,8);
+INSERT INTO Distribucion (di_nombre,di_numero_clases,di_capacidad_pasajeros,di_distancia_asientos,di_ancho_asientos,di_modelo_avion) VALUES ('Densa',2,452,76,43.7,8);
+INSERT INTO Distribucion (di_nombre,di_numero_clases,di_capacidad_pasajeros,di_distancia_asientos,di_ancho_asientos,di_modelo_avion) VALUES ('Estandar',3,366,81,43.7,8);
 --AU747PLATINIUM
-INSERT INTO Distribucion (di_nombre, di_numero_clases, di_capacidad_pasajeros, di_distancia_asientos, di_ancho_asientos, di_modelo_avion) VALUES ('Densa',2,452,76,43.7,9);
-INSERT INTO Distribucion (di_nombre, di_numero_clases, di_capacidad_pasajeros, di_distancia_asientos, di_ancho_asientos, di_modelo_avion) VALUES ('Estandar',3,366,81,43.7,9);
+INSERT INTO Distribucion (di_nombre,di_numero_clases,di_capacidad_pasajeros,di_distancia_asientos,di_ancho_asientos,di_modelo_avion) VALUES ('Densa',2,452,76,43.7,9);
+INSERT INTO Distribucion (di_nombre,di_numero_clases,di_capacidad_pasajeros,di_distancia_asientos,di_ancho_asientos,di_modelo_avion) VALUES ('Estandar',3,366,81,43.7,9);
 --AU747GOLD
-INSERT INTO Distribucion (di_nombre, di_numero_clases, di_capacidad_pasajeros, di_distancia_asientos, di_ancho_asientos, di_modelo_avion) VALUES ('Densa',2,496,76,43.7,10);
-INSERT INTO Distribucion (di_nombre, di_numero_clases, di_capacidad_pasajeros, di_distancia_asientos, di_ancho_asientos, di_modelo_avion) VALUES ('Estandar',3,412,81,43.7,10);
+INSERT INTO Distribucion (di_nombre,di_numero_clases,di_capacidad_pasajeros,di_distancia_asientos,di_ancho_asientos,di_modelo_avion) VALUES ('Densa',2,496,76,43.7,10);
+INSERT INTO Distribucion (di_nombre,di_numero_clases,di_capacidad_pasajeros,di_distancia_asientos,di_ancho_asientos,di_modelo_avion) VALUES ('Estandar',3,412,81,43.7,10);
 --AU747SILVER
-INSERT INTO Distribucion (di_nombre, di_numero_clases, di_capacidad_pasajeros, di_distancia_asientos, di_ancho_asientos, di_modelo_avion) VALUES ('Densa',2,524,76,43.7,11);
-INSERT INTO Distribucion (di_nombre, di_numero_clases, di_capacidad_pasajeros, di_distancia_asientos, di_ancho_asientos, di_modelo_avion) VALUES ('Estandar',3,416,81,43.7,11);
+INSERT INTO Distribucion (di_nombre,di_numero_clases,di_capacidad_pasajeros,di_distancia_asientos,di_ancho_asientos,di_modelo_avion) VALUES ('Densa',2,524,76,43.7,11);
+INSERT INTO Distribucion (di_nombre,di_numero_clases,di_capacidad_pasajeros,di_distancia_asientos,di_ancho_asientos,di_modelo_avion) VALUES ('Estandar',3,416,81,43.7,11);
 --AU747SILVERB
-INSERT INTO Distribucion (di_nombre, di_numero_clases, di_capacidad_pasajeros, di_distancia_asientos, di_ancho_asientos, di_modelo_avion) VALUES ('Estandar',3,567,76,43.7,12);
+INSERT INTO Distribucion (di_nombre,di_numero_clases,di_capacidad_pasajeros,di_distancia_asientos,di_ancho_asientos,di_modelo_avion) VALUES ('Estandar',3,567,76,43.7,12);
 --AU80
-INSERT INTO Distribucion (di_nombre, di_numero_clases, di_capacidad_pasajeros, di_distancia_asientos, di_ancho_asientos, di_modelo_avion) VALUES ('Estandar',1,179,76,43.7,13);
+INSERT INTO Distribucion (di_nombre,di_numero_clases,di_capacidad_pasajeros,di_distancia_asientos,di_ancho_asientos,di_modelo_avion) VALUES ('Estandar',1,179,76,43.7,13);
 --AU801
-INSERT INTO Distribucion (di_nombre, di_numero_clases, di_capacidad_pasajeros, di_distancia_asientos, di_ancho_asientos, di_modelo_avion) VALUES ('Estandar',1,189,76,43.7,14);
+INSERT INTO Distribucion (di_nombre,di_numero_clases,di_capacidad_pasajeros,di_distancia_asientos,di_ancho_asientos,di_modelo_avion) VALUES ('Estandar',1,189,76,43.7,14);
 --SUBMODELO_AVION
 --AU802
-INSERT INTO Submodelo_avion (as_nombre, as_peso_maximo_despegue, as_peso_vacio, as_velocidad_crucero, as_carrera_despegue_peso_maximo, as_autonomia_peso_maximo_despegue, as_capacidad_combustible, as_alcance_carga_maxima, as_modelo_avion) VALUES ('Basic',49190,28120,780,1990,9800,17860,3440,1);
+INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_modelo_avion) VALUES ('Basic',49190,28120,780,1990,9800,17860,3440,1);
 --AU802A
-INSERT INTO Submodelo_avion (as_nombre, as_peso_maximo_despegue, as_peso_vacio, as_velocidad_crucero, as_carrera_despegue_peso_maximo, as_autonomia_peso_maximo_despegue, as_capacidad_combustible, as_alcance_carga_maxima, as_modelo_avion) VALUES ('Basic',68050,33200,780,2540,9800,23170,4005,2);
+INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_modelo_avion) VALUES ('Basic',68050,33200,780,2540,9800,23170,4005,2);
 --AU802B
-INSERT INTO Submodelo_avion (as_nombre, as_peso_maximo_despegue, as_peso_vacio, as_velocidad_crucero, as_carrera_despegue_peso_maximo, as_autonomia_peso_maximo_despegue, as_capacidad_combustible, as_alcance_carga_maxima, as_modelo_avion) VALUES ('Basic',60550,31300,780,2470,9800,23800,4445,3);
+INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_modelo_avion) VALUES ('Basic',60550,31300,780,2470,9800,23800,4445,3);
 --AU802C
-INSERT INTO Submodelo_avion (as_nombre, as_peso_maximo_despegue, as_peso_vacio, as_velocidad_crucero, as_carrera_despegue_peso_maximo, as_autonomia_peso_maximo_despegue, as_capacidad_combustible, as_alcance_carga_maxima, as_modelo_avion) VALUES ('Basic',66000,36380,828,2400,9800,26020,5650,4);
+INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_modelo_avion) VALUES ('Basic',66000,36380,828,2400,9800,26020,5650,4);
 --AU802D
-INSERT INTO Submodelo_avion (as_nombre, as_peso_maximo_despegue, as_peso_vacio, as_velocidad_crucero, as_carrera_despegue_peso_maximo, as_autonomia_peso_maximo_despegue, as_capacidad_combustible, as_alcance_carga_maxima, as_modelo_avion) VALUES ('Basic',70000,38150,828,2480,9800,26020,6230,5);
-INSERT INTO Submodelo_avion (as_nombre, as_peso_maximo_despegue, as_peso_vacio, as_velocidad_crucero, as_carrera_despegue_peso_maximo, as_autonomia_peso_maximo_despegue, as_capacidad_combustible, as_alcance_carga_maxima, as_modelo_avion) VALUES ('WL',72500,38150,828,2480,9800,26020,7220,5);
-INSERT INTO Submodelo_avion (as_nombre, as_peso_maximo_despegue, as_peso_vacio, as_velocidad_crucero, as_carrera_despegue_peso_maximo, as_autonomia_peso_maximo_despegue, as_capacidad_combustible, as_alcance_carga_maxima, as_modelo_avion) VALUES ('ER',77500,38150,828,2480,9800,26020,9955,5);
+INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_modelo_avion) VALUES ('Basic',70000,38150,828,2480,9800,26020,6230,5);
+INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_modelo_avion) VALUES ('WL',72500,38150,828,2480,9800,26020,7220,5);
+INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_modelo_avion) VALUES ('ER',77500,38150,828,2480,9800,26020,9955,5);
 --AU802E
-INSERT INTO Submodelo_avion (as_nombre, as_peso_maximo_despegue, as_peso_vacio, as_velocidad_crucero, as_carrera_despegue_peso_maximo, as_autonomia_peso_maximo_despegue, as_capacidad_combustible, as_alcance_carga_maxima, as_modelo_avion) VALUES ('Basic',79000,41415,828,2450,9800,26020,5665,6);
+INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_modelo_avion) VALUES ('Basic',79000,41415,828,2450,9800,26020,5665,6);
 --AU802F
-INSERT INTO Submodelo_avion (as_nombre, as_peso_maximo_despegue, as_peso_vacio, as_velocidad_crucero, as_carrera_despegue_peso_maximo, as_autonomia_peso_maximo_despegue, as_capacidad_combustible, as_alcance_carga_maxima, as_modelo_avion) VALUES ('Basic',85100,44675,823,2450,9800,29660,4995,7);
-INSERT INTO Submodelo_avion (as_nombre, as_peso_maximo_despegue, as_peso_vacio, as_velocidad_crucero, as_carrera_despegue_peso_maximo, as_autonomia_peso_maximo_despegue, as_capacidad_combustible, as_alcance_carga_maxima, as_modelo_avion) VALUES ('WL',85100,44675,823,2450,9800,29660,5925,7);
+INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_modelo_avion) VALUES ('Basic',85100,44675,823,2450,9800,29660,4995,7);
+INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_modelo_avion) VALUES ('WL',85100,44675,823,2450,9800,29660,5925,7);
 --AU747PLUS
-INSERT INTO Submodelo_avion (as_nombre, as_peso_maximo_despegue, as_peso_vacio, as_velocidad_crucero, as_carrera_despegue_peso_maximo, as_autonomia_peso_maximo_despegue, as_capacidad_combustible, as_alcance_carga_maxima, as_modelo_avion) VALUES ('Basic',333400,162400,893,3190,9800,183380,7995,8);
+INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_modelo_avion) VALUES ('Basic',333400,162400,893,3190,9800,183380,7995,8);
 --AU747PLATINIUM
-INSERT INTO Submodelo_avion (as_nombre, as_peso_maximo_despegue, as_peso_vacio, as_velocidad_crucero, as_carrera_despegue_peso_maximo, as_autonomia_peso_maximo_despegue, as_capacidad_combustible, as_alcance_carga_maxima, as_modelo_avion) VALUES ('Basic',378000,174000,893,3190,12700,199160,7995,9);
+INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_modelo_avion) VALUES ('Basic',378000,174000,893,3190,12700,199160,7995,9);
 --AU747GOLD
-INSERT INTO Submodelo_avion (as_nombre, as_peso_maximo_despegue, as_peso_vacio, as_velocidad_crucero, as_carrera_despegue_peso_maximo, as_autonomia_peso_maximo_despegue, as_capacidad_combustible, as_alcance_carga_maxima, as_modelo_avion) VALUES ('Basic',378000,178100,893,3320,12400,199160,7995,10);
+INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_modelo_avion) VALUES ('Basic',378000,178100,893,3320,12400,199160,7995,10);
 --AU747SILVER
-INSERT INTO Submodelo_avion (as_nombre, as_peso_maximo_despegue, as_peso_vacio, as_velocidad_crucero, as_carrera_despegue_peso_maximo, as_autonomia_peso_maximo_despegue, as_capacidad_combustible, as_alcance_carga_maxima, as_modelo_avion) VALUES ('Basic',397000,178750,913,3018,13450,216840,7995,11);
-INSERT INTO Submodelo_avion (as_nombre, as_peso_maximo_despegue, as_peso_vacio, as_velocidad_crucero, as_carrera_despegue_peso_maximo, as_autonomia_peso_maximo_despegue, as_capacidad_combustible, as_alcance_carga_maxima, as_modelo_avion) VALUES ('ER',413000,184600,916,3090,14205,241140,7995,11);
+INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_modelo_avion) VALUES ('Basic',397000,178750,913,3018,13450,216840,7995,11);
+INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_modelo_avion) VALUES ('ER',413000,184600,916,3090,14205,241140,7995,11);
 --AU747SILVERB
-INSERT INTO Submodelo_avion (as_nombre, as_peso_maximo_despegue, as_peso_vacio, as_velocidad_crucero, as_carrera_despegue_peso_maximo, as_autonomia_peso_maximo_despegue, as_capacidad_combustible, as_alcance_carga_maxima, as_modelo_avion) VALUES ('Basic',440000,186000,916,3090,14815,243120,7995,12);
+INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_modelo_avion) VALUES ('Basic',440000,186000,916,3090,14815,243120,7995,12);
 --AU80
-INSERT INTO Submodelo_avion (as_nombre, as_peso_maximo_despegue, as_peso_vacio, as_velocidad_crucero, as_carrera_despegue_peso_maximo, as_autonomia_peso_maximo_despegue, as_capacidad_combustible, as_alcance_carga_maxima, as_modelo_avion) VALUES ('Basic',116570,55580,780,1990,9800,17860,3440,13);
+INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_modelo_avion) VALUES ('Basic',116570,55580,780,1990,9800,17860,3440,13);
 --AU801
-INSERT INTO Submodelo_avion (as_nombre, as_peso_maximo_despegue, as_peso_vacio, as_velocidad_crucero, as_carrera_despegue_peso_maximo, as_autonomia_peso_maximo_despegue, as_capacidad_combustible, as_alcance_carga_maxima, as_modelo_avion) VALUES ('Basic',95028,46700,907,1990,9800,17860,3440,14);
+INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_modelo_avion) VALUES ('Basic',95028,46700,907,1990,9800,17860,3440,14);
 --MARCA_MOTOR
 INSERT INTO Marca_motor (mb_nombre) VALUES ('Pratt & Whitney');
 INSERT INTO Marca_motor (mb_nombre) VALUES ('CFM');
@@ -1999,6 +1978,7 @@ INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor) 
 INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor) VALUES (2,2,2);
 --AU802B
 INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor) VALUES (2,3,3);
+
 --AU802C
 INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor) VALUES (2,4,4);
 --AU802D
@@ -2036,3 +2016,23 @@ INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor) 
 INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor) VALUES (4,17,19);
 --AU801
 INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor) VALUES (3,18,20);
+--TIPO_ALA
+INSERT INTO Tipo_ala (wt_nombre) VALUES ('Recta');
+INSERT INTO Tipo_ala (wt_nombre) VALUES ('Trapezoidal');
+INSERT INTO Tipo_ala (wt_nombre) VALUES ('Elíptica');
+INSERT INTO Tipo_ala (wt_nombre) VALUES ('Flecha');
+INSERT INTO Tipo_ala (wt_nombre) VALUES ('Flecha invertida');
+INSERT INTO Tipo_ala (wt_nombre) VALUES ('Doble flecha');
+INSERT INTO Tipo_ala (wt_nombre) VALUES ('Flecha variable');
+INSERT INTO Tipo_ala (wt_nombre) VALUES ('Delta');
+INSERT INTO Tipo_ala (wt_nombre) VALUES ('Delta con canard');
+INSERT INTO Tipo_ala (wt_nombre) VALUES ('Delta con timones');
+INSERT INTO Tipo_ala (wt_nombre) VALUES ('Doble delta');
+INSERT INTO Tipo_ala (wt_nombre) VALUES ('Ojival');
+--TIPO_ESTABILIZADOR
+INSERT INTO Tipo_estabilizador (et_nombre) VALUES ('Estandar');
+INSERT INTO Tipo_estabilizador (et_nombre) VALUES ('T');
+INSERT INTO Tipo_estabilizador (et_nombre) VALUES ('Cruz');
+INSERT INTO Tipo_estabilizador (et_nombre) VALUES ('Dos verticales');
+INSERT INTO Tipo_estabilizador (et_nombre) VALUES ('Tres verticales');
+INSERT INTO Tipo_estabilizador (et_nombre) VALUES ('V');
