@@ -296,7 +296,7 @@ create table Tipo_estabilizador(
 );
 create table Modelo_pieza(
     pm_id serial,
-    pm_nombre varchar(30) unique not null,
+    pm_nombre varchar(30) not null,
     pm_tiempo_estimado integer not null,
     pm_modelo_pieza integer,
     pm_tipo_ala integer,
