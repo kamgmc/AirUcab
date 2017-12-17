@@ -356,7 +356,7 @@
                             <div role="document" class="modal-dialog modal-xl">
                                <div class="modal-content">
                                   <div class="modal-header">
-                                     <h4 id="exampleModalLabel" class="modal-title">INFORMACION VENTA</h4>
+                                     <h4 id="exampleModalLabel" class="modal-title">DETALLE VENTA</h4>
                                      <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
                                   </div>
                                   <div class="modal-body">
@@ -550,11 +550,11 @@
 
 
                          <!-- Modal Venta Editar -->
-                         <div id="myModalClienteEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+                         <div id="myModalVentaEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
                             <div role="document" class="modal-dialog modal-xl">
                                <div class="modal-content">
                                   <div class="modal-header">
-                                     <h4 id="exampleModalLabel" class="modal-title">INFORMACION PERSONAL</h4>
+                                     <h4 id="exampleModalLabel" class="modal-title">DETALLE VENTA</h4>
                                      <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
                                   </div>
                                   <div class="modal-body">
@@ -568,31 +568,7 @@
 
                                           <div class="form-group row">
                                             <label class="col-sm-3 form-control-label">
-                                              <h3>Nombre</h3>
-                                            </label>
-                                            <div class="col-sm-9">
-                                              <input type="text" placeholder="Introduzca Nombre" class="form-control">
-                                            </div>
-                                          </div>
-                                          <div class="form-group row">
-                                            <label class="col-sm-3 form-control-label">
-                                              <h3>Fecha Inicio</h3>
-                                            </label>  
-                                            <div class="col-sm-9">
-                                              <input type="text" placeholder="Introduzca Fecha de Inicio" class="form-control">
-                                            </div>
-                                          </div>
-                                          <div class="form-group row">
-                                            <label class="col-sm-3 form-control-label">
-                                              <h3>Direccion</h3>
-                                            </label>
-                                            <div class="col-sm-9">
-                                              <input type="text" placeholder="Introduzca la Direccion asociada" class="form-control">
-                                            </div>
-                                          </div>
-                                          <div class="form-group row">
-                                            <label class="col-sm-3 form-control-label">
-                                              <h3>CI/RIF</h3>
+                                              <h3>Factura Venta</h3>
                                             </label>
                                             <div class="col-sm-9">
                                               <input type="text" disabled="" placeholder="No modificable" class="form-control">
@@ -600,65 +576,142 @@
                                           </div>
                                           <div class="form-group row">
                                             <label class="col-sm-3 form-control-label">
-                                              <h3>Contacto</h3>
+                                              <h3>ESTATUS</h3>
                                             </label>
-                                            <div class="col-sm-9">
-                                              <div class="input-group">
-                                                <div class="input-group-btn">
-                                                  <button data-toggle="dropdown" type="button" class="btn btn-white dropdown-toggle"><i class="fa fa-facebook" aria-hidden="true"></i><span class="caret"></span></button>
-                                                  <ul class="dropdown-menu">
-                                                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-medium" aria-hidden="true"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-flickr" aria-hidden="true"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-github" aria-hidden="true"></i></a></li>
-                                                  </ul>
-                                                </div>
-                                                <input type="text" class="form-control">
-                                              </div>
-                                              <br>
-                                              <div class="input-group">
-                                                <div class="input-group-btn">
-                                                  <button data-toggle="dropdown" type="button" class="btn btn-white dropdown-toggle"><i class="fa fa-facebook" aria-hidden="true"></i><span class="caret"></span></button>
-                                                  <ul class="dropdown-menu">
-                                                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-medium" aria-hidden="true"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-flickr" aria-hidden="true"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-github" aria-hidden="true"></i></a></li>
-                                                  </ul>
-                                                </div>
-                                                <input type="text" class="form-control">
-                                              </div>
-                                              <br>
-                                              <div class="input-group">
-                                                <div class="input-group-btn">
-                                                  <button data-toggle="dropdown" type="button" class="btn btn-white dropdown-toggle"><i class="fa fa-facebook" aria-hidden="true"></i><span class="caret"></span></button>
-                                                  <ul class="dropdown-menu">
-                                                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-medium" aria-hidden="true"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-flickr" aria-hidden="true"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-github" aria-hidden="true"></i></a></li>
-                                                  </ul>
-                                                </div>
-                                                <input type="text" class="form-control">
-                                              </div>
-
+                                            <!-- Traer de la tabla de Status las opciones -->
+                                            <!-- Creo que su seleccion deberia ser automatica por parte del sistema solo en este caso porque este pasa a -->
+                                            <!-- finalizado cuando los otros STATUS de cada material y cada avion comprado pasan a Finalizado -->
+                                            <div class="col-sm-9 select">
+                                              <select name="account" class="form-control">
+                                                <option>En Progreso</option>
+                                                <option>Evaluacion</option>
+                                                <option>Distribucion</option>
+                                                <option>Finalizado</option>
+                                              </select>
                                             </div>
                                           </div>
-                                          
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Cliente</h3>
+                                            </label>
+                                            <!-- Traer de la tabla de clientes las opciones -->
+                                            <div class="col-sm-9 select">
+                                              <select name="account" class="form-control">
+                                                <option>Lex Fdz</option>
+                                                <option>Alexander K</option>
+                                                <option>Kevin M</option>
+                                                <option>Boris Tor</option>
+                                              </select>
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>CI/RIF Cliente</h3>
+                                            </label>  
+                                            <!-- Se debe rellenar automaticamente despues de seleccionar al cliente -->
+                                            <div class="col-sm-9">
+                                              <input type="text" disabled="" placeholder="No modificable" class="form-control">
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Modelo Avion</h3>
+                                            </label>
+                                            <!-- Traer de la tabla de modelo avion las opciones -->
+                                            <div class="col-sm-9 select">
+                                              <select name="account" class="form-control">
+                                                <option>AU80</option>
+                                                <option>Au808</option>
+                                                <option>AU988</option>
+                                              </select>
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Submodelo Avion</h3>
+                                            </label>
+                                            <!-- Traer de la tabla de submodelo avion las opciones -->
+                                            <div class="col-sm-9 select">
+                                              <select name="account" class="form-control">
+                                                <option>LW</option>
+                                                <option>Standar</option>
+                                                <option>Big</option>
+                                              </select>
+                                              <span class="help-block-none"><small>Seleccionar Modelo Avion primero.</small></span>
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Distribucion</h3>
+                                            </label>
+                                            <!-- Traer de la tabla de distribucion avion las opciones -->
+                                            <div class="col-sm-9 select">
+                                              <select name="account" class="form-control">
+                                                <option>Civil</option>
+                                                <option>Militar</option>
+                                                <option>Empresarial</option>
+                                              </select>
+                                              <span class="help-block-none"><small>Seleccionar Modelo Avion primero.</small></span>
+                                            </div>
+                                          </div>
                                         </div>
 
                                         <div class=" card-body col-lg-6">
 
                                           <div class="form-group row">
                                             <label class="col-sm-3 form-control-label">
+                                              <h3>Cantidad</h3>
+                                            </label>
+                                            <div class="col-sm-9">
+                                              <input type="text" placeholder="Introduzca cantidad de Aviones" class="form-control">
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Precio Unitario</h3>
+                                            </label>
+                                            <div class="col-sm-9">
+                                              <input type="text" placeholder="Introduzca precio por Avion" class="form-control">
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Fecha Inicio</h3>
+                                            </label>
+                                            <!-- Esto podemos hacerlo automatizado, que salve la fecha de creacion como fecha inicio -->
+                                            <div class="col-sm-9">
+                                              <input type="text" placeholder="Introduzca Fecha Inicio" class="form-control">
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Fecha Final</h3>
+                                            </label>
+                                            <!-- Esto es OBLIGATORIAMENTE AUTOMATICO cuando el STATUS cambie a finalizado -->
+                                            <div class="col-sm-9">
+                                              <input type="text" disabled="" placeholder="No modificable" class="form-control">
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Tipo de Pago</h3>
+                                            </label>
+                                            <div class="col-sm-9 select">
+                                              <select name="account" class="form-control">
+                                                <option>Transfencia</option>
+                                                <!-- La opcion TDC deberia expandir otros requerimientos, pero esto lo dejare para cuando implementemos el -->
+                                                <!-- hardcore de JS y PHP (2da entrega)-->
+                                                <option>TDC</option>
+                                              </select>
+                                              <span class="help-block-none"><small>Seleccionar Modelo Avion primero.</small></span>
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
                                               <h3>Nota</h3>
                                             </label>
                                             <div class="col-sm-9">
                                               <input type="text" placeholder="Aqui puedes escribir..." class="form-control form-control-lg" rows="4" cols="50">
-                                              
                                             </div>
                                           </div>
 
