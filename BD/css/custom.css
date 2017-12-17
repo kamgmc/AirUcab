@@ -91,3 +91,14 @@ input:checked + .label {
 .lpad-top {
   padding-top: 12px;
 }
+
+.table-overflow {
+  overflow-x:auto;
+}
+
+/* No funciona como anticipado, avisar de cualquier
+   comportamiento inesperado y borrar de ser necesario */
+.pad-right {
+  padding-right: 1rem;
+  margin-right:  3rem;
+}

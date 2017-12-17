@@ -65,8 +65,8 @@
             <li> <a href="clientes.html"> <i class="fa fa-address-book-o" aria-hidden="true"></i>Clientes</a></li>
             <li> <a href="proveedores.html"> <i class="fa fa-truck" aria-hidden="true"></i>Proveedores</a></li>
             <li> <a href="ventas.html"> <i class="fa fa-paper-plane-o" aria-hidden="true"></i>Ventas </a></li>
-            <li class="active"> <a href="compras.html"> <i class="fa fa-cog" aria-hidden="true"></i>Compras </a></li>
-            <li> <a href="modeloavion.html"> <i class="fa fa-plane" aria-hidden="true"></i>Modelo Avion </a></li>
+            <li> <a href="compras.html"> <i class="fa fa-cog" aria-hidden="true"></i>Compras </a></li>
+            <li class="active"> <a href="modeloavion.html"> <i class="fa fa-plane" aria-hidden="true"></i>Modelo Avion </a></li>
           </ul>
           
         </nav>
@@ -78,10 +78,10 @@
             <div class="container-fluid">
 
             <input id="tab0" type="radio" name="tabs" class="no-display" checked>
-            <label for="tab0" class="label"><i class="fa fa-cog" aria-hidden="true"></i> Compras</label>
+            <label for="tab0" class="label"><i class="fa fa-plane" aria-hidden="true"></i> Aviones</label>
      
             
-            <!-- TAB Compras -->
+            <!-- TAB Aviones -->
 
 
             <section id="content0" class="sectiontab">
@@ -92,10 +92,10 @@
                 <div class="card col-lg-12">
                   <div class="row">
                   <div class="card-body col-lg-5">
-                    <h3 class="h4">MOSTRAR SOLO COMRPAS QUE</h3>
+                    <h3 class="h4">MOSTRAR SOLO AVIONES QUE</h3>
                     <form class="form-horizontal">
                       <div class="row">
-                        <label class="col-sm-3 form-control-label">Proveedor</label>
+                        <label class="col-sm-3 form-control-label">Modelo</label>
                         <div class="col-sm-9 select">
                           <select name="account" class="form-control">
                             <option>option 1</option>
@@ -107,7 +107,18 @@
 
                       </div>
                       <div class="row">
-                        <label class="col-sm-3 form-control-label">Material</label>
+                        <label class="col-sm-3 form-control-label">Submodelo</label>
+                        <div class="col-sm-9 select">
+                          <select name="account" class="form-control">
+                            <option>option 1</option>
+                            <option>option 2</option>
+                            <option>option 3</option>
+                            <option>option 4</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <label class="col-sm-3 form-control-label">Distribucion</label>
                         <div class="col-sm-9 select">
                           <select name="account" class="form-control">
                             <option>option 1</option>
@@ -144,22 +155,38 @@
                       <div class="row">
                         <div class="col-sm-10"></div>
                         <div class="col-sm-2 pad-top">
-                          <button type="button" data-toggle="modal" data-target="#myModalCompraCrear"  class="btn btn-primary">
+                          <button type="button" data-toggle="modal" data-target="#myModalVentaCrear"  class="btn btn-primary">
                             <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
                         </div>
                       </div>
                       
-                      <div class="card-body">
-                         <table class="table table-striped table-sm table-hover">
+                      <div class="card-body table-overflow">
+                         <table class="table table-striped table-sm table-hover pad-right">
                             <thead>
                                <tr>
-                                  <th>ID</th>
-                                  <th>PROVEEDOR</th>
-                                  <th>MATERIAL</th>
-                                  <th>FECHA</th>
-                                  <th>CANTIDAD</th>
-                                  <th>PRECIO UNITARIO</th>
-                                  <th>STATUS</th>
+                                  <th class="text-center text-middle">ID</th>
+                                  <th class="text-center text-middle">NOMBRE</th>
+                                  <th class="text-center text-middle">LONGITUD</th>
+                                  <th class="text-center text-middle">ENVERGADURA</th>
+                                  <th class="text-center text-middle">ALTURA</th>
+                                  <th class="text-center text-middle">SUPERFICIE ALA</th>
+                                  <th class="text-center text-middle">FLECHA ALA</th>
+                                  <th class="text-center text-middle">PESO ATERRIZAJE MAX</th>
+                                  <th class="text-center text-middle">ALCANCE</th>
+                                  <th class="text-center text-middle">VELOCIDAD MAX</th>
+                                  <th class="text-center text-middle">SERVICIO TECHO</th>
+                                  <th class="text-center text-middle">REGIMEN ASCENSO</th>
+                                  <th class="text-center text-middle">N PASILLOS</th>
+                                  <th class="text-center text-middle">TIPO FUSELAJE</th>
+                                  <th class="text-center text-middle">ALTURA FUSELAJE</th>
+                                  <th class="text-center text-middle">ANCHO FUSELAJE</th>
+                                  <th class="text-center text-middle">ALTURA CABINA</th>
+                                  <th class="text-center text-middle">ANCHO CABINA</th>
+                                  <th class="text-center text-middle">VOLUMEN CARGA</th>
+                                  <th class="text-center text-middle">CAPACIDAD PILOTOS</th>
+                                  <th class="text-center text-middle">CAPACIDAD ASIENTOS</th>
+                                  <th class="text-center text-middle">DESPEGUE CARRERA</th>
+                                  <th class="text-center text-middle">TIEMPO ESTIMADO</th>
                                   <th class="text-center">Accion</th>
                                </tr>
                             </thead>
@@ -167,11 +194,27 @@
                                <tr>
                                   <td>002</td>
                                   <td>Lex Fdz</td>
-                                  <td>Arena Blanca</td>
-                                  <td>14/12/2017</td>
-                                  <td>500 u</td>
-                                  <td>15 $</td>
-                                  <td><span class="badge badge-primary">Evaluacion</span></td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>174</td>
                                   <td class="text-center">
                                     <a href="" data-toggle="modal" data-target="#myModalDetalle">
                                       <i class="fa fa-file-text-o" aria-hidden="true"></i>
@@ -184,11 +227,27 @@
                                <tr>
                                   <td>002</td>
                                   <td>Lex Fdz</td>
-                                  <td>Arena Blanca</td>
-                                  <td>14/12/2017</td>
-                                  <td>500 u</td>
-                                  <td>15 $</td>
-                                  <td><span class="badge badge-primary">Evaluacion</span></td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>174</td>
                                   <td class="text-center">
                                     <a href="" data-toggle="modal" data-target="#myModalDetalle">
                                       <i class="fa fa-file-text-o" aria-hidden="true"></i>
@@ -201,11 +260,27 @@
                                <tr>
                                   <td>002</td>
                                   <td>Lex Fdz</td>
-                                  <td>Arena Blanca</td>
-                                  <td>14/12/2017</td>
-                                  <td>500 u</td>
-                                  <td>15 $</td>
-                                  <td><span class="badge badge-primary">Evaluacion</span></td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>174</td>
                                   <td class="text-center">
                                     <a href="" data-toggle="modal" data-target="#myModalDetalle">
                                       <i class="fa fa-file-text-o" aria-hidden="true"></i>
@@ -218,11 +293,27 @@
                                <tr>
                                   <td>002</td>
                                   <td>Lex Fdz</td>
-                                  <td>Arena Blanca</td>
-                                  <td>14/12/2017</td>
-                                  <td>500 u</td>
-                                  <td>15 $</td>
-                                  <td><span class="badge badge-primary">Evaluacion</span></td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>174</td>
                                   <td class="text-center">
                                     <a href="" data-toggle="modal" data-target="#myModalDetalle">
                                       <i class="fa fa-file-text-o" aria-hidden="true"></i>
@@ -235,11 +326,27 @@
                                <tr>
                                   <td>002</td>
                                   <td>Lex Fdz</td>
-                                  <td>Arena Blanca</td>
-                                  <td>14/12/2017</td>
-                                  <td>500 u</td>
-                                  <td>15 $</td>
-                                  <td><span class="badge badge-primary">Evaluacion</span></td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>174</td>
                                   <td class="text-center">
                                     <a href="" data-toggle="modal" data-target="#myModalDetalle">
                                       <i class="fa fa-file-text-o" aria-hidden="true"></i>
@@ -252,11 +359,27 @@
                                <tr>
                                   <td>002</td>
                                   <td>Lex Fdz</td>
-                                  <td>Arena Blanca</td>
-                                  <td>14/12/2017</td>
-                                  <td>500 u</td>
-                                  <td>15 $</td>
-                                  <td><span class="badge badge-primary">Evaluacion</span></td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>174</td>
                                   <td class="text-center">
                                     <a href="" data-toggle="modal" data-target="#myModalDetalle">
                                       <i class="fa fa-file-text-o" aria-hidden="true"></i>
@@ -269,96 +392,27 @@
                                <tr>
                                   <td>002</td>
                                   <td>Lex Fdz</td>
-                                  <td>Arena Blanca</td>
-                                  <td>14/12/2017</td>
-                                  <td>500 u</td>
-                                  <td>15 $</td>
-                                  <td><span class="badge badge-primary">Evaluacion</span></td>
-                                  <td class="text-center">
-                                    <a href="" data-toggle="modal" data-target="#myModalDetalle">
-                                      <i class="fa fa-file-text-o" aria-hidden="true"></i>
-                                    </a>
-                                    <a href="" data-toggle="modal" data-target="#myModalBorrarVenta">   
-                                      <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                    </a>
-                                  </td>
-                               </tr>
-                               <tr>
-                                  <td>002</td>
-                                  <td>Lex Fdz</td>
-                                  <td>Arena Blanca</td>
-                                  <td>14/12/2017</td>
-                                  <td>500 u</td>
-                                  <td>15 $</td>
-                                  <td><span class="badge badge-primary">Evaluacion</span></td>
-                                  <td class="text-center">
-                                    <a href="" data-toggle="modal" data-target="#myModalDetalle">
-                                      <i class="fa fa-file-text-o" aria-hidden="true"></i>
-                                    </a>
-                                    <a href="" data-toggle="modal" data-target="#myModalBorrarVenta">   
-                                      <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                    </a>
-                                  </td>
-                               </tr>
-                               <tr>
-                                  <td>002</td>
-                                  <td>Lex Fdz</td>
-                                  <td>Arena Blanca</td>
-                                  <td>14/12/2017</td>
-                                  <td>500 u</td>
-                                  <td>15 $</td>
-                                  <td><span class="badge badge-primary">Evaluacion</span></td>
-                                  <td class="text-center">
-                                    <a href="" data-toggle="modal" data-target="#myModalDetalle">
-                                      <i class="fa fa-file-text-o" aria-hidden="true"></i>
-                                    </a>
-                                    <a href="" data-toggle="modal" data-target="#myModalBorrarVenta">   
-                                      <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                    </a>
-                                  </td>
-                               </tr>
-                               <tr>
-                                  <td>002</td>
-                                  <td>Lex Fdz</td>
-                                  <td>Arena Blanca</td>
-                                  <td>14/12/2017</td>
-                                  <td>500 u</td>
-                                  <td>15 $</td>
-                                  <td><span class="badge badge-primary">Evaluacion</span></td>
-                                  <td class="text-center">
-                                    <a href="" data-toggle="modal" data-target="#myModalDetalle">
-                                      <i class="fa fa-file-text-o" aria-hidden="true"></i>
-                                    </a>
-                                    <a href="" data-toggle="modal" data-target="#myModalBorrarVenta">   
-                                      <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                    </a>
-                                  </td>
-                               </tr>
-                               <tr>
-                                  <td>002</td>
-                                  <td>Lex Fdz</td>
-                                  <td>Arena Blanca</td>
-                                  <td>14/12/2017</td>
-                                  <td>500 u</td>
-                                  <td>15 $</td>
-                                  <td><span class="badge badge-primary">Evaluacion</span></td>
-                                  <td class="text-center">
-                                    <a href="" data-toggle="modal" data-target="#myModalDetalle">
-                                      <i class="fa fa-file-text-o" aria-hidden="true"></i>
-                                    </a>
-                                    <a href="" data-toggle="modal" data-target="#myModalBorrarVenta">   
-                                      <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                    </a>
-                                  </td>
-                               </tr>
-                               <tr>
-                                  <td>002</td>
-                                  <td>Lex Fdz</td>
-                                  <td>Arena Blanca</td>
-                                  <td>14/12/2017</td>
-                                  <td>500 u</td>
-                                  <td>15 $</td>
-                                  <td><span class="badge badge-primary">Evaluacion</span></td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>174</td>
                                   <td class="text-center">
                                     <a href="" data-toggle="modal" data-target="#myModalDetalle">
                                       <i class="fa fa-file-text-o" aria-hidden="true"></i>
@@ -377,15 +431,15 @@
                 <!-- TABLE ENDS -->
 
             </section>
-            <!-- TAB Compra ENDS -->
+            <!-- TAB Aviones ENDS -->
 
 
-            <!-- Modal Detalle Compra  -->
+            <!-- Modal Detalle Venta  -->
                          <div id="myModalDetalle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
                             <div role="document" class="modal-dialog modal-xl">
                                <div class="modal-content">
                                   <div class="modal-header">
-                                     <h4 id="exampleModalLabel" class="modal-title">DETALLE COMPRA</h4>
+                                     <h4 id="exampleModalLabel" class="modal-title">DETALLE VENTA</h4>
                                      <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
                                   </div>
                                   <div class="modal-body">
@@ -400,7 +454,7 @@
                                         <div class="card-body col-lg-6">
                                           <div class="row">
                                             <div class="col-lg-4">
-                                              <h3>Factura Compra</h3>
+                                              <h3>Factura Venta</h3>
                                             </div>
                                             <div class="col-lg-8">
                                               001
@@ -416,7 +470,7 @@
                                           </div>
                                           <div class="row">
                                             <div class="col-lg-4">
-                                              <h3>Proveedor</h3>
+                                              <h3>Cliente</h3>
                                             </div>
                                             <div class="col-lg-8">
                                               LEX FDZ CORP. S.A.
@@ -424,7 +478,7 @@
                                           </div>
                                           <div class="row">
                                             <div class="col-lg-4">
-                                              <h3>CI/RIF Proveedor</h3>
+                                              <h3>CI/RIF Cliente</h3>
                                             </div>
                                             <div class="col-lg-8">
                                               J-79698576-7
@@ -432,13 +486,28 @@
                                           </div>
                                           <div class="row">
                                             <div class="col-lg-4">
-                                              <h3>Material</h3>
+                                              <h3>Modelo Avion</h3>
                                             </div>
                                             <div class="col-lg-8">
-                                              Arena Blanca
+                                              AU80
                                             </div>
                                           </div>
-                                          
+                                          <div class="row">
+                                            <div class="col-lg-4">
+                                              <h3>Submodelo Avion</h3>
+                                            </div>
+                                            <div class="col-lg-8">
+                                              LW
+                                            </div>
+                                          </div>
+                                          <div class="row">
+                                            <div class="col-lg-4">
+                                              <h3>Distribucion</h3>
+                                            </div>
+                                            <div class="col-lg-8">
+                                              Civil
+                                            </div>
+                                          </div>
                                           
                                         </div>
                                         <!-- Columna izquierda ENDS -->
@@ -450,15 +519,15 @@
                                               <h3>Cantidad</h3>
                                             </div>
                                             <div class="col-lg-8">
-                                              50 u
+                                              3
                                             </div>
                                           </div>
                                           <div class="row">
                                             <div class="col-lg-4">
-                                              <h3>Monto Unitario</h3>
+                                              <h3>Monto por Avion</h3>
                                             </div>
                                             <div class="col-lg-8">
-                                              15 $
+                                              1800 $
                                             </div>
                                           </div>
                                           <div class="row">
@@ -466,15 +535,23 @@
                                               <h3>Monto Total</h3>
                                             </div>
                                             <div class="col-lg-8">
-                                              750 $
+                                              5400 $
                                             </div>
                                           </div>
                                           <div class="row">
                                             <div class="col-lg-4">
-                                              <h3>Fecha</h3>
+                                              <h3>Fecha Inicio</h3>
                                             </div>
                                             <div class="col-lg-8">
                                               14/12/2017
+                                            </div>
+                                          </div>
+                                          <div class="row">
+                                            <div class="col-lg-4">
+                                              <h3>Fecha Final</h3>
+                                            </div>
+                                            <div class="col-lg-8">
+                                              null
                                             </div>
                                           </div>
                                           <div class="row">
@@ -490,7 +567,7 @@
                                               <h3>Nota</h3>
                                             </div>
                                             <div class="col-lg-8">
-                                              Proveedor enviara los camiones despues de acreditado el pago, con 1 semana de tiempo estimado de llegada.
+                                              Cliente requiere fotos de supervision en el ensamblaje de Ala derecha.
                                             </div>
                                           </div>
                                         </div>
@@ -508,7 +585,7 @@
                                   </div>
                                   <div class="modal-footer">
                                      <button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
-                                     <button type="button" data-toggle="modal" data-target="#myModalCompraEditar" class="btn btn-primary">Editar</button>
+                                     <button type="button" data-toggle="modal" data-target="#myModalVentaEditar" class="btn btn-primary">Editar</button>
                                   </div>
                                </div>
                             </div>
@@ -555,12 +632,12 @@
                          <!-- Modal Borrar Venta ENDS -->
 
 
-                         <!-- Modal Compra Editar -->
-                         <div id="myModalCompraEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+                         <!-- Modal Venta Editar -->
+                         <div id="myModalVentaEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
                             <div role="document" class="modal-dialog modal-xl">
                                <div class="modal-content">
                                   <div class="modal-header">
-                                     <h4 id="exampleModalLabel" class="modal-title">DETALLE COMPRA</h4>
+                                     <h4 id="exampleModalLabel" class="modal-title">DETALLE VENTA</h4>
                                      <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
                                   </div>
                                   <div class="modal-body">
@@ -574,7 +651,7 @@
 
                                           <div class="form-group row">
                                             <label class="col-sm-3 form-control-label">
-                                              <h3>Factura Compra</h3>
+                                              <h3>Factura Venta</h3>
                                             </label>
                                             <div class="col-sm-9">
                                               <input type="text" disabled="" placeholder="No modificable" class="form-control">
@@ -598,9 +675,9 @@
                                           </div>
                                           <div class="form-group row">
                                             <label class="col-sm-3 form-control-label">
-                                              <h3>Proveedor</h3>
+                                              <h3>Cliente</h3>
                                             </label>
-                                            <!-- Traer de la tabla de proveedor las opciones -->
+                                            <!-- Traer de la tabla de clientes las opciones -->
                                             <div class="col-sm-9 select">
                                               <select name="account" class="form-control">
                                                 <option>Lex Fdz</option>
@@ -614,25 +691,52 @@
                                             <label class="col-sm-3 form-control-label">
                                               <h3>CI/RIF Cliente</h3>
                                             </label>  
-                                            <!-- Se debe rellenar automaticamente despues de seleccionar al proveedor -->
+                                            <!-- Se debe rellenar automaticamente despues de seleccionar al cliente -->
                                             <div class="col-sm-9">
                                               <input type="text" disabled="" placeholder="No modificable" class="form-control">
                                             </div>
                                           </div>
                                           <div class="form-group row">
                                             <label class="col-sm-3 form-control-label">
-                                              <h3>Material</h3>
+                                              <h3>Modelo Avion</h3>
                                             </label>
-                                            <!-- Traer de la tabla de materiales las opciones -->
+                                            <!-- Traer de la tabla de modelo avion las opciones -->
                                             <div class="col-sm-9 select">
                                               <select name="account" class="form-control">
-                                                <option>Arena Blanca</option>
-                                                <option>Cal</option>
-                                                <option>Tornillos</option>
+                                                <option>AU80</option>
+                                                <option>Au808</option>
+                                                <option>AU988</option>
                                               </select>
                                             </div>
                                           </div>
-                                          
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Submodelo Avion</h3>
+                                            </label>
+                                            <!-- Traer de la tabla de submodelo avion las opciones -->
+                                            <div class="col-sm-9 select">
+                                              <select name="account" class="form-control">
+                                                <option>LW</option>
+                                                <option>Standar</option>
+                                                <option>Big</option>
+                                              </select>
+                                              <span class="help-block-none"><small>Seleccionar Modelo Avion primero.</small></span>
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Distribucion</h3>
+                                            </label>
+                                            <!-- Traer de la tabla de distribucion avion las opciones -->
+                                            <div class="col-sm-9 select">
+                                              <select name="account" class="form-control">
+                                                <option>Civil</option>
+                                                <option>Militar</option>
+                                                <option>Empresarial</option>
+                                              </select>
+                                              <span class="help-block-none"><small>Seleccionar Modelo Avion primero.</small></span>
+                                            </div>
+                                          </div>
                                         </div>
 
                                         <div class=" card-body col-lg-6">
@@ -642,7 +746,7 @@
                                               <h3>Cantidad</h3>
                                             </label>
                                             <div class="col-sm-9">
-                                              <input type="text" placeholder="Introduzca cantidad de unidades" class="form-control">
+                                              <input type="text" placeholder="Introduzca cantidad de Aviones" class="form-control">
                                             </div>
                                           </div>
                                           <div class="form-group row">
@@ -650,12 +754,12 @@
                                               <h3>Precio Unitario</h3>
                                             </label>
                                             <div class="col-sm-9">
-                                              <input type="text" placeholder="Introduzca precio por unidad" class="form-control">
+                                              <input type="text" placeholder="Introduzca precio por Avion" class="form-control">
                                             </div>
                                           </div>
                                           <div class="form-group row">
                                             <label class="col-sm-3 form-control-label">
-                                              <h3>Fecha</h3>
+                                              <h3>Fecha Inicio</h3>
                                             </label>
                                             <!-- Esto podemos hacerlo automatizado, que salve la fecha de creacion como fecha inicio -->
                                             <div class="col-sm-9">
@@ -664,6 +768,15 @@
                                           </div>
                                           <div class="form-group row">
                                             <label class="col-sm-3 form-control-label">
+                                              <h3>Fecha Final</h3>
+                                            </label>
+                                            <!-- Esto es OBLIGATORIAMENTE AUTOMATICO cuando el STATUS cambie a finalizado -->
+                                            <div class="col-sm-9">
+                                              <input type="text" disabled="" placeholder="No modificable" class="form-control">
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
                                               <h3>Tipo de Pago</h3>
                                             </label>
                                             <div class="col-sm-9 select">
@@ -701,15 +814,15 @@
                                </div>
                             </div>
                          </div>
-                         <!-- Modal Compra Editar ENDS -->
+                         <!-- Modal Venta Editar ENDS -->
 
 
-                         <!-- Modal Compra Crear -->
-                         <div id="myModalCompraCrear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+                         <!-- Modal Venta Crear -->
+                         <div id="myModalVentaCrear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
                             <div role="document" class="modal-dialog modal-xl">
                                <div class="modal-content">
                                   <div class="modal-header">
-                                     <h4 id="exampleModalLabel" class="modal-title">COMPRA</h4>
+                                     <h4 id="exampleModalLabel" class="modal-title">VENTA</h4>
                                      <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
                                   </div>
                                   <div class="modal-body">
@@ -723,7 +836,7 @@
 
                                           <div class="form-group row">
                                             <label class="col-sm-3 form-control-label">
-                                              <h3>Factura Compra</h3>
+                                              <h3>Factura Venta</h3>
                                             </label>
                                             <div class="col-sm-9">
                                               <input type="text" disabled="" placeholder="No modificable" class="form-control">
@@ -747,9 +860,9 @@
                                           </div>
                                           <div class="form-group row">
                                             <label class="col-sm-3 form-control-label">
-                                              <h3>Proveedor</h3>
+                                              <h3>Cliente</h3>
                                             </label>
-                                            <!-- Traer de la tabla de proveedor las opciones -->
+                                            <!-- Traer de la tabla de clientes las opciones -->
                                             <div class="col-sm-9 select">
                                               <select name="account" class="form-control">
                                                 <option>Lex Fdz</option>
@@ -763,25 +876,52 @@
                                             <label class="col-sm-3 form-control-label">
                                               <h3>CI/RIF Cliente</h3>
                                             </label>  
-                                            <!-- Se debe rellenar automaticamente despues de seleccionar al proveedor -->
+                                            <!-- Se debe rellenar automaticamente despues de seleccionar al cliente -->
                                             <div class="col-sm-9">
                                               <input type="text" disabled="" placeholder="No modificable" class="form-control">
                                             </div>
                                           </div>
                                           <div class="form-group row">
                                             <label class="col-sm-3 form-control-label">
-                                              <h3>Material</h3>
+                                              <h3>Modelo Avion</h3>
                                             </label>
-                                            <!-- Traer de la tabla de materiales -->
+                                            <!-- Traer de la tabla de modelo avion las opciones -->
                                             <div class="col-sm-9 select">
                                               <select name="account" class="form-control">
-                                                <option>Arena Blanca</option>
-                                                <option>Cal</option>
-                                                <option>Tornillos</option>
+                                                <option>AU80</option>
+                                                <option>Au808</option>
+                                                <option>AU988</option>
                                               </select>
                                             </div>
                                           </div>
-                                          
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Submodelo Avion</h3>
+                                            </label>
+                                            <!-- Traer de la tabla de submodelo avion las opciones -->
+                                            <div class="col-sm-9 select">
+                                              <select name="account" class="form-control">
+                                                <option>LW</option>
+                                                <option>Standar</option>
+                                                <option>Big</option>
+                                              </select>
+                                              <span class="help-block-none"><small>Seleccionar Modelo Avion primero.</small></span>
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Distribucion</h3>
+                                            </label>
+                                            <!-- Traer de la tabla de distribucion avion las opciones -->
+                                            <div class="col-sm-9 select">
+                                              <select name="account" class="form-control">
+                                                <option>Civil</option>
+                                                <option>Militar</option>
+                                                <option>Empresarial</option>
+                                              </select>
+                                              <span class="help-block-none"><small>Seleccionar Modelo Avion primero.</small></span>
+                                            </div>
+                                          </div>
                                         </div>
 
                                         <div class=" card-body col-lg-6">
@@ -791,7 +931,7 @@
                                               <h3>Cantidad</h3>
                                             </label>
                                             <div class="col-sm-9">
-                                              <input type="text" placeholder="Introduzca cantidad de unidades" class="form-control">
+                                              <input type="text" placeholder="Introduzca cantidad de Aviones" class="form-control">
                                             </div>
                                           </div>
                                           <div class="form-group row">
@@ -799,15 +939,25 @@
                                               <h3>Precio Unitario</h3>
                                             </label>
                                             <div class="col-sm-9">
-                                              <input type="text" placeholder="Introduzca precio por unidad" class="form-control">
+                                              <input type="text" placeholder="Introduzca precio por Avion" class="form-control">
                                             </div>
                                           </div>
                                           <div class="form-group row">
                                             <label class="col-sm-3 form-control-label">
-                                              <h3>Fecha</h3>
+                                              <h3>Fecha Inicio</h3>
                                             </label>
+                                            <!-- Esto podemos hacerlo automatizado, que salve la fecha de creacion como fecha inicio -->
                                             <div class="col-sm-9">
-                                              <input type="text" placeholder="Introduzca Fecha" class="form-control">
+                                              <input type="text" placeholder="Introduzca Fecha Inicio" class="form-control">
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Fecha Final</h3>
+                                            </label>
+                                            <!-- Esto es OBLIGATORIAMENTE AUTOMATICO cuando el STATUS cambie a finalizado -->
+                                            <div class="col-sm-9">
+                                              <input type="text" disabled="" placeholder="No modificable" class="form-control">
                                             </div>
                                           </div>
                                           <div class="form-group row">
@@ -821,6 +971,7 @@
                                                 <!-- hardcore de JS y PHP (2da entrega)-->
                                                 <option>TDC</option>
                                               </select>
+                                              <span class="help-block-none"><small>Seleccionar Modelo Avion primero.</small></span>
                                             </div>
                                           </div>
                                           <div class="form-group row">
@@ -849,7 +1000,7 @@
                                </div>
                             </div>
                          </div>
-                         <!-- Modal Compra Crear ENDS -->
+                         <!-- Modal Venta Crear ENDS -->
 
             
             </div>
