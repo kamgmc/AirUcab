@@ -1,3 +1,5 @@
+create database AirUcab WITH ENCODING = 'UTF8';
+
 create table Status(
 	st_id serial,
 	st_nombre varchar(30) unique not null,
@@ -76,7 +78,7 @@ create table Empleado(
 	em_direccion integer not null,
 	em_supervisa integer,
 	em_gerencia integer,
-    em_nota varchar(280),
+	em_nota text,
 	constraint Pk_empleado primary key(em_id),
 	constraint Check_em_nacionalidad check(em_nacionalidad IN ('V','E','P')),
 	constraint Check_em_ci check(em_ci > 0),
@@ -119,7 +121,7 @@ create table Cliente(
 	cl_pagina_web varchar(50),
 	cl_fecha_inicio date not null,
 	cl_direccion integer not null,
-	cl_nota varchar(280),
+	cl_nota text,
 	constraint Pk_cliente primary key(cl_id),
 	constraint Check_cl_tipo_rif check(cl_tipo_rif IN ('G','J','V','E')),
 	constraint Check_cl_rif check(cl_rif > 0),
@@ -141,7 +143,7 @@ create table Proveedor(
 	po_pagina_web varchar(50),
 	po_fecha_ini date not null,
 	po_direccion integer not null,
-	po_nota varchar(280),
+	po_nota text,
 	constraint Pk_proveedor primary key(po_id),
 	constraint Check_po_tipo_rif check(po_tipo_rif IN('G','J','V','E')),
 	constraint Check_po_rif check(po_rif > 0),
