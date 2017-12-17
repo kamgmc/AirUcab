@@ -329,7 +329,7 @@ create table Prueba(
 create table Status_prueba(
 	sp_id serial,
     sp_fecha_ini date not null,
-    sp_fecha_fin date not null,
+    sp_fecha_fin date,
     sp_prueba integer not null,
     sp_status integer not null,
     constraint Pk_status_prueba primary key(sp_id),
@@ -386,7 +386,7 @@ create table T_material_m_pieza(
 create table Avion(
 	a_id serial,
     a_fecha_ini date not null,
-    a_fecha_fin date not null,
+    a_fecha_fin date,
     a_factura_venta integer not null,
     a_submodelo_avion integer not null,
 	a_precio numeric(8,2) not null,
@@ -398,7 +398,7 @@ create table Avion(
 create table Status_avion(
 	sa_id serial,
     sa_fecha_ini date not null,
-    sa_fecha_fin date not null,
+    sa_fecha_fin date,
     sa_avion integer not null,
     sa_status integer not null,
     constraint Pk_status_avion primary key(sa_id),
@@ -408,7 +408,7 @@ create table Status_avion(
 create table Motor(
 	mo_id serial,
 	mo_fecha_ini date not null,
-	mo_fecha_fin date not null,
+	mo_fecha_fin date,
 	mo_modelo_motor integer not null,
 	mo_avion integer not null,
 	constraint Pk_motor primary key(mo_id),
@@ -418,7 +418,7 @@ create table Motor(
 create table Status_motor(
 	stm_id serial,
     stm_fecha_ini date not null,
-    stm_fecha_fin date not null,
+    stm_fecha_fin date,
     stm_motor integer not null,
     stm_status integer not null,
     constraint Pk_status_motor primary key(stm_id),
@@ -428,7 +428,7 @@ create table Status_motor(
 create table Pieza(
     p_id serial,
     p_fecha_ini date not null,
-    p_fecha_fin date not null,
+    p_fecha_fin date,
     p_modelo_pieza integer not null,
     p_avion integer not null,
     constraint Pk_pieza primary key(p_id),
@@ -438,7 +438,7 @@ create table Pieza(
 create table Status_pieza(
     spi_id serial,
     spi_fecha_ini date not null,
-    spi_fecha_fin date not null,
+    spi_fecha_fin date,
     spi_pieza integer not null,
     spi_status integer not null,
     constraint Pk_status_pieza primary key(spi_id),
@@ -461,7 +461,7 @@ create table Material(
 create table Prueba_material(
 	prm_id serial,
     prm_fecha_ini date not null,
-    prm_fecha_fin date not null,
+    prm_fecha_fin date,
     prm_material integer not null,
     prm_prueba integer not null,
     prm_status integer not null,
@@ -473,7 +473,7 @@ create table Prueba_material(
 create table Status_material(
 	sm_id serial,
     sm_fecha_ini date not null,
-    sm_fecha_fin date not null,
+    sm_fecha_fin date,
     sm_material integer not null,
     sm_status integer not null,
     constraint Pk_status_material primary key(sm_id),
@@ -483,7 +483,7 @@ create table Status_material(
 create table Prueba_pieza(
 	pp_id serial,
     pp_fecha_ini date not null,
-    pp_fecha_fin date not null,
+    pp_fecha_fin date,
     pp_pieza integer not null,
     pp_prueba integer not null,
     pp_status integer not null,
@@ -495,7 +495,7 @@ create table Prueba_pieza(
 create table Traslado(
 	tr_id serial,
     tr_fecha_ini date not null,
-	tr_fecha_fin date not null,
+	tr_fecha_fin date,
 	tr_confirmacion boolean not null,
     tr_zona_envia integer not null,
     tr_zona_recibe integer not null,
