@@ -359,6 +359,7 @@
                                   <td>Ensamblaje de Alas</td>
                                   <td>CCS, VNZLA</td>
                                   <td class="text-center">
+
                                     <a href="" data-toggle="modal" data-target="#myModalEmpleado">
                                       <i class="fa fa-file-text-o" aria-hidden="true"></i>
                                     </a>
@@ -548,7 +549,7 @@
                                   </div>
                                   <div class="modal-footer">
                                      <button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
-                                     <button type="button" class="btn btn-primary">Editar</button>
+                                     <button type="button" data-toggle="modal" data-target="#myModalEmpleadoEditar"  class="btn btn-primary">Editar</button>
                                   </div>
                                </div>
                             </div>
@@ -581,6 +582,234 @@
                             </div>
                          </div>
                          <!-- Modal Borrar ENDS -->
+
+                         <!-- Modal Empleado Editar -->
+                         <div id="myModalEmpleadoEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+                            <div role="document" class="modal-dialog modal-xl">
+                               <div class="modal-content">
+                                  <div class="modal-header">
+                                     <h4 id="exampleModalLabel" class="modal-title">INFORMACION PERSONAL</h4>
+                                     <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                                  </div>
+                                  <div class="modal-body">
+
+
+                                    <div class="container-fluid">
+                                      <div class="row">
+                                      <div class="card col-lg-12">
+                                        <div class="row">
+                                        <div class="card-body col-lg-6">
+
+
+
+                                          <!-- <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">Help text</label>
+                                            <div class="col-sm-9">
+                                              <input type="text" class="form-control"><span class="help-block-none">A block of help text that breaks onto a new line and may extend beyond one line.</span>
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">Placeholder</label>
+                                            <div class="col-sm-9">
+                                              <input type="text" placeholder="placeholder" class="form-control">
+                                            </div>
+                                          </div> -->
+
+
+
+
+                                          
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Nombre</h3>
+                                            </label>
+                                            <div class="col-sm-9">
+                                              <input type="text" placeholder="Introduzca Nombre" class="form-control">
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Apellido</h3>
+                                            </label>
+                                            <div class="col-sm-9">
+                                              <input type="text" placeholder="Introduzca Apellido" class="form-control">
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Fecha Ingreso</h3>
+                                            </label>
+                                            <div class="col-sm-9">
+                                              <input type="text" placeholder="Introduzca Fecha de Ingreso" class="form-control">
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Usario</h3>
+                                            </label>
+                                            <div class="col-sm-9">
+                                              <input type="text" disabled="" placeholder="No modificable" class="form-control">
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Clave</h3>
+                                            </label>
+                                            <div class="col-sm-9">
+                                              <input type="text" placeholder="Introduzca Clave de Ingreso" class="form-control">
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Titulacion</h3>
+                                            </label>
+                                            <div class="col-sm-9">
+                                              <input type="text" placeholder="Introduzca Titulacion" class="form-control"><span class="help-block-none"><small>Si posee mas de una, separar con ' ; ' ejemplo: PhD; Doctorado; Bachiller...</small></span>
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Cargo</h3>
+                                            </label>
+                                            <div class="col-sm-9">
+                                              <input type="text" placeholder="Introduzca Cargo que ocupa" class="form-control">
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Rol</h3>
+                                            </label>
+                                            <div class="col-sm-9 select">
+                                              <select name="account" class="form-control">
+                                                <option>Gerente</option>
+                                                <option>Obrero</option>
+                                                <option>Secretario</option>
+                                              </select>
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Zona</h3>
+                                            </label>
+                                            <div class="col-sm-9 select">
+                                              <select name="account" class="form-control">
+                                                <option>Ensamblaje de Alas</option>
+                                                <option>Ensamblaje de Motores</option>
+                                              </select>
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Direccion</h3>
+                                            </label>
+                                            <div class="col-sm-9">
+                                              <input type="text" placeholder="Introduzca la Direccion de vivienda" class="form-control">
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Supervisado por</h3>
+                                            </label>
+                                            <div class="col-sm-9">
+                                              <input type="text" placeholder="Introduzca Nombre de Supervisor" class="form-control">
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Gerencia a</h3>
+                                            </label>
+                                            <div class="col-sm-9">
+                                              <input type="text" placeholder="Introduzca nombre de quien gerencia" class="form-control"><span class="help-block-none"><small>Si posee mas de un empleado, separar con ' ; ' ejemplo: Jonatha Calcuta; Micky Mouse; Carrillo Peruano...</small></span>
+                                            </div>
+                                          </div>
+                                          
+
+                                        </div>
+
+                                        <div class=" card-body col-lg-6">
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>CI</h3>
+                                            </label>
+                                            <div class="col-sm-9">
+                                              <input type="text" disabled="" placeholder="No modificable" class="form-control">
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Contacto</h3>
+                                            </label>
+                                            <div class="col-sm-9">
+                                              <input type="text" placeholder="Introduzca Contacto" class="form-control"><span class="help-block-none"><small>Si posee mas de un contacto, separar con ' ; ' ejemplo: contacto1; contacto2; contacto3...</small></span>
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Beneficiarios</h3>
+                                            </label>
+                                            <div class="col-sm-9">
+                                              <input type="text" placeholder="Introduzca nombre de Beneficiario" class="form-control"><span class="help-block-none"><small>Si posee mas de un Beneficiario, separar con ' ; ' ejemplo: Pablito Picado; Raul Contreras; Fanny Lu...</small></span>
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Experiencia</h3>
+                                            </label>
+                                            <div class="col-sm-7">
+                                              <input type="text" placeholder="Descripcion de Experiencia" class="form-control">
+                                            </div>
+                                            <div class="col-md-2">
+                                              <input type="text" placeholder="Años" class="form-control">
+                                            </div>
+                                            <label class="col-sm-3 form-control-label">
+                                              <small>extra</small>
+                                            </label>
+                                            <div class="col-sm-7">
+                                              <input type="text" placeholder="Descripcion de Experiencia" class="form-control">
+                                            </div>
+                                            <div class="col-md-2">
+                                              <input type="text" placeholder="Años" class="form-control">
+                                            </div>
+                                            <label class="col-sm-3 form-control-label">
+                                              <small>extra</small>
+                                            </label>
+                                            <div class="col-sm-7">
+                                              <input type="text" placeholder="Descripcion de Experiencia" class="form-control">
+                                            </div>
+                                            <div class="col-md-2">
+                                              <input type="text" placeholder="Años" class="form-control">
+                                            </div>
+
+
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Nota</h3>
+                                            </label>
+                                            <div class="col-sm-9">
+                                              <input type="text" placeholder="Aqui puedes escribir..." class="form-control form-control-lg" rows="4" cols="50">
+                                              
+                                            </div>
+                                          </div>
+
+                                        </div>
+                                      </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                     
+
+                                     
+                                  </div>
+                                  <div class="modal-footer">
+                                     <button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
+                                     <button type="button" class="btn btn-primary">Guardar Cambios</button>
+                                  </div>
+                               </div>
+                            </div>
+                         </div>
+                         <!-- Modal Empleado Editar ENDS -->
 
 
 

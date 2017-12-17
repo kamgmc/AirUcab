@@ -82,4 +82,8 @@ input:checked + .label {
   }
 }
 
-
+.form-control-lg, .input-group-lg>.form-control, .input-group-lg>.input-group-addon, .input-group-lg>.input-group-btn>.btn {
+    padding: 0rem 0.5rem;
+    line-height: 8;
+    border-radius: 0rem;
+}
