@@ -66,7 +66,7 @@
             <li> <a href="proveedores.html"> <i class="fa fa-truck" aria-hidden="true"></i>Proveedores</a></li>
             <li> <a href="ventas.html"> <i class="fa fa-paper-plane-o" aria-hidden="true"></i>Ventas </a></li>
             <li> <a href="compras.html"> <i class="fa fa-cog" aria-hidden="true"></i>Compras </a></li>
-            <li class="active"> <a href="modeloavion.html"> <i class="fa fa-plane" aria-hidden="true"></i>Modelo Avion </a></li>
+            <li class="active"> <a href="modeloavion.html"> <i class="fa fa-plane" aria-hidden="true"></i> Aviones </a></li>
           </ul>
           
         </nav>
@@ -78,10 +78,16 @@
             <div class="container-fluid">
 
             <input id="tab0" type="radio" name="tabs" class="no-display" checked>
-            <label for="tab0" class="label"><i class="fa fa-plane" aria-hidden="true"></i> Aviones</label>
+            <label for="tab0" class="label"><i class="fa fa-plane" aria-hidden="true"></i> Modelos Aviones</label>
+
+            <input id="tab1" type="radio" name="tabs" class="no-display">
+            <label for="tab1" class="label"><i class="icon-map-streamline-user" aria-hidden="true"></i> Submodelos Aviones</label>
+              
+            <input id="tab2" type="radio" name="tabs" class="no-display">
+            <label for="tab2" class="label"><i class="fa fa-university" aria-hidden="true"></i> Distribucion</label> 
      
             
-            <!-- TAB Aviones -->
+            <!-- TAB Modelos Aviones -->
 
 
             <section id="content0" class="sectiontab">
@@ -431,7 +437,359 @@
                 <!-- TABLE ENDS -->
 
             </section>
-            <!-- TAB Aviones ENDS -->
+            <!-- TAB Modelos Aviones ENDS -->
+
+            <!-- TAB Submodelos Aviones -->
+
+
+            <section id="content0" class="sectiontab">
+              
+              <!-- Filtrador-->
+              <div class="container-fluid">
+                <div class="row">
+                <div class="card col-lg-12">
+                  <div class="row">
+                  <div class="card-body col-lg-5">
+                    <h3 class="h4">MOSTRAR SOLO AVIONES QUE</h3>
+                    <form class="form-horizontal">
+                      <div class="row">
+                        <label class="col-sm-3 form-control-label">Modelo</label>
+                        <div class="col-sm-9 select">
+                          <select name="account" class="form-control">
+                            <option>option 1</option>
+                            <option>option 2</option>
+                            <option>option 3</option>
+                            <option>option 4</option>
+                          </select>
+                        </div>
+
+                      </div>
+                      <div class="row">
+                        <label class="col-sm-3 form-control-label">Submodelo</label>
+                        <div class="col-sm-9 select">
+                          <select name="account" class="form-control">
+                            <option>option 1</option>
+                            <option>option 2</option>
+                            <option>option 3</option>
+                            <option>option 4</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <label class="col-sm-3 form-control-label">Distribucion</label>
+                        <div class="col-sm-9 select">
+                          <select name="account" class="form-control">
+                            <option>option 1</option>
+                            <option>option 2</option>
+                            <option>option 3</option>
+                            <option>option 4</option>
+                          </select>
+                        </div>
+                      </div>
+                                            
+                    </form>
+                  </div>
+                  <div class=" card-body col-lg-4">
+                    <div class="form-group row">
+                        <div class="col-sm-9">
+                          <br> 
+                          <input type="submit" value="Filtrar" class="btn btn-primary">
+                        </div>
+                      </div>
+                  </div>
+                  </div>
+                </div>
+                </div>
+              </div>
+              <!-- Filtrador ENDS -->
+
+               
+
+                
+                <!-- TABLE STARTS -->
+                <div class="col-md-12">
+                   <div class="card">
+                      
+                      <div class="row">
+                        <div class="col-sm-10"></div>
+                        <div class="col-sm-2 pad-top">
+                          <button type="button" data-toggle="modal" data-target="#myModalVentaCrear"  class="btn btn-primary">
+                            <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
+                        </div>
+                      </div>
+                      
+                      <div class="card-body table-overflow">
+                         <table class="table table-striped table-sm table-hover pad-right">
+                            <thead>
+                               <tr>
+                                  <th class="text-center text-middle">ID</th>
+                                  <th class="text-center text-middle">NOMBRE</th>
+                                  <th class="text-center text-middle">LONGITUD</th>
+                                  <th class="text-center text-middle">ENVERGADURA</th>
+                                  <th class="text-center text-middle">ALTURA</th>
+                                  <th class="text-center text-middle">SUPERFICIE ALA</th>
+                                  <th class="text-center text-middle">FLECHA ALA</th>
+                                  <th class="text-center text-middle">PESO ATERRIZAJE MAX</th>
+                                  <th class="text-center text-middle">ALCANCE</th>
+                                  <th class="text-center text-middle">VELOCIDAD MAX</th>
+                                  <th class="text-center text-middle">SERVICIO TECHO</th>
+                                  <th class="text-center text-middle">REGIMEN ASCENSO</th>
+                                  <th class="text-center text-middle">N PASILLOS</th>
+                                  <th class="text-center text-middle">TIPO FUSELAJE</th>
+                                  <th class="text-center text-middle">ALTURA FUSELAJE</th>
+                                  <th class="text-center text-middle">ANCHO FUSELAJE</th>
+                                  <th class="text-center text-middle">ALTURA CABINA</th>
+                                  <th class="text-center text-middle">ANCHO CABINA</th>
+                                  <th class="text-center text-middle">VOLUMEN CARGA</th>
+                                  <th class="text-center text-middle">CAPACIDAD PILOTOS</th>
+                                  <th class="text-center text-middle">CAPACIDAD ASIENTOS</th>
+                                  <th class="text-center text-middle">DESPEGUE CARRERA</th>
+                                  <th class="text-center text-middle">TIEMPO ESTIMADO</th>
+                                  <th class="text-center">Accion</th>
+                               </tr>
+                            </thead>
+                            <tbody>
+                               <tr>
+                                  <td>002</td>
+                                  <td>Lex Fdz</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>174</td>
+                                  <td class="text-center">
+                                    <a href="" data-toggle="modal" data-target="#myModalDetalle">
+                                      <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="" data-toggle="modal" data-target="#myModalBorrarVenta">   
+                                      <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    </a>
+                                  </td>
+                               </tr>
+                               <tr>
+                                  <td>002</td>
+                                  <td>Lex Fdz</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>174</td>
+                                  <td class="text-center">
+                                    <a href="" data-toggle="modal" data-target="#myModalDetalle">
+                                      <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="" data-toggle="modal" data-target="#myModalBorrarVenta">   
+                                      <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    </a>
+                                  </td>
+                               </tr>
+                               <tr>
+                                  <td>002</td>
+                                  <td>Lex Fdz</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>174</td>
+                                  <td class="text-center">
+                                    <a href="" data-toggle="modal" data-target="#myModalDetalle">
+                                      <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="" data-toggle="modal" data-target="#myModalBorrarVenta">   
+                                      <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    </a>
+                                  </td>
+                               </tr>
+                               <tr>
+                                  <td>002</td>
+                                  <td>Lex Fdz</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>174</td>
+                                  <td class="text-center">
+                                    <a href="" data-toggle="modal" data-target="#myModalDetalle">
+                                      <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="" data-toggle="modal" data-target="#myModalBorrarVenta">   
+                                      <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    </a>
+                                  </td>
+                               </tr>
+                               <tr>
+                                  <td>002</td>
+                                  <td>Lex Fdz</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>174</td>
+                                  <td class="text-center">
+                                    <a href="" data-toggle="modal" data-target="#myModalDetalle">
+                                      <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="" data-toggle="modal" data-target="#myModalBorrarVenta">   
+                                      <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    </a>
+                                  </td>
+                               </tr>
+                               <tr>
+                                  <td>002</td>
+                                  <td>Lex Fdz</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>174</td>
+                                  <td class="text-center">
+                                    <a href="" data-toggle="modal" data-target="#myModalDetalle">
+                                      <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="" data-toggle="modal" data-target="#myModalBorrarVenta">   
+                                      <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    </a>
+                                  </td>
+                               </tr>
+                               <tr>
+                                  <td>002</td>
+                                  <td>Lex Fdz</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>20</td>
+                                  <td>155</td>
+                                  <td>174</td>
+                                  <td>325</td>
+                                  <td>174</td>
+                                  <td class="text-center">
+                                    <a href="" data-toggle="modal" data-target="#myModalDetalle">
+                                      <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="" data-toggle="modal" data-target="#myModalBorrarVenta">   
+                                      <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    </a>
+                                  </td>
+                               </tr>
+                            </tbody>
+                         </table>
+                         
+                      </div>
+                   </div>
+                </div>
+                <!-- TABLE ENDS -->
+
+            </section>
+            <!-- TAB Submodelos Aviones ENDS -->
 
 
             <!-- Modal Detalle Venta  -->
