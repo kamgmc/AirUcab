@@ -534,6 +534,11 @@
 //Pieza
 //Status_pieza
 //Material
+	function insertarMaterial ( $fecha, $precio ){
+		global $conexion;
+		$qry = "INSERT INTO Material (m_fecha, m_precio) VALUES ('".$fecha."', ".$precio.")";
+		return pg_query($conexion, $qry);
+	}
 //Prueba_material
 //Status_material
 //Prueba_pieza
