@@ -150,24 +150,20 @@
 //Empleado
 	function insertarEmpleado( $nacionalidad, $ci, $nombre, $apellido, $fingreso, $usuario, $clave, $titulacion, $cargo, $rol, $zona, $direccion, $supervisa, $gerencia, $nota){
 		global $conexion;
-		$nacionalidad = htmlentities($nacionalidad, ENT_QUOTES);
 		$nombre = htmlentities($nombre, ENT_QUOTES);
-		$fingreso = htmlentities($fingreso, ENT_QUOTES);
 		$usuario = htmlentities($usuario, ENT_QUOTES);
-		$clave = htmlentities($clave, ENT_QUOTES);
-		if($nota != 'NULL') $nota = "'".$nota"'";
-		$qry = "INSERT INTO Empleado (em_nacionalidad, em_ci, em_nombre, em_apellido, em_fecha_ingreso, em_usuario, em_clave, em_titulacion, em_cargo, em_rol, em_zona, em_direccion, em_supervisa, em_gerencia, em_nota) VALUES ('".$nacionalidad"',".$ci",'".$nombre"','".$apellido"','".$fingreso"','".$usuario"','".$clave"',".$titulacion",".$cargo",".$rol",".$zona",".$direccion", ".$supervisa",".$gerencia",".$nota")";
+		$clave = md5(htmlentities($clave, ENT_QUOTES));
+		if($nota != 'NULL') $nota = "'".htmlentities($nota, ENT_QUOTES)."'";
+		$qry = "INSERT INTO Empleado (em_nacionalidad, em_ci, em_nombre, em_apellido, em_fecha_ingreso, em_usuario, em_clave, em_titulacion, em_cargo, em_rol, em_zona, em_direccion, em_supervisa, em_gerencia, em_nota) VALUES ('".$nacionalidad."',".$ci",'".$nombre."','".$apellido."','".$fingreso."','".$usuario."','".$clave."',".$titulacion.",".$cargo.",".$rol.",".$zona.",".$direccion.", ".$supervisa.",".$gerencia.",".$nota.")";
 		return pg_query($conexion, $qry);
 	}
 	function editarEmpleado( $id, $nacionalidad, $ci, $nombre, $apellido, $fingreso, $usuario, $clave, $titulacion, $cargo, $rol, $zona, $direccion, $supervisa, $gerencia, $nota){
 		global $conexion;
-		$nacionalidad = htmlentities($nacionalidad, ENT_QUOTES);
 		$nombre = htmlentities($nombre, ENT_QUOTES);
-		$fingreso = htmlentities($fingreso, ENT_QUOTES);
 		$usuario = htmlentities($usuario, ENT_QUOTES);
-		$clave = htmlentities($clave, ENT_QUOTES);
-		if($nota != 'NULL') $nota = "'".$nota"'";
-		$qry = "UPDATE Empleado SET em_nacionalidad='".$nacionalidad"', em_ci='".$ci"', em_nombre='".$nombre"', em_apellido='".$apellido"', em_fecha_ingreso='".$fingreso"', em_usuario='".$usuario"', em_clave='".$clave"', em_titulacion=".$titulacion", em_cargo=".$cargo", em_rol=".$rol", em_zona=".$zona", em_direccion=".$direccion", em_supervisa=".$supervisa", em_gerencia=".$gerencia", em_nota=".$nota" WHERE em_id=".$id;
+		$clave = md5(htmlentities($clave, ENT_QUOTES));
+		if($nota != 'NULL') $nota = "'".htmlentities($nota, ENT_QUOTES)."'";
+		$qry = "UPDATE Empleado SET em_nacionalidad='".$nacionalidad."', em_ci=".$ci.", em_nombre='".$nombre."', em_apellido='".$apellido."', em_fecha_ingreso='".$fingreso."', em_usuario='".$usuario."', em_clave='".$clave."', em_titulacion=".$titulacion.", em_cargo=".$cargo.", em_rol=".$rol.", em_zona=".$zona.", em_direccion=".$direccion.", em_supervisa=".$supervisa.", em_gerencia=".$gerencia.", em_nota=".$nota." WHERE em_id=".$id;
 		return pg_query($conexion, $qry);
 	}
 	function eliminarEmpleado( $id ){
