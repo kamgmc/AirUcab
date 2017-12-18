@@ -170,6 +170,11 @@
 		$qry = "UPDATE Empleado SET em_nacionalidad='".$nacionalidad"', em_ci='".$ci"', em_nombre='".$nombre"', em_apellido='".$apellido"', em_fecha_ingreso='".$fingreso"', em_usuario='".$usuario"', em_clave='".$clave"', em_titulacion=".$titulacion", em_cargo=".$cargo", em_rol=".$rol", em_zona=".$zona", em_direccion=".$direccion", em_supervisa=".$supervisa", em_gerencia=".$gerencia", em_nota=".$nota" WHERE em_id=".$id;
 		return pg_query($conexion, $qry);
 	}
+	function eliminarEmpleado( $id ){
+		global $conexion;
+		$qry = "DELETE FROM Empleado WHERE em_id=".$id;
+		return pg_query($conexion, $qry);
+	}
 //Beneficiario
 //Experiencia
 //Cliente
