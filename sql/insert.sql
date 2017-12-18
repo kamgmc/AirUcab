@@ -2476,3 +2476,31 @@ INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-05-2
 INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-05-21',49,2);
 INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-05-21',50,2);
 INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-05-21',51,2);
+--TIPO_MATERIAL
+INSERT INTO Tipo_material (mt_nombre) VALUES ('Tornillos');
+INSERT INTO Tipo_material (mt_nombre) VALUES ('Fibra de carbono');
+INSERT INTO Tipo_material (mt_nombre) VALUES ('Cables');
+INSERT INTO Tipo_material (mt_nombre) VALUES ('Remaches');
+INSERT INTO Tipo_material (mt_nombre) VALUES ('Arandelas');
+INSERT INTO Tipo_material (mt_nombre) VALUES ('Bombillos');
+--T_MATERIAL_M_PIEZA
+INSERT INTO T_material_m_pieza (tmm_cantidad,tmm_tipo_material,tmm_modelo_pieza) VALUES (2,1,4);
+INSERT INTO T_material_m_pieza (tmm_cantidad,tmm_tipo_material,tmm_modelo_pieza) VALUES (2,2,4);
+INSERT INTO T_material_m_pieza (tmm_cantidad,tmm_tipo_material,tmm_modelo_pieza) VALUES (2,3,4);
+INSERT INTO T_material_m_pieza (tmm_cantidad,tmm_tipo_material,tmm_modelo_pieza) VALUES (2,4,4);
+INSERT INTO T_material_m_pieza (tmm_cantidad,tmm_tipo_material,tmm_modelo_pieza) VALUES (2,5,4);
+INSERT INTO T_material_m_pieza (tmm_cantidad,tmm_tipo_material,tmm_modelo_pieza) VALUES (2,6,173);
+--FACTURA_COMPRA
+INSERT INTO Factura_compra (fc_fecha,fc_proveedor) VALUES ('2017-05-21',1);
+INSERT INTO Factura_compra (fc_fecha,fc_proveedor) VALUES ('2017-05-21',2);
+INSERT INTO Factura_compra (fc_fecha,fc_proveedor) VALUES ('2017-05-21',3);
+INSERT INTO Factura_compra (fc_fecha,fc_proveedor) VALUES ('2017-05-21',4);
+INSERT INTO Factura_compra (fc_fecha,fc_proveedor) VALUES ('2017-05-21',5);
+INSERT INTO Factura_compra (fc_fecha,fc_proveedor) VALUES ('2017-05-21',5);
+--MATERIAL
+INSERT INTO Material (m_fecha,m_tipo_material,m_factura_compra,m_pieza,m_precio) VALUES ('2017-12-21',1,1,5,20.5);
+INSERT INTO Material (m_fecha,m_tipo_material,m_factura_compra,m_pieza,m_precio) VALUES ('2017-12-21',2,2,5,42.5);
+INSERT INTO Material (m_fecha,m_tipo_material,m_factura_compra,m_pieza,m_precio) VALUES ('2017-12-21',3,3,5,35.5);
+INSERT INTO Material (m_fecha,m_tipo_material,m_factura_compra,m_pieza,m_precio) VALUES ('2017-12-21',4,4,5,45.5);
+INSERT INTO Material (m_fecha,m_tipo_material,m_factura_compra,m_pieza,m_precio) VALUES ('2017-12-21',5,5,5,34.5);
+INSERT INTO Material (m_fecha,m_tipo_material,m_factura_compra,m_pieza,m_precio) VALUES ('2017-12-21',6,6,51,87.25);
