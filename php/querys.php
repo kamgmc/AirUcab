@@ -189,7 +189,33 @@
 		return pg_query($conexion, $qry);
 	}
 //Experiencia
+	function insertarExperiencia( $desc, $anos ){
+		global $conexion;
+		$desc = htmlentities($desc, ENT_QUOTES);
+		$qry = "INSERT INTO Experiencia (ex_desc, ex_anos) VALUES ('".$desc."', '".$anos."')";
+		return pg_query($conexion, $qry);
+	}
+	function editarExperiencia( $id, $desc, $anos ){
+		global $conexion;
+		$desc = htmlentities($desc, ENT_QUOTES);
+		$qry = "UPDATE Experiencia SET ex_desc='".$desc."', ex_anos='".$anos."' WHERE ex_id=".$id;
+		return pg_query($conexion, $qry);
+	}
 //Cliente
+	function insertarCliente ( $trif, $rif, $nombre, $pweb, $finicio ){
+		global $conexion;
+		$nombre = htmlentities($nombre, ENT_QUOTES);
+		$pweb = htmlentities($pweb, ENT_QUOTES);
+		$qry = "INSERT INTO Cliente (cl_tipo_rif, cl_rif, cl_nombre, cl_pagina_web, cl_fecha_inicio) VALUES ('".$trif."', ".$rif.", '".$nombre."', '".$pweb."', '".$finicio."')";
+		return pg_query($conexion, $qry);
+	}
+	function editarCliente ( $id, $trif, $rif, $nombre, $pweb, $finicio ){
+		global $conexion;
+		$nombre = htmlentities($nombre, ENT_QUOTES);
+		$pweb = htmlentities($pweb, ENT_QUOTES);
+		$qry = "UPDATE Cliente SET cl_tipo_rif='".$trif."', cl_rif='".$trif."', cl_nombre='".$nombre."', cl_pagina_web='".$pweb."', cl_fecha_inicio='".$finicio."')";
+		return pg_query($conexion, $qry);
+	}
 //Factura_venta
 //Proveedor
 //Query Tipo de contacto
