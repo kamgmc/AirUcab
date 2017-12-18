@@ -155,7 +155,7 @@
 		$usuario = htmlentities($usuario, ENT_QUOTES);
 		$clave = md5(htmlentities($clave, ENT_QUOTES));
 		if($nota != 'NULL') $nota = "'".htmlentities($nota, ENT_QUOTES)."'";
-		$qry = "INSERT INTO Empleado (em_nacionalidad, em_ci, em_nombre, em_apellido, em_fecha_ingreso, em_usuario, em_clave, em_titulacion, em_cargo, em_rol, em_zona, em_direccion, em_supervisa, em_gerencia, em_nota) VALUES ('".$nacionalidad."',".$ci",'".$nombre."','".$apellido."','".$fingreso."','".$usuario."','".$clave."',".$titulacion.",".$cargo.",".$rol.",".$zona.",".$direccion.", ".$supervisa.",".$gerencia.",".$nota.")";
+		$qry = "INSERT INTO Empleado (em_nacionalidad, em_ci, em_nombre, em_apellido, em_fecha_ingreso, em_usuario, em_clave, em_titulacion, em_cargo, em_rol, em_zona, em_direccion, em_supervisa, em_gerencia, em_nota) VALUES ('".$nacionalidad."',".$ci.",'".$nombre."','".$apellido."','".$fingreso."','".$usuario."','".$clave."',".$titulacion.",".$cargo.",".$rol.",".$zona.",".$direccion.", ".$supervisa.",".$gerencia.",".$nota.")";
 		return pg_query($conexion, $qry);
 	}
 	function editarEmpleado( $id, $nacionalidad, $ci, $nombre, $apellido, $fingreso, $usuario, $clave, $titulacion, $cargo, $rol, $zona, $direccion, $supervisa, $gerencia, $nota){
@@ -349,16 +349,16 @@
 		$qry11 = "DELETE FROM Traslado where tr_pieza=".$id;
 		$qry12 = "DELETE FROM Status_avion where sa_avion=".$id;
 		if(pg_query($conexion, $qry12)){
-			if((pg_query($conexion, $qry11)){
-				if((pg_query($conexion, $qry10)){	
-					if((pg_query($conexion, $qry9)){
-						if((pg_query($conexion, $qry8)){
-							if((pg_query($conexion, $qry7)){
-								if((pg_query($conexion, $qry6)){	
-									if((pg_query($conexion, $qry5)){
-										if((pg_query($conexion, $qry4)){
-											if((pg_query($conexion, $qry3)){
-												if((pg_query($conexion, $qry2)){	
+			if(pg_query($conexion, $qry11)){
+				if(pg_query($conexion, $qry10)){	
+					if(pg_query($conexion, $qry9)){
+						if(pg_query($conexion, $qry8)){
+							if(pg_query($conexion, $qry7)){
+								if(pg_query($conexion, $qry6)){	
+									if(pg_query($conexion, $qry5)){
+										if(pg_query($conexion, $qry4)){
+											if(pg_query($conexion, $qry3)){
+												if(pg_query($conexion, $qry2)){	
 													return pg_query($conexion, $qry1);
 												}
 											}
