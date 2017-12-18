@@ -318,6 +318,18 @@
 		return 0;
 	}
 //Modelo_motor
+	function insertarModeloMotor( $nombre, $tipo, $emax, $enorma, $ecrucero, $longitud, $daspa ){
+		global $conexion;
+		$nombre = htmlentities($nombre, ENT_QUOTES);
+		$qry = "INSERT INTO Modelo_motor (mm_nombre, mm_tipo, mm_empuje_max, mm_empuje_norma, mm_empuje_crucero, mm_longitud, mm_diametro_aspa) VALUES ('".$nombre."', '".$tipo."', ".$emax.", ".$enorma.", ".$ecrucero.", ".$longitud.", ".$daspa.")";
+		return pg_query($conexion, $qry);
+	}
+	function editarModeloMotor( $id, $nombre, $tipo, $emax, $enorma, $ecrucero, $longitud, $daspa ){
+		global $conexion;
+		$nombre = htmlentities($nombre, ENT_QUOTES);
+		$qry = "UPDATE Modelo_motor SET mm_nombre='".$nombre."', mm_tipo='".$tipo."', mm_empuje_max=".$emax.", mm_empuje_norma=".$enorma.", mm_empuje_crucero=".$ecrucero.", mm_longitud=".$longitud." , mm_diametro_aspa=".$daspa." WHERE mm_id=".$id;
+		return pg_query($conexion, $qry);
+	}
 	function eliminarModeloMotor( $id ){
 		global $conexion;
 		$qry2 = "DELETE FROM Modelo_motor where mm_id=".$id;
