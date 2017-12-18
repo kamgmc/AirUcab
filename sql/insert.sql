@@ -2038,7 +2038,7 @@ INSERT INTO Tipo_estabilizador (et_nombre) VALUES ('Tres verticales');
 INSERT INTO Tipo_estabilizador (et_nombre) VALUES ('V');
 --STATUS
 INSERT INTO Status (st_nombre) VALUES ('Listo');
-INSERT INTO Status (st_nombre) VALUES ('Procesandose');
+INSERT INTO Status (st_nombre) VALUES ('En Proceso');
 INSERT INTO Status (st_nombre) VALUES ('Evaluación');
 --AVION
 INSERT INTO Avion (a_fecha_ini,a_fecha_fin,a_precio,a_submodelo_avion,a_distribucion,a_factura_venta) VALUES ('2017-05-21','2017-12-21',921445.65,14,23,1);
