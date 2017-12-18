@@ -334,6 +334,45 @@
 		return 0;
 	}
 //Modelo_avion
+	function eliminarModeloAvion( $id ){
+		global $conexion;
+		$qry = "DELETE FROM Modelo_avion where am_id=".$id;
+		$qry2 = "DELETE FROM Distribucion where di_modelo_avion=".$id;
+		$qry3 = "DELETE FROM Avion where a_distribucion=".$id;
+		$qry4 = "DELETE FROM Pieza where p_avion=".$id;
+		$qry5 = "DELETE FROM Material where m_pieza=".$id;
+		$qry6 = "DELETE FROM Traslado where tr_material=".$id;
+		$qry7 = "DELETE FROM Prueba_material where prm_material=".$id;
+		$qry8 = "DELETE FROM Status_material where sm_material=".$id;
+		$qry9 = "DELETE FROM Status_pieza where spi_pieza=".$id;
+		$qry10 = "DELETE FROM Prueba_material where prm_material=".$id;
+		$qry11 = "DELETE FROM Traslado where tr_pieza=".$id;
+		$qry12 = "DELETE FROM Status_avion where sa_avion=".$id;
+		if(pg_query($conexion, $qry12)){
+			if((pg_query($conexion, $qry11)){
+				if((pg_query($conexion, $qry10)){	
+					if((pg_query($conexion, $qry9)){
+						if((pg_query($conexion, $qry8)){
+							if((pg_query($conexion, $qry7)){
+								if((pg_query($conexion, $qry6)){	
+									if((pg_query($conexion, $qry5)){
+										if((pg_query($conexion, $qry4)){
+											if((pg_query($conexion, $qry3)){
+												if((pg_query($conexion, $qry2)){	
+													return pg_query($conexion, $qry1);
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		return 0;
+	}
 //Distribucion
 //Submodelo_avion
 //Query de S avion - m motor
