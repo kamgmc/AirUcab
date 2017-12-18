@@ -2042,6 +2042,7 @@ INSERT INTO Status (st_nombre) VALUES ('En Proceso');
 INSERT INTO Status (st_nombre) VALUES ('Evaluación');
 INSERT INTO Status (st_nombre) VALUES ('Ensamblando');
 INSERT INTO Status (st_nombre) VALUES ('Pruebas');
+INSERT INTO Status (st_nombre) VALUES ('Aprobada');
 --AVION
 INSERT INTO Avion (a_fecha_ini,a_fecha_fin,a_precio,a_submodelo_avion,a_distribucion,a_factura_venta) VALUES ('2017-05-21','2017-12-21',921445.65,14,23,1);
 INSERT INTO Avion (a_fecha_ini,a_fecha_fin,a_precio,a_submodelo_avion,a_distribucion,a_factura_venta) VALUES ('2017-05-21','2017-12-21',126042,18,25,2);
