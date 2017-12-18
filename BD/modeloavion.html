@@ -967,7 +967,7 @@
             <!-- TAB Distribuciones Aviones ENDS -->
 
 
-            <!-- Modal Detalle Modelo  -->
+            <!-- Modal Detalle Modelo Avion -->
                          <div id="myModalDetalleModelo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
                             <div role="document" class="modal-dialog modal-xl">
                                <div class="modal-content">
@@ -1176,6 +1176,7 @@
                                             </div>
                                           </div>
 
+
                                         </div>
 
                                       </div>
@@ -1191,12 +1192,12 @@
                                   </div>
                                   <div class="modal-footer">
                                      <button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
-                                     <button type="button" data-toggle="modal" data-target="#myModalVentaEditar" class="btn btn-primary">Editar</button>
+                                     <button type="button" data-toggle="modal" data-target="#myModalModeloEditar" class="btn btn-primary">Editar</button>
                                   </div>
                                </div>
                             </div>
                          </div>
-                         <!-- Modal Detalle Venta ENDS -->
+                         <!-- Modal Detalle Modelo Avion ENDS -->
 
 
                          <!-- Modal Borrar Modelo Avion -->
@@ -1259,7 +1260,7 @@
                             <div role="document" class="modal-dialog modal-xl">
                                <div class="modal-content">
                                   <div class="modal-header">
-                                     <h4 id="exampleModalLabel" class="modal-title">DETALLE VENTA</h4>
+                                     <h4 id="exampleModalLabel" class="modal-title">MODELO AVION</h4>
                                      <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
                                   </div>
                                   <div class="modal-body">
@@ -1273,7 +1274,7 @@
 
                                           <div class="form-group row">
                                             <label class="col-sm-3 form-control-label">
-                                              <h3>Factura Venta</h3>
+                                              <h3>ID</h3>
                                             </label>
                                             <div class="col-sm-9">
                                               <input type="text" disabled="" placeholder="No modificable" class="form-control">
@@ -1281,133 +1282,167 @@
                                           </div>
                                           <div class="form-group row">
                                             <label class="col-sm-3 form-control-label">
-                                              <h3>ESTATUS</h3>
-                                            </label>
-                                            <!-- Traer de la tabla de Status las opciones -->
-                                            <!-- Creo que su seleccion deberia ser automatica por parte del sistema solo en este caso porque este pasa a -->
-                                            <!-- finalizado cuando los otros STATUS de cada material y cada avion comprado pasan a Finalizado -->
-                                            <div class="col-sm-9 select">
-                                              <select name="account" class="form-control">
-                                                <option>En Progreso</option>
-                                                <option>Evaluacion</option>
-                                                <option>Distribucion</option>
-                                                <option>Finalizado</option>
-                                              </select>
-                                            </div>
-                                          </div>
-                                          <div class="form-group row">
-                                            <label class="col-sm-3 form-control-label">
-                                              <h3>Cliente</h3>
-                                            </label>
-                                            <!-- Traer de la tabla de clientes las opciones -->
-                                            <div class="col-sm-9 select">
-                                              <select name="account" class="form-control">
-                                                <option>Lex Fdz</option>
-                                                <option>Alexander K</option>
-                                                <option>Kevin M</option>
-                                                <option>Boris Tor</option>
-                                              </select>
-                                            </div>
-                                          </div>
-                                          <div class="form-group row">
-                                            <label class="col-sm-3 form-control-label">
-                                              <h3>CI/RIF Cliente</h3>
+                                              <h3>Nombre</h3>
                                             </label>  
-                                            <!-- Se debe rellenar automaticamente despues de seleccionar al cliente -->
                                             <div class="col-sm-9">
-                                              <input type="text" disabled="" placeholder="No modificable" class="form-control">
+                                              <input type="text" placeholder="Introduzca Nombre" class="form-control">
                                             </div>
                                           </div>
                                           <div class="form-group row">
                                             <label class="col-sm-3 form-control-label">
-                                              <h3>Modelo Avion</h3>
-                                            </label>
-                                            <!-- Traer de la tabla de modelo avion las opciones -->
-                                            <div class="col-sm-9 select">
-                                              <select name="account" class="form-control">
-                                                <option>AU80</option>
-                                                <option>Au808</option>
-                                                <option>AU988</option>
-                                              </select>
+                                              <h3>Longitud</h3>
+                                            </label>  
+                                            <div class="col-sm-9">
+                                              <input type="text" placeholder="Introduzca Longitud" class="form-control">
                                             </div>
                                           </div>
                                           <div class="form-group row">
                                             <label class="col-sm-3 form-control-label">
-                                              <h3>Submodelo Avion</h3>
-                                            </label>
-                                            <!-- Traer de la tabla de submodelo avion las opciones -->
-                                            <div class="col-sm-9 select">
-                                              <select name="account" class="form-control">
-                                                <option>LW</option>
-                                                <option>Standar</option>
-                                                <option>Big</option>
-                                              </select>
-                                              <span class="help-block-none"><small>Seleccionar Modelo Avion primero.</small></span>
+                                              <h3>Envergadura</h3>
+                                            </label>  
+                                            <div class="col-sm-9">
+                                              <input type="text" placeholder="Introduzca Envergadura" class="form-control">
                                             </div>
                                           </div>
                                           <div class="form-group row">
                                             <label class="col-sm-3 form-control-label">
-                                              <h3>Distribucion</h3>
-                                            </label>
-                                            <!-- Traer de la tabla de distribucion avion las opciones -->
-                                            <div class="col-sm-9 select">
-                                              <select name="account" class="form-control">
-                                                <option>Civil</option>
-                                                <option>Militar</option>
-                                                <option>Empresarial</option>
-                                              </select>
-                                              <span class="help-block-none"><small>Seleccionar Modelo Avion primero.</small></span>
+                                              <h3>Altura</h3>
+                                            </label>  
+                                            <div class="col-sm-9">
+                                              <input type="text" placeholder="Introduzca Altura" class="form-control">
                                             </div>
                                           </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Superficie Ala</h3>
+                                            </label>  
+                                            <div class="col-sm-9">
+                                              <input type="text" placeholder="Introduzca Superficie Ala" class="form-control">
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Flecha Ala</h3>
+                                            </label>  
+                                            <div class="col-sm-9">
+                                              <input type="text" placeholder="Introduzca Flecha Ala" class="form-control">
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Peso Maximo Aterrizaje</h3>
+                                            </label>  
+                                            <div class="col-sm-9">
+                                              <input type="text" placeholder="Introduzca Peso Maximo Aterrizaje" class="form-control">
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Alcance</h3>
+                                            </label>  
+                                            <div class="col-sm-9">
+                                              <input type="text" placeholder="Introduzca Alcance" class="form-control">
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Velocidad Maxima</h3>
+                                            </label>  
+                                            <div class="col-sm-9">
+                                              <input type="text" placeholder="Introduzca Velocidad Maxima" class="form-control">
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Servicio Techo</h3>
+                                            </label>  
+                                            <div class="col-sm-9">
+                                              <input type="text" placeholder="Introduzca Servicio Techo" class="form-control">
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Regimen Ascenso</h3>
+                                            </label>  
+                                            <div class="col-sm-9">
+                                              <input type="text" placeholder="Introduzca Regimen Ascenso" class="form-control">
+                                            </div>
+                                          </div>
+
                                         </div>
 
                                         <div class=" card-body col-lg-6">
 
                                           <div class="form-group row">
                                             <label class="col-sm-3 form-control-label">
-                                              <h3>Cantidad</h3>
-                                            </label>
+                                              <h3>Numero Pasillos</h3>
+                                            </label>  
                                             <div class="col-sm-9">
-                                              <input type="text" placeholder="Introduzca cantidad de Aviones" class="form-control">
+                                              <input type="text" placeholder="Introduzca Numero Pasillos" class="form-control">
                                             </div>
                                           </div>
                                           <div class="form-group row">
                                             <label class="col-sm-3 form-control-label">
-                                              <h3>Precio Unitario</h3>
-                                            </label>
+                                              <h3>Tipo Fuselaje</h3>
+                                            </label>  
                                             <div class="col-sm-9">
-                                              <input type="text" placeholder="Introduzca precio por Avion" class="form-control">
+                                              <input type="text" placeholder="Introduzca Tipo Fuselaje" class="form-control">
                                             </div>
                                           </div>
                                           <div class="form-group row">
                                             <label class="col-sm-3 form-control-label">
-                                              <h3>Fecha Inicio</h3>
-                                            </label>
-                                            <!-- Esto podemos hacerlo automatizado, que salve la fecha de creacion como fecha inicio -->
+                                              <h3>Altura Fuselaje</h3>
+                                            </label>  
                                             <div class="col-sm-9">
-                                              <input type="text" disabled="" placeholder="No modificable" class="form-control">
+                                              <input type="text" placeholder="Introduzca Altura Fuselaje" class="form-control">
                                             </div>
                                           </div>
                                           <div class="form-group row">
                                             <label class="col-sm-3 form-control-label">
-                                              <h3>Fecha Final</h3>
-                                            </label>
-                                            <!-- Esto es OBLIGATORIAMENTE AUTOMATICO cuando el STATUS cambie a finalizado -->
+                                              <h3>Ancho Fuselaje</h3>
+                                            </label>  
                                             <div class="col-sm-9">
-                                              <input type="text" disabled="" placeholder="No modificable" class="form-control">
+                                              <input type="text" placeholder="Introduzca Ancho Fuselaje" class="form-control">
                                             </div>
                                           </div>
                                           <div class="form-group row">
                                             <label class="col-sm-3 form-control-label">
-                                              <h3>Tipo de Pago</h3>
-                                            </label>
-                                            <div class="col-sm-9 select">
-                                              <select name="account" class="form-control">
-                                                <option>Transfencia</option>
-                                                <!-- La opcion TDC deberia expandir otros requerimientos, pero esto lo dejare para cuando implementemos el -->
-                                                <!-- hardcore de JS y PHP (2da entrega)-->
-                                                <option>TDC</option>
-                                              </select>
+                                              <h3>Volumen Carga</h3>
+                                            </label>  
+                                            <div class="col-sm-9">
+                                              <input type="text" placeholder="Introduzca Volumen Carga" class="form-control">
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Capacidad Pilotos</h3>
+                                            </label>  
+                                            <div class="col-sm-9">
+                                              <input type="text" placeholder="Introduzca Capacidad Pilotos" class="form-control">
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Capacidad Asientos</h3>
+                                            </label>  
+                                            <div class="col-sm-9">
+                                              <input type="text" placeholder="Introduzca Capacidad Asientos" class="form-control">
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Carrera Despegue</h3>
+                                            </label>  
+                                            <div class="col-sm-9">
+                                              <input type="text" placeholder="Introduzca Carrera Despegue" class="form-control">
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Tiempo Estimado</h3>
+                                            </label>  
+                                            <div class="col-sm-9">
+                                              <input type="text" placeholder="Introduzca Tiempo Estimado" class="form-control">
                                             </div>
                                           </div>
                                           <div class="form-group row">
