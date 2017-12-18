@@ -281,7 +281,7 @@
 		$qry2 = "DELETE FROM Modelo_motor where mm_marca_motor=".$id;
 		$qry3 = "DELETE FROM S_avion_m_motor where smt_modelo_motor=".$id;
 		$qry4 = "DELETE FROM Motor where mo_modelo_motor=".$id;
-		$qry5 = "DELETE FORM Status_motor stm_motor=".$id;
+		$qry5 = "DELETE FROM Status_motor stm_motor=".$id;
 		if(pg_query($conexion, $qry5)){
 			if(pg_query($conexion, $qry4)){
 				if(pg_query($conexion, $qry3)){
@@ -299,7 +299,7 @@
 		$qry2 = "DELETE FROM Modelo_motor where mm_id=".$id;
 		$qry3 = "DELETE FROM S_avion_m_motor where smt_modelo_motor=".$id;
 		$qry4 = "DELETE FROM Motor where mo_modelo_motor=".$id;
-		$qry5 = "DELETE FORM Status_motor stm_motor=".$id;
+		$qry5 = "DELETE FROM Status_motor stm_motor=".$id;
 		if(pg_query($conexion, $qry5)){
 			if(pg_query($conexion, $qry4)){
 				if(pg_query($conexion, $qry3)){
@@ -432,7 +432,7 @@
 	function eliminarMotor( $id ){
 		global $conexion;
 		$qry4 = "DELETE FROM Motor where mo_id=".$id;
-		$qry5 = "DELETE FORM Status_motor stm_motor=".$id;
+		$qry5 = "DELETE FROM Status_motor stm_motor=".$id;
 		if(pg_query($conexion, $qry5)){
 			return pg_query($conexion, $qry4);
 		}
