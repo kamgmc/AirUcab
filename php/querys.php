@@ -252,7 +252,20 @@
 	function eliminarMarcaMotor( $id ){
 		global $conexion;
 		$qry = "DELETE FROM Marca_motor where mb_id=".$id;
-		return pg_query($conexion, $qry);
+		$qry2 = "DELETE FROM Modelo_motor where mm_marca_motor=".$id;
+		$qry3 = "DELETE FROM S_avion_m_motor where smt_modelo_motor=".$id;
+		$qry4 = "DELETE FROM Motor where mo_modelo_motor=".$id;
+		$qry5 = "DELETE FORM Status_motor stm_motor=".$id;
+		if(pg_query($conexion, $qry5)){
+			if(pg_query($conexion, $qry4)){
+				if(pg_query($conexion, $qry3)){
+					if(pg_query($conexion, $qry2)){
+						return pg_query($conexion, $qry);
+					}
+				}
+			}
+		}
+		return 0;
 	}
 //Modelo_motor
 //Modelo_avion
