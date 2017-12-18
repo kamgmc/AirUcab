@@ -172,6 +172,10 @@
 		return pg_query($conexion, $qry);
 	}
 //Beneficiario
+	function insertarBeneficiario( $value )
+	{
+		# code...
+	}
 //Experiencia
 //Cliente
 //Factura_venta
