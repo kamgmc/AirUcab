@@ -492,6 +492,11 @@
 	}
 //Status_prueba
 //Factura_compra
+	function insertarFacturaCompra ( $fecha ){
+		global $conexion;
+		$qry = "INSERT INTO Factura_compra (fc_fecha) VALUES ('".$fecha."')";
+		return pg_query($conexion, $qry);
+	}
 //Tipo_pago
 //Pago
 //Tipo_material
