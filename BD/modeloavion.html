@@ -1214,7 +1214,7 @@
                             <div role="document" class="modal-dialog modal-xl">
                                <div class="modal-content">
                                   <div class="modal-header">
-                                     <h4 id="exampleModalLabel" class="modal-title">DETALLE MODELO AVION</h4>
+                                     <h4 id="exampleModalLabel" class="modal-title">DETALLE SUBMODELO AVION</h4>
                                      <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
                                   </div>
                                   <div class="modal-body">
@@ -1340,7 +1340,7 @@
                                   </div>
                                   <div class="modal-footer">
                                      <button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
-                                     <button type="button" data-toggle="modal" data-target="#myModalModeloEditar" class="btn btn-primary">Editar</button>
+                                     <button type="button" data-toggle="modal" data-target="#myModalSubmodeloEditar" class="btn btn-primary">Editar</button>
                                   </div>
                                </div>
                             </div>
@@ -1620,6 +1620,143 @@
                             </div>
                          </div>
                          <!-- Modal Modelo Avion Editar ENDS -->
+
+
+                         <!-- Modal Submodelo Avion Editar -->
+                         <div id="myModalSubmodeloEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+                            <div role="document" class="modal-dialog modal-xl">
+                               <div class="modal-content">
+                                  <div class="modal-header">
+                                     <h4 id="exampleModalLabel" class="modal-title">SUBMODELO AVION</h4>
+                                     <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                                  </div>
+                                  <div class="modal-body">
+
+
+                                    <div class="container-fluid">
+                                      <div class="row">
+                                      <div class="card col-lg-12">
+                                        <div class="row">
+                                        <div class="card-body col-lg-6">
+
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Modelo Avion</h3>
+                                            </label>
+                                            <div class="col-sm-9 select">
+                                              <select name="account" class="form-control">
+                                                <option>AU80</option>
+                                                <option>AU90</option>
+                                                <option>AU98</option>
+                                              </select>
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>ID</h3>
+                                            </label>
+                                            <div class="col-sm-9">
+                                              <input type="text" disabled="" placeholder="No modificable" class="form-control">
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Nombre</h3>
+                                            </label>  
+                                            <div class="col-sm-9">
+                                              <input type="text" placeholder="Introduzca Nombre" class="form-control">
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Peso Maximo Despegue</h3>
+                                            </label>  
+                                            <div class="col-sm-9">
+                                              <input type="text" placeholder="Introduzca Peso Maximo Despegue" class="form-control">
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Peso Vacio</h3>
+                                            </label>  
+                                            <div class="col-sm-9">
+                                              <input type="text" placeholder="Introduzca Peso Vacio" class="form-control">
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Velocidad Crucero</h3>
+                                            </label>  
+                                            <div class="col-sm-9">
+                                              <input type="text" placeholder="Introduzca Velocidad Crucero" class="form-control">
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Carrera Despegue Peso Maximo</h3>
+                                            </label>  
+                                            <div class="col-sm-9">
+                                              <input type="text" placeholder="Introduzca Carrera Despegue Peso Maximo" class="form-control">
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Autonomia Peso Maximo Despegue</h3>
+                                            </label>  
+                                            <div class="col-sm-9">
+                                              <input type="text" placeholder="Introduzca Autonomia Peso Maximo Despegue" class="form-control">
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Capacidad Combustible</h3>
+                                            </label>  
+                                            <div class="col-sm-9">
+                                              <input type="text" placeholder="Introduzca Capacidad Combustible" class="form-control">
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Alcance Carga Maxima</h3>
+                                            </label>  
+                                            <div class="col-sm-9">
+                                              <input type="text" placeholder="Introduzca Alcance Carga Maxima" class="form-control">
+                                            </div>
+                                          </div>
+                                          
+
+                                        </div>
+
+                                        <div class=" card-body col-lg-6">
+
+                                          
+                                          <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label">
+                                              <h3>Nota</h3>
+                                            </label>
+                                            <div class="col-sm-9">
+                                              <input type="text" placeholder="Aqui puedes escribir..." class="form-control form-control-lg" rows="4" cols="50">
+                                            </div>
+                                          </div>
+
+                                        </div>
+                                      </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                     
+
+                                     
+                                  </div>
+                                  <div class="modal-footer">
+                                     <button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
+                                     <button type="button" class="btn btn-primary">Guardar Cambios</button>
+                                  </div>
+                               </div>
+                            </div>
+                         </div>
+                         <!-- Modal Submodelo Avion Editar ENDS -->
 
                          <!-- Modal Crear Modelo Avion -->
                          <div id="myModalModeloCrear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
