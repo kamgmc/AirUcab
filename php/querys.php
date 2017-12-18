@@ -349,8 +349,7 @@
 	function insertarModeloAvion( $nombre, $longitud, $envergadura, $altura, $sala, $fala, $pamax, $alcance, $vmax, $tservicio, $rascenso, $npasillos, $ftipo, $faltura, $fancho, $caltura, $cancho, $cvolumen, $cpilotos, $casientos, $cdespegue, $testimado ){
 		global $conexion;
 		$nombre = htmlentities($nombre, ENT_QUOTES);
-		
-		$qry = "INSERT INTO Modelo_motor (mm_nombre, mm_tipo, mm_empuje_max, mm_empuje_norma, mm_empuje_crucero, mm_longitud, mm_diametro_aspa) VALUES ('".$nombre."', '".$tipo."', ".$emax.", ".$enorma.", ".$ecrucero.", ".$longitud.", ".$daspa.")";
+		$qry = "INSERT INTO Modelo_avion (am_nombre, am_longitud, am_envergadura, am_altura, am_ala_superficie, am_ala_flecha, am_peso_aterrizaje_max, am_alcance, am_velocidad_max, am_techo_servicio, am_regimen_ascenso, am_numero_pasillos, am_fuselajo_tipo, am_fuselaje_altura, am_fuselaje_ancho, am_cabina_altura, am_cabina_ancho, am_carga_volumen, am_capacidad_pilotos, am_capacidad_asistentes, am_carrera_despegue, am_tiempo_estimado ) VALUES ('".$nombre."', ".$longitud.", ".$envergadura.", ".$altura.", ".$sala.", ".$fala.", ".$pamax.", ".$alcance.", ".$vmax.", ".$tservicio.", ".$rascenso.", ".$npasillos.", ".$ftipo.", ".$faltura.", ".$caltura.", ".$cancho.", ".$cvolumen.", ".$cvolumen.", ".$cpilotos.", ".$casientos.", ".$cdespegue.", ".$testimado.")";
 		return pg_query($conexion, $qry);
 	}
 	function eliminarModeloAvion( $id ){
