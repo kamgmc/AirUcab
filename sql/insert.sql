@@ -2042,6 +2042,7 @@ INSERT INTO Status (st_nombre) VALUES ('En Proceso');
 INSERT INTO Status (st_nombre) VALUES ('Evaluación');
 INSERT INTO Status (st_nombre) VALUES ('Ensamblando');
 INSERT INTO Status (st_nombre) VALUES ('Pruebas');
+INSERT INTO Status (st_nombre) VALUES ('Aprobada');
 --AVION
 INSERT INTO Avion (a_fecha_ini,a_fecha_fin,a_precio,a_submodelo_avion,a_distribucion,a_factura_venta) VALUES ('2017-05-21','2017-12-21',921445.65,14,23,1);
 INSERT INTO Avion (a_fecha_ini,a_fecha_fin,a_precio,a_submodelo_avion,a_distribucion,a_factura_venta) VALUES ('2017-05-21','2017-12-21',126042,18,25,2);
@@ -2476,3 +2477,98 @@ INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-05-2
 INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-05-21',49,2);
 INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-05-21',50,2);
 INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-05-21',51,2);
+--TIPO_MATERIAL
+INSERT INTO Tipo_material (mt_nombre) VALUES ('Tornillos');
+INSERT INTO Tipo_material (mt_nombre) VALUES ('Fibra de carbono');
+INSERT INTO Tipo_material (mt_nombre) VALUES ('Cables');
+INSERT INTO Tipo_material (mt_nombre) VALUES ('Remaches');
+INSERT INTO Tipo_material (mt_nombre) VALUES ('Arandelas');
+INSERT INTO Tipo_material (mt_nombre) VALUES ('Bombillos');
+--T_MATERIAL_M_PIEZA
+INSERT INTO T_material_m_pieza (tmm_cantidad,tmm_tipo_material,tmm_modelo_pieza) VALUES (2,1,4);
+INSERT INTO T_material_m_pieza (tmm_cantidad,tmm_tipo_material,tmm_modelo_pieza) VALUES (2,2,4);
+INSERT INTO T_material_m_pieza (tmm_cantidad,tmm_tipo_material,tmm_modelo_pieza) VALUES (2,3,4);
+INSERT INTO T_material_m_pieza (tmm_cantidad,tmm_tipo_material,tmm_modelo_pieza) VALUES (2,4,4);
+INSERT INTO T_material_m_pieza (tmm_cantidad,tmm_tipo_material,tmm_modelo_pieza) VALUES (2,5,4);
+INSERT INTO T_material_m_pieza (tmm_cantidad,tmm_tipo_material,tmm_modelo_pieza) VALUES (2,6,173);
+--FACTURA_COMPRA
+INSERT INTO Factura_compra (fc_fecha,fc_proveedor) VALUES ('2017-05-21',1);
+INSERT INTO Factura_compra (fc_fecha,fc_proveedor) VALUES ('2017-05-21',2);
+INSERT INTO Factura_compra (fc_fecha,fc_proveedor) VALUES ('2017-05-21',3);
+INSERT INTO Factura_compra (fc_fecha,fc_proveedor) VALUES ('2017-05-21',4);
+INSERT INTO Factura_compra (fc_fecha,fc_proveedor) VALUES ('2017-05-21',5);
+INSERT INTO Factura_compra (fc_fecha,fc_proveedor) VALUES ('2017-05-21',5);
+--MATERIAL
+INSERT INTO Material (m_fecha,m_tipo_material,m_factura_compra,m_pieza,m_precio) VALUES ('2017-12-21',1,1,5,20.5);
+INSERT INTO Material (m_fecha,m_tipo_material,m_factura_compra,m_pieza,m_precio) VALUES ('2017-12-21',2,2,5,42.5);
+INSERT INTO Material (m_fecha,m_tipo_material,m_factura_compra,m_pieza,m_precio) VALUES ('2017-12-21',3,3,5,35.5);
+INSERT INTO Material (m_fecha,m_tipo_material,m_factura_compra,m_pieza,m_precio) VALUES ('2017-12-21',4,4,5,45.5);
+INSERT INTO Material (m_fecha,m_tipo_material,m_factura_compra,m_pieza,m_precio) VALUES ('2017-12-21',5,5,5,34.5);
+INSERT INTO Material (m_fecha,m_tipo_material,m_factura_compra,m_pieza,m_precio) VALUES ('2017-12-21',6,6,51,87.25);
+--STATUS_MATERIAL
+INSERT INTO Status_material (sm_fecha_ini,sm_fecha_fin,sm_material,sm_status) VALUES ('2017-05-21','2017-06-21',1,2);
+INSERT INTO Status_material (sm_fecha_ini,sm_material,sm_status) VALUES ('2017-06-22',1,1);
+INSERT INTO Status_material (sm_fecha_ini,sm_fecha_fin,sm_material,sm_status) VALUES ('2017-05-21','2017-06-21',2,2);
+INSERT INTO Status_material (sm_fecha_ini,sm_material,sm_status) VALUES ('2017-06-22',2,1);
+INSERT INTO Status_material (sm_fecha_ini,sm_fecha_fin,sm_material,sm_status) VALUES ('2017-05-21','2017-06-21',3,2);
+INSERT INTO Status_material (sm_fecha_ini,sm_material,sm_status) VALUES ('2017-06-22',3,1);
+INSERT INTO Status_material (sm_fecha_ini,sm_fecha_fin,sm_material,sm_status) VALUES ('2017-05-21','2017-06-21',4,2);
+INSERT INTO Status_material (sm_fecha_ini,sm_material,sm_status) VALUES ('2017-06-22',4,1);
+INSERT INTO Status_material (sm_fecha_ini,sm_fecha_fin,sm_material,sm_status) VALUES ('2017-05-21','2017-06-21',5,2);
+INSERT INTO Status_material (sm_fecha_ini,sm_material,sm_status) VALUES ('2017-06-22',5,1);
+INSERT INTO Status_material (sm_fecha_ini,sm_fecha_fin,sm_material,sm_status) VALUES ('2017-05-21','2017-06-21',6,2);
+INSERT INTO Status_material (sm_fecha_ini,sm_material,sm_status) VALUES ('2017-06-22',6,1);
+--PRUEBA
+INSERT INTO Prueba (pr_nombre,pr_tipo,pr_zona,pr_empleado) VALUES ('Prueba de calidad','Prueba',2,3);
+INSERT INTO Prueba (pr_nombre,pr_tipo,pr_zona,pr_empleado) VALUES ('Resistecia a la presión','Prueba',2,3);
+INSERT INTO Prueba (pr_nombre,pr_tipo,pr_zona,pr_empleado) VALUES ('Resistecia al calor','Prueba',2,3);
+INSERT INTO Prueba (pr_nombre,pr_tipo,pr_zona,pr_empleado) VALUES ('Resistecia al frío','Prueba',2,3);
+INSERT INTO Prueba (pr_nombre,pr_tipo,pr_zona,pr_empleado) VALUES ('Punto de quiebre','Prueba',2,3);
+--STATUS_PRUEBA
+INSERT INTO Status_prueba (sp_fecha_ini,sp_fecha_fin,sp_prueba,sp_status) VALUES ('2017-05-21','2017-06-21',1,5);
+INSERT INTO Status_prueba (sp_fecha_ini,sp_prueba,sp_status) VALUES ('2017-06-22',1,6);
+INSERT INTO Status_prueba (sp_fecha_ini,sp_fecha_fin,sp_prueba,sp_status) VALUES ('2017-05-21','2017-06-21',2,5);
+INSERT INTO Status_prueba (sp_fecha_ini,sp_prueba,sp_status) VALUES ('2017-06-22',2,6);
+INSERT INTO Status_prueba (sp_fecha_ini,sp_fecha_fin,sp_prueba,sp_status) VALUES ('2017-05-21','2017-06-21',3,5);
+INSERT INTO Status_prueba (sp_fecha_ini,sp_prueba,sp_status) VALUES ('2017-06-22',3,6);
+INSERT INTO Status_prueba (sp_fecha_ini,sp_fecha_fin,sp_prueba,sp_status) VALUES ('2017-05-21','2017-06-21',4,5);
+INSERT INTO Status_prueba (sp_fecha_ini,sp_prueba,sp_status) VALUES ('2017-06-22',4,6);
+INSERT INTO Status_prueba (sp_fecha_ini,sp_fecha_fin,sp_prueba,sp_status) VALUES ('2017-05-21','2017-06-21',5,5);
+INSERT INTO Status_prueba (sp_fecha_ini,sp_prueba,sp_status) VALUES ('2017-06-22',5,6);
+--PRUEBA_PIEZA
+INSERT INTO Prueba_pieza (pp_fecha_ini,pp_fecha_fin,pp_pieza,pp_prueba,pp_status) VALUES ('2017-12-21','2018-01-21',5,1,6);
+INSERT INTO Prueba_pieza (pp_fecha_ini,pp_fecha_fin,pp_pieza,pp_prueba,pp_status) VALUES ('2017-12-21','2018-01-21',6,5,6);
+INSERT INTO Prueba_pieza (pp_fecha_ini,pp_fecha_fin,pp_pieza,pp_prueba,pp_status) VALUES ('2017-12-21','2018-01-21',30,4,6);
+INSERT INTO Prueba_pieza (pp_fecha_ini,pp_fecha_fin,pp_pieza,pp_prueba,pp_status) VALUES ('2017-12-21','2018-01-21',32,3,6);
+INSERT INTO Prueba_pieza (pp_fecha_ini,pp_fecha_fin,pp_pieza,pp_prueba,pp_status) VALUES ('2017-12-21','2018-01-21',51,2,6);
+--PRUEBA_MATERIAL
+INSERT INTO Prueba_material (prm_fecha_ini,prm_fecha_fin,prm_material,prm_prueba,prm_status) VALUES ('2017-12-21','2018-01-21',1,1,6);
+INSERT INTO Prueba_material (prm_fecha_ini,prm_fecha_fin,prm_material,prm_prueba,prm_status) VALUES ('2017-12-21','2018-01-21',2,5,6);
+INSERT INTO Prueba_material (prm_fecha_ini,prm_fecha_fin,prm_material,prm_prueba,prm_status) VALUES ('2017-12-21','2018-01-21',3,4,6);
+INSERT INTO Prueba_material (prm_fecha_ini,prm_fecha_fin,prm_material,prm_prueba,prm_status) VALUES ('2017-12-21','2018-01-21',4,3,6);
+INSERT INTO Prueba_material (prm_fecha_ini,prm_fecha_fin,prm_material,prm_prueba,prm_status) VALUES ('2017-12-21','2018-01-21',5,2,6);
+--TRASLADO
+INSERT INTO Traslado (tr_fecha_ini,tr_fecha_fin,tr_confirmacion,tr_zona_envia,tr_zona_recibe,tr_material) VALUES ('2018-01-22','2018-01-23',TRUE,2,3,1);
+INSERT INTO Traslado (tr_fecha_ini,tr_fecha_fin,tr_confirmacion,tr_zona_envia,tr_zona_recibe,tr_material) VALUES ('2018-01-22','2018-01-23',TRUE,2,3,2);
+INSERT INTO Traslado (tr_fecha_ini,tr_fecha_fin,tr_confirmacion,tr_zona_envia,tr_zona_recibe,tr_material) VALUES ('2018-01-22','2018-01-23',TRUE,2,3,3);
+INSERT INTO Traslado (tr_fecha_ini,tr_fecha_fin,tr_confirmacion,tr_zona_envia,tr_zona_recibe,tr_material) VALUES ('2018-01-22','2018-01-23',TRUE,2,3,4);
+INSERT INTO Traslado (tr_fecha_ini,tr_fecha_fin,tr_confirmacion,tr_zona_envia,tr_zona_recibe,tr_material) VALUES ('2018-01-22','2018-01-23',TRUE,2,3,5);
+INSERT INTO Traslado (tr_fecha_ini,tr_fecha_fin,tr_confirmacion,tr_zona_envia,tr_zona_recibe,tr_pieza) VALUES ('2018-01-22','2018-01-23',TRUE,4,3,5);
+--TIPO_PAGO
+INSERT INTO Tipo_pago (pt_tipo,pt_numero,pt_tc_nombre,pt_tc_cod,pt_tc_fecha) VALUES (2,145161,'José Andrade',132,'2020-02-15');
+INSERT INTO Tipo_pago (pt_tipo,pt_numero,pt_tc_nombre,pt_tc_cod,pt_tc_fecha) VALUES (2,544512,'Carla Sousa',514,'2019-08-02');
+INSERT INTO Tipo_pago (pt_tipo,pt_numero,pt_tc_nombre,pt_tc_cod,pt_tc_fecha) VALUES (2,152161,'Anthony Almeida',231,'2018-11-29');
+INSERT INTO Tipo_pago (pt_tipo,pt_numero) VALUES (1,122451);
+INSERT INTO Tipo_pago (pt_tipo,pt_numero) VALUES (1,123154);
+--PAGO
+INSERT INTO Pago (pa_monto,pa_fecha,pa_tipo_pago,pa_factura_venta) VALUES (1451.61,'2016-06-28',1,1);
+INSERT INTO Pago (pa_monto,pa_fecha,pa_tipo_pago,pa_factura_venta) VALUES (5445.12,'2017-01-11',2,2);
+INSERT INTO Pago (pa_monto,pa_fecha,pa_tipo_pago,pa_factura_venta) VALUES (1521.61,'2017-09-02',3,3);
+INSERT INTO Pago (pa_monto,pa_fecha,pa_tipo_pago,pa_factura_venta) VALUES (1224.51,'2017-11-15',4,4);
+INSERT INTO Pago (pa_monto,pa_fecha,pa_tipo_pago,pa_factura_venta) VALUES (1231.54,'2017-12-02',5,5);
+INSERT INTO Pago (pa_monto,pa_fecha,pa_tipo_pago,pa_factura_compra) VALUES (1451.61,'2017-05-21',1,1);
+INSERT INTO Pago (pa_monto,pa_fecha,pa_tipo_pago,pa_factura_compra) VALUES (5445.12,'2017-05-21',2,2);
+INSERT INTO Pago (pa_monto,pa_fecha,pa_tipo_pago,pa_factura_compra) VALUES (1521.61,'2017-05-21',3,3);
+INSERT INTO Pago (pa_monto,pa_fecha,pa_tipo_pago,pa_factura_compra) VALUES (1224.51,'2017-05-21',4,4);
+INSERT INTO Pago (pa_monto,pa_fecha,pa_tipo_pago,pa_factura_compra) VALUES (1231.54,'2017-05-21',5,5);
+INSERT INTO Pago (pa_monto,pa_fecha,pa_tipo_pago,pa_factura_compra) VALUES (1451.61,'2017-05-21',1,6);
