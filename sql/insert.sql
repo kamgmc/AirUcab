@@ -2504,3 +2504,16 @@ INSERT INTO Material (m_fecha,m_tipo_material,m_factura_compra,m_pieza,m_precio)
 INSERT INTO Material (m_fecha,m_tipo_material,m_factura_compra,m_pieza,m_precio) VALUES ('2017-12-21',4,4,5,45.5);
 INSERT INTO Material (m_fecha,m_tipo_material,m_factura_compra,m_pieza,m_precio) VALUES ('2017-12-21',5,5,5,34.5);
 INSERT INTO Material (m_fecha,m_tipo_material,m_factura_compra,m_pieza,m_precio) VALUES ('2017-12-21',6,6,51,87.25);
+--STATUS_MATERIAL
+INSERT INTO Status_material (sm_fecha_ini,sm_fecha_fin,sm_material,sm_status) VALUES ('2017-05-21','2017-06-21',1,2);
+INSERT INTO Status_material (sm_fecha_ini,sm_material,sm_status) VALUES ('2017-06-22',1,1);
+INSERT INTO Status_material (sm_fecha_ini,sm_fecha_fin,sm_material,sm_status) VALUES ('2017-05-21','2017-06-21',2,2);
+INSERT INTO Status_material (sm_fecha_ini,sm_material,sm_status) VALUES ('2017-06-22',2,1);
+INSERT INTO Status_material (sm_fecha_ini,sm_fecha_fin,sm_material,sm_status) VALUES ('2017-05-21','2017-06-21',3,2);
+INSERT INTO Status_material (sm_fecha_ini,sm_material,sm_status) VALUES ('2017-06-22',3,1);
+INSERT INTO Status_material (sm_fecha_ini,sm_fecha_fin,sm_material,sm_status) VALUES ('2017-05-21','2017-06-21',4,2);
+INSERT INTO Status_material (sm_fecha_ini,sm_material,sm_status) VALUES ('2017-06-22',4,1);
+INSERT INTO Status_material (sm_fecha_ini,sm_fecha_fin,sm_material,sm_status) VALUES ('2017-05-21','2017-06-21',5,2);
+INSERT INTO Status_material (sm_fecha_ini,sm_material,sm_status) VALUES ('2017-06-22',5,1);
+INSERT INTO Status_material (sm_fecha_ini,sm_fecha_fin,sm_material,sm_status) VALUES ('2017-05-21','2017-06-21',6,2);
+INSERT INTO Status_material (sm_fecha_ini,sm_material,sm_status) VALUES ('2017-06-22',6,1);
