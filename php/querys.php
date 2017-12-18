@@ -346,6 +346,13 @@
 		return 0;
 	}
 //Modelo_avion
+	function insertarModeloAvion( $nombre, $longitud, $envergadura, $altura, $sala, $fala, $pamax, $alcance, $vmax, $tservicio, $rascenso, $npasillos, $ftipo, $faltura, $fancho, $caltura, $cancho, $cvolumen, $cpilotos, $casientos, $cdespegue, $testimado ){
+		global $conexion;
+		$nombre = htmlentities($nombre, ENT_QUOTES);
+		
+		$qry = "INSERT INTO Modelo_motor (mm_nombre, mm_tipo, mm_empuje_max, mm_empuje_norma, mm_empuje_crucero, mm_longitud, mm_diametro_aspa) VALUES ('".$nombre."', '".$tipo."', ".$emax.", ".$enorma.", ".$ecrucero.", ".$longitud.", ".$daspa.")";
+		return pg_query($conexion, $qry);
+	}
 	function eliminarModeloAvion( $id ){
 		global $conexion;
 		$qry = "DELETE FROM Modelo_avion where am_id=".$id;
