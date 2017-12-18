@@ -178,7 +178,14 @@
 		global $conexion;
 		$nombre = htmlentities($nombre, ENT_QUOTES);
 		$apellido = htmlentities($apellido, ENT_QUOTES);
-		qry = "INSERT INTO Beneficiario (be_nacionalidad, be_ci, be_nombre, be_apellido, be_empleado) VALUES ('".$nacionalidad"', ".$ci", '".$nombre"', '".$apellido"', ".$empleado" ) ";
+		$qry = "INSERT INTO Beneficiario (be_nacionalidad, be_ci, be_nombre, be_apellido, be_empleado) VALUES ('".$nacionalidad."', ".$ci.", '".$nombre."', '".$apellido."', ".$empleado." ) ";
+		return pg_query($conexion, $qry);
+	}
+	function editarBeneficiario( $id, $nacionalidad, $ci, $nombre, $apellido, $empleado){
+		global $conexion;
+		$nombre = htmlentities($nombre, ENT_QUOTES);
+		$apellido = htmlentities($apellido, ENT_QUOTES);
+		$qry = "UPDATE Beneficiario SET be_nacionalidad='".$nacionalidad."', be_ci='".$ci."', be_nombre='".$nombre."', be_apellido='".$apellido."', be_empleado=".$empleado." WHERE be_id".$id;
 		return pg_query($conexion, $qry);
 	}
 //Experiencia
