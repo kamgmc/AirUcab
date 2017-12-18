@@ -151,6 +151,7 @@
 	function insertarEmpleado( $nacionalidad, $ci, $nombre, $apellido, $fingreso, $usuario, $clave, $titulacion, $cargo, $rol, $zona, $direccion, $supervisa, $gerencia, $nota){
 		global $conexion;
 		$nombre = htmlentities($nombre, ENT_QUOTES);
+		$apellido = htmlentities($apellido, ENT_QUOTES);
 		$usuario = htmlentities($usuario, ENT_QUOTES);
 		$clave = md5(htmlentities($clave, ENT_QUOTES));
 		if($nota != 'NULL') $nota = "'".htmlentities($nota, ENT_QUOTES)."'";
@@ -160,6 +161,7 @@
 	function editarEmpleado( $id, $nacionalidad, $ci, $nombre, $apellido, $fingreso, $usuario, $clave, $titulacion, $cargo, $rol, $zona, $direccion, $supervisa, $gerencia, $nota){
 		global $conexion;
 		$nombre = htmlentities($nombre, ENT_QUOTES);
+		$apellido = htmlentities($apellido, ENT_QUOTES);
 		$usuario = htmlentities($usuario, ENT_QUOTES);
 		$clave = md5(htmlentities($clave, ENT_QUOTES));
 		if($nota != 'NULL') $nota = "'".htmlentities($nota, ENT_QUOTES)."'";
@@ -172,9 +174,12 @@
 		return pg_query($conexion, $qry);
 	}
 //Beneficiario
-	function insertarBeneficiario( $value )
-	{
-		# code...
+	function insertarBeneficiario( $nacionalidad, $ci, $nombre, $apellido, $empleado){
+		global $conexion;
+		$nombre = htmlentities($nombre, ENT_QUOTES);
+		$apellido = htmlentities($apellido, ENT_QUOTES);
+		qry = "INSERT INTO Beneficiario (be_nacionalidad, be_ci, be_nombre, be_apellido, be_empleado) VALUES ('".$nacionalidad"', ".$ci", '".$nombre"', '".$apellido"', ".$empleado" ) ";
+		return pg_query($conexion, $qry);
 	}
 //Experiencia
 //Cliente
