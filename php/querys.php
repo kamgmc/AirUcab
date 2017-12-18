@@ -217,7 +217,31 @@
 		return pg_query($conexion, $qry);
 	}
 //Factura_venta
+	function insertarFacturaVenta( $fecha ){
+		global $conexion;
+		$qry = "INSERT INTO Factura_venta (fc_fecha) VALUES ('".$fecha."')";
+		return pg_query($conexion, $qry);
+	}
+	function editarFacturaVenta( $id, $fecha ){
+		global $conexion;
+		$qry = "UPDATE Factura_venta SET fc_fecha='".$fecha."' WHERE fc_id=".$id;
+		return pg_query($conexion, $qry);
+	}
 //Proveedor
+	function insertarProveedor ( $trif, $rif, $nombre, $pweb, $finicio ){
+		global $conexion;
+		$nombre = htmlentities($nombre, ENT_QUOTES);
+		$pweb = htmlentities($pweb, ENT_QUOTES);
+		$qry = "INSERT INTO Proveedor (po_tipo_rif, po_rif, po_nombre, po_pagina_web, po_fecha_inicio) VALUES ('".$trif."', ".$rif.", '".$nombre."', '".$pweb."', '".$finicio."')";
+		return pg_query($conexion, $qry);
+	}
+	function editarProveedor ( $id, $trif, $rif, $nombre, $pweb, $finicio ){
+		global $conexion;
+		$nombre = htmlentities($nombre, ENT_QUOTES);
+		$pweb = htmlentities($pweb, ENT_QUOTES);
+		$qry = "UPDATE Proveedor SET po_tipo_rif='".$trif."', po_rif='".$trif."', po_nombre='".$nombre."', po_pagina_web='".$pweb."', po_fecha_inicio='".$finicio."' WHERE po_id=".$id;
+		return pg_query($conexion, $qry);
+	}
 //Query Tipo de contacto
 	function insertarTipoContacto( $nombre ){
 		global $conexion;
