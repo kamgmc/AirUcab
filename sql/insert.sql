@@ -2051,6 +2051,8 @@ INSERT INTO Status_avion (sa_fecha_ini,sa_fecha_fin,sa_avion,sa_status) VALUES (
 INSERT INTO Status_avion (sa_fecha_ini,sa_fecha_fin,sa_avion,sa_status) VALUES ('2017-11-21','2017-11-21',1,1);
 INSERT INTO Status_avion (sa_fecha_ini,sa_fecha_fin,sa_avion,sa_status) VALUES ('2017-05-21','2017-11-20',2,2);
 INSERT INTO Status_avion (sa_fecha_ini,sa_fecha_fin,sa_avion,sa_status) VALUES ('2017-11-21','2017-11-21',2,1);
+INSERT INTO Status_avion (sa_fecha_ini,sa_avion,sa_status) VALUES ('2017-05-21',3,2);
+INSERT INTO Status_avion (sa_fecha_ini,sa_avion,sa_status) VALUES ('2017-05-21',4,2);
 INSERT INTO Status_avion (sa_fecha_ini,sa_avion,sa_status) VALUES ('2017-12-21',5,2);
 --MOTOR
 INSERT INTO Motor (mo_fecha_ini,mo_fecha_fin,mo_modelo_motor,mo_avion) VALUES ('2017-05-21','2017-11-21',14,1);
