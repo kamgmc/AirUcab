@@ -213,7 +213,7 @@
 		global $conexion;
 		$nombre = htmlentities($nombre, ENT_QUOTES);
 		$pweb = htmlentities($pweb, ENT_QUOTES);
-		$qry = "UPDATE Cliente SET cl_tipo_rif='".$trif."', cl_rif='".$trif."', cl_nombre='".$nombre."', cl_pagina_web='".$pweb."', cl_fecha_inicio='".$finicio."')";
+		$qry = "UPDATE Cliente SET cl_tipo_rif='".$trif."', cl_rif='".$trif."', cl_nombre='".$nombre."', cl_pagina_web='".$pweb."', cl_fecha_inicio='".$finicio."' WHERE cl_id=".$id;
 		return pg_query($conexion, $qry);
 	}
 //Factura_venta
