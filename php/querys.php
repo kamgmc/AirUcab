@@ -148,6 +148,20 @@
 		return pg_query($conexion, $qry);
 	}
 //Empleado
+	function insertarEmpleado( $nacionalidad, $ci, $nombre, $apellido, $fingreso, $usuario, $clave, $titulacion, $cargo, $rol, $zona, $direccion, $supervisa, $gerencia, $nota){
+		global $conexion;
+		$nacionalidad = htmlentities($nacionalidad, ENT_QUOTES);
+		$nombre = htmlentities($nombre, ENT_QUOTES);
+		$fingreso = htmlentities($fingreso, ENT_QUOTES);
+		$usuario = htmlentities($usuario, ENT_QUOTES);
+		$clave = htmlentities($clave, ENT_QUOTES);
+		if($nota != 'NULL') return $nota = "".$nota"";
+		$qry = "INSERT INTO Empleado (em_nacionalidad, em_ci, em_nombre, em_apellido, em_fecha_ingreso, em_usuario, em_clave, em_titulacion, em_cargo, em_rol, em_zona, em_direccion, em_supervisa, em_gerencia, em_nota) VALUES ('".$nacionalidad"',".$ci",'".$nombre"','".$apellido"','".$fingreso"','".$usuario"','".$clave"',".$titulacion",".$cargo",".$rol",".$zona",".$direccion", ".$supervisa",".$gerencia",".$nota")";
+		return pg_query($conexion, $qry);
+	}
+	function editarEmpleado( $id,$nacionalidad, $ci, $nombre, $apellido, $fingreso, $usuario, $clave, $titulacion, $cargo, $rol, $zona, $direccion, $supervisa, $gerencia, $nota){
+
+	}
 //Beneficiario
 //Experiencia
 //Cliente
