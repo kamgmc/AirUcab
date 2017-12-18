@@ -1,0 +1,43 @@
+Distribucion -> null
+Pago -> null
+Permiso -> Rol_permiso
+Rol_sistema -> Rol_permiso -> Empleado
+Tipo_pago -> Pago
+Factura_venta -> Avion -> Pago
+Marca_motor -> Modelo_motor
+Modelo_motor -> S_avion_m_motor -> Motor
+S_avion_m_motor -> null
+Motor -> Status_motor
+Status_motor -> null
+Modelo_avion -> Distribucion -> Submodelo_avion
+Submodelo_avion -> S_avion_m_motor -> S_modelo_m_pieza -> Avion
+S_modelo_m_pieza -> null
+Avion -> Motor -> Pieza -> Status_avion
+Status_avion -> null
+Tipo_ala -> Modelo_pieza
+Tipo_estabilizador -> Modelo_pieza
+Modelo_pieza -> Pieza -> S_modelo_m_pieza -> T_material_m_pieza -> Modelo_pieza
+T_material_m_pieza -> null
+Tipo_material -> T_material_m_pieza -> Material
+Pieza -> Material -> Status_pieza -> Traslado -> Prueba_pieza
+Status_pieza -> null
+Prueba_pieza -> null
+Material -> Status_material -> Traslado -> Prueba_material 
+Status_material -> null
+Prueba -> Prueba_pieza -> Status_prueba -> Prueba_Material
+Status_prueba -> null
+Prueba_Material -> null
+Status -> Status_prueba -> Status_material -> Status_motor -> Status_pieza -> Status_avion -> Prueba_material -> Prueba_pieza
+Tipo_contacto -> Contacto
+Contacto -> null
+Factura_compra -> Material -> Pago
+Proveedor -> Factura_compra -> Contacto
+Cliente -> Factura_venta -> Contacto
+Titulacion -> Empleado
+Cargo -> Empleado
+Beneficiario -> null
+Experiencia -> null
+Empleado -> Beneficiario -> Experiencia -> Contacto -> Prueba
+Zona -> Traslado1(envia) -> Traslado2(recibe) -> Empleado1(encargado) -> Empleado2(empleados) -> Prueba
+Sede -> Zona -> Empleado1(gerente)
+Lugar -> Empleado -> Cliente -> Proveedor -> Sede -> Lugar
