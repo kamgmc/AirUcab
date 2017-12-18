@@ -348,18 +348,24 @@
 		$qry10 = "DELETE FROM Prueba_material where prm_material=".$id;
 		$qry11 = "DELETE FROM Traslado where tr_pieza=".$id;
 		$qry12 = "DELETE FROM Status_avion where sa_avion=".$id;
-		if(pg_query($conexion, $qry12)){
-			if(pg_query($conexion, $qry11)){
-				if(pg_query($conexion, $qry10)){	
-					if(pg_query($conexion, $qry9)){
-						if(pg_query($conexion, $qry8)){
-							if(pg_query($conexion, $qry7)){
-								if(pg_query($conexion, $qry6)){	
-									if(pg_query($conexion, $qry5)){
-										if(pg_query($conexion, $qry4)){
-											if(pg_query($conexion, $qry3)){
-												if(pg_query($conexion, $qry2)){	
-													return pg_query($conexion, $qry1);
+		$qry13 = "DELETE FROM Submodelo_avion where as_modelo_avion=".$id;
+		$qry14 = "DELETE FROM Avion where a_submodelo_aviono=".$id;
+		if(pg_query($conexion, $qry14)){
+			if(pg_query($conexion, $qry13)){
+				if(pg_query($conexion, $qry12)){
+					if(pg_query($conexion, $qry11)){
+						if(pg_query($conexion, $qry10)){	
+							if(pg_query($conexion, $qry9)){
+								if(pg_query($conexion, $qry8)){
+									if(pg_query($conexion, $qry7)){
+										if(pg_query($conexion, $qry6)){	
+											if(pg_query($conexion, $qry5)){
+												if(pg_query($conexion, $qry4)){
+													if(pg_query($conexion, $qry3)){
+														if(pg_query($conexion, $qry2)){	
+															return pg_query($conexion, $qry1);
+														}
+													}
 												}
 											}
 										}
