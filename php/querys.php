@@ -429,6 +429,15 @@
 //Avion
 //Status_avion
 //Motor
+	function eliminarMotor( $id ){
+		global $conexion;
+		$qry4 = "DELETE FROM Motor where mo_id=".$id;
+		$qry5 = "DELETE FORM Status_motor stm_motor=".$id;
+		if(pg_query($conexion, $qry5)){
+			return pg_query($conexion, $qry4);
+		}
+		return 0;
+	}
 //Status_motor
 //Pieza
 //Status_pieza
