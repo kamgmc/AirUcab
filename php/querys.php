@@ -268,6 +268,21 @@
 		return 0;
 	}
 //Modelo_motor
+	function eliminarModeloMotor( $id ){
+		global $conexion;
+		$qry2 = "DELETE FROM Modelo_motor where mm_id=".$id;
+		$qry3 = "DELETE FROM S_avion_m_motor where smt_modelo_motor=".$id;
+		$qry4 = "DELETE FROM Motor where mo_modelo_motor=".$id;
+		$qry5 = "DELETE FORM Status_motor stm_motor=".$id;
+		if(pg_query($conexion, $qry5)){
+			if(pg_query($conexion, $qry4)){
+				if(pg_query($conexion, $qry3)){
+					return pg_query($conexion, $qry2);
+				}
+			}
+		}
+		return 0;
+	}
 //Modelo_avion
 //Distribucion
 //Submodelo_avion
