@@ -2547,3 +2547,10 @@ INSERT INTO Prueba_material (prm_fecha_ini,prm_fecha_fin,prm_material,prm_prueba
 INSERT INTO Prueba_material (prm_fecha_ini,prm_fecha_fin,prm_material,prm_prueba,prm_status) VALUES ('2017-12-21','2018-01-21',3,4,6);
 INSERT INTO Prueba_material (prm_fecha_ini,prm_fecha_fin,prm_material,prm_prueba,prm_status) VALUES ('2017-12-21','2018-01-21',4,3,6);
 INSERT INTO Prueba_material (prm_fecha_ini,prm_fecha_fin,prm_material,prm_prueba,prm_status) VALUES ('2017-12-21','2018-01-21',5,2,6);
+--TRASLADO
+INSERT INTO Traslado (tr_fecha_ini,tr_fecha_fin,tr_confirmacion,tr_zona_envia,tr_zona_recibe,tr_material) VALUES ('2018-01-22','2018-01-23',TRUE,2,3,1);
+INSERT INTO Traslado (tr_fecha_ini,tr_fecha_fin,tr_confirmacion,tr_zona_envia,tr_zona_recibe,tr_material) VALUES ('2018-01-22','2018-01-23',TRUE,2,3,2);
+INSERT INTO Traslado (tr_fecha_ini,tr_fecha_fin,tr_confirmacion,tr_zona_envia,tr_zona_recibe,tr_material) VALUES ('2018-01-22','2018-01-23',TRUE,2,3,3);
+INSERT INTO Traslado (tr_fecha_ini,tr_fecha_fin,tr_confirmacion,tr_zona_envia,tr_zona_recibe,tr_material) VALUES ('2018-01-22','2018-01-23',TRUE,2,3,4);
+INSERT INTO Traslado (tr_fecha_ini,tr_fecha_fin,tr_confirmacion,tr_zona_envia,tr_zona_recibe,tr_material) VALUES ('2018-01-22','2018-01-23',TRUE,2,3,5);
+INSERT INTO Traslado (tr_fecha_ini,tr_fecha_fin,tr_confirmacion,tr_zona_envia,tr_zona_recibe,tr_pieza) VALUES ('2018-01-22','2018-01-23',TRUE,4,3,5);
