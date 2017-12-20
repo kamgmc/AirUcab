@@ -202,11 +202,11 @@
 		return pg_query($conexion, $qry);
 	}
 //Cliente
-	function insertarCliente ( $trif, $rif, $nombre, $pweb, $finicio ){
+	function insertarCliente ( $trif, $rif, $nombre, $pweb, $lugar ){
 		global $conexion;
 		$nombre = htmlentities($nombre, ENT_QUOTES);
 		$pweb = htmlentities($pweb, ENT_QUOTES);
-		$qry = "INSERT INTO Cliente (cl_tipo_rif, cl_rif, cl_nombre, cl_pagina_web, cl_fecha_inicio) VALUES ('".$trif."', ".$rif.", '".$nombre."', '".$pweb."', '".$finicio."')";
+		$qry = "INSERT INTO Cliente (cl_tipo_rif, cl_rif, cl_nombre, cl_pagina_web, cl_fecha_inicio, cl_direccion) VALUES ('".$trif."', ".$rif.", '".$nombre."', '".$pweb."', transaction_timestamp(),".$lugar." )";
 		return pg_query($conexion, $qry);
 	}
 	function editarCliente ( $id, $trif, $rif, $nombre, $pweb, $finicio ){
@@ -216,10 +216,45 @@
 		$qry = "UPDATE Cliente SET cl_tipo_rif='".$trif."', cl_rif='".$trif."', cl_nombre='".$nombre."', cl_pagina_web='".$pweb."', cl_fecha_inicio='".$finicio."' WHERE cl_id=".$id;
 		return pg_query($conexion, $qry);
 	}
-//Factura_venta
-	function insertarFacturaVenta( $fecha ){
+	function eliminarCliente($id){
 		global $conexion;
-		$qry = "INSERT INTO Factura_venta (fc_fecha) VALUES ('".$fecha."')";
+		$qry = "DELETE FROM Cliente where cl_id=".$id;
+		$qry2 = "DELETE FROM Contacto where co_cliente=".$id;
+		$qry3 = "DELETE FROM Factura_venta where fv_cliente=".$id;
+		$qry4 = "DELETE FROM Pago where pa_factura_venta in (Select fv_id from Factura_venta where fv_cliente=".$id.")";
+		$qry5 = "DELETE FROM Avion where a_factura_venta in (Select fv_id from Factura_venta where fv_cliente=".$id.")";
+		$qry6 = "DELETE FROM Status_avion where sa_avion in (Select a_id from Avion, Factura_venta, Cliente where a_factura_venta=fv_id and fv_cliente=".$id.")";
+		$qry7 = "DELETE FROM Pieza where p_avion in (Select a_id from Avion, Factura_venta, Cliente where a_factura_venta=fv_id and fv_cliente=".$id.")";
+		$qry8 = "DELETE FROM Status_pieza where spi_pieza in (Select p_id from Pieza, Avion, Factura_venta, Cliente where p_avion=a_id and a_factura_venta=fv_id and fv_cliente=".$id.")";
+		$qry9 = "DELETE FROM Material where m_pieza in (Select p_id from Pieza, Avion, Factura_venta, Cliente where p_avion=a_id and a_factura_venta=fv_id and fv_cliente=".$id.")";
+		$qry10 = "DELETE FROM Motor where mo_avion in (Select a_id from Avion, Factura_venta, Cliente where a_factura_venta=fv_id and fv_cliente=".$id.")";
+		$qry11 = "DELETE FROM Status_motor where stm_motor in (Select mo_id from Avion, Factura_venta, Cliente, Motor where mo_avion=a_id and a_factura_venta=fv_id and fv_cliente=".$id.")";
+		$qry12 = "DELETE FROM Prueba_material where prm_material in (Select m_id from Avion, Factura_venta, Cliente, Pieza, Material where p_avion=a_id and m_pieza=p_id and a_factura_venta=fv_id and fv_cliente=".$id.")";
+		$qry13 = "DELETE FROM Status_material where sm_material in (Select m_id from Avion, Factura_venta, Cliente, Pieza, Material where p_avion=a_id and m_pieza=p_id and a_factura_venta=fv_id and fv_cliente=".$id.")";
+		$qry14 = "DELETE FROM Traslado where tr_material in (Select m_id from Avion, Factura_venta, Cliente, Pieza, Material where p_avion=a_id and m_pieza=p_id and a_factura_venta=fv_id and fv_cliente=".$id.")";
+		$qry15 = "DELETE FROM Traslado where tr_pieza in (Select p_id from Pieza, Avion, Factura_venta, Cliente where p_avion=a_id and a_factura_venta=fv_id and fv_cliente=".$id.")";
+		$qry16 = "DELETE FROM Prueba_pieza where pp_pieza in (Select p_id from Pieza, Avion, Factura_venta, Cliente where p_avion=a_id and a_factura_venta=fv_id and fv_cliente=".$id.")";
+		if(pg_query($conexion, $qry16))
+			if(pg_query($conexion, $qry15))
+				if(pg_query($conexion, $qry14))
+					if(pg_query($conexion, $qry13))
+						if(pg_query($conexion, $qry12))
+							if(pg_query($conexion, $qry11))
+								if(pg_query($conexion, $qry10))
+									if(pg_query($conexion, $qry9))
+										if(pg_query($conexion, $qry8))
+											if(pg_query($conexion, $qry7))
+												if(pg_query($conexion, $qry6))
+													if(pg_query($conexion, $qry5))
+														if(pg_query($conexion, $qry4))
+															if(pg_query($conexion, $qry3))
+																if(pg_query($conexion, $qry2))
+																	return pg_query($conexion, $qry);
+	}
+//Factura_venta
+	function insertarFacturaVenta( $cliente ){
+		global $conexion;
+		$qry = "INSERT INTO Factura_venta (fv_cliente,fv_fecha) VALUES (".$cliente.",transaction_timestamp())";
 		return pg_query($conexion, $qry);
 	}
 	function editarFacturaVenta( $id, $fecha ){
@@ -318,18 +353,6 @@
 		return 0;
 	}
 //Modelo_motor
-	function insertarModeloMotor( $nombre, $tipo, $emax, $enorma, $ecrucero, $longitud, $daspa ){
-		global $conexion;
-		$nombre = htmlentities($nombre, ENT_QUOTES);
-		$qry = "INSERT INTO Modelo_motor (mm_nombre, mm_tipo, mm_empuje_max, mm_empuje_norma, mm_empuje_crucero, mm_longitud, mm_diametro_aspa) VALUES ('".$nombre."', '".$tipo."', ".$emax.", ".$enorma.", ".$ecrucero.", ".$longitud.", ".$daspa.")";
-		return pg_query($conexion, $qry);
-	}
-	function editarModeloMotor( $id, $nombre, $tipo, $emax, $enorma, $ecrucero, $longitud, $daspa ){
-		global $conexion;
-		$nombre = htmlentities($nombre, ENT_QUOTES);
-		$qry = "UPDATE Modelo_motor SET mm_nombre='".$nombre."', mm_tipo='".$tipo."', mm_empuje_max=".$emax.", mm_empuje_norma=".$enorma.", mm_empuje_crucero=".$ecrucero.", mm_longitud=".$longitud." , mm_diametro_aspa=".$daspa." WHERE mm_id=".$id;
-		return pg_query($conexion, $qry);
-	}
 	function eliminarModeloMotor( $id ){
 		global $conexion;
 		$qry2 = "DELETE FROM Modelo_motor where mm_id=".$id;
@@ -346,15 +369,9 @@
 		return 0;
 	}
 //Modelo_avion
-	function insertarModeloAvion( $nombre, $longitud, $envergadura, $altura, $sala, $fala, $pamax, $alcance, $vmax, $tservicio, $rascenso, $npasillos, $ftipo, $faltura, $fancho, $caltura, $cancho, $cvolumen, $cpilotos, $casientos, $cdespegue, $testimado ){
-		global $conexion;
-		$nombre = htmlentities($nombre, ENT_QUOTES);
-		$qry = "INSERT INTO Modelo_avion (am_nombre, am_longitud, am_envergadura, am_altura, am_ala_superficie, am_ala_flecha, am_peso_aterrizaje_max, am_alcance, am_velocidad_max, am_techo_servicio, am_regimen_ascenso, am_numero_pasillos, am_fuselajo_tipo, am_fuselaje_altura, am_fuselaje_ancho, am_cabina_altura, am_cabina_ancho, am_carga_volumen, am_capacidad_pilotos, am_capacidad_asistentes, am_carrera_despegue, am_tiempo_estimado ) VALUES ('".$nombre."', ".$longitud.", ".$envergadura.", ".$altura.", ".$sala.", ".$fala.", ".$pamax.", ".$alcance.", ".$vmax.", ".$tservicio.", ".$rascenso.", ".$npasillos.", ".$ftipo.", ".$faltura.", ".$caltura.", ".$cancho.", ".$cvolumen.", ".$cvolumen.", ".$cpilotos.", ".$casientos.", ".$cdespegue.", ".$testimado.")";
-		return pg_query($conexion, $qry);
-	}
 	function eliminarModeloAvion( $id ){
 		global $conexion;
-		$qry = "DELETE FROM Modelo_avion where am_id=".$id;
+		$qry1 = "DELETE FROM Modelo_avion where am_id=".$id;
 		$qry2 = "DELETE FROM Distribucion where di_modelo_avion=".$id;
 		$qry3 = "DELETE FROM Avion where a_distribucion=".$id;
 		$qry4 = "DELETE FROM Pieza where p_avion=".$id;
@@ -363,25 +380,28 @@
 		$qry7 = "DELETE FROM Prueba_material where prm_material=".$id;
 		$qry8 = "DELETE FROM Status_material where sm_material=".$id;
 		$qry9 = "DELETE FROM Status_pieza where spi_pieza=".$id;
-		$qry10 = "DELETE FROM Prueba_material where prm_material=".$id;
+		$qry10 = "DELETE FROM Prueba_pieza where pp_pieza=".$id;
 		$qry11 = "DELETE FROM Traslado where tr_pieza=".$id;
 		$qry12 = "DELETE FROM Status_avion where sa_avion=".$id;
 		$qry13 = "DELETE FROM Submodelo_avion where as_modelo_avion=".$id;
-		$qry14 = "DELETE FROM Avion where a_submodelo_aviono=".$id;
-		if(pg_query($conexion, $qry14)){
-			if(pg_query($conexion, $qry13)){
-				if(pg_query($conexion, $qry12)){
-					if(pg_query($conexion, $qry11)){
-						if(pg_query($conexion, $qry10)){	
-							if(pg_query($conexion, $qry9)){
-								if(pg_query($conexion, $qry8)){
-									if(pg_query($conexion, $qry7)){
-										if(pg_query($conexion, $qry6)){	
-											if(pg_query($conexion, $qry5)){
-												if(pg_query($conexion, $qry4)){
-													if(pg_query($conexion, $qry3)){
-														if(pg_query($conexion, $qry2)){	
-															return pg_query($conexion, $qry1);
+		$qry14 = "DELETE FROM Avion where a_submodelo_avion in (Select as_id from Submodelo_avion where as_modelo_avion=".$id.")";
+		$qry15 = "DELETE FROM S_avion_m_pieza WHERE smp_submodelo_avion in (Select as_id from Submodelo_avion where as_modelo_avion=".$id.")";
+		if(pg_query($conexion, $qry15)){
+			if(pg_query($conexion, $qry14)){
+				if(pg_query($conexion, $qry13)){
+					if(pg_query($conexion, $qry12)){
+						if(pg_query($conexion, $qry11)){
+							if(pg_query($conexion, $qry10)){	
+								if(pg_query($conexion, $qry9)){
+									if(pg_query($conexion, $qry8)){
+										if(pg_query($conexion, $qry7)){
+											if(pg_query($conexion, $qry6)){	
+												if(pg_query($conexion, $qry5)){
+													if(pg_query($conexion, $qry4)){
+														if(pg_query($conexion, $qry3)){
+															if(pg_query($conexion, $qry2)){	
+																return pg_query($conexion, $qry1);
+															}
 														}
 													}
 												}
@@ -492,11 +512,6 @@
 	}
 //Status_prueba
 //Factura_compra
-	function insertarFacturaCompra ( $fecha ){
-		global $conexion;
-		$qry = "INSERT INTO Factura_compra (fc_fecha) VALUES ('".$fecha."')";
-		return pg_query($conexion, $qry);
-	}
 //Tipo_pago
 //Pago
 //Tipo_material
@@ -519,6 +534,11 @@
 	}
 //T_material_m_pieza
 //Avion
+	function insertarAvion( $factura, $distribucion, $submodelo, $precio ){
+		global $conexion;
+		$qry = "INSERT INTO Avion (a_factura_venta, a_distribucion, a_submodelo_avion, a_precio, a_fecha_ini) VALUES (".$factura.", ".$distribucion.", ".$submodelo.", ".$precio.", transaction_timestamp())";
+		return pg_query($conexion, $qry);
+	}
 //Status_avion
 //Motor
 	function eliminarMotor( $id ){
@@ -534,11 +554,6 @@
 //Pieza
 //Status_pieza
 //Material
-	function insertarMaterial ( $fecha, $precio ){
-		global $conexion;
-		$qry = "INSERT INTO Material (m_fecha, m_precio) VALUES ('".$fecha."', ".$precio.")";
-		return pg_query($conexion, $qry);
-	}
 //Prueba_material
 //Status_material
 //Prueba_pieza
