@@ -67,7 +67,7 @@ create table Empleado(
 	em_nombre varchar(30) not null,
 	em_apellido varchar(30) not null,
 	em_fecha_ingreso date not null,
-	em_usuario varchar(15) not null,
+	em_usuario varchar(15) not unique null,
 	em_clave varchar(100) not null,
 	em_titulacion integer not null,
 	em_cargo integer not null,
