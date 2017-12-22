@@ -150,12 +150,12 @@
 //Empleado
 	function insertarEmpleado( $nacionalidad, $ci, $nombre, $apellido, $fingreso, $usuario, $clave, $titulacion, $cargo, $rol, $zona, $direccion, $supervisa, $gerencia, $nota){
 		global $conexion;
-		$nombre = htmlentities($nombre, ENT_QUOTES);
-		$apellido = htmlentities($apellido, ENT_QUOTES);
+		$nombre = htmlentities(ucfirst(strtolower($nombre)), ENT_QUOTES);
+		$apellido = htmlentities(ucfirst(strtolower($apellido)), ENT_QUOTES);
 		$usuario = htmlentities($usuario, ENT_QUOTES);
 		$clave = md5(htmlentities($clave, ENT_QUOTES));
 		if($nota != 'NULL') $nota = "'".htmlentities($nota, ENT_QUOTES)."'";
-		$qry = "INSERT INTO Empleado (em_nacionalidad, em_ci, em_nombre, em_apellido, em_fecha_ingreso, em_usuario, em_clave, em_titulacion, em_cargo, em_rol, em_zona, em_direccion, em_supervisa, em_gerencia, em_nota) VALUES ('".$nacionalidad."',".$ci.",'".$nombre."','".$apellido."','".$fingreso."','".$usuario."','".$clave."',".$titulacion.",".$cargo.",".$rol.",".$zona.",".$direccion.", ".$supervisa.",".$gerencia.",".$nota.")";
+		$qry = "INSERT INTO Empleado (em_nacionalidad, em_ci, em_nombre, em_apellido, em_fecha_ingreso, em_usuario, em_clave, em_titulacion, em_cargo, em_rol, em_zona, em_direccion, em_supervisa, em_gerencia, em_nota) VALUES ('".$nacionalidad."',".$ci.",'".$nombre."','".$apellido."','".$fingreso."',UPPER('".$usuario."'),'".$clave."',".$titulacion.",".$cargo.",".$rol.",".$zona.",".$direccion.", ".$supervisa.",".$gerencia.",".$nota.")";
 		return pg_query($conexion, $qry);
 	}
 	function editarEmpleado( $id, $nacionalidad, $ci, $nombre, $apellido, $fingreso, $usuario, $clave, $titulacion, $cargo, $rol, $zona, $direccion, $supervisa, $gerencia, $nota){
@@ -369,6 +369,18 @@
 		return 0;
 	}
 //Modelo_avion
+	function insertarModeloAvion( $nombre, $longitud, $envergadura, $altura, $superficie_alar, $flecha_alar, $peso_max, $alcance, $velocidad_max, $techo_servicio, $regimen_ascenso, $numero_pasillos, $fuselaje_tipo, $fuselaje_altura, $fuselaje_ancho, $cabina_altura, $cabina_ancho, $volumen_carga, $capacidad_pilotos, $capacidad_asistentes, $carrera_despegue, $tiempo_estimado ){
+		global $conexion;
+		$nombre = htmlentities($nombre, ENT_QUOTES);
+		$qry = "INSERT INTO Modelo_avion (am_nombre, am_longitud, am_envergadura, am_altura, am_ala_superficie, am_ala_flecha, am_peso_aterrizaje_max, am_alcance, am_velocidad_max, am_techo_servicio, am_regimen_ascenso, am_numero_pasillos, am_fuselaje_tipo, am_fuselaje_altura, am_fuselaje_ancho, am_cabina_altura, am_cabina_ancho, am_carga_volumen, am_capacidad_pilotos, am_capacidad_asistentes, am_carrera_despegue, am_tiempo_estimado) VALUES('".$nombre."', ".$longitud.", ".$envergadura.", ".$altura.", ".$superficie_alar.", ".$flecha_alar.", ".$peso_max.", ".$alcance.", ".$velocidad_max.", ".$techo_servicio.", ".$regimen_ascenso.", ".$numero_pasillos.", '".$fuselaje_tipo."', ".$fuselaje_altura.", ".$fuselaje_ancho.", ".$cabina_altura.", ".$cabina_ancho.", ".$volumen_carga.", ".$capacidad_pilotos.", ".$capacidad_asistentes.", ".$carrera_despegue.", ".$tiempo_estimado.");";
+		return pg_query($conexion, $qry);
+	}
+	function editarModeloAvion( $id, $nombre, $longitud, $envergadura, $altura, $superficie_alar, $flecha_alar, $peso_max, $alcance, $velocidad_max, $techo_servicio, $regimen_ascenso, $numero_pasillos, $fuselaje_tipo, $fuselaje_altura, $fuselaje_ancho, $cabina_altura, $cabina_ancho, $volumen_carga, $capacidad_pilotos, $capacidad_asistentes, $carrera_despegue, $tiempo_estimado ){
+		global $conexion;
+		$nombre = htmlentities($nombre, ENT_QUOTES);
+		$qry = "UPDATE Modelo_avion SET am_nombre='".$nombre."', am_longitud=".$longitud.", am_envergadura=".$envergadura.", am_altura=".$altura.", am_ala_superficie=".$superficie_alar.", am_ala_flecha=".$flecha_alar.", am_peso_aterrizaje_max=".$peso_max.", am_alcance=".$alcance.", am_velocidad_max=".$velocidad_max.", am_techo_servicio=".$techo_servicio.", am_regimen_ascenso=".$regimen_ascenso.", am_numero_pasillos=".$numero_pasillos.", am_fuselaje_tipo='".$fuselaje_tipo."', am_fuselaje_altura=".$fuselaje_altura.", am_fuselaje_ancho=".$fuselaje_ancho.", am_cabina_altura=".$cabina_altura.", am_cabina_ancho=".$cabina_ancho.", am_carga_volumen=".$volumen_carga.", am_capacidad_pilotos=".$capacidad_pilotos.", am_capacidad_asistentes=".$capacidad_asistentes.", am_carrera_despegue=".$carrera_despegue.", am_tiempo_estimado=".$tiempo_estimado." WHERE am_id=".$id;
+		return pg_query($conexion, $qry);
+	}
 	function eliminarModeloAvion( $id ){
 		global $conexion;
 		$qry1 = "DELETE FROM Modelo_avion where am_id=".$id;
@@ -415,7 +427,7 @@
 				}
 			}
 		}
-		return 0;
+		return false;
 	}
 //Distribucion
 //Submodelo_avion
