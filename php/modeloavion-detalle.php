@@ -1,5 +1,9 @@
-<?php 
+<?php session_start();
 include 'conexion.php';
+if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'] = 5;} 
+$qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$_SESSION['rol']; 
+$rs = pg_query( $conexion, $qry ); $permiso = array();
+while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }
 $qry = "SELECT * FROM Modelo_avion WHERE am_id=".$_GET['id'];
 $con = pg_query($conexion, $qry);
 $modelo = pg_fetch_object($con);
@@ -165,11 +169,12 @@ $resultado = '<div class="modal-header">
 </div>
 </div>
 <div class="modal-footer">
-	<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
-	<a href="'.$modelo->am_id.'" class="click-editar btn btn-primary">Editar</a>
-</div>
+	<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>';
+	if( in_array("am_u", $permiso) )
+		$resultado.='<a href="'.$modelo->am_id.'" class="click-modelo-editar btn btn-primary">Editar</a>';
+$resultado.='</div>
 <script>
-$( "a.click-editar" ).click(function( event ) {
+$( "a.click-modelo-editar" ).click(function( event ) {
 	event.preventDefault();
 	var href = $(this).attr("href");
 	$.ajax({type: "POST",dataType: "html",url:"modeloavion-editar.php?id="+href,success: function(data){$("#editarModeloBody").html(data);}});

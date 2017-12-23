@@ -38,15 +38,13 @@
 					<!-- Form Panel    -->
 					<div class="col-lg-6 bg-white">
 						<div class="form d-flex align-items-center">
-							<form id="login-form" method="post" action="control.php">
+							<form id="login-form" method="post" action="control.php" autocomplete="off">
 								<div class="content">
 									<div class="form-group">
-										<input id="login-username" type="text" name="loginUsername" required class="input-material">
-										<label for="login-username" class="label-material">Usuario</label>
+										<input id="login-username" placeholder="Usuario" type="text" name="loginUsername" required class="input-material">
 									</div>
 									<div class="form-group">
-										<input id="login-password" type="password" name="loginPassword" required class="input-material">
-										<label for="login-password" class="label-material">Contraseña</label>  
+										<input id="login-password" placeholder="Contraseña" type="password" name="loginPassword" required class="input-material">
 									</div>
 									<a href="#" class="forgot-pass pad-top">¿Olvidaste la contraseña?</a><br><br> 
 									<button id="login" type="submit" class="btn btn-primary mar-top btn-block btn-lg">Iniciar</button> 

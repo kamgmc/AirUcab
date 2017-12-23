@@ -14,6 +14,7 @@ if(empty($_SESSION['code'])){
 		$_SESSION['nombre'] = $empleado->nombre;
 		$_SESSION['usuario'] = ucfirst(strtolower($empleado->usuario));
 		$_SESSION['cargo'] = $empleado->cargo;
+		$_SESSION['rol'] = $empleado->rol;
 		$_SESSION['code'] = "9d5e3ecdeb4cdb7acfd63075ae046672";?>
 		<meta content="0,modeloavion.php" http-equiv="refresh"/>
 	<?php 
