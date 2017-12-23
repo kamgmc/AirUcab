@@ -427,7 +427,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 										<div class="row">
 											<div class="col-sm-10"></div>
 											<div class="col-sm-2 pad-top">
-												<button type="button" data-toggle="modal" data-target="#myModalDistribucionCrear" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
+												<button type="button" data-toggle="modal" data-target="#ModalCrearDistribucion" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
 											</div>
 										</div>
 										<?php } ?>
@@ -473,12 +473,14 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 																<?php print number_format($avion->a_asientos, 1, ',', '.')." cm";?>
 															</td>
 															<td class="text-center">
-																<a href="" data-toggle="modal" data-target="#myModalDetalleDistribucion"> 
-																	<i title="Ver mas" class="fa fa-file-text-o" aria-hidden="true"></i> 
-																</a>&emsp;
+																<a class="click-distribucion-detalle" href="<?php print $avion->id;?>"> 
+																	<i class="fa fa-file-text-o" aria-hidden="true" title="Ver mas"></i> 
+																</a>
+																<?php if( in_array("di_d", $permiso) ){ ?>&emsp;
 																<a href="distribucion-crud.php?delete=<?php print $avion->id;?>"> 
 																	<i title="Eliminar" class="fa fa-trash-o" aria-hidden="true"></i> 
 																</a>
+																<?php }?>
 															</td>
 														</tr>
 														<?php }?>
@@ -825,7 +827,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 											</div>
 											<div class="modal-footer">
 												<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
-												<button type="submit" class="btn btn-primary">Guardar Cambios</button>
+												<button type="submit" class="btn btn-primary">Crear</button>
 											</div>
 										</form>
 									</div>
@@ -848,395 +850,111 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 								</div>
 							</div>
 							<!-- Modal Submodelo Avion Editar ENDS -->
-							<!-- Modal Detalle Ditribucion Avion -->
-							<div id="myModalDetalleDistribucion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
-								<div role="document" class="modal-dialog modal-xl">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h4 id="exampleModalLabel" class="modal-title">DETALLE DISTRIBUCION AVION</h4>
-											<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-										</div>
-										<div class="modal-body">
-											<div class="container-fluid">
-												<div class="row">
-													<div class="card col-lg-12">
-														<div class="row">
-															<!-- Columna Izquierda   -->
-															<div class="card-body col-lg-6">
-																<div class="row">
-																	<div class="col-lg-4">
-																		<h3>Modelo Avion</h3> </div>
-																	<div class="col-lg-8"> AU80 </div>
-																</div>
-																<div class="row">
-																	<div class="col-lg-4">
-																		<h3>ID</h3> </div>
-																	<div class="col-lg-8"> 001 </div>
-																</div>
-																<div class="row">
-																	<div class="col-lg-4">
-																		<h3>Nombre</h3> </div>
-																	<div class="col-lg-8"> LW </div>
-																</div>
-																<div class="row">
-																	<div class="col-lg-4">
-																		<h3>Numero Clases</h3> </div>
-																	<div class="col-lg-8"> 15 </div>
-																</div>
-																<div class="row">
-																	<div class="col-lg-4">
-																		<h3>Capacidad Pasajeros</h3> </div>
-																	<div class="col-lg-8"> 20 </div>
-																</div>
-																<div class="row">
-																	<div class="col-lg-4">
-																		<h3>Distancia Asientos</h3> </div>
-																	<div class="col-lg-8"> 15 </div>
-																</div>
-																<div class="row">
-																	<div class="col-lg-4">
-																		<h3>Ancho Asientos</h3> </div>
-																	<div class="col-lg-8"> 15 </div>
-																</div>
-															</div>
-															<!-- Columna izquierda ENDS -->
-															<!-- Columna derecha -->
-															<div class=" card-body col-lg-6">
-																<div class="row">
-																	<div class="col-lg-3">
-																		<h3>Nota</h3> </div>
-																	<div class="col-lg-9"> Emlpeado destacado en desarrollo y busqueda.
-																		<br> Leal a la compania. </div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="modal-footer">
-											<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
-											<button type="button" data-toggle="modal" data-target="#myModalDistribucionEditar" class="btn btn-primary">Editar</button>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- Modal Detalle Distribucion Avion ENDS -->
-							
-							<!-- Modal Distribucion Avion Editar -->
-							<div id="myModalDistribucionEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
-								<div role="document" class="modal-dialog modal-xl">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h4 id="exampleModalLabel" class="modal-title">DISTRIBUCION AVION</h4>
-											<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-										</div>
-										<div class="modal-body">
-											<div class="container-fluid">
-												<div class="row">
-													<div class="card col-lg-12">
-														<div class="row">
-															<div class="card-body col-lg-6">
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Modelo Avion</h3> </label>
-																	<div class="col-sm-9 select">
-																		<select name="account" class="form-control">
-																			<option>AU80</option>
-																			<option>AU90</option>
-																			<option>AU98</option>
-																		</select>
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>ID</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" disabled="" placeholder="No modificable" class="form-control"> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Nombre</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" placeholder="Introduzca Nombre" class="form-control"> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Numero Clases</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" placeholder="Introduzca Numero Clases" class="form-control"> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Capacidad Pasajeros</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" placeholder="Introduzca Capacidad Pasajeros" class="form-control"> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Distancia Asientos</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" placeholder="Introduzca Distancia Asientos" class="form-control"> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Acho Asientos</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" placeholder="Introduzca Ancho Asientos" class="form-control"> </div>
-																</div>
-															</div>
-															<div class=" card-body col-lg-6">
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Nota</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" placeholder="Aqui puedes escribir..." class="form-control form-control-lg" rows="4" cols="50"> </div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="modal-footer">
-											<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
-											<button type="button" class="btn btn-primary">Guardar Cambios</button>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- Modal Distribucion Avion Editar ENDS -->
 							<!-- Modal Distribucion Avion Crear -->
-							<div id="myModalDistribucionCrear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+							<div id="ModalCrearDistribucion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 								<div role="document" class="modal-dialog modal-xl">
 									<div class="modal-content">
-										<div class="modal-header">
-											<h4 id="exampleModalLabel" class="modal-title">DISTRIBUCION AVION</h4>
-											<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-										</div>
-										<div class="modal-body">
-											<div class="container-fluid">
-												<div class="row">
-													<div class="card col-lg-12">
-														<div class="row">
-															<div class="card-body col-lg-6">
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Modelo Avion</h3> </label>
-																	<div class="col-sm-9 select">
-																		<select name="account" class="form-control">
-																			<option>AU80</option>
-																			<option>AU90</option>
-																			<option>AU98</option>
-																		</select>
+										<form action="distribucion-crud.php?create=true" method="post">
+											<div class="modal-header">
+												<h4 id="exampleModalLabel" class="modal-title">Crear Distribución de Avión</h4>
+												<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+											</div>
+											<div class="modal-body">
+												<div class="container-fluid">
+													<div class="row">
+														<div class="card col-lg-12">
+															<div class="row">
+																<div class="card-body col-lg-6">
+																	<div class="form-group row">
+																		<label class="col-sm-3 form-control-label">
+																			<h4>Modelo de Avión</h4>
+																		</label>
+																		<div class="col-sm-9 select">
+																			<select name="modelo" class="form-control">
+																				<option value="NULL">Seleccionar</option>
+																				<?php $qry = "SELECT am_id AS id, am_nombre AS nombre FROM Modelo_avion";
+																				$rs = pg_query( $conexion, $qry );
+																				while( $modelo = pg_fetch_object($rs) ){?>
+																				<option value="<?php print $modelo->id;?>">
+																					<?php print $modelo->nombre;?>
+																				</option>
+																				<?php }?>
+																			</select>
+																		</div>
+																	</div>
+																	<div class="form-group row">
+																		<label class="col-sm-3 form-control-label">
+																			<h4>Nombre</h4>
+																		</label>
+																		<div class="col-sm-9">
+																			<input name="nombre" type="text" placeholder="Introduzca Nombre" class="form-control" required>
+																		</div>
+																	</div>
+																	<div class="form-group row">
+																		<label class="col-sm-3 form-control-label">
+																			<h4>Capacidad de Pasajeros</h4>
+																		</label>
+																		<div class="col-sm-9">
+																			<input name="capacidad_pasajeros" type="text" placeholder="Introduzca Capacidad de Pasajeros" class="form-control" pattern="\d+" required>
+																		</div>
 																	</div>
 																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>ID</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" disabled="" placeholder="No modificable" class="form-control"> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Nombre</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" placeholder="Introduzca Nombre" class="form-control"> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Numero Clases</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" placeholder="Introduzca Numero Clases" class="form-control"> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Capacidad Pasajeros</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" placeholder="Introduzca Capacidad Pasajeros" class="form-control"> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Distancia Asientos</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" placeholder="Introduzca Distancia Asientos" class="form-control"> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Acho Asientos</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" placeholder="Introduzca Ancho Asientos" class="form-control"> </div>
-																</div>
-															</div>
-															<div class=" card-body col-lg-6">
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Nota</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" placeholder="Aqui puedes escribir..." class="form-control form-control-lg" rows="4" cols="50"> </div>
+																<div class=" card-body col-lg-6">
+																	<div class="form-group row">
+																		<label class="col-sm-3 form-control-label">
+																			<h4>Numero de Clases</h4>
+																		</label>
+																		<div class="col-sm-9">
+																			<input name="numero_clases" type="text" placeholder="Introduzca Numero de Clases" class="form-control" pattern="\d+" required>
+																		</div>
+																	</div>
+																	<div class="form-group row">
+																		<label class="col-sm-3 form-control-label">
+																			<h4>Distancia entre Asientos</h4>
+																		</label>
+																		<div class="col-sm-9">
+																			<input name="distancia_asientos" type="text" placeholder="Introduzca Distancia entre Asientos" class="form-control" pattern="\d+\.?\d{0,2}" required>
+																		</div>
+																	</div>
+																	<div class="form-group row">
+																		<label class="col-sm-3 form-control-label">
+																			<h4>Acho de Asientos</h4>
+																		</label>
+																		<div class="col-sm-9">
+																			<input name="ancho_asientos" type="text" placeholder="Introduzca Ancho de Asientos" class="form-control" pattern="\d+\.?\d{0,2}" required>
+																		</div>
+																	</div>
 																</div>
 															</div>
 														</div>
 													</div>
 												</div>
 											</div>
-										</div>
-										<div class="modal-footer">
-											<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
-											<button type="button" class="btn btn-primary">Guardar Cambios</button>
-										</div>
+											<div class="modal-footer">
+												<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
+												<button type="submit" class="btn btn-primary">Crear</button>
+											</div>
+										</form>
 									</div>
 								</div>
 							</div>
 							<!-- Modal Distribucion Avion Crear ENDS -->
-							<!-- Modal Venta Crear -->
-							<div id="myModalVentaCrear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+							<!-- Modal Detalle Ditribucion Avion -->
+							<div id="ModalDetalleDistribucion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 								<div role="document" class="modal-dialog modal-xl">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h4 id="exampleModalLabel" class="modal-title">VENTA</h4>
-											<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-										</div>
-										<div class="modal-body">
-											<div class="container-fluid">
-												<div class="row">
-													<div class="card col-lg-12">
-														<div class="row">
-															<div class="card-body col-lg-6">
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Factura Venta</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" disabled="" placeholder="No modificable" class="form-control"> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>ESTATUS</h3> </label>
-																	<!-- Traer de la tabla de Status las opciones -->
-																	<!-- Creo que su seleccion deberia ser automatica por parte del sistema solo en este caso porque este pasa a -->
-																	<!-- finalizado cuando los otros STATUS de cada material y cada avion comprado pasan a Finalizado -->
-																	<div class="col-sm-9 select">
-																		<select name="account" class="form-control">
-																			<option>En Progreso</option>
-																			<option>Evaluacion</option>
-																			<option>Distribucion</option>
-																			<option>Finalizado</option>
-																		</select>
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Cliente</h3> </label>
-																	<!-- Traer de la tabla de clientes las opciones -->
-																	<div class="col-sm-9 select">
-																		<select name="account" class="form-control">
-																			<option>Lex Fdz</option>
-																			<option>Alexander K</option>
-																			<option>Kevin M</option>
-																			<option>Boris Tor</option>
-																		</select>
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>CI/RIF Cliente</h3> </label>
-																	<!-- Se debe rellenar automaticamente despues de seleccionar al cliente -->
-																	<div class="col-sm-9">
-																		<input type="text" disabled="" placeholder="No modificable" class="form-control"> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Modelo Avion</h3> </label>
-																	<!-- Traer de la tabla de modelo avion las opciones -->
-																	<div class="col-sm-9 select">
-																		<select name="account" class="form-control">
-																			<option>AU80</option>
-																			<option>Au808</option>
-																			<option>AU988</option>
-																		</select>
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Submodelo Avion</h3> </label>
-																	<!-- Traer de la tabla de submodelo avion las opciones -->
-																	<div class="col-sm-9 select">
-																		<select name="account" class="form-control">
-																			<option>LW</option>
-																			<option>Standar</option>
-																			<option>Big</option>
-																		</select> <span class="help-block-none"><small>Seleccionar Modelo Avion primero.</small></span> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Distribucion</h3> </label>
-																	<!-- Traer de la tabla de distribucion avion las opciones -->
-																	<div class="col-sm-9 select">
-																		<select name="account" class="form-control">
-																			<option>Civil</option>
-																			<option>Militar</option>
-																			<option>Empresarial</option>
-																		</select> <span class="help-block-none"><small>Seleccionar Modelo Avion primero.</small></span> </div>
-																</div>
-															</div>
-															<div class=" card-body col-lg-6">
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Cantidad</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" placeholder="Introduzca cantidad de Aviones" class="form-control"> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Precio Unitario</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" placeholder="Introduzca precio por Avion" class="form-control"> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Fecha Inicio</h3> </label>
-																	<!-- Esto podemos hacerlo automatizado, que salve la fecha de creacion como fecha inicio -->
-																	<div class="col-sm-9">
-																		<input type="text" placeholder="Introduzca Fecha Inicio" class="form-control"> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Fecha Final</h3> </label>
-																	<!-- Esto es OBLIGATORIAMENTE AUTOMATICO cuando el STATUS cambie a finalizado -->
-																	<div class="col-sm-9">
-																		<input type="text" disabled="" placeholder="No modificable" class="form-control"> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Tipo de Pago</h3> </label>
-																	<div class="col-sm-9 select">
-																		<select name="account" class="form-control">
-																			<option>Transfencia</option>
-																			<!-- La opcion TDC deberia expandir otros requerimientos, pero esto lo dejare para cuando implementemos el -->
-																			<!-- hardcore de JS y PHP (2da entrega)-->
-																			<option>TDC</option>
-																		</select> <span class="help-block-none"><small>Seleccionar Modelo Avion primero.</small></span> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Nota</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" placeholder="Aqui puedes escribir..." class="form-control form-control-lg" rows="4" cols="50"> </div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="modal-footer">
-											<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
-											<button type="button" class="btn btn-primary">Guardar Cambios</button>
-										</div>
+									<div id="detalleDistribucionBody" class="modal-content">
 									</div>
 								</div>
 							</div>
-							<!-- Modal Venta Crear ENDS -->
+							<!-- Modal Detalle Distribucion Avion ENDS -->
+							<!-- Modal Distribucion Avion Editar -->
+							<div id="ModalEditarDistribucion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+								<div role="document" class="modal-dialog modal-xl">
+									<div id="editarDistribucionBody" class="modal-content">
+									</div>
+								</div>
+							</div>
+							<!-- Modal Distribucion Avion Editar ENDS -->
 						</div>
 					</section>
 					<!-- Section de TABS ENDS -->
@@ -1275,6 +993,12 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 			  	var href = $(this).attr('href');
 				$.ajax({type: "POST",dataType: "html",url:"submodeloavion-detalle.php?id="+href,success: function(data){$("#detalleSubmodeloBody").html(data);}});
 				$("#ModalDetalleSubmodelo").modal('toggle');
+			});
+			$( "a.click-distribucion-detalle" ).click(function( event ) {
+			  	event.preventDefault();
+			  	var href = $(this).attr('href');
+				$.ajax({type: "POST",dataType: "html",url:"distribucion-detalle.php?id="+href,success: function(data){$("#detalleDistribucionBody").html(data);}});
+				$("#ModalDetalleDistribucion").modal('toggle');
 			});
 		</script>
 	</body>
