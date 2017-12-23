@@ -2067,7 +2067,7 @@ INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(5,82);
 --TIPO_CONTACTO
 INSERT INTO Tipo_contacto (ct_nombre) VALUES ('Movil');
 INSERT INTO Tipo_contacto (ct_nombre) VALUES ('Fijo');
-INSERT INTO Tipo_contacto (ct_nombre) VALUES ('Correo electonico');
+INSERT INTO Tipo_contacto (ct_nombre) VALUES ('Email');
 INSERT INTO Tipo_contacto (ct_nombre) VALUES ('Twitter');
 INSERT INTO Tipo_contacto (ct_nombre) VALUES ('Fax');
 --SEDES
