@@ -1751,6 +1751,12 @@ INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear traslado','tr_c');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver traslado','tr_r');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar traslado','tr_u');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar traslado','tr_d');
+--ROLES DE SISTEMA
+INSERT INTO Rol_sistema (sr_nombre) VALUES ('Administrador');
+INSERT INTO Rol_sistema (sr_nombre) VALUES ('Gerente');
+INSERT INTO Rol_sistema (sr_nombre) VALUES ('Supervisor');
+INSERT INTO Rol_sistema (sr_nombre) VALUES ('Empleado');
+INSERT INTO Rol_sistema (sr_nombre) VALUES ('Usuario Anónimo');
 --ROL_PERMISO
 --ADMINISTRADOR
 INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,1);
@@ -2086,12 +2092,6 @@ INSERT INTO Cargo (er_nombre) VALUES ('Vigilante');
 INSERT INTO Cargo (er_nombre) VALUES ('Ensamblador');
 INSERT INTO Cargo (er_nombre) VALUES ('Tester');
 INSERT INTO Cargo (er_nombre) VALUES ('Administrador');
---ROLES DE SISTEMA
-INSERT INTO Rol_sistema (sr_nombre) VALUES ('Administrador');
-INSERT INTO Rol_sistema (sr_nombre) VALUES ('Gerente');
-INSERT INTO Rol_sistema (sr_nombre) VALUES ('Supervisor');
-INSERT INTO Rol_sistema (sr_nombre) VALUES ('Empleado');
-INSERT INTO Rol_sistema (sr_nombre) VALUES ('Usuario Anónimo');
 --TITULACIÓN
 INSERT INTO Titulacion (ti_nombre) VALUES ('Ingeniero');
 INSERT INTO Titulacion (ti_nombre) VALUES ('TSU');
