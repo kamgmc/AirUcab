@@ -75,11 +75,6 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 						<?php } ?>
 							<!-- Sidebar Navidation Menus-->
 							<ul class="list-unstyled">
-								<?php if( in_array("am_r", $permiso) || in_array("as_r", $permiso) || in_array("di_r", $permiso) ){ ?>
-								<li class="active">
-									<a href="modeloavion.php"> <i class="fa fa-plane" aria-hidden="true"></i> Aviones </a>
-								</li>
-								<?php }?>
 								<?php if( in_array("em_r", $permiso) ){ ?>
 								<li>
 									<a href="empleados.php"><i class="icon-man-people-streamline-user"></i>Empleados</a>
@@ -103,6 +98,11 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 								<?php if( in_array("fc_r", $permiso) ){ ?>
 								<li>
 									<a href="compras.php"> <i class="fa fa-cog" aria-hidden="true"></i>Compras </a>
+								</li>
+								<?php }?>
+								<?php if( in_array("am_r", $permiso) || in_array("as_r", $permiso) || in_array("di_r", $permiso) ){ ?>
+								<li class="active">
+									<a href="modeloavion.php"> <i class="fa fa-plane" aria-hidden="true"></i> Aviones </a>
 								</li>
 								<?php }?>
 							</ul>
