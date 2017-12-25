@@ -30,6 +30,9 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 		<link rel="stylesheet" href="css/custom.css">
 		<!-- Favicon-->
 		<link rel="shortcut icon" href="favicon.png"> </head>
+		<!-- Dissmisable Alerts -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 	<body>
 		<div class="page home-page">
@@ -107,7 +110,21 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 								<?php }?>
 							</ul>
 				</nav>
+
+
 				<div class="content-inner">
+
+
+					<!-- Alert (usar a gusto) -->
+					<div class="alert alert-danger alert-dismissible fade show" role="alert">
+					  <strong>Holy guacamole!</strong> Funciono, usalo, no necesitas agregar mucho, solo el activation.
+					  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					    <span aria-hidden="true">&times;</span>
+					  </button>
+					</div>
+
+
+
 					<!-- Section de TABS-->
 					<section>
 						<div class="container-fluid">
@@ -1000,6 +1017,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 				$.ajax({type: "POST",dataType: "html",url:"distribucion-detalle.php?id="+href,success: function(data){$("#detalleDistribucionBody").html(data);}});
 				$("#ModalDetalleDistribucion").modal('toggle');
 			});
+			
 		</script>
 	</body>
 
