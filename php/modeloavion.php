@@ -30,9 +30,6 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 		<link rel="stylesheet" href="css/custom.css">
 		<!-- Favicon-->
 		<link rel="shortcut icon" href="favicon.png"> </head>
-		<!-- Dissmisable Alerts -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 	<body>
 		<div class="page home-page">
@@ -78,9 +75,14 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 						<?php } ?>
 							<!-- Sidebar Navidation Menus-->
 							<ul class="list-unstyled">
-								<?php if( in_array("em_r", $permiso) ){ ?>
+								<?php if( in_array("am_r", $permiso) || in_array("am_c", $permiso) || in_array("as_r", $permiso) || in_array("as_c", $permiso) || in_array("di_r", $permiso) || in_array("di_c", $permiso) ){ ?>
+								<li class="active">
+									<a href="modeloavion.php"> <i class="fa fa-plane" aria-hidden="true"></i> Aviones </a>
+								</li>
+								<?php }?>
+								<?php if( in_array("em_r", $permiso) || in_array("em_c", $permiso) ){ ?>
 								<li>
-									<a href="empleados.php"><i class="icon-man-people-streamline-user"></i>Empleados</a>
+									<a href="empleados.php"><i class="fa fa-id-card-o"></i>Empleados</a>
 								</li>
 								<?php }?>
 								<?php if( in_array("cl_r", $permiso) ){ ?>
@@ -103,40 +105,38 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 									<a href="compras.php"> <i class="fa fa-cog" aria-hidden="true"></i>Compras </a>
 								</li>
 								<?php }?>
-								<?php if( in_array("am_r", $permiso) || in_array("as_r", $permiso) || in_array("di_r", $permiso) ){ ?>
-								<li class="active">
-									<a href="modeloavion.php"> <i class="fa fa-plane" aria-hidden="true"></i> Aviones </a>
-								</li>
-								<?php }?>
 							</ul>
 				</nav>
-
-
 				<div class="content-inner">
-
-
-					<!-- Alert (usar a gusto) -->
-					<div class="alert alert-danger alert-dismissible fade show" role="alert">
-					  <strong>Holy guacamole!</strong> Funciono, usalo, no necesitas agregar mucho, solo el activation.
-					  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					    <span aria-hidden="true">&times;</span>
-					  </button>
+					<?php if(isset($_GET['error'])){?>
+					<!-- Alert -->
+					<div class="alert alert-danger alert-dismissible fade show" role="alert"> 
+						<?php if($_GET['error']==1){?>Error al crear <strong>Modelo de Avión</strong>.<?php }?>
+						<?php if($_GET['error']==2){?>Error al editar <strong>Modelo de Avión</strong>.<?php }?>
+						<?php if($_GET['error']==3){?>Error al eliminar <strong>Modelo de Avión</strong>.<?php }?>
+						<?php if($_GET['error']==4){?>Error al crear <strong>Submodelo de Avión</strong>.<?php }?>
+						<?php if($_GET['error']==5){?>Error al editar <strong>Submodelo de Avión</strong>.<?php }?>
+						<?php if($_GET['error']==6){?>Error al eliminar <strong>Submodelo de Avión</strong>.<?php }?>
+						<?php if($_GET['error']==7){?>Error al crear <strong>Distribución de Avión</strong>.<?php }?>
+						<?php if($_GET['error']==8){?>Error al editar <strong>Distribución de Avión</strong>.<?php }?>
+						<?php if($_GET['error']==9){?>Error al eliminar <strong>Distribución de Avión</strong>.<?php }?>
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
 					</div>
-
-
-
+					<?php }?>
 					<!-- Section de TABS-->
 					<section>
 						<div class="container-fluid">
-							<?php if( in_array("am_r", $permiso) ){?>
+							<?php if( in_array("am_r", $permiso) || in_array("am_c", $permiso) ){?>
 							<input id="tab0" type="radio" name="tabs" class="no-display" <?php if( !isset($_GET['tab']) ) print "checked";?>>
 							<label for="tab0" class="label"><i class="fa fa-plane" aria-hidden="true"></i> Modelos Aviones</label>
 							<?php }?>
-							<?php if( in_array("as_r", $permiso) ){?>
+							<?php if( in_array("as_r", $permiso) || in_array("as_c", $permiso) ){?>
 							<input id="tab1" type="radio" name="tabs" class="no-display" <?php if( $_GET['tab'] == "submodelo" ) print "checked";?>>
 							<label for="tab1" class="label"><i class="fa fa-rocket" aria-hidden="true"></i> Submodelos Aviones</label>
 							<?php }?>
-							<?php if( in_array("di_r", $permiso) ){?>
+							<?php if( in_array("di_r", $permiso) || in_array("di_c", $permiso) ){?>
 							<input id="tab2" type="radio" name="tabs" class="no-display" <?php if( $_GET['tab'] == "distribucion" ) print "checked";?>>
 							<label for="tab2" class="label"><i class="fa fa-fighter-jet" aria-hidden="true"></i> Distribucion</label>
 							<?php }?>
@@ -205,6 +205,11 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 											</div>
 										</div>
 										<?php } ?>
+										<?php if( in_array("am_r", $permiso) ){?>
+										<?php $qry = "SELECT am_id id, am_nombre nombre, am_longitud longitud, am_altura altura, am_envergadura envergadura, am_velocidad_max velocidad, am_carga_volumen carga, am_capacidad_pilotos pilotos, am_capacidad_asistentes asistentes, am_tiempo_estimado tiempo FROM Modelo_avion ORDER BY am_id";
+										$rs = pg_query( $conexion, $qry );
+										$howMany = pg_num_rows($rs);
+										if( $howMany > 0 ){?>
 										<div class="card-body table-overflow">
 											<table class="table table-striped table-sm table-hover pad-right">
 												<thead>
@@ -224,8 +229,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 												</thead>
 												<tbody>
 													<?php 	
-														$qry = "SELECT am_id id, am_nombre nombre, am_longitud longitud, am_altura altura, am_envergadura envergadura, am_velocidad_max velocidad, am_carga_volumen carga, am_capacidad_pilotos pilotos, am_capacidad_asistentes asistentes, am_tiempo_estimado tiempo FROM Modelo_avion ORDER BY am_id";
-														$rs = pg_query( $conexion, $qry );
+														
 														while( $avion = pg_fetch_object($rs) ){?>
 														<tr>
 															<td class="text-center text-middle">
@@ -272,6 +276,9 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 												</tbody>
 											</table>
 										</div>
+										<?php }else{?>
+										<h3>&emsp;No se han encontrado resultados.</h3>
+										<?php }}?>
 									</div>
 								</div>
 								<!-- TABLE ENDS -->
@@ -327,6 +334,11 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 											</div>
 										</div>
 										<?php } ?>
+										<?php if( in_array("as_r", $permiso) ){?>
+										<?php $qry = "SELECT as_id id, am_nombre ||' - '|| as_nombre as modelo, as_peso_maximo_despegue peso_max, as_peso_vacio peso_vacio, as_velocidad_crucero crucero, as_carrera_despegue_peso_maximo carrera, as_autonomia_peso_maximo_despegue autonomia, as_capacidad_combustible combustible, as_alcance_carga_maxima alcance FROM Submodelo_avion, Modelo_avion where as_modelo_avion=am_id ORDER BY am_id, as_id";
+										$rs = pg_query( $conexion, $qry );
+										$howMany = pg_num_rows($rs);
+										if( $howMany > 0 ){?>
 										<div class="card-body table-overflow">
 											<table class="table table-striped table-sm table-hover pad-right">
 												<thead>
@@ -346,10 +358,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 													</tr>
 												</thead>
 												<tbody>
-													<?php 	
-												$qry = "SELECT as_id id, am_nombre ||' - '|| as_nombre as modelo, as_peso_maximo_despegue peso_max, as_peso_vacio peso_vacio, as_velocidad_crucero crucero, as_carrera_despegue_peso_maximo carrera, as_autonomia_peso_maximo_despegue autonomia, as_capacidad_combustible combustible, as_alcance_carga_maxima alcance FROM Submodelo_avion, Modelo_avion where as_modelo_avion=am_id ORDER BY am_id, as_id";
-												$rs = pg_query( $conexion, $qry );
-												while( $avion = pg_fetch_object($rs) ){?>
+													<?php while( $avion = pg_fetch_object($rs) ){?>
 														<tr>
 															<td class="text-center text-middle">
 																<?php print $avion->id;?>
@@ -393,6 +402,9 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 												</tbody>
 											</table>
 										</div>
+										<?php }else{?>
+										<h3>&emsp;No se han encontrado resultados.</h3>
+										<?php }}?>
 									</div>
 								</div>
 								<!-- TABLE ENDS -->
@@ -440,7 +452,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 								<!-- TABLE STARTS -->
 								<div class="col-md-12">
 									<div class="card">
-										<?php if( isset($_SESSION['code']) ){ ?>
+										<?php if( in_array("di_c", $permiso) ){ ?>
 										<div class="row">
 											<div class="col-sm-10"></div>
 											<div class="col-sm-2 pad-top">
@@ -448,6 +460,11 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 											</div>
 										</div>
 										<?php } ?>
+										<?php if( in_array("di_r", $permiso) ){?>
+										<?php $qry = "SELECT di_id id, am_nombre modelo, di_nombre distribucion, di_numero_clases clases, di_capacidad_pasajeros capacidad, di_distancia_asientos d_asientos, di_ancho_asientos a_asientos FROM Distribucion, Modelo_avion where di_modelo_avion=am_id ORDER BY am_id, di_id";
+										$rs = pg_query( $conexion, $qry );
+										$howMany = pg_num_rows($rs);
+										if( $howMany > 0 ){?>
 										<div class="card-body table-overflow">
 											<table class="table table-striped table-sm table-hover pad-right">
 												<thead>
@@ -463,10 +480,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 													</tr>
 												</thead>
 												<tbody>
-													<?php 	
-												$qry = "SELECT di_id id, am_nombre modelo, di_nombre distribucion, di_numero_clases clases, di_capacidad_pasajeros capacidad, di_distancia_asientos d_asientos, di_ancho_asientos a_asientos FROM Distribucion, Modelo_avion where di_modelo_avion=am_id ORDER BY am_id, di_id";
-												$rs = pg_query( $conexion, $qry );
-												while( $avion = pg_fetch_object($rs) ){?>
+													<?php while( $avion = pg_fetch_object($rs) ){?>
 														<tr>
 															<td class="text-center text-middle">
 																<?php print $avion->id;?>
@@ -504,6 +518,9 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 												</tbody>
 											</table>
 										</div>
+										<?php }else{?>
+										<h3>&emsp;No se han encontrado resultados.</h3>
+										<?php }}?>
 									</div>
 								</div>
 								<!-- TABLE ENDS -->
@@ -1017,7 +1034,6 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 				$.ajax({type: "POST",dataType: "html",url:"distribucion-detalle.php?id="+href,success: function(data){$("#detalleDistribucionBody").html(data);}});
 				$("#ModalDetalleDistribucion").modal('toggle');
 			});
-			
 		</script>
 	</body>
 

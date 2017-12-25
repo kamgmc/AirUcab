@@ -20,22 +20,22 @@ $resultado = '<div class="modal-header">
 								<div class="card-body col-lg-6">
 									<div class="row">
 										<div class="col-lg-4">
-											<h3>ID</h3> </div>
+											<h4>ID</h4> </div>
 										<div class="col-lg-8">'.$distribucion->di_id.'</div>
 									</div>
 									<div class="row">
 										<div class="col-lg-4">
-											<h3>Nombre</h3> </div>
+											<h4>Nombre</h4> </div>
 										<div class="col-lg-8">'.$distribucion->di_nombre.'</div>
 									</div>
 									<div class="row">
 										<div class="col-lg-4">
-											<h3>Modelo de Avión</h3> </div>
+											<h4>Modelo de Avión</h4> </div>
 										<div class="col-lg-8">'.$distribucion->modelo.'</div>
 									</div>
 									<div class="row">
 										<div class="col-lg-4">
-											<h3>Numero de Clases</h3> </div>
+											<h4>Numero de Clases</h4> </div>
 										<div class="col-lg-8">'.$distribucion->di_numero_clases.'</div>
 									</div>
 								</div>
@@ -44,17 +44,17 @@ $resultado = '<div class="modal-header">
 								<div class=" card-body col-lg-6">
 									<div class="row">
 										<div class="col-lg-4">
-											<h3>Capacidad de Pasajeros</h3> </div>
+											<h4>Capacidad de Pasajeros</h4> </div>
 										<div class="col-lg-8">'.$distribucion->di_capacidad_pasajeros.'</div>
 									</div>
 									<div class="row">
 										<div class="col-lg-4">
-											<h3>Distancia entre Asientos</h3> </div>
+											<h4>Distancia entre Asientos</h4> </div>
 										<div class="col-lg-8">'.number_format($distribucion->di_distancia_asientos, 1, ',', '.')." cm".'</div>
 									</div>
 									<div class="row">
 										<div class="col-lg-4">
-											<h3>Ancho de Asientos</h3> </div>
+											<h4>Ancho de Asientos</h4> </div>
 										<div class="col-lg-8">'.number_format($distribucion->di_ancho_asientos, 1, ',', '.')." cm".'</div>
 									</div>
 								</div>

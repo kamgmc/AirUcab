@@ -14,10 +14,10 @@
 	}
 	if(isset($_GET['delete'])){
 		$id = $_GET['delete'];
-		if(eliminarModeloAvion($id))
-			header('Location: ' . $_SERVER['HTTP_REFERER']);
-		else
-			header('Location: modeloavion.php?error=3');
+		eliminarModeloAvion($id);
+		//	header('Location: ' . $_SERVER['HTTP_REFERER']);
+		//else
+		//	header('Location: modeloavion.php?error=3');
 	}
 	exit;
 ?>
