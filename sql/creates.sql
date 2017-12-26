@@ -74,8 +74,8 @@ create table Empleado(
 	em_rol integer not null,
 	em_zona integer not null,
 	em_direccion integer not null,
-	em_supervisa integer,
-	em_gerencia integer,
+	em_supervisa boolean not null,
+	em_gerencia boolean not null,
 	em_nota text,
 	constraint Pk_empleado primary key(em_id),
 	constraint Check_em_nacionalidad check(em_nacionalidad IN ('V','E','P')),
@@ -84,9 +84,7 @@ create table Empleado(
 	constraint Fk_em_cargo foreign key(em_cargo) references Cargo (er_id),
 	constraint Fk_em_rol foreign key(em_rol) references Rol_sistema(sr_id),
 	constraint Fk_em_zona foreign key(em_zona) references Zona(zo_id),
-	constraint Fk_em_direccion foreign key(em_direccion) references Lugar(lu_id),
-	constraint Fk_em_supervisa foreign key(em_supervisa) references Zona(zo_id),
-	constraint Fk_em_gerencia foreign key(em_gerencia) references Sede(se_id)
+	constraint Fk_em_direccion foreign key(em_direccion) references Lugar(lu_id)
 );
 create unique index Em_cedula on Empleado (em_nacionalidad,em_ci);
 create table Beneficiario(
