@@ -60,6 +60,9 @@
 				</div>
 				<!-- Sidebar Navidation Menus-->
 				<ul class="list-unstyled">
+					<li>
+						<a href="modeloavion.php"> <i class="fa fa-plane" aria-hidden="true"></i> Aviones </a>
+					</li>
 					<li> <a href="empleados.php"><i class="icon-man-people-streamline-user"></i>Empleados</a></li>
 					<li>
 						<a href="clientes.php"> <i class="fa fa-address-book-o" aria-hidden="true"></i>Clientes</a>
@@ -73,9 +76,7 @@
 					<li class="active">
 						<a href="compras.php"> <i class="fa fa-cog" aria-hidden="true"></i>Compras </a>
 					</li>
-					<li>
-						<a href="modeloavion.php"> <i class="fa fa-plane" aria-hidden="true"></i> Aviones </a>
-					</li>
+					
 				</ul>
 			</nav>
 			<div class="content-inner">
