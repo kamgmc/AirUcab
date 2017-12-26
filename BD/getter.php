@@ -62,6 +62,43 @@
 			</div>
 		</div>';
 	}
+	if($_GET['get'] == "fieldBeneficiario"){
+		$resultado = '<div class="form-group row last-beneficiario">
+			<div class="col-sm-3"></div>
+			<div class="col-sm-9">
+				<input name="nombre_beneficiario[]" type="text" placeholder="Introduzca Nombre" class="form-control" >
+			</div>
+			<div class="col-sm-3"></div>
+			<div class="col-sm-9">
+				<input name="apellido_beneficiario[]" type="text" placeholder="Introduzca Apellido" class="form-control" >
+			</div>
+			<div class="col-sm-3"></div>
+			<div class="col-sm-2 select">
+				<select name="nacionalidad_beneficiario[]" class="form-control" >
+					<option value="V">V</option>
+					<option value="E">E</option>
+					<option value="P">P</option>
+				</select>
+			</div>
+			<div class="col-sm-7">
+				<input name="ci_beneficiario[]" type="text" placeholder="Introduzca CI" class="form-control" pattern="\d+" >
+				<span class="help-block-none">
+					<small>Introduzca unicamente el número.</small>
+				</span> 
+			</div>
+		</div>';
+	}
+	if($_GET['get'] == "fieldExperiencia"){
+		$resultado = '<div class="form-group row last-experiencia">
+			<div class="col-sm-3"></div>
+			<div class="col-sm-7">
+				<input name="experiencia_desc[]" type="text" placeholder="Descripción de Experiencia" class="form-control" > 
+			</div>
+			<div class="col-md-2">
+				<input name="experiencia_year[]" type="text" placeholder="Años" class="form-control" pattern="\d+\.?\d{0,2}" > 
+			</div>
+		</div>';
+	}
 	if($_GET['get'] == "cl_rif"){
 		$id = $_GET['id'];
 		$qry = "SELECT cl_tipo_rif AS tipo, cl_rif AS rif FROM Cliente WHERE cl_id=".$id;

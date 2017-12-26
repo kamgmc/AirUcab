@@ -241,6 +241,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 							<div id="ModalCrearEmpleado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 								<div role="document" class="modal-dialog modal-xl">
 									<div class="modal-content">
+									<form action="empleado-crud?create=true" method="post">
 										<div class="modal-header">
 											<h4 id="exampleModalLabel" class="modal-title">Crear Empleado</h4>
 											<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
@@ -409,6 +410,13 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 																			<?php }?>
 																		</select>
 																	</div>
+																	<div class="col-sm-3"></div>
+																	<div class="form-check col-sm-9">
+																		<label class="form-check-label">
+																		  	<input id="check-gerente" name="gerencia" type="checkbox" class="form-check-input">
+																		  	Es gerente de esta sede
+																		</label>
+																	</div>
 																</div>
 																<div class="form-group row">
 																	<label class="col-sm-3 form-control-label">
@@ -417,6 +425,13 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 																	<div class="col-sm-9 select">
 																		<select id="list-zonas" name="zona" class="form-control" disabled required>
 																		</select>
+																	</div>
+																	<div class="col-sm-3"></div>
+																	<div class="form-check col-sm-9">
+																		<label class="form-check-label">
+																		  	<input id="check-supervisor" name="supervisa" type="checkbox" class="form-check-input">
+																		  	Es supervisor de esta zona
+																		</label>
 																	</div>
 																</div>
 																<div class="form-group row">
@@ -447,57 +462,24 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 																		<i id="add-contacto" class="fa fa-plus"></i>&emsp;
 																	</div>
 																</div>
-																<div class="form-group row">
+																<div class="form-group row last-beneficiario">
 																	<label class="col-sm-3 form-control-label">
 																		<h4>Beneficiarios</h4> 
 																	</label>
 																</div>
 																<div class="form-group row">
-																	<div class="col-sm-3"></div>
-																	<div class="col-sm-9">
-																		<input name="nombre_beneficiario[]" type="text" placeholder="Introduzca Nombre" class="form-control" required>
-																	</div>
-																	<div class="col-sm-3"></div>
-																	<div class="col-sm-9">
-																		<input name="apellido_beneficiario[]" type="text" placeholder="Introduzca Apellido" class="form-control" required>
-																	</div>
-																	<div class="col-sm-3"></div>
-																	<div class="col-sm-2 select">
-																		<select name="nacionalidad_beneficiario[]" class="form-control" required>
-																			<option value="V">V</option>
-																			<option value="E">E</option>
-																			<option value="P">P</option>
-																		</select>
-																	</div>
-																	<div class="col-sm-7">
-																		<input name="ci_beneficiario[]" type="text" placeholder="Introduzca CI" class="form-control" pattern="\d+" required>
-																		<span class="help-block-none">
-																			<small>Introduzca unicamente el número.</small>
-																		</span> 
-																	</div>
-																</div>
-																<div class="form-group row">
 																	<div class="col-sm-12 text-right">
-																		<i class="fa fa-plus"></i>&emsp;
+																		<i id="add-beneficiario" class="fa fa-plus"></i>&emsp;
 																	</div>
 																</div>
-																<div class="form-group row">
+																<div class="form-group row last-experiencia">
 																	<label class="col-sm-3 form-control-label">
 																		<h4>Experiencia</h4>
 																	</label>
 																</div>
 																<div class="form-group row">
-																	<div class="col-sm-3"></div>
-																	<div class="col-sm-7">
-																		<input name="experiencia_desc[]" type="text" placeholder="Descripción de Experiencia" class="form-control" required> 
-																	</div>
-																	<div class="col-md-2">
-																		<input name="experiencia_year[]" type="text" placeholder="Años" class="form-control" pattern="\d+\.?\d{0,2}" required> 
-																	</div>
-																</div>
-																<div class="form-group row">
 																	<div class="col-sm-12 text-right">
-																		<i class="fa fa-plus"></i>&emsp;
+																		<i id="add-experiencia" class="fa fa-plus"></i>&emsp;
 																	</div>
 																</div>
 															</div>
@@ -508,8 +490,9 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 										</div>
 										<div class="modal-footer">
 											<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
-											<button type="button" class="btn btn-primary">Guardar Cambios</button>
+											<button type="submit" class="btn btn-primary">Crear</button>
 										</div>
+										</form>
 									</div>
 								</div>
 							</div>
@@ -1360,6 +1343,42 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 					$last.after(data);
 				}
 			});
+		});
+		$("#add-beneficiario").click(function(){
+			var $last = $(".last-beneficiario");
+			$last.removeClass("last-beneficiario");
+			$.ajax({
+				type: "POST",
+				dataType: "html",
+				url:"getter.php?get=fieldBeneficiario",
+				success: function(data){
+					$last.after(data);
+				}
+			});
+		});
+		$("#add-experiencia").click(function(){
+			var $last = $(".last-experiencia");
+			$last.removeClass("last-experiencia");
+			$.ajax({
+				type: "POST",
+				dataType: "html",
+				url:"getter.php?get=fieldExperiencia",
+				success: function(data){
+					$last.after(data);
+				}
+			});
+		});
+		$('#check-gerente').click(function(){
+			if($('#check-gerente').is(':checked'))
+				$('#check-supervisor').prop('disabled', true);
+			else
+				$('#check-supervisor').prop('disabled', false);
+		});
+		$('#check-supervisor').click(function(){
+			if($('#check-supervisor').is(':checked'))
+				$('#check-gerente').prop('disabled', true);
+			else
+				$('#check-gerente').prop('disabled', false);
 		});
 	</script>
 	</body>

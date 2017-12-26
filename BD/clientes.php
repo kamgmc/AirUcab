@@ -1,5 +1,4 @@
-<?php include 'conexion.php'
-?>
+<?php include 'conexion.php'?>
 	<!DOCTYPE html>
 	<html>
 
@@ -62,9 +61,7 @@
 					</div>
 					<!-- Sidebar Navidation Menus-->
 					<ul class="list-unstyled">
-						<li><a href="modeloavion.php"> <i class="fa fa-plane" aria-hidden="true"></i> Aviones </a>
-						</li>
-						<li> <a href="empleados.php"><i class="fa fa-id-card-o"></i>Empleados</a></li>
+						<li> <a href="empleados.php"><i class="icon-man-people-streamline-user"></i>Empleados</a></li>
 						<li class="active">
 							<a href="clientes.php"> <i class="fa fa-address-book-o" aria-hidden="true"></i>Clientes</a>
 						</li>
@@ -77,6 +74,9 @@
 						<li>
 							<a href="compras.php"> <i class="fa fa-cog" aria-hidden="true"></i>Compras </a>
 						</li>
+						<li>
+							<a href="modeloavion.php"> <i class="fa fa-plane" aria-hidden="true"></i> Aviones </a>
+						</li>
 					</ul>
 				</nav>
 				<div class="content-inner">
@@ -84,7 +84,7 @@
 					<section>
 						<div class="container-fluid">
 							<input id="tab0" type="radio" name="tabs" class="no-display" checked>
-							<label for="tab0" class="label"><i class="icon-map-streamline-user" aria-hidden="true"></i> Explorador Clientes</label>
+							<label for="tab0" class="label"><i class="icon-map-streamline-user" aria-hidden="true"></i>Explorador Clientes</label>
 							<!-- TAB Explorador Clientes -->
 							<section id="content0" class="sectiontab">
 								<!-- Accionista -->

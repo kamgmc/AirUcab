@@ -199,14 +199,14 @@
 		return pg_query($conexion, $qry);
 	}
 //Empleado
-	function insertarEmpleado( $nacionalidad, $ci, $nombre, $apellido, $fingreso, $usuario, $clave, $titulacion, $cargo, $rol, $zona, $direccion, $supervisa, $gerencia, $nota){
+	function insertarEmpleado( $nac, $ci, $nombre, $apellido, $usuario, $clave, $titulacion, $cargo, $rol, $zona, $direccion, $supervisa, $gerencia, $nota){
 		global $conexion;
 		$nombre = htmlentities(ucfirst(strtolower($nombre)), ENT_QUOTES);
 		$apellido = htmlentities(ucfirst(strtolower($apellido)), ENT_QUOTES);
 		$usuario = htmlentities($usuario, ENT_QUOTES);
 		$clave = md5(htmlentities($clave, ENT_QUOTES));
 		if($nota != 'NULL') $nota = "'".htmlentities($nota, ENT_QUOTES)."'";
-		$qry = "INSERT INTO Empleado (em_nacionalidad, em_ci, em_nombre, em_apellido, em_fecha_ingreso, em_usuario, em_clave, em_titulacion, em_cargo, em_rol, em_zona, em_direccion, em_supervisa, em_gerencia, em_nota) VALUES ('".$nacionalidad."',".$ci.",'".$nombre."','".$apellido."','".$fingreso."',UPPER('".$usuario."'),'".$clave."',".$titulacion.",".$cargo.",".$rol.",".$zona.",".$direccion.", ".$supervisa.",".$gerencia.",".$nota.")";
+		$qry = "INSERT INTO Empleado (em_nacionalidad, em_ci, em_nombre, em_apellido, em_fecha_ingreso, em_usuario, em_clave, em_titulacion, em_cargo, em_rol, em_zona, em_direccion, em_supervisa, em_gerencia, em_nota) VALUES ('".$nac."',".$ci.",'".$nombre."','".$apellido."',transaction_timestamp(),UPPER('".$usuario."'),'".$clave."',".$titulacion.",".$cargo.",".$rol.",".$zona.",".$direccion.", ".$supervisa.",".$gerencia.",".$nota.")";
 		return pg_query($conexion, $qry);
 	}
 	function editarEmpleado( $id, $nacionalidad, $ci, $nombre, $apellido, $fingreso, $usuario, $clave, $titulacion, $cargo, $rol, $zona, $direccion, $supervisa, $gerencia, $nota){
@@ -240,16 +240,16 @@
 		return pg_query($conexion, $qry);
 	}
 //Experiencia
-	function insertarExperiencia( $desc, $anos ){
+	function insertarExperiencia( $desc, $years, $empleado ){
 		global $conexion;
 		$desc = htmlentities($desc, ENT_QUOTES);
-		$qry = "INSERT INTO Experiencia (ex_desc, ex_anos) VALUES ('".$desc."', '".$anos."')";
+		$qry = "INSERT INTO INSERT INTO Experiencia (ex_descripcion,ex_years,ex_empleado) VALUES ('".$desc."', ".$years.", ".$empleado.")";
 		return pg_query($conexion, $qry);
 	}
-	function editarExperiencia( $id, $desc, $anos ){
+	function editarExperiencia( $id, $desc, $years ){
 		global $conexion;
 		$desc = htmlentities($desc, ENT_QUOTES);
-		$qry = "UPDATE Experiencia SET ex_desc='".$desc."', ex_anos='".$anos."' WHERE ex_id=".$id;
+		$qry = "UPDATE Experiencia SET ex_descripcion='".$desc."', ex_years=".$years." WHERE ex_id=".$id;
 		return pg_query($conexion, $qry);
 	}
 //Cliente
@@ -357,7 +357,7 @@
 		$qry = "INSERT INTO Contacto (co_valor, co_tipo, co_cliente, co_empleado, co_proveedor) VALUES ('".$valor."', ".$tipo.", ".$cliente.", ".$empleado.", ".$proveedor.")";
 		return pg_query($conexion, $qry);
 	}
-	function editarContacto( $id, $valor, $tipo, $cliente, $empleado, $proveedor ){
+	function editarContacto( $id, $valor, $tipo ){
 		global $conexion;
 		$valor = htmlentities($valor, ENT_QUOTES);
 		if($empleado == 'NULL' && $cliente == 'NULL' && $proveedor == 'NULL') return false;
