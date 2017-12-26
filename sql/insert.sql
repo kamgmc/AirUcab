@@ -2119,9 +2119,23 @@ INSERT INTO Empleado (em_nacionalidad,em_ci,em_nombre,em_apellido,em_fecha_ingre
 INSERT INTO Empleado (em_nacionalidad,em_ci,em_nombre,em_apellido,em_fecha_ingreso,em_usuario,em_clave,em_titulacion,em_cargo,em_rol,em_zona,em_direccion,em_supervisa,em_gerencia) VALUES ('V',24886795,'Kevin','Martinez','2016-01-14','KAMGMC','6bf45147ae4dacfc78cd5e99aef8d4fe',1,9,1,1,1369,false,false);
 --CONTACTO
 INSERT INTO Contacto (co_valor,co_tipo,co_empleado) VALUES ('0424-2145875',1,1);
-INSERT INTO Contacto (co_valor,co_tipo,co_empleado) VALUES ('0212-5451324',2,1);
-INSERT INTO Contacto (co_valor,co_tipo,co_cliente) VALUES ('0244-5110648',2,4);
+INSERT INTO Contacto (co_valor,co_tipo,co_empleado) VALUES ('0416-2154896',1,2);
+INSERT INTO Contacto (co_valor,co_tipo,co_empleado) VALUES ('0244-3964542',2,2);
+INSERT INTO Contacto (co_valor,co_tipo,co_empleado) VALUES ('0424-2145875',1,3);
+INSERT INTO Contacto (co_valor,co_tipo,co_empleado) VALUES ('0414-5114201',1,4);
+INSERT INTO Contacto (co_valor,co_tipo,co_empleado) VALUES ('0412-2314451',1,5);
+INSERT INTO Contacto (co_valor,co_tipo,co_empleado) VALUES ('0426-0124873',1,6);
+INSERT INTO Contacto (co_valor,co_tipo,co_cliente) VALUES ('0212-3225205',2,1);
+INSERT INTO Contacto (co_valor,co_tipo,co_cliente) VALUES ('0212-8602453',2,2);
+INSERT INTO Contacto (co_valor,co_tipo,co_cliente) VALUES ('0212-6541284',2,3);
+INSERT INTO Contacto (co_valor,co_tipo,co_cliente) VALUES ('0212-3215255',2,4);
 INSERT INTO Contacto (co_valor,co_tipo,co_cliente) VALUES ('gerencia.general@aeropostal.com.ve',3,4);
+INSERT INTO Contacto (co_valor,co_tipo,co_cliente) VALUES ('0212-0254156',2,5);
+INSERT INTO Contacto (co_valor,co_tipo,co_proveedor) VALUES ('0212-1515622',2,1);
+INSERT INTO Contacto (co_valor,co_tipo,co_proveedor) VALUES ('0212-6156151',2,2);
+INSERT INTO Contacto (co_valor,co_tipo,co_proveedor) VALUES ('0244-2314411',2,3);
+INSERT INTO Contacto (co_valor,co_tipo,co_proveedor) VALUES ('0241-5641123',2,4);
+INSERT INTO Contacto (co_valor,co_tipo,co_proveedor) VALUES ('0212-2318545',2,5);
 INSERT INTO Contacto (co_valor,co_tipo,co_proveedor) VALUES ('loco3',4,5);
 --BENEFICIARIO
 INSERT INTO Beneficiario (be_nacionalidad,be_ci,be_nombre,be_apellido,be_empleado) VALUES ('V',29455613,'Mariam','Pérez',1);
@@ -2566,6 +2580,8 @@ INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_modelo_pieza) VALUES (
 INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_modelo_pieza) VALUES ('Nivel de combustible',62,154);
 --FUSELAJE
 INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado) VALUES ('Fuselaje',93);
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_modelo_pieza) VALUES ('Portaequipaje',62,173);
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_modelo_pieza) VALUES ('Asientos',62,173);
 --S_AVION_M_PIEZA
 --AU802
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (2,1,11);
@@ -2573,104 +2589,122 @@ INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) 
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,1,151);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,1,154);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,1,173);
+INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (118,1,175);
 --AU802A
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (2,2,2);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,2,145);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,2,151);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,2,154);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,2,173);
+INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (168,2,175);
 --AU802B
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (2,3,5);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,3,147);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,3,151);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,3,154);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,3,173);
+INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (132,3,175);
 --AU802C
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (2,4,9);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,4,149);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,4,151);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,4,154);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,4,173);
+INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (132,4,175);
 --AU802D
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (2,5,5);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,5,146);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,5,151);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,5,154);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,5,173);
+INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (149,5,175);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (2,6,11);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,6,147);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,6,151);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,6,154);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,6,173);
+INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (149,6,175);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (2,7,8);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,7,148);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,7,151);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,7,154);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,7,173);
+INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (149,7,175);
 --AU802E
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (2,8,4);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,8,148);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,8,151);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,8,154);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,8,173);
+INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (189,8,175);
 --AU802F
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (2,9,3);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,9,146);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,9,151);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,9,154);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,9,173);
+INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (215,9,175);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (2,10,6);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,10,149);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,10,151);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,10,154);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,10,173);
+INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (215,10,175);
 --AU747PLUS
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (2,11,11);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,11,146);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,11,151);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,11,154);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,11,173);
+INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (452,11,175);
 --AU747PLATINIUM
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (2,12,12);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,12,149);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,12,151);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,12,154);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,12,173);
+INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (452,12,175);
 --AU747GOLD
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (2,13,7);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,13,150);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,13,151);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,13,154);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,13,173);
+INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (496,13,175);
 --AU747SILVER
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (2,14,1);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,14,145);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,14,151);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,14,154);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,14,173);
+INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (524,14,175);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (2,15,2);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,15,146);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,15,151);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,15,154);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,15,173);
+INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (524,15,175);
 --AU747SILVERB
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (2,16,9);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,16,146);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,16,151);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,16,154);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,16,173);
+INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (567,16,175);
 --AU80
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (2,17,11);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,17,149);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,17,151);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,17,154);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,17,173);
+INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (179,17,175);
 --AU801
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (2,18,12);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,18,150);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,18,151);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,18,154);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,18,173);
+INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (189,18,175);
 --PIEZA
 INSERT INTO Pieza (p_fecha_ini,p_fecha_fin,p_modelo_pieza,p_avion) VALUES ('2017-05-21','2017-08-21',145,1);
 INSERT INTO Pieza (p_fecha_ini,p_fecha_fin,p_modelo_pieza,p_avion) VALUES ('2017-05-21','2017-08-21',151,2);
