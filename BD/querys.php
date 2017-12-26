@@ -243,7 +243,7 @@
 	function insertarExperiencia( $desc, $years, $empleado ){
 		global $conexion;
 		$desc = htmlentities($desc, ENT_QUOTES);
-		$qry = "INSERT INTO INSERT INTO Experiencia (ex_descripcion,ex_years,ex_empleado) VALUES ('".$desc."', ".$years.", ".$empleado.")";
+		$qry = "INSERT INTO Experiencia (ex_descripcion,ex_years,ex_empleado) VALUES ('".$desc."', ".$years.", ".$empleado.")";
 		return pg_query($conexion, $qry);
 	}
 	function editarExperiencia( $id, $desc, $years ){

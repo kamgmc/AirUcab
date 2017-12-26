@@ -95,7 +95,7 @@
 				<input name="experiencia_desc[]" type="text" placeholder="Descripción de Experiencia" class="form-control" > 
 			</div>
 			<div class="col-md-2">
-				<input name="experiencia_year[]" type="text" placeholder="Años" class="form-control" pattern="\d+\.?\d{0,2}" > 
+				<input name="experiencia_year[]" type="text" placeholder="Años" class="form-control" pattern="\d{0,2}\.?\d{0,1}" > 
 			</div>
 		</div>';
 	}
