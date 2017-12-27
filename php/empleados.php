@@ -130,6 +130,9 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 						<?php if($_GET['error']==13){?>Error al crear <strong>Cargo</strong>.<?php }?>
 						<?php if($_GET['error']==14){?>Error al editar <strong>Cargo</strong>.<?php }?>
 						<?php if($_GET['error']==15){?>Error al eliminar <strong>Cargo</strong>.<?php }?>
+						<?php if($_GET['error']==16){?>Error al crear <strong>Titulación</strong>.<?php }?>
+						<?php if($_GET['error']==17){?>Error al editar <strong>Titulación</strong>.<?php }?>
+						<?php if($_GET['error']==18){?>Error al eliminar <strong>Titulación</strong>.<?php }?>
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
