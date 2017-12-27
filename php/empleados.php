@@ -84,7 +84,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 							<a href="modeloavion.php"> <i class="fa fa-plane" aria-hidden="true"></i> Aviones </a>
 						</li>
 						<?php }?>
-						<?php if( in_array("em_r", $permiso) ){ ?>
+						<?php if( in_array("em_r", $permiso) || in_array("em_c", $permiso) ){ ?>
 						<li class="active">
 							<a href="empleados.php"><i class="fa fa-id-card-o"></i>Empleados</a>
 						</li>
@@ -112,19 +112,36 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 					</ul>
 				</nav>
 				<div class="content-inner">
+					<?php if(isset($_GET['error'])){?>
+					<!-- Alert -->
+					<div class="alert alert-danger alert-dismissible fade show" role="alert"> 
+						<?php if($_GET['error']==1){?>Error al crear <strong>Empleado</strong>.<?php }?>
+						<?php if($_GET['error']==2){?>Error al insertar <strong>Contacto</strong>.<?php }?>
+						<?php if($_GET['error']==3){?>Error al insertar <strong>Beneficiario</strong>.<?php }?>
+						<?php if($_GET['error']==4){?>Error al insertar <strong>Experiencia</strong>.<?php }?>
+						<?php if($_GET['error']==5){?>Error al editar <strong>Empleado</strong>.<?php }?>
+						<?php if($_GET['error']==6){?>Error al editar <strong>Contacto</strong>.<?php }?>
+						<?php if($_GET['error']==7){?>Error al editar <strong>Beneficiario</strong>.<?php }?>
+						<?php if($_GET['error']==8){?>Error al editar <strong>Experiencia</strong>.<?php }?>
+						<?php if($_GET['error']==9){?>Error al eliminar <strong>Distribución de Avión</strong>.<?php }?>
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<?php }?>
 					<!-- TABS SECTION-->
 					<section>
 						<div class="container-fluid">
-							<?php if( in_array("em_r", $permiso) ){?>
+							<?php if( in_array("em_r", $permiso) || in_array("em_c", $permiso) ){?>
 							<input id="tab0" type="radio" name="tabs" class="no-display" <?php if( !isset($_GET['tab']) ) print "checked";?>>
 							<label for="tab0" class="label"><i class="fa fa-id-card-o" aria-hidden="true"></i> Empleados</label>
 							<?php }?>
-							<?php if( in_array("sr_r", $permiso) ){?>
-							<input id="tab1" type="radio" name="tabs" class="no-display" <?php if( $_GET['tab'] == "submodelo" ) print "checked";?>>
+							<?php if( in_array("sr_r", $permiso) || in_array("sr_c", $permiso) ){?>
+							<input id="tab1" type="radio" name="tabs" class="no-display" <?php if( $_GET['tab'] == "rol" ) print "checked";?>>
 							<label for="tab1" class="label"><i class="fa fa-street-view" aria-hidden="true"></i> Roles</label>
 							<?php }?>
 							<?php if( in_array("rp_r", $permiso) ){?>
-							<input id="tab2" type="radio" name="tabs" class="no-display" <?php if( $_GET['tab'] == "submodelo" ) print "checked";?>>
+							<input id="tab2" type="radio" name="tabs" class="no-display" <?php if( $_GET['tab'] == "permiso" ) print "checked";?>>
 							<label for="tab2" class="label"><i class="fa fa-university" aria-hidden="true"></i> Permisos</label>
 							<?php }?>
 							<!-- TAB ACTUALES -->
@@ -177,6 +194,11 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 											</div>
 										</div>
 										<?php }?>
+										<?php if( in_array("em_r", $permiso) ){?>
+										<?php $qry = "SELECT em_id id,em_nombre ||' '|| em_apellido AS nombre, em_nacionalidad nac, em_ci ci, em_fecha_ingreso fecha,COUNT(be_id) beneficiarios, er_nombre cargo, se_nombre sede, lu_nombre direccion FROM Empleado LEFT JOIN Beneficiario ON be_empleado=em_id LEFT JOIN Cargo ON er_id=em_cargo LEFT JOIN Zona ON em_zona=zo_id LEFT JOIN Sede ON se_id=zo_sede LEFT JOIN Lugar on em_direccion=lu_id GROUP BY em_id ,em_nombre, em_nacionalidad, em_ci, em_fecha_ingreso, er_nombre, se_nombre, lu_nombre ORDER BY em_id";
+										$rs = pg_query( $conexion, $qry );
+										$howMany = pg_num_rows($rs);
+										if( $howMany > 0 ){?>
 										<div class="card-body lpad-top">
 											<table class="table table-striped table-sm table-hover">
 												<thead>
@@ -192,10 +214,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 													</tr>
 												</thead>
 												<tbody>
-													<?php 	
-													$qry = "SELECT em_id id,em_nombre ||' '|| em_apellido AS nombre, em_nacionalidad nac, em_ci ci, em_fecha_ingreso fecha,COUNT(be_id) beneficiarios, er_nombre cargo, se_nombre sede, lu_nombre direccion FROM Empleado LEFT JOIN Beneficiario ON be_empleado=em_id LEFT JOIN Cargo ON er_id=em_cargo LEFT JOIN Zona ON em_zona=zo_id LEFT JOIN Sede ON se_id=zo_sede LEFT JOIN Lugar on em_direccion=lu_id GROUP BY em_id ,em_nombre, em_nacionalidad, em_ci, em_fecha_ingreso, er_nombre, se_nombre, lu_nombre ORDER BY em_id";
-													$rs = pg_query( $conexion, $qry );
-													while( $empleado = pg_fetch_object($rs) ){?>
+													<?php while( $empleado = pg_fetch_object($rs) ){?>
 														<tr>
 															<td>
 																<?php print $empleado->nombre;?>
@@ -219,7 +238,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 																<?php print $empleado->direccion;?>
 															</td>
 															<td class="text-center">
-																<a class="click-empleado-detalle" href="<?php print $avion->id;?>"> 
+																<a class="click-empleado-detalle" href="<?php print $empleado->id;?>"> 
 																	<i class="fa fa-file-text-o" aria-hidden="true" title="Ver mas"></i> 
 																</a>
 																<?php if( in_array("em_d", $permiso) ){ ?>&emsp;
@@ -233,6 +252,9 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 												</tbody>
 											</table>
 										</div>
+										<?php }else{?>
+										<h3>&emsp;No se han encontrado resultados.</h3>
+										<?php }}?>
 									</div>
 								</div>
 								<!-- TABLE ENDS -->
@@ -241,263 +263,246 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 							<div id="ModalCrearEmpleado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 								<div role="document" class="modal-dialog modal-xl">
 									<div class="modal-content">
-										<div class="modal-header">
-											<h4 id="exampleModalLabel" class="modal-title">Crear Empleado</h4>
-											<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-										</div>
-										<div class="modal-body">
-											<div class="container-fluid">
-												<div class="row">
-													<div class="card col-lg-12">
-														<div class="row">
-															<div class="card-body col-lg-6">
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h4>Nombre</h4>
-																	</label>
-																	<div class="col-sm-9">
-																		<input name="nombre" type="text" placeholder="Introduzca Nombre" class="form-control" required>
+										<form action="empleado-crud?create=true" method="post">
+											<div class="modal-header">
+												<h4 id="exampleModalLabel" class="modal-title">Crear Empleado</h4>
+												<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+											</div>
+											<div class="modal-body">
+												<div class="container-fluid">
+													<div class="row">
+														<div class="card col-lg-12">
+															<div class="row">
+																<div class="card-body col-lg-6">
+																	<div class="form-group row">
+																		<label class="col-sm-3 form-control-label">
+																			<h4>Nombre</h4>
+																		</label>
+																		<div class="col-sm-9">
+																			<input name="nombre" type="text" placeholder="Introduzca Nombre" class="form-control" required>
+																		</div>
+																	</div>
+																	<div class="form-group row">
+																		<label class="col-sm-3 form-control-label">
+																			<h4>Apellido</h4>
+																		</label>
+																		<div class="col-sm-9">
+																			<input name="apellido" type="text" placeholder="Introduzca Apellido" class="form-control" required>
+																		</div>
+																	</div>
+																	<div class="form-group row">
+																		<label class="col-sm-3 form-control-label">
+																			<h4>CI</h4> 
+																		</label>
+																		<div class="col-sm-2 select">
+																			<select name="nacionalidad" class="form-control" required>
+																				<option value="V">V</option>
+																				<option value="E">E</option>
+																				<option value="P">P</option>
+																			</select>
+																		</div>
+																		<div class="col-sm-7">
+																			<input name="ci" type="text" placeholder="Introduzca CI" class="form-control" pattern="\d+">
+																			<span class="help-block-none">
+																				<small>Introduzca unicamente el número.</small>
+																			</span> 
+																		</div>
+																	</div>
+																	<div class="form-group row">
+																		<label class="col-sm-3 form-control-label">
+																			<h4>Usario</h4>
+																		</label>
+																		<div class="col-sm-9">
+																			<input name="usuario" type="text" placeholder="Introduzca Usuario" class="form-control" required>
+																			<span class="help-block-none"><small>El nombre de usuario debe ser unico.</small></span> 
+																		</div>
+																	</div>
+																	<div class="form-group row">
+																		<label class="col-sm-3 form-control-label">
+																			<h4>Clave</h4>
+																		</label>
+																		<div class="col-sm-9">
+																			<input name="clave" id="new-user-pass" type="password" placeholder="Introduzca Clave de Ingreso" class="form-control" required>
+																			<span class="help-block">
+																				<i id="show-hide-pass" class="fa fa-eye" aria-hidden="true"></i>
+																			</span>
+																		</div>
+																	</div>
+																	<div class="form-group row">
+																		<label class="col-sm-3 form-control-label">
+																			<h4>Titulación</h4>
+																		</label>
+																		<div class="col-sm-9 select">
+																			<select name="titulacion" class="form-control" required>
+																				<option value="NULL">Seleccionar</option>
+																				<?php $qry = "SELECT ti_id id, ti_nombre nombre FROM Titulacion ORDER BY ti_nombre";
+																				$rs = pg_query( $conexion, $qry );
+																				while( $titulacion = pg_fetch_object($rs) ){?>
+																				<option value="<?php print $titulacion->id;?>">
+																					<?php print $titulacion->nombre;?>
+																				</option>
+																				<?php }?>
+																			</select>
+																		</div>
+																	</div>
+																	<div class="form-group row">
+																		<label class="col-sm-3 form-control-label">
+																			<h4>Cargo</h4>
+																		</label>
+																		<div class="col-sm-9 select">
+																			<select name="cargo" class="form-control" required>
+																				<option value="NULL">Seleccionar</option>
+																				<?php $qry = "SELECT er_id id, er_nombre nombre FROM Cargo ORDER BY er_nombre";
+																				$rs = pg_query( $conexion, $qry );
+																				while( $cargo = pg_fetch_object($rs) ){?>
+																				<option value="<?php print $cargo->id;?>">
+																					<?php print $cargo->nombre;?>
+																				</option>
+																				<?php }?>
+																			</select>
+																		</div>
+																	</div>
+																	<div class="form-group row">
+																		<label class="col-sm-3 form-control-label">
+																			<h4>Rol</h4>
+																		</label>
+																		<div class="col-sm-9 select">
+																			<select name="rol" class="form-control" required>
+																				<option value="NULL">Seleccionar</option>
+																				<?php $qry = "SELECT sr_id id, sr_nombre nombre FROM Rol_sistema WHERE sr_nombre<>'Usuario Anónimo' ORDER BY sr_nombre";
+																				$rs = pg_query( $conexion, $qry );
+																				while( $rol = pg_fetch_object($rs) ){?>
+																				<option value="<?php print $rol->id;?>">
+																					<?php print $rol->nombre;?>
+																				</option>
+																				<?php }?>
+																			</select>
+																		</div>
+																	</div>
+																	<div class="form-group row">
+																		<label class="col-sm-3 form-control-label">
+																			<h4>Estado</h4> 
+																		</label>
+																		<div class="col-sm-9 select">
+																			<select id="list-estados" name="estado" class="form-control">
+																				<option value='NULL'>Seleccionar</option>
+																				<?php $qry="SELECT lu_id AS id, lu_nombre AS nombre FROM Lugar where lu_tipo='Estado' ORDER BY lu_nombre";
+																				$answer = pg_query( $conexion, $qry );
+																				while( $estado = pg_fetch_object($answer) ){?>
+																				<option value="<?php print $estado->id;?>">
+																					<?php print $estado->nombre;?>
+																				</option>
+																				<?php }?>
+																			</select>
+																		</div>
+																	</div>
+																	<div class="form-group row">
+																		<label class="col-sm-3 form-control-label">
+																			<h4>Municipio</h4> 
+																		</label>
+																		<div class="col-sm-9 select">
+																			<select id="list-municipios" name="municipio" class="form-control" disabled>
+																			</select>
+																		</div>
+																	</div>
+																	<div class="form-group row">
+																		<label class="col-sm-3 form-control-label">
+																			<h4>Parroquia</h4> 
+																		</label>
+																		<div class="col-sm-9 select">
+																			<select id="list-parroquias" name="parroquia" class="form-control" disabled>
+																			</select>
+																		</div>
 																	</div>
 																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h4>Apellido</h4>
-																	</label>
-																	<div class="col-sm-9">
-																		<input name="apellido" type="text" placeholder="Introduzca Apellido" class="form-control" required>
+																<div class=" card-body col-lg-6">
+																	<div class="form-group row">
+																		<label class="col-sm-3 form-control-label">
+																			<h4>Sede</h4>
+																		</label>
+																		<div class="col-sm-9 select">
+																			<select id="list-sedes" name="sede" class="form-control" required>
+																				<option value="NULL">Seleccionar</option>
+																				<?php $qry = "SELECT se_id id, se_nombre nombre FROM Sede ORDER BY se_nombre";
+																				$rs = pg_query( $conexion, $qry );
+																				while( $sede = pg_fetch_object($rs) ){?>
+																				<option value="<?php print $sede->id;?>">
+																					<?php print $sede->nombre;?>
+																				</option>
+																				<?php }?>
+																			</select>
+																		</div>
+																		<div class="col-sm-3"></div>
+																		<div class="form-check col-sm-9">
+																			<label class="form-check-label">
+																				<input id="check-gerente" name="gerencia" type="checkbox" class="form-check-input">
+																				Es gerente de esta sede
+																			</label>
+																		</div>
 																	</div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h4>CI</h4> 
-																	</label>
-																	<div class="col-sm-2 select">
-																		<select name="nacionalidad" class="form-control" required>
-																			<option value="V">V</option>
-																			<option value="E">E</option>
-																			<option value="P">P</option>
-																		</select>
+																	<div class="form-group row">
+																		<label class="col-sm-3 form-control-label">
+																			<h4>Zona</h4>
+																		</label>
+																		<div class="col-sm-9 select">
+																			<select id="list-zonas" name="zona" class="form-control" disabled required>
+																			</select>
+																		</div>
+																		<div class="col-sm-3"></div>
+																		<div class="form-check col-sm-9">
+																			<label class="form-check-label">
+																				<input id="check-supervisor" name="supervisa" type="checkbox" class="form-check-input">
+																				Es supervisor de esta zona
+																			</label>
+																		</div>
 																	</div>
-																	<div class="col-sm-7">
-																		<input name="ci" type="text" placeholder="Introduzca CI" class="form-control" pattern="\d+">
-																		<span class="help-block-none">
-																			<small>Introduzca unicamente el número.</small>
-																		</span> 
+																	<div class="form-group row">
+																		<label class="col-sm-12 form-control-label">
+																			<h4>Contacto</h4> 
+																		</label>
 																	</div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h4>Usario</h4>
-																	</label>
-																	<div class="col-sm-9">
-																		<input name="usuario" type="text" placeholder="Introduzca Usuario" class="form-control" required>
-																		<span class="help-block-none"><small>El nombre de usuario debe ser unico.</small></span> 
+																	<div class="form-group row last-contacto">
+																		<div class="col-sm-3"></div>
+																		<div class="col-sm-3 select">
+																			<select name="tipo_contacto[]" class="form-control" required>
+																				<option value="NULL">Seleccionar</option>
+																				<?php $qry = "SELECT ct_id id, ct_nombre nombre FROM Tipo_contacto ORDER BY ct_nombre";
+																				$rs = pg_query( $conexion, $qry );
+																				while( $tipo_contacto = pg_fetch_object($rs) ){?>
+																				<option value="<?php print $tipo_contacto->id;?>">
+																					<?php print $tipo_contacto->nombre;?>
+																				</option>
+																				<?php }?>
+																			</select>
+																		</div>
+																		<div class="col-sm-6">
+																			<input name="contacto[]" type="text" placeholder="Introduzca Contacto" class="form-control" required>
+																		</div>
 																	</div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h4>Clave</h4>
-																	</label>
-																	<div class="col-sm-9">
-																		<input name="clave" id="new-user-pass" type="password" placeholder="Introduzca Clave de Ingreso" class="form-control" required>
-																		<span class="help-block">
-																			<i id="show-hide-pass" class="fa fa-eye" aria-hidden="true"></i>
-																		</span>
+																	<div class="form-group row">
+																		<div class="col-sm-12 text-right">
+																			<i id="add-contacto" class="fa fa-plus"></i>&emsp;
+																		</div>
 																	</div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h4>Titulación</h4>
-																	</label>
-																	<div class="col-sm-9 select">
-																		<select name="titulacion" class="form-control" required>
-																			<option value="NULL">Seleccionar</option>
-																			<?php $qry = "SELECT ti_id id, ti_nombre nombre FROM Titulacion ORDER BY ti_nombre";
-																			$rs = pg_query( $conexion, $qry );
-																			while( $titulacion = pg_fetch_object($rs) ){?>
-																			<option value="<?php print $titulacion->id;?>">
-																				<?php print $titulacion->nombre;?>
-																			</option>
-																			<?php }?>
-																		</select>
+																	<div class="form-group row last-beneficiario">
+																		<label class="col-sm-3 form-control-label">
+																			<h4>Beneficiarios</h4> 
+																		</label>
 																	</div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h4>Cargo</h4>
-																	</label>
-																	<div class="col-sm-9 select">
-																		<select name="cargo" class="form-control" required>
-																			<option value="NULL">Seleccionar</option>
-																			<?php $qry = "SELECT er_id id, er_nombre nombre FROM Cargo ORDER BY er_nombre";
-																			$rs = pg_query( $conexion, $qry );
-																			while( $cargo = pg_fetch_object($rs) ){?>
-																			<option value="<?php print $cargo->id;?>">
-																				<?php print $cargo->nombre;?>
-																			</option>
-																			<?php }?>
-																		</select>
+																	<div class="form-group row">
+																		<div class="col-sm-12 text-right">
+																			<i id="add-beneficiario" class="fa fa-plus"></i>&emsp;
+																		</div>
 																	</div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h4>Rol</h4>
-																	</label>
-																	<div class="col-sm-9 select">
-																		<select name="rol" class="form-control" required>
-																			<option value="NULL">Seleccionar</option>
-																			<?php $qry = "SELECT sr_id id, sr_nombre nombre FROM Rol_sistema WHERE sr_nombre<>'Usuario Anónimo' ORDER BY sr_nombre";
-																			$rs = pg_query( $conexion, $qry );
-																			while( $rol = pg_fetch_object($rs) ){?>
-																			<option value="<?php print $rol->id;?>">
-																				<?php print $rol->nombre;?>
-																			</option>
-																			<?php }?>
-																		</select>
+																	<div class="form-group row last-experiencia">
+																		<label class="col-sm-3 form-control-label">
+																			<h4>Experiencia</h4>
+																		</label>
 																	</div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h4>Estado</h4> 
-																	</label>
-																	<div class="col-sm-9 select">
-																		<select id="list-estados" name="estado" class="form-control">
-																			<option value='NULL'>Seleccionar</option>
-																			<?php $qry="SELECT lu_id AS id, lu_nombre AS nombre FROM Lugar where lu_tipo='Estado' ORDER BY lu_nombre";
-																			$answer = pg_query( $conexion, $qry );
-																			while( $estado = pg_fetch_object($answer) ){?>
-																			<option value="<?php print $estado->id;?>">
-																				<?php print $estado->nombre;?>
-																			</option>
-																			<?php }?>
-																		</select>
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h4>Municipio</h4> 
-																	</label>
-																	<div class="col-sm-9 select">
-																		<select id="list-municipios" name="municipio" class="form-control" disabled>
-																		</select>
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h4>Parroquia</h4> 
-																	</label>
-																	<div class="col-sm-9 select">
-																		<select id="list-parroquias" name="parroquia" class="form-control" disabled>
-																		</select>
-																	</div>
-																</div>
-															</div>
-															<div class=" card-body col-lg-6">
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h4>Sede</h4>
-																	</label>
-																	<div class="col-sm-9 select">
-																		<select id="list-sedes" name="sede" class="form-control" required>
-																			<option value="NULL">Seleccionar</option>
-																			<?php $qry = "SELECT se_id id, se_nombre nombre FROM Sede ORDER BY se_nombre";
-																			$rs = pg_query( $conexion, $qry );
-																			while( $sede = pg_fetch_object($rs) ){?>
-																			<option value="<?php print $sede->id;?>">
-																				<?php print $sede->nombre;?>
-																			</option>
-																			<?php }?>
-																		</select>
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h4>Zona</h4>
-																	</label>
-																	<div class="col-sm-9 select">
-																		<select id="list-zonas" name="zona" class="form-control" disabled required>
-																		</select>
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-12 form-control-label">
-																		<h4>Contacto</h4> 
-																	</label>
-																</div>
-																<div class="form-group row last-contacto">
-																	<div class="col-sm-3"></div>
-																	<div class="col-sm-3 select">
-																		<select name="tipo_contacto[]" class="form-control" required>
-																			<option value="NULL">Seleccionar</option>
-																			<?php $qry = "SELECT ct_id id, ct_nombre nombre FROM Tipo_contacto ORDER BY ct_nombre";
-																			$rs = pg_query( $conexion, $qry );
-																			while( $tipo_contacto = pg_fetch_object($rs) ){?>
-																			<option value="<?php print $tipo_contacto->id;?>">
-																				<?php print $tipo_contacto->nombre;?>
-																			</option>
-																			<?php }?>
-																		</select>
-																	</div>
-																	<div class="col-sm-6">
-																		<input name="contacto[]" type="text" placeholder="Introduzca Contacto" class="form-control" required>
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<div class="col-sm-12 text-right">
-																		<i id="add-contacto" class="fa fa-plus"></i>&emsp;
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h4>Beneficiarios</h4> 
-																	</label>
-																</div>
-																<div class="form-group row">
-																	<div class="col-sm-3"></div>
-																	<div class="col-sm-9">
-																		<input name="nombre_beneficiario[]" type="text" placeholder="Introduzca Nombre" class="form-control" required>
-																	</div>
-																	<div class="col-sm-3"></div>
-																	<div class="col-sm-9">
-																		<input name="apellido_beneficiario[]" type="text" placeholder="Introduzca Apellido" class="form-control" required>
-																	</div>
-																	<div class="col-sm-3"></div>
-																	<div class="col-sm-2 select">
-																		<select name="nacionalidad_beneficiario[]" class="form-control" required>
-																			<option value="V">V</option>
-																			<option value="E">E</option>
-																			<option value="P">P</option>
-																		</select>
-																	</div>
-																	<div class="col-sm-7">
-																		<input name="ci_beneficiario[]" type="text" placeholder="Introduzca CI" class="form-control" pattern="\d+" required>
-																		<span class="help-block-none">
-																			<small>Introduzca unicamente el número.</small>
-																		</span> 
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<div class="col-sm-12 text-right">
-																		<i class="fa fa-plus"></i>&emsp;
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h4>Experiencia</h4>
-																	</label>
-																</div>
-																<div class="form-group row">
-																	<div class="col-sm-3"></div>
-																	<div class="col-sm-7">
-																		<input name="experiencia_desc[]" type="text" placeholder="Descripción de Experiencia" class="form-control" required> 
-																	</div>
-																	<div class="col-md-2">
-																		<input name="experiencia_year[]" type="text" placeholder="Años" class="form-control" pattern="\d+\.?\d{0,2}" required> 
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<div class="col-sm-12 text-right">
-																		<i class="fa fa-plus"></i>&emsp;
+																	<div class="form-group row">
+																		<div class="col-sm-12 text-right">
+																			<i id="add-experiencia" class="fa fa-plus"></i>&emsp;
+																		</div>
 																	</div>
 																</div>
 															</div>
@@ -505,316 +510,27 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 													</div>
 												</div>
 											</div>
-										</div>
-										<div class="modal-footer">
-											<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
-											<button type="button" class="btn btn-primary">Guardar Cambios</button>
-										</div>
+											<div class="modal-footer">
+												<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
+												<button type="submit" class="btn btn-primary">Crear</button>
+											</div>
+										</form>
 									</div>
 								</div>
 							</div>
 							<!-- Modal Empleado Crear ENDS -->
-							<?php 	
-							$qry = "SELECT em_id id,em_nombre nombre, em_apellido apellido, em_nacionalidad nac, em_ci ci, em_fecha_ingreso fecha, em_usuario usuario, ti_nombre titulacion, sr_nombre rol, er_nombre cargo, se.se_nombre sede, zo.zo_nombre zona, pa.lu_nombre parroquia, mu.lu_nombre municipio, es.lu_nombre estado, zos.zo_nombre zona_s, seg.se_nombre sede_g, em_nota nota FROM Empleado left join Titulacion ON ti_id=em_titulacion LEFT JOIN Rol_sistema ON sr_id=em_rol LEFT JOIN Zona zo ON em_zona=zo.zo_id LEFT JOIN Zona zos ON em_supervisa=zos.zo_id LEFT JOIN Sede se on zo.zo_sede=se.se_id LEFT JOIN Sede seg on em_gerencia=seg.se_id LEFT JOIN Cargo ON er_id=em_cargo LEFT JOIN Lugar pa ON pa.lu_id=em_direccion LEFT JOIN Lugar mu ON mu.lu_id=pa.lu_lugar LEFT JOIN Lugar es ON es.lu_id=mu.lu_lugar ORDER BY em_id";
-							$rs = pg_query( $conexion, $qry );
-							while( $empleado = pg_fetch_object($rs) ){?>
-							<!-- Modal Empleado -->
-							<div id="ModalEmpleado<?php print $empleado->id;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+							<!-- Modal Detalle Empleado -->
+							<div id="ModalDetalleEmpleado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 								<div role="document" class="modal-dialog modal-xl">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h4 id="exampleModalLabel" class="modal-title">INFORMACION PERSONAL</h4>
-											<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-										</div>
-										<div class="modal-body">
-											<div class="container-fluid">
-												<div class="row">
-													<div class="card col-lg-12">
-														<div class="row">
-															<div class="card-body col-lg-6">
-																<div class="row">
-																	<div class="col-lg-4">
-																		<h4>Nombre</h4> </div>
-																	<div class="col-lg-8"><?php print $empleado->nombre;?></div>
-																</div>
-																<div class="row">
-																	<div class="col-lg-4">
-																		<h3>Apellido</h3> </div>
-																	<div class="col-lg-8"><?php print $empleado->apellido;?></div>
-																</div>
-																<div class="row">
-																	<div class="col-lg-4">
-																		<h3>CI</h3> </div>
-																	<div class="col-lg-8"> <?php print $empleado->nac."-".number_format($empleado->ci, 0, ',', '.');?> </div>
-																</div>
-																<div class="row">
-																	<div class="col-lg-4">
-																		<h3>Direccion</h3> </div>
-																	<div class="col-lg-8"> <?php print $empleado->parroquia.", ".$empleado->municipio.", ".$empleado->estado;?> </div>
-																</div>
-																<div class="row">
-																	<div class="col-lg-4">
-																		<h3>Fecha Ingreso</h3> </div>
-																	<div class="col-lg-8"><?php $date = new DateTime($empleado->fecha); print $date->format('d-m-Y');?></div>
-																</div>
-																<div class="row">
-																	<div class="col-lg-4">
-																		<h3>Usuario</h3> </div>
-																	<div class="col-lg-8"><?php print "@".$empleado->usuario;?></div>
-																</div>
-																<div class="row">
-																	<div class="col-lg-4">
-																		<h3>Titulacion</h3> </div>
-																	<div class="col-lg-8"> <?php print $empleado->titulacion;?> </div>
-																</div>
-																<div class="row">
-																	<div class="col-lg-4">
-																		<h3>Cargo</h3> </div>
-																	<div class="col-lg-8"> <?php print $empleado->cargo;?> </div>
-																</div>
-																<div class="row">
-																	<div class="col-lg-4">
-																		<h3>Rol de sistema</h3> </div>
-																	<div class="col-lg-8"> <?php print $empleado->rol;?> </div>
-																</div>
-																<div class="row">
-																	<div class="col-lg-4">
-																		<h3>Sede</h3> </div>
-																	<div class="col-lg-8"> <?php print $empleado->sede;?> </div>
-																</div>
-																<div class="row">
-																	<div class="col-lg-4">
-																		<h3>Zona</h3> </div>
-																	<div class="col-lg-8"> <?php print $empleado->zona;?> </div>
-																</div>
-																<?php if(!is_null($empleado->zona_s)){?>
-																<div class="row">
-																	<div class="col-lg-4">
-																		<h3>Supervisa:</h3> </div>
-																	<div class="col-lg-8"> <?php print $empleado->zona_s;?> </div>
-																</div>
-																<?php }?>
-																<?php if(!is_null($empleado->sede_g)){?>
-																<div class="row">
-																	<div class="col-lg-4">
-																		<h3>Gerencia:</h3> </div>
-																	<div class="col-lg-8"> <?php print $empleado->sede_g;?> </div>
-																</div>
-																<?php }?>
-															</div>
-															<div class=" card-body col-lg-6">
-																<?php  $qry = "SELECT ct_nombre AS tipo, co_valor AS valor FROM Contacto, Tipo_contacto WHERE ct_id=co_tipo AND co_empleado=".$empleado->id;
-																$answer = pg_query( $conexion, $qry );
-																$num = pg_num_rows($answer);
-																if($num > 0){?>
-																<div class="row">
-																	<div class="col-lg-12">
-																		<h3>Contacto</h3> 
-																	</div>
-																	<?php 
-																	while( $contacto = pg_fetch_object($answer) ){?>
-																	<div class="col-lg-12 text-left"><?php print $contacto->tipo." - ".$contacto->valor;?></div> 
-																	<?php }?>
-																</div>
-																<?php }?>
-																<?php  $qry = "SELECT be_nombre AS nombre, be_apellido AS apellido, be_nacionalidad AS nac, be_ci AS ci FROM Beneficiario WHERE be_empleado=".$empleado->id;
-																$answer = pg_query( $conexion, $qry );
-																$num = pg_num_rows($answer);
-																if($num > 0){?>
-																<div class="row">
-																	<div class="col-lg-12">
-																		<h3>Beneficiarios</h3> </div>
-																	<?php
-																	while( $beneficiario = pg_fetch_object($answer) ){?>
-																	<div class="col-lg-12 text-left"><?php print $beneficiario->nombre." ".$beneficiario->apellido." / ".$beneficiario->nac."-".number_format($beneficiario->ci, 0, ',', '.');?></div> 
-																	<?php }?>
-																</div>
-																<?php }?>
-																<?php $qry = "SELECT ex_descripcion AS desc, ex_years AS years FROM Experiencia WHERE ex_empleado=".$empleado->id;
-																$answer = pg_query( $conexion, $qry );
-																$num = pg_num_rows($answer);
-																if($num > 0){?>
-																<div class="row">
-																	<div class="col-lg-12">
-																		<h3>Experiencia</h3> 
-																	</div>
-																	<?php 
-																	while( $experiencia = pg_fetch_object($answer) ){?>
-																	<div class="col-lg-12 text-left"><?php print $experiencia->desc." / ".$experiencia->years." años.";?></div> 
-																	<?php }?>
-																</div>
-																<?php }?>
-																<?php if(!is_null($empleado->nota)){?>
-																<div class="row">
-																	<div class="col-lg-3">
-																		<h3>Nota</h3> </div>
-																	<div class="col-lg-9"> <?php print $empleado->nota;?> </div>
-																</div>
-																<?php }?>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="modal-footer">
-											<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>&emsp;
-											<button type="button" data-toggle="modal" data-target="#myModalEmpleadoEditar" class="btn btn-primary">Editar</button>
-										</div>
+									<div id="detalleEmpleadoBody" class="modal-content">
 									</div>
 								</div>
 							</div>
-							<!-- Modal Empleado ENDS -->
-							<?php }?>
+							<!-- Modal Detalle Empleado ENDS -->
 							<!-- Modal Empleado Editar -->
-							<div id="myModalEmpleadoEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+							<div id="ModalEditarEmpleado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 								<div role="document" class="modal-dialog modal-xl">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h4 id="exampleModalLabel" class="modal-title">INFORMACION PERSONAL</h4>
-											<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-										</div>
-										<div class="modal-body">
-											<div class="container-fluid">
-												<div class="row">
-													<div class="card col-lg-12">
-														<div class="row">
-															<div class="card-body col-lg-6">
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Nombre</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" placeholder="Introduzca Nombre" class="form-control"> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Apellido</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" placeholder="Introduzca Apellido" class="form-control"> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Fecha Ingreso</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" placeholder="Introduzca Fecha de Ingreso" class="form-control"> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Usario</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" disabled="" placeholder="No modificable" class="form-control"> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Clave</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" placeholder="Introduzca Clave de Ingreso" class="form-control"> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Titulacion</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" placeholder="Introduzca Titulacion" class="form-control"><span class="help-block-none"><small>Si posee mas de una, separar con ' ; ' ejemplo: PhD; Doctorado; Bachiller...</small></span> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Cargo</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" placeholder="Introduzca Cargo que ocupa" class="form-control"> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Rol</h3> </label>
-																	<div class="col-sm-9 select">
-																		<select name="account" class="form-control">
-																			<option>Gerente</option>
-																			<option>Obrero</option>
-																			<option>Secretario</option>
-																		</select>
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Zona</h3> </label>
-																	<div class="col-sm-9 select">
-																		<select name="account" class="form-control">
-																			<option>Ensamblaje de Alas</option>
-																			<option>Ensamblaje de Motores</option>
-																		</select>
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Direccion</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" placeholder="Introduzca la Direccion de vivienda" class="form-control"> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Supervisado por</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" placeholder="Introduzca Nombre de Supervisor" class="form-control"> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Gerencia a</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" placeholder="Introduzca nombre de quien gerencia" class="form-control"><span class="help-block-none"><small>Si posee mas de un empleado, separar con ' ; ' ejemplo: Jonatha Calcuta; Micky Mouse; Carrillo Peruano...</small></span> </div>
-																</div>
-															</div>
-															<div class=" card-body col-lg-6">
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>CI</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" disabled="" placeholder="No modificable" class="form-control"> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Contacto</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" placeholder="Introduzca Contacto" class="form-control"><span class="help-block-none"><small>Si posee mas de un contacto, separar con ' ; ' ejemplo: contacto1; contacto2; contacto3...</small></span> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Beneficiarios</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" placeholder="Introduzca nombre de Beneficiario" class="form-control"><span class="help-block-none"><small>Si posee mas de un Beneficiario, separar con ' ; ' ejemplo: Pablito Picado; Raul Contreras; Fanny Lu...</small></span> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Experiencia</h3> </label>
-																	<div class="col-sm-7">
-																		<input type="text" placeholder="Descripcion de Experiencia" class="form-control"> </div>
-																	<div class="col-md-2">
-																		<input type="text" placeholder="Años" class="form-control"> </div>
-																	<label class="col-sm-3 form-control-label"> <small>extra</small> </label>
-																	<div class="col-sm-7">
-																		<input type="text" placeholder="Descripcion de Experiencia" class="form-control"> </div>
-																	<div class="col-md-2">
-																		<input type="text" placeholder="Años" class="form-control"> </div>
-																	<label class="col-sm-3 form-control-label"> <small>extra</small> </label>
-																	<div class="col-sm-7">
-																		<input type="text" placeholder="Descripcion de Experiencia" class="form-control"> </div>
-																	<div class="col-md-2">
-																		<input type="text" placeholder="Años" class="form-control"> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Nota</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" placeholder="Aqui puedes escribir..." class="form-control form-control-lg" rows="4" cols="50"> </div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="modal-footer">
-											<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
-											<button type="button" class="btn btn-primary">Guardar Cambios</button>
-										</div>
+									<div id="editarEmpleadoBody" class="modal-content">
 									</div>
 								</div>
 							</div>
@@ -1360,6 +1076,48 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 					$last.after(data);
 				}
 			});
+		});
+		$("#add-beneficiario").click(function(){
+			var $last = $(".last-beneficiario");
+			$last.removeClass("last-beneficiario");
+			$.ajax({
+				type: "POST",
+				dataType: "html",
+				url:"getter.php?get=fieldBeneficiario",
+				success: function(data){
+					$last.after(data);
+				}
+			});
+		});
+		$("#add-experiencia").click(function(){
+			var $last = $(".last-experiencia");
+			$last.removeClass("last-experiencia");
+			$.ajax({
+				type: "POST",
+				dataType: "html",
+				url:"getter.php?get=fieldExperiencia",
+				success: function(data){
+					$last.after(data);
+				}
+			});
+		});
+		$('#check-gerente').click(function(){
+			if($('#check-gerente').is(':checked'))
+				$('#check-supervisor').prop('disabled', true);
+			else
+				$('#check-supervisor').prop('disabled', false);
+		});
+		$('#check-supervisor').click(function(){
+			if($('#check-supervisor').is(':checked'))
+				$('#check-gerente').prop('disabled', true);
+			else
+				$('#check-gerente').prop('disabled', false);
+		});
+		$( "a.click-empleado-detalle" ).click(function( event ) {
+			event.preventDefault();
+			var href = $(this).attr('href');
+			$.ajax({type: "POST",dataType: "html",url:"empleado-detalle.php?id="+href,success: function(data){$("#detalleEmpleadoBody").html(data);}});
+			$("#ModalDetalleEmpleado").modal('toggle');
 		});
 	</script>
 	</body>

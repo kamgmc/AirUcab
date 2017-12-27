@@ -147,48 +147,49 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 									<div class="row">
 										<div class="card col-lg-12">
 											<div class="row">
-													<div class="card-body col-lg-5">
-														<h3 class="h4">Filtrar Aviones por:</h3>
-														<form class="form-horizontal">
-															<div class="row">
-																<label class="col-sm-4 form-control-label">Submodelo</label>
-																<div class="col-sm-8 select">
-																	<select id="filtro_submodelo" name="submodelo" class="form-control">
-																		<option value="NULL">Seleccionar</option>
-																		<?php $qry = "SELECT DISTINCT as_nombre nombre FROM Submodelo_avion";
-																		$rs = pg_query( $conexion, $qry );
-																		while( $avion = pg_fetch_object($rs) ){?>
+												<div class="card-body col-lg-5">
+													<h3 class="h4">Filtrar Aviones por:</h3>
+													<form class="form-horizontal">
+														<div class="row">
+															<label class="col-sm-4 form-control-label">Submodelo</label>
+															<div class="col-sm-8 select">
+																<select id="filtro_submodelo" name="submodelo" class="form-control">
+																	<option value="NULL">Seleccionar</option>
+																	<?php $qry = "SELECT DISTINCT as_nombre nombre FROM Submodelo_avion";
+																	$rs = pg_query( $conexion, $qry );
+																	while( $avion = pg_fetch_object($rs) ){?>
+																	<option value="<?php print $avion->nombre;?>">
+																		<?php print $avion->nombre;?>
+																	</option>
+																	<?php }?>
+																</select>
+															</div>
+														</div>
+														<div class="row">
+															<label class="col-sm-4 form-control-label">Distribucion</label>
+															<div class="col-sm-8 select">
+																<select id="filtro_distribucion" name="distribucion" class="form-control">
+																	<option value="NULL">Seleccionar</option>
+																	<?php $qry = "SELECT DISTINCT di_nombre nombre FROM Distribucion";
+																	$rs = pg_query( $conexion, $qry );
+																	while( $avion = pg_fetch_object($rs) ){?>
 																		<option value="<?php print $avion->nombre;?>">
 																			<?php print $avion->nombre;?>
 																		</option>
 																		<?php }?>
-																	</select>
-																</div>
+																</select>
 															</div>
-															<div class="row">
-																<label class="col-sm-4 form-control-label">Distribucion</label>
-																<div class="col-sm-8 select">
-																	<select id="filtro_distribucion" name="distribucion" class="form-control">
-																		<option value="NULL">Seleccionar</option>
-																		<?php $qry = "SELECT DISTINCT di_nombre nombre FROM Distribucion";
-																		$rs = pg_query( $conexion, $qry );
-																		while( $avion = pg_fetch_object($rs) ){?>
-																			<option value="<?php print $avion->nombre;?>">
-																				<?php print $avion->nombre;?>
-																			</option>
-																			<?php }?>
-																	</select>
-																</div>
-															</div>
-														</form>
-													</div>
-													<div class=" card-body col-lg-4">
-														<div class="form-group row">
-															<div class="col-sm-9">
-																<br>
-																<input type="submit" value="Filtrar" class="btn btn-primary"> </div>
+														</div>
+													</form>
+												</div>
+												<div class=" card-body col-lg-4">
+													<div class="form-group row">
+														<div class="col-sm-9">
+															<br>
+															<input type="submit" value="Filtrar" class="btn btn-primary">
 														</div>
 													</div>
+												</div>
 											</div>
 										</div>
 									</div>
