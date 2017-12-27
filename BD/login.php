@@ -19,7 +19,7 @@
 	<!-- theme stylesheet-->
 	<link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
 	<!-- Favicon-->
-	<link rel="shortcut icon" href="favicon.png"> </head>
+	<link rel="shortcut icon" href="img/airucab.ico"> </head>
 
 <body>
 	<div class="page login-page">
