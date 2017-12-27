@@ -168,7 +168,7 @@
 					
 					if(editarExperiencia( $_POST['experiencia_id_update'][$i], $_POST['experiencia_desc_update'][$i], $_POST['experiencia_year_update'][$i] ))
 						$i++;
-					else{header('Location: empleados.php?error=82');exit;}
+					else{header('Location: empleados.php?error=8');exit;}
 				}
 				else $exit = true;
 			}
@@ -189,8 +189,10 @@
 	}
 	if(isset($_GET['delete'])){
 		$id = $_GET['delete'];
-		eliminarEmpleado($id);
-		header('Location: ' . $_SERVER['HTTP_REFERER']);
-		exit;
+		if(eliminarEmpleado($id))
+			header('Location: empleados.php');
+		else
+			header('Location: empleados.php?error=9');
 	}
+	exit;
 ?>

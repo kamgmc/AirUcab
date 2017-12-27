@@ -123,7 +123,10 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 						<?php if($_GET['error']==6){?>Error al editar <strong>Contacto</strong>.<?php }?>
 						<?php if($_GET['error']==7){?>Error al editar <strong>Beneficiario</strong>.<?php }?>
 						<?php if($_GET['error']==8){?>Error al editar <strong>Experiencia</strong>.<?php }?>
-						<?php if($_GET['error']==9){?>Error al eliminar <strong>Distribución de Avión</strong>.<?php }?>
+						<?php if($_GET['error']==9){?>Error al eliminar <strong>Empleado</strong>.<?php }?>
+						<?php if($_GET['error']==10){?>Error al crear <strong>Rol de Sistema</strong>.<?php }?>
+						<?php if($_GET['error']==11){?>Error al editar <strong>Rol de Sistema</strong>.<?php }?>
+						<?php if($_GET['error']==12){?>Error al eliminar <strong>Rol de Sistema</strong>.<?php }?>
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
@@ -535,247 +538,109 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 								</div>
 							</div>
 							<!-- Modal Empleado Editar ENDS -->
-							
+							<!--Tab Roles de Usuario-->
 							<section id="content1" class="sectiontab">
 								<div class="pad-left">
 									<!-- TABLE STARTS -->
 									<div class="col-md-12">
 										<div class="card">
-											<div class="card-header d-flex align-items-center">
-												<h3 class="h4">Roles de Usuario</h3> </div>
+											<?php if( in_array("sr_c", $permiso) ){?>
+											<div class="row">
+												<div class="col-sm-10"></div>
+												<div class="col-sm-2 pad-top">
+													<button type="button" data-toggle="modal" data-target="#ModalCrearRol" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
+												</div>
+											</div>
+											<?php }?>
+											<?php if( in_array("sr_r", $permiso) ){?>
+											<?php $qry = "SELECT sr_id id, sr_nombre nombre FROM Rol_sistema";
+											$rs = pg_query( $conexion, $qry );
+											$howMany = pg_num_rows($rs);
+											if( $howMany > 0 ){?>
 											<div class="card-body">
 												<table class="table table-striped table-sm table-hover">
 													<thead>
 														<tr>
-															<th>Nombre</th>
-															<th class="text-center">Acciones</th>
+															<th class="col-sm-10">Nombre</th>
+															<?php if( in_array("sr_u", $permiso) || in_array("sr_d", $permiso) ){ ?>
+															<th class="col-sm-2 text-center">Acción</th>
+															<?php }?>
 														</tr>
 													</thead>
 													<tbody>
+														<?php while( $rol = pg_fetch_object($rs) ){?>
 														<tr>
-															<td>Administrador</td>
+															<td><?php print $rol->nombre;?></td>
+															<?php if( in_array("sr_u", $permiso) || in_array("sr_d", $permiso) ){ ?>
 															<td class="text-center">
-																<a href="" data-toggle="modal" data-target="#myModalNombre"> <i class="fa fa-cogs" aria-hidden="true"></i> </a>
-																<a href="" data-toggle="modal" data-target="#myModalPermiso"> <i class="fa fa-university" aria-hidden="true"></i> </a>
+																<?php if( in_array("sr_u", $permiso) ){ ?>
+																<a href="<?php print $rol->id;?>" class="click-rol-editar"> 
+																	<i class="fa fa-pencil" aria-hidden="true"></i> 
+																</a>
+																<?php }?>
+																<?php if( in_array("sr_d", $permiso) ){ ?>&emsp;
+																<a href="rol-crud.php?delete=<?php print $rol->id;?>">
+																	<i class="fa fa-trash" aria-hidden="true"></i>
+																</a>
+																<?php }?>
 															</td>
+															<?php }?>
 														</tr>
-														<tr>
-															<td>Gerente</td>
-															<td class="text-center">
-																<a href="" data-toggle="modal" data-target="#myModalNombre"> <i class="fa fa-cogs" aria-hidden="true"></i> </a>
-																<a href="" data-toggle="modal" data-target="#myModalPermiso"> <i class="fa fa-university" aria-hidden="true"></i> </a>
-															</td>
-														</tr>
-														<tr>
-															<td>Director Operaciones</td>
-															<td class="text-center">
-																<a href="" data-toggle="modal" data-target="#myModalNombre"> <i class="fa fa-cogs" aria-hidden="true"></i> </a>
-																<a href="" data-toggle="modal" data-target="#myModalPermiso"> <i class="fa fa-university" aria-hidden="true"></i> </a>
-															</td>
-														</tr>
+														<?php }?>
 													</tbody>
 												</table>
-												<!-- Boton para Modal -->
-												<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary btn-md pull-right">Nuevo Rol </button>
-												<!-- Modal-->
-												<div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
-													<div role="document" class="modal-dialog">
-														<div class="modal-content">
-															<div class="modal-header">
-																<h4 id="exampleModalLabel" class="modal-title">Nuevo Rol</h4>
-																<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-															</div>
-															<div class="modal-body">
-																<p>Introduzca los datos necesarios</p>
-																<form>
-																	<div class="form-group">
-																		<input type="email" placeholder="Nombre de Rol" class="form-control"> </div>
-																</form>
-															</div>
-															<div class="modal-footer">
-																<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
-																<button type="button" class="btn btn-primary">Crear</button>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!-- Modal ENDS -->
-												<!-- Modal Cambio Nombre-->
-												<div id="myModalNombre" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
-													<div role="document" class="modal-dialog">
-														<div class="modal-content">
-															<div class="modal-header">
-																<h4 id="exampleModalLabel" class="modal-title">Editar Nombre Rol</h4>
-																<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-															</div>
-															<div class="modal-body">
-																<p>Introduzca los datos necesarios</p>
-																<form>
-																	<div class="form-group">
-																		<input type="email" placeholder="Nombre de Rol" class="form-control"> </div>
-																</form>
-															</div>
-															<div class="modal-footer">
-																<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
-																<button type="button" class="btn btn-primary">Editar</button>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!-- Modal Cambio NombreENDS -->
-												<!-- Modal Permisos-->
-												<div id="myModalPermiso" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
-													<div role="document" class="modal-dialog modal-xl">
-														<div class="modal-content">
-															<div class="modal-header">
-																<h4 id="exampleModalLabel" class="modal-title">PERMISOS</h4>
-																<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-															</div>
-															<div class="modal-body">
-																<!-- TABLE MODAL PERMISOS STARTS -->
-																<div class="col-md-12">
-																	<div class="card">
-																		<div class="card-body">
-																			<table class="table table-striped table-sm table-hover">
-																				<thead>
-																					<tr>
-																						<th class="font-big text-center text-middle">Permiso</th>
-																						<th class="font-big text-center text-middle">Administrador</th>
-																					</tr>
-																				</thead>
-																				<tbody>
-																					<tr>
-																						<td><strong>BLOQUEO</strong></td>
-																						<td></td>
-																					</tr>
-																					<tr>
-																						<td>Administrar bloqueo a otros usuarios</td>
-																						<td>
-																							<div class="i-checks">
-																								<input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template"> </div>
-																						</td>
-																					</tr>
-																					<tr>
-																						<td><strong>BLOQUEO</strong></td>
-																						<td></td>
-																					</tr>
-																					<tr>
-																						<td>Administrar bloqueo a otros usuarios</td>
-																						<td>
-																							<div class="i-checks">
-																								<input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template"> </div>
-																						</td>
-																					</tr>
-																					<tr>
-																						<td><strong>BLOQUEO</strong></td>
-																						<td></td>
-																					</tr>
-																					<tr>
-																						<td>Administrar bloqueo a otros usuarios</td>
-																						<td>
-																							<div class="i-checks">
-																								<input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template"> </div>
-																						</td>
-																					</tr>
-																					<tr>
-																						<td><strong>BLOQUEO</strong></td>
-																						<td></td>
-																					</tr>
-																					<tr>
-																						<td>Administrar bloqueo a otros usuarios</td>
-																						<td>
-																							<div class="i-checks">
-																								<input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template"> </div>
-																						</td>
-																					</tr>
-																					<tr>
-																						<td><strong>BLOQUEO</strong></td>
-																						<td></td>
-																					</tr>
-																					<tr>
-																						<td>Administrar bloqueo a otros usuarios</td>
-																						<td>
-																							<div class="i-checks">
-																								<input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template"> </div>
-																						</td>
-																					</tr>
-																					<tr>
-																						<td><strong>BLOQUEO</strong></td>
-																						<td></td>
-																					</tr>
-																					<tr>
-																						<td>Administrar bloqueo a otros usuarios</td>
-																						<td>
-																							<div class="i-checks">
-																								<input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template"> </div>
-																						</td>
-																					</tr>
-																					<tr>
-																						<td><strong>BLOQUEO</strong></td>
-																						<td></td>
-																					</tr>
-																					<tr>
-																						<td>Administrar bloqueo a otros usuarios</td>
-																						<td>
-																							<div class="i-checks">
-																								<input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template"> </div>
-																						</td>
-																					</tr>
-																					<tr>
-																						<td><strong>BLOQUEO</strong></td>
-																						<td></td>
-																					</tr>
-																					<tr>
-																						<td>Administrar bloqueo a otros usuarios</td>
-																						<td>
-																							<div class="i-checks">
-																								<input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template"> </div>
-																						</td>
-																					</tr>
-																					<tr>
-																						<td><strong>BLOQUEO</strong></td>
-																						<td></td>
-																					</tr>
-																					<tr>
-																						<td>Administrar bloqueo a otros usuarios</td>
-																						<td>
-																							<div class="i-checks">
-																								<input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template"> </div>
-																						</td>
-																					</tr>
-																					<tr>
-																						<td><strong>BLOQUEO</strong></td>
-																						<td></td>
-																					</tr>
-																					<tr>
-																						<td>Administrar bloqueo a otros usuarios</td>
-																						<td>
-																							<div class="i-checks">
-																								<input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template"> </div>
-																						</td>
-																					</tr>
-																				</tbody>
-																			</table>
-																		</div>
-																	</div>
-																</div>
-																<!-- TABLE MODAL PERMISOS ENDS -->
-															</div>
-															<div class="modal-footer">
-																<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
-																<button type="button" class="btn btn-primary">Editar</button>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!-- Modal Permisos ENDS -->
 											</div>
+											<?php }else{?>
+											<h3>&emsp;No se han encontrado resultados.</h3>
+											<?php }}?>
 										</div>
 									</div>
 									<!-- TABLE ENDS -->
 								</div>
 							</section>
-							<!-- /TAB ACTUALES -->
+							<!-- Tab Rol de Sistema -->
+							<?php if( in_array("sr_c", $permiso) ){ ?>
+							<!-- Modal Crear Rol de Sistema-->
+							<div id="ModalCrearRol" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+								<div role="document" class="modal-dialog">
+									<div class="modal-content">
+										<form action="rol-crud.php?create=true" method="post">
+											<div class="modal-header">
+												<h4 id="exampleModalLabel" class="modal-title">Crear Nuevo Rol</h4>
+												<button type="button" data-dismiss="modal" aria-label="Close" class="close">
+													<span aria-hidden="true">×</span>
+												</button>
+											</div>
+											<div class="modal-body">
+												<div class="form-group row">
+													<label class="col-sm-3 form-control-label">
+														<h4>Nombre</h4>
+													</label>
+													<div class="col-sm-9">
+														<input name="nombre" type="text" placeholder="Introduzca Nombre" class="form-control" required>
+													</div>
+												</div>
+											</div>
+											<div class="modal-footer">
+												<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
+												<button type="submit" class="btn btn-primary">Crear</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+							<!-- Modal Crear Rol de Sistema ENDS -->
+							<?php }?>
+							<?php if( in_array("sr_u", $permiso) ){ ?>
+							<!-- Modal Editar Rol de Sistema-->
+							<div id="ModalEditarRol" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+								<div role="document" class="modal-dialog">
+									<div id="detalleRolBody" class="modal-content">
+									</div>
+								</div>
+							</div>
+							<!-- Modal Editar Rol de Sistema ENDS -->
+							<?php }?>
 							<!-- TAB RECICLADOS -->
 							<section id="content2" class="sectiontab">
 								<div class="pad-left">
@@ -1118,6 +983,12 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 			var href = $(this).attr('href');
 			$.ajax({type: "POST",dataType: "html",url:"empleado-detalle.php?id="+href,success: function(data){$("#detalleEmpleadoBody").html(data);}});
 			$("#ModalDetalleEmpleado").modal('toggle');
+		});
+		$( "a.click-rol-editar" ).click(function( event ) {
+			event.preventDefault();
+			var href = $(this).attr('href');
+			$.ajax({type: "POST",dataType: "html",url:"rol-editar.php?id="+href,success: function(data){$("#detalleRolBody").html(data);}});
+			$("#ModalEditarRol").modal('toggle');
 		});
 	</script>
 	</body>

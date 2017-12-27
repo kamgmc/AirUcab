@@ -135,25 +135,6 @@
 		$qry = "DELETE FROM Experiencia where ex_id=".$id;
 		return pg_query($conexion, $qry);
 	}
-//Querys de Status
-	function insertarStatus( $nombre ){
-		global $conexion;
-		$nombre = htmlentities($nombre, ENT_QUOTES);
-		$qry = "INSERT INTO Status (st_nombre) VALUES ('".$nombre."')";
-		return pg_query($conexion, $qry);
-	}
-	function editarStatus( $id, $nombre ){
-		global $conexion;
-		$nombre = htmlentities($nombre, ENT_QUOTES);
-		$qry = "UPDATE Status SET st_nombre='".$nombre."' WHERE st_id=".$id;
-		return pg_query($conexion, $qry);
-	}
-	function eliminarStatus( $id ){
-		global $conexion;
-		$nombre = htmlentities($nombre, ENT_QUOTES);
-		$qry = "DELETE FROM Status WHERE st_id=".$id;
-		return pg_query($conexion, $qry);
-	}
 //Querys de Rol de sistema
 	function insertarRol( $nombre ){
 		global $conexion;
@@ -171,6 +152,25 @@
 		global $conexion;
 		$nombre = htmlentities($nombre, ENT_QUOTES);
 		$qry = "DELETE FROM Rol_sistema WHERE sr_id=".$id;
+		return pg_query($conexion, $qry);
+	}
+//Querys de Status
+	function insertarStatus( $nombre ){
+		global $conexion;
+		$nombre = htmlentities($nombre, ENT_QUOTES);
+		$qry = "INSERT INTO Status (st_nombre) VALUES ('".$nombre."')";
+		return pg_query($conexion, $qry);
+	}
+	function editarStatus( $id, $nombre ){
+		global $conexion;
+		$nombre = htmlentities($nombre, ENT_QUOTES);
+		$qry = "UPDATE Status SET st_nombre='".$nombre."' WHERE st_id=".$id;
+		return pg_query($conexion, $qry);
+	}
+	function eliminarStatus( $id ){
+		global $conexion;
+		$nombre = htmlentities($nombre, ENT_QUOTES);
+		$qry = "DELETE FROM Status WHERE st_id=".$id;
 		return pg_query($conexion, $qry);
 	}
 //Querys de Rol - permiso
