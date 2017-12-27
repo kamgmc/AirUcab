@@ -190,6 +190,17 @@
 		$qry = "DELETE FROM Titulacion where ti_id=".$id;
 		return pg_query($conexion, $qry);
 	}
+//Querys de Rol - permiso
+	function insertarRolPermiso( $rol, $permiso ){
+		global $conexion;
+		$qry = "INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES (".$rol.",".$permiso.")";
+		return pg_query($conexion, $qry);
+	}
+	function eliminarRolPermiso( $rol, $permiso ){
+		global $conexion;
+		$qry = "DELETE FROM Rol_permiso WHERE rp_rol=".$rol." AND rp_permiso=".$permiso;
+		return pg_query($conexion, $qry);
+	}
 //Querys de Status
 	function insertarStatus( $nombre ){
 		global $conexion;
@@ -207,22 +218,6 @@
 		global $conexion;
 		$nombre = htmlentities($nombre, ENT_QUOTES);
 		$qry = "DELETE FROM Status WHERE st_id=".$id;
-		return pg_query($conexion, $qry);
-	}
-//Querys de Rol - permiso
-	function insertarRolPermiso( $rol, $permiso ){
-		global $conexion;
-		$qry = "INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES (".$rol.",".$permiso.")";
-		return pg_query($conexion, $qry);
-	}
-	function editarRolPermiso( $id, $rol, $permiso ){
-		global $conexion;
-		$qry = "UPDATE Rol_permiso SET rp_rol=".$rol.", rp_permiso=".$permiso." WHERE rp_id=".$id;
-		return pg_query($conexion, $qry);
-	}
-	function eliminarRolPermiso( $id ){
-		global $conexion;
-		$qry = "DELETE FROM Rol_permiso WHERE rp_id=".$id;
 		return pg_query($conexion, $qry);
 	}
 // Querys de Lugar

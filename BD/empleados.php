@@ -133,6 +133,8 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 						<?php if($_GET['error']==16){?>Error al crear <strong>Titulación</strong>.<?php }?>
 						<?php if($_GET['error']==17){?>Error al editar <strong>Titulación</strong>.<?php }?>
 						<?php if($_GET['error']==18){?>Error al eliminar <strong>Titulación</strong>.<?php }?>
+						<?php if($_GET['error']==19){?>Error al insertar <strong>Permiso</strong>.<?php }?>
+						<?php if($_GET['error']==20){?>Error al eliminar <strong>Permiso</strong>.<?php }?>
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
@@ -871,7 +873,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 							$rse = pg_query( $conexion, $qre );
 							$permisoCheck = array();
 							while( $rol = pg_fetch_object($rse) ){
-								$permisoCheck[$rol->nombre] = array();
+								$permisoCheck[$rol->id] = array();
 								$qri = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$rol->id;
 								$rsi = pg_query( $conexion, $qri ); 
 								while( $rolp = pg_fetch_object($rsi) ){ $permisoCheck[$rol->id][] = $rolp->permiso; }
