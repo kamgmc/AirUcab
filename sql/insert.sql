@@ -1935,6 +1935,10 @@ INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,173);
 INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,174);
 INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,175);
 INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,176);
+--USUARIO ANONIMO
+INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(2,74);
+INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(2,78);
+INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(2,82);
 --SUPERVISOR
 INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,22);
 INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,26);
@@ -2060,10 +2064,6 @@ INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,173);
 INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,174);
 INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,175);
 INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,176);
---USUARIO ANONIMO
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(2,74);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(2,78);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(2,82);
 --TIPO_CONTACTO
 INSERT INTO Tipo_contacto (ct_nombre) VALUES ('Movil');
 INSERT INTO Tipo_contacto (ct_nombre) VALUES ('Fijo');
