@@ -1,5 +1,5 @@
 <?php  include 'conexion.php';
-//Modelo_avion
+//Querys de Modelo_avion
 	function insertarModeloAvion( $nombre, $longitud, $envergadura, $altura, $superficie_alar, $flecha_alar, $peso_max, $alcance, $velocidad_max, $techo_servicio, $regimen_ascenso, $numero_pasillos, $fuselaje_tipo, $fuselaje_altura, $fuselaje_ancho, $cabina_altura, $cabina_ancho, $volumen_carga, $capacidad_pilotos, $capacidad_asistentes, $carrera_despegue, $tiempo_estimado ){
 		global $conexion;
 		$nombre = htmlentities($nombre, ENT_QUOTES);
@@ -75,7 +75,7 @@
 		$qry = "DELETE FROM Empleado WHERE em_id=".$id;
 		return pg_query($conexion, $qry);
 	}
-//Query de Contacto
+//Querys de Contacto
 	function insertarContacto( $valor, $tipo, $cliente, $empleado, $proveedor ){
 		global $conexion;
 		$valor = htmlentities($valor, ENT_QUOTES);
@@ -152,6 +152,42 @@
 		global $conexion;
 		$nombre = htmlentities($nombre, ENT_QUOTES);
 		$qry = "DELETE FROM Rol_sistema WHERE sr_id=".$id;
+		return pg_query($conexion, $qry);
+	}
+//Querys de Cargo
+	function insertarCargo( $nombre ){
+		global $conexion;
+		$nombre = htmlentities($nombre, ENT_QUOTES);
+		$qry = "INSERT INTO Cargo (er_nombre) VALUES ('".$nombre."')";
+		return pg_query($conexion, $qry);
+	}
+	function editarCargo( $id, $nombre ){
+		global $conexion;
+		$nombre = htmlentities($nombre, ENT_QUOTES);
+		$qry = "UPDATE Cargo SET er_nombre='".$nombre."' WHERE er_id=".$id;
+		return pg_query($conexion, $qry);
+	}
+	function eliminarCargo( $id ){
+		global $conexion;
+		$qry = "DELETE FROM Cargo where er_id=".$id;
+		return pg_query($conexion, $qry);
+	}
+//Querys de Titulacion
+	function insertarTitulacion( $nombre ){
+		global $conexion;
+		$nombre = htmlentities($nombre, ENT_QUOTES);
+		$qry = "INSERT INTO Titulacion (ti_nombre) VALUES ('".$nombre."')";
+		return pg_query($conexion, $qry);
+	}
+	function editarTitulacion( $id, $nombre ){
+		global $conexion;
+		$nombre = htmlentities($nombre, ENT_QUOTES);
+		$qry = "UPDATE Titulacion SET ti_nombre='".$nombre."' WHERE ti_id=".$id;
+		return pg_query($conexion, $qry);
+	}
+	function eliminarTitulacion( $id ){
+		global $conexion;
+		$qry = "DELETE FROM Titulacion where ti_id=".$id;
 		return pg_query($conexion, $qry);
 	}
 //Querys de Status
@@ -247,43 +283,6 @@
 		$qry = "DELETE FROM Zona where zo_id=".$id;
 		return pg_query($conexion, $qry);
 	}
-//Query de Titulacion
-	function insertarTitulacion( $nombre ){
-		global $conexion;
-		$nombre = htmlentities($nombre, ENT_QUOTES);
-		$qry = "INSERT INTO Titulacion (ti_nombre) VALUES ('".$nombre."')";
-		return pg_query($conexion, $qry);
-	}
-	function editarTitulacion( $id, $nombre ){
-		global $conexion;
-		$nombre = htmlentities($nombre, ENT_QUOTES);
-		$qry = "UPDATE Titulacion SET ti_nombre='".$nombre."' WHERE ti_id=".$id;
-		return pg_query($conexion, $qry);
-	}
-	function eliminarTitulacion( $id ){
-		global $conexion;
-		$qry = "DELETE FROM Titulacion where ti_id=".$id;
-		return pg_query($conexion, $qry);
-	}
-//Query de Cargo
-	function insertarCargo( $nombre ){
-		global $conexion;
-		$nombre = htmlentities($nombre, ENT_QUOTES);
-		$qry = "INSERT INTO Cargo (er_nombre) VALUES ('".$nombre."')";
-		return pg_query($conexion, $qry);
-	}
-	function editarCargo( $id, $nombre ){
-		global $conexion;
-		$nombre = htmlentities($nombre, ENT_QUOTES);
-		$qry = "UPDATE Cargo SET er_nombre='".$nombre."' WHERE er_id=".$id;
-		return pg_query($conexion, $qry);
-	}
-	function eliminarCargo( $id ){
-		global $conexion;
-		$qry = "DELETE FROM Cargo where er_id=".$id;
-		return pg_query($conexion, $qry);
-	}
-
 //Cliente
 	function insertarCliente ( $trif, $rif, $nombre, $pweb, $lugar ){
 		global $conexion;

@@ -127,6 +127,9 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 						<?php if($_GET['error']==10){?>Error al crear <strong>Rol de Sistema</strong>.<?php }?>
 						<?php if($_GET['error']==11){?>Error al editar <strong>Rol de Sistema</strong>.<?php }?>
 						<?php if($_GET['error']==12){?>Error al eliminar <strong>Rol de Sistema</strong>.<?php }?>
+						<?php if($_GET['error']==13){?>Error al crear <strong>Cargo</strong>.<?php }?>
+						<?php if($_GET['error']==14){?>Error al editar <strong>Cargo</strong>.<?php }?>
+						<?php if($_GET['error']==15){?>Error al eliminar <strong>Cargo</strong>.<?php }?>
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
@@ -143,11 +146,19 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 							<input id="tab1" type="radio" name="tabs" class="no-display" <?php if( $_GET['tab'] == "rol" ) print "checked";?>>
 							<label for="tab1" class="label"><i class="fa fa-street-view" aria-hidden="true"></i> Roles</label>
 							<?php }?>
-							<?php if( in_array("rp_r", $permiso) && in_array("rp_c", $permiso) ){?>
-							<input id="tab2" type="radio" name="tabs" class="no-display" <?php if( $_GET['tab'] == "permiso" ) print "checked";?>>
-							<label for="tab2" class="label"><i class="fa fa-university" aria-hidden="true"></i> Permisos</label>
+							<?php if( in_array("er_r", $permiso) || in_array("er_c", $permiso) ){?>
+							<input id="tab2" type="radio" name="tabs" class="no-display" <?php if( $_GET['tab'] == "cargo" ) print "checked";?>>
+							<label for="tab2" class="label"><i class="fa fa-briefcase" aria-hidden="true"></i> Cargo</label>
 							<?php }?>
-							<!-- TAB ACTUALES -->
+							<?php if( in_array("ti_r", $permiso) || in_array("ti_c", $permiso) ){?>
+							<input id="tab3" type="radio" name="tabs" class="no-display" <?php if( $_GET['tab'] == "titulacion" ) print "checked";?>>
+							<label for="tab3" class="label"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Titulación</label>
+							<?php }?>
+							<?php if( in_array("rp_r", $permiso) && in_array("rp_c", $permiso) ){?>
+							<input id="tab4" type="radio" name="tabs" class="no-display" <?php if( $_GET['tab'] == "permiso" ) print "checked";?>>
+							<label for="tab4" class="label"><i class="fa fa-university" aria-hidden="true"></i> Permisos</label>
+							<?php }?>
+							<!-- Tab Empleados -->
 							<section id="content0" class="sectiontab">
 								<!-- Filtrador-->
 								<div class="container-fluid">
@@ -262,6 +273,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 								</div>
 								<!-- TABLE ENDS -->
 							</section>
+							<!-- Tab Empleados ENDS -->
 							<!-- Modal Empleado Crear -->
 							<div id="ModalCrearEmpleado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 								<div role="document" class="modal-dialog modal-xl">
@@ -598,7 +610,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 									<!-- TABLE ENDS -->
 								</div>
 							</section>
-							<!-- Tab Rol de Sistema -->
+							<!-- Tab Rol de Sistema ENDS -->
 							<?php if( in_array("sr_c", $permiso) ){ ?>
 							<!-- Modal Crear Rol de Sistema-->
 							<div id="ModalCrearRol" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
@@ -641,13 +653,221 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 							</div>
 							<!-- Modal Editar Rol de Sistema ENDS -->
 							<?php }?>
-							<?php if( in_array("rp_r", $permiso) && in_array("rp_c", $permiso) ){?>
+							<!--Tab Cargos-->
+							<section id="content2" class="sectiontab">
+								<div class="pad-left">
+									<!-- TABLE STARTS -->
+									<div class="col-md-12">
+										<div class="card">
+											<?php if( in_array("er_c", $permiso) ){?>
+											<div class="row">
+												<div class="col-sm-10"></div>
+												<div class="col-sm-2 pad-top">
+													<button type="button" data-toggle="modal" data-target="#ModalCrearCargo" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
+												</div>
+											</div>
+											<?php }?>
+											<?php if( in_array("er_r", $permiso) ){?>
+											<?php $qry = "SELECT er_id id, er_nombre nombre FROM Cargo";
+											$rs = pg_query( $conexion, $qry );
+											$howMany = pg_num_rows($rs);
+											if( $howMany > 0 ){?>
+											<div class="card-body">
+												<table class="table table-striped table-sm table-hover">
+													<thead>
+														<tr>
+															<th class="col-sm-10">Nombre</th>
+															<?php if( in_array("er_u", $permiso) || in_array("er_d", $permiso) ){ ?>
+															<th class="col-sm-2 text-center">Acción</th>
+															<?php }?>
+														</tr>
+													</thead>
+													<tbody>
+														<?php while( $cargo = pg_fetch_object($rs) ){?>
+														<tr>
+															<td><?php print $cargo->nombre;?></td>
+															<?php if( in_array("er_u", $permiso) || in_array("er_d", $permiso) ){ ?>
+															<td class="text-center">
+																<?php if( in_array("er_u", $permiso) ){ ?>
+																<a href="<?php print $cargo->id;?>" class="click-cargo-editar"> 
+																	<i class="fa fa-pencil" aria-hidden="true"></i> 
+																</a>
+																<?php }?>
+																<?php if( in_array("er_d", $permiso) ){ ?>&emsp;
+																<a href="cargo-crud.php?delete=<?php print $cargo->id;?>">
+																	<i class="fa fa-trash" aria-hidden="true"></i>
+																</a>
+																<?php }?>
+															</td>
+															<?php }?>
+														</tr>
+														<?php }?>
+													</tbody>
+												</table>
+											</div>
+											<?php }else{?>
+											<h3>&emsp;No se han encontrado resultados.</h3>
+											<?php }}?>
+										</div>
+									</div>
+									<!-- TABLE ENDS -->
+								</div>
+							</section>
+							<!-- Tab Cargo ENDS -->
+							<?php if( in_array("er_c", $permiso) ){ ?>
+							<!-- Modal Crear Cargo-->
+							<div id="ModalCrearCargo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+								<div role="document" class="modal-dialog">
+									<div class="modal-content">
+										<form action="cargo-crud.php?create=true" method="post">
+											<div class="modal-header">
+												<h4 id="exampleModalLabel" class="modal-title">Crear Nuevo Cargo</h4>
+												<button type="button" data-dismiss="modal" aria-label="Close" class="close">
+													<span aria-hidden="true">×</span>
+												</button>
+											</div>
+											<div class="modal-body">
+												<div class="form-group row">
+													<label class="col-sm-3 form-control-label">
+														<h4>Nombre</h4>
+													</label>
+													<div class="col-sm-9">
+														<input name="nombre" type="text" placeholder="Introduzca Nombre" class="form-control" required>
+													</div>
+												</div>
+											</div>
+											<div class="modal-footer">
+												<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
+												<button type="submit" class="btn btn-primary">Crear</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+							<!-- Modal Crear Cargo ENDS -->
+							<?php }?>
+							<?php if( in_array("er_u", $permiso) ){ ?>
+							<!-- Modal Editar Cargo -->
+							<div id="ModalEditarCargo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+								<div role="document" class="modal-dialog">
+									<div id="detalleCargoBody" class="modal-content">
+									</div>
+								</div>
+							</div>
+							<!-- Modal Editar Cargo ENDS -->
+							<?php }?>
+							
+							<!--Tab Titulacion-->
+							<section id="content3" class="sectiontab">
+								<div class="pad-left">
+									<!-- TABLE STARTS -->
+									<div class="col-md-12">
+										<div class="card">
+											<?php if( in_array("ti_c", $permiso) ){?>
+											<div class="row">
+												<div class="col-sm-10"></div>
+												<div class="col-sm-2 pad-top">
+													<button type="button" data-toggle="modal" data-target="#ModalCrearTitulacion" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
+												</div>
+											</div>
+											<?php }?>
+											<?php if( in_array("ti_r", $permiso) ){?>
+											<?php $qry = "SELECT ti_id id, ti_nombre nombre FROM Titulacion";
+											$rs = pg_query( $conexion, $qry );
+											$howMany = pg_num_rows($rs);
+											if( $howMany > 0 ){?>
+											<div class="card-body">
+												<table class="table table-striped table-sm table-hover">
+													<thead>
+														<tr>
+															<th class="col-sm-10">Nombre</th>
+															<?php if( in_array("ti_u", $permiso) || in_array("ti_d", $permiso) ){ ?>
+															<th class="col-sm-2 text-center">Acción</th>
+															<?php }?>
+														</tr>
+													</thead>
+													<tbody>
+														<?php while( $titulacion = pg_fetch_object($rs) ){?>
+														<tr>
+															<td><?php print $titulacion->nombre;?></td>
+															<?php if( in_array("ti_u", $permiso) || in_array("ti_d", $permiso) ){ ?>
+															<td class="text-center">
+																<?php if( in_array("ti_u", $permiso) ){ ?>
+																<a href="<?php print $titulacion->id;?>" class="click-titulacion-editar"> 
+																	<i class="fa fa-pencil" aria-hidden="true"></i> 
+																</a>
+																<?php }?>
+																<?php if( in_array("ti_d", $permiso) ){ ?>&emsp;
+																<a href="titulacion-crud.php?delete=<?php print $titulacion->id;?>">
+																	<i class="fa fa-trash" aria-hidden="true"></i>
+																</a>
+																<?php }?>
+															</td>
+															<?php }?>
+														</tr>
+														<?php }?>
+													</tbody>
+												</table>
+											</div>
+											<?php }else{?>
+											<h3>&emsp;No se han encontrado resultados.</h3>
+											<?php }}?>
+										</div>
+									</div>
+									<!-- TABLE ENDS -->
+								</div>
+							</section>
+							<!-- Tab Titulacion ENDS -->
+							<?php if( in_array("ti_c", $permiso) ){ ?>
+							<!-- Modal Crear Titulacion-->
+							<div id="ModalCrearTitulacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+								<div role="document" class="modal-dialog">
+									<div class="modal-content">
+										<form action="titulacion-crud.php?create=true" method="post">
+											<div class="modal-header">
+												<h4 id="exampleModalLabel" class="modal-title">Crear Nueva Titulación</h4>
+												<button type="button" data-dismiss="modal" aria-label="Close" class="close">
+													<span aria-hidden="true">×</span>
+												</button>
+											</div>
+											<div class="modal-body">
+												<div class="form-group row">
+													<label class="col-sm-3 form-control-label">
+														<h4>Nombre</h4>
+													</label>
+													<div class="col-sm-9">
+														<input name="nombre" type="text" placeholder="Introduzca Nombre" class="form-control" required>
+													</div>
+												</div>
+											</div>
+											<div class="modal-footer">
+												<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
+												<button type="submit" class="btn btn-primary">Crear</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+							<!-- Modal Crear Titulacion ENDS -->
+							<?php }?>
+							<?php if( in_array("ti_u", $permiso) ){ ?>
+							<!-- Modal Editar Titulacion -->
+							<div id="ModalEditarTitulacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+								<div role="document" class="modal-dialog">
+									<div id="detalleTitulacionBody" class="modal-content">
+									</div>
+								</div>
+							</div>
+							<!-- Modal Editar Titulacion ENDS -->
+							<?php }?>
+							
+							<?php if( in_array("rp_r", $permiso) || (in_array("rp_c", $permiso) && in_array("rp_u", $permiso)) ){?>
 							<?php $qry = "SELECT pe_id id, pe_nombre nombre FROM Permiso";
 							$rs = pg_query( $conexion, $qry );
 							$qre = "SELECT sr_id id, sr_nombre nombre FROM Rol_sistema";
 							$rse = pg_query( $conexion, $qre );?>
 							<!-- Tab Permisos -->
-							<section id="content2" class="sectiontab">
+							<section id="content4" class="sectiontab">
 								<div class="pad-left">
 									<!-- TABLE STARTS -->
 									<div class="col-md-12">
@@ -663,15 +883,15 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														</tr>
 													</thead>
 													<tbody>
-														<?php while( $permiso = pg_fetch_object($rs) ){?>
+														<?php while( $permisos = pg_fetch_object($rs) ){?>
 														<tr>
-															<td><?php print $permiso->nombre;?></td>
+															<td><?php print $permisos->nombre;?></td>
 															<?php $rse = pg_query( $conexion, $qre );
 																while( $rol = pg_fetch_object($rse) ){?>
 															<td class="text-center">
 																<div class="form-check">
 																  <label class="form-check-label">
-																	<input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+																	<input class="form-check-input position-static" type="checkbox" <?php if( !in_array("rp_c", $permiso) || !in_array("rp_u", $permiso) ) print "disabled";?> />
 																  </label>
 																</div>
 															</td>
@@ -821,6 +1041,18 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 			var href = $(this).attr('href');
 			$.ajax({type: "POST",dataType: "html",url:"rol-editar.php?id="+href,success: function(data){$("#detalleRolBody").html(data);}});
 			$("#ModalEditarRol").modal('toggle');
+		});
+		$( "a.click-cargo-editar" ).click(function( event ) {
+			event.preventDefault();
+			var href = $(this).attr('href');
+			$.ajax({type: "POST",dataType: "html",url:"cargo-editar.php?id="+href,success: function(data){$("#detalleCargoBody").html(data);}});
+			$("#ModalEditarCargo").modal('toggle');
+		});
+		$( "a.click-titulacion-editar" ).click(function( event ) {
+			event.preventDefault();
+			var href = $(this).attr('href');
+			$.ajax({type: "POST",dataType: "html",url:"titulacion-editar.php?id="+href,success: function(data){$("#detalleTitulacionBody").html(data);}});
+			$("#ModalEditarTitulacion").modal('toggle');
 		});
 	</script>
 	</body>
