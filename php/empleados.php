@@ -143,7 +143,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 							<input id="tab1" type="radio" name="tabs" class="no-display" <?php if( $_GET['tab'] == "rol" ) print "checked";?>>
 							<label for="tab1" class="label"><i class="fa fa-street-view" aria-hidden="true"></i> Roles</label>
 							<?php }?>
-							<?php if( in_array("rp_r", $permiso) ){?>
+							<?php if( in_array("rp_r", $permiso) && in_array("rp_c", $permiso) ){?>
 							<input id="tab2" type="radio" name="tabs" class="no-display" <?php if( $_GET['tab'] == "permiso" ) print "checked";?>>
 							<label for="tab2" class="label"><i class="fa fa-university" aria-hidden="true"></i> Permisos</label>
 							<?php }?>
@@ -641,7 +641,12 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 							</div>
 							<!-- Modal Editar Rol de Sistema ENDS -->
 							<?php }?>
-							<!-- TAB RECICLADOS -->
+							<?php if( in_array("rp_r", $permiso) && in_array("rp_c", $permiso) ){?>
+							<?php $qry = "SELECT pe_id id, pe_nombre nombre FROM Permiso";
+							$rs = pg_query( $conexion, $qry );
+							$qre = "SELECT sr_id id, sr_nombre nombre FROM Rol_sistema";
+							$rse = pg_query( $conexion, $qre );?>
+							<!-- Tab Permisos -->
 							<section id="content2" class="sectiontab">
 								<div class="pad-left">
 									<!-- TABLE STARTS -->
@@ -651,203 +656,28 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 												<table class="table table-striped table-sm table-hover">
 													<thead>
 														<tr>
-															<th class="font-big text-center text-middle">Permiso</th>
-															<th class="font-big text-center text-middle">Administrador</th>
-															<th class="font-big text-center text-middle">Gerente</th>
-															<th class="font-big text-center text-middle">Director
-																<br>Operaciones</th>
+															<th class="font-big text-center text-middle col-sm-4">Permiso</th>
+															<?php while( $rol = pg_fetch_object($rse) ){?>
+															<th class="font-big text-center text-middle"><?php print $rol->nombre;?></th>
+															<?php }?>
 														</tr>
 													</thead>
 													<tbody>
+														<?php while( $permiso = pg_fetch_object($rs) ){?>
 														<tr>
-															<td><strong>BLOQUEO</strong></td>
-															<td></td>
-															<td></td>
-															<td></td>
+															<td><?php print $permiso->nombre;?></td>
+															<?php $rse = pg_query( $conexion, $qre );
+																while( $rol = pg_fetch_object($rse) ){?>
+															<td class="text-center">
+																<div class="form-check">
+																  <label class="form-check-label">
+																	<input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+																  </label>
+																</div>
+															</td>
+															<?php }?>
 														</tr>
-														<tr>
-															<td>Administrar bloqueo a otros usuarios</td>
-															<td>
-																<div class="i-checks">
-																	<input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template"> </div>
-															</td>
-															<td>
-																<div class="i-checks">
-																	<input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template"> </div>
-															</td>
-															<td>
-																<div class="i-checks">
-																	<input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template"> </div>
-															</td>
-														</tr>
-														<tr>
-															<td><strong>BLOQUEO</strong></td>
-															<td></td>
-															<td></td>
-															<td></td>
-														</tr>
-														<tr>
-															<td>Administrar bloqueo a otros usuarios</td>
-															<td>
-																<div class="i-checks">
-																	<input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template"> </div>
-															</td>
-															<td>
-																<div class="i-checks">
-																	<input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template"> </div>
-															</td>
-															<td>
-																<div class="i-checks">
-																	<input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template"> </div>
-															</td>
-														</tr>
-														<tr>
-															<td><strong>BLOQUEO</strong></td>
-															<td></td>
-															<td></td>
-															<td></td>
-														</tr>
-														<tr>
-															<td>Administrar bloqueo a otros usuarios</td>
-															<td>
-																<div class="i-checks">
-																	<input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template"> </div>
-															</td>
-															<td>
-																<div class="i-checks">
-																	<input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template"> </div>
-															</td>
-															<td>
-																<div class="i-checks">
-																	<input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template"> </div>
-															</td>
-														</tr>
-														<tr>
-															<td><strong>BLOQUEO</strong></td>
-															<td></td>
-															<td></td>
-															<td></td>
-														</tr>
-														<tr>
-															<td>Administrar bloqueo a otros usuarios</td>
-															<td>
-																<div class="i-checks">
-																	<input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template"> </div>
-															</td>
-															<td>
-																<div class="i-checks">
-																	<input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template"> </div>
-															</td>
-															<td>
-																<div class="i-checks">
-																	<input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template"> </div>
-															</td>
-														</tr>
-														<tr>
-															<td><strong>BLOQUEO</strong></td>
-															<td></td>
-															<td></td>
-															<td></td>
-														</tr>
-														<tr>
-															<td>Administrar bloqueo a otros usuarios</td>
-															<td>
-																<div class="i-checks">
-																	<input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template"> </div>
-															</td>
-															<td>
-																<div class="i-checks">
-																	<input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template"> </div>
-															</td>
-															<td>
-																<div class="i-checks">
-																	<input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template"> </div>
-															</td>
-														</tr>
-														<tr>
-															<td><strong>BLOQUEO</strong></td>
-															<td></td>
-															<td></td>
-															<td></td>
-														</tr>
-														<tr>
-															<td>Administrar bloqueo a otros usuarios</td>
-															<td>
-																<div class="i-checks">
-																	<input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template"> </div>
-															</td>
-															<td>
-																<div class="i-checks">
-																	<input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template"> </div>
-															</td>
-															<td>
-																<div class="i-checks">
-																	<input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template"> </div>
-															</td>
-														</tr>
-														<tr>
-															<td><strong>BLOQUEO</strong></td>
-															<td></td>
-															<td></td>
-															<td></td>
-														</tr>
-														<tr>
-															<td>Administrar bloqueo a otros usuarios</td>
-															<td>
-																<div class="i-checks">
-																	<input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template"> </div>
-															</td>
-															<td>
-																<div class="i-checks">
-																	<input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template"> </div>
-															</td>
-															<td>
-																<div class="i-checks">
-																	<input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template"> </div>
-															</td>
-														</tr>
-														<tr>
-															<td><strong>BLOQUEO</strong></td>
-															<td></td>
-															<td></td>
-															<td></td>
-														</tr>
-														<tr>
-															<td>Administrar bloqueo a otros usuarios</td>
-															<td>
-																<div class="i-checks">
-																	<input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template"> </div>
-															</td>
-															<td>
-																<div class="i-checks">
-																	<input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template"> </div>
-															</td>
-															<td>
-																<div class="i-checks">
-																	<input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template"> </div>
-															</td>
-														</tr>
-														<tr>
-															<td><strong>BLOQUEO</strong></td>
-															<td></td>
-															<td></td>
-															<td></td>
-														</tr>
-														<tr>
-															<td>Administrar bloqueo a otros usuarios</td>
-															<td>
-																<div class="i-checks">
-																	<input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template"> </div>
-															</td>
-															<td>
-																<div class="i-checks">
-																	<input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template"> </div>
-															</td>
-															<td>
-																<div class="i-checks">
-																	<input id="checkboxCustom1" type="checkbox" value="" class="pad-top checkbox-template"> </div>
-															</td>
-														</tr>
+														<?php }?>
 													</tbody>
 												</table>
 											</div>
@@ -856,6 +686,8 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 									<!-- TABLE ENDS -->
 								</div>
 							</section>
+							<!-- Tab Permisos ENDS-->
+							<?php }?>
 						</div>
 					</section>
 				</div>
