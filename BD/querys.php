@@ -1,5 +1,5 @@
 <?php  include 'conexion.php';
-//Modelo_avion
+//Querys de Modelo_avion
 	function insertarModeloAvion( $nombre, $longitud, $envergadura, $altura, $superficie_alar, $flecha_alar, $peso_max, $alcance, $velocidad_max, $techo_servicio, $regimen_ascenso, $numero_pasillos, $fuselaje_tipo, $fuselaje_altura, $fuselaje_ancho, $cabina_altura, $cabina_ancho, $volumen_carga, $capacidad_pilotos, $capacidad_asistentes, $carrera_despegue, $tiempo_estimado ){
 		global $conexion;
 		$nombre = htmlentities($nombre, ENT_QUOTES);
@@ -50,23 +50,89 @@
 																		return pg_query($conexion, $qry);
 		return false;
 	}
-//Querys de Status
-	function insertarStatus( $nombre ){
+//Querys de Empleado
+	function insertarEmpleado( $nac, $ci, $nombre, $apellido, $usuario, $clave, $titulacion, $cargo, $rol, $zona, $direccion, $supervisa, $gerencia, $nota){
 		global $conexion;
-		$nombre = htmlentities($nombre, ENT_QUOTES);
-		$qry = "INSERT INTO Status (st_nombre) VALUES ('".$nombre."')";
+		$nombre = htmlentities(ucfirst(strtolower($nombre)), ENT_QUOTES);
+		$apellido = htmlentities(ucfirst(strtolower($apellido)), ENT_QUOTES);
+		$usuario = htmlentities($usuario, ENT_QUOTES);
+		$clave = md5(htmlentities($clave, ENT_QUOTES));
+		if($nota != 'NULL') $nota = "'".htmlentities($nota, ENT_QUOTES)."'";
+		$qry = "INSERT INTO Empleado (em_nacionalidad, em_ci, em_nombre, em_apellido, em_fecha_ingreso, em_usuario, em_clave, em_titulacion, em_cargo, em_rol, em_zona, em_direccion, em_supervisa, em_gerencia, em_nota) VALUES ('".$nac."',".$ci.",'".$nombre."','".$apellido."',transaction_timestamp(),UPPER('".$usuario."'),'".$clave."',".$titulacion.",".$cargo.",".$rol.",".$zona.",".$direccion.", ".$supervisa.",".$gerencia.",".$nota.")";
 		return pg_query($conexion, $qry);
 	}
-	function editarStatus( $id, $nombre ){
+	function editarEmpleado( $id, $nacionalidad, $ci, $nombre, $apellido, $usuario, $titulacion, $cargo, $rol, $zona, $direccion, $supervisa, $gerencia, $nota){
 		global $conexion;
 		$nombre = htmlentities($nombre, ENT_QUOTES);
-		$qry = "UPDATE Status SET st_nombre='".$nombre."' WHERE st_id=".$id;
+		$apellido = htmlentities($apellido, ENT_QUOTES);
+		$usuario = htmlentities($usuario, ENT_QUOTES);
+		if($nota != 'NULL') $nota = "'".htmlentities($nota, ENT_QUOTES)."'";
+		$qry = "UPDATE Empleado SET em_nacionalidad='".$nacionalidad."', em_ci=".$ci.", em_nombre='".$nombre."', em_apellido='".$apellido."', em_usuario=UPPER('".$usuario."'), em_titulacion=".$titulacion.", em_cargo=".$cargo.", em_rol=".$rol.", em_zona=".$zona.", em_direccion=".$direccion.", em_supervisa=".$supervisa.", em_gerencia=".$gerencia.", em_nota=".$nota." WHERE em_id=".$id;
 		return pg_query($conexion, $qry);
 	}
-	function eliminarStatus( $id ){
+	function eliminarEmpleado( $id ){
+		global $conexion;
+		$qry = "DELETE FROM Empleado WHERE em_id=".$id;
+		return pg_query($conexion, $qry);
+	}
+//Querys de Contacto
+	function insertarContacto( $valor, $tipo, $cliente, $empleado, $proveedor ){
+		global $conexion;
+		$valor = htmlentities($valor, ENT_QUOTES);
+		if($empleado == 'NULL' && $cliente == 'NULL' && $proveedor == 'NULL') return false;
+		if($cliente != 'NULL'){if($empleado!='NULL') return false; if($proveedor!='NULL') return false;}
+		if($proveedor != 'NULL'){if($cliente!='NULL') return false; if($empleado!='NULL') return false;}
+		if($empleado != 'NULL'){if($proveedor!='NULL') return false; if($cliente!='NULL') return false;}
+		$qry = "INSERT INTO Contacto (co_valor, co_tipo, co_cliente, co_empleado, co_proveedor) VALUES ('".$valor."', ".$tipo.", ".$cliente.", ".$empleado.", ".$proveedor.")";
+		return pg_query($conexion, $qry);
+	}
+	function editarContacto( $id, $valor, $tipo ){
+		global $conexion;
+		$valor = htmlentities($valor, ENT_QUOTES);
+		$qry = "UPDATE Contacto SET co_valor='".$valor."', co_tipo=".$tipo." WHERE co_id=".$id;
+		return pg_query($conexion, $qry);
+	}
+	function eliminarContacto( $id ){
+		global $conexion;
+		$qry = "DELETE FROM Contacto where co_id=".$id;
+		return pg_query($conexion, $qry);
+	}
+//Querys de Beneficiario
+	function insertarBeneficiario( $nacionalidad, $ci, $nombre, $apellido, $empleado){
 		global $conexion;
 		$nombre = htmlentities($nombre, ENT_QUOTES);
-		$qry = "DELETE FROM Status WHERE st_id=".$id;
+		$apellido = htmlentities($apellido, ENT_QUOTES);
+		$qry = "INSERT INTO Beneficiario (be_nacionalidad, be_ci, be_nombre, be_apellido, be_empleado) VALUES ('".$nacionalidad."', ".$ci.", '".$nombre."', '".$apellido."', ".$empleado." ) ";
+		return pg_query($conexion, $qry);
+	}
+	function editarBeneficiario( $id, $nacionalidad, $ci, $nombre, $apellido ){
+		global $conexion;
+		$nombre = htmlentities($nombre, ENT_QUOTES);
+		$apellido = htmlentities($apellido, ENT_QUOTES);
+		$qry = "UPDATE Beneficiario SET be_nacionalidad='".$nacionalidad."', be_ci=".$ci.", be_nombre='".$nombre."', be_apellido='".$apellido."' WHERE be_id=".$id;
+		return pg_query($conexion, $qry);
+	}
+	function eliminarBeneficiario( $id ){
+		global $conexion;
+		$qry = "DELETE FROM Beneficiario where be_id=".$id;
+		return pg_query($conexion, $qry);
+	}
+//Querys de Experiencia
+	function insertarExperiencia( $desc, $years, $empleado ){
+		global $conexion;
+		$desc = htmlentities($desc, ENT_QUOTES);
+		$qry = "INSERT INTO Experiencia (ex_descripcion,ex_years,ex_empleado) VALUES ('".$desc."', ".$years.", ".$empleado.")";
+		return pg_query($conexion, $qry);
+	}
+	function editarExperiencia( $id, $desc, $years ){
+		global $conexion;
+		$desc = htmlentities($desc, ENT_QUOTES);
+		$qry = "UPDATE Experiencia SET ex_descripcion='".$desc."', ex_years=".$years." WHERE ex_id=".$id;
+		return pg_query($conexion, $qry);
+	}
+	function eliminarExperiencia( $id ){
+		global $conexion;
+		$qry = "DELETE FROM Experiencia where ex_id=".$id;
 		return pg_query($conexion, $qry);
 	}
 //Querys de Rol de sistema
@@ -86,6 +152,61 @@
 		global $conexion;
 		$nombre = htmlentities($nombre, ENT_QUOTES);
 		$qry = "DELETE FROM Rol_sistema WHERE sr_id=".$id;
+		return pg_query($conexion, $qry);
+	}
+//Querys de Cargo
+	function insertarCargo( $nombre ){
+		global $conexion;
+		$nombre = htmlentities($nombre, ENT_QUOTES);
+		$qry = "INSERT INTO Cargo (er_nombre) VALUES ('".$nombre."')";
+		return pg_query($conexion, $qry);
+	}
+	function editarCargo( $id, $nombre ){
+		global $conexion;
+		$nombre = htmlentities($nombre, ENT_QUOTES);
+		$qry = "UPDATE Cargo SET er_nombre='".$nombre."' WHERE er_id=".$id;
+		return pg_query($conexion, $qry);
+	}
+	function eliminarCargo( $id ){
+		global $conexion;
+		$qry = "DELETE FROM Cargo where er_id=".$id;
+		return pg_query($conexion, $qry);
+	}
+//Querys de Titulacion
+	function insertarTitulacion( $nombre ){
+		global $conexion;
+		$nombre = htmlentities($nombre, ENT_QUOTES);
+		$qry = "INSERT INTO Titulacion (ti_nombre) VALUES ('".$nombre."')";
+		return pg_query($conexion, $qry);
+	}
+	function editarTitulacion( $id, $nombre ){
+		global $conexion;
+		$nombre = htmlentities($nombre, ENT_QUOTES);
+		$qry = "UPDATE Titulacion SET ti_nombre='".$nombre."' WHERE ti_id=".$id;
+		return pg_query($conexion, $qry);
+	}
+	function eliminarTitulacion( $id ){
+		global $conexion;
+		$qry = "DELETE FROM Titulacion where ti_id=".$id;
+		return pg_query($conexion, $qry);
+	}
+//Querys de Status
+	function insertarStatus( $nombre ){
+		global $conexion;
+		$nombre = htmlentities($nombre, ENT_QUOTES);
+		$qry = "INSERT INTO Status (st_nombre) VALUES ('".$nombre."')";
+		return pg_query($conexion, $qry);
+	}
+	function editarStatus( $id, $nombre ){
+		global $conexion;
+		$nombre = htmlentities($nombre, ENT_QUOTES);
+		$qry = "UPDATE Status SET st_nombre='".$nombre."' WHERE st_id=".$id;
+		return pg_query($conexion, $qry);
+	}
+	function eliminarStatus( $id ){
+		global $conexion;
+		$nombre = htmlentities($nombre, ENT_QUOTES);
+		$qry = "DELETE FROM Status WHERE st_id=".$id;
 		return pg_query($conexion, $qry);
 	}
 //Querys de Rol - permiso
@@ -160,96 +281,6 @@
 	function eliminarZona( $id ){
 		global $conexion;
 		$qry = "DELETE FROM Zona where zo_id=".$id;
-		return pg_query($conexion, $qry);
-	}
-//Query de Titulacion
-	function insertarTitulacion( $nombre ){
-		global $conexion;
-		$nombre = htmlentities($nombre, ENT_QUOTES);
-		$qry = "INSERT INTO Titulacion (ti_nombre) VALUES ('".$nombre."')";
-		return pg_query($conexion, $qry);
-	}
-	function editarTitulacion( $id, $nombre ){
-		global $conexion;
-		$nombre = htmlentities($nombre, ENT_QUOTES);
-		$qry = "UPDATE Titulacion SET ti_nombre='".$nombre."' WHERE ti_id=".$id;
-		return pg_query($conexion, $qry);
-	}
-	function eliminarTitulacion( $id ){
-		global $conexion;
-		$qry = "DELETE FROM Titulacion where ti_id=".$id;
-		return pg_query($conexion, $qry);
-	}
-//Query de Cargo
-	function insertarCargo( $nombre ){
-		global $conexion;
-		$nombre = htmlentities($nombre, ENT_QUOTES);
-		$qry = "INSERT INTO Cargo (er_nombre) VALUES ('".$nombre."')";
-		return pg_query($conexion, $qry);
-	}
-	function editarCargo( $id, $nombre ){
-		global $conexion;
-		$nombre = htmlentities($nombre, ENT_QUOTES);
-		$qry = "UPDATE Cargo SET er_nombre='".$nombre."' WHERE er_id=".$id;
-		return pg_query($conexion, $qry);
-	}
-	function eliminarCargo( $id ){
-		global $conexion;
-		$qry = "DELETE FROM Cargo where er_id=".$id;
-		return pg_query($conexion, $qry);
-	}
-//Empleado
-	function insertarEmpleado( $nac, $ci, $nombre, $apellido, $usuario, $clave, $titulacion, $cargo, $rol, $zona, $direccion, $supervisa, $gerencia, $nota){
-		global $conexion;
-		$nombre = htmlentities(ucfirst(strtolower($nombre)), ENT_QUOTES);
-		$apellido = htmlentities(ucfirst(strtolower($apellido)), ENT_QUOTES);
-		$usuario = htmlentities($usuario, ENT_QUOTES);
-		$clave = md5(htmlentities($clave, ENT_QUOTES));
-		if($nota != 'NULL') $nota = "'".htmlentities($nota, ENT_QUOTES)."'";
-		$qry = "INSERT INTO Empleado (em_nacionalidad, em_ci, em_nombre, em_apellido, em_fecha_ingreso, em_usuario, em_clave, em_titulacion, em_cargo, em_rol, em_zona, em_direccion, em_supervisa, em_gerencia, em_nota) VALUES ('".$nac."',".$ci.",'".$nombre."','".$apellido."',transaction_timestamp(),UPPER('".$usuario."'),'".$clave."',".$titulacion.",".$cargo.",".$rol.",".$zona.",".$direccion.", ".$supervisa.",".$gerencia.",".$nota.")";
-		return pg_query($conexion, $qry);
-	}
-	function editarEmpleado( $id, $nacionalidad, $ci, $nombre, $apellido, $fingreso, $usuario, $clave, $titulacion, $cargo, $rol, $zona, $direccion, $supervisa, $gerencia, $nota){
-		global $conexion;
-		$nombre = htmlentities($nombre, ENT_QUOTES);
-		$apellido = htmlentities($apellido, ENT_QUOTES);
-		$usuario = htmlentities($usuario, ENT_QUOTES);
-		$clave = md5(htmlentities($clave, ENT_QUOTES));
-		if($nota != 'NULL') $nota = "'".htmlentities($nota, ENT_QUOTES)."'";
-		$qry = "UPDATE Empleado SET em_nacionalidad='".$nacionalidad."', em_ci=".$ci.", em_nombre='".$nombre."', em_apellido='".$apellido."', em_fecha_ingreso='".$fingreso."', em_usuario='".$usuario."', em_clave='".$clave."', em_titulacion=".$titulacion.", em_cargo=".$cargo.", em_rol=".$rol.", em_zona=".$zona.", em_direccion=".$direccion.", em_supervisa=".$supervisa.", em_gerencia=".$gerencia.", em_nota=".$nota." WHERE em_id=".$id;
-		return pg_query($conexion, $qry);
-	}
-	function eliminarEmpleado( $id ){
-		global $conexion;
-		$qry = "DELETE FROM Empleado WHERE em_id=".$id;
-		return pg_query($conexion, $qry);
-	}
-//Beneficiario
-	function insertarBeneficiario( $nacionalidad, $ci, $nombre, $apellido, $empleado){
-		global $conexion;
-		$nombre = htmlentities($nombre, ENT_QUOTES);
-		$apellido = htmlentities($apellido, ENT_QUOTES);
-		$qry = "INSERT INTO Beneficiario (be_nacionalidad, be_ci, be_nombre, be_apellido, be_empleado) VALUES ('".$nacionalidad."', ".$ci.", '".$nombre."', '".$apellido."', ".$empleado." ) ";
-		return pg_query($conexion, $qry);
-	}
-	function editarBeneficiario( $id, $nacionalidad, $ci, $nombre, $apellido, $empleado){
-		global $conexion;
-		$nombre = htmlentities($nombre, ENT_QUOTES);
-		$apellido = htmlentities($apellido, ENT_QUOTES);
-		$qry = "UPDATE Beneficiario SET be_nacionalidad='".$nacionalidad."', be_ci='".$ci."', be_nombre='".$nombre."', be_apellido='".$apellido."', be_empleado=".$empleado." WHERE be_id".$id;
-		return pg_query($conexion, $qry);
-	}
-//Experiencia
-	function insertarExperiencia( $desc, $years, $empleado ){
-		global $conexion;
-		$desc = htmlentities($desc, ENT_QUOTES);
-		$qry = "INSERT INTO Experiencia (ex_descripcion,ex_years,ex_empleado) VALUES ('".$desc."', ".$years.", ".$empleado.")";
-		return pg_query($conexion, $qry);
-	}
-	function editarExperiencia( $id, $desc, $years ){
-		global $conexion;
-		$desc = htmlentities($desc, ENT_QUOTES);
-		$qry = "UPDATE Experiencia SET ex_descripcion='".$desc."', ex_years=".$years." WHERE ex_id=".$id;
 		return pg_query($conexion, $qry);
 	}
 //Cliente
@@ -344,32 +375,6 @@
 	function eliminarTipoContacto( $id ){
 		global $conexion;
 		$qry = "DELETE FROM Tipo_contacto where ct_id=".$id;
-		return pg_query($conexion, $qry);
-	}
-//Query de Contacto
-	function insertarContacto( $valor, $tipo, $cliente, $empleado, $proveedor ){
-		global $conexion;
-		$valor = htmlentities($valor, ENT_QUOTES);
-		if($empleado == 'NULL' && $cliente == 'NULL' && $proveedor == 'NULL') return false;
-		if($cliente != 'NULL'){if($empleado!='NULL') return false; if($proveedor!='NULL') return false;}
-		if($proveedor != 'NULL'){if($cliente!='NULL') return false; if($empleado!='NULL') return false;}
-		if($empleado != 'NULL'){if($proveedor!='NULL') return false; if($cliente!='NULL') return false;}
-		$qry = "INSERT INTO Contacto (co_valor, co_tipo, co_cliente, co_empleado, co_proveedor) VALUES ('".$valor."', ".$tipo.", ".$cliente.", ".$empleado.", ".$proveedor.")";
-		return pg_query($conexion, $qry);
-	}
-	function editarContacto( $id, $valor, $tipo ){
-		global $conexion;
-		$valor = htmlentities($valor, ENT_QUOTES);
-		if($empleado == 'NULL' && $cliente == 'NULL' && $proveedor == 'NULL') return false;
-		if($cliente != 'NULL'){if($empleado!='NULL') return false; if($proveedor!='NULL') return false;}
-		if($proveedor != 'NULL'){if($cliente!='NULL') return false; if($empleado!='NULL') return false;}
-		if($empleado != 'NULL'){if($proveedor!='NULL') return false; if($cliente!='NULL') return false;}
-		$qry = "UPDATE Contacto SET co_valor='".$valor."', co_tipo=".$tipo.", co_cliente=".$cliente.", co_empleado=".$empleado.", co_proveedor=".$proveedor." WHERE co_id=".$id;
-		return pg_query($conexion, $qry);
-	}
-	function eliminarContacto( $id ){
-		global $conexion;
-		$qry = "DELETE FROM Contacto where co_id=".$id;
 		return pg_query($conexion, $qry);
 	}
 //Query de Marca de motor

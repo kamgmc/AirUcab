@@ -47,7 +47,7 @@
 					
 					if(strlen($_POST['experiencia_desc'][$i]) <= 0){header('Location: empleados.php?error=4');exit;}
 					
-					if(insertarExperiencia( $_POST['experiencia_desc'][$i], $_POST['experiencia_year'], $empleado->id ))
+					if(insertarExperiencia( $_POST['experiencia_desc'][$i], $_POST['experiencia_year'][$i], $empleado->id ))
 						$i++;
 					else{header('Location: empleados.php?error=4');exit;}
 				}
@@ -58,10 +58,141 @@
 		else
 			header('Location: empleados.php?error=1');
 	}
+	if(isset($_GET['edit'])){
+		$id = $_GET['edit'];
+		if(isset($_POST['sepervisa'])) $supervisa = 'true';
+		else $supervisa = 'false';
+		
+		if(isset($_POST['gerencia'])) $gerencia = 'true';
+		else $gerencia = 'false';
+		
+		if( !isset($_POST['nota']) || strlen($_POST['nota']) <= 0 ) $nota = 'NULL';
+		else $nota = $_POST['nota'];
+		if( editarEmpleado( $id, $_POST['nacionalidad'], $_POST['ci'], $_POST['nombre'], $_POST['apellido'], $_POST['usuario'], $_POST['titulacion'], $_POST['cargo'], $_POST['rol'], $_POST['zona'], $_POST['parroquia'], $supervisa, $gerencia, $nota) ){
+			$exit = false; $i = 0;
+			while(!$exit){
+				if(isset($_POST['contacto'][$i]) && isset($_POST['tipo_contacto'][$i])){
+					
+					if(strlen($_POST['contacto'][$i]) <= 0){header('Location: empleados.php?error=6');exit;}
+					
+					if(insertarContacto( $_POST['contacto'][$i], $_POST['tipo_contacto'][$i], 'NULL', $id, 'NULL' ))
+						$i++;
+					else{
+						header('Location: empleados.php?error=6');
+						exit;
+					}
+				}
+				else $exit = true;
+			}
+			$exit = false; $i = 0;
+			while(!$exit){
+				if(isset($_POST['contacto_update'][$i]) && isset($_POST['tipo_contacto_update'][$i]) && isset($_POST['contacto_update_id'][$i])){
+					
+					if(strlen($_POST['contacto_update'][$i]) <= 0){header('Location: empleados.php?error=6');exit;}
+					
+					if(editarContacto( $_POST['contacto_update_id'][$i], $_POST['contacto_update'][$i], $_POST['tipo_contacto_update'][$i] ))
+						$i++;
+					else{
+						header('Location: empleados.php?error=6');
+						exit;
+					}
+				}
+				else $exit = true;
+			}
+			$exit = false; $i = 0;
+			while(!$exit){
+				if(isset($_POST['contacto_delete'][$i])){
+					
+					if(eliminarContacto( $_POST['contacto_delete'][$i] ))
+						$i++;
+					else{
+						header('Location: empleados.php?error=6');
+						exit;
+					}
+				}
+				else $exit = true;
+			}
+			$exit = false; $i = 0;
+			while(!$exit){
+				if(isset($_POST['nombre_beneficiario'][$i]) && isset($_POST['apellido_beneficiario'][$i]) && isset($_POST['nacionalidad_beneficiario'][$i]) && isset($_POST['ci_beneficiario'][$i])){
+					
+					if(strlen($_POST['nombre_beneficiario'][$i]) <= 0){header('Location: empleados.php?error=7');exit;}
+					if(strlen($_POST['apellido_beneficiario'][$i]) <= 0){header('Location: empleados.php?error=7');exit;}
+					
+					if(insertarBeneficiario( $_POST['nacionalidad_beneficiario'][$i], $_POST['ci_beneficiario'][$i], $_POST['nombre_beneficiario'][$i], $_POST['apellido_beneficiario'][$i], $id))
+						$i++;
+					else{header('Location: empleados.php?error=7');exit;}
+				}
+				else $exit = true;
+			}
+			$exit = false; $i = 0;
+			while(!$exit){
+				if(isset($_POST['nombre_beneficiario_update'][$i]) && isset($_POST['apellido_beneficiario_update'][$i]) && isset($_POST['nacionalidad_beneficiario_update'][$i]) && isset($_POST['ci_beneficiario_update'][$i]) && isset($_POST['id_beneficiario_update'][$i])){
+					
+					if(strlen($_POST['nombre_beneficiario_update'][$i]) <= 0){header('Location: empleados.php?error=7');exit;}
+					if(strlen($_POST['apellido_beneficiario_update'][$i]) <= 0){header('Location: empleados.php?error=7');exit;}
+					
+					if(editarBeneficiario( $_POST['id_beneficiario_update'][$i], $_POST['nacionalidad_beneficiario_update'][$i], $_POST['ci_beneficiario_update'][$i], $_POST['nombre_beneficiario_update'][$i], $_POST['apellido_beneficiario_update'][$i]))
+						$i++;
+					else{header('Location: empleados.php?error=7');exit;}
+				}
+				else $exit = true;
+			}
+			$exit = false; $i = 0;
+			while(!$exit){
+				if(isset($_POST['beneficiario_delete'][$i])){
+					
+					if(eliminarBeneficiario( $_POST['beneficiario_delete'][$i] ))
+						$i++;
+					else{header('Location: empleados.php?error=7');exit;}
+				}
+				else $exit = true;
+			}
+			$exit = false; $i = 0;
+			while(!$exit){
+				if(isset($_POST['experiencia_desc'][$i]) && isset($_POST['experiencia_year'][$i])){
+					
+					if(strlen($_POST['experiencia_desc'][$i]) <= 0){header('Location: empleados.php?error=8');exit;}
+					
+					if(insertarExperiencia( $_POST['experiencia_desc'][$i], $_POST['experiencia_year'][$i], $id ))
+						$i++;
+					else{header('Location: empleados.php?error=8');exit;}
+				}
+				else $exit = true;
+			}
+			$exit = false; $i = 0;
+			while(!$exit){
+				if(isset($_POST['experiencia_desc_update'][$i]) && isset($_POST['experiencia_year_update'][$i]) && isset($_POST['experiencia_id_update'][$i])){
+					
+					if(strlen($_POST['experiencia_desc_update'][$i]) <= 0){header('Location: empleados.php?error=8');exit;}
+					
+					if(editarExperiencia( $_POST['experiencia_id_update'][$i], $_POST['experiencia_desc_update'][$i], $_POST['experiencia_year_update'][$i] ))
+						$i++;
+					else{header('Location: empleados.php?error=8');exit;}
+				}
+				else $exit = true;
+			}
+			$exit = false; $i = 0;
+			while(!$exit){
+				if( isset($_POST['experiencia_delete'][$i]) ){
+					
+					if(eliminarExperiencia( $_POST['experiencia_delete'][$i] ))
+						$i++;
+					else{header('Location: empleados.php?error=8');exit;}
+				}
+				else $exit = true;
+			}
+			header('Location: empleados.php');
+		}
+		else
+			header('Location: empleados.php?error=5');
+	}
 	if(isset($_GET['delete'])){
 		$id = $_GET['delete'];
-		eliminarEmpleado($id);
-		header('Location: ' . $_SERVER['HTTP_REFERER']);
-		exit;
+		if(eliminarEmpleado($id))
+			header('Location: empleados.php');
+		else
+			header('Location: empleados.php?error=9');
 	}
+	exit;
 ?>
