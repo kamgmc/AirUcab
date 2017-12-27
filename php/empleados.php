@@ -563,7 +563,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 											<div class="row">
 												<div class="col-sm-10"></div>
 												<div class="col-sm-2 pad-top">
-													<button type="button" data-toggle="modal" data-target="#ModalCrearRol" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
+													<button type="button" data-toggle="modal" data-target="#ModalCrearRol" class="btn btn-primary"> <i class="fa fa-plus" aria-hidden="true"></i> Crear</button>
 												</div>
 											</div>
 											<?php }?>
@@ -588,12 +588,12 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 															<td><?php print $rol->nombre;?></td>
 															<?php if( in_array("sr_u", $permiso) || in_array("sr_d", $permiso) ){ ?>
 															<td class="text-center">
-																<?php if( in_array("sr_u", $permiso) ){ ?>
+																<?php if( in_array("sr_u", $permiso) && $rol->id != 1 && $rol->id != 2 ){ ?>
 																<a href="<?php print $rol->id;?>" class="click-rol-editar"> 
 																	<i class="fa fa-pencil" aria-hidden="true"></i> 
 																</a>
 																<?php }?>
-																<?php if( in_array("sr_d", $permiso) ){ ?>&emsp;
+																<?php if( in_array("sr_d", $permiso) && $rol->id != 1 && $rol->id != 2 ){ ?>&emsp;
 																<a href="rol-crud.php?delete=<?php print $rol->id;?>">
 																	<i class="fa fa-trash" aria-hidden="true"></i>
 																</a>
@@ -666,7 +666,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 											<div class="row">
 												<div class="col-sm-10"></div>
 												<div class="col-sm-2 pad-top">
-													<button type="button" data-toggle="modal" data-target="#ModalCrearCargo" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
+													<button type="button" data-toggle="modal" data-target="#ModalCrearCargo" class="btn btn-primary"> <i class="fa fa-plus" aria-hidden="true"></i> Crear</button>
 												</div>
 											</div>
 											<?php }?>
@@ -770,7 +770,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 											<div class="row">
 												<div class="col-sm-10"></div>
 												<div class="col-sm-2 pad-top">
-													<button type="button" data-toggle="modal" data-target="#ModalCrearTitulacion" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
+													<button type="button" data-toggle="modal" data-target="#ModalCrearTitulacion" class="btn btn-primary"> <i class="fa fa-plus" aria-hidden="true"></i> Crear</button>
 												</div>
 											</div>
 											<?php }?>
@@ -865,45 +865,64 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 							<?php }?>
 							
 							<?php if( in_array("rp_r", $permiso) || (in_array("rp_c", $permiso) && in_array("rp_u", $permiso)) ){?>
-							<?php $qry = "SELECT pe_id id, pe_nombre nombre FROM Permiso";
+							<?php $qry = "SELECT pe_id id, pe_nombre nombre, pe_iniciales iniciales FROM Permiso";
 							$rs = pg_query( $conexion, $qry );
 							$qre = "SELECT sr_id id, sr_nombre nombre FROM Rol_sistema";
-							$rse = pg_query( $conexion, $qre );?>
+							$rse = pg_query( $conexion, $qre );
+							$permisoCheck = array();
+							while( $rol = pg_fetch_object($rse) ){
+								$permisoCheck[$rol->nombre] = array();
+								$qri = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$rol->id;
+								$rsi = pg_query( $conexion, $qri ); 
+								while( $rolp = pg_fetch_object($rsi) ){ $permisoCheck[$rol->id][] = $rolp->permiso; }
+							}?>
 							<!-- Tab Permisos -->
 							<section id="content4" class="sectiontab">
 								<div class="pad-left">
 									<!-- TABLE STARTS -->
 									<div class="col-md-12">
 										<div class="card">
-											<div class="card-body">
-												<table class="table table-striped table-sm table-hover">
-													<thead>
-														<tr>
-															<th class="font-big text-center text-middle col-sm-4">Permiso</th>
-															<?php while( $rol = pg_fetch_object($rse) ){?>
-															<th class="font-big text-center text-middle"><?php print $rol->nombre;?></th>
-															<?php }?>
-														</tr>
-													</thead>
-													<tbody>
-														<?php while( $permisos = pg_fetch_object($rs) ){?>
-														<tr>
-															<td><?php print $permisos->nombre;?></td>
-															<?php $rse = pg_query( $conexion, $qre );
+											<form action="permiso-crud.php" method="post">
+												<div class="card-body">
+													<table class="table table-striped table-sm table-hover">
+														<thead>
+															<tr>
+																<th class="font-big text-center text-middle col-sm-4">Permiso</th>
+																<?php $rse = pg_query( $conexion, $qre );
 																while( $rol = pg_fetch_object($rse) ){?>
-															<td class="text-center">
-																<div class="form-check">
-																  <label class="form-check-label">
-																	<input class="form-check-input position-static" type="checkbox" <?php if( !in_array("rp_c", $permiso) || !in_array("rp_u", $permiso) ) print "disabled";?> />
-																  </label>
-																</div>
-															</td>
+																<th class="font-big text-center text-middle"><?php print $rol->nombre;?></th>
+																<?php }?>
+															</tr>
+														</thead>
+														<tbody>
+															<?php while( $permisos = pg_fetch_object($rs) ){?>
+															<tr>
+																<td><?php print $permisos->nombre;?></td>
+																<?php $rse = pg_query( $conexion, $qre );
+																	while( $rol = pg_fetch_object($rse) ){?>
+																<td class="text-center">
+																	<div class="form-check">
+																	  <label class="form-check-label">
+																		<input name="<?php print $permisos->iniciales."_".$rol->id;?>" class="form-check-input position-static" type="checkbox" <?php if( !in_array("rp_c", $permiso) || !in_array("rp_u", $permiso) || $rol->id == 1 || $rol->id == 2 ) print "disabled";?> <?php if( in_array($permisos->iniciales, $permisoCheck[$rol->id])) print "checked";?>/>
+																	  </label>
+																	</div>
+																</td>
+																<?php }?>
+															</tr>
 															<?php }?>
-														</tr>
-														<?php }?>
-													</tbody>
-												</table>
-											</div>
+														</tbody>
+													</table>
+													<?php if( in_array("rp_c", $permiso) || in_array("rp_u", $permiso) ){?>
+													<div class="row">
+														<div class="col-sm-12 text-right">
+															<button type="submit" class="btn btn-primary">
+																<i class="fa fa-plus" aria-hidden="true"></i> Guardar Cambios
+															</button>
+														</div>
+													</div>
+													<?php }?>
+												</div>
+											</form>
 										</div>
 									</div>
 									<!-- TABLE ENDS -->
