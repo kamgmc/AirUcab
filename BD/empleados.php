@@ -106,7 +106,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 						<?php }?>
 						<?php if( in_array("fc_r", $permiso) ){ ?>
 						<li>
-							<a href="compras.php"> <i class="fa fa-cog" aria-hidden="true"></i>Compras </a>
+							<a href="compras.php"> <i class="fa fa-shopping-bag " aria-hidden="true"></i>Compras </a>
 						</li>
 						<?php }?>
 					</ul>
@@ -918,7 +918,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 													<div class="row">
 														<div class="col-sm-12 text-right">
 															<button type="submit" class="btn btn-primary">
-																<i class="fa fa-plus" aria-hidden="true"></i> Guardar Cambios
+																<i class="fa fa-floppy-o"></i>  Guardar Cambios
 															</button>
 														</div>
 													</div>

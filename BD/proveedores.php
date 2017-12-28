@@ -64,7 +64,7 @@
 					<li> <a href="clientes.php"> <i class="fa fa-address-book-o" aria-hidden="true"></i>Clientes</a></li>
 					<li class="active"> <a href="proveedores.php"> <i class="fa fa-truck" aria-hidden="true"></i>Proveedores</a></li>
 					<li> <a href="ventas.php"> <i class="fa fa-paper-plane-o" aria-hidden="true"></i>Ventas </a></li>
-					<li> <a href="compras.php"> <i class="fa fa-cog" aria-hidden="true"></i>Compras </a></li>
+					<li> <a href="compras.php"> <i class="fa fa-shopping-bag " aria-hidden="true"></i>Compras </a></li>
 					<li> <a href="modeloavion.php"> <i class="fa fa-plane" aria-hidden="true"></i> Aviones </a></li>
 				</ul>
 			</nav>

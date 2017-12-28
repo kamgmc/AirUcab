@@ -71,7 +71,7 @@
 						<a href="ventas.php"> <i class="fa fa-paper-plane-o" aria-hidden="true"></i>Ventas </a>
 					</li>
 					<li class="active">
-						<a href="compras.php"> <i class="fa fa-cog" aria-hidden="true"></i>Compras </a>
+						<a href="compras.php"> <i class="fa fa-shopping-bag " aria-hidden="true"></i>Compras </a>
 					</li>
 					<li>
 						<a href="modeloavion.php"> <i class="fa fa-plane" aria-hidden="true"></i> Aviones </a>
@@ -83,7 +83,7 @@
 				<section>
 					<div class="container-fluid">
 						<input id="tab0" type="radio" name="tabs" class="no-display" checked>
-						<label for="tab0" class="label"><i class="fa fa-cog" aria-hidden="true"></i> Compras</label>
+						<label for="tab0" class="label"><i class="fa fa-shopping-bag " aria-hidden="true"></i> Compras</label>
 						<!-- TAB Compras -->
 						<section id="content0" class="sectiontab">
 							<!-- Filtrador-->

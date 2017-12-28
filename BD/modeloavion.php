@@ -102,7 +102,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 								<?php }?>
 								<?php if( in_array("fc_r", $permiso) ){ ?>
 								<li>
-									<a href="compras.php"> <i class="fa fa-cog" aria-hidden="true"></i>Compras </a>
+									<a href="compras.php"> <i class="fa fa-shopping-bag" aria-hidden="true"></i>Compras </a>
 								</li>
 								<?php }?>
 							</ul>
@@ -336,7 +336,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 										</div>
 										<?php } ?>
 										<?php if( in_array("as_r", $permiso) ){?>
-										<?php $qry = "SELECT as_id id, am_nombre ||' - '|| as_nombre as modelo, as_peso_maximo_despegue peso_max, as_peso_vacio peso_vacio, as_velocidad_crucero crucero, as_carrera_despegue_peso_maximo carrera, as_autonomia_peso_maximo_despegue autonomia, as_capacidad_combustible combustible, as_alcance_carga_maxima alcance FROM Submodelo_avion, Modelo_avion where as_modelo_avion=am_id ORDER BY am_id, as_id";
+										<?php $qry = "SELECT as_id id, am_nombre ||' - '|| as_nombre as modelo, as_peso_maximo_despegue peso_max, as_peso_vacio peso_vacio, as_velocidad_crucero crucero, as_carrera_despegue_peso_maximo carrera, as_capacidad_combustible combustible, as_alcance_carga_maxima alcance FROM Submodelo_avion, Modelo_avion where as_modelo_avion=am_id ORDER BY am_id, as_id";
 										$rs = pg_query( $conexion, $qry );
 										$howMany = pg_num_rows($rs);
 										if( $howMany > 0 ){?>
@@ -350,11 +350,10 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<th class="text-center text-middle">Peso Vacio</th>
 														<th class="text-center text-middle">Velocidad Crucero</th>
 														<th class="text-center text-middle">Carrera Despegue Peso Max</th>
-														<th class="text-center text-middle">Autono. Peso Max Despegue</th>
 														<th class="text-center text-middle">Capacidad Combustible</th>
 														<th class="text-center text-middle">Alcance Carga Max</th>
 														<?php if( isset($_SESSION['code']) ){ ?>
-														<th class="text-center">Acción</th>
+														<th class="text-center col-sm-1">Acción</th>
 														<?php } ?>
 													</tr>
 												</thead>
@@ -380,19 +379,19 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 																<?php print number_format($avion->carrera, 0, ',', '.')." m";?>
 															</td>
 															<td class="text-center text-middle">
-																<?php print number_format($avion->autonomia, 0, ',', '.')." Km";?>
-															</td>
-															<td class="text-center text-middle">
 																<?php print number_format($avion->combustible, 0, ',', '.')." Lts";?>
 															</td>
 															<td class="text-center text-middle">
 																<?php print number_format($avion->alcance, 0, ',', '.')." m";?>
 															</td>
 															<td class="text-center">
+																<a class="click-submodelo-piezas" href="<?php print $avion->id;?>"> 
+																	<i class="fa fa-cogs" aria-hidden="true" title="Ver piezas"></i> 
+																</a>&nbsp;
 																<a class="click-submodelo-detalle" href="<?php print $avion->id;?>"> 
 																	<i class="fa fa-file-text-o" aria-hidden="true" title="Ver mas"></i> 
 																</a>
-																<?php if( in_array("as_d", $permiso) ){ ?>&emsp;
+																<?php if( in_array("as_d", $permiso) ){ ?>&nbsp;
 																<a href="submodeloavion-crud.php?delete=<?php print $avion->id;?>"> 
 																	<i title="Eliminar" class="fa fa-trash-o" aria-hidden="true"></i> 
 																</a>
@@ -877,6 +876,14 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 								</div>
 							</div>
 							<!-- Modal Detalle Submodelo Avion ENDS -->
+							<!-- Modal Piezas Submodelo Avion -->
+							<div id="ModalPiezaSubmodelo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+								<div role="document" class="modal-dialog modal-xl">
+									<div id="piezaSubmodeloBody" class="modal-content">
+									</div>
+								</div>
+							</div>
+							<!-- Modal Piezas Submodelo Avion ENDS -->
 							<!-- Modal Submodelo Avion Editar -->
 							<div id="ModalEditarSubmodelo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 								<div role="document" class="modal-dialog modal-xl">
@@ -1028,6 +1035,12 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 			  	var href = $(this).attr('href');
 				$.ajax({type: "POST",dataType: "html",url:"submodeloavion-detalle.php?id="+href,success: function(data){$("#detalleSubmodeloBody").html(data);}});
 				$("#ModalDetalleSubmodelo").modal('toggle');
+			});
+			$( "a.click-submodelo-piezas" ).click(function( event ) {
+			  	event.preventDefault();
+			  	var href = $(this).attr('href');
+				$.ajax({type: "POST",dataType: "html",url:"submodeloavion-piezas.php?id="+href,success: function(data){$("#piezaSubmodeloBody").html(data);}});
+				$("#ModalPiezaSubmodelo").modal('toggle');
 			});
 			$( "a.click-distribucion-detalle" ).click(function( event ) {
 			  	event.preventDefault();
