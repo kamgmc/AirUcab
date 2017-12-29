@@ -2567,7 +2567,7 @@ INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pie
 INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza) VALUES ('Nivel de combustible',62,1,141);
 --FUSELAJE
 INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado) VALUES ('Fuselaje',93);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_modelo_pieza) VALUES ('Portaequipaje',62,160);
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza) VALUES ('Portaequipaje',62,12,160);
 INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado) VALUES ('Asientos',62);
 --S_AVION_M_PIEZA
 --AU802
