@@ -2606,7 +2606,7 @@ INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) 
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,6,141);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,6,160);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (2,7,8);
-INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,7,1137);
+INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,7,137);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,7,140);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,7,141);
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (1,7,160);
