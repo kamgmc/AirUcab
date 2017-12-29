@@ -306,7 +306,7 @@ create table Modelo_pieza(
     pm_tipo_estabilizador integer,
     constraint Pk_modelo_pieza primary key(pm_id),
     constraint Check_pm_tiempo_estimado check(pm_tiempo_estimado > 0),
-    constraint Check_pm_cantidad check(pm_tiempo_estimado > 0),
+    constraint Check_pm_cantidad check(pm_cantidad > 0),
     constraint Fk_pm_modelo_pieza foreign key(pm_modelo_pieza) references Modelo_pieza(pm_id),
     constraint Fk_pm_tipo_ala foreign key(pm_tipo_ala) references Tipo_ala(wt_id),
     constraint Fk_pm_tipo_estabilizador foreign key(pm_tipo_estabilizador) references Tipo_estabilizador(et_id)
