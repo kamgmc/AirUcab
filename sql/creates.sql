@@ -16,11 +16,12 @@ create table Permiso(
 );
 create table Rol_permiso(
 	rp_id serial,
-	rp_permiso integer not null,
 	rp_rol integer not null,
-	constraint Pk_RolPermiso primary key(rp_id),
+	rp_permiso integer not null,
+	constraint Pk_rol_permiso primary key(rp_id),
 	constraint Fk_rp_rol foreign key(rp_rol) references Rol_sistema(sr_id),
-	constraint Fk_rp_permiso foreign key(rp_permiso) references Permiso(pe_id)
+	constraint Fk_rp_permiso foreign key(rp_permiso) references Permiso(pe_id),
+	constraint Unique_rol_permiso unique(rp_rol,rp_permiso)
 );
 create table Lugar(
 	lu_id serial,
@@ -84,7 +85,8 @@ create table Empleado(
 	constraint Fk_em_cargo foreign key(em_cargo) references Cargo (er_id),
 	constraint Fk_em_rol foreign key(em_rol) references Rol_sistema(sr_id),
 	constraint Fk_em_zona foreign key(em_zona) references Zona(zo_id),
-	constraint Fk_em_direccion foreign key(em_direccion) references Lugar(lu_id)
+	constraint Fk_em_direccion foreign key(em_direccion) references Lugar(lu_id),
+	constraint Unique_ci_empleado unique(em_nacionalidad,em_ci)
 );
 create unique index Em_cedula on Empleado (em_nacionalidad,em_ci);
 create table Beneficiario(
@@ -121,7 +123,8 @@ create table Cliente(
 	constraint Pk_cliente primary key(cl_id),
 	constraint Check_cl_tipo_rif check(cl_tipo_rif IN ('G','J','V','E')),
 	constraint Check_cl_rif check(cl_rif > 0),
-	constraint Fk_cl_direccion foreign key (cl_direccion) references Lugar(lu_id)
+	constraint Fk_cl_direccion foreign key (cl_direccion) references Lugar(lu_id),
+	constraint Unique_rif_cliente unique(cl_tipo_rif,cl_rif)
 );
 create unique index Cl_Rif on Cliente (cl_tipo_rif,cl_rif);
 create table Factura_venta(
@@ -143,7 +146,8 @@ create table Proveedor(
 	constraint Pk_proveedor primary key(po_id),
 	constraint Check_po_tipo_rif check(po_tipo_rif IN('G','J','V','E')),
 	constraint Check_po_rif check(po_rif > 0),
-	constraint Fk_po_direccion foreign key(po_direccion) references Lugar(lu_id)
+	constraint Fk_po_direccion foreign key(po_direccion) references Lugar(lu_id),
+	constraint Unique_rif_proveedor unique(po_tipo_rif,po_rif)
 );
 create unique index Po_Rif on Proveedor (po_tipo_rif,po_rif);
 create table Tipo_contacto(
@@ -296,11 +300,13 @@ create table Modelo_pieza(
     pm_id serial,
     pm_nombre varchar(30) not null,
     pm_tiempo_estimado integer not null,
+    pm_cantidad integer,
     pm_modelo_pieza integer,
     pm_tipo_ala integer,
     pm_tipo_estabilizador integer,
     constraint Pk_modelo_pieza primary key(pm_id),
     constraint Check_pm_tiempo_estimado check(pm_tiempo_estimado > 0),
+    constraint Check_pm_cantidad check(pm_tiempo_estimado > 0),
     constraint Fk_pm_modelo_pieza foreign key(pm_modelo_pieza) references Modelo_pieza(pm_id),
     constraint Fk_pm_tipo_ala foreign key(pm_tipo_ala) references Tipo_ala(wt_id),
     constraint Fk_pm_tipo_estabilizador foreign key(pm_tipo_estabilizador) references Tipo_estabilizador(et_id)
