@@ -362,7 +362,7 @@ create table Tipo_pago(
 );
 create table Pago(
 	pa_id serial,
-	pa_monto numeric(7,2) not null,
+	pa_monto numeric(11,2) not null,
 	pa_fecha date not null,
 	pa_tipo_pago integer not null,
 	pa_factura_venta integer,
@@ -396,7 +396,7 @@ create table Avion(
     a_factura_venta integer not null,
 	a_distribucion integer not null,
     a_submodelo_avion integer not null,
-	a_precio numeric(8,2) not null,
+	a_precio numeric(10,2) not null,
     constraint Pk_avion primary key(a_id),
     constraint Fk_a_factura_venta foreign key(a_factura_venta) references Factura_venta(fv_id),
     constraint Fk_a_distribucion foreign key(a_distribucion) references Distribucion(di_id),
