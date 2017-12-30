@@ -524,6 +524,36 @@
 		$qry = "UPDATE Distribucion  SET di_nombre='".$nombre."', di_numero_clases=".$numero_clases.", di_capacidad_pasajeros=".$capacidad_pasajeros.", di_distancia_asientos=".$distancia_asientos.", di_ancho_asientos=".$ancho_asientos.", di_modelo_avion=".$modelo." WHERE di_id=".$id;
 		return pg_query($conexion, $qry);
 	}
+	function eliminarDistribucion($id){
+		global $conexion;
+		$qry = "DELETE FROM Distribucion where di_modelo_avion=".$id;
+		$qry2 = "DELETE FROM Avion where a_distribucion in (Select di_id from Distribucion where di_modelo_avion=".$id.")";
+        	$qry3 = "DELETE FROM Motor where mo_avion in (Select a_id from Avion, Submodelo_avion where a_submodelo_avion=as_id and as_modelo_avion=".$id.") or mo_avion in (Select a_id from Avion, Distribucion where a_distribucion=di_id and di_modelo_avion=".$id.")";
+		$qry4 = "DELETE FROM Status_motor where stm_motor in (Select mo_id from Motor, Avion, Submodelo_avion where mo_avion=a_id and a_submodelo_avion=as_id and as_modelo_avion=".$id.") or stm_motor in (Select mo_id from Motor, Avion, Distribucion where mo_avion=a_id and a_distribucion=di_id and di_modelo_avion=".$id.")";
+		$qry5 = "DELETE FROM Status_avion where sa_avion in (Select a_id from Avion, Distribucion where a_distribucion=di_id and di_modelo_avion=".$id.")";
+		$qry6 = "DELETE FROM Pieza where p_avion in (Select a_id from Avion, Distribucion where a_distribucion=di_id and di_modelo_avion=".$id.")";
+		$qry7 = "DELETE FROM Prueba_pieza where pp_pieza in (Select p_id from Pieza, Avion, Distribucion where p_avion=a_id and a_distribucion=di_id and di_modelo_avion=".$id.")";
+		$qry8 = "DELETE FROM Status_pieza where spi_pieza in (Select p_id from Pieza, Avion, Distribucion where p_avion=a_id and a_distribucion=di_id and di_modelo_avion=".$id.")";
+		$qry9 = "DELETE FROM Material where m_pieza in (Select p_id from Pieza, Avion, Distribucion where p_avion=a_id and a_distribucion=di_id and di_modelo_avion=".$id.")";
+		$qry10 = "DELETE FROM Prueba_material where prm_material in (Select m_id from Material, Pieza, Avion, Distribucion where m_pieza=p_id and p_avion=a_id and a_distribucion=di_id and di_modelo_avion=".$id.")";
+		$qry11 = "DELETE FROM Traslado where tr_material in (Select m_id from Material, Pieza, Avion, Distribucion where m_pieza=p_id and p_avion=a_id and a_distribucion=di_id and di_modelo_avion=".$id.")";
+		$qry12 = "DELETE FROM Traslado where tr_pieza in (Select p_id from Pieza, Avion, Distribucion where p_avion=a_id and a_distribucion=di_id and di_modelo_avion=".$id.")";
+		$qry13 = "DELETE FROM Prueba_pieza where pp_pieza in (Select p_id from Pieza, Avion, Factura_venta, Cliente where p_avion=a_id and a_factura_venta=fv_id and fv_cliente=".$id.")";
+		if(pg_query($conexion, $qry13))
+		    if(pg_query($conexion, $qry12))
+			if(pg_query($conexion, $qry11))
+			     if(pg_query($conexion, $qry10))
+				 if(pg_query($conexion, $qry9))
+				     if(pg_query($conexion, $qry8))
+					 if(pg_query($conexion, $qry7))
+					     if(pg_query($conexion, $qry6))
+						 if(pg_query($conexion, $qry5))
+						     if(pg_query($conexion, $qry4))
+							 if(pg_query($conexion, $qry3))
+							     if(pg_query($conexion, $qry2))
+								 return pg_query($conexion, $qry);
+        	return false;
+	}
 //Submodelo_avion
 	function insertarSubmodeloAvion( $nombre, $peso_max, $peso_vacio, $velocidad_crucero, $carrera, $autonomia, $combustible, $alcance, $modelo ){
 		global $conexion;
@@ -536,6 +566,40 @@
 		$nombre = htmlentities($nombre, ENT_QUOTES);
 		$qry = "UPDATE Submodelo_avion SET as_nombre='".$nombre."', as_peso_maximo_despegue=".$peso_max.", as_peso_vacio=".$peso_vacio.", as_velocidad_crucero=".$velocidad_crucero.", as_carrera_despegue_peso_maximo=".$carrera.", as_autonomia_peso_maximo_despegue= ".$autonomia.", as_capacidad_combustible=".$combustible.", as_alcance_carga_maxima=".$alcance.", as_modelo_avion=".$modelo." WHERE as_id=".$id;
 		return pg_query($conexion, $qry);
+	}
+	function eliminarSubmodeloAvion($id){
+		global $conexion;
+		$qry3 = "DELETE FROM Submodelo_avion where as_modelo_avion=".$id;
+		$qry4 = "DELETE FROM S_avion_m_motor where smt_submodelo_avion in (Select as_id from Submodelo_avion where as_modelo_avion=".$id.")";
+		$qry5 = "DELETE FROM S_avion_m_pieza where smp_submodelo_avion in (Select as_id from Submodelo_avion where as_modelo_avion=".$id.")";
+		$qry6 = "DELETE FROM Avion where a_submodelo_avion in (Select as_id from Submodelo_avion where as_modelo_avion=".$id.") or a_distribucion in (Select di_id from Distribucion where di_modelo_avion=".$id.")";
+		$qry7 = "DELETE FROM Status_avion where sa_avion in (Select a_id from Avion, Submodelo_avion where a_submodelo_avion=as_id and as_modelo_avion=".$id.") or sa_avion in (Select a_id from Avion, Distribucion where a_distribucion=di_id and di_modelo_avion=".$id.")";
+		$qry8 = "DELETE FROM Motor where mo_avion in (Select a_id from Avion, Submodelo_avion where a_submodelo_avion=as_id and as_modelo_avion=".$id.") or mo_avion in (Select a_id from Avion, Distribucion where a_distribucion=di_id and di_modelo_avion=".$id.")";
+		$qry9 = "DELETE FROM Status_motor where stm_motor in (Select mo_id from Motor, Avion, Submodelo_avion where mo_avion=a_id and a_submodelo_avion=as_id and as_modelo_avion=".$id.") or stm_motor in (Select mo_id from Motor, Avion, Distribucion where mo_avion=a_id and a_distribucion=di_id and di_modelo_avion=".$id.")";
+		$qry10 = "DELETE FROM Pieza where p_avion in (Select a_id from Avion, Submodelo_avion where a_submodelo_avion=as_id and as_modelo_avion=".$id.") or p_avion in (Select a_id from Avion, Distribucion where a_distribucion=di_id and di_modelo_avion=".$id.")";
+		$qry11 = "DELETE FROM Status_pieza where spi_pieza in (Select p_id from Pieza, Avion, Submodelo_avion where p_avion=a_id and a_submodelo_avion=as_id and as_modelo_avion=".$id.") or spi_pieza in (Select p_id from Pieza, Avion, Distribucion where p_avion=a_id and a_distribucion=di_id and di_modelo_avion=".$id.")";
+		$qry12 = "DELETE FROM Material where m_pieza in (Select p_id from Pieza, Avion, Submodelo_avion where p_avion=a_id and a_submodelo_avion=as_id and as_modelo_avion=".$id.") or m_pieza in (Select p_id from Pieza, Avion, Distribucion where p_avion=a_id and a_distribucion=di_id and di_modelo_avion=".$id.")";
+		$qry13 = "DELETE FROM Prueba_material where prm_material in (Select m_id from Material, Pieza, Avion, Submodelo_avion where m_pieza=p_id and p_avion=a_id and a_submodelo_avion=as_id and as_modelo_avion=".$id.") or prm_material in (Select m_id from Material, Pieza, Avion, Distribucion where m_pieza=p_id and p_avion=a_id and a_distribucion=di_id and di_modelo_avion=".$id.")";
+		$qry14 = "DELETE FROM Status_material where sm_material in (Select m_id from Material, Pieza, Avion, Submodelo_avion where m_pieza=p_id and p_avion=a_id and a_submodelo_avion=as_id and as_modelo_avion=".$id.") or sm_material in (Select m_id from Material, Pieza, Avion, Distribucion where m_pieza=p_id and p_avion=a_id and a_distribucion=di_id and di_modelo_avion=".$id.")";
+		$qry15 = "DELETE FROM Traslado where tr_pieza in (Select p_id from Pieza, Avion, Submodelo_avion where p_avion=a_id and a_submodelo_avion=as_id and as_modelo_avion=".$id.") or tr_pieza in (Select p_id from Pieza, Avion, Distribucion where p_avion=a_id and a_distribucion=di_id and di_modelo_avion=".$id.")";
+		$qry16 = "DELETE FROM Traslado where tr_material in (Select m_id from Material, Pieza, Avion, Submodelo_avion where m_pieza=p_id and p_avion=a_id and a_submodelo_avion=as_id and as_modelo_avion=".$id.") or tr_material in (Select m_id from Material, Pieza, Avion, Distribucion where m_pieza=p_id and p_avion=a_id and a_distribucion=di_id and di_modelo_avion=".$id.")";
+		$qry17 = "DELETE FROM Prueba_pieza where pp_pieza in (Select p_id from Pieza, Avion, Submodelo_avion where p_avion=a_id and a_submodelo_avion=as_id and as_modelo_avion=".$id.") or pp_pieza in (Select p_id from Pieza, Avion, Distribucion where p_avion=a_id and a_distribucion=di_id and di_modelo_avion=".$id.")";
+		if(pg_query($conexion, $qry17))
+			if(pg_query($conexion, $qry16))
+				if(pg_query($conexion, $qry15))
+					if(pg_query($conexion, $qry14))
+						if(pg_query($conexion, $qry13))
+							if(pg_query($conexion, $qry12))
+								if(pg_query($conexion, $qry11))
+									if(pg_query($conexion, $qry10))
+										if(pg_query($conexion, $qry9))
+											if(pg_query($conexion, $qry8))
+												if(pg_query($conexion, $qry7))
+													if(pg_query($conexion, $qry6))
+														if(pg_query($conexion, $qry5))
+															if(pg_query($conexion, $qry4))
+												                return pg_query($conexion, $qry3);
+		return false;
 	}
 //Query de S avion - m motor
 	function insertarSAvionMMotor( $cantidad, $sAvion , $mMotor ){
