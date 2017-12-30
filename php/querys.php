@@ -73,7 +73,22 @@
 	function eliminarEmpleado( $id ){
 		global $conexion;
 		$qry = "DELETE FROM Empleado WHERE em_id=".$id;
-		return pg_query($conexion, $qry);
+		$qry2 = "DELETE FROM Experiencia WHERE ex_empleado=".$id;
+		$qry3 = "DELETE FROM Beneficiario WHERE be_empleado=".$id;
+		$qry4 = "DELETE FROM Contacto WHERE co_empleado=".$id;
+		$qry5 = "DELETE FROM Prueba WHERE pr_empleado=".$id;
+		$qry6 = "DELETE FROM Prueba_pieza WHERE pp_prueba IN (SELECT pr_id FROM Prueba,Empleado WHERE pr_empleado=".$id.")";
+		$qry7 = "DELETE FROM Status_prueba WHERE sp_prueba IN (SELECT pr_id FROM Prueba,Empleado WHERE pr_empleado=".$id.")";
+		$qry8 = "DELETE FROM Prueba_material WHERE prm_prueba IN (SELECT pr_id FROM Prueba,Empleado WHERE pr_empleado=".$id.")";
+		if(pg_query($conexion, $qry8))
+		    if(pg_query($conexion, $qry7))
+			if(pg_query($conexion, $qry6))
+			    if(pg_query($conexion, $qry5))
+				if(pg_query($conexion, $qry4))
+				    if(pg_query($conexion, $qry3))
+					if(pg_query($conexion, $qry2))
+						  return pg_query($conexion, $qry);
+		return false;
 	}
 //Querys de Contacto
 	function insertarContacto( $valor, $tipo, $cliente, $empleado, $proveedor ){
