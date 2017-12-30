@@ -2848,11 +2848,11 @@ INSERT INTO Traslado (tr_fecha_ini,tr_fecha_fin,tr_confirmacion,tr_zona_envia,tr
 INSERT INTO Traslado (tr_fecha_ini,tr_fecha_fin,tr_confirmacion,tr_zona_envia,tr_zona_recibe,tr_material) VALUES ('2018-01-22','2018-01-23',TRUE,2,3,5);
 INSERT INTO Traslado (tr_fecha_ini,tr_fecha_fin,tr_confirmacion,tr_zona_envia,tr_zona_recibe,tr_pieza) VALUES ('2018-01-22','2018-01-23',TRUE,4,3,5);
 --TIPO_PAGO
-INSERT INTO Tipo_pago (pt_tipo,pt_numero,pt_tc_nombre,pt_tc_cod,pt_tc_fecha) VALUES (2,145161,'José Andrade',132,'2020-02-15');
-INSERT INTO Tipo_pago (pt_tipo,pt_numero,pt_tc_nombre,pt_tc_cod,pt_tc_fecha) VALUES (2,544512,'Carla Sousa',514,'2019-08-02');
-INSERT INTO Tipo_pago (pt_tipo,pt_numero,pt_tc_nombre,pt_tc_cod,pt_tc_fecha) VALUES (2,152161,'Anthony Almeida',231,'2018-11-29');
-INSERT INTO Tipo_pago (pt_tipo,pt_numero) VALUES (1,122451);
-INSERT INTO Tipo_pago (pt_tipo,pt_numero) VALUES (1,123154);
+INSERT INTO Tipo_pago (pt_numero,pt_tc_nombre,pt_tc_cod,pt_tc_fecha) VALUES (145161,'José Andrade',132,'2020-02-15');
+INSERT INTO Tipo_pago (pt_numero,pt_tc_nombre,pt_tc_cod,pt_tc_fecha) VALUES (544512,'Carla Sousa',514,'2019-08-02');
+INSERT INTO Tipo_pago (pt_numero,pt_tc_nombre,pt_tc_cod,pt_tc_fecha) VALUES (152161,'Anthony Almeida',231,'2018-11-29');
+INSERT INTO Tipo_pago (pt_numero) VALUES (122451);
+INSERT INTO Tipo_pago (pt_numero) VALUES (123154);
 --PAGO
 INSERT INTO Pago (pa_monto,pa_fecha,pa_tipo_pago,pa_factura_venta) VALUES (1451.61,'2016-06-28',1,1);
 INSERT INTO Pago (pa_monto,pa_fecha,pa_tipo_pago,pa_factura_venta) VALUES (5445.12,'2017-01-11',2,2);
