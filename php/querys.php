@@ -359,6 +359,26 @@
 		$qry = "UPDATE Proveedor SET po_tipo_rif='".$trif."', po_rif='".$trif."', po_nombre='".$nombre."', po_pagina_web='".$pweb."', po_fecha_inicio='".$finicio."' WHERE po_id=".$id;
 		return pg_query($conexion, $qry);
 	}
+	function eliminarProveedor( $id ){
+		global $conexion;
+		$qry = "DELETE FROM Proveedor WHERE po_id=".$id;
+        $qry2 = "DELETE FROM Contacto WHERE co_proveedor=".$id;
+        $qry3 = "DELETE FROM Factura_compra WHERE fc_proveedor=".$id;
+        $qry4 = "DELETE FROM Pago WHERE pa_factura_compra IN (SELECT fc_id FROM Factura_compra WHERE fc_proveedor=".$id.")";
+        $qry5 = "DELETE FROM Material WHERE m_factura_compra IN (SELECT fc_id FROM Factura_compra WHERE fc_proveedor=".$id.")";
+        $qry6 = "DELETE FROM Status_material WHERE sm_material IN (SELECT m_id FROM Material,Factura_compra WHERE m_factura_compra=fc_id AND fc_proveedor=".$id.")";
+        $qry7 = "DELETE FROM Prueba_material WHERE prm_material IN (SELECT m_id FROM Material,Factura_compra WHERE m_factura_compra=fc_id AND fc_proveedor=".$id.")";
+        $qry8 = "DELETE FROM Traslado WHERE tr_material IN (SELECT m_id FROM Material,Factura_compra WHERE m_factura_compra=fc_id AND fc_proveedor=".$id.")";
+        if(pg_query($conexion, $qry8))
+                    if(pg_query($conexion, $qry7))
+                        if(pg_query($conexion, $qry6))
+                            if(pg_query($conexion, $qry5))
+                                if(pg_query($conexion, $qry4))
+                                    if(pg_query($conexion, $qry3))
+                                        if(pg_query($conexion, $qry2))
+		                                  return pg_query($conexion, $qry);
+        return false;
+	}
 //Query Tipo de contacto
 	function insertarTipoContacto( $nombre ){
 		global $conexion;
