@@ -2083,6 +2083,7 @@ INSERT INTO Zona (zo_nombre, zo_tipo, zo_sede) VALUES ('Ensamble de Alas','Ensam
 INSERT INTO Zona (zo_nombre, zo_tipo, zo_sede) VALUES ('Ensamble de Fuselaje','Ensamblaje',5);
 INSERT INTO Zona (zo_nombre, zo_tipo, zo_sede) VALUES ('Ensamblaje del Avión','Ensamblaje',5);
 --CARGOS
+INSERT INTO Cargo (er_nombre) VALUES ('Sin Asignar');
 INSERT INTO Cargo (er_nombre) VALUES ('CEO');
 INSERT INTO Cargo (er_nombre) VALUES ('Gerente');
 INSERT INTO Cargo (er_nombre) VALUES ('Supervisor');
@@ -2093,6 +2094,7 @@ INSERT INTO Cargo (er_nombre) VALUES ('Ensamblador');
 INSERT INTO Cargo (er_nombre) VALUES ('Tester');
 INSERT INTO Cargo (er_nombre) VALUES ('Administrador');
 --TITULACIÓN
+INSERT INTO Titulacion (ti_nombre) VALUES ('Sin Asignar');
 INSERT INTO Titulacion (ti_nombre) VALUES ('Ingeniero');
 INSERT INTO Titulacion (ti_nombre) VALUES ('TSU');
 INSERT INTO Titulacion (ti_nombre) VALUES ('Bachiller');
