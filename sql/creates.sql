@@ -351,18 +351,16 @@ create table Factura_compra(
 );
 create table Tipo_pago(
 	pt_id serial,
-	pt_tipo numeric(1,0) not null,
 	pt_numero integer not null,
 	pt_tc_nombre varchar(30),
 	pt_tc_cod numeric(3,0),
 	pt_tc_fecha date,
 	constraint Pk_tipo_pago primary key (pt_id),
-	constraint Check_pt_tipo check(pt_tipo > 0),
 	constraint Check_pt_tc_cod check(pt_tc_cod > 0)
 );
 create table Pago(
 	pa_id serial,
-	pa_monto numeric(11,2) not null,
+	pa_monto numeric(7,2) not null,
 	pa_fecha date not null,
 	pa_tipo_pago integer not null,
 	pa_factura_venta integer,
@@ -396,7 +394,7 @@ create table Avion(
     a_factura_venta integer not null,
 	a_distribucion integer not null,
     a_submodelo_avion integer not null,
-	a_precio numeric(10,2) not null,
+	a_precio numeric(8,2) not null,
     constraint Pk_avion primary key(a_id),
     constraint Fk_a_factura_venta foreign key(a_factura_venta) references Factura_venta(fv_id),
     constraint Fk_a_distribucion foreign key(a_distribucion) references Distribucion(di_id),
