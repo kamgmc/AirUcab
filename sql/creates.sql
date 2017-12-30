@@ -351,7 +351,7 @@ create table Factura_compra(
 );
 create table Tipo_pago(
 	pt_id serial,
-	pt_numero integer not null,
+	pt_numero numeric(16) not null,
 	pt_tc_nombre varchar(30),
 	pt_tc_cod numeric(3,0),
 	pt_tc_fecha date,
