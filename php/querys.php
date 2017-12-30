@@ -150,9 +150,27 @@
 	}
 	function eliminarRol( $id ){
 		global $conexion;
-		$nombre = htmlentities($nombre, ENT_QUOTES);
 		$qry = "DELETE FROM Rol_sistema WHERE sr_id=".$id;
-		return pg_query($conexion, $qry);
+		$qry2 = "DELETE FROM Rol_permiso WHERE rp_rol=".$id;
+		$qry3 = "DELETE FROM Empleado WHERE em_rol=".$id;
+		$qry4 = "DELETE FROM Experiencia WHERE ex_empleado IN (SELECT em_id FROM Empleado WHERE em_rol=".$id.")";
+		$qry5 = "DELETE FROM Beneficiario WHERE be_empleado IN (SELECT em_id FROM Empleado WHERE em_rol=".$id.")";
+		$qry6 = "DELETE FROM Contacto WHERE co_empleado IN (SELECT em_id FROM Empleado WHERE em_rol=".$id.")";
+		$qry7 = "DELETE FROM Prueba WHERE pr_empleado IN (SELECT em_id FROM Empleado WHERE em_rol=".$id.")";
+		$qry8 = "DELETE FROM Prueba_pieza WHERE pp_prueba IN (SELECT pr_id FROM Prueba,Empleado WHERE pr_empleado=em_id AND em_rol=".$id.")";
+		$qry9 = "DELETE FROM Status_prueba WHERE sp_prueba IN (SELECT pr_id FROM Prueba,Empleado WHERE pr_empleado=em_id AND em_rol=".$id.")";
+		$qry10 = "DELETE FROM Prueba_material WHERE prm_prueba IN (SELECT pr_id FROM Prueba,Empleado WHERE pr_empleado=em_id AND em_rol=".$id.")";
+		if(pg_query($conexion, $qry10))
+		    if(pg_query($conexion, $qry9))
+			if(pg_query($conexion, $qry8))
+			    if(pg_query($conexion, $qry7))
+				if(pg_query($conexion, $qry6))
+				    if(pg_query($conexion, $qry5))
+					if(pg_query($conexion, $qry4))
+					    if(pg_query($conexion, $qry3))
+						if(pg_query($conexion, $qry2))
+						    return pg_query($conexion, $qry);
+		return false;
 	}
 //Querys de Cargo
 	function insertarCargo( $nombre ){
@@ -170,7 +188,24 @@
 	function eliminarCargo( $id ){
 		global $conexion;
 		$qry = "DELETE FROM Cargo where er_id=".$id;
-		return pg_query($conexion, $qry);
+		$qry2 = "DELETE FROM Empleado where em_cargo=".$id;
+		$qry3 = "DELETE FROM Experiencia WHERE ex_empleado IN (SELECT em_id FROM Empleado WHERE em_cargo=".$id.")";
+		$qry4 = "DELETE FROM Beneficiario WHERE be_empleado IN (SELECT em_id FROM Empleado WHERE em_cargo=".$id.")";
+		$qry5 = "DELETE FROM Contacto WHERE co_empleado IN (SELECT em_id FROM Empleado WHERE em_cargo=".$id.")";
+		$qry6 = "DELETE FROM Prueba WHERE pr_empleado IN (SELECT em_id FROM Empleado WHERE em_cargo=".$id.")";
+		$qry7 = "DELETE FROM Prueba_pieza WHERE pp_prueba IN (SELECT pr_id FROM Prueba,Empleado WHERE pr_empleado=em_id AND em_cargo=".$id.")";
+		$qry8 = "DELETE FROM Status_prueba WHERE sp_prueba IN (SELECT pr_id FROM Prueba,Empleado WHERE pr_empleado=em_id AND em_cargo=".$id.")";
+		$qry9 = "DELETE FROM Prueba_material WHERE prm_prueba IN (SELECT pr_id FROM Prueba,Empleado WHERE pr_empleado=em_id AND em_cargo=".$id.")";
+		if(pg_query($conexion, $qry9))
+			if(pg_query($conexion, $qry8))
+			    if(pg_query($conexion, $qry7))
+				if(pg_query($conexion, $qry6))
+				    if(pg_query($conexion, $qry5))
+					if(pg_query($conexion, $qry4))
+					    if(pg_query($conexion, $qry3))
+						if(pg_query($conexion, $qry2))
+							  return pg_query($conexion, $qry);
+		return false;
 	}
 //Querys de Titulacion
 	function insertarTitulacion( $nombre ){
@@ -188,7 +223,24 @@
 	function eliminarTitulacion( $id ){
 		global $conexion;
 		$qry = "DELETE FROM Titulacion where ti_id=".$id;
-		return pg_query($conexion, $qry);
+		$qry2 = "DELETE FROM Empleado where em_titulacion=".$id;
+		$qry3 = "DELETE FROM Experiencia WHERE ex_empleado IN (SELECT em_id FROM Empleado WHERE em_titulacion=".$id.")";
+		$qry4 = "DELETE FROM Beneficiario WHERE be_empleado IN (SELECT em_id FROM Empleado WHERE em_titulacion=".$id.")";
+		$qry5 = "DELETE FROM Contacto WHERE co_empleado IN (SELECT em_id FROM Empleado WHERE em_titulacion=".$id.")";
+		$qry6 = "DELETE FROM Prueba WHERE pr_empleado IN (SELECT em_id FROM Empleado WHERE em_titulacion=".$id.")";
+		$qry7 = "DELETE FROM Prueba_pieza WHERE pp_prueba IN (SELECT pr_id FROM Prueba,Empleado WHERE pr_empleado=em_id AND em_titulacion=".$id.")";
+		$qry8 = "DELETE FROM Status_prueba WHERE sp_prueba IN (SELECT pr_id FROM Prueba,Empleado WHERE pr_empleado=em_id AND em_titulacion=".$id.")";
+		$qry9 = "DELETE FROM Prueba_material WHERE prm_prueba IN (SELECT pr_id FROM Prueba,Empleado WHERE pr_empleado=em_id AND em_titulacion=".$id.")";
+		if(pg_query($conexion, $qry9))
+			if(pg_query($conexion, $qry8))
+			    if(pg_query($conexion, $qry7))
+				if(pg_query($conexion, $qry6))
+				    if(pg_query($conexion, $qry5))
+					if(pg_query($conexion, $qry4))
+					    if(pg_query($conexion, $qry3))
+						if(pg_query($conexion, $qry2))
+							  return pg_query($conexion, $qry);
+		return false;
 	}
 //Querys de Status
 	function insertarStatus( $nombre ){
