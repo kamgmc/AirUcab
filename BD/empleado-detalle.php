@@ -46,7 +46,7 @@ $resultado = '<div class="modal-header">
 										<div class="col-lg-4">
 											<h4>Fecha de Ingreso</h4>
 										</div>
-										<div class="col-lg-8">'.$date->format('d-m-Y').'</div>
+										<div class="col-lg-8">'.$date->format('d/m/Y').'</div>
 									</div>
 									<div class="row">
 										<div class="col-lg-4">

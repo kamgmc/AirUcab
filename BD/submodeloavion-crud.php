@@ -14,10 +14,17 @@
 	}
 	if(isset($_GET['delete'])){
 		$id = $_GET['delete'];
-		if(eliminarSubmodeloAvion($id))
-			header('Location: modeloavion.php?tab=submodelo');
+		$qry = "Select Count(*) total From Submodelo_avion WHERE as_modelo_avion=(Select as_modelo_avion From Submodelo_avion Where as_id=".$id.")";
+		$con = pg_query($conexion, $qry);
+		$submodelo = pg_fetch_object($con);
+		if( $submodelo->total > 1 ){
+			if(eliminarSubmodeloAvion($id))
+				header('Location: modeloavion.php?tab=submodelo');
+			else
+				header('Location: modeloavion.php?tab=submodelo&error=6');
+		}
 		else
-			header('Location: modeloavion.php?tab=submodelo&error=6');
+			header('Location: modeloavion.php?tab=submodelo&error=60');
 	}
 	exit;
 ?>

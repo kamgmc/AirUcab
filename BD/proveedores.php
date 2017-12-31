@@ -133,7 +133,7 @@
 														<td class="text-center"><?php print $proveedor->t_rif."-".$proveedor->rif;?></td>
 														<td><?php print $proveedor->nombre;?></td>
 														<td class="text-center"><?php print number_format($proveedor->monto, 2,',','.')." Bs";?></td>
-														<td class="text-center"><?php $date = new DateTime($proveedor->fecha); print $date->format('d-m-Y');?></td>
+														<td class="text-center"><?php $date = new DateTime($proveedor->fecha); print $date->format('d/m/Y');?></td>
 														<td class="text-center"><?php print $proveedor->compras;?></td>
 														<td class="text-center"><?php print $proveedor->direccion;?></td>
 														<td class="text-center">
@@ -259,7 +259,7 @@
 															<tr>
 																<td><?php print $compra->id;?></td>
 																<td><?php print $compra->material;?></td>
-																<td><?php $date = new DateTime($compra->fecha); print $date->format('d-m-Y');?></td>
+																<td><?php $date = new DateTime($compra->fecha); print $date->format('d/m/Y');?></td>
 																<td><span class="badge badge-info"><?php print $compra->status;?></span></td>
 																<td><?php print number_format($compra->precio, 2, ',', '.')." Bs";?></td>
 																<td class="text-center">

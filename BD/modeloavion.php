@@ -5,7 +5,13 @@ include 'conexion.php';
 if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'] = 5;} 
 $qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$_SESSION['rol']; 
 $rs = pg_query( $conexion, $qry ); $permiso = array();
-while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
+while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }
+if( !in_array("am_r", $permiso) && !in_array("am_c", $permiso) && !in_array("as_r", $permiso) && !in_array("as_c", $permiso) && !in_array("di_r", $permiso) && !in_array("di_c", $permiso) ){
+	if( !isset($_SESSION['code']) ){
+		header('Location: login.php');
+		exit;
+	}
+}?>
 	<!DOCTYPE html>
 	<html>
 
@@ -64,48 +70,48 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 				<!-- Side Navbar -->
 				<nav class="side-navbar">
 					<?php if( isset($_SESSION['code']) ){ ?>
-						<!-- Sidebar Header-->
-						<div class="sidebar-header d-flex align-items-center">
-							<div class="avatar"><img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
-							<div class="title">
-								<h1 class="h4"><?php print $_SESSION['usuario']; ?></h1>
-								<p><?php print $_SESSION['cargo']; ?></p>
-							</div>
+					<!-- Sidebar Header-->
+					<div class="sidebar-header d-flex align-items-center">
+						<div class="avatar"><img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
+						<div class="title">
+							<h1 class="h4"><?php print $_SESSION['usuario']; ?></h1>
+							<p><?php print $_SESSION['cargo']; ?></p>
 						</div>
-						<?php } ?>
-							<!-- Sidebar Navidation Menus-->
-							<ul class="list-unstyled">
-								<?php if( in_array("am_r", $permiso) || in_array("am_c", $permiso) || in_array("as_r", $permiso) || in_array("as_c", $permiso) || in_array("di_r", $permiso) || in_array("di_c", $permiso) ){ ?>
-								<li class="active">
-									<a href="modeloavion.php"> <i class="fa fa-plane" aria-hidden="true"></i> Aviones </a>
-								</li>
-								<?php }?>
-								<?php if( in_array("em_r", $permiso) || in_array("em_c", $permiso) ){ ?>
-								<li>
-									<a href="empleados.php"><i class="fa fa-id-card-o"></i>Empleados</a>
-								</li>
-								<?php }?>
-								<?php if( in_array("cl_r", $permiso) ){ ?>
-								<li>
-									<a href="clientes.php"> <i class="fa fa-address-book-o" aria-hidden="true"></i>Clientes</a>
-								</li>
-								<?php }?>
-								<?php if( in_array("po_r", $permiso) ){ ?>
-								<li>
-									<a href="proveedores.php"> <i class="fa fa-truck" aria-hidden="true"></i>Proveedores</a>
-								</li>
-								<?php }?>
-								<?php if( in_array("fv_r", $permiso) ){ ?>
-								<li>
-									<a href="ventas.php"> <i class="fa fa-paper-plane-o" aria-hidden="true"></i>Ventas </a>
-								</li>
-								<?php }?>
-								<?php if( in_array("fc_r", $permiso) ){ ?>
-								<li>
-									<a href="compras.php"> <i class="fa fa-shopping-bag" aria-hidden="true"></i>Compras </a>
-								</li>
-								<?php }?>
-							</ul>
+					</div>
+					<?php } ?>
+					<!-- Sidebar Navidation Menus-->
+					<ul class="list-unstyled">
+						<?php if( in_array("am_r", $permiso) || in_array("as_r", $permiso) || in_array("di_r", $permiso) || in_array("am_c", $permiso) || in_array("as_c", $permiso) || in_array("di_c", $permiso) ){ ?>
+						<li class="active">
+							<a href="modeloavion.php"> <i class="fa fa-plane" aria-hidden="true"></i> Aviones </a>
+						</li>
+						<?php }?>
+						<?php if( in_array("em_r", $permiso) || in_array("em_c", $permiso) ){ ?>
+						<li>
+							<a href="empleados.php"><i class="fa fa-id-card-o"></i>Empleados</a>
+						</li>
+						<?php }?>
+						<?php if( in_array("fv_r", $permiso) || in_array("fv_c", $permiso) ){ ?>
+						<li>
+							<a href="ventas.php"> <i class="fa fa-paper-plane-o" aria-hidden="true"></i>Ventas </a>
+						</li>
+						<?php }?>
+						<?php if( in_array("cl_r", $permiso) ){ ?>
+						<li>
+							<a href="clientes.php"> <i class="fa fa-address-book-o" aria-hidden="true"></i>Clientes</a>
+						</li>
+						<?php }?>
+						<?php if( in_array("po_r", $permiso) ){ ?>
+						<li>
+							<a href="proveedores.php"> <i class="fa fa-truck" aria-hidden="true"></i>Proveedores</a>
+						</li>
+						<?php }?>
+						<?php if( in_array("fc_r", $permiso) ){ ?>
+						<li>
+							<a href="compras.php"> <i class="fa fa-shopping-bag " aria-hidden="true"></i>Compras </a>
+						</li>
+						<?php }?>
+					</ul>
 				</nav>
 				<div class="content-inner">
 					<?php if(isset($_GET['error'])){?>
@@ -117,9 +123,11 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 						<?php if($_GET['error']==4){?>Error al crear <strong>Submodelo de Avión</strong>.<?php }?>
 						<?php if($_GET['error']==5){?>Error al editar <strong>Submodelo de Avión</strong>.<?php }?>
 						<?php if($_GET['error']==6){?>Error al eliminar <strong>Submodelo de Avión</strong>.<?php }?>
+						<?php if($_GET['error']==60){?>Debe existir al menos un <strong>Submodelo de Avión</strong> por cada <strong>Modelo de Avión</strong>.<?php }?>
 						<?php if($_GET['error']==7){?>Error al crear <strong>Distribución de Avión</strong>.<?php }?>
 						<?php if($_GET['error']==8){?>Error al editar <strong>Distribución de Avión</strong>.<?php }?>
 						<?php if($_GET['error']==9){?>Error al eliminar <strong>Distribución de Avión</strong>.<?php }?>
+						<?php if($_GET['error']==90){?>Debe existir al menos una <strong>Distribución de Avión</strong> por cada <strong>Modelo de Avión</strong>.<?php }?>
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
@@ -231,7 +239,11 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 												<tbody>
 													<?php 	
 														
-														while( $avion = pg_fetch_object($rs) ){?>
+														while( $avion = pg_fetch_object($rs) ){
+															$dias = $avion->tiempo + 1;
+															$hoy = new DateTime();
+															$fin = new DateTime(date('Y-m-d', strtotime($hoy->format("Y-m-d"). ' + '.$dias.' days')));
+															$interval = $hoy->diff($fin);?>
 														<tr>
 															<td class="text-center text-middle">
 																<?php print $avion->id;?>
@@ -260,7 +272,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 																<?php print $avion->asistentes;?>
 															</td>
 															<td>
-																<?php $dias = $avion->tiempo;$meses = 0; while($dias > 31){$meses+=1; $dias-=30;} print $meses." meses y ".$dias." dias"; ?>
+																<?php print $interval->format('%m meses y %d días'); ?>
 															</td>
 															<td class="text-center">
 																<a class="click-modelo-detalle" href="<?php print $avion->id;?>"> 

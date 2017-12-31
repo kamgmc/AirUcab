@@ -39,7 +39,6 @@ $resultado = '<div class="modal-header">
 											$resultado .= '<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
 											<div class="d-flex w-80 justify-content-between">
 												<h5 class="mb-1">&emsp;&emsp;'.$submodelo2->pieza.'</h5>
-												<small>1 und</small>
 											</div>
 										</a>';
 										}

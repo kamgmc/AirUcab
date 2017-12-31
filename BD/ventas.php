@@ -1,10 +1,17 @@
-<!DOCTYPE html><?php include 'conexion.php';?>
+<!DOCTYPE html><?php session_start(); 
+date_default_timezone_set('America/Port_of_Spain'); 
+error_reporting('E_ALL ^ E_NOTICE'); 
+include 'conexion.php'; 
+if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'] = 5;} 
+$qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$_SESSION['rol']; 
+$rs = pg_query( $conexion, $qry ); $permiso = array();
+while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 <html>
 
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>AirUCAB - Main</title>
+	<title>AirUCAB - Ventas</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="robots" content="all,follow">
@@ -21,7 +28,7 @@
 	<!-- Custom stylesheet - for your changes-->
 	<link rel="stylesheet" href="css/custom.css">
 	<!-- Favicon-->
-	<link rel="shortcut icon" href="favicon.png"> </head>
+	<link rel="shortcut icon" href="img/airucab.ico"> </head>
 
 <body>
 	<div class="page home-page">
@@ -40,8 +47,17 @@
 							<!-- Toggle Button--><a id="toggle-btn" href="#" class="menu-btn active"><span></span><span></span><span></span></a> </div>
 						<!-- Navbar Menu -->
 						<ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+							<?php if( isset($_SESSION['code']) ){ ?>
 							<!-- Logout    -->
-							<li class="nav-item"><a href="login.html" class="nav-link logout">Cerrar Sesion<i class="fa fa-sign-out"></i></a></li>
+							<li class="nav-item">
+								<a href="close.php" class="nav-link logout">Cerrar Sesión<i class="fa fa-sign-out"></i></a>
+							</li>
+							<?php }else{ ?>
+							<!-- Login -->
+							<li class="nav-item">
+								<a href="login.php" class="nav-link logout">Iniciar Sesión<i class="fa fa-sign-in"></i></a>
+							</li>
+							<?php } ?>
 						</ul>
 					</div>
 				</div>
@@ -50,25 +66,64 @@
 		<div class="page-content d-flex align-items-stretch">
 			<!-- Side Navbar -->
 			<nav class="side-navbar">
+				<?php if( isset($_SESSION['code']) ){ ?>
 				<!-- Sidebar Header-->
 				<div class="sidebar-header d-flex align-items-center">
 					<div class="avatar"><img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
 					<div class="title">
-						<h1 class="h4">Abuelo Fdz</h1>
-						<p>Director Operaciones</p>
+						<h1 class="h4"><?php print $_SESSION['usuario']; ?></h1>
+						<p><?php print $_SESSION['cargo']; ?></p>
 					</div>
 				</div>
+				<?php } ?>
 				<!-- Sidebar Navidation Menus-->
 				<ul class="list-unstyled">
-					<li> <a href="empleados.php"><i class="icon-man-people-streamline-user"></i>Empleados</a></li>
-					<li> <a href="clientes.php"> <i class="fa fa-address-book-o" aria-hidden="true"></i>Clientes</a></li>
-					<li> <a href="proveedores.php"> <i class="fa fa-truck" aria-hidden="true"></i>Proveedores</a></li>
-					<li class="active"> <a href="ventas.php"> <i class="fa fa-paper-plane-o" aria-hidden="true"></i>Ventas </a></li>
-					<li> <a href="compras.php"> <i class="fa fa-shopping-bag " aria-hidden="true"></i>Compras </a></li>
-					<li> <a href="modeloavion.php"> <i class="fa fa-plane" aria-hidden="true"></i> Aviones </a></li>
+					<?php if( in_array("am_r", $permiso) || in_array("as_r", $permiso) || in_array("di_r", $permiso) ){ ?>
+					<li>
+						<a href="modeloavion.php"> <i class="fa fa-plane" aria-hidden="true"></i> Aviones </a>
+					</li>
+					<?php }?>
+					<?php if( in_array("em_r", $permiso) || in_array("em_c", $permiso) ){ ?>
+					<li>
+						<a href="empleados.php"><i class="fa fa-id-card-o"></i>Empleados</a>
+					</li>
+					<?php }?>
+					<?php if( in_array("fv_r", $permiso) || in_array("fv_c", $permiso) ){ ?>
+					<li class="active">
+						<a href="ventas.php"> <i class="fa fa-paper-plane-o" aria-hidden="true"></i>Ventas </a>
+					</li>
+					<?php }?>
+					<?php if( in_array("cl_r", $permiso) ){ ?>
+					<li>
+						<a href="clientes.php"> <i class="fa fa-address-book-o" aria-hidden="true"></i>Clientes</a>
+					</li>
+					<?php }?>
+					<?php if( in_array("po_r", $permiso) ){ ?>
+					<li>
+						<a href="proveedores.php"> <i class="fa fa-truck" aria-hidden="true"></i>Proveedores</a>
+					</li>
+					<?php }?>
+					<?php if( in_array("fc_r", $permiso) ){ ?>
+					<li>
+						<a href="compras.php"> <i class="fa fa-shopping-bag " aria-hidden="true"></i>Compras </a>
+					</li>
+					<?php }?>
 				</ul>
 			</nav>
 			<div class="content-inner">
+				<?php if(isset($_GET['error'])){?>
+				<!-- Alert -->
+				<div class="alert alert-danger alert-dismissible fade show" role="alert"> 
+					<?php if($_GET['error']==1){?>Error al crear <strong>Factura de Venta</strong>.<?php }?>
+					<?php if($_GET['error']==2){?>Error al insertar <strong>Avion</strong>.<?php }?>
+					<?php if($_GET['error']==3){?>Error al insertar <strong>Pago</strong>.<?php }?>
+					<?php if($_GET['error']==4){?>Error al insertar <strong>Experiencia</strong>.<?php }?>
+					<?php if($_GET['error']==5){?>Error al editar <strong>Empleado</strong>.<?php }?>
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<?php }?>
 				<!-- Section de TABS-->
 				<section>
 					<div class="container-fluid">
@@ -82,27 +137,35 @@
 									<div class="card col-lg-12">
 										<div class="row">
 											<div class="card-body col-lg-5">
-												<h3 class="h4">MOSTRAR SOLO VENTAS QUE</h3>
+												<h3 class="h4">Filtrar ventas por:</h3>
 												<form class="form-horizontal">
 													<div class="row">
 														<label class="col-sm-3 form-control-label">Cliente</label>
 														<div class="col-sm-9 select">
-															<select name="account" class="form-control">
-																<option>option 1</option>
-																<option>option 2</option>
-																<option>option 3</option>
-																<option>option 4</option>
+															<select id="filtro_submodelo" name="cliente" class="form-control">
+																<option value="NULL">Seleccionar</option>
+																<?php $qry = "SELECT cl_id id, cl_nombre nombre FROM Cliente ORDER BY cl_nombre";
+																$rs = pg_query( $conexion, $qry );
+																while( $cliente = pg_fetch_object($rs) ){?>
+																<option value="<?php print $cliente->id;?>">
+																	<?php print $cliente->nombre;?>
+																</option>
+																<?php }?>
 															</select>
 														</div>
 													</div>
 													<div class="row">
-														<label class="col-sm-3 form-control-label">Avion</label>
+														<label class="col-sm-3 form-control-label">Modelo de Avión</label>
 														<div class="col-sm-9 select">
 															<select name="account" class="form-control">
-																<option>option 1</option>
-																<option>option 2</option>
-																<option>option 3</option>
-																<option>option 4</option>
+																<option value="NULL">Seleccionar</option>
+																<?php $qry = "SELECT am_id id, am_nombre nombre FROM Modelo_avion ORDER BY am_nombre";
+																$rs = pg_query( $conexion, $qry );
+																while( $avion = pg_fetch_object($rs) ){?>
+																<option value="<?php print $avion->id;?>">
+																	<?php print $avion->nombre;?>
+																</option>
+																<?php }?>
 															</select>
 														</div>
 													</div>
@@ -111,8 +174,9 @@
 											<div class=" card-body col-lg-4">
 												<div class="form-group row">
 													<div class="col-sm-9">
-														<br>
-														<input type="submit" value="Filtrar" class="btn btn-primary"> </div>
+														<br/>
+														<input type="submit" value="Filtrar" class="btn btn-primary"> 
+													</div>
 												</div>
 											</div>
 										</div>
@@ -126,7 +190,7 @@
 									<div class="row">
 										<div class="col-sm-10"></div>
 										<div class="col-sm-2 pad-top">
-											<button type="button" data-toggle="modal" data-target="#ModalVentaCrear" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
+											<button type="button" data-toggle="modal" data-target="#ModalVentaCrear" class="btn btn-primary"> <i class="fa fa-plus" aria-hidden="true"></i> Crear</button>
 										</div>
 									</div>
 									<div class="card-body">
@@ -134,35 +198,31 @@
 											<thead>
 												<tr>
 													<th class="text-center">ID</th>
-													<th>CLIENTE</th>
-													<th class="text-center">MODELO AVION</th>
-													<th class="text-center">SUBMODELO</th>
-													<th class="text-center">DISTRIBUCION</th>
-													<th class="text-center">FECHA VENTA</th>
-													<th class="text-center">FECHA FINAL</th>
-													<th class="text-center">PRECIO UNITARIO</th>
-													<th class="text-center">ESTATUS</th>
-													<th class="text-center">Accion</th>
+													<th>Cliente</th>
+													<th class="text-center">Fecha de venta</th>
+													<th class="text-center">Total</th>
+													<th class="text-center">Status</th>
+													<th class="text-center">Acción</th>
 												</tr>
 											</thead>
 											<tbody>
 												<?php 	
-												$qry = "SELECT fv_id id, cl_nombre cliente, am_nombre modelo, as_nombre submodelo, di_nombre distribucion, fv_fecha fecha_ini, a_fecha_fin fecha_fin, a_precio precio, st_nombre status FROM Factura_venta LEFT JOIN Cliente ON fv_cliente=cl_id LEFT JOIN Avion av ON a_factura_venta=fv_id LEFT JOIN Submodelo_avion ON as_id=a_submodelo_avion LEFT JOIN Modelo_avion ON as_modelo_avion=am_id LEFT JOIN Distribucion ON a_distribucion=di_id LEFT JOIN Status_avion ON sa_avion=a_id LEFT JOIN Status ON st_id=sa_status WHERE sa_id=(SELECT MAX(sa_id) FROM Status_avion WHERE sa_avion=av.a_id) ORDER BY fv_id";
+												$qry = "SELECT fv_id id, cl_nombre cliente, fv_fecha fecha, (Select SUM(a_precio) From Avion Where a_factura_venta=fv.fv_id) AS  total, (Select SUM(pa_monto) from Pago WHERE pa_factura_venta=fv.fv_id) AS pagado FROM Factura_venta fv LEFT JOIN Cliente ON fv_cliente=cl_id ORDER BY fv_id DESC";
 												$rs = pg_query( $conexion, $qry );
 												while( $venta = pg_fetch_object($rs) ){?>
 													<tr>
 														<td class="text-center"><?php print $venta->id;?></td>
 														<td><?php print $venta->cliente;?></td>
-														<td class="text-center"><?php print $venta->modelo;?></td>
-														<td class="text-center"><?php print $venta->submodelo;?></td>
-														<td class="text-center"><?php print $venta->distribucion;?></td>
-														<td class="text-center"><?php $date = new DateTime($venta->fecha_ini); print $date->format('d-m-Y');?></td>
-														<td class="text-center"><?php $date = new DateTime($venta->fecha_ini); print $date->format('d-m-Y');?></td>
-														<td class="text-center"><?php print number_format($venta->precio, 2, ',', '.')." Bs";?></td>
-														<td class="text-center"><span class="badge badge-primary"><?php print $venta->status;?></span></td>
+														<td class="text-center"><?php $date = new DateTime($venta->fecha); print $date->format('d/m/Y');?></td>
+														<td class="text-center"><?php print number_format($venta->total, 2, ',', '.')." Bs";?></td>
+														<td class="text-center"><?php if($venta->pagado >= $venta->total) print "Pagado"; else print "Pendiente de pago";?></td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#myModalDetalle"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href="" data-toggle="modal" data-target="#myModalBorrarVenta"> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+															<a href="<?php print $venta->id;?>" title="Ver mas" class="click-venta-detalle">
+																<i class="fa fa-file-text-o" aria-hidden="true"></i> 
+															</a>&emsp;
+															<a href="venta-crud.php?delete=<?php print $venta->id;?>">
+																<i class="fa fa-trash-o" aria-hidden="true"></i>
+															</a>
 														</td>
 													</tr>
 												<?php }?>
@@ -174,95 +234,147 @@
 							<!-- TABLE ENDS -->
 						</section>
 						<!-- TAB Ventas ENDS -->
-						<!-- Modal Detalle Venta  -->
-						<div id="myModalDetalle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+						<!-- Modal Venta Crear -->
+						<div id="ModalVentaCrear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 							<div role="document" class="modal-dialog modal-xl">
 								<div class="modal-content">
 									<div class="modal-header">
-										<h4 id="exampleModalLabel" class="modal-title">DETALLE VENTA</h4>
+										<h4 id="exampleModalLabel" class="modal-title">Crear Nueva Venta</h4>
 										<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 									</div>
 									<div class="modal-body">
+									<form action="venta-crud.php?create=true" method="post">
 										<div class="container-fluid">
 											<div class="row">
 												<div class="card col-lg-12">
 													<div class="row">
-														<!-- Columna Izquierda   -->
+														<div class="col-sm-12">
+															<h4>Información de Cliente</h4>
+														</div>
+													</div>
+													<div class="row">
 														<div class="card-body col-lg-6">
-															<div class="row">
-																<div class="col-lg-4">
-																	<h3>Factura Venta</h3> </div>
-																<div class="col-lg-8"> 001 </div>
-															</div>
-															<div class="row">
-																<div class="col-lg-4">
-																	<h3>ESTATUS</h3> </div>
-																<div class="col-lg-8"> <span class="badge badge-primary font-big">Evaluacion</span> </div>
-															</div>
-															<div class="row">
-																<div class="col-lg-4">
-																	<h3>Cliente</h3> </div>
-																<div class="col-lg-8"> LEX FDZ CORP. S.A. </div>
-															</div>
-															<div class="row">
-																<div class="col-lg-4">
-																	<h3>CI/RIF Cliente</h3> </div>
-																<div class="col-lg-8"> J-79698576-7 </div>
-															</div>
-															<div class="row">
-																<div class="col-lg-4">
-																	<h3>Modelo Avion</h3> </div>
-																<div class="col-lg-8"> AU80 </div>
-															</div>
-															<div class="row">
-																<div class="col-lg-4">
-																	<h3>Submodelo Avion</h3> </div>
-																<div class="col-lg-8"> LW </div>
-															</div>
-															<div class="row">
-																<div class="col-lg-4">
-																	<h3>Distribucion</h3> </div>
-																<div class="col-lg-8"> Civil </div>
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h4>Cliente</h4>
+																</label>
+																<div class="col-sm-9 select">
+																	<select id="lista_clientes" name="cliente" class="form-control" required>
+																		<option value="NULL">Seleccionar</option>
+																		<?php $qry = "SELECT cl_id id, cl_nombre nombre FROM Cliente";
+																		$rs = pg_query( $conexion, $qry );
+																		while( $cliente = pg_fetch_object($rs) ){?>
+																		<option value="<?php print $cliente->id;?>"><?php print $cliente->nombre;?></option>
+																		<?php }?>
+																	</select>
+																</div>
 															</div>
 														</div>
-														<!-- Columna izquierda ENDS -->
-														<!-- Columna derecha -->
 														<div class=" card-body col-lg-6">
-															<div class="row">
-																<div class="col-lg-4">
-																	<h3>Cantidad</h3> </div>
-																<div class="col-lg-8"> 3 </div>
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h4>CI/RIF Cliente</h4> </label>
+																<div class="col-sm-9">
+																	<input id="cl_rif" type="text" disabled class="form-control"> </div>
 															</div>
-															<div class="row">
-																<div class="col-lg-4">
-																	<h3>Monto por Avion</h3> </div>
-																<div class="col-lg-8"> 1800 $ </div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="card col-lg-12">
+													<div class="row">
+														<div class="col-sm-12">
+															<h4>Información de Avión</h4>
+														</div>
+													</div>
+													<div class="row form-avion last-avion">
+														<div class="card-body col-lg-6">
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h4>Modelo de Avión</h4>
+																</label>
+																<!-- Traer de la tabla de modelo avion las opciones -->
+																<div class="col-sm-9 select">
+																	<select name="modelo_avion[]" class="form-control lista_modelos" required>
+																		<option value="NULL">Seleccionar</option>
+																		<?php $qry = "SELECT am_id id, am_nombre nombre FROM Modelo_avion ma WHERE (SELECT Count(*) from Distribucion WHERE di_modelo_avion=ma.am_id) > 0 AND (SELECT Count(*) from Submodelo_avion WHERE as_modelo_avion=ma.am_id) > 0";
+																		$rs = pg_query( $conexion, $qry );
+																		while( $avion = pg_fetch_object($rs) ){?>
+																		<option value="<?php print $avion->id;?>"><?php print $avion->nombre;?></option>
+																		<?php }?>
+																	</select>
+																</div>
 															</div>
-															<div class="row">
-																<div class="col-lg-4">
-																	<h3>Monto Total</h3> </div>
-																<div class="col-lg-8"> 5400 $ </div>
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h4>Submodelo de Avión</h4>
+																</label>
+																<div class="col-sm-9 select">
+																	<select name="submodelo[]" class="form-control lista_submodelos" disabled required>
+																	</select> 
+																	<span class="help-block-none">
+																		<small>Seleccionar Modelo Avion primero.</small>
+																	</span> 
+																</div>
 															</div>
-															<div class="row">
-																<div class="col-lg-4">
-																	<h3>Fecha Inicio</h3> </div>
-																<div class="col-lg-8"> 14/12/2017 </div>
+														</div>
+														<div class=" card-body col-lg-6">
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h4>Precio</h4>
+																</label>
+																<div class="col-sm-9">
+																	<input name="precio[]" type="text" placeholder="Introduzca precio por Avion" class="form-control" required>
+																</div>
 															</div>
-															<div class="row">
-																<div class="col-lg-4">
-																	<h3>Fecha Final</h3> </div>
-																<div class="col-lg-8"> null </div>
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h4>Distribución</h4>
+																</label>
+																<div class="col-sm-9 select">
+																	<select name="distribucion[]" class="form-control lista_distribuciones" disabled required>
+																	</select> 
+																	<span class="help-block-none">
+																		<small>Seleccionar Modelo Avion primero.</small>
+																	</span> 
+																</div>
 															</div>
-															<div class="row">
-																<div class="col-lg-4">
-																	<h3>Tipo de Pago</h3> </div>
-																<div class="col-lg-8"> Transfencia </div>
+														</div>
+													</div>
+													<div class="form-group row">
+														<div class="col-sm-12 text-right">
+															<i id="add-avion" class="fa fa-plus"></i>&emsp;
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="card col-lg-12">
+													<div class="row">
+														<div class="col-sm-12">
+															<h4>Información de Pago</h4>
+														</div>
+													</div>
+													<div id="last" data-num="1" class="row last-pago">
+														<div class="card-body col-lg-12">
+															<div class="form-check form-check-inline">
+																<label class="form-check-label">
+																	<input class="form-check-input transferencia" name="tipo_pago" type="radio" required> Transferencia
+																</label>
 															</div>
-															<div class="row">
-																<div class="col-lg-4">
-																	<h3>Nota</h3> </div>
-																<div class="col-lg-8"> Cliente requiere fotos de supervision en el ensamblaje de Ala derecha. </div>
+															<div class="form-check form-check-inline">
+																<label class="form-check-label">
+																	<input class="form-check-input tarjeta-credito" name="tipo_pago" type="radio" required> Tarjeta de Crédito 
+																</label>
 															</div>
+															<div class="pago-space row">
+															</div>
+														</div>
+													</div>
+													<div class="form-group row">
+														<div class="col-sm-12 text-right">
+															<i id="add-pago" class="fa fa-plus"></i>&emsp;
 														</div>
 													</div>
 												</div>
@@ -271,8 +383,18 @@
 									</div>
 									<div class="modal-footer">
 										<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
-										<button type="button" data-toggle="modal" data-target="#myModalVentaEditar" class="btn btn-primary">Editar</button>
+										<button type="submit" class="btn btn-primary">Guardar</button>
 									</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<!-- Modal Venta Crear ENDS -->
+						<!-- Modal Detalle Venta  -->
+						<div id="ModalDetalleVenta" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+							<div role="document" class="modal-dialog modal-xl">
+								<div id="detalleVentaBody" class="modal-content">
+									
 								</div>
 							</div>
 						</div>
@@ -293,13 +415,13 @@
 														<div class="card-body col-lg-6">
 															<div class="form-group row">
 																<label class="col-sm-3 form-control-label">
-																	<h3>Factura Venta</h3> </label>
+																	<h4>Factura Venta</h4> </label>
 																<div class="col-sm-9">
 																	<input type="text" disabled="" placeholder="No modificable" class="form-control"> </div>
 															</div>
 															<div class="form-group row">
 																<label class="col-sm-3 form-control-label">
-																	<h3>ESTATUS</h3> </label>
+																	<h4>ESTATUS</h4> </label>
 																<!-- Traer de la tabla de Status las opciones -->
 																<!-- Creo que su seleccion deberia ser automatica por parte del sistema solo en este caso porque este pasa a -->
 																<!-- finalizado cuando los otros STATUS de cada material y cada avion comprado pasan a Finalizado -->
@@ -314,7 +436,7 @@
 															</div>
 															<div class="form-group row">
 																<label class="col-sm-3 form-control-label">
-																	<h3>Cliente</h3> </label>
+																	<h4>Cliente</h4> </label>
 																<!-- Traer de la tabla de clientes las opciones -->
 																<div class="col-sm-9 select">
 																	<select name="account" class="form-control">
@@ -327,14 +449,14 @@
 															</div>
 															<div class="form-group row">
 																<label class="col-sm-3 form-control-label">
-																	<h3>CI/RIF Cliente</h3> </label>
+																	<h4>CI/RIF Cliente</h4> </label>
 																<!-- Se debe rellenar automaticamente despues de seleccionar al cliente -->
 																<div class="col-sm-9">
 																	<input type="text" disabled="" placeholder="No modificable" class="form-control"> </div>
 															</div>
 															<div class="form-group row">
 																<label class="col-sm-3 form-control-label">
-																	<h3>Modelo Avion</h3> </label>
+																	<h4>Modelo Avion</h4> </label>
 																<!-- Traer de la tabla de modelo avion las opciones -->
 																<div class="col-sm-9 select">
 																	<select name="account" class="form-control">
@@ -346,7 +468,7 @@
 															</div>
 															<div class="form-group row">
 																<label class="col-sm-3 form-control-label">
-																	<h3>Submodelo Avion</h3> </label>
+																	<h4>Submodelo Avion</h4> </label>
 																<!-- Traer de la tabla de submodelo avion las opciones -->
 																<div class="col-sm-9 select">
 																	<select name="account" class="form-control">
@@ -357,7 +479,7 @@
 															</div>
 															<div class="form-group row">
 																<label class="col-sm-3 form-control-label">
-																	<h3>Distribucion</h3> </label>
+																	<h4>Distribucion</h4> </label>
 																<!-- Traer de la tabla de distribucion avion las opciones -->
 																<div class="col-sm-9 select">
 																	<select name="account" class="form-control">
@@ -370,33 +492,33 @@
 														<div class=" card-body col-lg-6">
 															<div class="form-group row">
 																<label class="col-sm-3 form-control-label">
-																	<h3>Cantidad</h3> </label>
+																	<h4>Cantidad</h4> </label>
 																<div class="col-sm-9">
 																	<input type="text" placeholder="Introduzca cantidad de Aviones" class="form-control"> </div>
 															</div>
 															<div class="form-group row">
 																<label class="col-sm-3 form-control-label">
-																	<h3>Precio Unitario</h3> </label>
+																	<h4>Precio Unitario</h4> </label>
 																<div class="col-sm-9">
 																	<input type="text" placeholder="Introduzca precio por Avion" class="form-control"> </div>
 															</div>
 															<div class="form-group row">
 																<label class="col-sm-3 form-control-label">
-																	<h3>Fecha Inicio</h3> </label>
+																	<h4>Fecha Inicio</h4> </label>
 																<!-- Esto podemos hacerlo automatizado, que salve la fecha de creacion como fecha inicio -->
 																<div class="col-sm-9">
 																	<input type="text" disabled="" placeholder="No modificable" class="form-control"> </div>
 															</div>
 															<div class="form-group row">
 																<label class="col-sm-3 form-control-label">
-																	<h3>Fecha Final</h3> </label>
+																	<h4>Fecha Final</h4> </label>
 																<!-- Esto es OBLIGATORIAMENTE AUTOMATICO cuando el STATUS cambie a finalizado -->
 																<div class="col-sm-9">
 																	<input type="text" disabled="" placeholder="No modificable" class="form-control"> </div>
 															</div>
 															<div class="form-group row">
 																<label class="col-sm-3 form-control-label">
-																	<h3>Tipo de Pago</h3> </label>
+																	<h4>Tipo de Pago</h4> </label>
 																<div class="col-sm-9 select">
 																	<select name="account" class="form-control">
 																		<option>Transfencia</option>
@@ -408,7 +530,7 @@
 															</div>
 															<div class="form-group row">
 																<label class="col-sm-3 form-control-label">
-																	<h3>Nota</h3> </label>
+																	<h4>Nota</h4> </label>
 																<div class="col-sm-9">
 																	<input type="text" placeholder="Aqui puedes escribir..." class="form-control form-control-lg" rows="4" cols="50"> </div>
 															</div>
@@ -426,122 +548,6 @@
 							</div>
 						</div>
 						<!-- Modal Venta Editar ENDS -->
-						<!-- Modal Venta Crear -->
-						<div id="ModalVentaCrear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
-							<div role="document" class="modal-dialog modal-xl">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h4 id="exampleModalLabel" class="modal-title">VENTA</h4>
-										<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-									</div>
-									<div class="modal-body">
-									<form action="ventas-crud.php?create=true" method="post">
-										<div class="container-fluid">
-											<div class="row">
-												<div class="card col-lg-12">
-													<div class="row">
-														<div class="card-body col-lg-6">
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h3>Cliente</h3> </label>
-																<!-- Traer de la tabla de clientes las opciones -->
-																<div class="col-sm-9 select">
-																	<select id="lista_clientes" name="cliente" class="form-control">
-																		<option value="NULL">Seleccionar</option>
-																		<?php $qry = "SELECT cl_id id, cl_nombre nombre FROM Cliente";
-																		$rs = pg_query( $conexion, $qry );
-																		while( $cliente = pg_fetch_object($rs) ){?>
-																		<option value="<?php print $cliente->id;?>"><?php print $cliente->nombre;?></option>
-																		<?php }?>
-																	</select>
-																</div>
-															</div>
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h3>CI/RIF Cliente</h3> </label>
-																<!-- Se debe rellenar automaticamente despues de seleccionar al cliente -->
-																<div class="col-sm-9">
-																	<input id="cl_rif" type="text" disabled="" class="form-control"> </div>
-															</div>
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h3>Modelo Avion</h3> </label>
-																<!-- Traer de la tabla de modelo avion las opciones -->
-																<div class="col-sm-9 select">
-																	<select id="lista_modelos" name="modelo_avion" class="form-control">
-																		<option value="NULL">Seleccionar</option>
-																		<?php $qry = "SELECT am_id id, am_nombre nombre FROM Modelo_avion";
-																		$rs = pg_query( $conexion, $qry );
-																		while( $avion = pg_fetch_object($rs) ){?>
-																		<option value="<?php print $avion->id;?>"><?php print $avion->nombre;?></option>
-																		<?php }?>
-																	</select>
-																</div>
-															</div>
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h3>Submodelo Avion</h3> </label>
-																<!-- Traer de la tabla de submodelo avion las opciones -->
-																<div class="col-sm-9 select">
-																	<select id="lista_submodelos" name="submodelo" class="form-control">
-																	</select> 
-																	<span class="help-block-none">
-																		<small>Seleccionar Modelo Avion primero.</small>
-																	</span> 
-																</div>
-															</div>
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h3>Distribucion</h3> </label>
-																<!-- Traer de la tabla de distribucion avion las opciones -->
-																<div class="col-sm-9 select">
-																	<select id="lista_distribuciones" name="distribucion" class="form-control">
-																	</select> 
-																	<span class="help-block-none">
-																		<small>Seleccionar Modelo Avion primero.</small>
-																	</span> 
-																</div>
-															</div>
-														</div>
-														<div class=" card-body col-lg-6">
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h3>Precio</h3> </label>
-																<div class="col-sm-9">
-																	<input name="precio" type="text" placeholder="Introduzca precio por Avion" class="form-control"> </div>
-															</div>
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h3>Tipo de Pago</h3> </label>
-																<div class="col-sm-9 select">
-																	<select name="tipo_pago" class="form-control">
-																		<option>Transfencia</option>
-																		<!-- La opcion TDC deberia expandir otros requerimientos, pero esto lo dejare para cuando implementemos el -->
-																		<!-- hardcore de JS y PHP (2da entrega)-->
-																		<option>TDC</option>
-																	</select> <span class="help-block-none"><small>Seleccionar Modelo Avion primero.</small></span> </div>
-															</div>
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h3>Nota</h3> </label>
-																<div class="col-sm-9">
-																	<input name="nota" type="text" placeholder="Aqui puedes escribir..." class="form-control form-control-lg" rows="4" cols="50"> </div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="modal-footer">
-										<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
-										<button type="submit" class="btn btn-primary">Guardar Cambios</button>
-									</div>
-									</form>
-								</div>
-							</div>
-						</div>
-						<!-- Modal Venta Crear ENDS -->
 					</div>
 				</section>
 				<!-- Section de TABS ENDS -->
@@ -563,24 +569,69 @@
 	</div>
 	<!-- Javascript files-->
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script src="vendor/popper.js/umd/popper.min.js">
-	</script>
+	<script src="vendor/popper.js/umd/popper.min.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="vendor/jquery.cookie/jquery.cookie.js">
-	</script>
+	<script src="vendor/jquery.cookie/jquery.cookie.js"></script>
 	<script src="vendor/jquery-validation/jquery.validate.min.js"></script>
 	<script src="js/front.js"></script>
 	<script>
 		$( document ).ready(function() {
+			function update() {
+				var id = $( "option:selected", this ).val();
+				var $targetS = $(this).closest(".form-avion").find(".lista_submodelos");
+				var $targetD = $(this).closest(".form-avion").find(".lista_distribuciones");
+				$.ajax({type: "POST",dataType: "html",url:"getter.php?get=submodelos&id="+id,success: function(data){$targetS.html(data); $targetS.removeAttr("disabled");}});
+				$.ajax({type: "POST",dataType: "html",url:"getter.php?get=distribuciones&id="+id,success: function(data){$targetD.html(data); $targetD.removeAttr("disabled");}});
+			}
+			$( "a.click-venta-detalle" ).click(function( event ) {
+				event.preventDefault();
+				var href = $(this).attr('href');
+				$.ajax({type: "POST",dataType: "html",url:"venta-detalle.php?id="+href,success: function(data){$("#detalleVentaBody").html(data);}});
+				$("#ModalDetalleVenta").modal('toggle');
+			});
+			$("#add-avion").click(function(){
+				var $last = $(".last-avion");
+				$last.removeClass("last-avion");
+				$(".lista_modelos").off("change",update);
+				$.ajax({
+					type: "POST",
+					dataType: "html",
+					url: "getter.php?get=fieldAvion",
+					success: function(data){
+						$last.after(data);
+						$(".lista_modelos").on("change",update);
+					},
+					error: function(data){
+						$(".lista_modelos").on("change",update);
+					}
+				});
+			});
+			$("#add-pago").click(function(){
+				var $last = $(".last-pago");
+				$last.removeClass("last-pago");
+				var num = $("#last").data("num");
+				$("#last").data("num",num+1);
+				$.ajax({
+					type: "POST",
+					dataType: "html",
+					url: "getter.php?get=fieldPago&last="+num,
+					success: function(data){
+						$last.after(data);
+					}
+				});
+			});
     		$("#lista_clientes").change(function() {
 				var id = $( "#lista_clientes option:selected" ).val();
 				$.ajax({type: "POST",dataType: "html",url:"getter.php?get=cl_rif&id="+id,success: function(data){$("#cl_rif").val(data);}});
 			});
-			$("#lista_modelos").change(function() {
-				var id = $( "#lista_modelos option:selected" ).val();
-				$.ajax({type: "POST",dataType: "html",url:"getter.php?get=submodelos&id="+id,success: function(data){$("#lista_submodelos").html(data);}});
-				$.ajax({type: "POST",dataType: "html",url:"getter.php?get=distribuciones&id="+id,success: function(data){$("#lista_distribuciones").html(data);}});
+			$('input[type=radio][name=tipo_pago]').change(function() {
+				var $space = $(this).closest(".row").find(".pago-space");
+				if( $(this).hasClass("transferencia") )
+					$.ajax({type: "POST",dataType: "html",url:"getter.php?get=fieldTransferencia",success: function(data){$space.html(data);}});
+				if( $(this).hasClass("tarjeta-credito") )
+					$.ajax({type: "POST",dataType: "html",url:"getter.php?get=fieldTarjeta",success: function(data){$space.html(data);}});
 			});
+			$(".lista_modelos").on("change",update);
 		});
 	</script>
 </body>

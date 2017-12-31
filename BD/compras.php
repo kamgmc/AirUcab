@@ -161,7 +161,7 @@
 													<td><?php print $compra->id;?></td>
 													<td><?php print $compra->proveedor;?></td>
 													<td><?php print $compra->material;?></td>
-													<td><?php $date = new DateTime($compra->fecha); print $date->format('d-m-Y');?></td>
+													<td><?php $date = new DateTime($compra->fecha); print $date->format('d/m/Y');?></td>
 													<td><?php print number_format($compra->precio, 2, ',', '.')." Bs";?></td>
 													<td><span class="badge badge-primary"><?php print $compra->status;?></span></td>
 													<td class="text-center">

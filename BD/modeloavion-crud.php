@@ -15,7 +15,7 @@
 	if(isset($_GET['delete'])){
 		$id = $_GET['delete'];
 		if(eliminarModeloAvion($id))
-			header('Location: ' . $_SERVER['HTTP_REFERER']);
+			header('Location: modeloavion.php');
 		else
 			header('Location: modeloavion.php?error=3');
 	}

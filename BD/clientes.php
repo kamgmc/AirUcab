@@ -153,7 +153,7 @@
 																<?php print number_format($cliente->monto, 2, ',', '.')." Bs";?>
 															</td>
 															<td class="text-center">
-																<?php $date = new DateTime($cliente->fecha); print $date->format('d-m-Y');?>
+																<?php $date = new DateTime($cliente->fecha); print $date->format('d/m/Y');?>
 															</td>
 															<td class="text-center">
 																<?php print $cliente->ventas;?>
@@ -302,7 +302,7 @@
 																					<?php print $venta->id;?>
 																				</td>
 																				<td>
-																					<?php $date = new DateTime($venta->fecha); print $date->format('d-m-Y');?>
+																					<?php $date = new DateTime($venta->fecha); print $date->format('d/m/Y');?>
 																				</td>
 																				<td>
 																					<?php print $venta->avion." - ".$venta->id_avion;?>

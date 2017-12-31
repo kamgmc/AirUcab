@@ -14,10 +14,17 @@
 	}
 	if(isset($_GET['delete'])){
 		$id = $_GET['delete'];
-		if(eliminarDistribucion($id))
-			header('Location: modeloavion.php?tab=distribucion');
+		$qry = "Select Count(*) total From Distribucion WHERE di_modelo_avion=(Select di_modelo_avion From Distribucion Where di_id=".$id.")";
+		$con = pg_query($conexion, $qry);
+		$distribucion = pg_fetch_object($con);
+		if($distribucion->total > 1){
+			if(eliminarDistribucion($id))
+				header('Location: modeloavion.php?tab=distribucion');
+			else
+				header('Location: modeloavion.php?tab=distribucion&error=9');
+		}
 		else
-			header('Location: modeloavion.php?tab=distribucion&error=9');
+			header('Location: modeloavion.php?tab=distribucion&error=90');
 	}
 	exit;
 ?>

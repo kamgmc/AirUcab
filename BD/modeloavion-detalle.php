@@ -7,9 +7,10 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }
 $qry = "SELECT * FROM Modelo_avion WHERE am_id=".$_GET['id'];
 $con = pg_query($conexion, $qry);
 $modelo = pg_fetch_object($con);
-$dias = $modelo->am_tiempo_estimado; 
-$meses = 0; 
-while($dias > 31){$meses+=1; $dias-=30;}
+$dias = $modelo->am_tiempo_estimado + 1;
+$hoy = new DateTime();
+$fin = new DateTime(date('Y-m-d', strtotime($hoy->format("Y-m-d"). ' + '.$dias.' days')));
+$interval = $hoy->diff($fin);
 $resultado = '<div class="modal-header">
 <h4 id="exampleModalLabel" class="modal-title">Detalle Modelo de Avión</h4>
 <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
@@ -160,7 +161,7 @@ $resultado = '<div class="modal-header">
 						<div class="col-lg-4">
 							<h4>Tiempo Estimado de Fabricación</h4>
 						</div>
-						<div class="col-lg-8">'.$meses." meses y ".$dias." dias".'</div>
+						<div class="col-lg-8">'.$interval->format('%m meses y %d días').'</div>
 					</div>
 				</div>
 			</div>
