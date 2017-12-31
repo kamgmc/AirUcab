@@ -43,11 +43,11 @@
 							$avion = pg_fetch_object($answer);
 							if( insertarStatusAvion( 1, $avion->id ) )
 								$i++;
-							//else{header('Location: ventas.php?error=2');exit;}
+							else{header('Location: ventas.php?error=2');exit;}
 						}
-						//else{header('Location: ventas.php?error=2');exit;}
+						else{header('Location: ventas.php?error=2');exit;}
 					}
-					//else{header('Location: ventas.php?error=2');exit;}
+					else{header('Location: ventas.php?error=2');exit;}
 				}
 				else $exit = true;
 			}
@@ -61,11 +61,11 @@
 							$tipo_pago = pg_fetch_object($answer);
 							if(insertarPago( $_POST['transferencia_monto'][$i], $tipo_pago->id, $factura->id, 'NULL' ))
 								$i++;
-							//else{header('Location: ventas.php?error=3');exit;}
+							else{header('Location: ventas.php?error=3');exit;}
 						}
-						//else{header('Location: ventas.php?error=3');exit;}
+						else{header('Location: ventas.php?error=3');exit;}
 					}
-					//else{header('Location: ventas.php?error=3');exit;}
+					else{header('Location: ventas.php?error=3');exit;}
 				}
 				else $exit = true;
 			}
@@ -79,11 +79,11 @@
 							$tipo_pago = pg_fetch_object($answer);
 							if(insertarPago( $_POST['tarjeta_monto'][$i], $tipo_pago->id, $factura->id, 'NULL' ))
 								$i++;
-							//else{header('Location: ventas.php?error=3');exit;}
+							else{header('Location: ventas.php?error=3');exit;}
 						}
-						//else{header('Location: ventas.php?error=3');exit;}
+						else{header('Location: ventas.php?error=3');exit;}
 					}
-					//else{header('Location: ventas.php?error=3');exit;}
+					else{header('Location: ventas.php?error=3');exit;}
 				}
 				else $exit = true;
 			}
