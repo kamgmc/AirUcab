@@ -80,6 +80,9 @@
 						<li>
 							<a href="compras.php"> <i class="fa fa-shopping-bag " aria-hidden="true"></i>Compras </a>
 						</li>
+						<li>
+							<a href="materiales.php"> <i class="fa fa-server " aria-hidden="true"></i>Materiales </a>
+						</li>
 						
 					</ul>
 				</nav>
