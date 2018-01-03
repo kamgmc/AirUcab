@@ -328,91 +328,23 @@
 												<div class="card col-lg-12">
 													<div class="row">
 														<div class="card-body col-lg-6">
+																														
 															<div class="form-group row">
 																<label class="col-sm-3 form-control-label">
-																	<h3>Factura Compra</h3> </label>
+																	<h3>Nombre</h3> </label>
 																<div class="col-sm-9">
-																	<input type="text" disabled="" placeholder="No modificable" class="form-control"> </div>
-															</div>
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h3>ESTATUS</h3> </label>
-																<!-- Traer de la tabla de Status las opciones -->
-																
-																<div class="col-sm-9 select">
-																	<select name="account" class="form-control">
-																		<option>En Progreso</option>
-																		<option>Evaluacion</option>
-																		<option>Distribucion</option>
-																		<option>Finalizado</option>
-																	</select>
-																</div>
-															</div>
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h3>Proveedor</h3> </label>
-																<!-- Traer de la tabla de proveedor las opciones -->
-																<div class="col-sm-9 select">
-																	<select name="account" class="form-control">
-																		<option>Lex Fdz</option>
-																		<option>Alexander K</option>
-																		<option>Kevin M</option>
-																		<option>Boris Tor</option>
-																	</select>
-																</div>
-															</div>
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h3>CI/RIF Cliente</h3> </label>
-																<!-- Se debe rellenar automaticamente despues de seleccionar al proveedor -->
-																<div class="col-sm-9">
-																	<input type="text" disabled="" placeholder="No modificable" class="form-control"> </div>
-															</div>
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h3>Material</h3> </label>
-																<!-- Traer de la tabla de materiales las opciones -->
-																<div class="col-sm-9 select">
-																	<select name="account" class="form-control">
-																		<option>Arena Blanca</option>
-																		<option>Cal</option>
-																		<option>Tornillos</option>
-																	</select>
-																</div>
-															</div>
-														</div>
-														<div class=" card-body col-lg-6">
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h3>Cantidad</h3> </label>
-																<div class="col-sm-9">
-																	<input type="text" placeholder="Introduzca cantidad de unidades" class="form-control"> </div>
+																	<input type="text" placeholder="Introducir Nombre" class="form-control"> </div>
 															</div>
 															<div class="form-group row">
 																<label class="col-sm-3 form-control-label">
 																	<h3>Precio Unitario</h3> </label>
 																<div class="col-sm-9">
-																	<input type="text" placeholder="Introduzca precio por unidad" class="form-control"> </div>
+																	<input type="text" placeholder="Introducir Precio Unitario" class="form-control"> </div>
 															</div>
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h3>Fecha</h3> </label>
-																<!-- Esto podemos hacerlo automatizado, que salve la fecha de creacion como fecha inicio -->
-																<div class="col-sm-9">
-																	<input type="text" disabled="" placeholder="No modificable" class="form-control"> </div>
-															</div>
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h3>Tipo de Pago</h3> </label>
-																<div class="col-sm-9 select">
-																	<select name="account" class="form-control">
-																		<option>Transfencia</option>
-																		<!-- La opcion TDC deberia expandir otros requerimientos, pero esto lo dejare para cuando implementemos el -->
-																		<!-- hardcore de JS y PHP (2da entrega)-->
-																		<option>TDC</option>
-																	</select>
-																</div>
-															</div>
+															
+														</div>
+														<div class=" card-body col-lg-6">
+															
 															<div class="form-group row">
 																<label class="col-sm-3 form-control-label">
 																	<h3>Nota</h3> </label>
