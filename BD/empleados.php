@@ -115,6 +115,9 @@ if( !in_array("em_r", $permiso) && !in_array("sr_c", $permiso) && !in_array("er_
 							<a href="compras.php"> <i class="fa fa-shopping-bag " aria-hidden="true"></i>Compras </a>
 						</li>
 						<?php }?>
+						<li>
+							<a href="materiales.php"> <i class="fa fa-server " aria-hidden="true"></i>Materiales </a>
+						</li>
 					</ul>
 				</nav>
 				<div class="content-inner">
