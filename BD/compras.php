@@ -64,7 +64,7 @@
 						<a href="modeloavion.php"> <i class="fa fa-plane" aria-hidden="true"></i> Aviones </a>
 					</li>
 					<li> 
-						<a href="empleados.php"><i class="icon-man-people-streamline-user"></i>Empleados</a>
+						<a href="empleados.php"><i class="fa fa-id-card-o"></i>Empleados</a>
 					</li>
 					<li>
 						<a href="ventas.php"> <i class="fa fa-paper-plane-o" aria-hidden="true"></i>Ventas </a>
