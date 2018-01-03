@@ -2204,8 +2204,8 @@ INSERT INTO Distribucion (di_nombre,di_numero_clases,di_capacidad_pasajeros,di_d
 INSERT INTO Distribucion (di_nombre,di_numero_clases,di_capacidad_pasajeros,di_distancia_asientos,di_ancho_asientos,di_modelo_avion) VALUES ('Estandar',1,140,81,43.7,5);
 --AU802E
 INSERT INTO Distribucion (di_nombre,di_numero_clases,di_capacidad_pasajeros,di_distancia_asientos,di_ancho_asientos,di_modelo_avion) VALUES ('Densa',1,189,76,43.7,6);
-INSERT INTO Distribucion (di_nombre,di_numero_clases,di_capacidad_pasajeros,di_distancia_asientos,di_ancho_asientos,di_modelo_avion) VALUES ('Estandar',1,175,81,43.7,6);
-INSERT INTO Distribucion (di_nombre,di_numero_clases,di_capacidad_pasajeros,di_distancia_asientos,di_ancho_asientos,di_modelo_avion) VALUES ('Estandar',2,162,81,43.7,6);
+INSERT INTO Distribucion (di_nombre,di_numero_clases,di_capacidad_pasajeros,di_distancia_asientos,di_ancho_asientos,di_modelo_avion) VALUES ('Estandar 1 Clase',1,175,81,43.7,6);
+INSERT INTO Distribucion (di_nombre,di_numero_clases,di_capacidad_pasajeros,di_distancia_asientos,di_ancho_asientos,di_modelo_avion) VALUES ('Estandar 2 Clases',2,162,81,43.7,6);
 --AU802F
 INSERT INTO Distribucion (di_nombre,di_numero_clases,di_capacidad_pasajeros,di_distancia_asientos,di_ancho_asientos,di_modelo_avion) VALUES ('Densa',1,204,76,43.7,7);
 INSERT INTO Distribucion (di_nombre,di_numero_clases,di_capacidad_pasajeros,di_distancia_asientos,di_ancho_asientos,di_modelo_avion) VALUES ('Estandar',1,177,81,43.7,7);
@@ -2362,13 +2362,14 @@ INSERT INTO Tipo_estabilizador (et_nombre) VALUES ('Dos verticales');
 INSERT INTO Tipo_estabilizador (et_nombre) VALUES ('Tres verticales');
 INSERT INTO Tipo_estabilizador (et_nombre) VALUES ('V');
 --STATUS
-INSERT INTO Status (st_nombre) VALUES ('Listo');
+INSERT INTO Status (st_nombre) VALUES ('En espera');
 INSERT INTO Status (st_nombre) VALUES ('En Proceso');
 INSERT INTO Status (st_nombre) VALUES ('Evaluación');
 INSERT INTO Status (st_nombre) VALUES ('Ensamblando');
 INSERT INTO Status (st_nombre) VALUES ('Pruebas');
 INSERT INTO Status (st_nombre) VALUES ('Aprobada');
-INSERT INTO Status (st_nombre) VALUES ('En espera');
+INSERT INTO Status (st_nombre) VALUES ('Listo');
+INSERT INTO Status (st_nombre) VALUES ('Rechazado');
 --AVION
 INSERT INTO Avion (a_fecha_ini,a_fecha_fin,a_precio,a_submodelo_avion,a_distribucion,a_factura_venta) VALUES ('2017-05-21','2017-12-21',921445.65,14,23,1);
 INSERT INTO Avion (a_fecha_ini,a_fecha_fin,a_precio,a_submodelo_avion,a_distribucion,a_factura_venta) VALUES ('2017-05-21','2017-12-21',126042,18,25,2);
@@ -2377,9 +2378,9 @@ INSERT INTO Avion (a_fecha_ini,a_fecha_fin,a_precio,a_submodelo_avion,a_distribu
 INSERT INTO Avion (a_fecha_ini,a_fecha_fin,a_precio,a_submodelo_avion,a_distribucion,a_factura_venta) VALUES ('2017-12-21','2018-05-21',457426,8,18,5);
 --STATUS_AVION
 INSERT INTO Status_avion (sa_fecha_ini,sa_fecha_fin,sa_avion,sa_status) VALUES ('2017-05-21','2017-11-20',1,2);
-INSERT INTO Status_avion (sa_fecha_ini,sa_fecha_fin,sa_avion,sa_status) VALUES ('2017-11-21','2017-11-21',1,1);
+INSERT INTO Status_avion (sa_fecha_ini,sa_fecha_fin,sa_avion,sa_status) VALUES ('2017-11-21','2017-11-21',1,7);
 INSERT INTO Status_avion (sa_fecha_ini,sa_fecha_fin,sa_avion,sa_status) VALUES ('2017-05-21','2017-11-20',2,2);
-INSERT INTO Status_avion (sa_fecha_ini,sa_fecha_fin,sa_avion,sa_status) VALUES ('2017-11-21','2017-11-21',2,1);
+INSERT INTO Status_avion (sa_fecha_ini,sa_fecha_fin,sa_avion,sa_status) VALUES ('2017-11-21','2017-11-21',2,7);
 INSERT INTO Status_avion (sa_fecha_ini,sa_avion,sa_status) VALUES ('2017-12-21',5,2);
 INSERT INTO Status_avion (sa_fecha_ini,sa_avion,sa_status) VALUES ('2017-05-21',4,2);
 INSERT INTO Status_avion (sa_fecha_ini,sa_avion,sa_status) VALUES ('2017-12-21',5,2);
@@ -2393,13 +2394,13 @@ INSERT INTO Motor (mo_fecha_ini,mo_fecha_fin,mo_modelo_motor,mo_avion) VALUES ('
 INSERT INTO Motor (mo_fecha_ini,mo_fecha_fin,mo_modelo_motor,mo_avion) VALUES ('2017-05-21','2017-11-21',6,5);
 --STATUS_MOTOR
 INSERT INTO Status_motor (stm_fecha_ini,stm_fecha_fin,stm_motor,stm_status) VALUES ('2017-05-21','2017-07-25',1,2);
-INSERT INTO Status_motor (stm_fecha_ini,stm_fecha_fin,stm_motor,stm_status) VALUES ('2017-07-26','2017-07-26',1,1);
+INSERT INTO Status_motor (stm_fecha_ini,stm_fecha_fin,stm_motor,stm_status) VALUES ('2017-07-26','2017-07-26',1,7);
 INSERT INTO Status_motor (stm_fecha_ini,stm_fecha_fin,stm_motor,stm_status) VALUES ('2017-05-21','2017-07-25',2,2);
-INSERT INTO Status_motor (stm_fecha_ini,stm_fecha_fin,stm_motor,stm_status) VALUES ('2017-07-26','2017-07-26',2,1);
+INSERT INTO Status_motor (stm_fecha_ini,stm_fecha_fin,stm_motor,stm_status) VALUES ('2017-07-26','2017-07-26',2,7);
 INSERT INTO Status_motor (stm_fecha_ini,stm_fecha_fin,stm_motor,stm_status) VALUES ('2017-05-21','2017-07-25',3,2);
-INSERT INTO Status_motor (stm_fecha_ini,stm_fecha_fin,stm_motor,stm_status) VALUES ('2017-07-26','2017-07-26',3,1);
+INSERT INTO Status_motor (stm_fecha_ini,stm_fecha_fin,stm_motor,stm_status) VALUES ('2017-07-26','2017-07-26',3,7);
 INSERT INTO Status_motor (stm_fecha_ini,stm_fecha_fin,stm_motor,stm_status) VALUES ('2017-05-21','2017-07-25',4,2);
-INSERT INTO Status_motor (stm_fecha_ini,stm_fecha_fin,stm_motor,stm_status) VALUES ('2017-07-26','2017-07-26',4,1);
+INSERT INTO Status_motor (stm_fecha_ini,stm_fecha_fin,stm_motor,stm_status) VALUES ('2017-07-26','2017-07-26',4,7);
 INSERT INTO Status_motor (stm_fecha_ini,stm_motor,stm_status) VALUES ('2017-12-21',5,2);
 INSERT INTO Status_motor (stm_fecha_ini,stm_motor,stm_status) VALUES ('2017-12-21',6,2);
 --MODELO_PIEZA
@@ -2722,20 +2723,20 @@ INSERT INTO Status_pieza (spi_fecha_ini,spi_fecha_fin,spi_pieza,spi_status) VALU
 INSERT INTO Status_pieza (spi_fecha_ini,spi_fecha_fin,spi_pieza,spi_status) VALUES ('2017-05-21','2017-08-18',2,2);
 INSERT INTO Status_pieza (spi_fecha_ini,spi_fecha_fin,spi_pieza,spi_status) VALUES ('2017-05-21','2017-08-18',3,2);
 INSERT INTO Status_pieza (spi_fecha_ini,spi_fecha_fin,spi_pieza,spi_status) VALUES ('2017-05-21','2017-08-18',4,2);
-INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-08-19',1,1);
-INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-08-19',2,1);
-INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-08-19',3,1);
-INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-08-19',4,1);
+INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-08-19',1,7);
+INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-08-19',2,7);
+INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-08-19',3,7);
+INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-08-19',4,7);
 INSERT INTO Status_pieza (spi_fecha_ini,spi_fecha_fin,spi_pieza,spi_status) VALUES ('2017-05-21','2017-08-18',5,2);
 INSERT INTO Status_pieza (spi_fecha_ini,spi_fecha_fin,spi_pieza,spi_status) VALUES ('2017-05-21','2017-08-18',6,2);
 INSERT INTO Status_pieza (spi_fecha_ini,spi_fecha_fin,spi_pieza,spi_status) VALUES ('2017-05-21','2017-07-18',7,2);
-INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-07-19',7,1);
+INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-07-19',7,7);
 INSERT INTO Status_pieza (spi_fecha_ini,spi_fecha_fin,spi_pieza,spi_status) VALUES ('2017-05-21','2017-08-18',8,2);
-INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-07-19',8,1);
+INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-07-19',8,7);
 INSERT INTO Status_pieza (spi_fecha_ini,spi_fecha_fin,spi_pieza,spi_status) VALUES ('2017-05-21','2017-08-18',9,2);
-INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-07-19',9,1);
+INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-07-19',9,7);
 INSERT INTO Status_pieza (spi_fecha_ini,spi_fecha_fin,spi_pieza,spi_status) VALUES ('2017-05-21','2017-08-18',10,2);
-INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-07-19',10,1);
+INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-07-19',10,7);
 INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-05-21',11,2);
 INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-05-21',12,2);
 INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-05-21',13,2);
@@ -2744,13 +2745,13 @@ INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-05-2
 INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-05-21',16,2);
 INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-05-21',17,2);
 INSERT INTO Status_pieza (spi_fecha_ini,spi_fecha_fin,spi_pieza,spi_status) VALUES ('2017-05-21','2017-08-18',18,2);
-INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-07-19',18,1);
+INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-07-19',18,7);
 INSERT INTO Status_pieza (spi_fecha_ini,spi_fecha_fin,spi_pieza,spi_status) VALUES ('2017-05-21','2017-08-18',19,2);
-INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-07-19',19,1);
+INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-07-19',19,7);
 INSERT INTO Status_pieza (spi_fecha_ini,spi_fecha_fin,spi_pieza,spi_status) VALUES ('2017-05-21','2017-08-18',20,2);
-INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-07-19',20,1);
+INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-07-19',20,7);
 INSERT INTO Status_pieza (spi_fecha_ini,spi_fecha_fin,spi_pieza,spi_status) VALUES ('2017-05-21','2017-08-18',21,2);
-INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-07-19',21,1);
+INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-07-19',21,7);
 INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-05-21',22,2);
 INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-05-21',23,2);
 INSERT INTO Status_pieza (spi_fecha_ini,spi_pieza,spi_status) VALUES ('2017-05-21',24,2);
@@ -2791,6 +2792,7 @@ INSERT INTO Factura_compra (fc_fecha,fc_proveedor) VALUES ('2017-05-21',3);
 INSERT INTO Factura_compra (fc_fecha,fc_proveedor) VALUES ('2017-05-21',4);
 INSERT INTO Factura_compra (fc_fecha,fc_proveedor) VALUES ('2017-05-21',5);
 INSERT INTO Factura_compra (fc_fecha,fc_proveedor) VALUES ('2017-05-21',5);
+INSERT INTO Factura_compra (fc_id,fc_fecha,fc_proveedor) VALUES (0,transaction_timestamp(),1);
 --MATERIAL
 INSERT INTO Material (m_fecha,m_tipo_material,m_factura_compra,m_pieza,m_precio) VALUES ('2017-12-21',1,1,5,20.5);
 INSERT INTO Material (m_fecha,m_tipo_material,m_factura_compra,m_pieza,m_precio) VALUES ('2017-12-21',2,2,5,42.5);
@@ -2800,17 +2802,17 @@ INSERT INTO Material (m_fecha,m_tipo_material,m_factura_compra,m_pieza,m_precio)
 INSERT INTO Material (m_fecha,m_tipo_material,m_factura_compra,m_pieza,m_precio) VALUES ('2017-12-21',6,6,40,87.25);
 --STATUS_MATERIAL
 INSERT INTO Status_material (sm_fecha_ini,sm_fecha_fin,sm_material,sm_status) VALUES ('2017-05-21','2017-06-21',1,2);
-INSERT INTO Status_material (sm_fecha_ini,sm_material,sm_status) VALUES ('2017-06-22',1,1);
+INSERT INTO Status_material (sm_fecha_ini,sm_material,sm_status) VALUES ('2017-06-22',1,7);
 INSERT INTO Status_material (sm_fecha_ini,sm_fecha_fin,sm_material,sm_status) VALUES ('2017-05-21','2017-06-21',2,2);
-INSERT INTO Status_material (sm_fecha_ini,sm_material,sm_status) VALUES ('2017-06-22',2,1);
+INSERT INTO Status_material (sm_fecha_ini,sm_material,sm_status) VALUES ('2017-06-22',2,7);
 INSERT INTO Status_material (sm_fecha_ini,sm_fecha_fin,sm_material,sm_status) VALUES ('2017-05-21','2017-06-21',3,2);
-INSERT INTO Status_material (sm_fecha_ini,sm_material,sm_status) VALUES ('2017-06-22',3,1);
+INSERT INTO Status_material (sm_fecha_ini,sm_material,sm_status) VALUES ('2017-06-22',3,7);
 INSERT INTO Status_material (sm_fecha_ini,sm_fecha_fin,sm_material,sm_status) VALUES ('2017-05-21','2017-06-21',4,2);
-INSERT INTO Status_material (sm_fecha_ini,sm_material,sm_status) VALUES ('2017-06-22',4,1);
+INSERT INTO Status_material (sm_fecha_ini,sm_material,sm_status) VALUES ('2017-06-22',4,7);
 INSERT INTO Status_material (sm_fecha_ini,sm_fecha_fin,sm_material,sm_status) VALUES ('2017-05-21','2017-06-21',5,2);
-INSERT INTO Status_material (sm_fecha_ini,sm_material,sm_status) VALUES ('2017-06-22',5,1);
+INSERT INTO Status_material (sm_fecha_ini,sm_material,sm_status) VALUES ('2017-06-22',5,7);
 INSERT INTO Status_material (sm_fecha_ini,sm_fecha_fin,sm_material,sm_status) VALUES ('2017-05-21','2017-06-21',6,2);
-INSERT INTO Status_material (sm_fecha_ini,sm_material,sm_status) VALUES ('2017-06-22',6,1);
+INSERT INTO Status_material (sm_fecha_ini,sm_material,sm_status) VALUES ('2017-06-22',6,7);
 --PRUEBA
 INSERT INTO Prueba (pr_nombre,pr_tipo,pr_zona,pr_empleado) VALUES ('Prueba de calidad','Prueba',2,3);
 INSERT INTO Prueba (pr_nombre,pr_tipo,pr_zona,pr_empleado) VALUES ('Resistecia a la presión','Prueba',2,3);
