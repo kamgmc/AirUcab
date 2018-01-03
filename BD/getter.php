@@ -226,12 +226,12 @@
 			<div class="card-body col-lg-12">
 				<div class="form-check form-check-inline">
 					<label class="form-check-label">
-						<input class="form-check-input transferencia" name="tipo_pago-'.$_GET['last'].'" type="radio" required> Transferencia
+						<input class="form-check-input transferencia" name="tipo_pago-'.$_GET['last'].'" type="radio"> Transferencia
 					</label>
 				</div>
 				<div class="form-check form-check-inline">
 					<label class="form-check-label">
-						<input class="form-check-input tarjeta-credito" name="tipo_pago-'.$_GET['last'].'" type="radio" required> Tarjeta de Crédito 
+						<input class="form-check-input tarjeta-credito" name="tipo_pago-'.$_GET['last'].'" type="radio"> Tarjeta de Crédito 
 					</label>
 				</div>
 				<div class="pago-space row">

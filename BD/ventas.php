@@ -207,7 +207,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 											</thead>
 											<tbody>
 												<?php 	
-												$qry = "SELECT fv_id id, cl_nombre cliente, fv_fecha fecha, (Select SUM(a_precio) From Avion Where a_factura_venta=fv.fv_id) AS  total, (Select SUM(pa_monto) from Pago WHERE pa_factura_venta=fv.fv_id) AS pagado FROM Factura_venta fv LEFT JOIN Cliente ON fv_cliente=cl_id ORDER BY fv_id DESC";
+												$qry = "SELECT fv_id id, cl_nombre cliente, fv_fecha fecha, (Select SUM(a_precio) From Avion Where a_factura_venta=fv.fv_id) AS  total, (Select SUM(pa_monto) from Pago WHERE pa_factura_venta=fv.fv_id) AS pagado FROM Factura_venta fv LEFT JOIN Cliente ON fv_cliente=cl_id ORDER BY fv_fecha DESC";
 												$rs = pg_query( $conexion, $qry );
 												while( $venta = pg_fetch_object($rs) ){?>
 													<tr>
@@ -360,12 +360,12 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<div class="card-body col-lg-12">
 															<div class="form-check form-check-inline">
 																<label class="form-check-label">
-																	<input class="form-check-input transferencia" name="tipo_pago" type="radio" required> Transferencia
+																	<input class="form-check-input transferencia" name="tipo_pago" type="radio"> Transferencia
 																</label>
 															</div>
 															<div class="form-check form-check-inline">
 																<label class="form-check-label">
-																	<input class="form-check-input tarjeta-credito" name="tipo_pago" type="radio" required> Tarjeta de Crédito 
+																	<input class="form-check-input tarjeta-credito" name="tipo_pago" type="radio"> Tarjeta de Crédito 
 																</label>
 															</div>
 															<div class="pago-space row">

@@ -98,8 +98,8 @@ $resultado = '<div class="modal-header">
 									}
 									else
 										$resultado .='<div class="row">
-											<div class="col-lg-4">
-												<h3>No se han registrado pagos.</h3> 
+											<div class="col-lg-12">
+												<h4>No se han registrado pagos.</h4> 
 											</div>
 										</div>';
 									$resultado .= '
@@ -126,13 +126,18 @@ $resultado = '<div class="modal-header">
 										$rs = pg_query( $conexion, $qry );
 											while( $avion = pg_fetch_object($rs) ){
 												$dateIni = new DateTime($avion->fecha_ini);
-												$dateFin = new DateTime($avion->fecha_fin);
+												if(!is_null($avion->fecha_fin)){
+													$dateFin = new DateTime($avion->fecha_fin);
+													$dateFin = $dateFin->format("d/m/Y");
+												}
+												else
+													$dateFin = "";
 												$resultado .= '<tr>
 													<td class="text-center">'.$avion->id.'</td>
 													<td>'.$avion->nombre.'</td>
 													<td class="text-center">'.$avion->distribucion.'</td>
 													<td class="text-center">'.$dateIni->format("d/m/Y").'</td>
-													<td class="text-center">'.$dateFin->format("d/m/Y").'</td>
+													<td class="text-center">'.$dateFin.'</td>
 													<td class="text-center">'.number_format($avion->precio, 2, ",", ".").' Bs</td>
 													<td class="text-center">'.$avion->status.'</td>
 													<td class="text-center">

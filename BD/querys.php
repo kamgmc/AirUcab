@@ -714,10 +714,61 @@
 	}
 //Status_motor
 //Pieza
+	function insertarPieza( $pieza, $avion ){
+		global $conexion;
+		$pieza = htmlentities($pieza, ENT_QUOTES);
+		$avion = htmlentities($avion, ENT_QUOTES);
+		$qry = "INSERT INTO Pieza (p_fecha_ini,p_modelo_pieza,p_avion) VALUES (transaction_timestamp(),".$pieza.",".$avion.")";
+		return pg_query($conexion, $qry);
+	}
 //Status_pieza
+	function insertarStatusPieza( $status, $pieza ){
+		global $conexion;
+		$status = htmlentities($status, ENT_QUOTES);
+		$pieza = htmlentities($pieza, ENT_QUOTES);
+		$qry = "SELECT Max(spi_id) AS id From Status_pieza WHERE spi_pieza=".$pieza;
+		$answer = pg_query( $conexion, $qry );
+		$sp = pg_fetch_object($answer);
+		if(!is_null($sp->id)){
+			$qry = "UPDATE Status_pieza SET spi_fecha_fin=transaction_timestamp() WHERE spi_id=".$sp->id;
+			pg_query( $conexion, $qry );
+		}
+		$qry = "INSERT INTO Status_pieza (spi_fecha_ini,spi_status,spi_pieza) VALUES (transaction_timestamp(),".$status.",".$pieza.")";
+		return pg_query($conexion, $qry);
+	}
 //Material
+	function insertarMaterial( $tipo_material, $factura_compra, $pieza, $precio ){
+		global $conexion;
+		$tipo_material = htmlentities($tipo_material, ENT_QUOTES);
+		$factura_compra = htmlentities($factura_compra, ENT_QUOTES);
+		$pieza = htmlentities($pieza, ENT_QUOTES);
+		$precio = htmlentities($precio, ENT_QUOTES);
+		$qry = "INSERT INTO Material (m_fecha,m_tipo_material,m_factura_compra,m_pieza,m_precio) VALUES (transaction_timestamp(), ".$tipo_material.", ".$factura_compra.", ".$pieza.", ".$precio.")";
+		return pg_query($conexion, $qry);
+	}
+	function editarMaterial( $id, $pieza, $precio ){
+		global $conexion;
+		$pieza = htmlentities($pieza, ENT_QUOTES);
+		$precio = htmlentities($precio, ENT_QUOTES);
+		$qry = "UPDATE Material SET m_pieza =".$pieza.", m_precio=".$precio." WHERE m_id=".$id;
+		return pg_query($conexion, $qry);
+	}
 //Prueba_material
 //Status_material
+	function insertarStatusMaterial( $status, $material ){
+		global $conexion;
+		$status = htmlentities($status, ENT_QUOTES);
+		$material = htmlentities($material, ENT_QUOTES);
+		$qry = "SELECT Max(sm_id) AS id FROM Status_material WHERE sm_material=".$material;
+		$answer = pg_query( $conexion, $qry );
+		$sm = pg_fetch_object($answer);
+		if(!is_null($sm->id)){
+			$qry = "UPDATE Status_material SET sm_fecha_fin=transaction_timestamp() WHERE sm_id=".$sm->id;
+			pg_query( $conexion, $qry );
+		}
+		$qry = "INSERT INTO Status_material (sm_fecha_ini,sm_status,sm_material) VALUES (transaction_timestamp(), ".$status.", ".$material.")";
+		return pg_query($conexion, $qry);
+	}
 //Prueba_pieza
 //Traslado
 ?>
