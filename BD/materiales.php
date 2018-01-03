@@ -76,10 +76,10 @@
 					<li>
 						<a href="proveedores.php"> <i class="fa fa-truck" aria-hidden="true"></i>Proveedores</a>
 					</li>
-					<li class="active">
+					<li>
 						<a href="compras.php"> <i class="fa fa-shopping-bag " aria-hidden="true"></i>Compras </a>
 					</li>
-					<li>
+					<li class="active">
 						<a href="materiales.php"> <i class="fa fa-server " aria-hidden="true"></i>Materiales </a>
 					</li>
 				</ul>
@@ -89,7 +89,7 @@
 				<section>
 					<div class="container-fluid">
 						<input id="tab0" type="radio" name="tabs" class="no-display" checked>
-						<label for="tab0" class="label"><i class="fa fa-shopping-bag " aria-hidden="true"></i> Compras</label>
+						<label for="tab0" class="label"><i class="fa fa-server " aria-hidden="true"></i> Materiales</label>
 						<!-- TAB Compras -->
 						<section id="content0" class="sectiontab">
 							<!-- Filtrador-->
@@ -98,7 +98,7 @@
 									<div class="card col-lg-12">
 										<div class="row">
 											<div class="card-body col-lg-5">
-												<h3 class="h4">MOSTRAR SOLO COMRPAS QUE</h3>
+												<h3 class="h4">MOSTRAR SOLO MATERIALES QUE</h3>
 												<form class="form-horizontal">
 													<div class="row">
 														<label class="col-sm-3 form-control-label">Proveedor</label>
@@ -111,17 +111,7 @@
 															</select>
 														</div>
 													</div>
-													<div class="row">
-														<label class="col-sm-3 form-control-label">Material</label>
-														<div class="col-sm-9 select">
-															<select name="account" class="form-control">
-																<option>option 1</option>
-																<option>option 2</option>
-																<option>option 3</option>
-																<option>option 4</option>
-															</select>
-														</div>
-													</div>
+													
 												</form>
 											</div>
 											<div class=" card-body col-lg-4">
@@ -150,32 +140,89 @@
 											<thead>
 												<tr>
 													<th>ID</th>
-													<th>PROVEEDOR</th>
-													<th>MATERIAL</th>
+													<th>NOMBRE</th>
 													<th>FECHA</th>
 													<th>PRECIO UNITARIO</th>
+													<th>CANTIDAD</th>
 													<th>STATUS</th>
 													<th class="text-center">Accion</th>
 												</tr>
 											</thead>
 											<tbody>
-												<?php 	
-												$qry = "SELECT fc_id id, po_nombre proveedor, mt_nombre material, fc_fecha fecha, m_precio precio,  st_nombre status FROM Factura_compra LEFT JOIN Proveedor ON fc_proveedor=po_id LEFT JOIN Material ma ON m_factura_compra=fc_id LEFT JOIN Tipo_material ON m_tipo_material=mt_id LEFT JOIN Status_material ON sm_material=m_id LEFT JOIN Status ON st_id=sm_status WHERE sm_id=(SELECT MAX(sm_id) FROM Status_material WHERE sm_material=ma.m_id) ORDER BY fc_id";
-												$rs = pg_query( $conexion, $qry );
-												while( $compra = pg_fetch_object($rs) ){?>
+												
 												<tr>
-													<td><?php print $compra->id;?></td>
-													<td><?php print $compra->proveedor;?></td>
-													<td><?php print $compra->material;?></td>
-													<td><?php $date = new DateTime($compra->fecha); print $date->format('d/m/Y');?></td>
-													<td><?php print number_format($compra->precio, 2, ',', '.')." Bs";?></td>
-													<td><span class="badge badge-primary"><?php print $compra->status;?></span></td>
+													<td>1</td>
+													<td>Arena</td>
+													<td>14/12/2017</td>
+													<td>23.00</td>
+													<td>3</td>
+													<td><span class="badge badge-primary">DISPONIBLE</span></td>
 													<td class="text-center">
 														<a href="" data-toggle="modal" data-target="#myModalDetalle"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 														<a href="" data-toggle="modal" data-target="#myModalBorrarVenta"> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 													</td>
 												</tr>
-												<?php }?>
+												<tr>
+													<td>1</td>
+													<td>Arena</td>
+													<td>14/12/2017</td>
+													<td>23.00</td>
+													<td>3</td>
+													<td><span class="badge badge-primary">DISPONIBLE</span></td>
+													<td class="text-center">
+														<a href="" data-toggle="modal" data-target="#myModalDetalle"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+														<a href="" data-toggle="modal" data-target="#myModalBorrarVenta"> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+													</td>
+												</tr>
+												<tr>
+													<td>1</td>
+													<td>Arena</td>
+													<td>14/12/2017</td>
+													<td>23.00</td>
+													<td>3</td>
+													<td><span class="badge badge-primary">DISPONIBLE</span></td>
+													<td class="text-center">
+														<a href="" data-toggle="modal" data-target="#myModalDetalle"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+														<a href="" data-toggle="modal" data-target="#myModalBorrarVenta"> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+													</td>
+												</tr>
+												<tr>
+													<td>1</td>
+													<td>Arena</td>
+													<td>14/12/2017</td>
+													<td>23.00</td>
+													<td>3</td>
+													<td><span class="badge badge-primary">DISPONIBLE</span></td>
+													<td class="text-center">
+														<a href="" data-toggle="modal" data-target="#myModalDetalle"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+														<a href="" data-toggle="modal" data-target="#myModalBorrarVenta"> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+													</td>
+												</tr>
+												<tr>
+													<td>1</td>
+													<td>Arena</td>
+													<td>14/12/2017</td>
+													<td>23.00</td>
+													<td>3</td>
+													<td><span class="badge badge-primary">DISPONIBLE</span></td>
+													<td class="text-center">
+														<a href="" data-toggle="modal" data-target="#myModalDetalle"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+														<a href="" data-toggle="modal" data-target="#myModalBorrarVenta"> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+													</td>
+												</tr>
+												<tr>
+													<td>1</td>
+													<td>Arena</td>
+													<td>14/12/2017</td>
+													<td>23.00</td>
+													<td>3</td>
+													<td><span class="badge badge-primary">DISPONIBLE</span></td>
+													<td class="text-center">
+														<a href="" data-toggle="modal" data-target="#myModalDetalle"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+														<a href="" data-toggle="modal" data-target="#myModalBorrarVenta"> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+													</td>
+												</tr>
+												
 											</tbody>
 										</table>
 									</div>
