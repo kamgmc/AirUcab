@@ -88,7 +88,7 @@
 					<section>
 						<div class="container-fluid">
 							<input id="tab0" type="radio" name="tabs" class="no-display" checked>
-							<label for="tab0" class="label"><i class="icon-map-streamline-user" aria-hidden="true"></i>Explorador Clientes</label>
+							<label for="tab0" class="label"><i class="icon-map-streamline-user" aria-hidden="true"></i> Explorador Clientes</label>
 							<!-- TAB Explorador Clientes -->
 							<section id="content0" class="sectiontab">
 								<!-- Accionista -->
