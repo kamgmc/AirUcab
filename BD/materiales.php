@@ -246,26 +246,13 @@
 													<div class="row">
 														<!-- Columna Izquierda   -->
 														<div class="card-body col-lg-6">
-															<div class="row">
-																<div class="col-lg-4">
-																	<h3>Factura Compra</h3> </div>
-																<div class="col-lg-8"> 001 </div>
-															</div>
+															
 															<div class="row">
 																<div class="col-lg-4">
 																	<h3>ESTATUS</h3> </div>
-																<div class="col-lg-8"> <span class="badge badge-primary font-big">Evaluacion</span> </div>
+																<div class="col-lg-8"> <span class="badge badge-primary font-big">Disponible</span> </div>
 															</div>
-															<div class="row">
-																<div class="col-lg-4">
-																	<h3>Proveedor</h3> </div>
-																<div class="col-lg-8"> LEX FDZ CORP. S.A. </div>
-															</div>
-															<div class="row">
-																<div class="col-lg-4">
-																	<h3>CI/RIF Proveedor</h3> </div>
-																<div class="col-lg-8"> J-79698576-7 </div>
-															</div>
+															
 															<div class="row">
 																<div class="col-lg-4">
 																	<h3>Material</h3> </div>
@@ -277,29 +264,21 @@
 														<div class=" card-body col-lg-6">
 															<div class="row">
 																<div class="col-lg-4">
-																	<h3>Cantidad</h3> </div>
+																	<h3>Cantidad Disponible</h3> </div>
 																<div class="col-lg-8"> 50 u </div>
 															</div>
 															<div class="row">
 																<div class="col-lg-4">
-																	<h3>Monto Unitario</h3> </div>
+																	<h3>Precio Unitario</h3> </div>
 																<div class="col-lg-8"> 15 $ </div>
 															</div>
-															<div class="row">
-																<div class="col-lg-4">
-																	<h3>Monto Total</h3> </div>
-																<div class="col-lg-8"> 750 $ </div>
-															</div>
+															
 															<div class="row">
 																<div class="col-lg-4">
 																	<h3>Fecha</h3> </div>
 																<div class="col-lg-8"> 14/12/2017 </div>
 															</div>
-															<div class="row">
-																<div class="col-lg-4">
-																	<h3>Tipo de Pago</h3> </div>
-																<div class="col-lg-8"> Transfencia </div>
-															</div>
+															
 															<div class="row">
 																<div class="col-lg-4">
 																	<h3>Nota</h3> </div>
