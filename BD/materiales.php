@@ -90,7 +90,7 @@
 					<div class="container-fluid">
 						<input id="tab0" type="radio" name="tabs" class="no-display" checked>
 						<label for="tab0" class="label"><i class="fa fa-server " aria-hidden="true"></i> Materiales</label>
-						<!-- TAB Compras -->
+						<!-- TAB Materiales -->
 						<section id="content0" class="sectiontab">
 							<!-- Filtrador-->
 							<div class="container-fluid">
@@ -132,7 +132,7 @@
 									<div class="row">
 										<div class="col-sm-10"></div>
 										<div class="col-sm-2 pad-top">
-											<button type="button" data-toggle="modal" data-target="#myModalCompraCrear" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
+											<button type="button" data-toggle="modal" data-target="#myModalMaterialCrear" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
 										</div>
 									</div>
 									<div class="card-body">
@@ -222,7 +222,7 @@
 														<a href="" data-toggle="modal" data-target="#myModalBorrarVenta"> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 													</td>
 												</tr>
-												
+
 											</tbody>
 										</table>
 									</div>
@@ -230,13 +230,13 @@
 							</div>
 							<!-- TABLE ENDS -->
 						</section>
-						<!-- TAB Compra ENDS -->
-						<!-- Modal Detalle Compra  -->
+						<!-- TAB Material ENDS -->
+						<!-- Modal Detalle Materiales  -->
 						<div id="myModalDetalle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 							<div role="document" class="modal-dialog modal-xl">
 								<div class="modal-content">
 									<div class="modal-header">
-										<h4 id="exampleModalLabel" class="modal-title">DETALLE COMPRA</h4>
+										<h4 id="exampleModalLabel" class="modal-title">DETALLE MATERIAL</h4>
 										<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 									</div>
 									<div class="modal-body">
@@ -313,7 +313,7 @@
 									</div>
 									<div class="modal-footer">
 										<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
-										<button type="button" data-toggle="modal" data-target="#myModalCompraEditar" class="btn btn-primary">Editar</button>
+										<button type="button" data-toggle="modal" data-target="#myModalMaterialEditar" class="btn btn-primary">Editar</button>
 									</div>
 								</div>
 							</div>
@@ -335,12 +335,12 @@
 							</div>
 						</div>
 						<!-- Modal Borrar Venta ENDS -->
-						<!-- Modal Compra Editar -->
-						<div id="myModalCompraEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+						<!-- Modal Material Editar -->
+						<div id="myModalMaterialEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 							<div role="document" class="modal-dialog modal-xl">
 								<div class="modal-content">
 									<div class="modal-header">
-										<h4 id="exampleModalLabel" class="modal-title">DETALLE COMPRA</h4>
+										<h4 id="exampleModalLabel" class="modal-title">DETALLE MATERIAL</h4>
 										<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 									</div>
 									<div class="modal-body">
@@ -359,8 +359,7 @@
 																<label class="col-sm-3 form-control-label">
 																	<h3>ESTATUS</h3> </label>
 																<!-- Traer de la tabla de Status las opciones -->
-																<!-- Creo que su seleccion deberia ser automatica por parte del sistema solo en este caso porque este pasa a -->
-																<!-- finalizado cuando los otros STATUS de cada material y cada avion comprado pasan a Finalizado -->
+																
 																<div class="col-sm-9 select">
 																	<select name="account" class="form-control">
 																		<option>En Progreso</option>
@@ -454,13 +453,13 @@
 								</div>
 							</div>
 						</div>
-						<!-- Modal Compra Editar ENDS -->
-						<!-- Modal Compra Crear -->
-						<div id="myModalCompraCrear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+						<!-- Modal Material Editar ENDS -->
+						<!-- Modal Material Crear -->
+						<div id="myModalMaterialCrear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 							<div role="document" class="modal-dialog modal-xl">
 								<div class="modal-content">
 									<div class="modal-header">
-										<h4 id="exampleModalLabel" class="modal-title">COMPRA</h4>
+										<h4 id="exampleModalLabel" class="modal-title">MATERIAL</h4>
 										<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 									</div>
 									<div class="modal-body">
@@ -479,8 +478,7 @@
 																<label class="col-sm-3 form-control-label">
 																	<h3>ESTATUS</h3> </label>
 																<!-- Traer de la tabla de Status las opciones -->
-																<!-- Creo que su seleccion deberia ser automatica por parte del sistema solo en este caso porque este pasa a -->
-																<!-- finalizado cuando los otros STATUS de cada material y cada avion comprado pasan a Finalizado -->
+																
 																<div class="col-sm-9 select">
 																	<select name="account" class="form-control">
 																		<option>En Progreso</option>
@@ -573,7 +571,7 @@
 								</div>
 							</div>
 						</div>
-						<!-- Modal Compra Crear ENDS -->
+						<!-- Modal Material Crear ENDS -->
 					</div>
 				</section>
 				<!-- Section de TABS ENDS -->
