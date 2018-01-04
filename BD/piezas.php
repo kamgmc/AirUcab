@@ -112,7 +112,7 @@
 									<div class="row">
 										<div class="col-sm-10"></div>
 										<div class="col-sm-2 pad-top">
-											<button type="button" data-toggle="modal" data-target="#myModalProveedorCrear" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
+											<button type="button" data-toggle="modal" data-target="#myModalPiezaCrear" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
 										</div>
 									</div>
 									<div class="card-body">
@@ -138,8 +138,8 @@
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
 														<td class="text-center">24</td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalProveedor"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href="proveedor-crud.php?delete="> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
 													<tr>
@@ -150,8 +150,8 @@
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
 														<td class="text-center">24</td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalProveedor"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href="proveedor-crud.php?delete="> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
 													<tr>
@@ -162,8 +162,8 @@
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
 														<td class="text-center">24</td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalProveedor"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href="proveedor-crud.php?delete="> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
 													<tr>
@@ -174,8 +174,8 @@
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
 														<td class="text-center">24</td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalProveedor"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href="proveedor-crud.php?delete="> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
 													<tr>
@@ -186,8 +186,8 @@
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
 														<td class="text-center">24</td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalProveedor"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href="proveedor-crud.php?delete="> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
 													<tr>
@@ -198,22 +198,11 @@
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
 														<td class="text-center">24</td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalProveedor"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href="proveedor-crud.php?delete="> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Tornillo</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">24</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalProveedor"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href="proveedor-crud.php?delete="> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
+													
 												
 											</tbody>
 										</table>
@@ -223,12 +212,12 @@
 							<!-- TABLE ENDS -->
 						</section>
 						
-						<!-- Modal Proveedor Informacion -->
-						<div id="ModalProveedor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+						<!-- Modal Pieza Informacion -->
+						<div id="ModalPieza" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 							<div role="document" class="modal-dialog modal-xl">
 								<div class="modal-content">
 									<div class="modal-header">
-										<h4 id="exampleModalLabel" class="modal-title">INFORMACION PROVEEDOR</h4>
+										<h4 id="exampleModalLabel" class="modal-title">INFORMACION PIEZA</h4>
 										<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 									</div>
 									<div class="modal-body">
@@ -237,49 +226,36 @@
 												<div class="card col-lg-12">
 													<div class="row">
 														<!-- Columna Izquierda   -->
+
 														<div class="card-body col-lg-6">
+															<div class="row">
+																<div class="col-lg-4">
+																	<h3>ESTATUS</h3> </div>
+																<div class="col-lg-8"> <span class="badge badge-primary font-big">Disponible</span> </div>
+															</div>
 															<div class="row">
 																<div class="col-lg-4">
 																	<h3>Nombre</h3> </div>
 																<div class="col-lg-8"></div>
 															</div>
-															<div class="row">
-																<div class="col-lg-4">
-																	<h3>CI/RIF</h3> </div>
-																<div class="col-lg-8"></div>
-															</div>
-															<div class="row">
-																<div class="col-lg-4">
-																	<h3>Direccion</h3> </div>
-																<div class="col-lg-8"></div>
-															</div>
-															
-															<div class="row">
-																<div class="col-lg-12">
-																	<h3>Contacto</h3> 
-																</div>
-																<div class="col-lg-12">
-																	
-																</div>
-															</div>
-															
-															<div class="row">
-																<div class="col-lg-4">
-																	<h3>Pagina Web</h3> </div>
-																<div class="col-lg-8"> <a href="" class="external"></a> </div>
-															</div>
-														</div>
+														</div>	
 														<!-- Columna izquierda ENDS -->
 														<!-- Columna derecha -->
 														<div class=" card-body col-lg-6">
+															
 															<div class="row">
 																<div class="col-lg-4">
-																	<h3>Monto Pagado</h3> </div>
+																	<h3>Fecha Inicio</h3> </div>
 																<div class="col-lg-8">  </div>
 															</div>
 															<div class="row">
 																<div class="col-lg-4">
-																	<h3>Fecha Inicio</h3> </div>
+																	<h3>Fecha Final</h3> </div>
+																<div class="col-lg-8">  </div>
+															</div>
+															<div class="row">
+																<div class="col-lg-4">
+																	<h3>Cantidad</h3> </div>
 																<div class="col-lg-8">  </div>
 															</div>
 															<div class="row">
@@ -292,11 +268,11 @@
 												</div>
 											</div>
 										</div>
-										<!-- Tabla Ventas Cliente STARTS -->
+										<!-- Tabla Piezas STARTS -->
 										<div class="col-md-12">
 											<div class="card">
 												<div class="card-header d-flex align-items-center">
-													<h3 class="h4">COMPRAS PROVEEDOR</h3> </div>
+													<h3 class="h4">MATERIALES NECESARIOS</h3> </div>
 												<div class="card-body">
 													
 													<table class="table table-striped table-sm table-hover">
@@ -319,7 +295,7 @@
 																<td><span class="badge badge-info"></span></td>
 																<td></td>
 																<td class="text-center">
-																	<a href="" data-toggle="modal" data-target="#myModalProveedor"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+																	<a href="" data-toggle="modal" data-target="#myModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 																	<a href="" data-toggle="modal" data-target="#myModalBorrarVenta"> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 																</td>
 															</tr>
@@ -330,19 +306,19 @@
 												</div>
 											</div>
 										</div>
-										<!-- Tabla Ventas Cliente ENDS -->
+										<!-- Tabla Piezas ENDS -->
 									</div>
 									<div class="modal-footer">
 										<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
-										<button type="button" data-toggle="modal" data-target="#myModalProveedorEditar" class="btn btn-primary">Editar</button>
+										<button type="button" data-toggle="modal" data-target="#myModalPiezaEditar" class="btn btn-primary">Editar</button>
 									</div>
 								</div>
 							</div>
 						</div>
-						<!-- Modal Proveedor Informacion ENDS -->
+						<!-- Modal Piezas Informacion ENDS -->
 						
-						<!-- Modal Proveedor Editar -->
-						<div id="myModalProveedorEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+						<!-- Modal Piezas Editar -->
+						<div id="myModalPiezaEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 							<div role="document" class="modal-dialog modal-xl">
 								<div class="modal-content">
 									<div class="modal-header">
@@ -444,9 +420,9 @@
 								</div>
 							</div>
 						</div>
-						<!-- Modal Proveedor Editar ENDS -->
-						<!-- Modal Proveedor Crear -->
-						<div id="myModalProveedorCrear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+						<!-- Modal Piezas Editar ENDS -->
+						<!-- Modal Piezas Crear -->
+						<div id="myModalPiezaCrear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 							<div role="document" class="modal-dialog modal-xl">
 								<div class="modal-content">
 									<div class="modal-header">
@@ -548,7 +524,7 @@
 								</div>
 							</div>
 						</div>
-						<!-- Modal Proveedor Crear ENDS -->
+						<!-- Modal Piezas Crear ENDS -->
 					</div>
 				</section>
 				<!-- Section de TABS ENDS -->
