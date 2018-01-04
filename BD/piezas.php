@@ -280,20 +280,31 @@
 															<tr>
 																<th>ID</th>
 																<th>MATERIAL</th>
-																<th>FECHA VENTA</th>
+																<th>PRECIO UNITARIO</th>
+																<th>CANTIDAD</th>
 																<th>ESTATUS</th>
-																<th>PRECIO</th>
 																<th class="text-center">Accion</th>
 															</tr>
 														</thead>
 														<tbody>
 														
 															<tr>
-																<td></td>
-																<td></td>
-																<td></td>
-																<td><span class="badge badge-info"></span></td>
-																<td></td>
+																<td>3</td>
+																<td>Arena</td>
+																<td>2.00</td>
+																<td>24</td>
+																<td><span class="badge badge-info">DISPONIBLE</span></td>
+																<td class="text-center">
+																	<a href="" data-toggle="modal" data-target="#myModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+																	<a href="" data-toggle="modal" data-target="#myModalBorrarVenta"> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+																</td>
+															</tr>
+															<tr>
+																<td>7</td>
+																<td>Plomo</td>
+																<td>5.00</td>
+																<td>7</td>
+																<td><span class="badge badge-danger">EN TRAYECTO</span></td>
 																<td class="text-center">
 																	<a href="" data-toggle="modal" data-target="#myModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 																	<a href="" data-toggle="modal" data-target="#myModalBorrarVenta"> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
@@ -322,7 +333,7 @@
 							<div role="document" class="modal-dialog modal-xl">
 								<div class="modal-content">
 									<div class="modal-header">
-										<h4 id="exampleModalLabel" class="modal-title">INFORMACION PERSONAL</h4>
+										<h4 id="exampleModalLabel" class="modal-title">EDICION PIEZA</h4>
 										<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 									</div>
 									<div class="modal-body">
@@ -345,62 +356,19 @@
 															</div>
 															<div class="form-group row">
 																<label class="col-sm-3 form-control-label">
-																	<h3>Direccion</h3> </label>
+																	<h3>Fecha Final</h3> </label>
 																<div class="col-sm-9">
-																	<input type="text" placeholder="Introduzca la Direccion asociada" class="form-control"> </div>
+																	<input type="text" placeholder="Introduzca Fecha Final" class="form-control"> </div>
 															</div>
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h3>CI/RIF</h3> </label>
-																<div class="col-sm-9">
-																	<input type="text" disabled="" placeholder="No modificable" class="form-control"> </div>
-															</div>
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h3>Contacto</h3> </label>
-																<div class="col-sm-9">
-																	<div class="input-group">
-																		<div class="input-group-btn">
-																			<button data-toggle="dropdown" type="button" class="btn btn-white dropdown-toggle"><i class="fa fa-facebook" aria-hidden="true"></i><span class="caret"></span></button>
-																			<ul class="dropdown-menu">
-																				<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-																				<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-																				<li><a href="#"><i class="fa fa-medium" aria-hidden="true"></i></a></li>
-																				<li><a href="#"><i class="fa fa-flickr" aria-hidden="true"></i></a></li>
-																				<li><a href="#"><i class="fa fa-github" aria-hidden="true"></i></a></li>
-																			</ul>
-																		</div>
-																		<input type="text" class="form-control"> </div>
-																	<br>
-																	<div class="input-group">
-																		<div class="input-group-btn">
-																			<button data-toggle="dropdown" type="button" class="btn btn-white dropdown-toggle"><i class="fa fa-facebook" aria-hidden="true"></i><span class="caret"></span></button>
-																			<ul class="dropdown-menu">
-																				<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-																				<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-																				<li><a href="#"><i class="fa fa-medium" aria-hidden="true"></i></a></li>
-																				<li><a href="#"><i class="fa fa-flickr" aria-hidden="true"></i></a></li>
-																				<li><a href="#"><i class="fa fa-github" aria-hidden="true"></i></a></li>
-																			</ul>
-																		</div>
-																		<input type="text" class="form-control"> </div>
-																	<br>
-																	<div class="input-group">
-																		<div class="input-group-btn">
-																			<button data-toggle="dropdown" type="button" class="btn btn-white dropdown-toggle"><i class="fa fa-facebook" aria-hidden="true"></i><span class="caret"></span></button>
-																			<ul class="dropdown-menu">
-																				<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-																				<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-																				<li><a href="#"><i class="fa fa-medium" aria-hidden="true"></i></a></li>
-																				<li><a href="#"><i class="fa fa-flickr" aria-hidden="true"></i></a></li>
-																				<li><a href="#"><i class="fa fa-github" aria-hidden="true"></i></a></li>
-																			</ul>
-																		</div>
-																		<input type="text" class="form-control"> </div>
-																</div>
-															</div>
-														</div>
+														</div>	
+															
 														<div class=" card-body col-lg-6">
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h3>Cantidad</h3> </label>
+																<div class="col-sm-9">
+																	<input type="text" placeholder="Introduzca Cantidad Disponible" class="form-control"> </div>
+															</div>
 															<div class="form-group row">
 																<label class="col-sm-3 form-control-label">
 																	<h3>Nota</h3> </label>
