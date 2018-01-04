@@ -79,7 +79,13 @@
 				<section>
 					<div class="container-fluid">
 						<input id="tab0" type="radio" name="tabs" class="no-display" checked>
-						<label for="tab0" class="label"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> Explorador Piezas</label>
+						<label for="tab0" class="label"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> Piezas</label>
+						<input id="tab1" type="radio" name="tabs" class="no-display" >
+						<label for="tab1" class="label"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> Modelo Piezas</label>
+						<input id="tab2" type="radio" name="tabs" class="no-display" >
+						<label for="tab2" class="label"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> Tipo Ala</label>
+						<input id="tab3" type="radio" name="tabs" class="no-display" >
+						<label for="tab3" class="label"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> Tipo Estabilizador</label>
 						<!-- TAB Piezas -->
 						<section id="content0" class="sectiontab">
 							<!-- Accionista -->
