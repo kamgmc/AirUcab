@@ -258,7 +258,7 @@
 									<div class="row">
 										<div class="col-sm-10"></div>
 										<div class="col-sm-2 pad-top">
-											<button type="button" data-toggle="modal" data-target="#myModalPiezaCrear" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
+											<button type="button" data-toggle="modal" data-target="#myModalModeloPiezaCrear" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
 										</div>
 									</div>
 									<div class="card-body">
@@ -604,6 +604,7 @@
 							</div>
 						</div>
 						<!-- Modal Piezas Editar ENDS -->
+
 						<!-- Modal Piezas Crear -->
 						<div id="myModalPiezaCrear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 							<div role="document" class="modal-dialog modal-xl">
@@ -697,6 +698,131 @@
 							</div>
 						</div>
 						<!-- Modal Piezas Crear ENDS -->
+
+						<!-- Modal Modelo Piezas Crear -->
+						<div id="myModalModeloPiezaCrear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+							<div role="document" class="modal-dialog modal-xl">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h4 id="exampleModalLabel" class="modal-title">CREAR MODELO PIEZA</h4>
+										<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+									</div>
+									<div class="modal-body">
+										<div class="container-fluid">
+											<div class="row">
+												<div class="card col-lg-12">
+													<div class="row">
+														<div class="col-sm-12 pad-top">
+															<h4>Informacion Modelo Pieza</h4>
+														</div>
+														
+														<div class="card-body col-lg-6">
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h3>Nombre</h3> </label>
+																<div class="col-sm-9">
+																	<input type="text" placeholder="Introduzca Nombre" class="form-control"> </div>
+															</div>
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h3>Fecha Inicio</h3> </label>
+																<div class="col-sm-9">
+																	<input type="text" placeholder="Introduzca Fecha de Inicio" class="form-control"> </div>
+															</div>
+															<div id="last" data-num="1" class="row last-pago">
+																<label class="col-sm-3 form-control-label">
+																	<h3>Parte de:</h3> </label>
+																<div class="card-body col-lg-12">
+																	<div class="form-check form-check-inline">
+																		<label class="form-check-label">
+																			<input class="form-check-input transferencia" name="tipo_pago" type="radio"> Ala
+																		</label>
+																	</div>
+																	<div class="form-check form-check-inline">
+																		<label class="form-check-label">
+																			<input class="form-check-input tarjeta-credito" name="tipo_pago" type="radio"> Submodelo Avion 
+																		</label>
+																	</div>
+																	<div class="pago-space row">
+																	</div>
+																</div>
+																<label class="col-sm-3 form-control-label">Ala</label>
+																<div class="col-sm-9 select">
+																	<select name="account" class="form-control">
+																		<option>Ala cuadrada 1</option>
+																		<option>Ala redonda 2</option>
+																		<option>option 3</option>
+																		<option>option 4</option>
+																	</select>
+																</div>
+																<label class="col-sm-3 form-control-label">Submodelo Avion</label>
+																<div class="col-sm-9 select">
+																	<select name="account" class="form-control">
+																		<option>4515 1</option>
+																		<option>54578 2</option>
+																		<option>option 3</option>
+																		<option>option 4</option>
+																	</select>
+																</div>
+															</div>
+														</div>	
+															
+														<div class=" card-body col-lg-6">
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h3>Cantidad</h3> </label>
+																<div class="col-sm-9">
+																	<input type="text" placeholder="Introduzca Cantidad Disponible" class="form-control"> </div>
+															</div>
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h3>Nota</h3> </label>
+																<div class="col-sm-9">
+																	<input type="text" placeholder="Aqui puedes escribir..." class="form-control form-control-lg" rows="4" cols="50"> </div>
+															</div>
+														</div>
+
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="container-fluid">
+											<div class="row">
+												<div class="card col-lg-12">
+													<div class="row">
+														<div class="col-sm-12 pad-top">
+															<h4>Materiales Requeridos</h4>
+														</div>
+
+														<div class="card-body col-lg-6">
+															<div class="form-group row">
+																
+																<label class="col-sm-3 form-control-label">
+																	<h4>Material</h4>
+																</label>
+																<div class="col-sm-9 select">
+																	<select id="lista_clientes" name="cliente" class="form-control" required>
+																		<option value="NULL">Seleccionar</option>
+																		
+																	</select>
+																</div>
+															</div>
+														</div>
+
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
+										<button type="button" class="btn btn-primary">Guardar Cambios</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Modal Modelo Piezas Crear ENDS -->
 					</div>
 				</section>
 				<!-- Section de TABS ENDS -->
