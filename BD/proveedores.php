@@ -69,6 +69,9 @@
 					<li>
 						<a href="materiales.php"> <i class="fa fa-server " aria-hidden="true"></i>Materiales </a>
 					</li>
+					<li>
+						<a href="piezas.php"> <i class="fa fa-puzzle-piece " aria-hidden="true"></i>Piezas </a>
+					</li>
 				</ul>
 			</nav>
 			<div class="content-inner">
