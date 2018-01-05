@@ -3,8 +3,11 @@
 ## PREGUNTAS A LA PROFE
 - [ ] TODAS LAS PIEZAS DEBERIAN APARECER EN ALGUNA UBICACION
 
-## HACER
-- [x] Hacer los botones para el SIDEBAR para que se sepa que es lo que falta exactamente
+## HACER SECUNDARIOS
+- [ ] Actualizar iconos de tabs (todos sincronizados)
+- [ ] Actualizar informacion de usuario (todas sincronizadas) o mas ideal, llamarlo con PHP (REQ. SECUNDARIO)
+
+:white_check_mark: Hacer los botones para el SIDEBAR para que se sepa que es lo que falta exactamente
 
 ## FALTAN
 - [ ] ACTUALIZAR PAGO FALTANTE
