@@ -261,15 +261,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 															
 														</div>	
 															
-														<div class=" card-body col-lg-6">
-															
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h3>Nota</h3> </label>
-																<div class="col-sm-9">
-																	<input type="text" placeholder="Aqui puedes escribir..." class="form-control form-control-lg" rows="4" cols="50"> </div>
-															</div>
-														</div>
+														
 
 													</div>
 												</div>
@@ -320,15 +312,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 															
 														</div>	
 															
-														<div class=" card-body col-lg-6">
-															
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h3>Nota</h3> </label>
-																<div class="col-sm-9">
-																	<input type="text" placeholder="Aqui puedes escribir..." class="form-control form-control-lg" rows="4" cols="50"> </div>
-															</div>
-														</div>
+														
 
 													</div>
 												</div>
