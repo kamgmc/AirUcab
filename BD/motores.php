@@ -309,10 +309,14 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 												<tr>
 													<th class="text-center">ID</th>
 													<th class="text-center">NOMBRE</th>
-													<th class="text-center">FECHA FINAL</th>
-													<th class="text-center">FECHA INICIO</th>
+													<th class="text-center">MARCA</th>
+													<th class="text-center">TIPO</th>
+													<th class="text-center">EMPUJE MAX</th>
+													<th class="text-center">EMPUJE NORMA</th>
+													<th class="text-center">EMPUJE CRUCERO</th>
+													<th class="text-center">LONGITUR</th>
+													<th class="text-center">DIAMETRO ASPA</th>
 													<th class="text-center">STATUS</th>
-													<th class="text-center">CANTIDAD</th>
 													<th class="text-center">Accion</th>
 												</tr>
 											</thead>
@@ -320,73 +324,97 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 												
 													<tr>
 														<td class="text-center">1</td>
-														<td class="text-center">Tornillo</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center">14/11/2018</td>
+														<td class="text-center">Modelo A</td>
+														<td class="text-center">Oxford</td>
+														<td class="text-center">Reactor</td>
+														<td class="text-center">15</td>
+														<td class="text-center">11</td>
+														<td class="text-center">8</td>
+														<td class="text-center">35 m</td>
+														<td class="text-center">78 m</td>
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">24</td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalModeloPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
 													<tr>
 														<td class="text-center">1</td>
-														<td class="text-center">Tornillo</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center">14/11/2018</td>
+														<td class="text-center">Modelo A</td>
+														<td class="text-center">Oxford</td>
+														<td class="text-center">Reactor</td>
+														<td class="text-center">15</td>
+														<td class="text-center">11</td>
+														<td class="text-center">8</td>
+														<td class="text-center">35 m</td>
+														<td class="text-center">78 m</td>
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">24</td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalModeloPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
 													<tr>
 														<td class="text-center">1</td>
-														<td class="text-center">Tornillo</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center">14/11/2018</td>
+														<td class="text-center">Modelo A</td>
+														<td class="text-center">Oxford</td>
+														<td class="text-center">Reactor</td>
+														<td class="text-center">15</td>
+														<td class="text-center">11</td>
+														<td class="text-center">8</td>
+														<td class="text-center">35 m</td>
+														<td class="text-center">78 m</td>
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">24</td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalModeloPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
 													<tr>
 														<td class="text-center">1</td>
-														<td class="text-center">Tornillo</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center">14/11/2018</td>
+														<td class="text-center">Modelo A</td>
+														<td class="text-center">Oxford</td>
+														<td class="text-center">Reactor</td>
+														<td class="text-center">15</td>
+														<td class="text-center">11</td>
+														<td class="text-center">8</td>
+														<td class="text-center">35 m</td>
+														<td class="text-center">78 m</td>
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">24</td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalModeloPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
 													<tr>
 														<td class="text-center">1</td>
-														<td class="text-center">Tornillo</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center">14/11/2018</td>
+														<td class="text-center">Modelo A</td>
+														<td class="text-center">Oxford</td>
+														<td class="text-center">Reactor</td>
+														<td class="text-center">15</td>
+														<td class="text-center">11</td>
+														<td class="text-center">8</td>
+														<td class="text-center">35 m</td>
+														<td class="text-center">78 m</td>
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">24</td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalModeloPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
 													<tr>
 														<td class="text-center">1</td>
-														<td class="text-center">Tornillo</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center">14/11/2018</td>
+														<td class="text-center">Modelo A</td>
+														<td class="text-center">Oxford</td>
+														<td class="text-center">Reactor</td>
+														<td class="text-center">15</td>
+														<td class="text-center">11</td>
+														<td class="text-center">8</td>
+														<td class="text-center">35 m</td>
+														<td class="text-center">78 m</td>
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">24</td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalModeloPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
