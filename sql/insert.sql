@@ -2079,9 +2079,26 @@ INSERT INTO Sede (se_nombre, se_area, se_principal, se_lugar) VALUES ('AirUcab C
 --ZONAS
 INSERT INTO Zona (zo_nombre, zo_tipo, zo_sede) VALUES ('Ensamble de Motor','Ensamblaje',1);
 INSERT INTO Zona (zo_nombre, zo_tipo, zo_sede) VALUES ('Prueba de Material','Prueba',1);
+INSERT INTO Zona (zo_nombre, zo_tipo, zo_sede) VALUES ('Prueba de Piezas','Prueba',1);
+INSERT INTO Zona (zo_nombre, zo_tipo, zo_sede) VALUES ('Centro de acopio','Envio',1);
+INSERT INTO Zona (zo_nombre, zo_tipo, zo_sede) VALUES ('Ensamble de Cabina','Ensamblaje',2);
+INSERT INTO Zona (zo_nombre, zo_tipo, zo_sede) VALUES ('Prueba de Material','Prueba',2);
+INSERT INTO Zona (zo_nombre, zo_tipo, zo_sede) VALUES ('Prueba de Piezas','Prueba',2);
+INSERT INTO Zona (zo_nombre, zo_tipo, zo_sede) VALUES ('Centro de acopio','Envio',2);
 INSERT INTO Zona (zo_nombre, zo_tipo, zo_sede) VALUES ('Ensamble de Alas','Ensamblaje',3);
+INSERT INTO Zona (zo_nombre, zo_tipo, zo_sede) VALUES ('Ensamble de Estabilizadores','Ensamblaje',3);
+INSERT INTO Zona (zo_nombre, zo_tipo, zo_sede) VALUES ('Prueba de Material','Prueba',3);
+INSERT INTO Zona (zo_nombre, zo_tipo, zo_sede) VALUES ('Prueba de Piezas','Prueba',3);
+INSERT INTO Zona (zo_nombre, zo_tipo, zo_sede) VALUES ('Centro de acopio','Envio',3);
+INSERT INTO Zona (zo_nombre, zo_tipo, zo_sede) VALUES ('Ensamble de Piezas de Control','Ensamblaje',4);
+INSERT INTO Zona (zo_nombre, zo_tipo, zo_sede) VALUES ('Prueba de Material','Prueba',4);
+INSERT INTO Zona (zo_nombre, zo_tipo, zo_sede) VALUES ('Prueba de Piezas','Prueba',4);
+INSERT INTO Zona (zo_nombre, zo_tipo, zo_sede) VALUES ('Centro de acopio','Envio',4);
 INSERT INTO Zona (zo_nombre, zo_tipo, zo_sede) VALUES ('Ensamble de Fuselaje','Ensamblaje',5);
 INSERT INTO Zona (zo_nombre, zo_tipo, zo_sede) VALUES ('Ensamblaje del Avión','Ensamblaje',5);
+INSERT INTO Zona (zo_nombre, zo_tipo, zo_sede) VALUES ('Prueba de Material','Prueba',5);
+INSERT INTO Zona (zo_nombre, zo_tipo, zo_sede) VALUES ('Prueba de Piezas','Prueba',5);
+INSERT INTO Zona (zo_nombre, zo_tipo, zo_sede) VALUES ('Centro de acopio','Envio',5);
 --CARGOS
 INSERT INTO Cargo (er_nombre) VALUES ('Sin Asignar');
 INSERT INTO Cargo (er_nombre) VALUES ('CEO');
