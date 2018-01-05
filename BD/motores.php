@@ -167,11 +167,12 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 											<thead>
 												<tr>
 													<th class="text-center">ID</th>
+													<!-- Modelo Motor -->
 													<th class="text-center">NOMBRE</th>
 													<th class="text-center">FECHA FINAL</th>
 													<th class="text-center">FECHA INICIO</th>
 													<th class="text-center">STATUS</th>
-													<th class="text-center">CANTIDAD</th>
+													<th class="text-center">AVION P.</th>
 													<th class="text-center">Accion</th>
 												</tr>
 											</thead>
@@ -179,11 +180,11 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 												
 													<tr>
 														<td class="text-center">1</td>
-														<td class="text-center">Tornillo</td>
+														<td class="text-center">Winston C</td>
 														<td class="text-center">14/11/2018</td>
 														<td class="text-center">14/11/2018</td>
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">24</td>
+														<td class="text-center">Hawk 421</td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
@@ -191,11 +192,11 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 													</tr>
 													<tr>
 														<td class="text-center">1</td>
-														<td class="text-center">Tornillo</td>
+														<td class="text-center">Winston C</td>
 														<td class="text-center">14/11/2018</td>
 														<td class="text-center">14/11/2018</td>
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">24</td>
+														<td class="text-center">Hawk 421</td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
@@ -203,11 +204,11 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 													</tr>
 													<tr>
 														<td class="text-center">1</td>
-														<td class="text-center">Tornillo</td>
+														<td class="text-center">Winston C</td>
 														<td class="text-center">14/11/2018</td>
 														<td class="text-center">14/11/2018</td>
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">24</td>
+														<td class="text-center">Hawk 421</td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
@@ -215,11 +216,11 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 													</tr>
 													<tr>
 														<td class="text-center">1</td>
-														<td class="text-center">Tornillo</td>
+														<td class="text-center">Winston C</td>
 														<td class="text-center">14/11/2018</td>
 														<td class="text-center">14/11/2018</td>
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">24</td>
+														<td class="text-center">Hawk 421</td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
@@ -227,11 +228,11 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 													</tr>
 													<tr>
 														<td class="text-center">1</td>
-														<td class="text-center">Tornillo</td>
+														<td class="text-center">Winston C</td>
 														<td class="text-center">14/11/2018</td>
 														<td class="text-center">14/11/2018</td>
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">24</td>
+														<td class="text-center">Hawk 421</td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
@@ -239,11 +240,11 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 													</tr>
 													<tr>
 														<td class="text-center">1</td>
-														<td class="text-center">Tornillo</td>
+														<td class="text-center">Winston C</td>
 														<td class="text-center">14/11/2018</td>
 														<td class="text-center">14/11/2018</td>
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">24</td>
+														<td class="text-center">Hawk 421</td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
