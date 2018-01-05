@@ -832,12 +832,101 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 									</div>
 									<div class="modal-footer">
 										<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
-										<button type="button" data-toggle="modal" data-target="#myModalPiezaEditar" class="btn btn-primary">Editar</button>
+										<button type="button" data-toggle="modal" data-target="#myModalModeloPiezaEditar" class="btn btn-primary">Editar</button>
 									</div>
 								</div>
 							</div>
 						</div>
 						<!-- Modal Modelo Piezas Informacion ENDS -->
+
+						<!-- Modal Modelo Piezas Editar -->
+						<div id="myModalModeloPiezaEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+							<div role="document" class="modal-dialog modal-xl">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h4 id="exampleModalLabel" class="modal-title">EDICION PIEZA</h4>
+										<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+									</div>
+									<div class="modal-body">
+										<div class="container-fluid">
+											<div class="row">
+												<div class="card col-lg-12">
+													<div class="row">
+														<div class="card-body col-lg-6">
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h3>Nombre</h3> </label>
+																<div class="col-sm-9">
+																	<input type="text" placeholder="Introduzca Nombre" class="form-control"> </div>
+															</div>
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h3>Fecha Inicio</h3> </label>
+																<div class="col-sm-9">
+																	<input type="text" placeholder="Introduzca Fecha de Inicio" class="form-control"> </div>
+															</div>
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h3>Fecha Final</h3> </label>
+																<div class="col-sm-9">
+																	<input type="text" placeholder="Introduzca Fecha Final" class="form-control"> </div>
+															</div>
+														</div>	
+															
+														<div class=" card-body col-lg-6">
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h3>Cantidad</h3> </label>
+																<div class="col-sm-9">
+																	<input type="text" placeholder="Introduzca Cantidad Disponible" class="form-control"> </div>
+															</div>
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h3>Nota</h3> </label>
+																<div class="col-sm-9">
+																	<input type="text" placeholder="Aqui puedes escribir..." class="form-control form-control-lg" rows="4" cols="50"> </div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="container-fluid">
+											<div class="row">
+												<div class="card col-lg-12">
+													<div class="row">
+														<div class="col-sm-12 pad-top">
+															<h4>Materiales Requeridos</h4>
+														</div>
+
+														<div class="card-body col-lg-6">
+															<div class="form-group row">
+
+																<label class="col-sm-3 form-control-label">
+																	<h4>Material</h4>
+																</label>
+																<div class="col-sm-9 select">
+																	<select id="lista_clientes" name="cliente" class="form-control" required>
+																		<option value="NULL">Seleccionar</option>
+																		
+																	</select>
+																</div>
+															</div>
+														</div>
+
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
+										<button type="button" class="btn btn-primary">Guardar Cambios</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Modal Modelo Piezas Editar ENDS -->
 						
 						<!-- Modal Piezas Editar -->
 						<div id="myModalPiezaEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
