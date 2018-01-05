@@ -507,10 +507,11 @@ create table Traslado(
     tr_zona_recibe integer not null,
     tr_pieza integer,
     tr_material integer,
+    tr_motor integer,
     constraint Pk_traslado primary key(tr_id),
     constraint Fk_tr_zona_envia foreign key(tr_zona_envia) references Zona(zo_id),
     constraint Fk_tr_zona_recibe foreign key(tr_zona_recibe) references Zona(zo_id),
     constraint Fk_tr_pieza foreign key(tr_pieza) references Pieza(p_id),
     constraint Fk_tr_material foreign key(tr_material) references Material(m_id),
-    constraint Check_tr_arco check(tr_pieza IS not null or tr_material IS not null)
+    constraint Check_tr_arco check(tr_pieza IS not null or tr_material IS not null or tr_motor IS not null)
 );
