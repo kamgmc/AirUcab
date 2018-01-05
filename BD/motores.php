@@ -269,10 +269,19 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 										<div class="card col-lg-12">
 											<div class="row">
 												<div class="card-body col-lg-5">
-													<h3 class="h4">Filtrar Pieza por:</h3>
+													<h3 class="h4">Filtrar Modelo Motor por:</h3>
 													<form class="form-horizontal" method="post">
 														<div class="row">
-															<label class="col-sm-3 form-control-label">Modelo</label>
+															<label class="col-sm-3 form-control-label">Marca</label>
+															<div class="col-sm-9 select">
+																<select name="rol" class="form-control">
+																	<option value="NULL">Seleccionar</option>
+																	
+																</select>
+															</div>
+														</div>
+														<div class="row">
+															<label class="col-sm-3 form-control-label">Tipo</label>
 															<div class="col-sm-9 select">
 																<select name="rol" class="form-control">
 																	<option value="NULL">Seleccionar</option>
