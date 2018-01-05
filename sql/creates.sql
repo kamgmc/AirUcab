@@ -265,6 +265,8 @@ create table Submodelo_avion(
 	as_autonomia_peso_maximo_despegue numeric(6) not null,
 	as_capacidad_combustible numeric(6) not null,
 	as_alcance_carga_maxima numeric(6) not null,
+    as_cantidad_motor numeric(3,0) not null,
+    as_fecha_creacion date not null,
 	as_modelo_avion integer not null,
 	constraint Pk_submodelo_avion primary key(as_id),
 	constraint Check_as_peso_maximo_despegue check(as_peso_maximo_despegue > 0),
@@ -274,15 +276,14 @@ create table Submodelo_avion(
 	constraint Check_as_autonomia_peso_maximo_despegue check(as_autonomia_peso_maximo_despegue > 0),
 	constraint Check_as_capacidad_combustible check(as_capacidad_combustible > 0),
 	constraint Check_as_alcance_carga_maxima check(as_alcance_carga_maxima > 0),
+    constraint Check_as_cantidad_motor check(as_cantidad_motor > 0),
 	constraint Fk_as_modelo_avion foreign key(as_modelo_avion) references Modelo_avion(am_id)
 );
 create table S_avion_m_motor(
 	smt_id serial,
-	smt_cantidad numeric(3,0) not null,
 	smt_submodelo_avion integer not null,
 	smt_modelo_motor integer not null,
 	constraint Pk_m_avion_m_motor primary key(smt_id),
-	constraint Check_smt_cantidad check(smt_cantidad > 0),
 	constraint Fk_smt_submodelo_avion foreign key(smt_submodelo_avion) references Submodelo_avion(as_id),
 	constraint Fk_smt_modelo_motor foreign key(smt_modelo_motor) references Modelo_motor(mm_id)
 );
@@ -494,7 +495,7 @@ create table Prueba_pieza(
     pp_prueba integer not null,
     pp_status integer not null,
     constraint Pk_prueba_pieza primary key(pp_id),
-    constraint Fk_pp_pieza foreign key(pp_pieza) references Pieza(p_id),
+	constraint Fk_pp_pieza foreign key(pp_pieza) references Pieza(p_id),
     constraint Fk_pp_prueba foreign key(pp_prueba) references Prueba(pr_id),
     constraint Fk_pp_status foreign key(pp_status) references Status(st_id)
 );
