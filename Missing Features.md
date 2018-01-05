@@ -15,14 +15,16 @@
 - [ ] Acomodar los DELETE de Motor con Traslado
 
 ## FRONTEND
-- [ ] Marca de Motor 
-- [ ] Motor 
 - [ ] Status (en Pruebas, para poder agregar nuevos estatus)
 - [ ] Pruebas 
 - [ ] Traslados 
 - [ ] Zonas 
 - [ ] Sedes 
 - [ ] Tipo de Contacto (empleado) 
+
+:white_check_mark: Marca de Motor 
+
+:white_check_mark: Motor 
 
 :white_check_mark: Cliente
 
