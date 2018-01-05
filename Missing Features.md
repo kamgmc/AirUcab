@@ -20,6 +20,7 @@
 - [ ] Zonas 
 - [ ] Sedes 
 - [ ] Tipo de Contacto (empleado) 
+
 :white_check_mark: Cliente
 
 :white_check_mark: Proveedor
