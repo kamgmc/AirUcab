@@ -114,6 +114,18 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 					<li>
 						<a href="piezas.php"> <i class="fa fa-puzzle-piece " aria-hidden="true"></i>Piezas </a>
 					</li>
+					<li>
+						<a href="motores.php"> <i class="fa fa-tachometer " aria-hidden="true"></i>Motores </a>
+					</li>
+					<li>
+						<a href="pruebas.php"> <i class="fa fa-check-square-o " aria-hidden="true"></i>Pruebas </a>
+					</li>
+					<li>
+						<a href="traslados.php"> <i class="fa fa-share-square-o " aria-hidden="true"></i>Traslados </a>
+					</li>
+					<li>
+						<a href="Sedes.php"> <i class="fa fa-university " aria-hidden="true"></i>Sedes </a>
+					</li>
 				</ul>
 			</nav>
 			<div class="content-inner">
