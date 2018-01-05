@@ -2230,37 +2230,37 @@ INSERT INTO Distribucion (di_nombre,di_numero_clases,di_capacidad_pasajeros,di_d
 INSERT INTO Distribucion (di_nombre,di_numero_clases,di_capacidad_pasajeros,di_distancia_asientos,di_ancho_asientos,di_modelo_avion) VALUES ('Estandar',1,189,76,43.7,14);
 --SUBMODELO_AVION
 --AU802
-INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_modelo_avion) VALUES ('Basic',49190,28120,780,1990,9800,17860,3440,1);
+INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_cantidad_motor,as_fecha_creacion,as_modelo_avion) VALUES ('Basic',49190,28120,780,1990,9800,17860,3440,2,'1983-08-29',1);
 --AU802A
-INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_modelo_avion) VALUES ('Basic',68050,33200,780,2540,9800,23170,4005,2);
+INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_cantidad_motor,as_fecha_creacion,as_modelo_avion) VALUES ('Basic',68050,33200,780,2540,9800,23170,4005,2,'1984-01-14',2);
 --AU802B
-INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_modelo_avion) VALUES ('Basic',60550,31300,780,2470,9800,23800,4445,3);
+INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_cantidad_motor,as_fecha_creacion,as_modelo_avion) VALUES ('Basic',60550,31300,780,2470,9800,23800,4445,2,'1984-04-01',3);
 --AU802C
-INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_modelo_avion) VALUES ('Basic',66000,36380,828,2400,9800,26020,5650,4);
+INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_cantidad_motor,as_fecha_creacion,as_modelo_avion) VALUES ('Basic',66000,36380,828,2400,9800,26020,5650,2,'1984-05-30',4);
 --AU802D
-INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_modelo_avion) VALUES ('Basic',70000,38150,828,2480,9800,26020,6230,5);
-INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_modelo_avion) VALUES ('WL',72500,38150,828,2480,9800,26020,7220,5);
-INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_modelo_avion) VALUES ('ER',77500,38150,828,2480,9800,26020,9955,5);
+INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_cantidad_motor,as_fecha_creacion,as_modelo_avion) VALUES ('Basic',70000,38150,828,2480,9800,26020,6230,2,'1984-06-06',5);
+INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_cantidad_motor,as_fecha_creacion,as_modelo_avion) VALUES ('WL',72500,38150,828,2480,9800,26020,7220,2,'1984-06-12',5);
+INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_cantidad_motor,as_fecha_creacion,as_modelo_avion) VALUES ('ER',77500,38150,828,2480,9800,26020,9955,2,'1984-06-26',5);
 --AU802E
-INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_modelo_avion) VALUES ('Basic',79000,41415,828,2450,9800,26020,5665,6);
+INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_cantidad_motor,as_fecha_creacion,as_modelo_avion) VALUES ('Basic',79000,41415,828,2450,9800,26020,5665,2,'1984-07-01',6);
 --AU802F
-INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_modelo_avion) VALUES ('Basic',85100,44675,823,2450,9800,29660,4995,7);
-INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_modelo_avion) VALUES ('WL',85100,44675,823,2450,9800,29660,5925,7);
+INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_cantidad_motor,as_fecha_creacion,as_modelo_avion) VALUES ('Basic',85100,44675,823,2450,9800,29660,4995,2,'1984-07-22',7);
+INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_cantidad_motor,as_fecha_creacion,as_modelo_avion) VALUES ('WL',85100,44675,823,2450,9800,29660,5925,2,'1984-07-30',7);
 --AU747PLUS
-INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_modelo_avion) VALUES ('Basic',333400,162400,893,3190,9800,183380,7995,8);
+INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_cantidad_motor,as_fecha_creacion,as_modelo_avion) VALUES ('Basic',333400,162400,893,3190,9800,183380,7995,4,'1990-08-07',8);
 --AU747PLATINIUM
-INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_modelo_avion) VALUES ('Basic',378000,174000,893,3190,12700,199160,7995,9);
+INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_cantidad_motor,as_fecha_creacion,as_modelo_avion) VALUES ('Basic',378000,174000,893,3190,12700,199160,7995,4,'1991-04-01',9);
 --AU747GOLD
-INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_modelo_avion) VALUES ('Basic',378000,178100,893,3320,12400,199160,7995,10);
+INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_cantidad_motor,as_fecha_creacion,as_modelo_avion) VALUES ('Basic',378000,178100,893,3320,12400,199160,7995,4,'1991-11-23',10);
 --AU747SILVER
-INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_modelo_avion) VALUES ('Basic',397000,178750,913,3018,13450,216840,7995,11);
-INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_modelo_avion) VALUES ('ER',413000,184600,916,3090,14205,241140,7995,11);
+INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_cantidad_motor,as_fecha_creacion,as_modelo_avion) VALUES ('Basic',397000,178750,913,3018,13450,216840,7995,4,'1992-04-01',11);
+INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_cantidad_motor,as_fecha_creacion,as_modelo_avion) VALUES ('ER',413000,184600,916,3090,14205,241140,7995,4,'1992-06-30',11);
 --AU747SILVERB
-INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_modelo_avion) VALUES ('Basic',440000,186000,916,3090,14815,243120,7995,12);
+INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_cantidad_motor,as_fecha_creacion,as_modelo_avion) VALUES ('Basic',440000,186000,916,3090,14815,243120,7995,4,'1993-02-04',12);
 --AU80
-INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_modelo_avion) VALUES ('Basic',116570,55580,780,1990,9800,17860,3440,13);
+INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_cantidad_motor,as_fecha_creacion,as_modelo_avion) VALUES ('Basic',116570,55580,780,1990,9800,17860,3440,4,'1980-02-23',13);
 --AU801
-INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_modelo_avion) VALUES ('Basic',95028,46700,907,1990,9800,17860,3440,14);
+INSERT INTO Submodelo_avion (as_nombre,as_peso_maximo_despegue,as_peso_vacio,as_velocidad_crucero,as_carrera_despegue_peso_maximo,as_autonomia_peso_maximo_despegue,as_capacidad_combustible,as_alcance_carga_maxima,as_cantidad_motor,as_fecha_creacion,as_modelo_avion) VALUES ('Basic',95028,46700,907,1990,9800,17860,3440,3,'1982-09-14',14);
 --MARCA_MOTOR
 INSERT INTO Marca_motor (mb_nombre) VALUES ('Pratt & Whitney');
 INSERT INTO Marca_motor (mb_nombre) VALUES ('CFM');
@@ -2298,49 +2298,49 @@ INSERT INTO Modelo_motor (mm_nombre,mm_tipo,mm_empuje_max,mm_empuje_normal,mm_em
 INSERT INTO Modelo_motor (mm_nombre,mm_tipo,mm_empuje_max,mm_empuje_normal,mm_empuje_crucero,mm_longitud,mm_marca) VALUES ('JT8D','Reactor',90,77,80,2.51,1);
 --S_AVION_M_MOTOR
 --AU802
-INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor) VALUES (2,1,1);
+INSERT INTO S_avion_m_motor (smt_submodelo_avion,smt_modelo_motor) VALUES (1,1);
 --AU802A
-INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor) VALUES (2,2,2);
+INSERT INTO S_avion_m_motor (smt_submodelo_avion,smt_modelo_motor) VALUES (2,2);
 --AU802B
-INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor) VALUES (2,3,3);
+INSERT INTO S_avion_m_motor (smt_submodelo_avion,smt_modelo_motor) VALUES (3,3);
 
 --AU802C
-INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor) VALUES (2,4,4);
+INSERT INTO S_avion_m_motor (smt_submodelo_avion,smt_modelo_motor) VALUES (4,4);
 --AU802D
-INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor) VALUES (2,5,5);
-INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor) VALUES (2,6,5);
-INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor) VALUES (2,7,5);
+INSERT INTO S_avion_m_motor (smt_submodelo_avion,smt_modelo_motor) VALUES (5,5);
+INSERT INTO S_avion_m_motor (smt_submodelo_avion,smt_modelo_motor) VALUES (6,5);
+INSERT INTO S_avion_m_motor (smt_submodelo_avion,smt_modelo_motor) VALUES (7,5);
 --AU802E
-INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor) VALUES (2,8,6);
+INSERT INTO S_avion_m_motor (smt_submodelo_avion,smt_modelo_motor) VALUES (8,6);
 --AU802F
-INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor) VALUES (2,9,7);
-INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor) VALUES (2,10,7);
+INSERT INTO S_avion_m_motor (smt_submodelo_avion,smt_modelo_motor) VALUES (9,7);
+INSERT INTO S_avion_m_motor (smt_submodelo_avion,smt_modelo_motor) VALUES (10,7);
 --AU747PLUS
-INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor) VALUES (2,11,8);
-INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor) VALUES (2,11,9);
+INSERT INTO S_avion_m_motor (smt_submodelo_avion,smt_modelo_motor) VALUES (11,8);
+INSERT INTO S_avion_m_motor (smt_submodelo_avion,smt_modelo_motor) VALUES (11,9);
 --AU747PLATINIUM
-INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor) VALUES (2,12,10);
-INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor) VALUES (1,12,11);
-INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor) VALUES (1,12,12);
+INSERT INTO S_avion_m_motor (smt_submodelo_avion,smt_modelo_motor) VALUES (12,10);
+INSERT INTO S_avion_m_motor (smt_submodelo_avion,smt_modelo_motor) VALUES (12,11);
+INSERT INTO S_avion_m_motor (smt_submodelo_avion,smt_modelo_motor) VALUES (12,12);
 --AU747GOLD
-INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor) VALUES (2,13,10);
-INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor) VALUES (1,13,11);
-INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor) VALUES (1,13,13);
+INSERT INTO S_avion_m_motor (smt_submodelo_avion,smt_modelo_motor) VALUES (13,10);
+INSERT INTO S_avion_m_motor (smt_submodelo_avion,smt_modelo_motor) VALUES (13,11);
+INSERT INTO S_avion_m_motor (smt_submodelo_avion,smt_modelo_motor) VALUES (13,13);
 --AU747SILVER
-INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor) VALUES (1,14,14);
-INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor) VALUES (1,14,15);
-INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor) VALUES (1,14,16);
-INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor) VALUES (1,14,17);
-INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor) VALUES (1,15,14);
-INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor) VALUES (1,15,15);
-INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor) VALUES (1,15,16);
-INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor) VALUES (1,15,17);
+INSERT INTO S_avion_m_motor (smt_submodelo_avion,smt_modelo_motor) VALUES (14,14);
+INSERT INTO S_avion_m_motor (smt_submodelo_avion,smt_modelo_motor) VALUES (14,15);
+INSERT INTO S_avion_m_motor (smt_submodelo_avion,smt_modelo_motor) VALUES (14,16);
+INSERT INTO S_avion_m_motor (smt_submodelo_avion,smt_modelo_motor) VALUES (14,17);
+INSERT INTO S_avion_m_motor (smt_submodelo_avion,smt_modelo_motor) VALUES (15,14);
+INSERT INTO S_avion_m_motor (smt_submodelo_avion,smt_modelo_motor) VALUES (15,15);
+INSERT INTO S_avion_m_motor (smt_submodelo_avion,smt_modelo_motor) VALUES (15,16);
+INSERT INTO S_avion_m_motor (smt_submodelo_avion,smt_modelo_motor) VALUES (15,17);
 --AU747SILVERB
-INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor) VALUES (4,16,18);
+INSERT INTO S_avion_m_motor (smt_submodelo_avion,smt_modelo_motor) VALUES (16,18);
 --AU80
-INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor) VALUES (4,17,19);
+INSERT INTO S_avion_m_motor (smt_submodelo_avion,smt_modelo_motor) VALUES (17,19);
 --AU801
-INSERT INTO S_avion_m_motor (smt_cantidad,smt_submodelo_avion,smt_modelo_motor) VALUES (3,18,20);
+INSERT INTO S_avion_m_motor (smt_submodelo_avion,smt_modelo_motor) VALUES (18,20);
 --TIPO_ALA
 INSERT INTO Tipo_ala (wt_nombre) VALUES ('Recta');
 INSERT INTO Tipo_ala (wt_nombre) VALUES ('Trapezoidal');
@@ -2571,7 +2571,7 @@ INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pie
 --FUSELAJE
 INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado) VALUES ('Fuselaje',93);
 INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza) VALUES ('Portaequipaje',62,12,160);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado) VALUES ('Asiento',62);
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado) VALUES ('Asientos',62);
 --S_AVION_M_PIEZA
 --AU802
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (2,1,11);
@@ -2828,7 +2828,6 @@ INSERT INTO Status_prueba (sp_fecha_ini,sp_fecha_fin,sp_prueba,sp_status) VALUES
 INSERT INTO Status_prueba (sp_fecha_ini,sp_prueba,sp_status) VALUES ('2017-06-22',3,6);
 INSERT INTO Status_prueba (sp_fecha_ini,sp_fecha_fin,sp_prueba,sp_status) VALUES ('2017-05-21','2017-06-21',4,5);
 INSERT INTO Status_prueba (sp_fecha_ini,sp_prueba,sp_status) VALUES ('2017-06-22',4,6);
-INSERT INTO Status_prueba (sp_fecha_ini,sp_fecha_fin,sp_prueba,sp_status) VALUES ('2017-05-21','2017-06-21',5,5);
 INSERT INTO Status_prueba (sp_fecha_ini,sp_prueba,sp_status) VALUES ('2017-06-22',5,6);
 --PRUEBA_PIEZA
 INSERT INTO Prueba_pieza (pp_fecha_ini,pp_fecha_fin,pp_pieza,pp_prueba,pp_status) VALUES ('2017-12-21','2018-01-21',5,1,6);
@@ -2849,6 +2848,7 @@ INSERT INTO Traslado (tr_fecha_ini,tr_fecha_fin,tr_confirmacion,tr_zona_envia,tr
 INSERT INTO Traslado (tr_fecha_ini,tr_fecha_fin,tr_confirmacion,tr_zona_envia,tr_zona_recibe,tr_material) VALUES ('2018-01-22','2018-01-23',TRUE,2,3,4);
 INSERT INTO Traslado (tr_fecha_ini,tr_fecha_fin,tr_confirmacion,tr_zona_envia,tr_zona_recibe,tr_material) VALUES ('2018-01-22','2018-01-23',TRUE,2,3,5);
 INSERT INTO Traslado (tr_fecha_ini,tr_fecha_fin,tr_confirmacion,tr_zona_envia,tr_zona_recibe,tr_pieza) VALUES ('2018-01-22','2018-01-23',TRUE,4,3,5);
+INSERT INTO Traslado (tr_fecha_ini,tr_fecha_fin,tr_confirmacion,tr_zona_envia,tr_zona_recibe,tr_motor) VALUES ('2018-01-22','2018-01-23',TRUE,4,3,1);
 --TIPO_PAGO
 INSERT INTO Tipo_pago (pt_numero,pt_tc_nombre,pt_tc_cod,pt_tc_fecha) VALUES (145161,'José Andrade',132,'2020-02-15');
 INSERT INTO Tipo_pago (pt_numero,pt_tc_nombre,pt_tc_cod,pt_tc_fecha) VALUES (544512,'Carla Sousa',514,'2019-08-02');
