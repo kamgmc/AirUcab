@@ -54,16 +54,16 @@
 		return false;
     }
 //Querys de Submodelo_avion
-	function insertarSubmodeloAvion( $nombre, $peso_max, $peso_vacio, $velocidad_crucero, $carrera, $autonomia, $combustible, $alcance, $modelo ){
+	function insertarSubmodeloAvion( $nombre, $peso_max, $peso_vacio, $velocidad_crucero, $carrera, $autonomia, $combustible, $alcance, $motores, $modelo ){
 		global $conexion;
 		$nombre = htmlentities($nombre, ENT_QUOTES);
-		$qry = "INSERT INTO Submodelo_avion (as_nombre, as_peso_maximo_despegue, as_peso_vacio, as_velocidad_crucero, as_carrera_despegue_peso_maximo, as_autonomia_peso_maximo_despegue, as_capacidad_combustible, as_alcance_carga_maxima, as_modelo_avion) VALUES('".$nombre."', ".$peso_max.", ".$peso_vacio.", ".$velocidad_crucero.", ".$carrera.", ".$autonomia.", ".$combustible.", ".$alcance.", ".$modelo.")";
+		$qry = "INSERT INTO Submodelo_avion (as_nombre, as_peso_maximo_despegue, as_peso_vacio, as_velocidad_crucero, as_carrera_despegue_peso_maximo, as_autonomia_peso_maximo_despegue, as_capacidad_combustible, as_alcance_carga_maxima, as_cantidad_motor, as_fecha_creacion, as_modelo_avion) VALUES('".$nombre."', ".$peso_max.", ".$peso_vacio.", ".$velocidad_crucero.", ".$carrera.", ".$autonomia.", ".$combustible.", ".$alcance.", ".$motores.", transaction_timestamp(), ".$modelo.")";
 		return pg_query($conexion, $qry);
 	}
-	function editarSubmodeloAvion( $id, $nombre, $peso_max, $peso_vacio, $velocidad_crucero, $carrera, $autonomia, $combustible, $alcance, $modelo ){
+	function editarSubmodeloAvion( $id, $nombre, $peso_max, $peso_vacio, $velocidad_crucero, $carrera, $autonomia, $combustible, $alcance, $motores, $modelo ){
 		global $conexion;
 		$nombre = htmlentities($nombre, ENT_QUOTES);
-		$qry = "UPDATE Submodelo_avion SET as_nombre='".$nombre."', as_peso_maximo_despegue=".$peso_max.", as_peso_vacio=".$peso_vacio.", as_velocidad_crucero=".$velocidad_crucero.", as_carrera_despegue_peso_maximo=".$carrera.", as_autonomia_peso_maximo_despegue= ".$autonomia.", as_capacidad_combustible=".$combustible.", as_alcance_carga_maxima=".$alcance.", as_modelo_avion=".$modelo." WHERE as_id=".$id;
+		$qry = "UPDATE Submodelo_avion SET as_nombre='".$nombre."', as_peso_maximo_despegue=".$peso_max.", as_peso_vacio=".$peso_vacio.", as_velocidad_crucero=".$velocidad_crucero.", as_carrera_despegue_peso_maximo=".$carrera.", as_autonomia_peso_maximo_despegue= ".$autonomia.", as_capacidad_combustible=".$combustible.", as_alcance_carga_maxima=".$alcance.", as_cantidad_motor=".$motores.", as_modelo_avion=".$modelo." WHERE as_id=".$id;
 		return pg_query($conexion, $qry);
 	}
 	function eliminarSubmodeloAvion($id){
