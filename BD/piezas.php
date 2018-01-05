@@ -358,6 +358,270 @@
 							<!-- TABLE ENDS -->
 						</section>
 
+						<!-- TAB Tipo Ala -->
+						<section id="content2" class="sectiontab">
+							<!-- Accionista -->
+							<div class="container-fluid">
+								<div class="row">
+									<div class="card col-lg-12">
+										<div class="row">
+											<div class="card-body col-lg-5">
+												<form class="form-horizontal">
+													<div class="form-group row">
+														<div class="col-sm-12">
+															<input type="text" placeholder="Ingrese Nombre a Buscar o ID..." class="form-control"> </div>
+													</div>
+												</form>
+											</div>
+											<div class=" card-body col-lg-4">
+												<div class="form-group row">
+													<div class="col-sm-9">
+														<input type="submit" value="Ejecutar" class="btn btn-primary"> </div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- Accionista ENDS -->
+							<!-- TABLE STARTS -->
+							<div class="col-md-12">
+								<div class="card">
+									<div class="row">
+										<div class="col-sm-10"></div>
+										<div class="col-sm-2 pad-top">
+											<button type="button" data-toggle="modal" data-target="#myModalPiezaCrear" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
+										</div>
+									</div>
+									<div class="card-body">
+										<table class="table table-striped table-sm table-hover">
+											<thead>
+												<tr>
+													<th class="text-center">ID</th>
+													<th class="text-center">NOMBRE</th>
+													<th class="text-center">FECHA FINAL</th>
+													<th class="text-center">FECHA INICIO</th>
+													<th class="text-center">STATUS</th>
+													<th class="text-center">CANTIDAD</th>
+													<th class="text-center">Accion</th>
+												</tr>
+											</thead>
+											<tbody>
+												
+													<tr>
+														<td class="text-center">1</td>
+														<td class="text-center">Tornillo</td>
+														<td class="text-center">14/11/2018</td>
+														<td class="text-center">14/11/2018</td>
+														<td class="text-center"><span class="badge badge-info">Listo</span></td>
+														<td class="text-center">24</td>
+														<td class="text-center">
+															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+														</td>
+													</tr>
+													<tr>
+														<td class="text-center">1</td>
+														<td class="text-center">Tornillo</td>
+														<td class="text-center">14/11/2018</td>
+														<td class="text-center">14/11/2018</td>
+														<td class="text-center"><span class="badge badge-info">Listo</span></td>
+														<td class="text-center">24</td>
+														<td class="text-center">
+															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+														</td>
+													</tr>
+													<tr>
+														<td class="text-center">1</td>
+														<td class="text-center">Tornillo</td>
+														<td class="text-center">14/11/2018</td>
+														<td class="text-center">14/11/2018</td>
+														<td class="text-center"><span class="badge badge-info">Listo</span></td>
+														<td class="text-center">24</td>
+														<td class="text-center">
+															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+														</td>
+													</tr>
+													<tr>
+														<td class="text-center">1</td>
+														<td class="text-center">Tornillo</td>
+														<td class="text-center">14/11/2018</td>
+														<td class="text-center">14/11/2018</td>
+														<td class="text-center"><span class="badge badge-info">Listo</span></td>
+														<td class="text-center">24</td>
+														<td class="text-center">
+															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+														</td>
+													</tr>
+													<tr>
+														<td class="text-center">1</td>
+														<td class="text-center">Tornillo</td>
+														<td class="text-center">14/11/2018</td>
+														<td class="text-center">14/11/2018</td>
+														<td class="text-center"><span class="badge badge-info">Listo</span></td>
+														<td class="text-center">24</td>
+														<td class="text-center">
+															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+														</td>
+													</tr>
+													<tr>
+														<td class="text-center">1</td>
+														<td class="text-center">Tornillo</td>
+														<td class="text-center">14/11/2018</td>
+														<td class="text-center">14/11/2018</td>
+														<td class="text-center"><span class="badge badge-info">Listo</span></td>
+														<td class="text-center">24</td>
+														<td class="text-center">
+															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+														</td>
+													</tr>
+													
+												
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<!-- TABLE ENDS -->
+						</section>
+
+						<!-- TAB Tipo Estabilizador -->
+						<section id="content3" class="sectiontab">
+							<!-- Accionista -->
+							<div class="container-fluid">
+								<div class="row">
+									<div class="card col-lg-12">
+										<div class="row">
+											<div class="card-body col-lg-5">
+												<form class="form-horizontal">
+													<div class="form-group row">
+														<div class="col-sm-12">
+															<input type="text" placeholder="Ingrese Nombre a Buscar o ID..." class="form-control"> </div>
+													</div>
+												</form>
+											</div>
+											<div class=" card-body col-lg-4">
+												<div class="form-group row">
+													<div class="col-sm-9">
+														<input type="submit" value="Ejecutar" class="btn btn-primary"> </div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- Accionista ENDS -->
+							<!-- TABLE STARTS -->
+							<div class="col-md-12">
+								<div class="card">
+									<div class="row">
+										<div class="col-sm-10"></div>
+										<div class="col-sm-2 pad-top">
+											<button type="button" data-toggle="modal" data-target="#myModalPiezaCrear" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
+										</div>
+									</div>
+									<div class="card-body">
+										<table class="table table-striped table-sm table-hover">
+											<thead>
+												<tr>
+													<th class="text-center">ID</th>
+													<th class="text-center">NOMBRE</th>
+													<th class="text-center">FECHA FINAL</th>
+													<th class="text-center">FECHA INICIO</th>
+													<th class="text-center">STATUS</th>
+													<th class="text-center">CANTIDAD</th>
+													<th class="text-center">Accion</th>
+												</tr>
+											</thead>
+											<tbody>
+												
+													<tr>
+														<td class="text-center">1</td>
+														<td class="text-center">Tornillo</td>
+														<td class="text-center">14/11/2018</td>
+														<td class="text-center">14/11/2018</td>
+														<td class="text-center"><span class="badge badge-info">Listo</span></td>
+														<td class="text-center">24</td>
+														<td class="text-center">
+															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+														</td>
+													</tr>
+													<tr>
+														<td class="text-center">1</td>
+														<td class="text-center">Tornillo</td>
+														<td class="text-center">14/11/2018</td>
+														<td class="text-center">14/11/2018</td>
+														<td class="text-center"><span class="badge badge-info">Listo</span></td>
+														<td class="text-center">24</td>
+														<td class="text-center">
+															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+														</td>
+													</tr>
+													<tr>
+														<td class="text-center">1</td>
+														<td class="text-center">Tornillo</td>
+														<td class="text-center">14/11/2018</td>
+														<td class="text-center">14/11/2018</td>
+														<td class="text-center"><span class="badge badge-info">Listo</span></td>
+														<td class="text-center">24</td>
+														<td class="text-center">
+															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+														</td>
+													</tr>
+													<tr>
+														<td class="text-center">1</td>
+														<td class="text-center">Tornillo</td>
+														<td class="text-center">14/11/2018</td>
+														<td class="text-center">14/11/2018</td>
+														<td class="text-center"><span class="badge badge-info">Listo</span></td>
+														<td class="text-center">24</td>
+														<td class="text-center">
+															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+														</td>
+													</tr>
+													<tr>
+														<td class="text-center">1</td>
+														<td class="text-center">Tornillo</td>
+														<td class="text-center">14/11/2018</td>
+														<td class="text-center">14/11/2018</td>
+														<td class="text-center"><span class="badge badge-info">Listo</span></td>
+														<td class="text-center">24</td>
+														<td class="text-center">
+															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+														</td>
+													</tr>
+													<tr>
+														<td class="text-center">1</td>
+														<td class="text-center">Tornillo</td>
+														<td class="text-center">14/11/2018</td>
+														<td class="text-center">14/11/2018</td>
+														<td class="text-center"><span class="badge badge-info">Listo</span></td>
+														<td class="text-center">24</td>
+														<td class="text-center">
+															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+														</td>
+													</tr>
+													
+												
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<!-- TABLE ENDS -->
+						</section>
+
 
 						<!-- Modal Pieza Informacion -->
 						<div id="ModalPieza" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
@@ -797,7 +1061,7 @@
 
 														<div class="card-body col-lg-6">
 															<div class="form-group row">
-																
+
 																<label class="col-sm-3 form-control-label">
 																	<h4>Material</h4>
 																</label>
