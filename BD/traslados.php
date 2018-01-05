@@ -196,6 +196,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 													<th>Fecha Llegada</th>
 													<th>Zona Salida</th>
 													<th>Zona Llegada</th>
+													<th class="text-center">Confirmacion</th>
 													<th class="text-center">Accion</th>
 												</tr>
 											</thead>
@@ -208,6 +209,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<td>11/11/2017</td>
 														<td>Margarita</td>
 														<td>Bogota</td>
+														<td class="text-center"><span class="badge badge-info">Entregado</span></td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
@@ -220,6 +222,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<td>11/11/2017</td>
 														<td>Margarita</td>
 														<td>Bogota</td>
+														<td class="text-center"><span class="badge badge-info">Entregado</span></td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
@@ -232,6 +235,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<td>11/11/2017</td>
 														<td>Margarita</td>
 														<td>Bogota</td>
+														<td class="text-center"><span class="badge badge-info">Entregado</span></td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
@@ -244,6 +248,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<td>11/11/2017</td>
 														<td>Margarita</td>
 														<td>Bogota</td>
+														<td class="text-center"><span class="badge badge-info">Entregado</span></td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
@@ -256,6 +261,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<td>11/11/2017</td>
 														<td>Margarita</td>
 														<td>Bogota</td>
+														<td class="text-center"><span class="badge badge-info">Entregado</span></td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
@@ -268,6 +274,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<td>11/11/2017</td>
 														<td>Margarita</td>
 														<td>Bogota</td>
+														<td class="text-center"><span class="badge badge-info">Entregado</span></td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
@@ -280,6 +287,20 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<td>11/11/2017</td>
 														<td>Margarita</td>
 														<td>Bogota</td>
+														<td class="text-center"><span class="badge badge-info">Entregado</span></td>
+														<td class="text-center">
+															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
+															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+														</td>
+													</tr>
+													<tr>
+														<td>1</td>
+														<td>Tornillos</td>
+														<td>11/11/2017</td>
+														<td>11/11/2017</td>
+														<td>Margarita</td>
+														<td>Bogota</td>
+														<td class="text-center"><span class="badge badge-info">Entregado</span></td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
