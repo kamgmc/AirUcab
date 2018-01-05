@@ -668,7 +668,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 							<div role="document" class="modal-dialog modal-xl">
 								<div class="modal-content">
 									<div class="modal-header">
-										<h4 id="exampleModalLabel" class="modal-title">CREAR MOTOR</h4>
+										<h4 id="exampleModalLabel" class="modal-title">EDITAR MOTOR</h4>
 										<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 									</div>
 									<div class="modal-body">
