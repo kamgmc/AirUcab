@@ -199,7 +199,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 												</thead>
 												<tbody>
 													<?php 	
-												$qry = "SELECT cl_id AS id, cl_tipo_rif AS tipo_rif, cl_rif AS rif, cl_nombre AS nombre, SUM(a_precio) AS monto, cl_fecha_inicio AS fecha, COUNT(fv_id) AS ventas, lu_nombre AS direccion FROM Cliente left join Factura_venta ON fv_cliente=cl_id LEFT JOIN Avion ON a_factura_venta=fv_id LEFT JOIN Lugar ON lu_id=cl_direccion GROUP BY cl_id, cl_tipo_rif, cl_rif, cl_nombre,cl_fecha_inicio,lu_nombre ORDER BY cl_id";
+												$qry = "SELECT cl_id AS id, cl_tipo_rif AS tipo_rif, cl_rif AS rif, cl_nombre AS nombre, (Select SUM(a_precio) From Avion, Factura_venta Where a_factura_venta=fv_id AND fv_cliente=cl.cl_id) AS monto, cl_fecha_inicio AS fecha, (SELECT COUNT(fv_id) FROM Factura_venta WHERE fv_cliente=cl.cl_id) AS ventas, lu_nombre AS direccion FROM Cliente cl LEFT JOIN Lugar ON lu_id=cl_direccion ORDER BY nombre";
 												$rs = pg_query( $conexion, $qry );
 												while( $cliente = pg_fetch_object($rs) ){?>
 														<tr>
@@ -263,7 +263,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 																			<h4>Nombre</h4>
 																		</label>
 																		<div class="col-sm-9">
-																			<input name="nombre" type="text" placeholder="Introduzca Nombre" class="form-control" pattern="[A-Z a-zñ]+" required>
+																			<input name="nombre" type="text" placeholder="Introduzca Nombre" class="form-control" pattern="[A-Za-zñ0-9 .,]+" required>
 																		</div>
 																	</div>
 																	<div class="form-group row">

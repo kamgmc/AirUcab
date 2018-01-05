@@ -5,7 +5,7 @@ $qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WH
 $rs = pg_query( $conexion, $qry ); $permiso = array();
 while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }
 $id = htmlentities($_GET['id'], ENT_QUOTES);
-$qry = "SELECT cl_id AS id, cl_tipo_rif AS tipo_rif, cl_rif AS rif, cl_nombre AS nombre, SUM(a_precio) as monto, cl_fecha_inicio AS fecha, pa.lu_nombre as parroquia, pa.lu_id as id_parroquia, mu.lu_nombre as municipio, mu.lu_id as id_municipio, es.lu_nombre as estado, es.lu_id as id_estado, cl_pagina_web AS web FROM Cliente left join Factura_venta ON fv_cliente=cl_id LEFT JOIN Avion ON a_factura_venta=fv_id LEFT JOIN Lugar pa ON lu_id=cl_direccion LEFT JOIN Lugar mu ON mu.lu_id=pa.lu_lugar LEFT JOIN Lugar es ON es.lu_id=mu.lu_lugar WHERE cl_id=".$id." GROUP BY cl_id, cl_tipo_rif, cl_rif, cl_nombre,cl_fecha_inicio,pa.lu_nombre, mu.lu_nombre, es.lu_nombre, pa.lu_id, mu.lu_id, es.lu_id";
+$qry = "SELECT cl_id AS id, cl_tipo_rif AS tipo_rif, cl_rif AS rif, cl_nombre AS nombre, (Select SUM(a_precio) From Avion, Factura_venta Where a_factura_venta=fv_id AND fv_cliente=cl.cl_id) as monto, cl_fecha_inicio AS fecha, pa.lu_nombre as parroquia, pa.lu_id as id_parroquia, mu.lu_nombre as municipio, mu.lu_id as id_municipio, es.lu_nombre as estado, es.lu_id as id_estado, cl_pagina_web AS web FROM Cliente cl LEFT JOIN Lugar pa ON lu_id=cl_direccion LEFT JOIN Lugar mu ON mu.lu_id=pa.lu_lugar LEFT JOIN Lugar es ON es.lu_id=mu.lu_lugar WHERE cl_id=".$id;
 $con = pg_query($conexion, $qry);
 $cliente = pg_fetch_object($con);
 $date = new DateTime($cliente->fecha);
@@ -37,14 +37,17 @@ $resultado = '<div class="modal-header">
 										<h4>Dirección</h4>
 									</div>
 									<div class="col-lg-8">'.$cliente->parroquia.", ".$cliente->municipio.", ".$cliente->estado.'</div>
-								</div>
-								<div class="row">
-									<div class="col-lg-4">
-										<h4>Pagina Web</h4>
-									</div>
-									<div class="col-lg-8"><a href="http://'.$cliente->web.'" target="_blank" class="external">'.$cliente->web.'</a></div>
-								</div>
-							</div>
+								</div>';
+									if(!is_null($cliente->web))
+										$resultado .= '<div class="row">
+											<div class="col-lg-4">
+												<h4>Pagina Web</h4>
+											</div>
+											<div class="col-lg-8"> 
+												<a href="http://'.$cliente->web.'" class="external">'.$cliente->web.'</a>
+											</div>
+										</div>';
+								$resultado .= '</div>
 							<!-- Columna izquierda ENDS -->
 							<!-- Columna derecha -->
 							<div class=" card-body col-lg-6">';

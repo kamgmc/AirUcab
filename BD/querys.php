@@ -477,7 +477,6 @@
 //Querys de Cliente
 	function insertarCliente ( $trif, $rif, $nombre, $pweb, $lugar ){
 		global $conexion;
-		$id = htmlentities($id, ENT_QUOTES);
 		$trif = htmlentities($trif, ENT_QUOTES);
 		$rif = htmlentities($rif, ENT_QUOTES);
 		$nombre = htmlentities($nombre, ENT_QUOTES);
@@ -574,18 +573,25 @@
 		return false;
 	}
 //Proveedor
-	function insertarProveedor ( $trif, $rif, $nombre, $pweb, $finicio ){
+	function insertarProveedor ( $trif, $rif, $nombre, $pweb, $lugar ){
 		global $conexion;
+		$trif = htmlentities($trif, ENT_QUOTES);
+		$rif = htmlentities($rif, ENT_QUOTES);
 		$nombre = htmlentities($nombre, ENT_QUOTES);
 		$pweb = htmlentities($pweb, ENT_QUOTES);
-		$qry = "INSERT INTO Proveedor (po_tipo_rif, po_rif, po_nombre, po_pagina_web, po_fecha_inicio) VALUES ('".$trif."', ".$rif.", '".$nombre."', '".$pweb."', '".$finicio."')";
+		$lugar = htmlentities($lugar, ENT_QUOTES);
+		$qry = "INSERT INTO Proveedor (po_tipo_rif, po_rif, po_nombre, po_pagina_web, po_fecha_ini, po_direccion) VALUES ('".$trif."', ".$rif.", '".$nombre."', '".$pweb."', transaction_timestamp(),".$lugar." )";
 		return pg_query($conexion, $qry);
 	}
-	function editarProveedor ( $id, $trif, $rif, $nombre, $pweb, $finicio ){
+	function editarProveedor ( $id, $trif, $rif, $nombre, $pweb, $lugar ){
 		global $conexion;
+		$id = htmlentities($id, ENT_QUOTES);
+		$trif = htmlentities($trif, ENT_QUOTES);
+		$rif = htmlentities($rif, ENT_QUOTES);
 		$nombre = htmlentities($nombre, ENT_QUOTES);
 		$pweb = htmlentities($pweb, ENT_QUOTES);
-		$qry = "UPDATE Proveedor SET po_tipo_rif='".$trif."', po_rif='".$trif."', po_nombre='".$nombre."', po_pagina_web='".$pweb."', po_fecha_inicio='".$finicio."' WHERE po_id=".$id;
+		$lugar = htmlentities($lugar, ENT_QUOTES);
+		$qry = "UPDATE Proveedor SET po_tipo_rif='".$trif."', po_rif=".$rif.", po_nombre='".$nombre."', po_pagina_web='".$pweb."', po_direccion=".$lugar." WHERE po_id=".$id;
 		return pg_query($conexion, $qry);
 	}
 	function eliminarProveedor( $id ){

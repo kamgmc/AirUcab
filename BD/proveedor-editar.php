@@ -1,9 +1,9 @@
 <?php include 'conexion.php';
 $id = htmlentities($_GET['id'], ENT_QUOTES);
-$qry = "SELECT cl_id AS id, cl_nombre AS nombre, cl_tipo_rif AS tipo_rif, cl_rif AS rif, cl_pagina_web AS web, pa.lu_id AS parroquia, mu.lu_id AS municipio, es.lu_id AS estado FROM Cliente LEFT JOIN Lugar pa ON pa.lu_id=cl_direccion LEFT JOIN Lugar mu ON mu.lu_id=pa.lu_lugar LEFT JOIN Lugar es ON es.lu_id=mu.lu_lugar WHERE cl_id=".$id;
+$qry = "SELECT po_id AS id, po_nombre AS nombre, po_tipo_rif AS tipo_rif, po_rif AS rif, po_pagina_web AS web, pa.lu_id AS parroquia, mu.lu_id AS municipio, es.lu_id AS estado FROM Proveedor LEFT JOIN Lugar pa ON pa.lu_id=po_direccion LEFT JOIN Lugar mu ON mu.lu_id=pa.lu_lugar LEFT JOIN Lugar es ON es.lu_id=mu.lu_lugar WHERE po_id=".$id;
 $con = pg_query($conexion, $qry);
-$cliente = pg_fetch_object($con);
-$result = '<form action="cliente-crud?edit='.$cliente->id.'" method="post">
+$proveedor = pg_fetch_object($con);
+$result = '<form action="cliente-crud?edit='.$proveedor->id.'" method="post">
 				<div class="modal-header">
 					<h4 id="exampleModalLabel" class="modal-title">Editar Cliente</h4>
 					<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
@@ -19,7 +19,7 @@ $result = '<form action="cliente-crud?edit='.$cliente->id.'" method="post">
 												<h4>Nombre</h4>
 											</label>
 											<div class="col-sm-9">
-												<input name="nombre" type="text" placeholder="Introduzca Nombre" class="form-control" pattern="[A-Za-zñ0-9 .,]+" value="'.$cliente->nombre.'" required>
+												<input name="nombre" type="text" placeholder="Introduzca Nombre" class="form-control" pattern="[A-Za-zñ0-9 .,]+" value="'.$proveedor->nombre.'" required>
 											</div>
 										</div>
 										<div class="form-group row">
@@ -32,7 +32,7 @@ $result = '<form action="cliente-crud?edit='.$cliente->id.'" method="post">
 													$rs = pg_query( $conexion, $qry );
 													while( $estado = pg_fetch_object($rs) ){
 														$result .= '<option value="'.$estado->id.'" '; 
-														if($estado->id == $cliente->estado) 
+														if($estado->id == $proveedor->estado) 
 															$result .= 'selected'; 
 														$result .= '>'.$estado->nombre.'</option>';
 													}
@@ -45,11 +45,11 @@ $result = '<form action="cliente-crud?edit='.$cliente->id.'" method="post">
 											</label>
 											<div class="col-sm-9 select">
 												<select id="list-municipios-u" name="municipio" class="form-control" required>';
-													$qry = "SELECT lu_id AS id, lu_nombre AS nombre FROM Lugar WHERE lu_lugar=".$cliente->estado." AND lu_tipo='Municipio' ORDER BY lu_nombre";
+													$qry = "SELECT lu_id AS id, lu_nombre AS nombre FROM Lugar WHERE lu_lugar=".$proveedor->estado." AND lu_tipo='Municipio' ORDER BY lu_nombre";
 													$rs = pg_query( $conexion, $qry );
 													while( $municipio = pg_fetch_object($rs) ){
 														$result .= '<option value="'.$municipio->id.'" '; 
-														if($municipio->id == $cliente->municipio) 
+														if($municipio->id == $proveedor->municipio) 
 															$result .= 'selected'; 
 														$result .= '>'.$municipio->nombre.'</option>';
 													}
@@ -62,11 +62,11 @@ $result = '<form action="cliente-crud?edit='.$cliente->id.'" method="post">
 											</label>
 											<div class="col-sm-9 select">
 												<select id="list-parroquias-u" name="parroquia" class="form-control" required>';
-													$qry = "SELECT lu_id AS id, lu_nombre AS nombre FROM Lugar WHERE lu_lugar=".$cliente->municipio." AND lu_tipo='Parroquia' ORDER BY lu_nombre";
+													$qry = "SELECT lu_id AS id, lu_nombre AS nombre FROM Lugar WHERE lu_lugar=".$proveedor->municipio." AND lu_tipo='Parroquia' ORDER BY lu_nombre";
 													$rs = pg_query( $conexion, $qry );
 													while( $parroquia = pg_fetch_object($rs) ){
 														$result .= '<option value="'.$parroquia->id.'" '; 
-														if($parroquia->id == $cliente->parroquia) 
+														if($parroquia->id == $proveedor->parroquia) 
 															$result .= 'selected'; 
 														$result .= '>'.$parroquia->nombre.'</option>';
 													}
@@ -81,14 +81,14 @@ $result = '<form action="cliente-crud?edit='.$cliente->id.'" method="post">
 											</label>
 											<div class="col-sm-3 select">
 												<select name="tipo_rif" class="form-control" required>
-													<option value="J" ';if($cliente->tipo_rif == 'J') $result .= 'selected';$result .= '>J</option>
-													<option value="G" ';if($cliente->tipo_rif == 'G') $result .= 'selected';$result .= '>G</option>
-													<option value="V" ';if($cliente->tipo_rif == 'V') $result .= 'selected';$result .= '>V</option>
-													<option value="E" ';if($cliente->tipo_rif == 'E') $result .= 'selected';$result .= '>E</option>
+													<option value="J" ';if($proveedor->tipo_rif == 'J') $result .= 'selected';$result .= '>J</option>
+													<option value="G" ';if($proveedor->tipo_rif == 'G') $result .= 'selected';$result .= '>G</option>
+													<option value="V" ';if($proveedor->tipo_rif == 'V') $result .= 'selected';$result .= '>V</option>
+													<option value="E" ';if($proveedor->tipo_rif == 'E') $result .= 'selected';$result .= '>E</option>
 												</select>
 											</div>
 											<div class="col-sm-6">
-												<input name="rif" type="text" placeholder="Introduzca Rif" class="form-control" pattern="\d+" value="'.$cliente->rif.'" required>
+												<input name="rif" type="text" placeholder="Introduzca Rif" class="form-control" pattern="\d+" value="'.$proveedor->rif.'" required>
 											</div>
 										</div>
 										<div class="form-group row">
@@ -96,10 +96,10 @@ $result = '<form action="cliente-crud?edit='.$cliente->id.'" method="post">
 												<h4>Página Web</h4>
 											</label>
 											<div class="col-sm-9">
-												<input name="web" type="text" placeholder="Introduzca Pagina Web" class="form-control" value="'.$cliente->web.'" pattern="[A-Za-z.-]+">
+												<input name="web" type="text" placeholder="Introduzca Pagina Web" class="form-control" value="'.$proveedor->web.'" pattern="[A-Za-z.-]+">
 											</div>
 										</div>';
-										$qry = "SELECT Count(*) AS total FROM Contacto WHERE co_empleado=".$cliente->id;
+										$qry = "SELECT Count(*) AS total FROM Contacto WHERE co_proveedor=".$proveedor->id;
 										$rs = pg_query( $conexion, $qry );
 										$total = pg_fetch_object($rs); $i = 1;
 										$result .= '<div class="form-group row ';
@@ -109,7 +109,7 @@ $result = '<form action="cliente-crud?edit='.$cliente->id.'" method="post">
 												<h4>Contacto</h4> 
 											</label>
 										</div>';
-										$qry = "SELECT co_id AS id, co_tipo AS tipo, co_valor AS valor FROM Contacto WHERE co_cliente=".$cliente->id." ORDER BY co_id";
+										$qry = "SELECT co_id AS id, co_tipo AS tipo, co_valor AS valor FROM Contacto WHERE co_proveedor=".$proveedor->id." ORDER BY co_id";
 										$rs = pg_query( $conexion, $qry );
 										while( $contacto = pg_fetch_object($rs) ){
 											$result.= '<div class="form-group row ';

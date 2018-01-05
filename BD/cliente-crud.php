@@ -3,7 +3,7 @@
 		$exit = false; $i = 0;
 		while(!$exit){
 			if(isset($_POST['contacto'][$i]) && isset($_POST['tipo_contacto'][$i])){
-				if(strlen($_POST['contacto'][$i]) <= 0){header('Location: empleados.php?error=2');exit;}
+				if(strlen($_POST['contacto'][$i]) <= 0){header('Location: clientes.php?error=2');exit;}
 				$i++;
 			}
 			else $exit = true;
@@ -46,9 +46,6 @@
 		}
 		$id = $_GET['edit'];
 		if(editarCliente ( $id, $_POST['tipo_rif'], $_POST['rif'], $_POST['nombre'], $_POST['web'], $_POST['parroquia'] )){
-			$qry = "SELECT cl_id AS id FROM Cliente where cl_tipo_rif='".$_POST['tipo_rif']."' AND cl_rif=".$_POST['rif'];
-			$answer = pg_query( $conexion, $qry );
-			$cliente = pg_fetch_object($answer);
 			$exit = false; $i = 0;
 			while(!$exit){
 				if(isset($_POST['contacto'][$i]) && isset($_POST['tipo_contacto'][$i])){
