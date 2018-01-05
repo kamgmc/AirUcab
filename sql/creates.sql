@@ -48,7 +48,7 @@ create table Zona(
 	zo_tipo varchar(15) not null,
 	zo_sede integer not null,
 	constraint Pk_zona primary key(zo_id),
-	constraint Check_zo_tipo check(zo_tipo in ('Ensamblaje','Prueba')),
+	constraint Check_zo_tipo check(zo_tipo in ('Ensamblaje','Prueba','Envio')),
 	constraint Fk_zo_sede foreign key(zo_sede) references Sede(se_id)
 );
 create table Titulacion(
