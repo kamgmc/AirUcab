@@ -115,7 +115,7 @@ if( !in_array("am_r", $permiso) && !in_array("am_c", $permiso) && !in_array("as_
 							<a href="materiales.php"> <i class="fa fa-server " aria-hidden="true"></i>Materiales </a>
 						</li>
 						<li>
-							<a href="piezas.php"> <i class="fa fa-server " aria-hidden="true"></i>Piezas </a>
+							<a href="piezas.php"> <i class="fa fa-puzzle-piece " aria-hidden="true"></i>Piezas </a>
 						</li>
 					</ul>
 				</nav>
@@ -142,7 +142,7 @@ if( !in_array("am_r", $permiso) && !in_array("am_c", $permiso) && !in_array("as_
 					<!-- Section de TABS-->
 					<section>
 						<div class="container-fluid">
-							<?php if( in_array("am_r", $permiso) || in_array("am_c", $permiso) ){?>
+							<?php if( in_array("am_r", $permiso) || in_array("am_c", $permiso) || in_array("am_u", $permiso) || in_array("am_d", $permiso) ){?>
 							<input id="tab0" type="radio" name="tabs" class="no-display" <?php if( !isset($_GET['tab']) ) print "checked";?>>
 							<label for="tab0" class="label"><i class="fa fa-plane" aria-hidden="true"></i> Modelos Aviones</label>
 							<?php }?>

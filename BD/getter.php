@@ -1,6 +1,6 @@
 <?php include 'conexion.php';
 	if($_GET['get'] == "municipios"){
-		$id = $_GET['id'];
+		$id = htmlentities($_GET['id'], ENT_QUOTES);
 		$qry = "SELECT lu_id AS id, lu_nombre AS nombre FROM Lugar WHERE lu_lugar=".$id." AND lu_tipo='Municipio' ORDER BY lu_nombre";
 		$answer = pg_query( $conexion, $qry );
 		$resultado="<option value='NULL'>Seleccionar</option>";
@@ -9,7 +9,7 @@
 		}
 	}
 	if($_GET['get'] == "parroquias"){
-		$id = $_GET['id'];
+		$id = htmlentities($_GET['id'], ENT_QUOTES);
 		$qry = "SELECT lu_id AS id, lu_nombre AS nombre FROM Lugar WHERE lu_lugar=".$id." AND lu_tipo='Parroquia' ORDER BY lu_nombre";
 		$answer = pg_query( $conexion, $qry );
 		$resultado="<option value='NULL'>Seleccionar</option>";
@@ -18,7 +18,7 @@
 		}
 	}
 	if($_GET['get'] == "submodelos"){
-		$id = $_GET['id'];
+		$id = htmlentities($_GET['id'], ENT_QUOTES);
 		$qry = "SELECT as_id AS id, as_nombre AS nombre FROM Submodelo_avion WHERE as_modelo_avion=".$id." ORDER BY as_nombre";
 		$answer = pg_query( $conexion, $qry );
 		$resultado="<option value='NULL'>Seleccionar</option>";
@@ -27,7 +27,7 @@
 		}
 	}
 	if($_GET['get'] == "distribuciones"){
-		$id = $_GET['id'];
+		$id = htmlentities($_GET['id'], ENT_QUOTES);
 		$qry = "SELECT di_id AS id, di_nombre AS nombre FROM Distribucion WHERE di_modelo_avion=".$id." ORDER BY di_nombre";
 		$answer = pg_query( $conexion, $qry );
 		$resultado="<option value='NULL'>Seleccionar</option>";
@@ -36,7 +36,7 @@
 		}
 	}
 	if($_GET['get'] == "zonas"){
-		$id = $_GET['id'];
+		$id = htmlentities($_GET['id'], ENT_QUOTES);
 		$qry = "SELECT zo_id AS id, zo_nombre AS nombre FROM Zona WHERE zo_sede=".$id." ORDER BY zo_nombre";
 		$answer = pg_query( $conexion, $qry );
 		$resultado="<option value='NULL'>Seleccionar</option>";
@@ -46,9 +46,9 @@
 	}
 	if($_GET['get'] == "fieldContacto"){
 		$resultado = '<div class="form-group row last-contacto">
-			<div class="col-sm-3"></div>
+			<div class="col-sm-3 text-right"></div>
 			<div class="col-sm-3 select">
-				<select name="tipo_contacto[]" class="form-control" required>
+				<select name="tipo_contacto[]" class="form-control">
 					<option value="NULL">Seleccionar</option>';
 					$qry = "SELECT ct_id id, ct_nombre nombre FROM Tipo_contacto ORDER BY ct_nombre";
 					$rs = pg_query( $conexion, $qry );
@@ -58,15 +58,15 @@
 				$resultado.='</select>
 			</div>
 			<div class="col-sm-6">
-				<input name="contacto[]" type="text" placeholder="Introduzca Contacto" class="form-control" required>
+				<input name="contacto[]" type="text" placeholder="Introduzca Contacto" class="form-control" pattern="[A-Z a-zñ0-9.@\-_]+">
 			</div>
 		</div>';
 	}
 	if($_GET['get'] == "fieldContactoU"){
 		$resultado = '<div class="form-group row last-contacto-u">
-			<div class="col-sm-3"></div>
+			<div class="col-sm-3 text-right"></div>
 			<div class="col-sm-3 select">
-				<select name="tipo_contacto[]" class="form-control" required>
+				<select name="tipo_contacto[]" class="form-control">
 					<option value="NULL">Seleccionar</option>';
 					$qry = "SELECT ct_id id, ct_nombre nombre FROM Tipo_contacto ORDER BY ct_nombre";
 					$rs = pg_query( $conexion, $qry );
@@ -76,7 +76,7 @@
 				$resultado.='</select>
 			</div>
 			<div class="col-sm-6">
-				<input name="contacto[]" type="text" placeholder="Introduzca Contacto" class="form-control" required>
+				<input name="contacto[]" type="text" placeholder="Introduzca Contacto" class="form-control" pattern="[A-Z a-zñ0-9.@\-_]+">
 			</div>
 		</div>';
 	}
@@ -88,11 +88,11 @@
 		$resultado = '<div class="form-group row last-beneficiario">
 			<div class="col-sm-3"></div>
 			<div class="col-sm-9">
-				<input name="nombre_beneficiario[]" type="text" placeholder="Introduzca Nombre" class="form-control" required>
+				<input name="nombre_beneficiario[]" type="text" placeholder="Introduzca Nombre" class="form-control" pattern="[A-Z a-zñ]+" required>
 			</div>
 			<div class="col-sm-3"></div>
 			<div class="col-sm-9">
-				<input name="apellido_beneficiario[]" type="text" placeholder="Introduzca Apellido" class="form-control" required>
+				<input name="apellido_beneficiario[]" type="text" placeholder="Introduzca Apellido" class="form-control" pattern="[A-Z a-zñ]+" required>
 			</div>
 			<div class="col-sm-3"></div>
 			<div class="col-sm-2 select">
@@ -114,11 +114,11 @@
 		$resultado = '<div class="form-group row last-beneficiario-u">
 			<div class="col-sm-3"></div>
 			<div class="col-sm-9">
-				<input name="nombre_beneficiario[]" type="text" placeholder="Introduzca Nombre" class="form-control" required>
+				<input name="nombre_beneficiario[]" type="text" placeholder="Introduzca Nombre" class="form-control" pattern="[A-Z a-zñ]+" required>
 			</div>
 			<div class="col-sm-3"></div>
 			<div class="col-sm-9">
-				<input name="apellido_beneficiario[]" type="text" placeholder="Introduzca Apellido" class="form-control" required>
+				<input name="apellido_beneficiario[]" type="text" placeholder="Introduzca Apellido" class="form-control" pattern="[A-Z a-zñ]+" required>
 			</div>
 			<div class="col-sm-3"></div>
 			<div class="col-sm-2 select">
@@ -137,14 +137,14 @@
 		</div>';
 	}
 	if($_GET['get'] == "fieldBeneficiarioDelete"){
-		$id = $_GET['id'];
+		$id = htmlentities($_GET['id'], ENT_QUOTES);
 		$resultado = '<input name="beneficiario_delete[]" type="hidden" value="'.$id.'" class="form-control" required>';
 	}
 	if($_GET['get'] == "fieldExperiencia"){
 		$resultado = '<div class="form-group row last-experiencia">
 			<div class="col-sm-3"></div>
 			<div class="col-sm-7">
-				<input name="experiencia_desc[]" type="text" placeholder="Descripción de Experiencia" class="form-control" required> 
+				<input name="experiencia_desc[]" type="text" placeholder="Descripción de Experiencia" class="form-control" pattern="[A-Z a-zñ]+" required> 
 			</div>
 			<div class="col-md-2">
 				<input name="experiencia_year[]" type="text" placeholder="Años" class="form-control" pattern="\d{0,2}\.?\d{0,1}" required> 
@@ -155,7 +155,7 @@
 		$resultado = '<div class="form-group row last-experiencia-u">
 			<div class="col-sm-3"></div>
 			<div class="col-sm-7">
-				<input name="experiencia_desc[]" type="text" placeholder="Descripción de Experiencia" class="form-control" required> 
+				<input name="experiencia_desc[]" type="text" placeholder="Descripción de Experiencia" class="form-control" pattern="[A-Z a-zñ]+" required> 
 			</div>
 			<div class="col-md-2">
 				<input name="experiencia_year[]" type="text" placeholder="Años" class="form-control" pattern="\d{0,2}\.?\d{0,1}" required> 
@@ -203,7 +203,7 @@
 						<h4>Precio</h4>
 					</label>
 					<div class="col-sm-9">
-						<input name="precio[]" type="text" placeholder="Introduzca precio por Avion" class="form-control" required>
+						<input name="precio[]" type="text" placeholder="Introduzca precio por Avion" class="form-control" pattern="([0-9]+\.[0-9]+)|([0-9]+)" required>
 					</div>
 				</div>
 				<div class="form-group row">
@@ -265,7 +265,7 @@
 					<h5>Monto</h5>
 				</label>
 				<div class="col-sm-9">
-					<input name="transferencia_monto[]" type="text" placeholder="Introduzca Monto" pattern="\d+" class="form-control" required>
+					<input name="transferencia_monto[]" type="text" placeholder="Introduzca Monto" pattern="([0-9]+\.[0-9]+)|([0-9]+)" class="form-control" required>
 				</div>
 			</div>
 		</div>';
@@ -277,7 +277,7 @@
 					<h5>N° de Tarjeta</h5>
 				</label>
 				<div class="col-sm-9">
-					<input name="tarjeta_numero[]" type="text" placeholder="Introduzca N° de Tarjeta" pattern="\d{4,}" class="form-control" required>
+					<input name="tarjeta_numero[]" type="text" placeholder="Introduzca N° de Tarjeta" pattern="\d{16}" class="form-control" required>
 				</div>
 			</div>
 			<div class="form-group row">
@@ -295,7 +295,7 @@
 					<h5>Tarjetahabiente</h5>
 				</label>
 				<div class="col-sm-9">
-					<input name="tarjeta_nombre[]" type="text" placeholder="Introduzca Nombre y apellido" pattern="[a-zA-z ]+" class="form-control" required>
+					<input name="tarjeta_nombre[]" type="text" placeholder="Introduzca Nombre y apellido" pattern="[a-zA-z ñ]+" class="form-control" required>
 				</div>
 			</div>
 			<div class="form-group row">
@@ -311,13 +311,13 @@
 					<h5>Monto</h5>
 				</label>
 				<div class="col-sm-9">
-					<input name="tarjeta_monto[]" type="text" placeholder="Introduzca Monto" pattern="\d+" class="form-control" required>
+					<input name="tarjeta_monto[]" type="text" placeholder="Introduzca Monto" pattern="([0-9]+\.[0-9]+)|([0-9]+)" class="form-control" required>
 				</div>
 			</div>
 		</div>';
 	}
 	if($_GET['get'] == "cl_rif"){
-		$id = $_GET['id'];
+		$id = htmlentities($_GET['id'], ENT_QUOTES);
 		$qry = "SELECT cl_tipo_rif AS tipo, cl_rif AS rif FROM Cliente WHERE cl_id=".$id;
 		$answer = pg_query( $conexion, $qry );
 		$cliente = pg_fetch_object($answer);

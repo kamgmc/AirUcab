@@ -1,5 +1,6 @@
 <?php include 'conexion.php';
-$qry = "SELECT sr_id id, sr_nombre nombre FROM Rol_sistema WHERE sr_id=".$_GET['id'];
+$id = htmlentities($_GET['id'], ENT_QUOTES);
+$qry = "SELECT sr_id id, sr_nombre nombre FROM Rol_sistema WHERE sr_id=".$id;
 $con = pg_query($conexion, $qry);
 $rol = pg_fetch_object($con);
 $resultado = '<form action="rol-crud.php?edit='.$rol->id.'" method="post">
@@ -15,7 +16,7 @@ $resultado = '<form action="rol-crud.php?edit='.$rol->id.'" method="post">
 								<h4>Nombre</h4>
 							</label>
 							<div class="col-sm-9">
-								<input name="nombre" type="text" value="'.$rol->nombre.'" class="form-control" required>
+								<input name="nombre" type="text" value="'.$rol->nombre.'" class="form-control" pattern="[A-Z a-zñ]+" required>
 							</div>
 						</div>
 					</div>

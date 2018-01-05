@@ -4,7 +4,8 @@ if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'
 $qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$_SESSION['rol']; 
 $rs = pg_query( $conexion, $qry ); $permiso = array();
 while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }
-$qry = "SELECT * FROM Modelo_avion WHERE am_id=".$_GET['id'];
+$id = htmlentities($_GET['id'], ENT_QUOTES);
+$qry = "SELECT * FROM Modelo_avion WHERE am_id=".$id;
 $con = pg_query($conexion, $qry);
 $modelo = pg_fetch_object($con);
 $dias = $modelo->am_tiempo_estimado + 1;

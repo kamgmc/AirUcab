@@ -4,7 +4,8 @@ if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'
 $qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$_SESSION['rol']; 
 $rs = pg_query( $conexion, $qry ); $permiso = array();
 while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }
-$qry = "select as_id, as_nombre, as_peso_maximo_despegue, as_peso_vacio, as_velocidad_crucero, as_carrera_despegue_peso_maximo, as_autonomia_peso_maximo_despegue, as_capacidad_combustible, as_alcance_carga_maxima, am_nombre AS modelo from submodelo_avion, modelo_avion where as_modelo_avion=am_id AND as_id=".$_GET['id'];
+$id = htmlentities($_GET['id'], ENT_QUOTES);
+$qry = "select as_id, as_nombre, as_peso_maximo_despegue, as_peso_vacio, as_velocidad_crucero, as_carrera_despegue_peso_maximo, as_autonomia_peso_maximo_despegue, as_capacidad_combustible, as_alcance_carga_maxima, am_nombre AS modelo from submodelo_avion, modelo_avion where as_modelo_avion=am_id AND as_id=".$id;
 $con = pg_query($conexion, $qry);
 $submodelo = pg_fetch_object($con);
 $resultado = '<div class="modal-header">

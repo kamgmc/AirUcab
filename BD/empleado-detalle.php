@@ -4,7 +4,8 @@ if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'
 $qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$_SESSION['rol']; 
 $rs = pg_query( $conexion, $qry ); $permiso = array();
 while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }
-$qry = "SELECT em_id id,em_nombre nombre, em_apellido apellido, em_nacionalidad nac, em_ci ci, em_fecha_ingreso fecha, em_usuario usuario, ti_nombre titulacion, sr_nombre rol, er_nombre cargo, se.se_nombre sede, zo.zo_nombre zona, pa.lu_nombre parroquia, mu.lu_nombre municipio, es.lu_nombre estado, em_nota nota, em_supervisa zona_s, em_gerencia sede_g FROM Empleado left join Titulacion ON ti_id=em_titulacion LEFT JOIN Rol_sistema ON sr_id=em_rol LEFT JOIN Zona zo ON em_zona=zo.zo_id LEFT JOIN Sede se on zo.zo_sede=se.se_id LEFT JOIN Cargo ON er_id=em_cargo LEFT JOIN Lugar pa ON pa.lu_id=em_direccion LEFT JOIN Lugar mu ON mu.lu_id=pa.lu_lugar LEFT JOIN Lugar es ON es.lu_id=mu.lu_lugar WHERE em_id=".$_GET['id']." ORDER BY em_id";
+$id = htmlentities($_GET['id'], ENT_QUOTES);
+$qry = "SELECT em_id id,em_nombre nombre, em_apellido apellido, em_nacionalidad nac, em_ci ci, em_fecha_ingreso fecha, em_usuario usuario, ti_nombre titulacion, sr_nombre rol, er_nombre cargo, se.se_nombre sede, zo.zo_nombre zona, pa.lu_nombre parroquia, mu.lu_nombre municipio, es.lu_nombre estado, em_nota nota, em_supervisa zona_s, em_gerencia sede_g FROM Empleado left join Titulacion ON ti_id=em_titulacion LEFT JOIN Rol_sistema ON sr_id=em_rol LEFT JOIN Zona zo ON em_zona=zo.zo_id LEFT JOIN Sede se on zo.zo_sede=se.se_id LEFT JOIN Cargo ON er_id=em_cargo LEFT JOIN Lugar pa ON pa.lu_id=em_direccion LEFT JOIN Lugar mu ON mu.lu_id=pa.lu_lugar LEFT JOIN Lugar es ON es.lu_id=mu.lu_lugar WHERE em_id=".$id." ORDER BY em_id";
 $con = pg_query($conexion, $qry);
 $empleado = pg_fetch_object($con);
 $date = new DateTime($empleado->fecha);

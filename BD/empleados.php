@@ -118,6 +118,9 @@ if( !in_array("em_r", $permiso) && !in_array("sr_c", $permiso) && !in_array("er_
 						<li>
 							<a href="materiales.php"> <i class="fa fa-server " aria-hidden="true"></i>Materiales </a>
 						</li>
+						<li>
+							<a href="piezas.php"> <i class="fa fa-puzzle-piece " aria-hidden="true"></i>Piezas </a>
+						</li>
 					</ul>
 				</nav>
 				<div class="content-inner">
@@ -308,7 +311,7 @@ if( !in_array("em_r", $permiso) && !in_array("sr_c", $permiso) && !in_array("er_
 																			<h4>Nombre</h4>
 																		</label>
 																		<div class="col-sm-9">
-																			<input name="nombre" type="text" placeholder="Introduzca Nombre" class="form-control" required>
+																			<input name="nombre" type="text" placeholder="Introduzca Nombre" class="form-control" pattern="[A-Z a-zñ]+" required>
 																		</div>
 																	</div>
 																	<div class="form-group row">
@@ -316,7 +319,7 @@ if( !in_array("em_r", $permiso) && !in_array("sr_c", $permiso) && !in_array("er_
 																			<h4>Apellido</h4>
 																		</label>
 																		<div class="col-sm-9">
-																			<input name="apellido" type="text" placeholder="Introduzca Apellido" class="form-control" required>
+																			<input name="apellido" type="text" placeholder="Introduzca Apellido" class="form-control" pattern="[A-Z a-zñ]+" required>
 																		</div>
 																	</div>
 																	<div class="form-group row">
@@ -342,7 +345,7 @@ if( !in_array("em_r", $permiso) && !in_array("sr_c", $permiso) && !in_array("er_
 																			<h4>Usario</h4>
 																		</label>
 																		<div class="col-sm-9">
-																			<input name="usuario" type="text" placeholder="Introduzca Usuario" class="form-control" required>
+																			<input name="usuario" type="text" placeholder="Introduzca Usuario" class="form-control" pattern="[A-Z a-zñ0-9]+" required>
 																			<span class="help-block-none"><small>El nombre de usuario debe ser unico.</small></span> 
 																		</div>
 																	</div>
@@ -505,7 +508,7 @@ if( !in_array("em_r", $permiso) && !in_array("sr_c", $permiso) && !in_array("er_
 																			</select>
 																		</div>
 																		<div class="col-sm-6">
-																			<input name="contacto[]" type="text" placeholder="Introduzca Contacto" class="form-control" required>
+																			<input name="contacto[]" type="text" placeholder="Introduzca Contacto" class="form-control" pattern="[A-Z a-zñ0-9.@]+" required>
 																		</div>
 																	</div>
 																	<div class="form-group row">
@@ -643,7 +646,7 @@ if( !in_array("em_r", $permiso) && !in_array("sr_c", $permiso) && !in_array("er_
 														<h4>Nombre</h4>
 													</label>
 													<div class="col-sm-9">
-														<input name="nombre" type="text" placeholder="Introduzca Nombre" class="form-control" required>
+														<input name="nombre" type="text" placeholder="Introduzca Nombre" class="form-control" pattern="[A-Z a-zñ]+" required>
 													</div>
 												</div>
 											</div>
@@ -746,7 +749,7 @@ if( !in_array("em_r", $permiso) && !in_array("sr_c", $permiso) && !in_array("er_
 														<h4>Nombre</h4>
 													</label>
 													<div class="col-sm-9">
-														<input name="nombre" type="text" placeholder="Introduzca Nombre" class="form-control" required>
+														<input name="nombre" type="text" placeholder="Introduzca Nombre" class="form-control" pattern="[A-Z a-zñ]+" required>
 													</div>
 												</div>
 											</div>
@@ -850,7 +853,7 @@ if( !in_array("em_r", $permiso) && !in_array("sr_c", $permiso) && !in_array("er_
 														<h4>Nombre</h4>
 													</label>
 													<div class="col-sm-9">
-														<input name="nombre" type="text" placeholder="Introduzca Nombre" class="form-control" required>
+														<input name="nombre" type="text" placeholder="Introduzca Nombre" class="form-control" pattern="[A-Z a-zñ]+" required>
 													</div>
 												</div>
 											</div>
@@ -960,7 +963,7 @@ if( !in_array("em_r", $permiso) && !in_array("sr_c", $permiso) && !in_array("er_
 			</footer>
 		</div>
 		<!-- Javascript files-->
-		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script src="js/jquery-3.2.1.min.js"></script>
 		<script src="vendor/popper.js/umd/popper.min.js"></script>
 		<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 		<script src="vendor/jquery.cookie/jquery.cookie.js"></script>
@@ -982,6 +985,7 @@ if( !in_array("em_r", $permiso) && !in_array("sr_c", $permiso) && !in_array("er_
 		$("#list-estados").change(function () {
 			var iden = $("#list-estados option:selected").val();
 			$("#list-municipios").removeAttr('disabled');
+			$("#list-parroquias").empty();
 			$.ajax({
 				type: "POST"
 				, dataType: "html"
@@ -1026,6 +1030,11 @@ if( !in_array("em_r", $permiso) && !in_array("sr_c", $permiso) && !in_array("er_
 					$last.after(data);
 				}
 			});
+		});
+		$(".delete-contacto").click(function(){
+			var $row = $(this).closest(".row");
+			if($(this).hasClass("new"))
+				$row.remove();
 		});
 		$("#add-beneficiario").click(function(){
 			var $last = $(".last-beneficiario");

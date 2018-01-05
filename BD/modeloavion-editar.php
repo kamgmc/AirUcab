@@ -1,6 +1,7 @@
 <?php 
 include 'conexion.php';
-$qry = "SELECT * FROM Modelo_avion WHERE am_id=".$_GET['id'];
+$id = htmlentities($_GET['id'], ENT_QUOTES);
+$qry = "SELECT * FROM Modelo_avion WHERE am_id=".$id;
 $con = pg_query($conexion, $qry);
 $modelo = pg_fetch_object($con);
 $result ='<form action="modeloavion-crud.php?edit='.$modelo->am_id.'" method="post">

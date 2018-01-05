@@ -2,7 +2,6 @@
 	if(isset($_GET['create'])){
 		if(insertarRol($_POST['nombre']))
 			header('Location: empleados.php?tab=rol');
-		
 		else
 			header('Location: empleados.php?tab=rol&error=10');
 	}
@@ -10,7 +9,6 @@
 		$id = $_GET['edit'];
 		if(editarRol($id, $_POST['nombre']))
 			header('Location: empleados.php?tab=rol');
-		
 		else
 			header('Location: empleados.php?tab=rol&error=11');
 	}
@@ -18,7 +16,6 @@
 		$id = $_GET['delete'];
 		if(eliminarRol($id))
 			header('Location: empleados.php?tab=rol');
-		
 		else
 			header('Location: empleados.php?tab=rol&error=12');
 	}

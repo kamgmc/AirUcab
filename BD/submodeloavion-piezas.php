@@ -4,7 +4,8 @@ if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'
 $qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$_SESSION['rol']; 
 $rs = pg_query( $conexion, $qry ); $permiso = array();
 while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }
-$qry = "select smp_id AS id, smp_cantidad AS cantidad, pm_nombre AS pieza, pm_id As id_pieza, am_nombre||' - '||as_nombre AS nombre, wt_nombre AS ala, et_nombre AS estabilizador from S_avion_m_pieza, Submodelo_avion, Modelo_avion, Modelo_pieza LEFT JOIN Tipo_ala ON pm_tipo_ala=wt_id LEFT JOIN Tipo_estabilizador ON pm_tipo_estabilizador=et_id WHERE smp_modelo_pieza=pm_id AND smp_submodelo_avion=as_id AND as_modelo_avion=am_id AND smp_submodelo_avion=".$_GET['id']." ORDER BY pm_nombre";
+$id = htmlentities($_GET['id'], ENT_QUOTES);
+$qry = "select smp_id AS id, smp_cantidad AS cantidad, pm_nombre AS pieza, pm_id As id_pieza, am_nombre||' - '||as_nombre AS nombre, wt_nombre AS ala, et_nombre AS estabilizador from S_avion_m_pieza, Submodelo_avion, Modelo_avion, Modelo_pieza LEFT JOIN Tipo_ala ON pm_tipo_ala=wt_id LEFT JOIN Tipo_estabilizador ON pm_tipo_estabilizador=et_id WHERE smp_modelo_pieza=pm_id AND smp_submodelo_avion=as_id AND as_modelo_avion=am_id AND smp_submodelo_avion=".$id." ORDER BY pm_nombre";
 $con = pg_query($conexion, $qry);
 $submodelo = pg_fetch_object($con);
 $resultado = '<div class="modal-header">

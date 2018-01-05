@@ -1,6 +1,7 @@
 <?php 
 include 'conexion.php';
-$qry = "select di_id, di_nombre, di_numero_clases, di_capacidad_pasajeros, di_distancia_asientos, di_ancho_asientos, di_modelo_avion from distribucion where di_id=".$_GET['id'];
+$id = htmlentities($_GET['id'], ENT_QUOTES);
+$qry = "select di_id, di_nombre, di_numero_clases, di_capacidad_pasajeros, di_distancia_asientos, di_ancho_asientos, di_modelo_avion from distribucion where di_id=".$id;
 $con = pg_query($conexion, $qry);
 $distribucion = pg_fetch_object($con);
 $result = '<form action="distribucion-crud.php?edit='.$distribucion->di_id.'" method="post">

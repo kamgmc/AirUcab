@@ -2,7 +2,6 @@
 	if(isset($_GET['create'])){
 		if(insertarCargo($_POST['nombre']))
 			header('Location: empleados.php?tab=cargo');
-		
 		else
 			header('Location: empleados.php?tab=cargo&error=13');
 	}
@@ -10,7 +9,6 @@
 		$id = $_GET['edit'];
 		if(editarCargo($id, $_POST['nombre']))
 			header('Location: empleados.php?tab=cargo');
-		
 		else
 			header('Location: empleados.php?tab=cargo&error=14');
 	}
@@ -18,7 +16,6 @@
 		$id = $_GET['delete'];
 		if(eliminarCargo($id))
 			header('Location: empleados.php?tab=cargo');
-		
 		else
 			header('Location: empleados.php?tab=cargo&error=15');
 	}

@@ -22,7 +22,7 @@
 	}
 	function eliminarModeloAvion($id){
 		global $conexion;
-        $id = htmlentities($id, ENT_QUOTES);
+		$id = htmlentities($id, ENT_QUOTES);
 		$qry = "DELETE FROM Modelo_avion where am_id=".$id;
 		$qry2 = "DELETE FROM Distribucion where di_modelo_avion=".$id;
 		$qry3 = "DELETE FROM Submodelo_avion where as_modelo_avion=".$id;
@@ -74,7 +74,7 @@
 	}
 	function eliminarSubmodeloAvion($id){
 		global $conexion;
-        $id = htmlentities($id, ENT_QUOTES);
+		$id = htmlentities($id, ENT_QUOTES);
 		$qry = "DELETE FROM Submodelo_avion where as_id=".$id;
 		$qry2 = "DELETE FROM S_avion_m_motor where smt_submodelo_avion=".$id;
 		$qry3 = "DELETE FROM S_avion_m_pieza where smp_submodelo_avion=".$id;
@@ -104,7 +104,7 @@
 													if(pg_query($conexion, $qry4))
 														if(pg_query($conexion, $qry3))
 															if(pg_query($conexion, $qry2))
-												                return pg_query($conexion, $qry);
+																return pg_query($conexion, $qry);
 		return false;
 	}
 //Querys de Distribucion
@@ -117,15 +117,15 @@
 	function editarDistribucion( $id, $nombre, $capacidad_pasajeros, $numero_clases, $distancia_asientos, $ancho_asientos, $modelo ){
 		global $conexion;
 		$nombre = htmlentities($nombre, ENT_QUOTES);
-		$qry = "UPDATE Distribucion  SET di_nombre='".$nombre."', di_numero_clases=".$numero_clases.", di_capacidad_pasajeros=".$capacidad_pasajeros.", di_distancia_asientos=".$distancia_asientos.", di_ancho_asientos=".$ancho_asientos.", di_modelo_avion=".$modelo." WHERE di_id=".$id;
+		$qry = "UPDATE Distribucion	 SET di_nombre='".$nombre."', di_numero_clases=".$numero_clases.", di_capacidad_pasajeros=".$capacidad_pasajeros.", di_distancia_asientos=".$distancia_asientos.", di_ancho_asientos=".$ancho_asientos.", di_modelo_avion=".$modelo." WHERE di_id=".$id;
 		return pg_query($conexion, $qry);
 	}
 	function eliminarDistribucion($id){
 		global $conexion;
-        $id = htmlentities($id, ENT_QUOTES);
+		$id = htmlentities($id, ENT_QUOTES);
 		$qry = "DELETE FROM Distribucion where di_id=".$id;
 		$qry2 = "DELETE FROM Avion where a_distribucion=".$id;
-        $qry3 = "DELETE FROM Motor where mo_avion in (Select a_id from Avion where a_distribucion=".$id.")";
+		$qry3 = "DELETE FROM Motor where mo_avion in (Select a_id from Avion where a_distribucion=".$id.")";
 		$qry4 = "DELETE FROM Status_motor where stm_motor in (Select mo_id from Motor, Avion where mo_avion=a_id and a_distribucion=".$id.")";
 		$qry5 = "DELETE FROM Status_avion where sa_avion in (Select a_id from Avion where a_distribucion=".$id.")";
 		$qry6 = "DELETE FROM Pieza where p_avion in (Select a_id from Avion where a_distribucion=".$id.")";
@@ -137,7 +137,7 @@
 		$qry12 = "DELETE FROM Traslado where tr_pieza in (Select p_id from Pieza, Avion where p_avion=a_id and a_distribucion=".$id.")";
 		$qry13 = "DELETE FROM Prueba_pieza where pp_pieza in (Select p_id from Pieza, Avion where p_avion=a_id and a_distribucion=".$id.")";
 		if(pg_query($conexion, $qry13))
-		    if(pg_query($conexion, $qry12))
+			if(pg_query($conexion, $qry12))
 				if(pg_query($conexion, $qry11))
 					 if(pg_query($conexion, $qry10))
 						 if(pg_query($conexion, $qry9))
@@ -148,7 +148,7 @@
 											 if(pg_query($conexion, $qry4))
 												 if(pg_query($conexion, $qry3))
 													 if(pg_query($conexion, $qry2))
-													 	return pg_query($conexion, $qry);
+														return pg_query($conexion, $qry);
 		return false;
 	}
 //Querys de Empleado
@@ -173,7 +173,7 @@
 	}
 	function eliminarEmpleado( $id ){
 		global $conexion;
-        $id = htmlentities($id, ENT_QUOTES);
+		$id = htmlentities($id, ENT_QUOTES);
 		$qry = "DELETE FROM Empleado WHERE em_id=".$id;
 		$qry2 = "DELETE FROM Experiencia WHERE ex_empleado=".$id;
 		$qry3 = "DELETE FROM Beneficiario WHERE be_empleado=".$id;
@@ -183,7 +183,7 @@
 		$qry7 = "DELETE FROM Status_prueba WHERE sp_prueba IN (SELECT pr_id FROM Prueba WHERE pr_empleado=".$id.")";
 		$qry8 = "DELETE FROM Prueba_material WHERE prm_prueba IN (SELECT pr_id FROM Prueba WHERE pr_empleado=".$id.")";
 		if(pg_query($conexion, $qry8))
-		    if(pg_query($conexion, $qry7))
+			if(pg_query($conexion, $qry7))
 				if(pg_query($conexion, $qry6))
 					if(pg_query($conexion, $qry5))
 						if(pg_query($conexion, $qry4))
@@ -211,7 +211,7 @@
 	}
 	function eliminarContacto( $id ){
 		global $conexion;
-        $id = htmlentities($id, ENT_QUOTES);
+		$id = htmlentities($id, ENT_QUOTES);
 		$qry = "DELETE FROM Contacto where co_id=".$id;
 		return pg_query($conexion, $qry);
 	}
@@ -232,7 +232,7 @@
 	}
 	function eliminarBeneficiario( $id ){
 		global $conexion;
-        $id = htmlentities($id, ENT_QUOTES);
+		$id = htmlentities($id, ENT_QUOTES);
 		$qry = "DELETE FROM Beneficiario where be_id=".$id;
 		return pg_query($conexion, $qry);
 	}
@@ -251,7 +251,7 @@
 	}
 	function eliminarExperiencia( $id ){
 		global $conexion;
-        $id = htmlentities($id, ENT_QUOTES);
+		$id = htmlentities($id, ENT_QUOTES);
 		$qry = "DELETE FROM Experiencia where ex_id=".$id;
 		return pg_query($conexion, $qry);
 	}
@@ -270,9 +270,9 @@
 	}
 	function eliminarRol( $id ){
 		global $conexion;
-        $id = htmlentities($id, ENT_QUOTES);
+		$id = htmlentities($id, ENT_QUOTES);
 		$qry = "DELETE FROM Rol_sistema WHERE sr_id=".$id;
-        $qry2 = "DELETE FROM Rol_permiso WHERE rp_rol=".$id;
+		$qry2 = "DELETE FROM Rol_permiso WHERE rp_rol=".$id;
 		$qry3 = "UPDATE Empleado SET em_rol=2 WHERE em_rol=".$id;
 		if(pg_query($conexion, $qry3))
 			if(pg_query($conexion, $qry2))
@@ -294,7 +294,7 @@
 	}
 	function eliminarCargo( $id ){
 		global $conexion;
-        $id = htmlentities($id, ENT_QUOTES);
+		$id = htmlentities($id, ENT_QUOTES);
 		$qry = "DELETE FROM Cargo where er_id=".$id;
 		$qry2 = "UPDATE Empleado SET em_cargo=1 WHERE em_cargo=".$id;
 			if(pg_query($conexion, $qry2))
@@ -315,7 +315,7 @@
 	}
 	function eliminarTitulacion( $id ){
 		global $conexion;
-        $id = htmlentities($id, ENT_QUOTES);
+		$id = htmlentities($id, ENT_QUOTES);
 		$qry = "DELETE FROM Titulacion where ti_id=".$id;
 		$qry2 = "UPDATE Empleado SET em_titulacion=1 WHERE em_titulacion=".$id;
 			if(pg_query($conexion, $qry2))
@@ -329,7 +329,7 @@
 	}
 	function eliminarRolPermiso( $rol, $permiso ){
 		global $conexion;
-        $id = htmlentities($id, ENT_QUOTES);
+		$id = htmlentities($id, ENT_QUOTES);
 		$qry = "DELETE FROM Rol_permiso WHERE rp_rol=".$rol." AND rp_permiso=".$permiso;
 		return pg_query($conexion, $qry);
 	}
@@ -350,24 +350,24 @@
 	}
 	function eliminarStatus( $id ){
 		global $conexion;
-        $id = htmlentities($id, ENT_QUOTES);
+		$id = htmlentities($id, ENT_QUOTES);
 		$qry = "DELETE FROM Status WHERE st_id=".$id;
-        $qry2 = "DELETE FROM Status_pieza WHERE spi_status=".$id;
-        $qry3 = "DELETE FROM Status_material WHERE sm_status=".$id;
-        $qry4 = "DELETE FROM Prueba_material WHERE prm_status=".$id;
-        $qry5 = "DELETE FROM Status_prueba WHERE sp_status=".$id;
-        $qry6 = "DELETE FROM Status_avion WHERE sa_status=".$id;
-        $qry7 = "DELETE FROM Prueba_pieza WHERE pp_status=".$id;
-        $qry8 = "DELETE FROM Status_motor WHERE stm_status=".$id;
-        if(pg_query($conexion, $qry8))
-            if(pg_query($conexion, $qry7))
-                if(pg_query($conexion, $qry6))
-                    if(pg_query($conexion, $qry5))
-                        if(pg_query($conexion, $qry4))
-                            if(pg_query($conexion, $qry3))
-                                if(pg_query($conexion, $qry2))
-                                    return pg_query($conexion, $qry);
-        return false;
+		$qry2 = "DELETE FROM Status_pieza WHERE spi_status=".$id;
+		$qry3 = "DELETE FROM Status_material WHERE sm_status=".$id;
+		$qry4 = "DELETE FROM Prueba_material WHERE prm_status=".$id;
+		$qry5 = "DELETE FROM Status_prueba WHERE sp_status=".$id;
+		$qry6 = "DELETE FROM Status_avion WHERE sa_status=".$id;
+		$qry7 = "DELETE FROM Prueba_pieza WHERE pp_status=".$id;
+		$qry8 = "DELETE FROM Status_motor WHERE stm_status=".$id;
+		if(pg_query($conexion, $qry8))
+			if(pg_query($conexion, $qry7))
+				if(pg_query($conexion, $qry6))
+					if(pg_query($conexion, $qry5))
+						if(pg_query($conexion, $qry4))
+							if(pg_query($conexion, $qry3))
+								if(pg_query($conexion, $qry2))
+									return pg_query($conexion, $qry);
+		return false;
 	}
 // Querys de Lugar
 	function insertarLugar( $nombre , $tipo, $lugar ){
@@ -384,7 +384,7 @@
 	}
 	function eliminarLugar( $id ){
 		global $conexion;
-        $id = htmlentities($id, ENT_QUOTES);
+		$id = htmlentities($id, ENT_QUOTES);
 		$qry = "DELETE FROM Lugar where lu_id=".$id;
 		return pg_query($conexion, $qry);
 	}
@@ -402,34 +402,34 @@
 		return pg_query($conexion, $qry);
 	}
 	function eliminarSede($id){
-        global $conexion;
-        $id = htmlentities($id, ENT_QUOTES);
-        $qry = "DELETE FROM Sede WHERE se_id=".$id;
-        $qry2 = "DELETE FROM Zona WHERE zo_sede=".$id;
-        $qry3 = "DELETE FROM Traslado WHERE tr_zona_envia IN (SELECT zo_id FROM Zona WHERE zo_sede=".$id.")";
-        $qry4 = "DELETE FROM Traslado WHERE tr_zona_recibe IN (SELECT zo_id FROM Zona WHERE zo_sede=".$id.")";
-        $qry5 = "DELETE FROM Empleado WHERE em_zona IN (SELECT zo_id FROM Zona WHERE zo_sede=".$id.")";        
-        $qry6 = "DELETE FROM Contacto WHERE co_empleado IN (SELECT em_id FROM Empleado, Zona WHERE em_zona=zo_id AND zo_sede=".$id.")";
-        $qry7 = "DELETE FROM Experiencia WHERE ex_empleado IN (SELECT em_id FROM Empleado, Zona WHERE em_zona=zo_id AND zo_sede=".$id.")";
-        $qry8 = "DELETE FROM Beneficiario WHERE be_empleado IN (SELECT em_id FROM Empleado, Zona WHERE em_zona=zo_id AND zo_sede=".$id.")";
-        $qry9 = "DELETE FROM Prueba WHERE pr_zona IN (SELECT zo_id FROM Zona WHERE zo_sede=".$id.")";
-        $qry10 = "DELETE FROM Status_prueba WHERE sp_prueba IN (SELECT pr_id FROM Prueba, Zona WHERE pr_zona=zo_id AND zo_sede=".$id.")";
-        $qry11 = "DELETE FROM Prueba_pieza WHERE pp_prueba IN (SELECT pr_id FROM Prueba, Zona WHERE pr_zona=zo_id AND zo_sede=".$id.")";
-        $qry12 = "DELETE FROM Prueba_material WHERE prm_prueba IN (SELECT pr_id FROM Prueba, Zona WHERE pr_zona=zo_id AND zo_sede=".$id.")";
-        if(pg_query($conexion, $qry12))
-            if(pg_query($conexion, $qry11))
-                if(pg_query($conexion, $qry10))
-                    if(pg_query($conexion, $qry9))
-                        if(pg_query($conexion, $qry8))
-                            if(pg_query($conexion, $qry7))
-                                if(pg_query($conexion, $qry6))
-                                    if(pg_query($conexion, $qry5))
-                                        if(pg_query($conexion, $qry4))
-                                            if(pg_query($conexion, $qry3))
-                                                if(pg_query($conexion, $qry2))
-                                                    return pg_query($conexion, $qry);
-        return false;
-    }
+		global $conexion;
+		$id = htmlentities($id, ENT_QUOTES);
+		$qry = "DELETE FROM Sede WHERE se_id=".$id;
+		$qry2 = "DELETE FROM Zona WHERE zo_sede=".$id;
+		$qry3 = "DELETE FROM Traslado WHERE tr_zona_envia IN (SELECT zo_id FROM Zona WHERE zo_sede=".$id.")";
+		$qry4 = "DELETE FROM Traslado WHERE tr_zona_recibe IN (SELECT zo_id FROM Zona WHERE zo_sede=".$id.")";
+		$qry5 = "DELETE FROM Empleado WHERE em_zona IN (SELECT zo_id FROM Zona WHERE zo_sede=".$id.")";		   
+		$qry6 = "DELETE FROM Contacto WHERE co_empleado IN (SELECT em_id FROM Empleado, Zona WHERE em_zona=zo_id AND zo_sede=".$id.")";
+		$qry7 = "DELETE FROM Experiencia WHERE ex_empleado IN (SELECT em_id FROM Empleado, Zona WHERE em_zona=zo_id AND zo_sede=".$id.")";
+		$qry8 = "DELETE FROM Beneficiario WHERE be_empleado IN (SELECT em_id FROM Empleado, Zona WHERE em_zona=zo_id AND zo_sede=".$id.")";
+		$qry9 = "DELETE FROM Prueba WHERE pr_zona IN (SELECT zo_id FROM Zona WHERE zo_sede=".$id.")";
+		$qry10 = "DELETE FROM Status_prueba WHERE sp_prueba IN (SELECT pr_id FROM Prueba, Zona WHERE pr_zona=zo_id AND zo_sede=".$id.")";
+		$qry11 = "DELETE FROM Prueba_pieza WHERE pp_prueba IN (SELECT pr_id FROM Prueba, Zona WHERE pr_zona=zo_id AND zo_sede=".$id.")";
+		$qry12 = "DELETE FROM Prueba_material WHERE prm_prueba IN (SELECT pr_id FROM Prueba, Zona WHERE pr_zona=zo_id AND zo_sede=".$id.")";
+		if(pg_query($conexion, $qry12))
+			if(pg_query($conexion, $qry11))
+				if(pg_query($conexion, $qry10))
+					if(pg_query($conexion, $qry9))
+						if(pg_query($conexion, $qry8))
+							if(pg_query($conexion, $qry7))
+								if(pg_query($conexion, $qry6))
+									if(pg_query($conexion, $qry5))
+										if(pg_query($conexion, $qry4))
+											if(pg_query($conexion, $qry3))
+												if(pg_query($conexion, $qry2))
+													return pg_query($conexion, $qry);
+		return false;
+	}
 //Query de Zona
 	function insertarZona( $nombre , $tipo, $sede ){
 		global $conexion;
@@ -449,49 +449,57 @@
 	}
 	function eliminarZona( $id ){
 		global $conexion;
-        $id = htmlentities($id, ENT_QUOTES);
+		$id = htmlentities($id, ENT_QUOTES);
 		$qry = "DELETE FROM Zona WHERE zo_id=".$id;
-        $qry2 = "DELETE FROM Traslado WHERE tr_zona_envia=".$id;
-        $qry3 = "DELETE FROM Traslado WHERE tr_zona_recibe=".$id;
-        $qry4 = "DELETE FROM Empleado WHERE em_zona=".$id;
-        $qry5 = "DELETE FROM Contacto WHERE co_empleado IN (SELECT em_id FROM Empleado WHERE em_zona=".$id.")";
-        $qry6 = "DELETE FROM Experiencia WHERE ex_empleado IN (SELECT em_id FROM Empleado WHERE em_zona=".$id.")";
-        $qry7 = "DELETE FROM Beneficiario WHERE be_empleado IN (SELECT em_id FROM Empleado WHERE em_zona=".$id.")";
-        $qry8 = "DELETE FROM Prueba WHERE pr_zona=".$id;
-        $qry9 = "DELETE FROM Status_prueba WHERE sp_prueba IN (SELECT pr_id FROM Prueba WHERE pr_zona=".$id.")";
-        $qry10 = "DELETE FROM Prueba_pieza WHERE pp_prueba IN (SELECT pr_id FROM Prueba WHERE pr_zona=".$id.")";
-        $qry11 = "DELETE FROM Prueba_material WHERE prm_prueba IN (SELECT pr_id FROM Prueba WHERE pr_zona=".$id.")";
-        if(pg_query($conexion, $qry11))
-            if(pg_query($conexion, $qry10))
-                if(pg_query($conexion, $qry9))
-                    if(pg_query($conexion, $qry8))
-                        if(pg_query($conexion, $qry7))
-                            if(pg_query($conexion, $qry6))
-                                if(pg_query($conexion, $qry5))
-                                    if(pg_query($conexion, $qry4))
-                                        if(pg_query($conexion, $qry3))
-                                            if(pg_query($conexion, $qry2))
-                                                return pg_query($conexion, $qry);
-        return false;
+		$qry2 = "DELETE FROM Traslado WHERE tr_zona_envia=".$id;
+		$qry3 = "DELETE FROM Traslado WHERE tr_zona_recibe=".$id;
+		$qry4 = "DELETE FROM Empleado WHERE em_zona=".$id;
+		$qry5 = "DELETE FROM Contacto WHERE co_empleado IN (SELECT em_id FROM Empleado WHERE em_zona=".$id.")";
+		$qry6 = "DELETE FROM Experiencia WHERE ex_empleado IN (SELECT em_id FROM Empleado WHERE em_zona=".$id.")";
+		$qry7 = "DELETE FROM Beneficiario WHERE be_empleado IN (SELECT em_id FROM Empleado WHERE em_zona=".$id.")";
+		$qry8 = "DELETE FROM Prueba WHERE pr_zona=".$id;
+		$qry9 = "DELETE FROM Status_prueba WHERE sp_prueba IN (SELECT pr_id FROM Prueba WHERE pr_zona=".$id.")";
+		$qry10 = "DELETE FROM Prueba_pieza WHERE pp_prueba IN (SELECT pr_id FROM Prueba WHERE pr_zona=".$id.")";
+		$qry11 = "DELETE FROM Prueba_material WHERE prm_prueba IN (SELECT pr_id FROM Prueba WHERE pr_zona=".$id.")";
+		if(pg_query($conexion, $qry11))
+			if(pg_query($conexion, $qry10))
+				if(pg_query($conexion, $qry9))
+					if(pg_query($conexion, $qry8))
+						if(pg_query($conexion, $qry7))
+							if(pg_query($conexion, $qry6))
+								if(pg_query($conexion, $qry5))
+									if(pg_query($conexion, $qry4))
+										if(pg_query($conexion, $qry3))
+											if(pg_query($conexion, $qry2))
+												return pg_query($conexion, $qry);
+		return false;
 	}
-//Cliente
+//Querys de Cliente
 	function insertarCliente ( $trif, $rif, $nombre, $pweb, $lugar ){
 		global $conexion;
+		$id = htmlentities($id, ENT_QUOTES);
+		$trif = htmlentities($trif, ENT_QUOTES);
+		$rif = htmlentities($rif, ENT_QUOTES);
 		$nombre = htmlentities($nombre, ENT_QUOTES);
 		$pweb = htmlentities($pweb, ENT_QUOTES);
+		$lugar = htmlentities($lugar, ENT_QUOTES);
 		$qry = "INSERT INTO Cliente (cl_tipo_rif, cl_rif, cl_nombre, cl_pagina_web, cl_fecha_inicio, cl_direccion) VALUES ('".$trif."', ".$rif.", '".$nombre."', '".$pweb."', transaction_timestamp(),".$lugar." )";
 		return pg_query($conexion, $qry);
 	}
-	function editarCliente ( $id, $trif, $rif, $nombre, $pweb, $finicio ){
+	function editarCliente ( $id, $trif, $rif, $nombre, $pweb, $lugar ){
 		global $conexion;
+		$id = htmlentities($id, ENT_QUOTES);
+		$trif = htmlentities($trif, ENT_QUOTES);
+		$rif = htmlentities($rif, ENT_QUOTES);
 		$nombre = htmlentities($nombre, ENT_QUOTES);
 		$pweb = htmlentities($pweb, ENT_QUOTES);
-		$qry = "UPDATE Cliente SET cl_tipo_rif='".$trif."', cl_rif='".$trif."', cl_nombre='".$nombre."', cl_pagina_web='".$pweb."', cl_fecha_inicio='".$finicio."' WHERE cl_id=".$id;
+		$lugar = htmlentities($lugar, ENT_QUOTES);
+		$qry = "UPDATE Cliente SET cl_tipo_rif='".$trif."', cl_rif=".$rif.", cl_nombre='".$nombre."', cl_pagina_web='".$pweb."', cl_direccion=".$lugar." WHERE cl_id=".$id;
 		return pg_query($conexion, $qry);
 	}
 	function eliminarCliente($id){
 		global $conexion;
-        $id = htmlentities($id, ENT_QUOTES);
+		$id = htmlentities($id, ENT_QUOTES);
 		$qry = "DELETE FROM Cliente where cl_id=".$id;
 		$qry2 = "DELETE FROM Contacto where co_cliente=".$id;
 		$qry3 = "DELETE FROM Factura_venta where fv_cliente=".$id;
@@ -533,15 +541,15 @@
 		return ( pg_query( $conexion, $qry ) );
 	}
 	function eliminarFacturaVenta($id){
-        global $conexion;
-        $id = htmlentities($id, ENT_QUOTES);
-        $qry = "DELETE FROM Factura_venta WHERE fv_id=".$id;
-        $qry2 = "DELETE FROM Pago WHERE pa_factura_venta=".$id;
-        $qry3 = "DELETE FROM Avion WHERE a_factura_venta=".$id;
-        $qry4 = "DELETE FROM Status_avion WHERE sa_avion IN (SELECT a_id FROM Avion WHERE  a_factura_venta=".$id.")";
-        $qry5 = "DELETE FROM Motor WHERE mo_avion IN (SELECT a_id FROM Avion WHERE a_factura_venta=".$id.")";
-        $qry6 = "DELETE FROM Status_motor WHERE stm_motor IN (SELECT mo_id FROM Motor WHERE  a_factura_venta=".$id.")";
-        $qry7 = "DELETE FROM Pieza where p_avion in (Select a_id from Avion, Factura_venta where a_factura_venta=fv_id and fv_id=".$id.")";
+		global $conexion;
+		$id = htmlentities($id, ENT_QUOTES);
+		$qry = "DELETE FROM Factura_venta WHERE fv_id=".$id;
+		$qry2 = "DELETE FROM Pago WHERE pa_factura_venta=".$id;
+		$qry3 = "DELETE FROM Avion WHERE a_factura_venta=".$id;
+		$qry4 = "DELETE FROM Status_avion WHERE sa_avion IN (SELECT a_id FROM Avion WHERE  a_factura_venta=".$id.")";
+		$qry5 = "DELETE FROM Motor WHERE mo_avion IN (SELECT a_id FROM Avion WHERE a_factura_venta=".$id.")";
+		$qry6 = "DELETE FROM Status_motor WHERE stm_motor IN (SELECT mo_id FROM Motor WHERE	 a_factura_venta=".$id.")";
+		$qry7 = "DELETE FROM Pieza where p_avion in (Select a_id from Avion, Factura_venta where a_factura_venta=fv_id and fv_id=".$id.")";
 		$qry8 = "DELETE FROM Prueba_pieza where pp_pieza in (Select p_id from Pieza, Avion, Factura_venta where p_avion=a_id and a_factura_venta=fv_id and fv_id=".$id.")";
 		$qry9 = "DELETE FROM Status_pieza where spi_pieza in (Select p_id from Pieza, Avion, Factura_venta where p_avion=a_id and a_factura_venta=fv_id and fv_id=".$id.")";
 		$qry10 = "DELETE FROM Material where m_pieza in (Select p_id from Pieza, Avion, Factura_venta where p_avion=a_id and a_factura_venta=fv_id and fv_id=".$id.")";
@@ -549,22 +557,22 @@
 		$qry12 = "DELETE FROM Traslado where tr_material in (Select m_id from Material, Pieza, Avion, Distribucion where m_pieza=p_id and p_avion=a_id and a_factura_venta=fv_id and fv_id=".$id.")";
 		$qry13 = "DELETE FROM Traslado where tr_pieza in (Select p_id from Pieza, Avion, Factura_venta where p_avion=a_id and a_factura_venta=fv_id and fv_id=".$id.")";
 		$qry14 = "DELETE FROM Status_material where sm_material in (Select m_id from Material, Pieza, Avion, Distribucion where m_pieza=p_id and p_avion=a_id and a_factura_venta=fv_id and fv_id=".$id.")";
-        if(pg_query($conexion, $qry14))
-            if(pg_query($conexion, $qry13))
-                if(pg_query($conexion, $qry12))
-                    if(pg_query($conexion, $qry11))
-                         if(pg_query($conexion, $qry10))
-                             if(pg_query($conexion, $qry9))
-                                 if(pg_query($conexion, $qry8))
-                                     if(pg_query($conexion, $qry7))
-                                         if(pg_query($conexion, $qry6))
-                                             if(pg_query($conexion, $qry5))
-                                                 if(pg_query($conexion, $qry4))
-                                                     if(pg_query($conexion, $qry3))
-                                                         if(pg_query($conexion, $qry2))
-                                                             return pg_query($conexion, $qry);
-        return false;
-    }
+		if(pg_query($conexion, $qry14))
+			if(pg_query($conexion, $qry13))
+				if(pg_query($conexion, $qry12))
+					if(pg_query($conexion, $qry11))
+						 if(pg_query($conexion, $qry10))
+							 if(pg_query($conexion, $qry9))
+								 if(pg_query($conexion, $qry8))
+									 if(pg_query($conexion, $qry7))
+										 if(pg_query($conexion, $qry6))
+											 if(pg_query($conexion, $qry5))
+												 if(pg_query($conexion, $qry4))
+													 if(pg_query($conexion, $qry3))
+														 if(pg_query($conexion, $qry2))
+															 return pg_query($conexion, $qry);
+		return false;
+	}
 //Proveedor
 	function insertarProveedor ( $trif, $rif, $nombre, $pweb, $finicio ){
 		global $conexion;
@@ -582,24 +590,24 @@
 	}
 	function eliminarProveedor( $id ){
 		global $conexion;
-        $id = htmlentities($id, ENT_QUOTES);
+		$id = htmlentities($id, ENT_QUOTES);
 		$qry = "DELETE FROM Proveedor WHERE po_id=".$id;
-        $qry2 = "DELETE FROM Contacto WHERE co_proveedor=".$id;
-        $qry3 = "DELETE FROM Factura_compra WHERE fc_proveedor=".$id;
-        $qry4 = "DELETE FROM Pago WHERE pa_factura_compra IN (SELECT fc_id FROM Factura_compra WHERE fc_proveedor=".$id.")";
-        $qry5 = "DELETE FROM Material WHERE m_factura_compra IN (SELECT fc_id FROM Factura_compra WHERE fc_proveedor=".$id.")";
-        $qry6 = "DELETE FROM Status_material WHERE sm_material IN (SELECT m_id FROM Material,Factura_compra WHERE m_factura_compra=fc_id AND fc_proveedor=".$id.")";
-        $qry7 = "DELETE FROM Prueba_material WHERE prm_material IN (SELECT m_id FROM Material,Factura_compra WHERE m_factura_compra=fc_id AND fc_proveedor=".$id.")";
-        $qry8 = "DELETE FROM Traslado WHERE tr_material IN (SELECT m_id FROM Material,Factura_compra WHERE m_factura_compra=fc_id AND fc_proveedor=".$id.")";
-        if(pg_query($conexion, $qry8))
-                    if(pg_query($conexion, $qry7))
-                        if(pg_query($conexion, $qry6))
-                            if(pg_query($conexion, $qry5))
-                                if(pg_query($conexion, $qry4))
-                                    if(pg_query($conexion, $qry3))
-                                        if(pg_query($conexion, $qry2))
-		                                  return pg_query($conexion, $qry);
-        return false;
+		$qry2 = "DELETE FROM Contacto WHERE co_proveedor=".$id;
+		$qry3 = "DELETE FROM Factura_compra WHERE fc_proveedor=".$id;
+		$qry4 = "DELETE FROM Pago WHERE pa_factura_compra IN (SELECT fc_id FROM Factura_compra WHERE fc_proveedor=".$id.")";
+		$qry5 = "DELETE FROM Material WHERE m_factura_compra IN (SELECT fc_id FROM Factura_compra WHERE fc_proveedor=".$id.")";
+		$qry6 = "DELETE FROM Status_material WHERE sm_material IN (SELECT m_id FROM Material,Factura_compra WHERE m_factura_compra=fc_id AND fc_proveedor=".$id.")";
+		$qry7 = "DELETE FROM Prueba_material WHERE prm_material IN (SELECT m_id FROM Material,Factura_compra WHERE m_factura_compra=fc_id AND fc_proveedor=".$id.")";
+		$qry8 = "DELETE FROM Traslado WHERE tr_material IN (SELECT m_id FROM Material,Factura_compra WHERE m_factura_compra=fc_id AND fc_proveedor=".$id.")";
+		if(pg_query($conexion, $qry8))
+					if(pg_query($conexion, $qry7))
+						if(pg_query($conexion, $qry6))
+							if(pg_query($conexion, $qry5))
+								if(pg_query($conexion, $qry4))
+									if(pg_query($conexion, $qry3))
+										if(pg_query($conexion, $qry2))
+										  return pg_query($conexion, $qry);
+		return false;
 	}
 //Query Tipo de contacto
 	function insertarTipoContacto( $nombre ){
@@ -616,7 +624,7 @@
 	}
 	function eliminarTipoContacto( $id ){
 		global $conexion;
-        $id = htmlentities($id, ENT_QUOTES);
+		$id = htmlentities($id, ENT_QUOTES);
 		$qry = "DELETE FROM Tipo_contacto WHERE ct_id=".$id;
 		return pg_query($conexion, $qry);
 	}
@@ -638,30 +646,30 @@
 		$id = htmlentities($id, ENT_QUOTES);
 		$qry = "DELETE FROM Marca_motor WHERE mb_id=".$id;
 		$qry2 = "DELETE FROM Modelo_motor WHERE mm_marca=".$id;
-		$qry3 = "DELETE FROM S_avion_m_motor WHERE smt_modelo_motor IN (SELECT mm_id FROM Modelo_motor WHERE mm_marca=".%id.")";
-		$qry4 = "DELETE FROM Motor WHERE mo_modelo_motor IN (SELECT mm_id FROM Modelo_motor WHERE mm_marca=".%id.")";
-		$qry5 = "DELETE FROM Status_motor WHERE stm_motor IN (SELECT mo_id FROM Motor, Modelo_motor WHERE mo_modelo_motor=mm_id AND mm_marca=".%id.")";
+		$qry3 = "DELETE FROM S_avion_m_motor WHERE smt_modelo_motor IN (SELECT mm_id FROM Modelo_motor WHERE mm_marca=".$id.")";
+		$qry4 = "DELETE FROM Motor WHERE mo_modelo_motor IN (SELECT mm_id FROM Modelo_motor WHERE mm_marca=".$id.")";
+		$qry5 = "DELETE FROM Status_motor WHERE stm_motor IN (SELECT mo_id FROM Motor, Modelo_motor WHERE mo_modelo_motor=mm_id AND mm_marca=".$id.")";
 		if(pg_query($conexion, $qyr5))
 			if(pg_query($conexion, $qyr4))
 				if(pg_query($conexion, $qyr3))
 					if(pg_query($conexion, $qyr2))
 						return pg_query($conexion, $qyr);
 		return false;
-    }
+	}
 //Modelo_motor
 	function eliminarModeloMotor($id){
-        global $conexion;
-        $id = htmlentities($id, ENT_QUOTES);
-        $qry = "DELETE FROM Modelo_motor WHERE mm_id=".$id;
-        $qry2 = "DELETE FROM S_avion_m_motor WHERE smt_modelo_motor=".$id;
-        $qry3 = "DELETE FROM Motor WHERE mo_modelo_motor=".$id;
-        $qry4 = "DELETE FROM Status_motor WHERE stm_motor IN (SELECT mo_id FROM Motor WHERE mo_modelo_motor=".%id.")";
-        if(pg_query($conexion, $qyr4))
-            if(pg_query($conexion, $qyr3))
-                if(pg_query($conexion, $qyr2))
-                    return pg_query($conexion, $qyr);
-        return false;
-    }
+		global $conexion;
+		$id = htmlentities($id, ENT_QUOTES);
+		$qry = "DELETE FROM Modelo_motor WHERE mm_id=".$id;
+		$qry2 = "DELETE FROM S_avion_m_motor WHERE smt_modelo_motor=".$id;
+		$qry3 = "DELETE FROM Motor WHERE mo_modelo_motor=".$id;
+		$qry4 = "DELETE FROM Status_motor WHERE stm_motor IN (SELECT mo_id FROM Motor WHERE mo_modelo_motor=".$id.")";
+		if(pg_query($conexion, $qyr4))
+			if(pg_query($conexion, $qyr3))
+				if(pg_query($conexion, $qyr2))
+					return pg_query($conexion, $qyr);
+		return false;
+	}
 //Query de S avion - m motor
 	function insertarSAvionMMotor( $cantidad, $sAvion , $mMotor ){
 		global $conexion;
@@ -676,7 +684,7 @@
 	}
 	function eliminarSAvionMMotor( $id ){
 		global $conexion;
-        $id = htmlentities($id, ENT_QUOTES);
+		$id = htmlentities($id, ENT_QUOTES);
 		$qry = "DELETE FROM S_avion_m_motor where smt_id=".$id;
 		return pg_query($conexion, $qry);
 	}
@@ -694,34 +702,34 @@
 		return pg_query($conexion, $qry);
 	}
 	function eliminarTipoAla($id){
-        global $conexion;
-        $id = htmlentities($id, ENT_QUOTES);
-        $qry ="DELETE FROM Tipo_Ala WHERE wt_id=".$id;
-        $qry2 ="DELETE FROM Modelo_pieza WHERE pm_tipo_ala=".$id;        
-        $qry3 = "DELETE FROM S_avion_m_pieza WHERE smp_modelo_pieza IN (SELECT pm_id FROM Modelo_pieza WHERE pm_tipo_ala=".$id.")";
-        $qry4 = "DELETE FROM T_material_m_pieza WHERE tmm_modelo_pieza IN (SELECT pm_id FROM Modelo_pieza WHERE pm_tipo_ala=".$id.")";
-        $qry5 = "DELETE FROM Pieza WHERE p_modelo_pieza IN (SELECT pm_id FROM Modelo_pieza WHERE pm_tipo_ala=".$id.")";
-        $qry6 = "DELETE FROM Prueba_pieza WHERE pp_pieza IN (SELECT p_id FROM Pieza, Modelo_pieza WHERE p_modelo_pieza=pm_id AND pm_tipo_ala=".$id.")";
-        $qry7 = "DELETE FROM Traslado WHERE tr_pieza IN (SELECT p_id FROM Pieza, Modelo_pieza WHERE p_modelo_pieza=pm_id AND pm_tipo_ala=".$id.")";
-        $qry8 = "DELETE FROM Status_pieza WHERE spi_pieza IN (SELECT p_id FROM Pieza, Modelo_pieza WHERE p_modelo_pieza=pm_id AND pm_tipo_ala=".$id.")";
-        $qry9 = "DELETE FROM Material WHERE m_pieza IN (SELECT p_id FROM Pieza, Modelo_pieza WHERE p_modelo_pieza=pm_id AND pm_tipo_ala=".$id.")";
-        $qry10 = "DELETE FROM Status_material WHERE sm_material IN (SELECT m_id FROM Pieza, Material, Modelo_Pieza WHERE m_pieza=p_id AND p_modelo_pieza=pm_id AND pm_tipo_ala=".$id.")";
-        $qry11 = "DELETE FROM Prueba_material WHERE prm_material IN (SELECT m_id FROM Pieza, Material, Modelo_Pieza WHERE m_pieza=p_id AND p_modelo_pieza=pm_id AND pm_tipo_ala=".$id.")";
-        $qry12 = "DELETE FROM Traslado WHERE tr_material IN (SELECT m_id FROM Pieza, Material, Modelo_Pieza WHERE m_pieza=p_id AND p_modelo_pieza=pm_id AND pm_tipo_ala=".$id.")";
-        if(pg_query($conexion, $qry12))
-            if(pg_query($conexion, $qry11))
-                if(pg_query($conexion, $qry10))
-                    if(pg_query($conexion, $qry9))
-                        if(pg_query($conexion, $qry8))
-                            if(pg_query($conexion, $qry7))
-                                if(pg_query($conexion, $qry6))
-                                    if(pg_query($conexion, $qry5))
-                                        if(pg_query($conexion, $qry4))
-                                            if(pg_query($conexion, $qry3))
-                                                if(pg_query($conexion, $qry2))
-                                                    return pg_query($conexion, $qry);
-        return false;
-    }
+		global $conexion;
+		$id = htmlentities($id, ENT_QUOTES);
+		$qry ="DELETE FROM Tipo_Ala WHERE wt_id=".$id;
+		$qry2 ="DELETE FROM Modelo_pieza WHERE pm_tipo_ala=".$id;		 
+		$qry3 = "DELETE FROM S_avion_m_pieza WHERE smp_modelo_pieza IN (SELECT pm_id FROM Modelo_pieza WHERE pm_tipo_ala=".$id.")";
+		$qry4 = "DELETE FROM T_material_m_pieza WHERE tmm_modelo_pieza IN (SELECT pm_id FROM Modelo_pieza WHERE pm_tipo_ala=".$id.")";
+		$qry5 = "DELETE FROM Pieza WHERE p_modelo_pieza IN (SELECT pm_id FROM Modelo_pieza WHERE pm_tipo_ala=".$id.")";
+		$qry6 = "DELETE FROM Prueba_pieza WHERE pp_pieza IN (SELECT p_id FROM Pieza, Modelo_pieza WHERE p_modelo_pieza=pm_id AND pm_tipo_ala=".$id.")";
+		$qry7 = "DELETE FROM Traslado WHERE tr_pieza IN (SELECT p_id FROM Pieza, Modelo_pieza WHERE p_modelo_pieza=pm_id AND pm_tipo_ala=".$id.")";
+		$qry8 = "DELETE FROM Status_pieza WHERE spi_pieza IN (SELECT p_id FROM Pieza, Modelo_pieza WHERE p_modelo_pieza=pm_id AND pm_tipo_ala=".$id.")";
+		$qry9 = "DELETE FROM Material WHERE m_pieza IN (SELECT p_id FROM Pieza, Modelo_pieza WHERE p_modelo_pieza=pm_id AND pm_tipo_ala=".$id.")";
+		$qry10 = "DELETE FROM Status_material WHERE sm_material IN (SELECT m_id FROM Pieza, Material, Modelo_Pieza WHERE m_pieza=p_id AND p_modelo_pieza=pm_id AND pm_tipo_ala=".$id.")";
+		$qry11 = "DELETE FROM Prueba_material WHERE prm_material IN (SELECT m_id FROM Pieza, Material, Modelo_Pieza WHERE m_pieza=p_id AND p_modelo_pieza=pm_id AND pm_tipo_ala=".$id.")";
+		$qry12 = "DELETE FROM Traslado WHERE tr_material IN (SELECT m_id FROM Pieza, Material, Modelo_Pieza WHERE m_pieza=p_id AND p_modelo_pieza=pm_id AND pm_tipo_ala=".$id.")";
+		if(pg_query($conexion, $qry12))
+			if(pg_query($conexion, $qry11))
+				if(pg_query($conexion, $qry10))
+					if(pg_query($conexion, $qry9))
+						if(pg_query($conexion, $qry8))
+							if(pg_query($conexion, $qry7))
+								if(pg_query($conexion, $qry6))
+									if(pg_query($conexion, $qry5))
+										if(pg_query($conexion, $qry4))
+											if(pg_query($conexion, $qry3))
+												if(pg_query($conexion, $qry2))
+													return pg_query($conexion, $qry);
+		return false;
+	}
 //Tipo_estabilizador
 	function insertarTipoEstabilizador( $nombre ){
 		global $conexion;
@@ -736,64 +744,64 @@
 		return pg_query($conexion, $qry);
 	}
 	function eliminarTipoEstabilizador($id){
-        global $conexion;
-        $id = htmlentities($id, ENT_QUOTES);
-        $qry ="DELETE FROM Tipo_estabilizador WHERE wt_id=".$id;
-        $qry2 ="DELETE FROM Modelo_pieza WHERE pm_tipo_estabilizador=".$id;        
-        $qry3 = "DELETE FROM S_avion_m_pieza WHERE smp_modelo_pieza IN (SELECT pm_id FROM Modelo_pieza WHERE pm_tipo_estabilizador=".$id.")";
-        $qry4 = "DELETE FROM T_material_m_pieza WHERE tmm_modelo_pieza IN (SELECT pm_id FROM Modelo_pieza WHERE pm_tipo_estabilizador=".$id.")";
-        $qry5 = "DELETE FROM Pieza WHERE p_modelo_pieza IN (SELECT pm_id FROM Modelo_pieza WHERE pm_tipo_estabilizador=".$id.")";
-        $qry6 = "DELETE FROM Prueba_pieza WHERE pp_pieza IN (SELECT p_id FROM Pieza, Modelo_pieza WHERE p_modelo_pieza=pm_id AND pm_tipo_estabilizador=".$id.")";
-        $qry7 = "DELETE FROM Traslado WHERE tr_pieza IN (SELECT p_id FROM Pieza, Modelo_pieza WHERE p_modelo_pieza=pm_id AND pm_tipo_estabilizador=".$id.")";
-        $qry8 = "DELETE FROM Status_pieza WHERE spi_pieza IN (SELECT p_id FROM Pieza, Modelo_pieza WHERE p_modelo_pieza=pm_id AND pm_tipo_estabilizador=".$id.")";
-        $qry9 = "DELETE FROM Material WHERE m_pieza IN (SELECT p_id FROM Pieza, Modelo_pieza WHERE p_modelo_pieza=pm_id AND pm_tipo_estabilizador=".$id.")";
-        $qry10 = "DELETE FROM Status_material WHERE sm_material IN (SELECT m_id FROM Pieza, Material, Modelo_Pieza WHERE m_pieza=p_id AND p_modelo_pieza=pm_id AND pm_tipo_estabilizador=".$id.")";
-        $qry11 = "DELETE FROM Prueba_material WHERE prm_material IN (SELECT m_id FROM Pieza, Material, Modelo_Pieza WHERE m_pieza=p_id AND p_modelo_pieza=pm_id AND pm_tipo_estabilizador=".$id.")";
-        $qry12 = "DELETE FROM Traslado WHERE tr_material IN (SELECT m_id FROM Pieza, Material, Modelo_Pieza WHERE m_pieza=p_id AND p_modelo_pieza=pm_id AND pm_tipo_estabilizador=".$id.")";
-        if(pg_query($conexion, $qry12))
-            if(pg_query($conexion, $qry11))
-                if(pg_query($conexion, $qry10))
-                    if(pg_query($conexion, $qry9))
-                        if(pg_query($conexion, $qry8))
-                            if(pg_query($conexion, $qry7))
-                                if(pg_query($conexion, $qry6))
-                                    if(pg_query($conexion, $qry5))
-                                        if(pg_query($conexion, $qry4))
-                                            if(pg_query($conexion, $qry3))
-                                                if(pg_query($conexion, $qry2))
-                                                    return pg_query($conexion, $qry);
-        return false;
-    }
+		global $conexion;
+		$id = htmlentities($id, ENT_QUOTES);
+		$qry ="DELETE FROM Tipo_estabilizador WHERE wt_id=".$id;
+		$qry2 ="DELETE FROM Modelo_pieza WHERE pm_tipo_estabilizador=".$id;		   
+		$qry3 = "DELETE FROM S_avion_m_pieza WHERE smp_modelo_pieza IN (SELECT pm_id FROM Modelo_pieza WHERE pm_tipo_estabilizador=".$id.")";
+		$qry4 = "DELETE FROM T_material_m_pieza WHERE tmm_modelo_pieza IN (SELECT pm_id FROM Modelo_pieza WHERE pm_tipo_estabilizador=".$id.")";
+		$qry5 = "DELETE FROM Pieza WHERE p_modelo_pieza IN (SELECT pm_id FROM Modelo_pieza WHERE pm_tipo_estabilizador=".$id.")";
+		$qry6 = "DELETE FROM Prueba_pieza WHERE pp_pieza IN (SELECT p_id FROM Pieza, Modelo_pieza WHERE p_modelo_pieza=pm_id AND pm_tipo_estabilizador=".$id.")";
+		$qry7 = "DELETE FROM Traslado WHERE tr_pieza IN (SELECT p_id FROM Pieza, Modelo_pieza WHERE p_modelo_pieza=pm_id AND pm_tipo_estabilizador=".$id.")";
+		$qry8 = "DELETE FROM Status_pieza WHERE spi_pieza IN (SELECT p_id FROM Pieza, Modelo_pieza WHERE p_modelo_pieza=pm_id AND pm_tipo_estabilizador=".$id.")";
+		$qry9 = "DELETE FROM Material WHERE m_pieza IN (SELECT p_id FROM Pieza, Modelo_pieza WHERE p_modelo_pieza=pm_id AND pm_tipo_estabilizador=".$id.")";
+		$qry10 = "DELETE FROM Status_material WHERE sm_material IN (SELECT m_id FROM Pieza, Material, Modelo_Pieza WHERE m_pieza=p_id AND p_modelo_pieza=pm_id AND pm_tipo_estabilizador=".$id.")";
+		$qry11 = "DELETE FROM Prueba_material WHERE prm_material IN (SELECT m_id FROM Pieza, Material, Modelo_Pieza WHERE m_pieza=p_id AND p_modelo_pieza=pm_id AND pm_tipo_estabilizador=".$id.")";
+		$qry12 = "DELETE FROM Traslado WHERE tr_material IN (SELECT m_id FROM Pieza, Material, Modelo_Pieza WHERE m_pieza=p_id AND p_modelo_pieza=pm_id AND pm_tipo_estabilizador=".$id.")";
+		if(pg_query($conexion, $qry12))
+			if(pg_query($conexion, $qry11))
+				if(pg_query($conexion, $qry10))
+					if(pg_query($conexion, $qry9))
+						if(pg_query($conexion, $qry8))
+							if(pg_query($conexion, $qry7))
+								if(pg_query($conexion, $qry6))
+									if(pg_query($conexion, $qry5))
+										if(pg_query($conexion, $qry4))
+											if(pg_query($conexion, $qry3))
+												if(pg_query($conexion, $qry2))
+													return pg_query($conexion, $qry);
+		return false;
+	}
 //Modelo_pieza
 	function eliminarModeloPieza($id){
-        global $conexion;
-        $id = htmlentities($id, ENT_QUOTES);
-        $qry = "DELETE FROM Modelo_pieza WHERE pm_id=".$id;
-        $qry2 = "DELETE FROM Modelo_pieza WHERE pm_modelo_pieza=".$id;
-        $qry3 = "DELETE FROM S_avion_m_pieza WHERE smp_modelo_pieza=".$id;
-        $qry4 = "DELETE FROM T_material_m_pieza WHERE tmm_modelo_pieza=".$id;
-        $qry5 = "DELETE FROM Pieza WHERE p_modelo_pieza=".$id;
-        $qry6 = "DELETE FROM Prueba_pieza WHERE pp_pieza IN (SELECT p_id FROM Pieza WHERE p_modelo_pieza=".$id.")";
-        $qry7 = "DELETE FROM Traslado WHERE tr_pieza IN (SELECT p_id FROM Pieza WHERE p_modelo_pieza=".$id.")";
-        $qry8 = "DELETE FROM Status_pieza WHERE spi_pieza IN (SELECT p_id FROM Pieza WHERE p_modelo_pieza=".$id.")";
-        $qry9 = "DELETE FROM Material WHERE m_pieza IN (SELECT p_id FROM Pieza WHERE p_modelo_pieza=".$id.")";
-        $qry10 = "DELETE FROM Status_material WHERE sm_material IN (SELECT m_id FROM Pieza, Material WHERE m_pieza=p_id AND p_modelo_pieza=".$id.")";
-        $qry11 = "DELETE FROM Prueba_material WHERE prm_material IN (SELECT m_id FROM Pieza, Material WHERE m_pieza=p_id AND p_modelo_pieza=".$id.")";
-        $qry12 = "DELETE FROM Traslado WHERE tr_material IN (SELECT m_id FROM Pieza, Material WHERE m_pieza=p_id AND p_modelo_pieza=".$id.")";
-        if(pg_query($conexion, $qry12))
-            if(pg_query($conexion, $qry11))
-                if(pg_query($conexion, $qry10))
-                    if(pg_query($conexion, $qry9))
-                        if(pg_query($conexion, $qry8))
-                            if(pg_query($conexion, $qry7))
-                                if(pg_query($conexion, $qry6))
-                                    if(pg_query($conexion, $qry5))
-                                        if(pg_query($conexion, $qry4))
-                                            if(pg_query($conexion, $qry3))
-                                                if(pg_query($conexion, $qry2))
-                                                    return pg_query($conexion, $qry);
-        return false;
-    }
+		global $conexion;
+		$id = htmlentities($id, ENT_QUOTES);
+		$qry = "DELETE FROM Modelo_pieza WHERE pm_id=".$id;
+		$qry2 = "DELETE FROM Modelo_pieza WHERE pm_modelo_pieza=".$id;
+		$qry3 = "DELETE FROM S_avion_m_pieza WHERE smp_modelo_pieza=".$id;
+		$qry4 = "DELETE FROM T_material_m_pieza WHERE tmm_modelo_pieza=".$id;
+		$qry5 = "DELETE FROM Pieza WHERE p_modelo_pieza=".$id;
+		$qry6 = "DELETE FROM Prueba_pieza WHERE pp_pieza IN (SELECT p_id FROM Pieza WHERE p_modelo_pieza=".$id.")";
+		$qry7 = "DELETE FROM Traslado WHERE tr_pieza IN (SELECT p_id FROM Pieza WHERE p_modelo_pieza=".$id.")";
+		$qry8 = "DELETE FROM Status_pieza WHERE spi_pieza IN (SELECT p_id FROM Pieza WHERE p_modelo_pieza=".$id.")";
+		$qry9 = "DELETE FROM Material WHERE m_pieza IN (SELECT p_id FROM Pieza WHERE p_modelo_pieza=".$id.")";
+		$qry10 = "DELETE FROM Status_material WHERE sm_material IN (SELECT m_id FROM Pieza, Material WHERE m_pieza=p_id AND p_modelo_pieza=".$id.")";
+		$qry11 = "DELETE FROM Prueba_material WHERE prm_material IN (SELECT m_id FROM Pieza, Material WHERE m_pieza=p_id AND p_modelo_pieza=".$id.")";
+		$qry12 = "DELETE FROM Traslado WHERE tr_material IN (SELECT m_id FROM Pieza, Material WHERE m_pieza=p_id AND p_modelo_pieza=".$id.")";
+		if(pg_query($conexion, $qry12))
+			if(pg_query($conexion, $qry11))
+				if(pg_query($conexion, $qry10))
+					if(pg_query($conexion, $qry9))
+						if(pg_query($conexion, $qry8))
+							if(pg_query($conexion, $qry7))
+								if(pg_query($conexion, $qry6))
+									if(pg_query($conexion, $qry5))
+										if(pg_query($conexion, $qry4))
+											if(pg_query($conexion, $qry3))
+												if(pg_query($conexion, $qry2))
+													return pg_query($conexion, $qry);
+		return false;
+	}
 //Query de S avion - m pieza
 	function insertarSAvionMPieza( $cantidad, $sAvion , $mPieza ){
 		global $conexion;
@@ -808,7 +816,7 @@
 	}
 	function eliminarSAvionMPieza( $id ){
 		global $conexion;
-        $id = htmlentities($id, ENT_QUOTES);
+		$id = htmlentities($id, ENT_QUOTES);
 		$qry = "DELETE FROM S_avion_m_pieza where smp_id=".$id;
 		return pg_query($conexion, $qry);
 	}
@@ -829,36 +837,36 @@
 	}
 	function eliminarPrueba( $id ){
 		global $conexion;
-        $id = htmlentities($id, ENT_QUOTES);
+		$id = htmlentities($id, ENT_QUOTES);
 		$qry = "DELETE FROM Prueba WHERE pr_id=".$id;
-        $qry2 = "DELETE FROM Prueba_pieza WHERE pp_prueba=".$id;
-        $qry3 = "DELETE FROM Status_prueba WHERE sp_prueba=".$id;
-        $qry4 = "DELETE FROM Prueba_material WHERE prm_prueba=".$id;
+		$qry2 = "DELETE FROM Prueba_pieza WHERE pp_prueba=".$id;
+		$qry3 = "DELETE FROM Status_prueba WHERE sp_prueba=".$id;
+		$qry4 = "DELETE FROM Prueba_material WHERE prm_prueba=".$id;
 		if(pg_query($conexion, $qry4))
-            if(pg_query($conexion, $qry3))
-                if(pg_query($conexion, $qry2))
-                    return pg_query($conexion, $qry);
-        return false;
+			if(pg_query($conexion, $qry3))
+				if(pg_query($conexion, $qry2))
+					return pg_query($conexion, $qry);
+		return false;
 	}
 //Status_prueba
 //Factura_compra
 	function eliminarFacturaCompra($id){
-        global $conexion;
-        $id = htmlentities($id, ENT_QUOTES);
-        $qry = "DELETE FROM Factura_compra WHERE fc_id=".$id;
-        $qry2 = "DELETE FROM Pago WHERE pa_factura_compra=".$id;
-        $qry3 = "DELETE FROM Material WHERE m_factura_compra=".$id;
+		global $conexion;
+		$id = htmlentities($id, ENT_QUOTES);
+		$qry = "DELETE FROM Factura_compra WHERE fc_id=".$id;
+		$qry2 = "DELETE FROM Pago WHERE pa_factura_compra=".$id;
+		$qry3 = "DELETE FROM Material WHERE m_factura_compra=".$id;
 		$qry4 = "DELETE FROM Prueba_material where prm_material in (Select m_id from Material where m_factura_compra=".$id.")";
 		$qry5 = "DELETE FROM Traslado where tr_material in (Select m_id from Material where m_factura_compra=".$id.")";
 		$qry6 = "DELETE FROM Status_material where sm_material in (Select m_id from Material where m_factura_compra=".$id.")";
-        if(pg_query($conexion, $qry6))
-            if(pg_query($conexion, $qry5))
-                if(pg_query($conexion, $qry4))
-                    if(pg_query($conexion, $qry3))
-                        if(pg_query($conexion, $qry2))
-                            return pg_query($conexion, $qry);
-        return false;
-    }
+		if(pg_query($conexion, $qry6))
+			if(pg_query($conexion, $qry5))
+				if(pg_query($conexion, $qry4))
+					if(pg_query($conexion, $qry3))
+						if(pg_query($conexion, $qry2))
+							return pg_query($conexion, $qry);
+		return false;
+	}
 //Tipo_pago
 	function insertarTipoPago( $numero, $nombre, $cod, $fecha ){
 		global $conexion;
@@ -880,14 +888,14 @@
 		return pg_query($conexion, $qry);
 	}
 	function eliminarTipoPago($id){
-        global $conexion;
-        $id = htmlentities($id, ENT_QUOTES);
-        $qry = "DELETE FROM Tipo_pago WHERE pt_id=".$id;
-        $qry2 = "DELETE FROM Pago WHERE pa_tipo_pago=".$id;
-        if(pg_query($conexion, $qyr2))
-            return pg_query($conexion, $qyr);
-        return false;
-    }
+		global $conexion;
+		$id = htmlentities($id, ENT_QUOTES);
+		$qry = "DELETE FROM Tipo_pago WHERE pt_id=".$id;
+		$qry2 = "DELETE FROM Pago WHERE pa_tipo_pago=".$id;
+		if(pg_query($conexion, $qyr2))
+			return pg_query($conexion, $qyr);
+		return false;
+	}
 //Pago
 	function insertarPago( $monto, $tipo_pago, $factura_venta, $factura_compra ){
 		global $conexion;
@@ -901,11 +909,11 @@
 		return pg_query($conexion, $qry);
 	}
 	function eliminarPago($id){
-        global $conexion;
-        $id = htmlentities($id, ENT_QUOTES);
-        $qry = "DELETE FROM Pago WHERE pa_id=".$id;
-        return pg_query($conexion, $qyr);
-    }
+		global $conexion;
+		$id = htmlentities($id, ENT_QUOTES);
+		$qry = "DELETE FROM Pago WHERE pa_id=".$id;
+		return pg_query($conexion, $qyr);
+	}
 //Tipo_material
 	function insertarTipoMaterial( $nombre ){
 		global $conexion;
@@ -920,22 +928,22 @@
 		return pg_query($conexion, $qry);
 	}
 	function eliminarTipoMaterial($id){
-        global $conexion;
-        $id = htmlentities($id, ENT_QUOTES);
-        $qry ="DELETE FROM Tipo_material WHERE tm_id=".$id;
-        $qry2 ="DELETE FROM T_material_m_pieza WHERE tmm_tipo_material=".$id;
-        $qry3 ="DELETE FROM Material WHERE m_tipo_material=".$id;
-        $qry4 = "DELETE FROM Status_material WHERE sm_material IN (SELECT m_id FROM Material WHERE m_tipo_material=".$id.")";
-        $qry5 = "DELETE FROM Prueba_material WHERE prm_material IN (SELECT m_id FROM Material WHERE m_tipo_material=".$id.")";
-        $qry6 = "DELETE FROM Traslado WHERE tr_material IN (SELECT m_id FROM Material WHERE m_tipo_material=".$id.")";
-        if(pg_query($conexion, $qry6))
-            if(pg_query($conexion, $qry5))
-                if(pg_query($conexion, $qry4))
-                    if(pg_query($conexion, $qry3))
-                        if(pg_query($conexion, $qry2))
-                            return pg_query($conexion, $qry);
-        return false;
-    }
+		global $conexion;
+		$id = htmlentities($id, ENT_QUOTES);
+		$qry ="DELETE FROM Tipo_material WHERE tm_id=".$id;
+		$qry2 ="DELETE FROM T_material_m_pieza WHERE tmm_tipo_material=".$id;
+		$qry3 ="DELETE FROM Material WHERE m_tipo_material=".$id;
+		$qry4 = "DELETE FROM Status_material WHERE sm_material IN (SELECT m_id FROM Material WHERE m_tipo_material=".$id.")";
+		$qry5 = "DELETE FROM Prueba_material WHERE prm_material IN (SELECT m_id FROM Material WHERE m_tipo_material=".$id.")";
+		$qry6 = "DELETE FROM Traslado WHERE tr_material IN (SELECT m_id FROM Material WHERE m_tipo_material=".$id.")";
+		if(pg_query($conexion, $qry6))
+			if(pg_query($conexion, $qry5))
+				if(pg_query($conexion, $qry4))
+					if(pg_query($conexion, $qry3))
+						if(pg_query($conexion, $qry2))
+							return pg_query($conexion, $qry);
+		return false;
+	}
 //T_material_m_pieza
 //Avion
 	function insertarAvion( $factura, $distribucion, $submodelo, $precio ){
@@ -944,34 +952,34 @@
 		return pg_query($conexion, $qry);
 	}
 	function eliminarAvion($id){
-        global $conexion;
-        $id = htmlentities($id, ENT_QUOTES);
-        $qry = "DELETE FROM Avion WHERE a_id=".$id;
-        $qry2 = "DELETE FROM Status_avion WHERE sa_avion=".$id;
-        $qry3 = "DELETE FROM Motor WHERE mo_avion=".$id;
-        $qry4 = "DELETE FROM Status_motor WHERE stm_motor IN (SELECT mo_id FROM Motor WHERE mo_avion=".$id.")";
-        $qry5 = "DELETE FROM Pieza WHERE p_avion=".$id;
-        $qry6 = "DELETE FROM Prueba_pieza WHERE pp_pieza IN (SELECT p_id FROM Pieza WHERE p_avion=".$id.")";
-        $qry7 = "DELETE FROM Status_pieza WHERE spi_pieza IN (SELECT p_id FROM Pieza WHERE p_avion=".$id.")";
-        $qry8 = "DELETE FROM Traslado WHERE tr_pieza IN (SELECT p_id FROM Pieza WHERE p_avion=".$id.")";
-        $qry9 = "DELETE FROM Material WHERE m_pieza IN (SELECT p_id FROM Pieza WHERE p_avion=".$id.")";
-        $qry10 = "DELETE FROM Status_material WHERE sm_material IN (SELECT m_id FROM Material, Pieza WHERE m_pieza=p_id AND p_avion=".$id.")";
-        $qry11 = "DELETE FROM Prueba_material WHERE prm_material IN (SELECT m_id FROM Material, Pieza WHERE m_pieza=p_id AND p_avion=".$id.")";
-        $qry12 = "DELETE FROM Traslado WHERE tr_material IN (SELECT m_id FROM Material, Pieza WHERE m_pieza=p_id AND p_avion=".$id.")";
-        if(pg_query($conexion, $qry12))
-            if(pg_query($conexion, $qry11))
-                if(pg_query($conexion, $qry10))
-                    if(pg_query($conexion, $qry9))
-                        if(pg_query($conexion, $qry8))
-                            if(pg_query($conexion, $qry7))
-                                if(pg_query($conexion, $qry6))
-                                    if(pg_query($conexion, $qry5))
-                                        if(pg_query($conexion, $qry4))
-                                            if(pg_query($conexion, $qry3))
-                                                if(pg_query($conexion, $qry2))
-                                                    return pg_query($conexion, $qry);
-        return false;
-    }
+		global $conexion;
+		$id = htmlentities($id, ENT_QUOTES);
+		$qry = "DELETE FROM Avion WHERE a_id=".$id;
+		$qry2 = "DELETE FROM Status_avion WHERE sa_avion=".$id;
+		$qry3 = "DELETE FROM Motor WHERE mo_avion=".$id;
+		$qry4 = "DELETE FROM Status_motor WHERE stm_motor IN (SELECT mo_id FROM Motor WHERE mo_avion=".$id.")";
+		$qry5 = "DELETE FROM Pieza WHERE p_avion=".$id;
+		$qry6 = "DELETE FROM Prueba_pieza WHERE pp_pieza IN (SELECT p_id FROM Pieza WHERE p_avion=".$id.")";
+		$qry7 = "DELETE FROM Status_pieza WHERE spi_pieza IN (SELECT p_id FROM Pieza WHERE p_avion=".$id.")";
+		$qry8 = "DELETE FROM Traslado WHERE tr_pieza IN (SELECT p_id FROM Pieza WHERE p_avion=".$id.")";
+		$qry9 = "DELETE FROM Material WHERE m_pieza IN (SELECT p_id FROM Pieza WHERE p_avion=".$id.")";
+		$qry10 = "DELETE FROM Status_material WHERE sm_material IN (SELECT m_id FROM Material, Pieza WHERE m_pieza=p_id AND p_avion=".$id.")";
+		$qry11 = "DELETE FROM Prueba_material WHERE prm_material IN (SELECT m_id FROM Material, Pieza WHERE m_pieza=p_id AND p_avion=".$id.")";
+		$qry12 = "DELETE FROM Traslado WHERE tr_material IN (SELECT m_id FROM Material, Pieza WHERE m_pieza=p_id AND p_avion=".$id.")";
+		if(pg_query($conexion, $qry12))
+			if(pg_query($conexion, $qry11))
+				if(pg_query($conexion, $qry10))
+					if(pg_query($conexion, $qry9))
+						if(pg_query($conexion, $qry8))
+							if(pg_query($conexion, $qry7))
+								if(pg_query($conexion, $qry6))
+									if(pg_query($conexion, $qry5))
+										if(pg_query($conexion, $qry4))
+											if(pg_query($conexion, $qry3))
+												if(pg_query($conexion, $qry2))
+													return pg_query($conexion, $qry);
+		return false;
+	}
 //Status_avion
 	function insertarStatusAvion( $status, $avion ){
 		global $conexion;
@@ -987,14 +995,14 @@
 	}
 //Motor
 	function eliminarMotor($id){
-        global $conexion;
-        $id = htmlentities($id, ENT_QUOTES);
-        $qry = "DELETE FROM Motor WHERE mo_id=".$id;
-        $qry2 = "DELETE FROM Status_motor WHERE stm_motor=".%id;
-        if(pg_query($conexion, $qry2))
-            return pg_query($conexion, $qry);
-        return false;
-    }
+		global $conexion;
+		$id = htmlentities($id, ENT_QUOTES);
+		$qry = "DELETE FROM Motor WHERE mo_id=".$id;
+		$qry2 = "DELETE FROM Status_motor WHERE stm_motor=".$id;
+		if(pg_query($conexion, $qry2))
+			return pg_query($conexion, $qry);
+		return false;
+	}
 //Status_motor
 //Pieza
 	function insertarPieza( $pieza, $avion ){
@@ -1005,26 +1013,26 @@
 		return pg_query($conexion, $qry);
 	}
 	function eliminarPieza($id){
-        global $conexion;
-        $id = htmlentities($id, ENT_QUOTES);
-        $qry = "DELETE FROM Pieza WHERE p_id".$id;
-        $qry2 = "DELETE FROM Prueba_pieza WHERE pp_pieza".$id;
-        $qry3 = "DELETE FROM Traslado WHERE tr_pieza".$id;
-        $qry4 = "DELETE FROM Status_pieza WHERE spi_pieza".$id;
-        $qry5 = "DELETE FROM Material WHERE m_pieza".$id;
-        $qry6 = "DELETE FROM Status_material WHERE sm_material IN (SELECT m_id FROM Material WHERE m_pieza=".$id.")";
-        $qry7 = "DELETE FROM Prueba_material WHERE prm_material IN (SELECT m_id FROM Material WHERE m_pieza=".$id.")";
-        $qry8 = "DELETE FROM Traslado WHERE tr_material IN (SELECT m_id FROM Material WHERE m_pieza=".$id.")";
-        if(pg_query($conexion, $qry8))
-            if(pg_query($conexion, $qry7))
-                if(pg_query($conexion, $qry6))
-                    if(pg_query($conexion, $qry5))
-                        if(pg_query($conexion, $qry4))
-                            if(pg_query($conexion, $qry3))
-                                if(pg_query($conexion, $qry2))
-                                    return pg_query($conexion, $qry);
-        return false;
-    }
+		global $conexion;
+		$id = htmlentities($id, ENT_QUOTES);
+		$qry = "DELETE FROM Pieza WHERE p_id".$id;
+		$qry2 = "DELETE FROM Prueba_pieza WHERE pp_pieza".$id;
+		$qry3 = "DELETE FROM Traslado WHERE tr_pieza".$id;
+		$qry4 = "DELETE FROM Status_pieza WHERE spi_pieza".$id;
+		$qry5 = "DELETE FROM Material WHERE m_pieza".$id;
+		$qry6 = "DELETE FROM Status_material WHERE sm_material IN (SELECT m_id FROM Material WHERE m_pieza=".$id.")";
+		$qry7 = "DELETE FROM Prueba_material WHERE prm_material IN (SELECT m_id FROM Material WHERE m_pieza=".$id.")";
+		$qry8 = "DELETE FROM Traslado WHERE tr_material IN (SELECT m_id FROM Material WHERE m_pieza=".$id.")";
+		if(pg_query($conexion, $qry8))
+			if(pg_query($conexion, $qry7))
+				if(pg_query($conexion, $qry6))
+					if(pg_query($conexion, $qry5))
+						if(pg_query($conexion, $qry4))
+							if(pg_query($conexion, $qry3))
+								if(pg_query($conexion, $qry2))
+									return pg_query($conexion, $qry);
+		return false;
+	}
 //Status_pieza
 	function insertarStatusPieza( $status, $pieza ){
 		global $conexion;
@@ -1059,16 +1067,16 @@
 	}
 	function eliminarMaterial( $id ){
 		global $conexion;
-        $id = htmlentities($id, ENT_QUOTES);
+		$id = htmlentities($id, ENT_QUOTES);
 		$qry = "DELETE FROM Material WHERE m_id=".$id;
-        $qry2 = "DELETE FROM Status_material WHERE sm_material=".$id;
-        $qry3 = "DELETE FROM Prueba_material WHERE prm_material=".$id;
-        $qry4 = "DELETE FROM Traslado WHERE tr_material=".$id;
-        if(pg_query($conexion, $qry4))
-            if(pg_query($conexion, $qry3))
-                if(pg_query($conexion, $qry2))
-                    return pg_query($conexion, $qry);
-        return false;
+		$qry2 = "DELETE FROM Status_material WHERE sm_material=".$id;
+		$qry3 = "DELETE FROM Prueba_material WHERE prm_material=".$id;
+		$qry4 = "DELETE FROM Traslado WHERE tr_material=".$id;
+		if(pg_query($conexion, $qry4))
+			if(pg_query($conexion, $qry3))
+				if(pg_query($conexion, $qry2))
+					return pg_query($conexion, $qry);
+		return false;
 	}
 //Prueba_material
 //Status_material
@@ -1089,9 +1097,9 @@
 //Prueba_pieza
 //Traslado
 	function eliminarTraslado($id){
-        global $conexion;
-        $id = htmlentities($id, ENT_QUOTES);
-        $qry = "DELETE FROM Traslado WHERE tr_id=".$id;
-        return pg_query($conexion, $qry);
-    }
+		global $conexion;
+		$id = htmlentities($id, ENT_QUOTES);
+		$qry = "DELETE FROM Traslado WHERE tr_id=".$id;
+		return pg_query($conexion, $qry);
+	}
 ?>

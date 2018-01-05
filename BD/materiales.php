@@ -1,5 +1,12 @@
+<?php session_start(); 
+date_default_timezone_set('America/Port_of_Spain'); 
+error_reporting('E_ALL ^ E_NOTICE'); 
+include 'conexion.php'; 
+if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'] = 5;} 
+$qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$_SESSION['rol']; 
+$rs = pg_query( $conexion, $qry ); $permiso = array();
+while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 <!DOCTYPE html>
-<?php include 'conexion.php';?>
 <html>
 
 <head>
@@ -61,26 +68,41 @@
 				</div>
 				<!-- Sidebar Navidation Menus-->
 				<ul class="list-unstyled">
+					<?php if( in_array("am_r", $permiso) || in_array("as_r", $permiso) || in_array("di_r", $permiso) || in_array("am_c", $permiso) || in_array("as_c", $permiso) || in_array("di_c", $permiso) ){ ?>
 					<li>
 						<a href="modeloavion.php"> <i class="fa fa-plane" aria-hidden="true"></i> Aviones </a>
 					</li>
-					<li> 
+					<?php }?>
+					<?php if( in_array("em_r", $permiso) || in_array("em_c", $permiso) ){ ?>
+					<li>
 						<a href="empleados.php"><i class="fa fa-id-card-o"></i>Empleados</a>
 					</li>
+					<?php }?>
+					<?php if( in_array("fv_r", $permiso) || in_array("fv_c", $permiso) ){ ?>
 					<li>
 						<a href="ventas.php"> <i class="fa fa-paper-plane-o" aria-hidden="true"></i>Ventas </a>
 					</li>
+					<?php }?>
+					<?php if( in_array("cl_r", $permiso) ){ ?>
 					<li>
 						<a href="clientes.php"> <i class="fa fa-address-book-o" aria-hidden="true"></i>Clientes</a>
 					</li>
+					<?php }?>
+					<?php if( in_array("po_r", $permiso) ){ ?>
 					<li>
 						<a href="proveedores.php"> <i class="fa fa-truck" aria-hidden="true"></i>Proveedores</a>
 					</li>
+					<?php }?>
+					<?php if( in_array("fc_r", $permiso) ){ ?>
 					<li>
 						<a href="compras.php"> <i class="fa fa-shopping-bag " aria-hidden="true"></i>Compras </a>
 					</li>
+					<?php }?>
 					<li class="active">
 						<a href="materiales.php"> <i class="fa fa-server " aria-hidden="true"></i>Materiales </a>
+					</li>
+					<li>
+						<a href="piezas.php"> <i class="fa fa-puzzle-piece " aria-hidden="true"></i>Piezas </a>
 					</li>
 				</ul>
 			</nav>
@@ -246,13 +268,26 @@
 													<div class="row">
 														<!-- Columna Izquierda   -->
 														<div class="card-body col-lg-6">
-															
+															<div class="row">
+																<div class="col-lg-4">
+																	<h3>Factura Compra</h3> </div>
+																<div class="col-lg-8"> 001 </div>
+															</div>
 															<div class="row">
 																<div class="col-lg-4">
 																	<h3>ESTATUS</h3> </div>
-																<div class="col-lg-8"> <span class="badge badge-primary font-big">Disponible</span> </div>
+																<div class="col-lg-8"> <span class="badge badge-primary font-big">Evaluacion</span> </div>
 															</div>
-															
+															<div class="row">
+																<div class="col-lg-4">
+																	<h3>Proveedor</h3> </div>
+																<div class="col-lg-8"> LEX FDZ CORP. S.A. </div>
+															</div>
+															<div class="row">
+																<div class="col-lg-4">
+																	<h3>CI/RIF Proveedor</h3> </div>
+																<div class="col-lg-8"> J-79698576-7 </div>
+															</div>
 															<div class="row">
 																<div class="col-lg-4">
 																	<h3>Material</h3> </div>
@@ -264,21 +299,29 @@
 														<div class=" card-body col-lg-6">
 															<div class="row">
 																<div class="col-lg-4">
-																	<h3>Cantidad Disponible</h3> </div>
+																	<h3>Cantidad</h3> </div>
 																<div class="col-lg-8"> 50 u </div>
 															</div>
 															<div class="row">
 																<div class="col-lg-4">
-																	<h3>Precio Unitario</h3> </div>
+																	<h3>Monto Unitario</h3> </div>
 																<div class="col-lg-8"> 15 $ </div>
 															</div>
-															
+															<div class="row">
+																<div class="col-lg-4">
+																	<h3>Monto Total</h3> </div>
+																<div class="col-lg-8"> 750 $ </div>
+															</div>
 															<div class="row">
 																<div class="col-lg-4">
 																	<h3>Fecha</h3> </div>
 																<div class="col-lg-8"> 14/12/2017 </div>
 															</div>
-															
+															<div class="row">
+																<div class="col-lg-4">
+																	<h3>Tipo de Pago</h3> </div>
+																<div class="col-lg-8"> Transfencia </div>
+															</div>
 															<div class="row">
 																<div class="col-lg-4">
 																	<h3>Nota</h3> </div>
@@ -297,13 +340,13 @@
 								</div>
 							</div>
 						</div>
-						<!-- Modal Detalle Material ENDS -->
-						<!-- Modal Borrar Material -->
+						<!-- Modal Detalle Venta ENDS -->
+						<!-- Modal Borrar Venta -->
 						<div id="myModalBorrarVenta" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 							<div role="document" class="modal-dialog">
 								<div class="modal-content">
 									<div class="modal-header">
-										<h4 id="exampleModalLabel" class="modal-title">Esta seguro que desea borrar el Material?</h4>
+										<h4 id="exampleModalLabel" class="modal-title">Esta seguro que desea borrar la Venta?</h4>
 										<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 									</div>
 									<div class="modal-footer">
@@ -313,7 +356,7 @@
 								</div>
 							</div>
 						</div>
-						<!-- Modal Borrar Material ENDS -->
+						<!-- Modal Borrar Venta ENDS -->
 						<!-- Modal Material Editar -->
 						<div id="myModalMaterialEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 							<div role="document" class="modal-dialog modal-xl">
@@ -328,23 +371,91 @@
 												<div class="card col-lg-12">
 													<div class="row">
 														<div class="card-body col-lg-6">
-																														
 															<div class="form-group row">
 																<label class="col-sm-3 form-control-label">
-																	<h3>Nombre</h3> </label>
+																	<h3>Factura Compra</h3> </label>
 																<div class="col-sm-9">
-																	<input type="text" placeholder="Introducir Nombre" class="form-control"> </div>
+																	<input type="text" disabled="" placeholder="No modificable" class="form-control"> </div>
+															</div>
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h3>ESTATUS</h3> </label>
+																<!-- Traer de la tabla de Status las opciones -->
+																
+																<div class="col-sm-9 select">
+																	<select name="account" class="form-control">
+																		<option>En Progreso</option>
+																		<option>Evaluacion</option>
+																		<option>Distribucion</option>
+																		<option>Finalizado</option>
+																	</select>
+																</div>
+															</div>
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h3>Proveedor</h3> </label>
+																<!-- Traer de la tabla de proveedor las opciones -->
+																<div class="col-sm-9 select">
+																	<select name="account" class="form-control">
+																		<option>Lex Fdz</option>
+																		<option>Alexander K</option>
+																		<option>Kevin M</option>
+																		<option>Boris Tor</option>
+																	</select>
+																</div>
+															</div>
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h3>CI/RIF Cliente</h3> </label>
+																<!-- Se debe rellenar automaticamente despues de seleccionar al proveedor -->
+																<div class="col-sm-9">
+																	<input type="text" disabled="" placeholder="No modificable" class="form-control"> </div>
+															</div>
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h3>Material</h3> </label>
+																<!-- Traer de la tabla de materiales las opciones -->
+																<div class="col-sm-9 select">
+																	<select name="account" class="form-control">
+																		<option>Arena Blanca</option>
+																		<option>Cal</option>
+																		<option>Tornillos</option>
+																	</select>
+																</div>
+															</div>
+														</div>
+														<div class=" card-body col-lg-6">
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h3>Cantidad</h3> </label>
+																<div class="col-sm-9">
+																	<input type="text" placeholder="Introduzca cantidad de unidades" class="form-control"> </div>
 															</div>
 															<div class="form-group row">
 																<label class="col-sm-3 form-control-label">
 																	<h3>Precio Unitario</h3> </label>
 																<div class="col-sm-9">
-																	<input type="text" placeholder="Introducir Precio Unitario" class="form-control"> </div>
+																	<input type="text" placeholder="Introduzca precio por unidad" class="form-control"> </div>
 															</div>
-															
-														</div>
-														<div class=" card-body col-lg-6">
-															
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h3>Fecha</h3> </label>
+																<!-- Esto podemos hacerlo automatizado, que salve la fecha de creacion como fecha inicio -->
+																<div class="col-sm-9">
+																	<input type="text" disabled="" placeholder="No modificable" class="form-control"> </div>
+															</div>
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h3>Tipo de Pago</h3> </label>
+																<div class="col-sm-9 select">
+																	<select name="account" class="form-control">
+																		<option>Transfencia</option>
+																		<!-- La opcion TDC deberia expandir otros requerimientos, pero esto lo dejare para cuando implementemos el -->
+																		<!-- hardcore de JS y PHP (2da entrega)-->
+																		<option>TDC</option>
+																	</select>
+																</div>
+															</div>
 															<div class="form-group row">
 																<label class="col-sm-3 form-control-label">
 																	<h3>Nota</h3> </label>
@@ -378,25 +489,91 @@
 											<div class="row">
 												<div class="card col-lg-12">
 													<div class="row">
-														
 														<div class="card-body col-lg-6">
-																														
 															<div class="form-group row">
 																<label class="col-sm-3 form-control-label">
-																	<h3>Nombre</h3> </label>
+																	<h3>Factura Compra</h3> </label>
 																<div class="col-sm-9">
-																	<input type="text" placeholder="Introducir Nombre" class="form-control"> </div>
+																	<input type="text" disabled="" placeholder="No modificable" class="form-control"> </div>
+															</div>
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h3>ESTATUS</h3> </label>
+																<!-- Traer de la tabla de Status las opciones -->
+																
+																<div class="col-sm-9 select">
+																	<select name="account" class="form-control">
+																		<option>En Progreso</option>
+																		<option>Evaluacion</option>
+																		<option>Distribucion</option>
+																		<option>Finalizado</option>
+																	</select>
+																</div>
+															</div>
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h3>Proveedor</h3> </label>
+																<!-- Traer de la tabla de proveedor las opciones -->
+																<div class="col-sm-9 select">
+																	<select name="account" class="form-control">
+																		<option>Lex Fdz</option>
+																		<option>Alexander K</option>
+																		<option>Kevin M</option>
+																		<option>Boris Tor</option>
+																	</select>
+																</div>
+															</div>
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h3>CI/RIF Cliente</h3> </label>
+																<!-- Se debe rellenar automaticamente despues de seleccionar al proveedor -->
+																<div class="col-sm-9">
+																	<input type="text" disabled="" placeholder="No modificable" class="form-control"> </div>
+															</div>
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h3>Material</h3> </label>
+																<!-- Traer de la tabla de materiales -->
+																<div class="col-sm-9 select">
+																	<select name="account" class="form-control">
+																		<option>Arena Blanca</option>
+																		<option>Cal</option>
+																		<option>Tornillos</option>
+																	</select>
+																</div>
+															</div>
+														</div>
+														<div class=" card-body col-lg-6">
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h3>Cantidad</h3> </label>
+																<div class="col-sm-9">
+																	<input type="text" placeholder="Introduzca cantidad de unidades" class="form-control"> </div>
 															</div>
 															<div class="form-group row">
 																<label class="col-sm-3 form-control-label">
 																	<h3>Precio Unitario</h3> </label>
 																<div class="col-sm-9">
-																	<input type="text" placeholder="Introducir Precio Unitario" class="form-control"> </div>
+																	<input type="text" placeholder="Introduzca precio por unidad" class="form-control"> </div>
 															</div>
-															
-														</div>
-														<div class=" card-body col-lg-6">
-															
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h3>Fecha</h3> </label>
+																<div class="col-sm-9">
+																	<input type="text" placeholder="Introduzca Fecha" class="form-control"> </div>
+															</div>
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h3>Tipo de Pago</h3> </label>
+																<div class="col-sm-9 select">
+																	<select name="account" class="form-control">
+																		<option>Transfencia</option>
+																		<!-- La opcion TDC deberia expandir otros requerimientos, pero esto lo dejare para cuando implementemos el -->
+																		<!-- hardcore de JS y PHP (2da entrega)-->
+																		<option>TDC</option>
+																	</select>
+																</div>
+															</div>
 															<div class="form-group row">
 																<label class="col-sm-3 form-control-label">
 																	<h3>Nota</h3> </label>
@@ -404,7 +581,6 @@
 																	<input type="text" placeholder="Aqui puedes escribir..." class="form-control form-control-lg" rows="4" cols="50"> </div>
 															</div>
 														</div>
-														
 													</div>
 												</div>
 											</div>

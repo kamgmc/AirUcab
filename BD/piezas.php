@@ -1,4 +1,12 @@
-<!DOCTYPE html><?php include 'conexion.php';?>
+<?php session_start(); 
+date_default_timezone_set('America/Port_of_Spain'); 
+error_reporting('E_ALL ^ E_NOTICE'); 
+include 'conexion.php'; 
+if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'] = 5;} 
+$qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$_SESSION['rol']; 
+$rs = pg_query( $conexion, $qry ); $permiso = array();
+while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -60,12 +68,36 @@
 				</div>
 				<!-- Sidebar Navidation Menus-->
 				<ul class="list-unstyled">
-					<li> <a href="modeloavion.php"> <i class="fa fa-plane" aria-hidden="true"></i> Aviones </a></li>
-					<li> <a href="empleados.php"><i class="fa fa-id-card-o"></i>Empleados</a></li>
-					<li> <a href="ventas.php"> <i class="fa fa-paper-plane-o" aria-hidden="true"></i>Ventas </a></li>
-					<li> <a href="clientes.php"> <i class="fa fa-address-book-o" aria-hidden="true"></i>Clientes</a></li>
-					<li> <a href="proveedores.php"> <i class="fa fa-truck" aria-hidden="true"></i>Proveedores</a></li>
-					<li> <a href="compras.php"> <i class="fa fa-shopping-bag " aria-hidden="true"></i>Compras </a></li>
+					<?php if( in_array("am_r", $permiso) || in_array("as_r", $permiso) || in_array("di_r", $permiso) || in_array("am_c", $permiso) || in_array("as_c", $permiso) || in_array("di_c", $permiso) ){ ?>
+					<li>
+						<a href="modeloavion.php"> <i class="fa fa-plane" aria-hidden="true"></i> Aviones </a>
+					</li>
+					<?php }?>
+					<?php if( in_array("em_r", $permiso) || in_array("em_c", $permiso) ){ ?>
+					<li>
+						<a href="empleados.php"><i class="fa fa-id-card-o"></i>Empleados</a>
+					</li>
+					<?php }?>
+					<?php if( in_array("fv_r", $permiso) || in_array("fv_c", $permiso) ){ ?>
+					<li>
+						<a href="ventas.php"> <i class="fa fa-paper-plane-o" aria-hidden="true"></i>Ventas </a>
+					</li>
+					<?php }?>
+					<?php if( in_array("cl_r", $permiso) ){ ?>
+					<li>
+						<a href="clientes.php"> <i class="fa fa-address-book-o" aria-hidden="true"></i>Clientes</a>
+					</li>
+					<?php }?>
+					<?php if( in_array("po_r", $permiso) ){ ?>
+					<li>
+						<a href="proveedores.php"> <i class="fa fa-truck" aria-hidden="true"></i>Proveedores</a>
+					</li>
+					<?php }?>
+					<?php if( in_array("fc_r", $permiso) ){ ?>
+					<li>
+						<a href="compras.php"> <i class="fa fa-shopping-bag " aria-hidden="true"></i>Compras </a>
+					</li>
+					<?php }?>
 					<li>
 						<a href="materiales.php"> <i class="fa fa-server " aria-hidden="true"></i>Materiales </a>
 					</li>

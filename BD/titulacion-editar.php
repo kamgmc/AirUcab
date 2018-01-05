@@ -1,5 +1,6 @@
 <?php include 'conexion.php';
-$qry = "SELECT ti_id id, ti_nombre nombre FROM Titulacion WHERE ti_id=".$_GET['id'];
+$id = htmlentities($_GET['id'], ENT_QUOTES);
+$qry = "SELECT ti_id id, ti_nombre nombre FROM Titulacion WHERE ti_id=".$id;
 $con = pg_query($conexion, $qry);
 $titulacion = pg_fetch_object($con);
 $resultado = '<form action="titulacion-crud.php?edit='.$titulacion->id.'" method="post">
@@ -15,7 +16,7 @@ $resultado = '<form action="titulacion-crud.php?edit='.$titulacion->id.'" method
 								<h4>Nombre</h4>
 							</label>
 							<div class="col-sm-9">
-								<input name="nombre" type="text" value="'.$titulacion->nombre.'" class="form-control" required>
+								<input name="nombre" type="text" value="'.$titulacion->nombre.'" class="form-control" pattern="[A-Z a-zñ]+" required>
 							</div>
 						</div>
 					</div>

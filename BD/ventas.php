@@ -111,6 +111,9 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 					<li>
 						<a href="materiales.php"> <i class="fa fa-server " aria-hidden="true"></i>Materiales </a>
 					</li>
+					<li>
+						<a href="piezas.php"> <i class="fa fa-puzzle-piece " aria-hidden="true"></i>Piezas </a>
+					</li>
 				</ul>
 			</nav>
 			<div class="content-inner">
@@ -328,7 +331,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 																	<h4>Precio</h4>
 																</label>
 																<div class="col-sm-9">
-																	<input name="precio[]" type="text" placeholder="Introduzca precio por Avion" class="form-control" required>
+																	<input name="precio[]" type="text" placeholder="Introduzca precio por Avion" class="form-control" pattern="([0-9]+\.[0-9]+)|([0-9]+)" required>
 																</div>
 															</div>
 															<div class="form-group row">
@@ -402,155 +405,22 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 							</div>
 						</div>
 						<!-- Modal Detalle Venta ENDS -->
-						<!-- Modal Venta Editar -->
-						<div id="myModalVentaEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
-							<div role="document" class="modal-dialog modal-xl">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h4 id="exampleModalLabel" class="modal-title">DETALLE VENTA</h4>
-										<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-									</div>
-									<div class="modal-body">
-										<div class="container-fluid">
-											<div class="row">
-												<div class="card col-lg-12">
-													<div class="row">
-														<div class="card-body col-lg-6">
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h4>Factura Venta</h4> </label>
-																<div class="col-sm-9">
-																	<input type="text" disabled="" placeholder="No modificable" class="form-control"> </div>
-															</div>
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h4>ESTATUS</h4> </label>
-																<!-- Traer de la tabla de Status las opciones -->
-																<!-- Creo que su seleccion deberia ser automatica por parte del sistema solo en este caso porque este pasa a -->
-																<!-- finalizado cuando los otros STATUS de cada material y cada avion comprado pasan a Finalizado -->
-																<div class="col-sm-9 select">
-																	<select name="account" class="form-control">
-																		<option>En Progreso</option>
-																		<option>Evaluacion</option>
-																		<option>Distribucion</option>
-																		<option>Finalizado</option>
-																	</select>
-																</div>
-															</div>
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h4>Cliente</h4> </label>
-																<!-- Traer de la tabla de clientes las opciones -->
-																<div class="col-sm-9 select">
-																	<select name="account" class="form-control">
-																		<option>Lex Fdz</option>
-																		<option>Alexander K</option>
-																		<option>Kevin M</option>
-																		<option>Boris Tor</option>
-																	</select>
-																</div>
-															</div>
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h4>CI/RIF Cliente</h4> </label>
-																<!-- Se debe rellenar automaticamente despues de seleccionar al cliente -->
-																<div class="col-sm-9">
-																	<input type="text" disabled="" placeholder="No modificable" class="form-control"> </div>
-															</div>
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h4>Modelo Avion</h4> </label>
-																<!-- Traer de la tabla de modelo avion las opciones -->
-																<div class="col-sm-9 select">
-																	<select name="account" class="form-control">
-																		<option>AU80</option>
-																		<option>Au808</option>
-																		<option>AU988</option>
-																	</select>
-																</div>
-															</div>
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h4>Submodelo Avion</h4> </label>
-																<!-- Traer de la tabla de submodelo avion las opciones -->
-																<div class="col-sm-9 select">
-																	<select name="account" class="form-control">
-																		<option>LW</option>
-																		<option>Standar</option>
-																		<option>Big</option>
-																	</select> <span class="help-block-none"><small>Seleccionar Modelo Avion primero.</small></span> </div>
-															</div>
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h4>Distribucion</h4> </label>
-																<!-- Traer de la tabla de distribucion avion las opciones -->
-																<div class="col-sm-9 select">
-																	<select name="account" class="form-control">
-																		<option>Civil</option>
-																		<option>Militar</option>
-																		<option>Empresarial</option>
-																	</select> <span class="help-block-none"><small>Seleccionar Modelo Avion primero.</small></span> </div>
-															</div>
-														</div>
-														<div class=" card-body col-lg-6">
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h4>Cantidad</h4> </label>
-																<div class="col-sm-9">
-																	<input type="text" placeholder="Introduzca cantidad de Aviones" class="form-control"> </div>
-															</div>
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h4>Precio Unitario</h4> </label>
-																<div class="col-sm-9">
-																	<input type="text" placeholder="Introduzca precio por Avion" class="form-control"> </div>
-															</div>
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h4>Fecha Inicio</h4> </label>
-																<!-- Esto podemos hacerlo automatizado, que salve la fecha de creacion como fecha inicio -->
-																<div class="col-sm-9">
-																	<input type="text" disabled="" placeholder="No modificable" class="form-control"> </div>
-															</div>
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h4>Fecha Final</h4> </label>
-																<!-- Esto es OBLIGATORIAMENTE AUTOMATICO cuando el STATUS cambie a finalizado -->
-																<div class="col-sm-9">
-																	<input type="text" disabled="" placeholder="No modificable" class="form-control"> </div>
-															</div>
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h4>Tipo de Pago</h4> </label>
-																<div class="col-sm-9 select">
-																	<select name="account" class="form-control">
-																		<option>Transfencia</option>
-																		<!-- La opcion TDC deberia expandir otros requerimientos, pero esto lo dejare para cuando implementemos el -->
-																		<!-- hardcore de JS y PHP (2da entrega)-->
-																		<option>TDC</option>
-																	</select>
-																</div>
-															</div>
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h4>Nota</h4> </label>
-																<div class="col-sm-9">
-																	<input type="text" placeholder="Aqui puedes escribir..." class="form-control form-control-lg" rows="4" cols="50"> </div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="modal-footer">
-										<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
-										<button type="button" class="btn btn-primary">Guardar Cambios</button>
-									</div>
+						<!-- Modal Detalle Avion  -->
+						<div id="ModalDetalleAvion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+							<div role="document" class="modal-dialog modal-lg">
+								<div id="detalleAvionBody" class="modal-content">
 								</div>
 							</div>
 						</div>
-						<!-- Modal Venta Editar ENDS -->
+						<!-- Modal Detalle Avion ENDS -->
+						<!-- Modal Detalle Pieza  -->
+						<div id="ModalDetallePieza" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+							<div role="document" class="modal-dialog">
+								<div id="detallePiezaBody" class="modal-content">
+								</div>
+							</div>
+						</div>
+						<!-- Modal Detalle Pieza ENDS -->
 					</div>
 				</section>
 				<!-- Section de TABS ENDS -->

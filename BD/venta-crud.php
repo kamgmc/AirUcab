@@ -47,11 +47,8 @@
 							if( insertarStatusAvion( 1, $avion->id ) ){
 								$qry = "Select pm_id AS id, pm_cantidad AS cantidad from s_avion_m_pieza INNER JOIN Modelo_pieza ON smp_modelo_pieza=pm_modelo_pieza Where smp_submodelo_avion=".$_POST['submodelo'][$i]." UNION Select smp_modelo_pieza AS id, smp_cantidad AS cantidad from s_avion_m_pieza Where smp_submodelo_avion=".$_POST['submodelo'][$i]." ORDER BY id";
 								$anwsermodelo = pg_query($conexion, $qry);
-								print $_POST['submodelo'][$i]." submodelo<br/>";
 								while( $modelo_pieza = pg_fetch_object($anwsermodelo) ){
-									print $modelo_pieza->id.' modelo pieza<br/>';
 									for($j = 1; $j <= $modelo_pieza->cantidad; $j++ ){
-										print $j.' $j<br/>';
 										if(insertarPieza( $modelo_pieza->id, $avion->id )){//Crea una nueva pieza
 											$qry = "SELECT Max(p_id) AS id FROM Pieza where p_avion=".$avion->id." AND p_modelo_pieza=".$modelo_pieza->id;
 											if($answer = pg_query( $conexion, $qry )){
@@ -94,11 +91,59 @@
 											}
 										}
 									}
-									print $modelo_pieza->id.' modelo pieza<br/>';
-									print 'out<br/>';
+								}
+								$qry = "SELECT pm_id AS id FROM modelo_pieza WHERE pm_nombre='Asiento'";
+								$anwser = pg_query($conexion, $qry);
+								$asiento = pg_fetch_object($anwser);
+
+								$qry = "SELECT di_capacidad_pasajeros AS capacidad FROM distribucion WHERE di_id=".$_POST['distribucion'][$i];
+								$anwser = pg_query($conexion, $qry);
+								$distribucion = pg_fetch_object($anwser);
+
+								for($h = 0; $h < $distribucion->capacidad; $h++){
+									if(insertarPieza( $asiento->id, $avion->id )){//Crea una nueva pieza
+										$qry = "SELECT Max(p_id) AS id FROM Pieza where p_avion=".$avion->id." AND p_modelo_pieza=".$asiento->id;
+										if($answer = pg_query( $conexion, $qry )){
+											$pieza = pg_fetch_object($answer);//Pieza especifica
+											$qry2 = "SELECT tmm_id id, tmm_cantidad cantidad, tmm_tipo_material material FROM t_material_m_pieza WHERE tmm_modelo_pieza=".$asiento->id;
+											//Hace una lista de los materiales necesarios
+											$anwser = pg_query($conexion, $qry2); $materiales = array();
+											while( $material = pg_fetch_object($anwser) )
+												$materiales[$material->id] = $material->cantidad;
+											//Recorre todos los materiales necesarios
+											$anwser = pg_query($conexion, $qry2);
+											while($pm = pg_fetch_object($anwser)){
+												// Busca si hay materiales ya creados disponibles
+												$qry = "SELECT m_id id FROM Material, Status_material, Status WHERE m_tipo_material=".$pm->material." AND m_pieza=NULL AND sm_material=m_id AND sm_status=st_id AND st_nombre<>'Rechazado'";
+												$anwser = pg_query($conexion, $qry);
+												while($material = pg_fetch_object($anwser)){
+													if( isset($materiales[$pm->id]) ){
+														editarMaterial( $material->id, $pieza->id, 0 );
+														$materiales[$pm->id]--;
+														if($materiales[$pm->id] == 0){
+															unset($materiales[$pm->id]);
+
+														}
+													}
+												}
+											}
+											$anwser = pg_query($conexion, $qry2);
+											while($pm = pg_fetch_object($anwser)){
+												if( isset($materiales[$pm->id]) && $materiales[$pm->id] > 0 ){
+													for($h = 0; $h < $materiales[$pm->id]; $h++){
+														insertarMaterial( $pm->material, 0, $pieza->id, 1 );//Material nuevo
+														$qry = "SELECT MAX(m_id) AS id FROM Material WHERE m_factura_compra=0 AND m_tipo_material=".$pm->material." AND m_pieza=".$pieza->id;
+														$anwser = pg_query($conexion, $qry);
+														$materialc = pg_fetch_object($anwser);
+														insertarStatusMaterial( 1, $materialc->id);//Status del material inicialmente
+													}
+												}
+											}
+											insertarStatusPieza( 1, $pieza->id );
+										}
+									}
 								}
 								$i++;
-								print 'outout<br/>';
 							}
 							else{header('Location: ventas.php?error=2');exit;}
 						}
@@ -144,8 +189,10 @@
 				}
 				else $exit = true;
 			}
+			header('Location: ventas.php');
+			exit;
 		}
-		//else header('Location: ventas.php?error=1');
+		else header('Location: ventas.php?error=1');
 		exit;
 	}
 	if(isset($_GET['delete'])){
