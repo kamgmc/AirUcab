@@ -21,11 +21,17 @@
 - [ ] Sedes 
 - [ ] Tipo de Contacto (empleado) 
 :white_check_mark: Cliente
+
 :white_check_mark: Proveedor
+
 :white_check_mark: Factura compra
+
 :white_check_mark: Tipo Ala
+
 :white_check_mark: Tipo Estabilizador
+
 :white_check_mark: Material
+
 :white_check_mark: Piezas
 
 ## BACKEND
