@@ -448,7 +448,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
 														<td class="text-center">24</td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#ModalTipoAla"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
@@ -460,7 +460,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
 														<td class="text-center">24</td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#ModalTipoAla"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
@@ -472,7 +472,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
 														<td class="text-center">24</td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#ModalTipoAla"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
@@ -484,7 +484,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
 														<td class="text-center">24</td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#ModalTipoAla"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
@@ -496,7 +496,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
 														<td class="text-center">24</td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#ModalTipoAla"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
@@ -508,7 +508,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
 														<td class="text-center">24</td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#ModalTipoAla"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
@@ -580,7 +580,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
 														<td class="text-center">24</td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#ModalTipoEstabilizador"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
@@ -592,7 +592,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
 														<td class="text-center">24</td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#ModalTipoEstabilizador"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
@@ -604,7 +604,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
 														<td class="text-center">24</td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#ModalTipoEstabilizador"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
@@ -616,7 +616,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
 														<td class="text-center">24</td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#ModalTipoEstabilizador"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
@@ -628,7 +628,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
 														<td class="text-center">24</td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#ModalTipoEstabilizador"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
@@ -640,7 +640,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
 														<td class="text-center">24</td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#ModalTipoEstabilizador"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
@@ -838,6 +838,238 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 							</div>
 						</div>
 						<!-- Modal Modelo Piezas Informacion ENDS -->
+
+						<!-- Modal Tipo Ala Informacion -->
+						<div id="ModalTipoAla" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+							<div role="document" class="modal-dialog modal-xl">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h4 id="exampleModalLabel" class="modal-title">INFORMACION TIPO ALA</h4>
+										<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+									</div>
+									<div class="modal-body">
+										<div class="container-fluid">
+											<div class="row">
+												<div class="card col-lg-12">
+													<div class="row">
+														<!-- Columna Izquierda   -->
+
+														<div class="card-body col-lg-6">
+															<div class="row">
+																<div class="col-lg-4">
+																	<h3>ESTATUS</h3> </div>
+																<div class="col-lg-8"> <span class="badge badge-primary font-big">Disponible</span> </div>
+															</div>
+															<div class="row">
+																<div class="col-lg-4">
+																	<h3>Nombre</h3> </div>
+																<div class="col-lg-8"></div>
+															</div>
+														</div>	
+														<!-- Columna izquierda ENDS -->
+														<!-- Columna derecha -->
+														<div class=" card-body col-lg-6">
+															
+															<div class="row">
+																<div class="col-lg-4">
+																	<h3>Fecha Inicio</h3> </div>
+																<div class="col-lg-8">  </div>
+															</div>
+															<div class="row">
+																<div class="col-lg-4">
+																	<h3>Fecha Final</h3> </div>
+																<div class="col-lg-8">  </div>
+															</div>
+															<div class="row">
+																<div class="col-lg-4">
+																	<h3>Cantidad</h3> </div>
+																<div class="col-lg-8">  </div>
+															</div>
+															<div class="row">
+																<div class="col-lg-4">
+																	<h3>Nota</h3> </div>
+																<div class="col-lg-8">  </div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!-- Tabla Piezas STARTS -->
+										<div class="col-md-12">
+											<div class="card">
+												<div class="card-header d-flex align-items-center">
+													<h3 class="h4">MATERIALES NECESARIOS</h3> </div>
+												<div class="card-body">
+													
+													<table class="table table-striped table-sm table-hover">
+														<thead>
+															<tr>
+																<th>ID</th>
+																<th>MATERIAL</th>
+																<th>PRECIO UNITARIO</th>
+																<th>CANTIDAD</th>
+																<th>ESTATUS</th>
+																<th class="text-center">Accion</th>
+															</tr>
+														</thead>
+														<tbody>
+														
+															<tr>
+																<td>3</td>
+																<td>Arena</td>
+																<td>2.00</td>
+																<td>24</td>
+																<td><span class="badge badge-info">DISPONIBLE</span></td>
+																<td class="text-center">
+																	<a href="" data-toggle="modal" data-target="#myModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+																	<a href="" data-toggle="modal" data-target="#myModalBorrarVenta"> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+																</td>
+															</tr>
+															<tr>
+																<td>7</td>
+																<td>Plomo</td>
+																<td>5.00</td>
+																<td>7</td>
+																<td><span class="badge badge-danger">EN TRAYECTO</span></td>
+																<td class="text-center">
+																	<a href="" data-toggle="modal" data-target="#myModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+																	<a href="" data-toggle="modal" data-target="#myModalBorrarVenta"> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+																</td>
+															</tr>
+															
+														</tbody>
+													</table>
+													
+												</div>
+											</div>
+										</div>
+										<!-- Tabla Piezas ENDS -->
+									</div>
+									<div class="modal-footer">
+										<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
+										<button type="button" data-toggle="modal" data-target="#myModalModeloPiezaEditar" class="btn btn-primary">Editar</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Modal Tipo Ala Informacion ENDS -->
+
+						<!-- Modal Tipo Estabilizador Informacion -->
+						<div id="ModalTipoEstabilizador" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+							<div role="document" class="modal-dialog modal-xl">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h4 id="exampleModalLabel" class="modal-title">INFORMACION TIPO ESTABILIZADOR</h4>
+										<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+									</div>
+									<div class="modal-body">
+										<div class="container-fluid">
+											<div class="row">
+												<div class="card col-lg-12">
+													<div class="row">
+														<!-- Columna Izquierda   -->
+
+														<div class="card-body col-lg-6">
+															<div class="row">
+																<div class="col-lg-4">
+																	<h3>ESTATUS</h3> </div>
+																<div class="col-lg-8"> <span class="badge badge-primary font-big">Disponible</span> </div>
+															</div>
+															<div class="row">
+																<div class="col-lg-4">
+																	<h3>Nombre</h3> </div>
+																<div class="col-lg-8"></div>
+															</div>
+														</div>	
+														<!-- Columna izquierda ENDS -->
+														<!-- Columna derecha -->
+														<div class=" card-body col-lg-6">
+															
+															<div class="row">
+																<div class="col-lg-4">
+																	<h3>Fecha Inicio</h3> </div>
+																<div class="col-lg-8">  </div>
+															</div>
+															<div class="row">
+																<div class="col-lg-4">
+																	<h3>Fecha Final</h3> </div>
+																<div class="col-lg-8">  </div>
+															</div>
+															<div class="row">
+																<div class="col-lg-4">
+																	<h3>Cantidad</h3> </div>
+																<div class="col-lg-8">  </div>
+															</div>
+															<div class="row">
+																<div class="col-lg-4">
+																	<h3>Nota</h3> </div>
+																<div class="col-lg-8">  </div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!-- Tabla Piezas STARTS -->
+										<div class="col-md-12">
+											<div class="card">
+												<div class="card-header d-flex align-items-center">
+													<h3 class="h4">MATERIALES NECESARIOS</h3> </div>
+												<div class="card-body">
+													
+													<table class="table table-striped table-sm table-hover">
+														<thead>
+															<tr>
+																<th>ID</th>
+																<th>MATERIAL</th>
+																<th>PRECIO UNITARIO</th>
+																<th>CANTIDAD</th>
+																<th>ESTATUS</th>
+																<th class="text-center">Accion</th>
+															</tr>
+														</thead>
+														<tbody>
+														
+															<tr>
+																<td>3</td>
+																<td>Arena</td>
+																<td>2.00</td>
+																<td>24</td>
+																<td><span class="badge badge-info">DISPONIBLE</span></td>
+																<td class="text-center">
+																	<a href="" data-toggle="modal" data-target="#myModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+																	<a href="" data-toggle="modal" data-target="#myModalBorrarVenta"> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+																</td>
+															</tr>
+															<tr>
+																<td>7</td>
+																<td>Plomo</td>
+																<td>5.00</td>
+																<td>7</td>
+																<td><span class="badge badge-danger">EN TRAYECTO</span></td>
+																<td class="text-center">
+																	<a href="" data-toggle="modal" data-target="#myModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+																	<a href="" data-toggle="modal" data-target="#myModalBorrarVenta"> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+																</td>
+															</tr>
+															
+														</tbody>
+													</table>
+													
+												</div>
+											</div>
+										</div>
+										<!-- Tabla Piezas ENDS -->
+									</div>
+									<div class="modal-footer">
+										<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
+										<button type="button" data-toggle="modal" data-target="#myModalModeloPiezaEditar" class="btn btn-primary">Editar</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Modal Tipo Estabilizador Informacion ENDS -->
 
 						<!-- Modal Modelo Piezas Editar -->
 						<div id="myModalModeloPiezaEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
