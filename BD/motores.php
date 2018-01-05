@@ -186,7 +186,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
 														<td class="text-center">Hawk 421</td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#ModalMotor"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
@@ -198,7 +198,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
 														<td class="text-center">Hawk 421</td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#ModalMotor"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
@@ -210,7 +210,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
 														<td class="text-center">Hawk 421</td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#ModalMotor"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
@@ -222,7 +222,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
 														<td class="text-center">Hawk 421</td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#ModalMotor"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
@@ -234,7 +234,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
 														<td class="text-center">Hawk 421</td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#ModalMotor"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
@@ -246,7 +246,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
 														<td class="text-center">Hawk 421</td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#ModalMotor"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
@@ -343,7 +343,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<td class="text-center">78 m</td>
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#ModalModeloMotor"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
@@ -359,7 +359,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<td class="text-center">78 m</td>
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#ModalModeloMotor"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
@@ -375,7 +375,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<td class="text-center">78 m</td>
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#ModalModeloMotor"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
@@ -391,7 +391,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<td class="text-center">78 m</td>
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#ModalModeloMotor"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
@@ -407,7 +407,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<td class="text-center">78 m</td>
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#ModalModeloMotor"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
@@ -423,7 +423,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<td class="text-center">78 m</td>
 														<td class="text-center"><span class="badge badge-info">Listo</span></td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#ModalModeloMotor"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
@@ -440,12 +440,12 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 						
 
 
-						<!-- Modal Pieza Informacion -->
-						<div id="ModalPieza" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+						<!-- Modal Motor Informacion -->
+						<div id="ModalMotor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 							<div role="document" class="modal-dialog modal-xl">
 								<div class="modal-content">
 									<div class="modal-header">
-										<h4 id="exampleModalLabel" class="modal-title">INFORMACION PIEZA</h4>
+										<h4 id="exampleModalLabel" class="modal-title">INFORMACION MOTOR</h4>
 										<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 									</div>
 									<div class="modal-body">
@@ -483,7 +483,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 															</div>
 															<div class="row">
 																<div class="col-lg-4">
-																	<h3>Cantidad</h3> </div>
+																	<h3>Avion P.</h3> </div>
 																<div class="col-lg-8">  </div>
 															</div>
 															<div class="row">
@@ -505,15 +505,15 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 								</div>
 							</div>
 						</div>
-						<!-- Modal Piezas Informacion ENDS -->
+						<!-- Modal Motor Informacion ENDS -->
 
 						
-						<!-- Modal Modelo Pieza Informacion -->
-						<div id="ModalModeloPieza" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+						<!-- Modal Modelo Motor Informacion -->
+						<div id="ModalModeloMotor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 							<div role="document" class="modal-dialog modal-xl">
 								<div class="modal-content">
 									<div class="modal-header">
-										<h4 id="exampleModalLabel" class="modal-title">INFORMACION PIEZA</h4>
+										<h4 id="exampleModalLabel" class="modal-title">INFORMACION MODELO MOTOR</h4>
 										<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 									</div>
 									<div class="modal-body">
@@ -534,6 +534,31 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 																	<h3>Nombre</h3> </div>
 																<div class="col-lg-8"></div>
 															</div>
+															<div class="row">
+																<div class="col-lg-4">
+																	<h3>Marca</h3> </div>
+																<div class="col-lg-8"></div>
+															</div>
+															<div class="row">
+																<div class="col-lg-4">
+																	<h3>Tipo</h3> </div>
+																<div class="col-lg-8"></div>
+															</div>
+															<div class="row">
+																<div class="col-lg-4">
+																	<h3>Empuje Max</h3> </div>
+																<div class="col-lg-8"></div>
+															</div>
+															<div class="row">
+																<div class="col-lg-4">
+																	<h3>Empuje Norma</h3> </div>
+																<div class="col-lg-8"></div>
+															</div>
+															<div class="row">
+																<div class="col-lg-4">
+																	<h3>Empuje Crucero</h3> </div>
+																<div class="col-lg-8"></div>
+															</div>
 														</div>	
 														<!-- Columna izquierda ENDS -->
 														<!-- Columna derecha -->
@@ -541,18 +566,13 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 															
 															<div class="row">
 																<div class="col-lg-4">
-																	<h3>Fecha Inicio</h3> </div>
-																<div class="col-lg-8">  </div>
+																	<h3>Longitud</h3> </div>
+																<div class="col-lg-8"></div>
 															</div>
 															<div class="row">
 																<div class="col-lg-4">
-																	<h3>Fecha Final</h3> </div>
-																<div class="col-lg-8">  </div>
-															</div>
-															<div class="row">
-																<div class="col-lg-4">
-																	<h3>Cantidad</h3> </div>
-																<div class="col-lg-8">  </div>
+																	<h3>Diametro Aspa</h3> </div>
+																<div class="col-lg-8"></div>
 															</div>
 															<div class="row">
 																<div class="col-lg-4">
@@ -568,44 +588,60 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 										<div class="col-md-12">
 											<div class="card">
 												<div class="card-header d-flex align-items-center">
-													<h3 class="h4">MATERIALES NECESARIOS</h3> </div>
+													<h3 class="h4">AVIONES QUE LO USAN</h3> </div>
 												<div class="card-body">
 													
 													<table class="table table-striped table-sm table-hover">
 														<thead>
 															<tr>
-																<th>ID</th>
-																<th>MATERIAL</th>
-																<th>PRECIO UNITARIO</th>
-																<th>CANTIDAD</th>
-																<th>ESTATUS</th>
-																<th class="text-center">Accion</th>
+																<th class="text-center text-middle">ID</th>
+																<th class="text-center text-middle">Nombre</th>
+																<th class="text-center text-middle">Longitud</th>
+																<th class="text-center text-middle">Altura</th>
+																<th class="text-center text-middle">Envergadura</th>
+																<th class="text-center text-middle">Velocidad Max</th>
+																<th class="text-center text-middle">Volumen Carga</th>
+																<th class="text-center text-middle">Capacidad Pilotos</th>
+																<th class="text-center text-middle">Capacidad Asistentes</th>
+																<th class="text-center text-middle">Tiempo Estimado</th>
+																<th class="text-center">Acción</th>
 															</tr>
 														</thead>
 														<tbody>
 														
 															<tr>
 																<td>3</td>
-																<td>Arena</td>
+																<td>AU808</td>
 																<td>2.00</td>
 																<td>24</td>
-																<td><span class="badge badge-info">DISPONIBLE</span></td>
+																<td>24</td>
+																<td>24</td>
+																<td>24</td>
+																<td>24</td>
+																<td>24</td>
+																<td>24</td>
 																<td class="text-center">
 																	<a href="" data-toggle="modal" data-target="#myModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 																	<a href="" data-toggle="modal" data-target="#myModalBorrarVenta"> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 																</td>
 															</tr>
 															<tr>
-																<td>7</td>
-																<td>Plomo</td>
-																<td>5.00</td>
-																<td>7</td>
-																<td><span class="badge badge-danger">EN TRAYECTO</span></td>
+																<td>3</td>
+																<td>AU808</td>
+																<td>2.00</td>
+																<td>24</td>
+																<td>24</td>
+																<td>24</td>
+																<td>24</td>
+																<td>24</td>
+																<td>24</td>
+																<td>24</td>
 																<td class="text-center">
 																	<a href="" data-toggle="modal" data-target="#myModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 																	<a href="" data-toggle="modal" data-target="#myModalBorrarVenta"> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 																</td>
 															</tr>
+															
 															
 														</tbody>
 													</table>
@@ -622,7 +658,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 								</div>
 							</div>
 						</div>
-						<!-- Modal Modelo Piezas Informacion ENDS -->
+						<!-- Modal Modelo Motor Informacion ENDS -->
 
 						
 
@@ -875,7 +911,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 												<div class="card col-lg-12">
 													<div class="row">
 														<div class="col-sm-12 pad-top">
-															<h4>Informacion Modelo Pieza</h4>
+															<h4>Informacion Modelo Motor</h4>
 														</div>
 														
 														<div class="card-body col-lg-6">
