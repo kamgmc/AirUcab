@@ -16,8 +16,8 @@
 
 ## FRONTEND
 - [ ] Status (en Pruebas, para poder agregar nuevos estatus)
-- [ ] Pruebas 
-- [ ] Traslados 
+- [x] Pruebas 
+- [ ] Traslados `WORKING`
 - [ ] Zonas 
 - [ ] Sedes 
 - [ ] Tipo de Contacto (empleado) 
