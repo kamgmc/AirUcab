@@ -5,11 +5,11 @@ $qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WH
 $rs = pg_query( $conexion, $qry ); $permiso = array();
 while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }
 $id = htmlentities($_GET['id'], ENT_QUOTES);
-$qry = "select smp_id AS id, smp_cantidad AS cantidad, pm_nombre AS pieza, pm_id As id_pieza, am_nombre||' - '||as_nombre AS nombre, wt_nombre AS ala, et_nombre AS estabilizador from S_avion_m_pieza, Submodelo_avion, Modelo_avion, Modelo_pieza LEFT JOIN Tipo_ala ON pm_tipo_ala=wt_id LEFT JOIN Tipo_estabilizador ON pm_tipo_estabilizador=et_id WHERE smp_modelo_pieza=pm_id AND smp_submodelo_avion=as_id AND as_modelo_avion=am_id AND smp_submodelo_avion=".$id." ORDER BY pm_nombre";
+$qry = "select smp_id AS id, smp_cantidad AS cantidad, pm_nombre AS pieza, pm_id As id_pieza, am_nombre||' - '||as_nombre AS nombre, wt_nombre AS ala, et_nombre AS estabilizador, as_cantidad_motor AS cantidad_motores from S_avion_m_pieza, Submodelo_avion, Modelo_avion, Modelo_pieza LEFT JOIN Tipo_ala ON pm_tipo_ala=wt_id LEFT JOIN Tipo_estabilizador ON pm_tipo_estabilizador=et_id WHERE smp_modelo_pieza=pm_id AND smp_submodelo_avion=as_id AND as_modelo_avion=am_id AND smp_submodelo_avion=".$id." ORDER BY pm_nombre";
 $con = pg_query($conexion, $qry);
 $submodelo = pg_fetch_object($con);
 $resultado = '<div class="modal-header">
-			<h4 id="exampleModalLabel" class="modal-title">Piezas de '.$submodelo->nombre.'</h4>
+			<h4 id="exampleModalLabel" class="modal-title">Piezas de Submodelo</h4>
 			<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 		</div>
 		<div class="modal-body">
@@ -50,6 +50,14 @@ $resultado = '<div class="modal-header">
 										</a>';
 										}
 									}
+									$con = pg_query($conexion, $qry);
+									if($submodelo = pg_fetch_object($con))
+										$resultado .= '<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+											<div class="d-flex w-80 justify-content-between">
+												<h5 class="mb-1">Motor</h5>
+												<small>'.$submodelo->cantidad_motores.' unds</small>
+											</div>
+										</a>';
 								$resultado .= '</div>
 							</div>
 							<!-- Columna izquierda ENDS -->
@@ -63,16 +71,6 @@ $resultado = '<div class="modal-header">
 		</div>
 		<div class="modal-footer">
 			<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
-			<a href="" class="click-submodelo-editar btn btn-primary">Editar</a>
-		</div>
-			<script>
-			$( "a.click-submodelo-editar" ).click(function( event ) {
-				event.preventDefault();
-				var href = $(this).attr("href");
-				$.ajax({type: "POST",dataType: "html",url:"submodeloavion-editar.php?id="+href,success: function(data){$("#editarSubmodeloBody").html(data);}});
-				$("#ModalEditarSubmodelo").modal("show");
-				$("#ModalEditarSubmodelo").modal("handleUpdate");
-			});
-			</script>';
+		</div>';
 echo $resultado;
 ?>

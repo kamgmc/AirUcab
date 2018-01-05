@@ -1,7 +1,7 @@
 <?php 
 include 'conexion.php';
 $id = htmlentities($_GET['id'], ENT_QUOTES);
-$qry = "SELECT as_id, as_nombre, as_peso_maximo_despegue, as_peso_vacio, as_velocidad_crucero, as_carrera_despegue_peso_maximo, as_autonomia_peso_maximo_despegue, as_modelo_avion, as_capacidad_combustible, as_alcance_carga_maxima, am_nombre AS modelo from submodelo_avion, modelo_avion where as_modelo_avion=am_id AND as_id=".$id;
+$qry = "SELECT as_id, as_nombre, as_peso_maximo_despegue, as_peso_vacio, as_velocidad_crucero, as_carrera_despegue_peso_maximo, as_autonomia_peso_maximo_despegue, as_modelo_avion, as_capacidad_combustible, as_alcance_carga_maxima, am_nombre AS modelo, as_cantidad_motor AS cantidad_motores from submodelo_avion, modelo_avion where as_modelo_avion=am_id AND as_id=".$id;
 $con = pg_query($conexion, $qry);
 $submodelo = pg_fetch_object($con);
 $result = '<form action="submodeloavion-crud.php?edit='.$submodelo->as_id.'" method="post">
@@ -62,6 +62,14 @@ $result = '<form action="submodeloavion-crud.php?edit='.$submodelo->as_id.'" met
 											</label>
 											<div class="col-sm-9">
 												<input name="carrera_despegue" type="text" value="'.$submodelo->as_carrera_despegue_peso_maximo.'" class="form-control" pattern="\d+\.?\d{0,2}" required>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-3 form-control-label">
+												<h4># de Motores</h4>
+											</label>
+											<div class="col-sm-9">
+												<input name="n_motores" type="text" value="'.$submodelo->cantidad_motores.'" placeholder="Introduzca Numero de motores" class="form-control" pattern="\d+" required>
 											</div>
 										</div>
 									</div>

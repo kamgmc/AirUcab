@@ -7,7 +7,6 @@ $qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WH
 $rs = pg_query( $conexion, $qry ); $permiso = array();
 while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 <html>
-
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -336,14 +335,22 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 																	</span> 
 																</div>
 															</div>
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h4>Cantidad</h4>
+																</label>
+																<div class="col-sm-9">
+																	<input name="cantidad[]" type="text" placeholder="Introduzca Cantidad" class="form-control" pattern="\d+" required>
+																</div>
+															</div>
 														</div>
-														<div class=" card-body col-lg-6">
+														<div class="card-body col-lg-6 right-side">
 															<div class="form-group row">
 																<label class="col-sm-3 form-control-label">
 																	<h4>Precio</h4>
 																</label>
 																<div class="col-sm-9">
-																	<input name="precio[]" type="text" placeholder="Introduzca precio por Avion" class="form-control" pattern="([0-9]+\.[0-9]+)|([0-9]+)" required>
+																	<input name="precio[]" type="text" placeholder="Introduzca precio del Avión" class="form-control" pattern="([0-9]+\.[0-9]+)|([0-9]+)" required>
 																</div>
 															</div>
 															<div class="form-group row">
@@ -453,7 +460,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 		</footer>
 	</div>
 	<!-- Javascript files-->
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="js/jquery-3.2.1.min.js"></script>
 	<script src="vendor/popper.js/umd/popper.min.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script src="vendor/jquery.cookie/jquery.cookie.js"></script>
@@ -465,8 +472,19 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 				var id = $( "option:selected", this ).val();
 				var $targetS = $(this).closest(".form-avion").find(".lista_submodelos");
 				var $targetD = $(this).closest(".form-avion").find(".lista_distribuciones");
-				$.ajax({type: "POST",dataType: "html",url:"getter.php?get=submodelos&id="+id,success: function(data){$targetS.html(data); $targetS.removeAttr("disabled");}});
+				$.ajax({type: "POST",dataType: "html",url:"getter.php?get=submodelosLimited&id="+id,success: function(data){$targetS.html(data); $targetS.removeAttr("disabled");}});
 				$.ajax({type: "POST",dataType: "html",url:"getter.php?get=distribuciones&id="+id,success: function(data){$targetD.html(data); $targetD.removeAttr("disabled");}});
+			}
+			function updateSubmodelo() {
+				var id = $( "option:selected", this ).val();
+				var $target = $(this).closest(".form-avion").find(".right-side");
+				var num = $('.form-avion').length;
+				$(this).closest(".form-avion").find(".motorField").each(function(){
+					$(this).remove();
+				});
+				$.ajax({type: "POST",dataType: "html",url:"getter.php?get=motorField&id="+id+"&num="+num,success: function(data){
+					$target.append(data);}
+				});
 			}
 			$( "a.click-venta-detalle" ).click(function( event ) {
 				event.preventDefault();
@@ -478,6 +496,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 				var $last = $(".last-avion");
 				$last.removeClass("last-avion");
 				$(".lista_modelos").off("change",update);
+				$(".lista_submodelos").off("change",updateSubmodelo);
 				$.ajax({
 					type: "POST",
 					dataType: "html",
@@ -485,9 +504,11 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 					success: function(data){
 						$last.after(data);
 						$(".lista_modelos").on("change",update);
+						$(".lista_submodelos").on("change",updateSubmodelo);
 					},
 					error: function(data){
 						$(".lista_modelos").on("change",update);
+						$(".lista_submodelos").on("change",updateSubmodelo);
 					}
 				});
 			});
@@ -517,6 +538,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 					$.ajax({type: "POST",dataType: "html",url:"getter.php?get=fieldTarjeta",success: function(data){$space.html(data);}});
 			});
 			$(".lista_modelos").on("change",update);
+			$(".lista_submodelos").on("change",updateSubmodelo);
 		});
 	</script>
 </body>

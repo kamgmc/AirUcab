@@ -3,8 +3,9 @@
 		//Busca Errores en las variables de Avión 
 		$exit = false; $i = 0;
 		while(!$exit){
-			if( isset($_POST['distribucion'][$i]) && isset($_POST['submodelo'][$i]) && isset($_POST['precio'][$i]) ){
+			if( isset($_POST['distribucion'][$i]) && isset($_POST['submodelo'][$i]) && isset($_POST['precio'][$i]) && isset($_POST['cantidad'][$i]) ){
 				if( strlen($_POST['precio'][$i]) <= 4 ){header('Location: ventas.php?error=2');exit;}
+				if( $_POST['cantidad'][$i] <= 0 ){header('Location: ventas.php?error=2');exit;}
 				$i++;
 			}
 			else $exit = true;
@@ -38,22 +39,75 @@
 			// Inserta todos los aviones que se hayan escrito en el formulario
 			$exit = false; $i = 0;
 			while(!$exit){
-				if( isset($_POST['distribucion'][$i]) && isset($_POST['submodelo'][$i]) && isset($_POST['precio'][$i]) ){ //Todas las variables de avion deben existir
-					if( insertarAvion( $factura->id, $_POST['distribucion'][$i], $_POST['submodelo'][$i], $_POST['precio'][$i] ) ){// Crea un avión
-						$qry = "SELECT Max(a_id) AS id FROM Avion where a_submodelo_avion=".$_POST['submodelo'][$i]." AND a_distribucion=".$_POST['distribucion'][$i]." AND a_precio=".$_POST['precio'][$i];
-						if($answer = pg_query( $conexion, $qry )){
-							$avion = pg_fetch_object($answer);
-							//Inicializa el status cada Avión
-							if( insertarStatusAvion( 1, $avion->id ) ){
-								$qry = "Select pm_id AS id, pm_cantidad AS cantidad from s_avion_m_pieza INNER JOIN Modelo_pieza ON smp_modelo_pieza=pm_modelo_pieza Where smp_submodelo_avion=".$_POST['submodelo'][$i]." UNION Select smp_modelo_pieza AS id, smp_cantidad AS cantidad from s_avion_m_pieza Where smp_submodelo_avion=".$_POST['submodelo'][$i]." ORDER BY id";
-								$anwsermodelo = pg_query($conexion, $qry);
-								while( $modelo_pieza = pg_fetch_object($anwsermodelo) ){
-									for($j = 1; $j <= $modelo_pieza->cantidad; $j++ ){
-										if(insertarPieza( $modelo_pieza->id, $avion->id )){//Crea una nueva pieza
-											$qry = "SELECT Max(p_id) AS id FROM Pieza where p_avion=".$avion->id." AND p_modelo_pieza=".$modelo_pieza->id;
+				if( isset($_POST['distribucion'][$i]) && isset($_POST['submodelo'][$i]) && isset($_POST['precio'][$i]) && isset($_POST['cantidad'][$i]) ){ //Todas las variables de avion deben existir
+					for($x =1; $x <= $_POST['cantidad'][$i]; $x++){
+						if( insertarAvion( $factura->id, $_POST['distribucion'][$i], $_POST['submodelo'][$i], $_POST['precio'][$i] ) ){// Crea un avión
+							$qry = "SELECT Max(a_id) AS id FROM Avion where a_submodelo_avion=".$_POST['submodelo'][$i]." AND a_distribucion=".$_POST['distribucion'][$i]." AND a_precio=".$_POST['precio'][$i];
+							if($answer = pg_query( $conexion, $qry )){
+								$avion = pg_fetch_object($answer);
+								//Inicializa el status cada Avión
+								if( insertarStatusAvion( 1, $avion->id ) ){
+									$qry = "Select pm_id AS id, pm_cantidad AS cantidad from s_avion_m_pieza INNER JOIN Modelo_pieza ON smp_modelo_pieza=pm_modelo_pieza Where smp_submodelo_avion=".$_POST['submodelo'][$i]." UNION Select smp_modelo_pieza AS id, smp_cantidad AS cantidad from s_avion_m_pieza Where smp_submodelo_avion=".$_POST['submodelo'][$i]." ORDER BY id";
+									$anwsermodelo = pg_query($conexion, $qry);
+									while( $modelo_pieza = pg_fetch_object($anwsermodelo) ){
+										for($j = 1; $j <= $modelo_pieza->cantidad; $j++ ){
+											if(insertarPieza( $modelo_pieza->id, $avion->id )){//Crea una nueva pieza
+												$qry = "SELECT Max(p_id) AS id FROM Pieza where p_avion=".$avion->id." AND p_modelo_pieza=".$modelo_pieza->id;
+												if($answer = pg_query( $conexion, $qry )){
+													$pieza = pg_fetch_object($answer);//Pieza especifica
+													$qry2 = "SELECT tmm_id id, tmm_cantidad cantidad, tmm_tipo_material material FROM t_material_m_pieza WHERE tmm_modelo_pieza=".$modelo_pieza->id;
+													//Hace una lista de los materiales necesarios
+													$anwser = pg_query($conexion, $qry2); $materiales = array();
+													while( $material = pg_fetch_object($anwser) )
+														$materiales[$material->id] = $material->cantidad;
+													//Recorre todos los materiales necesarios
+													$anwser = pg_query($conexion, $qry2);
+													while($pm = pg_fetch_object($anwser)){
+														// Busca si hay materiales ya creados disponibles
+														$qry = "SELECT m_id id FROM Material, Status_material, Status WHERE m_tipo_material=".$pm->material." AND m_pieza=NULL AND sm_material=m_id AND sm_status=st_id AND st_nombre<>'Rechazado'";
+														$anwser = pg_query($conexion, $qry);
+														while($material = pg_fetch_object($anwser)){
+															if( isset($materiales[$pm->id]) ){
+																editarMaterial( $material->id, $pieza->id, 0 );
+																$materiales[$pm->id]--;
+																if($materiales[$pm->id] == 0){
+																	unset($materiales[$pm->id]);
+
+																}
+															}
+														}
+													}
+													$anwser = pg_query($conexion, $qry2);
+													while($pm = pg_fetch_object($anwser)){
+														if( isset($materiales[$pm->id]) && $materiales[$pm->id] > 0 ){
+															for($h = 0; $h < $materiales[$pm->id]; $h++){
+																insertarMaterial( $pm->material, 0, $pieza->id, 1 );//Material nuevo
+																$qry = "SELECT MAX(m_id) AS id FROM Material WHERE m_factura_compra=0 AND m_tipo_material=".$pm->material." AND m_pieza=".$pieza->id;
+																$anwser = pg_query($conexion, $qry);
+																$materialc = pg_fetch_object($anwser);
+																insertarStatusMaterial( 1, $materialc->id);//Status del material inicialmente
+															}
+														}
+													}
+													insertarStatusPieza( 1, $pieza->id );
+												}
+											}
+										}
+									}
+									$qry = "SELECT pm_id AS id FROM modelo_pieza WHERE pm_nombre='Asiento'";
+									$anwser = pg_query($conexion, $qry);
+									$asiento = pg_fetch_object($anwser);
+
+									$qry = "SELECT di_capacidad_pasajeros AS capacidad FROM distribucion WHERE di_id=".$_POST['distribucion'][$i];
+									$anwser = pg_query($conexion, $qry);
+									$distribucion = pg_fetch_object($anwser);
+
+									for($h = 0; $h < $distribucion->capacidad; $h++){
+										if(insertarPieza( $asiento->id, $avion->id )){//Crea una nueva pieza
+											$qry = "SELECT Max(p_id) AS id FROM Pieza where p_avion=".$avion->id." AND p_modelo_pieza=".$asiento->id;
 											if($answer = pg_query( $conexion, $qry )){
 												$pieza = pg_fetch_object($answer);//Pieza especifica
-												$qry2 = "SELECT tmm_id id, tmm_cantidad cantidad, tmm_tipo_material material FROM t_material_m_pieza WHERE tmm_modelo_pieza=".$modelo_pieza->id;
+												$qry2 = "SELECT tmm_id id, tmm_cantidad cantidad, tmm_tipo_material material FROM t_material_m_pieza WHERE tmm_modelo_pieza=".$asiento->id;
 												//Hace una lista de los materiales necesarios
 												$anwser = pg_query($conexion, $qry2); $materiales = array();
 												while( $material = pg_fetch_object($anwser) )
@@ -70,7 +124,7 @@
 															$materiales[$pm->id]--;
 															if($materiales[$pm->id] == 0){
 																unset($materiales[$pm->id]);
-																
+
 															}
 														}
 													}
@@ -91,65 +145,27 @@
 											}
 										}
 									}
-								}
-								$qry = "SELECT pm_id AS id FROM modelo_pieza WHERE pm_nombre='Asiento'";
-								$anwser = pg_query($conexion, $qry);
-								$asiento = pg_fetch_object($anwser);
+									$qry = "SELECT as_cantidad_motor AS cantidad FROM Submodelo_avion WHERE as_id=".$_POST['submodelo'][$i];
+									$anwser = pg_query($conexion, $qry);
+									$submodelo = pg_fetch_object($anwser);
 
-								$qry = "SELECT di_capacidad_pasajeros AS capacidad FROM distribucion WHERE di_id=".$_POST['distribucion'][$i];
-								$anwser = pg_query($conexion, $qry);
-								$distribucion = pg_fetch_object($anwser);
-
-								for($h = 0; $h < $distribucion->capacidad; $h++){
-									if(insertarPieza( $asiento->id, $avion->id )){//Crea una nueva pieza
-										$qry = "SELECT Max(p_id) AS id FROM Pieza where p_avion=".$avion->id." AND p_modelo_pieza=".$asiento->id;
-										if($answer = pg_query( $conexion, $qry )){
-											$pieza = pg_fetch_object($answer);//Pieza especifica
-											$qry2 = "SELECT tmm_id id, tmm_cantidad cantidad, tmm_tipo_material material FROM t_material_m_pieza WHERE tmm_modelo_pieza=".$asiento->id;
-											//Hace una lista de los materiales necesarios
-											$anwser = pg_query($conexion, $qry2); $materiales = array();
-											while( $material = pg_fetch_object($anwser) )
-												$materiales[$material->id] = $material->cantidad;
-											//Recorre todos los materiales necesarios
-											$anwser = pg_query($conexion, $qry2);
-											while($pm = pg_fetch_object($anwser)){
-												// Busca si hay materiales ya creados disponibles
-												$qry = "SELECT m_id id FROM Material, Status_material, Status WHERE m_tipo_material=".$pm->material." AND m_pieza=NULL AND sm_material=m_id AND sm_status=st_id AND st_nombre<>'Rechazado'";
-												$anwser = pg_query($conexion, $qry);
-												while($material = pg_fetch_object($anwser)){
-													if( isset($materiales[$pm->id]) ){
-														editarMaterial( $material->id, $pieza->id, 0 );
-														$materiales[$pm->id]--;
-														if($materiales[$pm->id] == 0){
-															unset($materiales[$pm->id]);
-
-														}
-													}
-												}
+									for($h = 0; $h < $submodelo->cantidad; $h++){
+										if(insertarMotor( $_POST['motor'.$i][$h], $avion->id )){//Crea una nueva pieza
+											$qry = "SELECT Max(mo_id) AS id FROM Motor where mo_avion=".$avion->id." AND mo_modelo_motor=".$_POST['motor'][$i];
+											if($answer = pg_query( $conexion, $qry )){
+												$motor = pg_fetch_object($answer);//Motor especifico
+												insertarStatusMotor( 1, $motor->id );
 											}
-											$anwser = pg_query($conexion, $qry2);
-											while($pm = pg_fetch_object($anwser)){
-												if( isset($materiales[$pm->id]) && $materiales[$pm->id] > 0 ){
-													for($h = 0; $h < $materiales[$pm->id]; $h++){
-														insertarMaterial( $pm->material, 0, $pieza->id, 1 );//Material nuevo
-														$qry = "SELECT MAX(m_id) AS id FROM Material WHERE m_factura_compra=0 AND m_tipo_material=".$pm->material." AND m_pieza=".$pieza->id;
-														$anwser = pg_query($conexion, $qry);
-														$materialc = pg_fetch_object($anwser);
-														insertarStatusMaterial( 1, $materialc->id);//Status del material inicialmente
-													}
-												}
-											}
-											insertarStatusPieza( 1, $pieza->id );
 										}
 									}
+									$i++;
 								}
-								$i++;
+								else{header('Location: ventas.php?error=2');exit;}
 							}
 							else{header('Location: ventas.php?error=2');exit;}
 						}
 						else{header('Location: ventas.php?error=2');exit;}
 					}
-					else{header('Location: ventas.php?error=2');exit;}
 				}
 				else $exit = true;
 			}

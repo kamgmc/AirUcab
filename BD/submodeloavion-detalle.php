@@ -5,9 +5,10 @@ $qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WH
 $rs = pg_query( $conexion, $qry ); $permiso = array();
 while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }
 $id = htmlentities($_GET['id'], ENT_QUOTES);
-$qry = "select as_id, as_nombre, as_peso_maximo_despegue, as_peso_vacio, as_velocidad_crucero, as_carrera_despegue_peso_maximo, as_autonomia_peso_maximo_despegue, as_capacidad_combustible, as_alcance_carga_maxima, am_nombre AS modelo from submodelo_avion, modelo_avion where as_modelo_avion=am_id AND as_id=".$id;
+$qry = "select as_id, as_nombre, as_peso_maximo_despegue, as_peso_vacio, as_velocidad_crucero, as_carrera_despegue_peso_maximo, as_autonomia_peso_maximo_despegue, as_capacidad_combustible, as_alcance_carga_maxima, am_nombre AS modelo, as_fecha_creacion AS creacion, as_cantidad_motor AS cantidad_motores FROM submodelo_avion, modelo_avion where as_modelo_avion=am_id AND as_id=".$id;
 $con = pg_query($conexion, $qry);
 $submodelo = pg_fetch_object($con);
+$date = new DateTime($submodelo->creacion);
 $resultado = '<div class="modal-header">
 			<h4 id="exampleModalLabel" class="modal-title">Detalle Submodelo de Avión</h4>
 			<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
@@ -36,6 +37,11 @@ $resultado = '<div class="modal-header">
 								</div>
 								<div class="row">
 									<div class="col-lg-4">
+										<h4>Fecha de creación</h4> </div>
+									<div class="col-lg-8">'.$date->format('d/m/Y').'</div>
+								</div>
+								<div class="row">
+									<div class="col-lg-4">
 										<h4>Peso Maximo Despegue</h4> </div>
 									<div class="col-lg-8">'.number_format($submodelo->as_peso_maximo_despegue, 0, ',', '.')." Kg".'</div>
 								</div>
@@ -53,6 +59,11 @@ $resultado = '<div class="modal-header">
 							<!-- Columna izquierda ENDS -->
 							<!-- Columna derecha -->
 							<div class=" card-body col-lg-6">
+								<div class="row">
+									<div class="col-lg-4">
+										<h4>Cantidad de Motores</h4> </div>
+									<div class="col-lg-8">'.$submodelo->cantidad_motores.'</div>
+								</div>
 								<div class="row">
 									<div class="col-lg-4">
 										<h4>Carrera Despegue Peso Maximo</h4> </div>

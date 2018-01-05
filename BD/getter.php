@@ -26,6 +26,15 @@
 			$resultado.="<option value='".$parroquia->id."'>".$parroquia->nombre."</option>";
 		}
 	}
+	if($_GET['get'] == "submodelosLimited"){
+		$id = htmlentities($_GET['id'], ENT_QUOTES);
+		$qry = "SELECT as_id AS id, as_nombre AS nombre FROM Submodelo_avion sa WHERE (Select COUNT(*) From S_avion_m_motor Where smt_submodelo_avion=sa.as_id)>0 AND (Select COUNT(*) From S_avion_m_pieza Where smp_submodelo_avion=sa.as_id)>0 AND as_modelo_avion=".$id." ORDER BY as_nombre";
+		$answer = pg_query( $conexion, $qry );
+		$resultado="<option value='NULL'>Seleccionar</option>";
+		while( $parroquia = pg_fetch_object($answer) ){
+			$resultado.="<option value='".$parroquia->id."'>".$parroquia->nombre."</option>";
+		}
+	}
 	if($_GET['get'] == "distribuciones"){
 		$id = htmlentities($_GET['id'], ENT_QUOTES);
 		$qry = "SELECT di_id AS id, di_nombre AS nombre FROM Distribucion WHERE di_modelo_avion=".$id." ORDER BY di_nombre";
@@ -196,14 +205,22 @@
 						</span> 
 					</div>
 				</div>
+				<div class="form-group row">
+					<label class="col-sm-3 form-control-label">
+						<h4>Cantidad</h4>
+					</label>
+					<div class="col-sm-9">
+						<input name="cantidad[]" type="text" placeholder="Introduzca Cantidad" class="form-control" pattern="\d+" required>
+					</div>
+				</div>
 			</div>
-			<div class=" card-body col-lg-6">
+			<div class=" card-body col-lg-6 right-side">
 				<div class="form-group row">
 					<label class="col-sm-3 form-control-label">
 						<h4>Precio</h4>
 					</label>
 					<div class="col-sm-9">
-						<input name="precio[]" type="text" placeholder="Introduzca precio por Avion" class="form-control" pattern="([0-9]+\.[0-9]+)|([0-9]+)" required>
+						<input name="precio[]" type="text" placeholder="Introduzca precio del Avion" class="form-control" pattern="([0-9]+\.[0-9]+)|([0-9]+)" required>
 					</div>
 				</div>
 				<div class="form-group row">
@@ -220,6 +237,33 @@
 				</div>
 			</div>
 		</div>';
+	}
+	if($_GET['get'] == "motorField"){
+		$id = htmlentities($_GET['id'], ENT_QUOTES);
+		$num = htmlentities($_GET['num'], ENT_QUOTES);
+		$qry = "SELECT as_cantidad_motor AS cantidad FROM Submodelo_avion WHERE as_id=".$id;
+		$answer = pg_query( $conexion, $qry );
+		$submodelo = pg_fetch_object($answer);
+		$resultado = "";
+		for($k = 1; $k <= $submodelo->cantidad; $k++){
+			$resultado .= '<div class="form-group row motorField">
+							<label class="col-sm-3 form-control-label">
+								<h4>Motor #'.$k.'</h4>
+							</label>
+							<div class="col-sm-9 select">
+								<select name="motor'.$num.'[]" class="form-control" required>
+									<option value="NULL">Seleccionar</option>';
+									$qry = "Select mm_id AS id, mb_nombre||' - '||mm_nombre AS nombre from S_avion_m_motor, Modelo_motor, Marca_motor WHERE mm_id=smt_modelo_motor AND mm_marca=mb_id AND smt_submodelo_avion=".$id." ORDER BY nombre";
+									$rs = pg_query( $conexion, $qry );
+									while( $motor = pg_fetch_object($rs) )
+										$resultado .= '<option value="'.$motor->id.'">'.$motor->nombre.'</option>';
+								$resultado .= '</select> 
+								<span class="help-block-none">
+									<small>Seleccionar Submodelo de Avión primero.</small>
+								</span> 
+							</div>
+						</div>';
+		}
 	}
 	if($_GET['get'] == "fieldPago"){
 		$resultado = '<div class="row last-pago">

@@ -54,7 +54,7 @@
 				if(isset($_POST['contacto'][$i]) && isset($_POST['tipo_contacto'][$i])){
 					if(insertarContacto( $_POST['contacto'][$i], $_POST['tipo_contacto'][$i], $id, 'NULL', 'NULL' ))
 						$i++;
-					//else{header('Location: clientes.php?error=4');exit;}
+					else{header('Location: clientes.php?error=4');exit;}
 				}
 				else $exit = true;
 			}
@@ -63,7 +63,7 @@
 				if(isset($_POST['contacto_update'][$i]) && isset($_POST['tipo_contacto_update'][$i]) && isset($_POST['contacto_update_id'][$i])){
 					if(editarContacto( $_POST['contacto_update_id'][$i], $_POST['contacto_update'][$i], $_POST['tipo_contacto_update'][$i] ))
 						$i++;
-					//else{header('Location: clientes.php?error=4');exit;}
+					else{header('Location: clientes.php?error=4');exit;}
 				}
 				else $exit = true;
 			}
@@ -72,18 +72,20 @@
 				if(isset($_POST['contacto_delete'][$i])){
 					if(eliminarContacto( $_POST['contacto_delete'][$i] ))
 						$i++;
-					//else{header('Location: clientes.php?error=4');exit;}
+					else{header('Location: clientes.php?error=4');exit;}
 				}
 				else $exit = true;
 			}
 		}
-		//else header('Location: clientes.php?error=3');
-		//header('Location: clientes.php'); exit;
+		else header('Location: clientes.php?error=3');
+		header('Location: clientes.php'); exit;
 	}
 	if(isset($_GET['delete'])){
 		$id = $_GET['delete'];
-		eliminarCliente($id);
-		header('Location: ' . $_SERVER['HTTP_REFERER']);
+		if(eliminarCliente($id))
+			header('Location: clientes.php');
+		else
+			header('Location: clientes.php?error=5');
 		exit;
 	}
 ?>

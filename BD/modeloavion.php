@@ -383,7 +383,7 @@ if( !in_array("am_r", $permiso) && !in_array("am_c", $permiso) && !in_array("as_
 														<th class="text-center text-middle">Capacidad Combustible</th>
 														<th class="text-center text-middle">Alcance Carga Max</th>
 														<?php if( isset($_SESSION['code']) ){ ?>
-														<th class="text-center col-sm-1">Acción</th>
+														<th class="text-center">Acción</th>
 														<?php } ?>
 													</tr>
 												</thead>
@@ -847,6 +847,14 @@ if( !in_array("am_r", $permiso) && !in_array("am_c", $permiso) && !in_array("as_
 																		</label>
 																		<div class="col-sm-9">
 																			<input name="carrera_despegue" type="text" placeholder="Introduzca Carrera de Despegue con Peso Máximo" class="form-control" pattern="\d+\.?\d{0,2}" required>
+																		</div>
+																	</div>
+																	<div class="form-group row">
+																		<label class="col-sm-3 form-control-label">
+																			<h4># de Motores</h4>
+																		</label>
+																		<div class="col-sm-9">
+																			<input name="n_motores" type="text" placeholder="Introduzca Numero de motores" class="form-control" pattern="\d+" required>
 																		</div>
 																	</div>
 																</div>

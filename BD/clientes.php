@@ -130,6 +130,19 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 					</ul>
 				</nav>
 				<div class="content-inner">
+					<?php if(isset($_GET['error'])){?>
+					<!-- Alert -->
+					<div class="alert alert-danger alert-dismissible fade show" role="alert"> 
+						<?php if($_GET['error']==1){?>Error al crear <strong>Cliente</strong>.<?php }?>
+						<?php if($_GET['error']==2){?>Error al insertar <strong>Contacto</strong>.<?php }?>
+						<?php if($_GET['error']==3){?>Error al editar <strong>Cliente</strong>.<?php }?>
+						<?php if($_GET['error']==4){?>Error al editar <strong>Contacto</strong>.<?php }?>
+						<?php if($_GET['error']==5){?>Error al eliminar <strong>Cliente</strong>.<?php }?>
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<?php }?>
 					<!-- Seccion de diferentes TABS -->
 					<section>
 						<div class="container-fluid">
