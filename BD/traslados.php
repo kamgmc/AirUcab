@@ -126,86 +126,160 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 						<label for="tab0" class="label"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> Traslados</label>
 						
 						
-						<!-- TAB Pruebas -->
+						<!-- TAB Traslado -->
 						<section id="content0" class="sectiontab">
-							
+							<!-- Filtrador-->
+							<div class="container-fluid">
+								<div class="row">
+									<div class="card col-lg-12">
+										<div class="row">
+											<div class="card-body col-lg-5">
+												<h3 class="h4">Filtrar Trasladaos por:</h3>
+												<form class="form-horizontal">
+													<div class="row">
+														<label class="col-sm-3 form-control-label">Zona</label>
+														<div class="col-sm-9 select">
+															<select id="filtro_submodelo" name="cliente" class="form-control">
+																<option value="NULL">Seleccionar</option>
+																
+															</select>
+														</div>
+													</div>
+													<div class="row">
+														<label class="col-sm-3 form-control-label">Material</label>
+														<div class="col-sm-9 select">
+															<select name="account" class="form-control">
+																<option value="NULL">Seleccionar</option>
+																
+															</select>
+														</div>
+													</div>
+													<div class="row">
+														<label class="col-sm-3 form-control-label">Pieza</label>
+														<div class="col-sm-9 select">
+															<select name="account" class="form-control">
+																<option value="NULL">Seleccionar</option>
+																
+															</select>
+														</div>
+													</div>
+												</form>
+											</div>
+											<div class=" card-body col-lg-4">
+												<div class="form-group row">
+													<div class="col-sm-9">
+														<br/>
+														<input type="submit" value="Filtrar" class="btn btn-primary"> 
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 							<!-- TABLE STARTS -->
 							<div class="col-md-12">
 								<div class="card">
 									<div class="row">
 										<div class="col-sm-10"></div>
 										<div class="col-sm-2 pad-top">
-											<button type="button" data-toggle="modal" data-target="#myModalPruebaCrear" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
+											<button type="button" data-toggle="modal" data-target="#myModalTrasladoCrear" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
 										</div>
 									</div>
 									<div class="card-body">
 										<table class="table table-striped table-sm table-hover">
 											<thead>
 												<tr>
-													<th>NOMBRE</th>
+													<th>ID</th>
+													<th>Nombre</th>
+													<th>Fecha Salida</th>
+													<th>Fecha Llegada</th>
+													<th>Zona Salida</th>
+													<th>Zona Llegada</th>
 													<th class="text-center">Accion</th>
 												</tr>
 											</thead>
 											<tbody>
 												
 													<tr>
-														<td>Prueba de Calidad</td>
+														<td>1</td>
+														<td>Tornillos</td>
+														<td>11/11/2017</td>
+														<td>11/11/2017</td>
+														<td>Margarita</td>
+														<td>Bogota</td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
 													<tr>
-														<td>Prueba de Calidad</td>
+														<td>1</td>
+														<td>Tornillos</td>
+														<td>11/11/2017</td>
+														<td>11/11/2017</td>
+														<td>Margarita</td>
+														<td>Bogota</td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
 													<tr>
-														<td>Prueba de Calidad</td>
+														<td>1</td>
+														<td>Tornillos</td>
+														<td>11/11/2017</td>
+														<td>11/11/2017</td>
+														<td>Margarita</td>
+														<td>Bogota</td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
 													<tr>
-														<td>Prueba de Calidad</td>
+														<td>1</td>
+														<td>Tornillos</td>
+														<td>11/11/2017</td>
+														<td>11/11/2017</td>
+														<td>Margarita</td>
+														<td>Bogota</td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
 													<tr>
-														<td>Prueba de Calidad</td>
+														<td>1</td>
+														<td>Tornillos</td>
+														<td>11/11/2017</td>
+														<td>11/11/2017</td>
+														<td>Margarita</td>
+														<td>Bogota</td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
 													<tr>
-														<td>Prueba de Calidad</td>
+														<td>1</td>
+														<td>Tornillos</td>
+														<td>11/11/2017</td>
+														<td>11/11/2017</td>
+														<td>Margarita</td>
+														<td>Bogota</td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
 													<tr>
-														<td>Prueba de Calidad</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td>Prueba de Calidad</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td>Prueba de Calidad</td>
+														<td>1</td>
+														<td>Tornillos</td>
+														<td>11/11/2017</td>
+														<td>11/11/2017</td>
+														<td>Margarita</td>
+														<td>Bogota</td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
