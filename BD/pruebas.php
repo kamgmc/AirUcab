@@ -235,7 +235,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 
 
 						<!-- TAB Pruebas -->
-						<section id="content0" class="sectiontab">
+						<section id="content1" class="sectiontab">
 							
 							<!-- TABLE STARTS -->
 							<div class="col-md-12">
@@ -251,79 +251,48 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 											<thead>
 												<tr>
 													<th>NOMBRE</th>
-													<th class="text-center">Duracion Estimada</th>
 													<th class="text-center">Accion</th>
 												</tr>
 											</thead>
 											<tbody>
 												
 													<tr>
-														<td>Prueba de Calidad</td>
-														<td class="text-center">30 dias</td>
+														<td><span class="badge badge-primary">EN TRAYECTO</span></td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
 													<tr>
-														<td>Prueba de Calidad</td>
-														<td class="text-center">30 dias</td>
+														<td><span class="badge badge-primary">EN TRAYECTO</span></td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
 													<tr>
-														<td>Prueba de Calidad</td>
-														<td class="text-center">30 dias</td>
+														<td><span class="badge badge-primary">EN TRAYECTO</span></td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
 													<tr>
-														<td>Prueba de Calidad</td>
-														<td class="text-center">30 dias</td>
+														<td><span class="badge badge-primary">EN TRAYECTO</span></td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
 													<tr>
-														<td>Prueba de Calidad</td>
-														<td class="text-center">30 dias</td>
+														<td><span class="badge badge-primary">EN TRAYECTO</span></td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
 													<tr>
-														<td>Prueba de Calidad</td>
-														<td class="text-center">30 dias</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td>Prueba de Calidad</td>
-														<td class="text-center">30 dias</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td>Prueba de Calidad</td>
-														<td class="text-center">30 dias</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td>Prueba de Calidad</td>
-														<td class="text-center">30 dias</td>
+														<td><span class="badge badge-primary">EN TRAYECTO</span></td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
