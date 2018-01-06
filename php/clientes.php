@@ -12,7 +12,8 @@ if( !in_array("cl_r", $permiso)){
 		exit;
 	}
     else{
-        header('Location: modeloavion.php');
+        header('Location: proveedores.php');
+        exit;
     }
 }?>
 <!DOCTYPE html>
