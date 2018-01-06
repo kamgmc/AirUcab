@@ -211,7 +211,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<td>Bogota</td>
 														<td class="text-center"><span class="badge badge-info">Entregado</span></td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#myModalTraslado"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
@@ -224,7 +224,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<td>Bogota</td>
 														<td class="text-center"><span class="badge badge-info">Entregado</span></td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#myModalTraslado"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
@@ -237,7 +237,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<td>Bogota</td>
 														<td class="text-center"><span class="badge badge-info">Entregado</span></td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#myModalTraslado"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
@@ -250,7 +250,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<td>Bogota</td>
 														<td class="text-center"><span class="badge badge-info">Entregado</span></td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#myModalTraslado"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
@@ -263,7 +263,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<td>Bogota</td>
 														<td class="text-center"><span class="badge badge-info">Entregado</span></td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#myModalTraslado"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
@@ -276,7 +276,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<td>Bogota</td>
 														<td class="text-center"><span class="badge badge-info">Entregado</span></td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#myModalTraslado"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
@@ -289,7 +289,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<td>Bogota</td>
 														<td class="text-center"><span class="badge badge-info">Entregado</span></td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#myModalTraslado"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
@@ -302,7 +302,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<td>Bogota</td>
 														<td class="text-center"><span class="badge badge-info">Entregado</span></td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#myModalTraslado"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
@@ -326,12 +326,12 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 						
 
 												
-						<!-- Modal Prueba Editar -->
-						<div id="myModalPrueba" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+						<!-- Modal Traslado Editar -->
+						<div id="myModalTraslado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 							<div role="document" class="modal-dialog modal-xl">
 								<div class="modal-content">
 									<div class="modal-header">
-										<h4 id="exampleModalLabel" class="modal-title">EDITAR PRUEBA</h4>
+										<h4 id="exampleModalLabel" class="modal-title">EDITAR TRASLADO</h4>
 										<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 									</div>
 									<div class="modal-body">
@@ -349,15 +349,63 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 															</div>
 															<div class="form-group row">
 																<label class="col-sm-3 form-control-label">
-																	<h3>Tipo</h3> </label>
-																<div class="col-sm-9">
-																	<input type="text" placeholder="Introduzca Tipo" class="form-control"> </div>
+																	<h4>Zona Salida</h4>
+																</label>
+																<div class="col-sm-9 select">
+																	<select id="lista_clientes" name="cliente" class="form-control" required>
+																		<option value="NULL">Seleccionar</option>
+																		
+																	</select>
+																</div>
 															</div>
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h4>Zona Llegada</h4>
+																</label>
+																<div class="col-sm-9 select">
+																	<select id="lista_clientes" name="cliente" class="form-control" required>
+																		<option value="NULL">Seleccionar</option>
+																		
+																	</select>
+																</div>
+															</div>
+															<div id="last" data-num="1" class="row last-pago">
+																
+																<div class="card-body col-sm-12">
+																	<label class="col-sm-3 form-control-label">
+																	<h3>STATUS</h3> </label>
+																	<div class="form-check form-check-inline">
+																		<label class="form-check-label">
+																			<input class="form-check-input transferencia" name="tipo_pago" type="radio"> CONFIRMADO
+																		</label>
+																	</div>
+																	<div class="form-check form-check-inline">
+																		<label class="form-check-label">
+																			<input class="form-check-input tarjeta-credito" name="tipo_pago" type="radio"> EN CAMINO 
+																		</label>
+																	</div>
+																	<div class="pago-space row">
+																	</div>
+																</div>
+																
+															</div>
+															
 															
 														</div>	
 															
 														<div class=" card-body col-lg-6">
-															
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h3>Fecha Salida</h3> </label>
+																<div class="col-sm-9">
+																	<input type="text" placeholder="Introduzca Fecha Salida" class="form-control"> </div>
+															</div>
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h3>Fecha Entrega</h3> </label>
+																<div class="col-sm-9">
+																	<input type="text" disabled="" placeholder="Campo Restringido" class="form-control"> </div>
+															</div>
 															<div class="form-group row">
 																<label class="col-sm-3 form-control-label">
 																	<h3>Nota</h3> </label>
@@ -379,14 +427,14 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 								</div>
 							</div>
 						</div>
-						<!-- Modal Prueba Editar ENDS -->
+						<!-- Modal Traslado Editar ENDS -->
 
 					
 
 						
 
-						<!-- Modal Prueba Crear -->
-						<div id="myModalPruebaCrear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+						<!-- Modal Traslado Crear -->
+						<div id="myModalTrasladoCrear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 							<div role="document" class="modal-dialog modal-xl">
 								<div class="modal-content">
 									<div class="modal-header">
@@ -438,7 +486,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 								</div>
 							</div>
 						</div>
-						<!-- Modal Prueba Crear ENDS -->
+						<!-- Modal Traslado Crear ENDS -->
 
 						
 
