@@ -11,6 +11,10 @@ if( !in_array("cl_r", $permiso)){
 		header('Location: login.php');
 		exit;
 	}
+	else{
+		header('Location: proveedores.php');
+		exit;
+	}
 }?>
 <!DOCTYPE html>
 	<html>
