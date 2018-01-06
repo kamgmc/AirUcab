@@ -11,10 +11,9 @@ if( !in_array("cl_r", $permiso)){
 		header('Location: login.php');
 		exit;
 	}
-	else{
-		header('Location: proveedores.php');
-		exit;
-	}
+    else{
+        header('Location: modeloavion.php');
+    }
 }?>
 <!DOCTYPE html>
 	<html>
@@ -187,14 +186,14 @@ if( !in_array("cl_r", $permiso)){
 								<!-- TABLE STARTS -->
 								<div class="col-md-12">
 									<div class="card">
+                                        <?php if( in_array("cl_c", $permiso) ){ ?>
 										<div class="row">
 											<div class="col-sm-10"></div>
 											<div class="col-sm-2 pad-top">
-                                                <?php if( in_array("cl_c", $permiso) ){ ?>
-												<button type="button" data-toggle="modal" data-target="#ModalClienteCrear" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
-                                                <?php } ?>
+												<button type="button" data-toggle="modal" data-target="#ModalClienteCrear" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>                                                
 											</div>
 										</div>
+                                        <?php } ?>
 										<div class="card-body">
 											<table class="table table-striped table-sm table-hover">
 												<thead>
