@@ -671,33 +671,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 												</div>
 											</div>
 										</div>
-										<div class="container-fluid">
-											<div class="row">
-												<div class="card col-lg-12">
-													<div class="row">
-														<div class="col-sm-12 pad-top">
-															<h4>Materiales Requeridos</h4>
-														</div>
-
-														<div class="card-body col-lg-6">
-															<div class="form-group row">
-
-																<label class="col-sm-3 form-control-label">
-																	<h4>Material</h4>
-																</label>
-																<div class="col-sm-9 select">
-																	<select id="lista_clientes" name="cliente" class="form-control" required>
-																		<option value="NULL">Seleccionar</option>
-																		
-																	</select>
-																</div>
-															</div>
-														</div>
-
-													</div>
-												</div>
-											</div>
-										</div>
+										
 									</div>
 									<div class="modal-footer">
 										<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
