@@ -786,7 +786,6 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 											<div class="row">
 												<div class="card col-lg-12">
 													<div class="row">
-														
 														<div class="card-body col-lg-6">
 															<div class="form-group row">
 																<label class="col-sm-3 form-control-label">
@@ -796,54 +795,45 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 															</div>
 															<div class="form-group row">
 																<label class="col-sm-3 form-control-label">
-																	<h3>Fecha Inicio</h3> </label>
+																	<h3>Area</h3> </label>
 																<div class="col-sm-9">
-																	<input type="text" placeholder="Introduzca Fecha de Inicio" class="form-control"> </div>
+																	<input type="text" placeholder="Introduzca Area" class="form-control"> </div>
 															</div>
 															<div id="last" data-num="1" class="row last-pago">
-																<label class="col-sm-3 form-control-label">
-																	<h3>Parte de:</h3> </label>
-																<div class="card-body col-lg-12">
-																	<div class="form-check form-check-inline">
-																		<label class="form-check-label">
-																			<input class="form-check-input transferencia" name="tipo_pago" type="radio"> Ala
-																		</label>
+																
+																
+																	<label class="col-sm-3 form-control-label">
+																	<h3>PRINCIPAL</h3> </label>
+																	<div class="col-sm-9">
+																		<div class="form-check form-check-inline">
+																			<label class="form-check-label">
+																				<input class="form-check-input transferencia" name="tipo_pago" type="radio"> SI
+																			</label>
+																		</div>
+																		<div class="form-check form-check-inline">
+																			<label class="form-check-label">
+																				<input class="form-check-input tarjeta-credito" checked="" name="tipo_pago" type="radio"> NO
+																			</label>
+																		</div>
 																	</div>
-																	<div class="form-check form-check-inline">
-																		<label class="form-check-label">
-																			<input class="form-check-input tarjeta-credito" name="tipo_pago" type="radio"> Submodelo Avion 
-																		</label>
-																	</div>
-																	<div class="pago-space row">
-																	</div>
-																</div>
-																<label class="col-sm-3 form-control-label">Ala</label>
-																<div class="col-sm-9 select">
-																	<select name="account" class="form-control">
-																		<option>Ala cuadrada 1</option>
-																		<option>Ala redonda 2</option>
-																		<option>option 3</option>
-																		<option>option 4</option>
-																	</select>
-																</div>
-																<label class="col-sm-3 form-control-label">Submodelo Avion</label>
-																<div class="col-sm-9 select">
-																	<select name="account" class="form-control">
-																		<option>4515 1</option>
-																		<option>54578 2</option>
-																		<option>option 3</option>
-																		<option>option 4</option>
-																	</select>
-																</div>
+																
+																
 															</div>
+															
+															
 														</div>	
 															
 														<div class=" card-body col-lg-6">
 															<div class="form-group row">
 																<label class="col-sm-3 form-control-label">
-																	<h3>Cantidad</h3> </label>
-																<div class="col-sm-9">
-																	<input type="text" placeholder="Introduzca Cantidad Disponible" class="form-control"> </div>
+																	<h4>Ubicacion</h4>
+																</label>
+																<div class="col-sm-9 select">
+																	<select id="lista_clientes" name="cliente" class="form-control" required>
+																		<option value="NULL">Seleccionar</option>
+																		
+																	</select>
+																</div>
 															</div>
 															<div class="form-group row">
 																<label class="col-sm-3 form-control-label">
@@ -852,7 +842,6 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 																	<input type="text" placeholder="Aqui puedes escribir..." class="form-control form-control-lg" rows="4" cols="50"> </div>
 															</div>
 														</div>
-
 													</div>
 												</div>
 											</div>
