@@ -5,7 +5,17 @@ include 'conexion.php';
 if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'] = 5;} 
 $qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$_SESSION['rol']; 
 $rs = pg_query( $conexion, $qry ); $permiso = array();
-while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
+while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }
+if( !in_array("em_r", $permiso) && !in_array("sr_c", $permiso) && !in_array("er_r", $permiso) && !in_array("ti_c", $permiso) && !in_array("rp_c", $permiso) && !in_array("rp_u", $permiso) && !in_array("rp_r", $permiso) ){
+	if( !isset($_SESSION['code']) ){
+		header('Location: login.php');
+		exit;
+	}
+    else{
+        header('Location: clientes.php');
+		exit;
+    }
+}?>
 <!DOCTYPE html>
 	<html>
 
@@ -29,7 +39,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 		<!-- Custom stylesheet - for your changes-->
 		<link rel="stylesheet" href="css/custom.css">
 		<!-- Favicon-->
-		<link rel="shortcut icon" href="favicon.png"> </head>
+		<link rel="shortcut icon" href="img/airucab.ico"> </head>
 
 	<body>
 		<div class="page home-page">
@@ -83,32 +93,62 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 						<li>
 							<a href="modeloavion.php"> <i class="fa fa-plane" aria-hidden="true"></i> Aviones </a>
 						</li>
-						<?php }?>
-						<?php if( in_array("em_r", $permiso) || in_array("em_c", $permiso) ){ ?>
+						<?php } ?>
+                        <?php if (in_array("mb_r", $permiso) || in_array("mm_r", $permiso) || in_array("mo_r", $permiso) ) { ?>
+                        <li>
+							<a href="motores.php"> <i class="fa fa-tachometer " aria-hidden="true"></i>Motores </a>
+						</li>
+                        <?php } ?>
+                        <?php if( in_array("p_r", $permiso) || in_array("pm_r", $permiso) || in_array("wt_r", $permiso) || in_array("et_r", $permiso) ) { ?>
+                        <li>
+							<a href="piezas.php"> <i class="fa fa-puzzle-piece " aria-hidden="true"></i>Piezas </a>
+						</li>
+                        <?php } ?>
+                        <?php if( in_array("m_r", $permiso) ) { ?>
+                        <li>
+							<a href="materiales.php"> <i class="fa fa-server " aria-hidden="true"></i>Materiales </a>
+						</li>
+                        <?php } ?>
+                        <?php if( in_array("fv_r", $permiso) ){ ?>
+						<li>
+							<a href="ventas.php"> <i class="fa fa-paper-plane-o" aria-hidden="true"></i>Ventas </a>
+						</li>
+						<?php } ?>
+                        <?php if( in_array("fc_r", $permiso) ){ ?>
+						<li>
+							<a href="compras.php"> <i class="fa fa-shopping-bag " aria-hidden="true"></i>Compras </a>
+						</li>
+						<?php } ?>
+                        <?php if( in_array("se_r", $permiso) || in_array("zo_r", $permiso) ){ ?>
+                        <li>
+							<a href="Sedes.php"> <i class="fa fa-university " aria-hidden="true"></i>Sedes </a>
+						</li>
+                        <?php } ?>
+						<?php if( in_array("em_r", $permiso) || in_array("sr_r", $permiso) || in_array("er_r", $permiso) || in_array("ti_r", $permiso) || in_array("pe_r", $permiso) ){ ?>
 						<li class="active">
 							<a href="empleados.php"><i class="fa fa-id-card-o"></i>Empleados</a>
 						</li>
-						<?php }?>
+						<?php } ?>
 						<?php if( in_array("cl_r", $permiso) ){ ?>
 						<li>
 							<a href="clientes.php"> <i class="fa fa-address-book-o" aria-hidden="true"></i>Clientes</a>
 						</li>
-						<?php }?>
+						<?php } ?>
 						<?php if( in_array("po_r", $permiso) ){ ?>
 						<li>
 							<a href="proveedores.php"> <i class="fa fa-truck" aria-hidden="true"></i>Proveedores</a>
 						</li>
-						<?php }?>
-						<?php if( in_array("fv_r", $permiso) ){ ?>
+						<?php } ?>
+						<?php if( in_array("pr_r", $permiso) ){ ?>
 						<li>
-							<a href="ventas.php"> <i class="fa fa-paper-plane-o" aria-hidden="true"></i>Ventas </a>
+							<a href="pruebas.php"> <i class="fa fa-check-square-o " aria-hidden="true"></i>Pruebas </a>
 						</li>
-						<?php }?>
-						<?php if( in_array("fc_r", $permiso) ){ ?>
+                        <?php } ?>
+                        <?php if( in_array("tr_r", $permiso) ){ ?>
 						<li>
-							<a href="compras.php"> <i class="fa fa-cog" aria-hidden="true"></i>Compras </a>
+							<a href="traslados.php"> <i class="fa fa-share-square-o " aria-hidden="true"></i>Traslados </a>
 						</li>
-						<?php }?>
+						<?php } ?>
 					</ul>
 				</nav>
 				<div class="content-inner">
@@ -133,6 +173,8 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 						<?php if($_GET['error']==16){?>Error al crear <strong>Titulación</strong>.<?php }?>
 						<?php if($_GET['error']==17){?>Error al editar <strong>Titulación</strong>.<?php }?>
 						<?php if($_GET['error']==18){?>Error al eliminar <strong>Titulación</strong>.<?php }?>
+						<?php if($_GET['error']==19){?>Error al insertar <strong>Permiso</strong>.<?php }?>
+						<?php if($_GET['error']==20){?>Error al eliminar <strong>Permiso</strong>.<?php }?>
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
@@ -141,23 +183,23 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 					<!-- TABS SECTION-->
 					<section>
 						<div class="container-fluid">
-							<?php if( in_array("em_r", $permiso) || in_array("em_c", $permiso) ){?>
+							<?php if( in_array("em_r", $permiso) ){?>
 							<input id="tab0" type="radio" name="tabs" class="no-display" <?php if( !isset($_GET['tab']) ) print "checked";?>>
 							<label for="tab0" class="label"><i class="fa fa-id-card-o" aria-hidden="true"></i> Empleados</label>
 							<?php }?>
-							<?php if( in_array("sr_r", $permiso) || in_array("sr_c", $permiso) ){?>
+							<?php if( in_array("sr_r", $permiso) ){?>
 							<input id="tab1" type="radio" name="tabs" class="no-display" <?php if( $_GET['tab'] == "rol" ) print "checked";?>>
 							<label for="tab1" class="label"><i class="fa fa-street-view" aria-hidden="true"></i> Roles</label>
 							<?php }?>
-							<?php if( in_array("er_r", $permiso) || in_array("er_c", $permiso) ){?>
+							<?php if( in_array("er_r", $permiso) ){?>
 							<input id="tab2" type="radio" name="tabs" class="no-display" <?php if( $_GET['tab'] == "cargo" ) print "checked";?>>
 							<label for="tab2" class="label"><i class="fa fa-briefcase" aria-hidden="true"></i> Cargo</label>
 							<?php }?>
-							<?php if( in_array("ti_r", $permiso) || in_array("ti_c", $permiso) ){?>
+							<?php if( in_array("ti_r", $permiso) ){?>
 							<input id="tab3" type="radio" name="tabs" class="no-display" <?php if( $_GET['tab'] == "titulacion" ) print "checked";?>>
 							<label for="tab3" class="label"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Titulación</label>
 							<?php }?>
-							<?php if( in_array("rp_r", $permiso) && in_array("rp_c", $permiso) ){?>
+							<?php if( in_array("rp_r", $permiso)){?>
 							<input id="tab4" type="radio" name="tabs" class="no-display" <?php if( $_GET['tab'] == "permiso" ) print "checked";?>>
 							<label for="tab4" class="label"><i class="fa fa-university" aria-hidden="true"></i> Permisos</label>
 							<?php }?>
@@ -249,7 +291,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 																<?php print $empleado->beneficiarios;?>
 															</td>
 															<td class="text-center">
-																<?php $date = new DateTime($empleado->fecha); print $date->format('d-m-Y');?>
+																<?php $date = new DateTime($empleado->fecha); print $date->format('d/m/Y');?>
 															</td>
 															<td class="text-center">
 																<?php print $empleado->direccion;?>
@@ -297,7 +339,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 																			<h4>Nombre</h4>
 																		</label>
 																		<div class="col-sm-9">
-																			<input name="nombre" type="text" placeholder="Introduzca Nombre" class="form-control" required>
+																			<input name="nombre" type="text" placeholder="Introduzca Nombre" class="form-control" pattern="[A-Z a-zñ]+" required>
 																		</div>
 																	</div>
 																	<div class="form-group row">
@@ -305,7 +347,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 																			<h4>Apellido</h4>
 																		</label>
 																		<div class="col-sm-9">
-																			<input name="apellido" type="text" placeholder="Introduzca Apellido" class="form-control" required>
+																			<input name="apellido" type="text" placeholder="Introduzca Apellido" class="form-control" pattern="[A-Z a-zñ]+" required>
 																		</div>
 																	</div>
 																	<div class="form-group row">
@@ -331,7 +373,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 																			<h4>Usario</h4>
 																		</label>
 																		<div class="col-sm-9">
-																			<input name="usuario" type="text" placeholder="Introduzca Usuario" class="form-control" required>
+																			<input name="usuario" type="text" placeholder="Introduzca Usuario" class="form-control" pattern="[A-Z a-zñ0-9]+" required>
 																			<span class="help-block-none"><small>El nombre de usuario debe ser unico.</small></span> 
 																		</div>
 																	</div>
@@ -494,7 +536,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 																			</select>
 																		</div>
 																		<div class="col-sm-6">
-																			<input name="contacto[]" type="text" placeholder="Introduzca Contacto" class="form-control" required>
+																			<input name="contacto[]" type="text" placeholder="Introduzca Contacto" class="form-control" pattern="[A-Z a-zñ0-9.@]+" required>
 																		</div>
 																	</div>
 																	<div class="form-group row">
@@ -632,7 +674,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<h4>Nombre</h4>
 													</label>
 													<div class="col-sm-9">
-														<input name="nombre" type="text" placeholder="Introduzca Nombre" class="form-control" required>
+														<input name="nombre" type="text" placeholder="Introduzca Nombre" class="form-control" pattern="[A-Z a-zñ]+" required>
 													</div>
 												</div>
 											</div>
@@ -671,7 +713,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 											</div>
 											<?php }?>
 											<?php if( in_array("er_r", $permiso) ){?>
-											<?php $qry = "SELECT er_id id, er_nombre nombre FROM Cargo";
+											<?php $qry = "SELECT er_id id, er_nombre nombre FROM Cargo Where er_id>1";
 											$rs = pg_query( $conexion, $qry );
 											$howMany = pg_num_rows($rs);
 											if( $howMany > 0 ){?>
@@ -735,7 +777,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<h4>Nombre</h4>
 													</label>
 													<div class="col-sm-9">
-														<input name="nombre" type="text" placeholder="Introduzca Nombre" class="form-control" required>
+														<input name="nombre" type="text" placeholder="Introduzca Nombre" class="form-control" pattern="[A-Z a-zñ]+" required>
 													</div>
 												</div>
 											</div>
@@ -775,7 +817,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 											</div>
 											<?php }?>
 											<?php if( in_array("ti_r", $permiso) ){?>
-											<?php $qry = "SELECT ti_id id, ti_nombre nombre FROM Titulacion";
+											<?php $qry = "SELECT ti_id id, ti_nombre nombre FROM Titulacion WHERE ti_id>1";
 											$rs = pg_query( $conexion, $qry );
 											$howMany = pg_num_rows($rs);
 											if( $howMany > 0 ){?>
@@ -839,7 +881,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<h4>Nombre</h4>
 													</label>
 													<div class="col-sm-9">
-														<input name="nombre" type="text" placeholder="Introduzca Nombre" class="form-control" required>
+														<input name="nombre" type="text" placeholder="Introduzca Nombre" class="form-control" pattern="[A-Z a-zñ]+" required>
 													</div>
 												</div>
 											</div>
@@ -871,7 +913,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 							$rse = pg_query( $conexion, $qre );
 							$permisoCheck = array();
 							while( $rol = pg_fetch_object($rse) ){
-								$permisoCheck[$rol->nombre] = array();
+								$permisoCheck[$rol->id] = array();
 								$qri = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$rol->id;
 								$rsi = pg_query( $conexion, $qri ); 
 								while( $rolp = pg_fetch_object($rsi) ){ $permisoCheck[$rol->id][] = $rolp->permiso; }
@@ -916,7 +958,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 													<div class="row">
 														<div class="col-sm-12 text-right">
 															<button type="submit" class="btn btn-primary">
-																<i class="fa fa-plus" aria-hidden="true"></i> Guardar Cambios
+																<i class="fa fa-floppy-o"></i>  Guardar Cambios
 															</button>
 														</div>
 													</div>
@@ -949,7 +991,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 			</footer>
 		</div>
 		<!-- Javascript files-->
-		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script src="js/jquery-3.2.1.min.js"></script>
 		<script src="vendor/popper.js/umd/popper.min.js"></script>
 		<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 		<script src="vendor/jquery.cookie/jquery.cookie.js"></script>
@@ -971,6 +1013,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 		$("#list-estados").change(function () {
 			var iden = $("#list-estados option:selected").val();
 			$("#list-municipios").removeAttr('disabled');
+			$("#list-parroquias").empty();
 			$.ajax({
 				type: "POST"
 				, dataType: "html"
@@ -1015,6 +1058,11 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 					$last.after(data);
 				}
 			});
+		});
+		$(".delete-contacto").click(function(){
+			var $row = $(this).closest(".row");
+			if($(this).hasClass("new"))
+				$row.remove();
 		});
 		$("#add-beneficiario").click(function(){
 			var $last = $(".last-beneficiario");
