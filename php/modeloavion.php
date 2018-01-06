@@ -96,7 +96,7 @@ if( !in_array("am_r", $permiso) || !in_array("as_r", $permiso) || !in_array("di_
 							<a href="piezas.php"> <i class="fa fa-puzzle-piece " aria-hidden="true"></i>Piezas </a>
 						</li>
                         <?php } ?>
-                        <?php if( in_array("m_r", $permiso) ) { ?>
+                        <?php if( in_array("m_r", $permiso) || in_array("tm_r", $permiso) ) { ?>
                         <li>
 							<a href="materiales.php"> <i class="fa fa-server " aria-hidden="true"></i>Materiales </a>
 						</li>
