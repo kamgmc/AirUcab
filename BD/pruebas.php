@@ -124,8 +124,116 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 					<div class="container-fluid">
 						<input id="tab0" type="radio" name="tabs" class="no-display" checked>
 						<label for="tab0" class="label"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> Pruebas</label>
+						<input id="tab1" type="radio" name="tabs" class="no-display">
+						<label for="tab1" class="label"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> Status</label>
 						
 						
+						<!-- TAB Pruebas -->
+						<section id="content0" class="sectiontab">
+							
+							<!-- TABLE STARTS -->
+							<div class="col-md-12">
+								<div class="card">
+									<div class="row">
+										<div class="col-sm-10"></div>
+										<div class="col-sm-2 pad-top">
+											<button type="button" data-toggle="modal" data-target="#myModalPruebaCrear" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
+										</div>
+									</div>
+									<div class="card-body">
+										<table class="table table-striped table-sm table-hover">
+											<thead>
+												<tr>
+													<th>NOMBRE</th>
+													<th class="text-center">Duracion Estimada</th>
+													<th class="text-center">Accion</th>
+												</tr>
+											</thead>
+											<tbody>
+												
+													<tr>
+														<td>Prueba de Calidad</td>
+														<td class="text-center">30 dias</td>
+														<td class="text-center">
+															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
+															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+														</td>
+													</tr>
+													<tr>
+														<td>Prueba de Calidad</td>
+														<td class="text-center">30 dias</td>
+														<td class="text-center">
+															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
+															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+														</td>
+													</tr>
+													<tr>
+														<td>Prueba de Calidad</td>
+														<td class="text-center">30 dias</td>
+														<td class="text-center">
+															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
+															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+														</td>
+													</tr>
+													<tr>
+														<td>Prueba de Calidad</td>
+														<td class="text-center">30 dias</td>
+														<td class="text-center">
+															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
+															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+														</td>
+													</tr>
+													<tr>
+														<td>Prueba de Calidad</td>
+														<td class="text-center">30 dias</td>
+														<td class="text-center">
+															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
+															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+														</td>
+													</tr>
+													<tr>
+														<td>Prueba de Calidad</td>
+														<td class="text-center">30 dias</td>
+														<td class="text-center">
+															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
+															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+														</td>
+													</tr>
+													<tr>
+														<td>Prueba de Calidad</td>
+														<td class="text-center">30 dias</td>
+														<td class="text-center">
+															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
+															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+														</td>
+													</tr>
+													<tr>
+														<td>Prueba de Calidad</td>
+														<td class="text-center">30 dias</td>
+														<td class="text-center">
+															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
+															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+														</td>
+													</tr>
+													<tr>
+														<td>Prueba de Calidad</td>
+														<td class="text-center">30 dias</td>
+														<td class="text-center">
+															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
+															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+														</td>
+													</tr>
+													
+												
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<!-- TABLE ENDS -->
+						</section>
+
+
 						<!-- TAB Pruebas -->
 						<section id="content0" class="sectiontab">
 							
