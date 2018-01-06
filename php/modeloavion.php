@@ -5,7 +5,13 @@ include 'conexion.php';
 if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'] = 5;} 
 $qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$_SESSION['rol']; 
 $rs = pg_query( $conexion, $qry ); $permiso = array();
-while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
+while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }
+if( !in_array("am_r", $permiso) || !in_array("as_r", $permiso) || !in_array("di_r", $permiso) ){
+	if( !isset($_SESSION['code']) ){
+		header('Location: login.php');
+		exit;
+	}
+}?>
 	<!DOCTYPE html>
 	<html>
 
@@ -29,7 +35,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 		<!-- Custom stylesheet - for your changes-->
 		<link rel="stylesheet" href="css/custom.css">
 		<!-- Favicon-->
-		<link rel="shortcut icon" href="favicon.png"> </head>
+		<link rel="shortcut icon" href="img/airucab.ico"> </head>
 
 	<body>
 		<div class="page home-page">
@@ -64,48 +70,78 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 				<!-- Side Navbar -->
 				<nav class="side-navbar">
 					<?php if( isset($_SESSION['code']) ){ ?>
-						<!-- Sidebar Header-->
-						<div class="sidebar-header d-flex align-items-center">
-							<div class="avatar"><img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
-							<div class="title">
-								<h1 class="h4"><?php print $_SESSION['usuario']; ?></h1>
-								<p><?php print $_SESSION['cargo']; ?></p>
-							</div>
+					<!-- Sidebar Header-->
+					<div class="sidebar-header d-flex align-items-center">
+						<div class="avatar"><img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
+						<div class="title">
+							<h1 class="h4"><?php print $_SESSION['usuario']; ?></h1>
+							<p><?php print $_SESSION['cargo']; ?></p>
 						</div>
+					</div>
+					<?php } ?>
+					<!-- Sidebar Navidation Menus-->
+					<ul class="list-unstyled">
+						<?php if( in_array("am_r", $permiso) || in_array("as_r", $permiso) || in_array("di_r", $permiso) ){ ?>
+						<li class="active">
+							<a href="modeloavion.php"> <i class="fa fa-plane" aria-hidden="true"></i> Aviones </a>
+						</li>
 						<?php } ?>
-							<!-- Sidebar Navidation Menus-->
-							<ul class="list-unstyled">
-								<?php if( in_array("am_r", $permiso) || in_array("am_c", $permiso) || in_array("as_r", $permiso) || in_array("as_c", $permiso) || in_array("di_r", $permiso) || in_array("di_c", $permiso) ){ ?>
-								<li class="active">
-									<a href="modeloavion.php"> <i class="fa fa-plane" aria-hidden="true"></i> Aviones </a>
-								</li>
-								<?php }?>
-								<?php if( in_array("em_r", $permiso) || in_array("em_c", $permiso) ){ ?>
-								<li>
-									<a href="empleados.php"><i class="fa fa-id-card-o"></i>Empleados</a>
-								</li>
-								<?php }?>
-								<?php if( in_array("cl_r", $permiso) ){ ?>
-								<li>
-									<a href="clientes.php"> <i class="fa fa-address-book-o" aria-hidden="true"></i>Clientes</a>
-								</li>
-								<?php }?>
-								<?php if( in_array("po_r", $permiso) ){ ?>
-								<li>
-									<a href="proveedores.php"> <i class="fa fa-truck" aria-hidden="true"></i>Proveedores</a>
-								</li>
-								<?php }?>
-								<?php if( in_array("fv_r", $permiso) ){ ?>
-								<li>
-									<a href="ventas.php"> <i class="fa fa-paper-plane-o" aria-hidden="true"></i>Ventas </a>
-								</li>
-								<?php }?>
-								<?php if( in_array("fc_r", $permiso) ){ ?>
-								<li>
-									<a href="compras.php"> <i class="fa fa-cog" aria-hidden="true"></i>Compras </a>
-								</li>
-								<?php }?>
-							</ul>
+                        <?php if (in_array("mb_r", $permiso) || in_array("mm_r", $permiso) || in_array("mo_r", $permiso) ) { ?>
+                        <li>
+							<a href="motores.php"> <i class="fa fa-tachometer " aria-hidden="true"></i>Motores </a>
+						</li>
+                        <?php } ?>
+                        <?php if( in_array("p_r", $permiso) || in_array("pm_r", $permiso) || in_array("wt_r", $permiso) || in_array("et_r", $permiso) ) { ?>
+                        <li>
+							<a href="piezas.php"> <i class="fa fa-puzzle-piece " aria-hidden="true"></i>Piezas </a>
+						</li>
+                        <?php } ?>
+                        <?php if( in_array("m_r", $permiso) ) { ?>
+                        <li>
+							<a href="materiales.php"> <i class="fa fa-server " aria-hidden="true"></i>Materiales </a>
+						</li>
+                        <?php } ?>
+                        <?php if( in_array("fv_r", $permiso) ){ ?>
+						<li>
+							<a href="ventas.php"> <i class="fa fa-paper-plane-o" aria-hidden="true"></i>Ventas </a>
+						</li>
+						<?php } ?>
+                        <?php if( in_array("fc_r", $permiso) ){ ?>
+						<li>
+							<a href="compras.php"> <i class="fa fa-shopping-bag " aria-hidden="true"></i>Compras </a>
+						</li>
+						<?php } ?>
+                        <?php if( in_array("se_r", $permiso) || in_array("zo_r", $permiso) ){ ?>
+                        <li>
+							<a href="Sedes.php"> <i class="fa fa-university " aria-hidden="true"></i>Sedes </a>
+						</li>
+                        <?php } ?>
+						<?php if( in_array("em_r", $permiso) || in_array("sr_r", $permiso) || in_array("er_r", $permiso) || in_array("ti_r", $permiso) || in_array("pe_r", $permiso) ){ ?>
+						<li>
+							<a href="empleados.php"><i class="fa fa-id-card-o"></i>Empleados</a>
+						</li>
+						<?php } ?>
+						<?php if( in_array("cl_r", $permiso) ){ ?>
+						<li>
+							<a href="clientes.php"> <i class="fa fa-address-book-o" aria-hidden="true"></i>Clientes</a>
+						</li>
+						<?php } ?>
+						<?php if( in_array("po_r", $permiso) ){ ?>
+						<li>
+							<a href="proveedores.php"> <i class="fa fa-truck" aria-hidden="true"></i>Proveedores</a>
+						</li>
+						<?php } ?>
+						<?php if( in_array("pr_r", $permiso) ){ ?>
+						<li>
+							<a href="pruebas.php"> <i class="fa fa-check-square-o " aria-hidden="true"></i>Pruebas </a>
+						</li>
+                        <?php } ?>
+                        <?php if( in_array("tr_r", $permiso) ){ ?>
+						<li>
+							<a href="traslados.php"> <i class="fa fa-share-square-o " aria-hidden="true"></i>Traslados </a>
+						</li>
+						<?php } ?>
+					</ul>
 				</nav>
 				<div class="content-inner">
 					<?php if(isset($_GET['error'])){?>
@@ -117,9 +153,11 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 						<?php if($_GET['error']==4){?>Error al crear <strong>Submodelo de Avión</strong>.<?php }?>
 						<?php if($_GET['error']==5){?>Error al editar <strong>Submodelo de Avión</strong>.<?php }?>
 						<?php if($_GET['error']==6){?>Error al eliminar <strong>Submodelo de Avión</strong>.<?php }?>
+						<?php if($_GET['error']==60){?>Debe existir al menos un <strong>Submodelo de Avión</strong> por cada <strong>Modelo de Avión</strong>.<?php }?>
 						<?php if($_GET['error']==7){?>Error al crear <strong>Distribución de Avión</strong>.<?php }?>
 						<?php if($_GET['error']==8){?>Error al editar <strong>Distribución de Avión</strong>.<?php }?>
 						<?php if($_GET['error']==9){?>Error al eliminar <strong>Distribución de Avión</strong>.<?php }?>
+						<?php if($_GET['error']==90){?>Debe existir al menos una <strong>Distribución de Avión</strong> por cada <strong>Modelo de Avión</strong>.<?php }?>
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
@@ -128,15 +166,15 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 					<!-- Section de TABS-->
 					<section>
 						<div class="container-fluid">
-							<?php if( in_array("am_r", $permiso) || in_array("am_c", $permiso) ){?>
+							<?php if( in_array("am_r", $permiso) ){?>
 							<input id="tab0" type="radio" name="tabs" class="no-display" <?php if( !isset($_GET['tab']) ) print "checked";?>>
 							<label for="tab0" class="label"><i class="fa fa-plane" aria-hidden="true"></i> Modelos Aviones</label>
 							<?php }?>
-							<?php if( in_array("as_r", $permiso) || in_array("as_c", $permiso) ){?>
+							<?php if( in_array("as_r", $permiso) ){?>
 							<input id="tab1" type="radio" name="tabs" class="no-display" <?php if( $_GET['tab'] == "submodelo" ) print "checked";?>>
 							<label for="tab1" class="label"><i class="fa fa-rocket" aria-hidden="true"></i> Submodelos Aviones</label>
 							<?php }?>
-							<?php if( in_array("di_r", $permiso) || in_array("di_c", $permiso) ){?>
+							<?php if( in_array("di_r", $permiso) ){?>
 							<input id="tab2" type="radio" name="tabs" class="no-display" <?php if( $_GET['tab'] == "distribucion" ) print "checked";?>>
 							<label for="tab2" class="label"><i class="fa fa-fighter-jet" aria-hidden="true"></i> Distribucion</label>
 							<?php }?>
@@ -231,7 +269,11 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 												<tbody>
 													<?php 	
 														
-														while( $avion = pg_fetch_object($rs) ){?>
+														while( $avion = pg_fetch_object($rs) ){
+															$dias = $avion->tiempo + 1;
+															$hoy = new DateTime();
+															$fin = new DateTime(date('Y-m-d', strtotime($hoy->format("Y-m-d"). ' + '.$dias.' days')));
+															$interval = $hoy->diff($fin);?>
 														<tr>
 															<td class="text-center text-middle">
 																<?php print $avion->id;?>
@@ -260,7 +302,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 																<?php print $avion->asistentes;?>
 															</td>
 															<td>
-																<?php $dias = $avion->tiempo;$meses = 0; while($dias > 31){$meses+=1; $dias-=30;} print $meses." meses y ".$dias." dias"; ?>
+																<?php print $interval->format('%m meses y %d días'); ?>
 															</td>
 															<td class="text-center">
 																<a class="click-modelo-detalle" href="<?php print $avion->id;?>"> 
@@ -336,7 +378,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 										</div>
 										<?php } ?>
 										<?php if( in_array("as_r", $permiso) ){?>
-										<?php $qry = "SELECT as_id id, am_nombre ||' - '|| as_nombre as modelo, as_peso_maximo_despegue peso_max, as_peso_vacio peso_vacio, as_velocidad_crucero crucero, as_carrera_despegue_peso_maximo carrera, as_autonomia_peso_maximo_despegue autonomia, as_capacidad_combustible combustible, as_alcance_carga_maxima alcance FROM Submodelo_avion, Modelo_avion where as_modelo_avion=am_id ORDER BY am_id, as_id";
+										<?php $qry = "SELECT as_id id, am_nombre ||' - '|| as_nombre as modelo, as_peso_maximo_despegue peso_max, as_peso_vacio peso_vacio, as_velocidad_crucero crucero, as_carrera_despegue_peso_maximo carrera, as_capacidad_combustible combustible, as_alcance_carga_maxima alcance FROM Submodelo_avion, Modelo_avion where as_modelo_avion=am_id ORDER BY am_id, as_id";
 										$rs = pg_query( $conexion, $qry );
 										$howMany = pg_num_rows($rs);
 										if( $howMany > 0 ){?>
@@ -350,7 +392,6 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<th class="text-center text-middle">Peso Vacio</th>
 														<th class="text-center text-middle">Velocidad Crucero</th>
 														<th class="text-center text-middle">Carrera Despegue Peso Max</th>
-														<th class="text-center text-middle">Autono. Peso Max Despegue</th>
 														<th class="text-center text-middle">Capacidad Combustible</th>
 														<th class="text-center text-middle">Alcance Carga Max</th>
 														<?php if( isset($_SESSION['code']) ){ ?>
@@ -380,19 +421,20 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 																<?php print number_format($avion->carrera, 0, ',', '.')." m";?>
 															</td>
 															<td class="text-center text-middle">
-																<?php print number_format($avion->autonomia, 0, ',', '.')." Km";?>
-															</td>
-															<td class="text-center text-middle">
 																<?php print number_format($avion->combustible, 0, ',', '.')." Lts";?>
 															</td>
 															<td class="text-center text-middle">
 																<?php print number_format($avion->alcance, 0, ',', '.')." m";?>
 															</td>
 															<td class="text-center">
+                                                                <?php if( in_array("p_r", $permiso) ) { ?>&nbsp;
+																<a class="click-submodelo-piezas" href="<?php print $avion->id;?>"> 
+																	<i class="fa fa-cogs" aria-hidden="true" title="Ver piezas"></i> 
+																</a><?php }?>&nbsp;
 																<a class="click-submodelo-detalle" href="<?php print $avion->id;?>"> 
 																	<i class="fa fa-file-text-o" aria-hidden="true" title="Ver mas"></i> 
 																</a>
-																<?php if( in_array("as_d", $permiso) ){ ?>&emsp;
+																<?php if( in_array("as_d", $permiso) ){ ?>&nbsp;
 																<a href="submodeloavion-crud.php?delete=<?php print $avion->id;?>"> 
 																	<i title="Eliminar" class="fa fa-trash-o" aria-hidden="true"></i> 
 																</a>
@@ -820,6 +862,14 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 																			<input name="carrera_despegue" type="text" placeholder="Introduzca Carrera de Despegue con Peso Máximo" class="form-control" pattern="\d+\.?\d{0,2}" required>
 																		</div>
 																	</div>
+																	<div class="form-group row">
+																		<label class="col-sm-3 form-control-label">
+																			<h4># de Motores</h4>
+																		</label>
+																		<div class="col-sm-9">
+																			<input name="n_motores" type="text" placeholder="Introduzca Numero de motores" class="form-control" pattern="\d+" required>
+																		</div>
+																	</div>
 																</div>
 																<div class=" card-body col-lg-6">
 																	<div class="form-group row">
@@ -877,6 +927,14 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 								</div>
 							</div>
 							<!-- Modal Detalle Submodelo Avion ENDS -->
+							<!-- Modal Piezas Submodelo Avion -->
+							<div id="ModalPiezaSubmodelo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+								<div role="document" class="modal-dialog modal-xl">
+									<div id="piezaSubmodeloBody" class="modal-content">
+									</div>
+								</div>
+							</div>
+							<!-- Modal Piezas Submodelo Avion ENDS -->
 							<!-- Modal Submodelo Avion Editar -->
 							<div id="ModalEditarSubmodelo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 								<div role="document" class="modal-dialog modal-xl">
@@ -1028,6 +1086,12 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 			  	var href = $(this).attr('href');
 				$.ajax({type: "POST",dataType: "html",url:"submodeloavion-detalle.php?id="+href,success: function(data){$("#detalleSubmodeloBody").html(data);}});
 				$("#ModalDetalleSubmodelo").modal('toggle');
+			});
+			$( "a.click-submodelo-piezas" ).click(function( event ) {
+			  	event.preventDefault();
+			  	var href = $(this).attr('href');
+				$.ajax({type: "POST",dataType: "html",url:"submodeloavion-piezas.php?id="+href,success: function(data){$("#piezaSubmodeloBody").html(data);}});
+				$("#ModalPiezaSubmodelo").modal('toggle');
 			});
 			$( "a.click-distribucion-detalle" ).click(function( event ) {
 			  	event.preventDefault();
