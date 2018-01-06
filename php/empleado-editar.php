@@ -1,9 +1,10 @@
 <?php 
 include 'conexion.php';
-$qry = "SELECT em_id id,em_nombre nombre, em_apellido apellido, em_nacionalidad nac, em_ci ci, em_usuario usuario, em_titulacion titulacion, em_rol rol, em_cargo cargo, se.se_id sede, em_zona zona, pa.lu_id parroquia, mu.lu_id municipio, es.lu_id estado, em_nota nota, em_supervisa zona_s, em_gerencia sede_g FROM Empleado LEFT JOIN Zona zo ON em_zona=zo.zo_id LEFT JOIN Sede se on zo.zo_sede=se.se_id LEFT JOIN Cargo ON er_id=em_cargo LEFT JOIN Lugar pa ON pa.lu_id=em_direccion LEFT JOIN Lugar mu ON mu.lu_id=pa.lu_lugar LEFT JOIN Lugar es ON es.lu_id=mu.lu_lugar WHERE em_id=".$_GET['id']." ORDER BY em_id";
+$id = htmlentities($_GET['id'], ENT_QUOTES);
+$qry = "SELECT em_id id,em_nombre nombre, em_apellido apellido, em_nacionalidad nac, em_ci ci, em_usuario usuario, em_titulacion titulacion, em_rol rol, em_cargo cargo, se.se_id sede, em_zona zona, pa.lu_id parroquia, mu.lu_id municipio, es.lu_id estado, em_nota nota, em_supervisa zona_s, em_gerencia sede_g FROM Empleado LEFT JOIN Zona zo ON em_zona=zo.zo_id LEFT JOIN Sede se on zo.zo_sede=se.se_id LEFT JOIN Cargo ON er_id=em_cargo LEFT JOIN Lugar pa ON pa.lu_id=em_direccion LEFT JOIN Lugar mu ON mu.lu_id=pa.lu_lugar LEFT JOIN Lugar es ON es.lu_id=mu.lu_lugar WHERE em_id=".$id." ORDER BY em_id";
 $con = pg_query($conexion, $qry);
 $empleado = pg_fetch_object($con);
-$result = '<form action="empleado-crud?edit='.$empleado->id.'" method="post">
+$result = '<form action="empleado-crud.php?edit='.$empleado->id.'" method="post">
 				<div class="modal-header">
 					<h4 id="exampleModalLabel" class="modal-title">Editar Empleado</h4>
 					<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
@@ -19,7 +20,7 @@ $result = '<form action="empleado-crud?edit='.$empleado->id.'" method="post">
 												<h4>Nombre</h4>
 											</label>
 											<div class="col-sm-9">
-												<input name="nombre" type="text" value="'.$empleado->nombre.'" class="form-control" required>
+												<input name="nombre" type="text" value="'.$empleado->nombre.'" class="form-control" pattern="[A-Z a-zñ]+" required>
 											</div>
 										</div>
 										<div class="form-group row">
@@ -27,7 +28,7 @@ $result = '<form action="empleado-crud?edit='.$empleado->id.'" method="post">
 												<h4>Apellido</h4>
 											</label>
 											<div class="col-sm-9">
-												<input name="apellido" type="text" value="'.$empleado->apellido.'" class="form-control" required>
+												<input name="apellido" type="text" value="'.$empleado->apellido.'" class="form-control" pattern="[A-Z a-zñ]+" required>
 											</div>
 										</div>
 										<div class="form-group row">
@@ -53,7 +54,7 @@ $result = '<form action="empleado-crud?edit='.$empleado->id.'" method="post">
 												<h4>Usario</h4>
 											</label>
 											<div class="col-sm-9">
-												<input name="usuario" type="text" value="'.strtolower($empleado->usuario).'" class="form-control" required>
+												<input name="usuario" type="text" value="'.strtolower($empleado->usuario).'" class="form-control" pattern="[A-Z a-zñ]+" required>
 												<span class="help-block-none"><small>El nombre de usuario debe ser unico.</small></span> 
 											</div>
 										</div>
@@ -244,7 +245,7 @@ $result = '<form action="empleado-crud?edit='.$empleado->id.'" method="post">
 													$result.= '</select>
 												</div>
 												<div class="col-sm-6">
-													<input name="contacto_update[]" type="text" value="'.$contacto->valor.'" class="form-control" required>
+													<input name="contacto_update[]" pattern="[A-Z a-zñ0-9.@\-_]+" type="text" value="'.$contacto->valor.'" class="form-control" required>
 												</div>
 												<input name="contacto_update_id[]" type="hidden" value="'.$contacto->id.'"/>
 											</div>';
@@ -274,11 +275,11 @@ $result = '<form action="empleado-crud?edit='.$empleado->id.'" method="post">
 												$result .='">
 												<div class="col-sm-3 text-right"><i data-id="'.$beneficiario->id.'" class="fa fa-times delete-beneficiario" aria-hidden="true"></i></div>
 												<div class="col-sm-9">
-													<input name="nombre_beneficiario_update[]" type="text" value="'.$beneficiario->nombre.'" class="form-control" required>
+													<input name="nombre_beneficiario_update[]" type="text" value="'.$beneficiario->nombre.'" class="form-control" pattern="[A-Z a-zñ]+" required>
 												</div>
 												<div class="col-sm-3"></div>
 												<div class="col-sm-9">
-													<input name="apellido_beneficiario_update[]" type="text" value="'.$beneficiario->apellido.'" class="form-control" required>
+													<input name="apellido_beneficiario_update[]" type="text" value="'.$beneficiario->apellido.'" class="form-control" pattern="[A-Z a-zñ]+" required>
 												</div>
 												<div class="col-sm-3"></div>
 												<div class="col-sm-2 select">
@@ -322,7 +323,7 @@ $result = '<form action="empleado-crud?edit='.$empleado->id.'" method="post">
 												$result .='">
 											<div class="col-sm-3 text-right"><i data-id="'.$experiencia->id.'" class="fa fa-times delete-experiencia" aria-hidden="true"></i></div>
 											<div class="col-sm-7">
-												<input name="experiencia_desc_update[]" type="text" value="'.$experiencia->ex_descripcion.'" class="form-control" required> 
+												<input name="experiencia_desc_update[]" type="text" value="'.$experiencia->ex_descripcion.'" class="form-control" pattern="[A-Z a-zñ]+" required> 
 											</div>
 											<div class="col-md-2">
 												<input name="experiencia_year_update[]" type="text" value="'.$experiencia->ex_years.'" class="form-control" pattern="\d{0,2}\.?\d{0,1}" required> 
@@ -364,6 +365,7 @@ $result = '<form action="empleado-crud?edit='.$empleado->id.'" method="post">
 				$("#list-estados-u").change(function () {
 					var iden = $("#list-estados-u option:selected").val();
 					$("#list-municipios-u").removeAttr("disabled");
+					$("#list-parroquias-u").empty();
 					$.ajax({
 						type: "POST"
 						, dataType: "html"
@@ -434,18 +436,20 @@ $result = '<form action="empleado-crud?edit='.$empleado->id.'" method="post">
 						$("#check-gerente-u").prop("disabled", false);
 				});
 				$(".delete-contacto").click(function(){
-					var $id = $(this).data("id");
-					var $row = $(this).closest(".row");
-					$row.empty();
-					$row.removeClass("row");
-					$.ajax({
-						type: "POST",
-						dataType: "html",
-						url:"getter.php?get=fieldContactoDelete&id="+$id,
-						success: function(data){
-							$row.html(data);
-						}
-					});
+					if(!$(this).hasClass("new")){
+						var $id = $(this).data("id");
+						var $row = $(this).closest(".row");
+						$row.empty();
+						$row.removeClass("row");
+						$.ajax({
+							type: "POST",
+							dataType: "html",
+							url:"getter.php?get=fieldContactoDelete&id="+$id,
+							success: function(data){
+								$row.html(data);
+							}
+						});
+					}
 				});
 				$(".delete-beneficiario").click(function(){
 					var $id = $(this).data("id");
