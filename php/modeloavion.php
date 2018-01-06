@@ -6,11 +6,15 @@ if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'
 $qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$_SESSION['rol']; 
 $rs = pg_query( $conexion, $qry ); $permiso = array();
 while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }
-if( !in_array("am_r", $permiso) || !in_array("as_r", $permiso) || !in_array("di_r", $permiso) ){
+if( !in_array("am_r", $permiso) && !in_array("as_r", $permiso) && !in_array("di_r", $permiso) ){
 	if( !isset($_SESSION['code']) ){
 		header('Location: login.php');
 		exit;
 	}
+    else{
+        header('Location: motores.php');
+        exit;
+    }
 }?>
 	<!DOCTYPE html>
 	<html>
