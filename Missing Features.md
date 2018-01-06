@@ -16,9 +16,12 @@
 
 ## FRONTEND
 - [ ] Status (en Pruebas, para poder agregar nuevos estatus)
-- [ ] Zonas 'WORKING'
-- [ ] Sedes 'WORKING'
-- [ ] Tipo de Contacto (empleado) 
+- [ ] Tipo de Contacto (empleado)
+- [ ] Agregar 'TAB' Marca Motor a Motores 'WORKING'
+
+:white_check_mark: Zonas 
+
+:white_check_mark: Sedes 
 
 :white_check_mark: Pruebas 
 
