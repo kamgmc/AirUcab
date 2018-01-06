@@ -143,6 +143,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 											<thead>
 												<tr>
 													<th>NOMBRE</th>
+													<th class="text-center">Duracion Estimada</th>
 													<th class="text-center">Accion</th>
 												</tr>
 											</thead>
@@ -150,6 +151,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 												
 													<tr>
 														<td>Prueba de Calidad</td>
+														<td class="text-center">30 dias</td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
@@ -157,6 +159,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 													</tr>
 													<tr>
 														<td>Prueba de Calidad</td>
+														<td class="text-center">30 dias</td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
@@ -164,6 +167,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 													</tr>
 													<tr>
 														<td>Prueba de Calidad</td>
+														<td class="text-center">30 dias</td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
@@ -171,6 +175,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 													</tr>
 													<tr>
 														<td>Prueba de Calidad</td>
+														<td class="text-center">30 dias</td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
@@ -178,6 +183,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 													</tr>
 													<tr>
 														<td>Prueba de Calidad</td>
+														<td class="text-center">30 dias</td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
@@ -185,6 +191,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 													</tr>
 													<tr>
 														<td>Prueba de Calidad</td>
+														<td class="text-center">30 dias</td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
@@ -192,6 +199,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 													</tr>
 													<tr>
 														<td>Prueba de Calidad</td>
+														<td class="text-center">30 dias</td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
@@ -199,6 +207,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 													</tr>
 													<tr>
 														<td>Prueba de Calidad</td>
+														<td class="text-center">30 dias</td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
@@ -206,6 +215,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 													</tr>
 													<tr>
 														<td>Prueba de Calidad</td>
+														<td class="text-center">30 dias</td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
