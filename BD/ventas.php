@@ -224,7 +224,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 											</thead>
 											<tbody>
 												<?php 	
-												$qry = "SELECT fv_id id, cl_nombre cliente, fv_fecha fecha, (Select SUM(a_precio) From Avion Where a_factura_venta=fv.fv_id) AS  total, (Select SUM(pa_monto) from Pago WHERE pa_factura_venta=fv.fv_id) AS pagado FROM Factura_venta fv LEFT JOIN Cliente ON fv_cliente=cl_id ORDER BY fv_fecha DESC";
+												$qry = "SELECT fv_id id, cl_nombre cliente, fv_fecha fecha, (Select SUM(a_precio) From Avion Where a_factura_venta=fv.fv_id) AS  total, (Select SUM(pa_monto) from Pago WHERE pa_factura_venta=fv.fv_id) AS pagado FROM Factura_venta fv LEFT JOIN Cliente ON fv_cliente=cl_id ORDER BY fv_fecha DESC, fv_id DESC";
 												$rs = pg_query( $conexion, $qry );
 												while( $venta = pg_fetch_object($rs) ){?>
 													<tr>

@@ -47,6 +47,11 @@ $resultado = '<div class="modal-header">
 					</div>
 				</div>
 			</div>
-		</div>';
+		</div>
+		<script>
+			$("#ModalDetallePieza").on("hidden.bs.modal", function () {
+				$("#ModalDetalleAvion").data("bs.modal").handleUpdate();
+			})
+		</script>';
 echo $resultado;
 ?>

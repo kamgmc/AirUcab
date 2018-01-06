@@ -1000,6 +1000,13 @@
 		return pg_query($conexion, $qry);
 	}
 //Motor
+	function insertarMotor( $motor, $avion ){
+		global $conexion;
+		$motor = htmlentities($motor, ENT_QUOTES);
+		$avion = htmlentities($avion, ENT_QUOTES);
+		$qry = "INSERT INTO Motor (mo_fecha_ini,mo_modelo_motor,mo_avion) VALUES (transaction_timestamp(),".$motor.",".$avion.")";
+		return pg_query($conexion, $qry);
+	}
 	function eliminarMotor($id){
 		global $conexion;
 		$id = htmlentities($id, ENT_QUOTES);
@@ -1010,6 +1017,20 @@
 		return false;
 	}
 //Status_motor
+	function insertarStatusMotor( $status, $motor ){
+		global $conexion;
+		$status = htmlentities($status, ENT_QUOTES);
+		$motor = htmlentities($motor, ENT_QUOTES);
+		$qry = "SELECT Max(stm_id) AS id From Status_motor WHERE stm_motor=".$motor;
+		$answer = pg_query( $conexion, $qry );
+		$sm = pg_fetch_object($answer);
+		if(!is_null($sm->id)){
+			$qry = "UPDATE Status_motor SET stm_fecha_fin=transaction_timestamp() WHERE stm_id=".$sm->id;
+			pg_query( $conexion, $qry );
+		}
+		$qry = "INSERT INTO Status_motor (stm_fecha_ini,stm_status,stm_motor) VALUES (transaction_timestamp(),".$status.",".$motor.")";
+		return pg_query($conexion, $qry);
+	}
 //Pieza
 	function insertarPieza( $pieza, $avion ){
 		global $conexion;

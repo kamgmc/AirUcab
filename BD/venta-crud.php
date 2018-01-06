@@ -39,15 +39,19 @@
 			// Inserta todos los aviones que se hayan escrito en el formulario
 			$exit = false; $i = 0;
 			while(!$exit){
-				if( isset($_POST['distribucion'][$i]) && isset($_POST['submodelo'][$i]) && isset($_POST['precio'][$i]) && isset($_POST['cantidad'][$i]) ){ //Todas las variables de avion deben existir
-					for($x =1; $x <= $_POST['cantidad'][$i]; $x++){
-						if( insertarAvion( $factura->id, $_POST['distribucion'][$i], $_POST['submodelo'][$i], $_POST['precio'][$i] ) ){// Crea un avión
-							$qry = "SELECT Max(a_id) AS id FROM Avion where a_submodelo_avion=".$_POST['submodelo'][$i]." AND a_distribucion=".$_POST['distribucion'][$i]." AND a_precio=".$_POST['precio'][$i];
+				if( isset($_POST['distribucion'][$i]) && isset($_POST['submodelo'][$i]) && isset($_POST['precio'][$i]) && isset($_POST['cantidad'][$i]) && isset($_POST['motor'.$i]) ){ 
+					$iteraciones = $_POST['cantidad'][$i];
+					$estable = $i;//Todas las variables de avion deben existir
+					$Postmotor = "motor".$i;
+					for($x = 0; $x < $iteraciones; $x++){
+						if( insertarAvion( $factura->id, $_POST['distribucion'][$estable], $_POST['submodelo'][$estable], $_POST['precio'][$estable] ) ){// Crea un avión
+							print"Paso</br>";
+							$qry = "SELECT Max(a_id) AS id FROM Avion where a_submodelo_avion=".$_POST['submodelo'][$estable]." AND a_distribucion=".$_POST['distribucion'][$estable]." AND a_precio=".$_POST['precio'][$estable];
 							if($answer = pg_query( $conexion, $qry )){
 								$avion = pg_fetch_object($answer);
 								//Inicializa el status cada Avión
 								if( insertarStatusAvion( 1, $avion->id ) ){
-									$qry = "Select pm_id AS id, pm_cantidad AS cantidad from s_avion_m_pieza INNER JOIN Modelo_pieza ON smp_modelo_pieza=pm_modelo_pieza Where smp_submodelo_avion=".$_POST['submodelo'][$i]." UNION Select smp_modelo_pieza AS id, smp_cantidad AS cantidad from s_avion_m_pieza Where smp_submodelo_avion=".$_POST['submodelo'][$i]." ORDER BY id";
+									$qry = "Select pm_id AS id, pm_cantidad AS cantidad from s_avion_m_pieza INNER JOIN Modelo_pieza ON smp_modelo_pieza=pm_modelo_pieza Where smp_submodelo_avion=".$_POST['submodelo'][$estable]." UNION Select smp_modelo_pieza AS id, smp_cantidad AS cantidad from s_avion_m_pieza Where smp_submodelo_avion=".$_POST['submodelo'][$estable]." ORDER BY id";
 									$anwsermodelo = pg_query($conexion, $qry);
 									while( $modelo_pieza = pg_fetch_object($anwsermodelo) ){
 										for($j = 1; $j <= $modelo_pieza->cantidad; $j++ ){
@@ -98,7 +102,7 @@
 									$anwser = pg_query($conexion, $qry);
 									$asiento = pg_fetch_object($anwser);
 
-									$qry = "SELECT di_capacidad_pasajeros AS capacidad FROM distribucion WHERE di_id=".$_POST['distribucion'][$i];
+									$qry = "SELECT di_capacidad_pasajeros AS capacidad FROM distribucion WHERE di_id=".$_POST['distribucion'][$estable];
 									$anwser = pg_query($conexion, $qry);
 									$distribucion = pg_fetch_object($anwser);
 
@@ -145,13 +149,13 @@
 											}
 										}
 									}
-									$qry = "SELECT as_cantidad_motor AS cantidad FROM Submodelo_avion WHERE as_id=".$_POST['submodelo'][$i];
+									$qry = "SELECT as_cantidad_motor AS cantidad FROM Submodelo_avion WHERE as_id=".$_POST['submodelo'][$estable];
 									$anwser = pg_query($conexion, $qry);
 									$submodelo = pg_fetch_object($anwser);
 
 									for($h = 0; $h < $submodelo->cantidad; $h++){
-										if(insertarMotor( $_POST['motor'.$i][$h], $avion->id )){//Crea una nueva pieza
-											$qry = "SELECT Max(mo_id) AS id FROM Motor where mo_avion=".$avion->id." AND mo_modelo_motor=".$_POST['motor'][$i];
+										if(insertarMotor( $_POST[$Postmotor][$h], $avion->id )){//Crea una nueva pieza
+											$qry = "SELECT Max(mo_id) AS id FROM Motor where mo_avion=".$avion->id." AND mo_modelo_motor=".$_POST[$Postmotor][$h];
 											if($answer = pg_query( $conexion, $qry )){
 												$motor = pg_fetch_object($answer);//Motor especifico
 												insertarStatusMotor( 1, $motor->id );
@@ -160,11 +164,11 @@
 									}
 									$i++;
 								}
-								else{header('Location: ventas.php?error=2');exit;}
+								//else{header('Location: ventas.php?error=2');exit;}
 							}
-							else{header('Location: ventas.php?error=2');exit;}
+							//else{header('Location: ventas.php?error=2');exit;}
 						}
-						else{header('Location: ventas.php?error=2');exit;}
+						//else{header('Location: ventas.php?error=2');exit;}
 					}
 				}
 				else $exit = true;
@@ -179,11 +183,11 @@
 							$tipo_pago = pg_fetch_object($answer);
 							if(insertarPago( $_POST['transferencia_monto'][$i], $tipo_pago->id, $factura->id, 'NULL' ))//Inserta el pago con el monto
 								$i++;
-							else{header('Location: ventas.php?error=3');exit;}
+							//else{header('Location: ventas.php?error=3');exit;}
 						}
-						else{header('Location: ventas.php?error=3');exit;}
+						//else{header('Location: ventas.php?error=3');exit;}
 					}
-					else{header('Location: ventas.php?error=3');exit;}
+					//else{header('Location: ventas.php?error=3');exit;}
 				}
 				else $exit = true;
 			}
@@ -197,19 +201,17 @@
 							$tipo_pago = pg_fetch_object($answer);
 							if(insertarPago( $_POST['tarjeta_monto'][$i], $tipo_pago->id, $factura->id, 'NULL' ))//Inserta el pago con el monto
 								$i++;
-							else{header('Location: ventas.php?error=3');exit;}
+							//else{header('Location: ventas.php?error=3');exit;}
 						}
-						else{header('Location: ventas.php?error=3');exit;}
+						//else{header('Location: ventas.php?error=3');exit;}
 					}
-					else{header('Location: ventas.php?error=3');exit;}
+					//else{header('Location: ventas.php?error=3');exit;}
 				}
 				else $exit = true;
 			}
-			header('Location: ventas.php');
-			exit;
+			//header('Location: ventas.php');exit;
 		}
-		else header('Location: ventas.php?error=1');
-		exit;
+		//else header('Location: ventas.php?error=1');exit;
 	}
 	if(isset($_GET['delete'])){
 		$id = $_GET['delete'];

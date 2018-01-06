@@ -164,6 +164,7 @@ $resultado = '<div class="modal-header">
 				var href = $(this).attr("href");
 				$.ajax({type: "POST",dataType: "html",url:"avion-detalle.php?id="+href,success: function(data){$("#detalleAvionBody").html(data);}});
 				$("#ModalDetalleAvion").modal("toggle");
+				$("#ModalDetalleAvion").modal("handleUpdate");
 			});
 			</script>';
 echo $resultado;

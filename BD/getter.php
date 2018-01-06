@@ -241,6 +241,7 @@
 	if($_GET['get'] == "motorField"){
 		$id = htmlentities($_GET['id'], ENT_QUOTES);
 		$num = htmlentities($_GET['num'], ENT_QUOTES);
+		$num--;
 		$qry = "SELECT as_cantidad_motor AS cantidad FROM Submodelo_avion WHERE as_id=".$id;
 		$answer = pg_query( $conexion, $qry );
 		$submodelo = pg_fetch_object($answer);
