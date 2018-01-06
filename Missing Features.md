@@ -18,7 +18,7 @@
 - [ ] Status (en Pruebas, para poder agregar nuevos estatus) 'WORKING'
 - [ ] Tipo de Contacto (empleado)
 
-:white_check_mark: Agregar 'TAB' Marca Motor a Motores
+:white_check_mark: Agregar `TAB` Marca Motor a Motores
 
 :white_check_mark: Zonas 
 
