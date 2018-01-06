@@ -529,74 +529,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 						<!-- Modal SEDE Informacion ENDS -->
 
 						
-						<!-- Modal ZONA Informacion -->
-						<div id="ModalZona" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
-							<div role="document" class="modal-dialog modal-xl">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h4 id="exampleModalLabel" class="modal-title">INFORMACION ZONA</h4>
-										<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-									</div>
-									<div class="modal-body">
-										<div class="container-fluid">
-											<div class="row">
-												<div class="card col-lg-12">
-													<div class="row">
-														<!-- Columna Izquierda   -->
-
-														<div class="card-body col-lg-6">
-															<div class="row">
-																<div class="col-lg-4">
-																	<h3>ESTATUS</h3> </div>
-																<div class="col-lg-8"> <span class="badge badge-primary font-big">Disponible</span> </div>
-															</div>
-															<div class="row">
-																<div class="col-lg-4">
-																	<h3>Nombre</h3> </div>
-																<div class="col-lg-8"></div>
-															</div>
-														</div>	
-														<!-- Columna izquierda ENDS -->
-														<!-- Columna derecha -->
-														<div class=" card-body col-lg-6">
-															
-															<div class="row">
-																<div class="col-lg-4">
-																	<h3>Fecha Inicio</h3> </div>
-																<div class="col-lg-8">  </div>
-															</div>
-															<div class="row">
-																<div class="col-lg-4">
-																	<h3>Fecha Final</h3> </div>
-																<div class="col-lg-8">  </div>
-															</div>
-															<div class="row">
-																<div class="col-lg-4">
-																	<h3>Cantidad</h3> </div>
-																<div class="col-lg-8">  </div>
-															</div>
-															<div class="row">
-																<div class="col-lg-4">
-																	<h3>Nota</h3> </div>
-																<div class="col-lg-8">  </div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
 										
-									</div>
-									<div class="modal-footer">
-										<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
-										<button type="button" data-toggle="modal" data-target="#myModalModeloPiezaEditar" class="btn btn-primary">Editar</button>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- Modal Zona Informacion ENDS -->
-
-						
 
 												
 						<!-- Modal Sede Editar -->
@@ -687,7 +620,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 							<div role="document" class="modal-dialog modal-xl">
 								<div class="modal-content">
 									<div class="modal-header">
-										<h4 id="exampleModalLabel" class="modal-title">EDICION PIEZA</h4>
+										<h4 id="exampleModalLabel" class="modal-title">EDICION ZONA</h4>
 										<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 									</div>
 									<div class="modal-body">
@@ -704,24 +637,28 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 															</div>
 															<div class="form-group row">
 																<label class="col-sm-3 form-control-label">
-																	<h3>Fecha Inicio</h3> </label>
-																<div class="col-sm-9">
-																	<input type="text" placeholder="Introduzca Fecha de Inicio" class="form-control"> </div>
-															</div>
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h3>Fecha Final</h3> </label>
-																<div class="col-sm-9">
-																	<input type="text" placeholder="Introduzca Fecha Final" class="form-control"> </div>
+																	<h4>Tipo</h4>
+																</label>
+																<div class="col-sm-9 select">
+																	<select id="lista_clientes" name="cliente" class="form-control" required>
+																		<option value="NULL">Seleccionar</option>
+																		
+																	</select>
+																</div>
 															</div>
 														</div>	
 															
 														<div class=" card-body col-lg-6">
 															<div class="form-group row">
 																<label class="col-sm-3 form-control-label">
-																	<h3>Cantidad</h3> </label>
-																<div class="col-sm-9">
-																	<input type="text" placeholder="Introduzca Cantidad Disponible" class="form-control"> </div>
+																	<h4>Sede P.</h4>
+																</label>
+																<div class="col-sm-9 select">
+																	<select id="lista_clientes" name="cliente" class="form-control" required>
+																		<option value="NULL">Seleccionar</option>
+																		
+																	</select>
+																</div>
 															</div>
 															<div class="form-group row">
 																<label class="col-sm-3 form-control-label">
