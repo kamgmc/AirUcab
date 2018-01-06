@@ -342,10 +342,16 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														
 														<div class="card-body col-lg-6">
 															<div class="form-group row">
+																<!-- Hacerlo seleccionable entre MATERIALES o PIEZAS que tengan status para envio -->
 																<label class="col-sm-3 form-control-label">
-																	<h3>Nombre</h3> </label>
-																<div class="col-sm-9">
-																	<input type="text" placeholder="Introduzca Nombre" class="form-control"> </div>
+																	<h4>Nombre</h4>
+																</label>
+																<div class="col-sm-9 select">
+																	<select id="lista_clientes" name="cliente" class="form-control" required>
+																		<option value="NULL">Seleccionar</option>
+																		
+																	</select>
+																</div>
 															</div>
 															<div class="form-group row">
 																<label class="col-sm-3 form-control-label">
@@ -381,7 +387,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 																	</div>
 																	<div class="form-check form-check-inline">
 																		<label class="form-check-label">
-																			<input class="form-check-input tarjeta-credito" name="tipo_pago" type="radio"> EN CAMINO 
+																			<input class="form-check-input tarjeta-credito" checked="" name="tipo_pago" type="radio"> EN CAMINO 
 																		</label>
 																	</div>
 																	<div class="pago-space row">
@@ -438,7 +444,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 							<div role="document" class="modal-dialog modal-xl">
 								<div class="modal-content">
 									<div class="modal-header">
-										<h4 id="exampleModalLabel" class="modal-title">CREAR PRUEBA</h4>
+										<h4 id="exampleModalLabel" class="modal-title">CREAR TRASLADO</h4>
 										<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 									</div>
 									<div class="modal-body">
@@ -449,22 +455,59 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														
 														<div class="card-body col-lg-6">
 															<div class="form-group row">
+																<!-- Hacerlo seleccionable entre MATERIALES o PIEZAS que tengan status para envio -->
 																<label class="col-sm-3 form-control-label">
-																	<h3>Nombre</h3> </label>
-																<div class="col-sm-9">
-																	<input type="text" placeholder="Introduzca Nombre" class="form-control"> </div>
+																	<h4>Nombre</h4>
+																</label>
+																<div class="col-sm-9 select">
+																	<select id="lista_clientes" name="cliente" class="form-control" required>
+																		<option value="NULL">Seleccionar</option>
+																		
+																	</select>
+																</div>
 															</div>
 															<div class="form-group row">
 																<label class="col-sm-3 form-control-label">
-																	<h3>Tipo</h3> </label>
-																<div class="col-sm-9">
-																	<input type="text" placeholder="Introduzca Tipo" class="form-control"> </div>
+																	<h4>Zona Salida</h4>
+																</label>
+																<div class="col-sm-9 select">
+																	<select id="lista_clientes" name="cliente" class="form-control" required>
+																		<option value="NULL">Seleccionar</option>
+																		
+																	</select>
+																</div>
 															</div>
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h4>Zona Llegada</h4>
+																</label>
+																<div class="col-sm-9 select">
+																	<select id="lista_clientes" name="cliente" class="form-control" required>
+																		<option value="NULL">Seleccionar</option>
+																		
+																	</select>
+																</div>
+															</div>
+															
+															<!-- El STATUS al crear debe poner automaticamente 'EN CAMINO' o Algun estatus base -->
+
+															
 															
 														</div>	
 															
 														<div class=" card-body col-lg-6">
-															
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h3>Fecha Salida</h3> </label>
+																<div class="col-sm-9">
+																	<input type="text" placeholder="Introduzca Fecha Salida" class="form-control"> </div>
+															</div>
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h3>Fecha Entrega</h3> </label>
+																<div class="col-sm-9">
+																	<input type="text" disabled="" placeholder="Campo Restringido" class="form-control"> </div>
+															</div>
 															<div class="form-group row">
 																<label class="col-sm-3 form-control-label">
 																	<h3>Nota</h3> </label>
