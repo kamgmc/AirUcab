@@ -449,124 +449,54 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 									<div class="row">
 										<div class="col-sm-10"></div>
 										<div class="col-sm-2 pad-top">
-											<button type="button" data-toggle="modal" data-target="#myModalModeloMotorCrear" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
+											<button type="button" data-toggle="modal" data-target="#myModalMarcaMotorCrear" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
 										</div>
 									</div>
 									<div class="card-body">
 										<table class="table table-striped table-sm table-hover">
 											<thead>
 												<tr>
-													<th class="text-center">ID</th>
 													<th class="text-center">NOMBRE</th>
-													<th class="text-center">MARCA</th>
-													<th class="text-center">TIPO</th>
-													<th class="text-center">EMPUJE MAX</th>
-													<th class="text-center">EMPUJE NORMA</th>
-													<th class="text-center">EMPUJE CRUCERO</th>
-													<th class="text-center">LONGITUD</th>
-													<th class="text-center">DIAMETRO ASPA</th>
-													<th class="text-center">STATUS</th>
 													<th class="text-center">Accion</th>
 												</tr>
 											</thead>
 											<tbody>
 												
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Modelo A</td>
-														<td class="text-center">Oxford</td>
-														<td class="text-center">Reactor</td>
-														<td class="text-center">15</td>
-														<td class="text-center">11</td>
-														<td class="text-center">8</td>
-														<td class="text-center">35 m</td>
-														<td class="text-center">78 m</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalModeloMotor"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Modelo A</td>
-														<td class="text-center">Oxford</td>
-														<td class="text-center">Reactor</td>
-														<td class="text-center">15</td>
-														<td class="text-center">11</td>
-														<td class="text-center">8</td>
-														<td class="text-center">35 m</td>
-														<td class="text-center">78 m</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalModeloMotor"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Modelo A</td>
-														<td class="text-center">Oxford</td>
-														<td class="text-center">Reactor</td>
-														<td class="text-center">15</td>
-														<td class="text-center">11</td>
-														<td class="text-center">8</td>
-														<td class="text-center">35 m</td>
-														<td class="text-center">78 m</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalModeloMotor"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Modelo A</td>
-														<td class="text-center">Oxford</td>
-														<td class="text-center">Reactor</td>
-														<td class="text-center">15</td>
-														<td class="text-center">11</td>
-														<td class="text-center">8</td>
-														<td class="text-center">35 m</td>
-														<td class="text-center">78 m</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalModeloMotor"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Modelo A</td>
-														<td class="text-center">Oxford</td>
-														<td class="text-center">Reactor</td>
-														<td class="text-center">15</td>
-														<td class="text-center">11</td>
-														<td class="text-center">8</td>
-														<td class="text-center">35 m</td>
-														<td class="text-center">78 m</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalModeloMotor"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Modelo A</td>
-														<td class="text-center">Oxford</td>
-														<td class="text-center">Reactor</td>
-														<td class="text-center">15</td>
-														<td class="text-center">11</td>
-														<td class="text-center">8</td>
-														<td class="text-center">35 m</td>
-														<td class="text-center">78 m</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalModeloMotor"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
+												<tr>
+													<td class="text-center">Pratt & Whitney</td>
+													<td class="text-center">
+														<a href="" data-toggle="modal" data-target="#myModalMarcaMotor"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
+														<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+													</td>
+												</tr>
+												<tr>
+													<td class="text-center">Pratt & Whitney</td>
+													<td class="text-center">
+														<a href="" data-toggle="modal" data-target="#myModalMarcaMotor"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
+														<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+													</td>
+												</tr>
+												<tr>
+													<td class="text-center">Pratt & Whitney</td>
+													<td class="text-center">
+														<a href="" data-toggle="modal" data-target="#myModalMarcaMotor"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
+														<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+													</td>
+												</tr>
+												<tr>
+													<td class="text-center">Pratt & Whitney</td>
+													<td class="text-center">
+														<a href="" data-toggle="modal" data-target="#myModalMarcaMotor"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
+														<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+													</td>
+												</tr>
+												<tr>
+													<td class="text-center">Pratt & Whitney</td>
+													<td class="text-center">
+														<a href="" data-toggle="modal" data-target="#myModalMarcaMotor"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
+														<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+													</td>
+												</tr>
 													
 												
 											</tbody>
@@ -1012,6 +942,46 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 						<!-- Modal Modelo Motor Editar ENDS -->
 
 						
+						<!-- Modal Marca Motor Editar  -->
+						<div id="myModalMarcaMotor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+							<div role="document" class="modal-dialog modal-xl">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h4 id="exampleModalLabel" class="modal-title">EDITAR MARCA MOTOR</h4>
+										<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+									</div>
+									<div class="modal-body">
+										<div class="container-fluid">
+											<div class="row">
+												<div class="card col-lg-12">
+													<div class="row">
+														<div class="card-body col-lg-6">
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h3>Nombre</h3> </label>
+																<div class="col-sm-9">
+																	<input type="text" placeholder="Introduzca Nombre" class="form-control"> </div>
+															</div>
+															
+														</div>	
+															
+														
+													</div>
+												</div>
+											</div>
+										</div>
+										
+									</div>
+									<div class="modal-footer">
+										<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
+										<button type="button" class="btn btn-primary">Guardar Cambios</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Modal Marca Motor Editar ENDS -->
+
+
 
 						<!-- Modal Motor Crear -->
 						<div id="myModalMotorCrear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
@@ -1223,7 +1193,44 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 						</div>
 						<!-- Modal Modelo Motor Crear ENDS -->
 
-						
+						<!-- Modal Marca Motor Crear  -->
+						<div id="myModalMarcaMotorCrear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+							<div role="document" class="modal-dialog modal-xl">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h4 id="exampleModalLabel" class="modal-title">CREAR MARCA MOTOR</h4>
+										<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+									</div>
+									<div class="modal-body">
+										<div class="container-fluid">
+											<div class="row">
+												<div class="card col-lg-12">
+													<div class="row">
+														<div class="card-body col-lg-6">
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h3>Nombre</h3> </label>
+																<div class="col-sm-9">
+																	<input type="text" placeholder="Introduzca Nombre" class="form-control"> </div>
+															</div>
+															
+														</div>	
+															
+														
+													</div>
+												</div>
+											</div>
+										</div>
+										
+									</div>
+									<div class="modal-footer">
+										<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
+										<button type="button" class="btn btn-primary">Guardar Cambios</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Modal Marca Motor Crear ENDS -->
 
 
 
