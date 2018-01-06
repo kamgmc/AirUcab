@@ -11,16 +11,18 @@
 
 ## FALTAN
 - [ ] ACTUALIZAR PAGO FALTANTE
-- [ ] FILTROS (TU O BORIS)
+- [ ] FILTROS (ALEX O BORIS)
 - [ ] Acomodar los DELETE de Motor con Traslado
 
 ## FRONTEND
 - [ ] Status (en Pruebas, para poder agregar nuevos estatus)
-- [x] Pruebas 
-- [ ] Traslados `WORKING`
-- [ ] Zonas 
-- [ ] Sedes 
+- [ ] Zonas 'WORKING'
+- [ ] Sedes 'WORKING'
 - [ ] Tipo de Contacto (empleado) 
+
+:white_check_mark: Pruebas 
+
+:white_check_mark: Traslados
 
 :white_check_mark: Marca de Motor 
 
@@ -49,12 +51,13 @@
 - [ ] Sedes
 - [ ] Tipo de Contacto (empleado)
 - [ ] Cliente
-- [ ] Proveedor
 - [ ] Factura compra
 - [ ] Tipo Ala
 - [ ] Tipo Estabilizador
 - [x] Material
 - [ ] Piezas
+
+:white_check_mark: Proveedor
 
 ## PERMISOS
 - [ ] Hacer los permisos mas detallados
