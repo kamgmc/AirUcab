@@ -168,10 +168,10 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 												<tr>
 													<th class="text-center">ID</th>
 													<th class="text-center">NOMBRE</th>
-													<th class="text-center">FECHA FINAL</th>
-													<th class="text-center">FECHA INICIO</th>
-													<th class="text-center">STATUS</th>
-													<th class="text-center">CANTIDAD</th>
+													<th class="text-center">AREA</th>
+													<th class="text-center">PRINCIPAL</th>
+													<th class="text-center">UBICACION</th>
+													<th class="text-center">ZONAS</th>
 													<th class="text-center">Accion</th>
 												</tr>
 											</thead>
@@ -179,11 +179,11 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 												
 													<tr>
 														<td class="text-center">1</td>
-														<td class="text-center">Tornillo</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">24</td>
+														<td class="text-center">AirUcab Catia La Mar</td>
+														<td class="text-center">5.000 m</td>
+														<td class="text-center">NO</td>
+														<td class="text-center">Vargas</td>
+														<td class="text-center">7</td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#ModalSede"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
@@ -191,61 +191,73 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 													</tr>
 													<tr>
 														<td class="text-center">1</td>
-														<td class="text-center">Tornillo</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">24</td>
+														<td class="text-center">AirUcab Catia La Mar</td>
+														<td class="text-center">5.000 m</td>
+														<td class="text-center">NO</td>
+														<td class="text-center">Vargas</td>
+														<td class="text-center">7</td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#ModalSede"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
 													<tr>
 														<td class="text-center">1</td>
-														<td class="text-center">Tornillo</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">24</td>
+														<td class="text-center">AirUcab Catia La Mar</td>
+														<td class="text-center">5.000 m</td>
+														<td class="text-center">NO</td>
+														<td class="text-center">Vargas</td>
+														<td class="text-center">7</td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#ModalSede"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
 													<tr>
 														<td class="text-center">1</td>
-														<td class="text-center">Tornillo</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">24</td>
+														<td class="text-center">AirUcab Catia La Mar</td>
+														<td class="text-center">5.000 m</td>
+														<td class="text-center">NO</td>
+														<td class="text-center">Vargas</td>
+														<td class="text-center">7</td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#ModalSede"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
 													<tr>
 														<td class="text-center">1</td>
-														<td class="text-center">Tornillo</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">24</td>
+														<td class="text-center">AirUcab Catia La Mar</td>
+														<td class="text-center">5.000 m</td>
+														<td class="text-center">NO</td>
+														<td class="text-center">Vargas</td>
+														<td class="text-center">7</td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#ModalSede"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
 													<tr>
 														<td class="text-center">1</td>
-														<td class="text-center">Tornillo</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">24</td>
+														<td class="text-center">AirUcab Catia La Mar</td>
+														<td class="text-center">5.000 m</td>
+														<td class="text-center">NO</td>
+														<td class="text-center">Vargas</td>
+														<td class="text-center">7</td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href="" data-toggle="modal" data-target="#ModalSede"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
+															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+														</td>
+													</tr>
+													<tr>
+														<td class="text-center">1</td>
+														<td class="text-center">AirUcab Catia La Mar</td>
+														<td class="text-center">5.000 m</td>
+														<td class="text-center">NO</td>
+														<td class="text-center">Vargas</td>
+														<td class="text-center">7</td>
+														<td class="text-center">
+															<a href="" data-toggle="modal" data-target="#ModalSede"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
@@ -416,12 +428,17 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<div class="card-body col-lg-6">
 															<div class="row">
 																<div class="col-lg-4">
-																	<h3>ESTATUS</h3> </div>
-																<div class="col-lg-8"> <span class="badge badge-primary font-big">Disponible</span> </div>
+																	<h3>Nombre</h3> </div>
+																<div class="col-lg-8"></div>
 															</div>
 															<div class="row">
 																<div class="col-lg-4">
-																	<h3>Nombre</h3> </div>
+																	<h3>Area</h3> </div>
+																<div class="col-lg-8"></div>
+															</div>
+															<div class="row">
+																<div class="col-lg-4">
+																	<h3>Principal</h3> </div>
 																<div class="col-lg-8"></div>
 															</div>
 														</div>	
@@ -431,18 +448,8 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 															
 															<div class="row">
 																<div class="col-lg-4">
-																	<h3>Fecha Inicio</h3> </div>
-																<div class="col-lg-8">  </div>
-															</div>
-															<div class="row">
-																<div class="col-lg-4">
-																	<h3>Fecha Final</h3> </div>
-																<div class="col-lg-8">  </div>
-															</div>
-															<div class="row">
-																<div class="col-lg-4">
-																	<h3>Cantidad</h3> </div>
-																<div class="col-lg-8">  </div>
+																	<h3>Ubicacion</h3> </div>
+																<div class="col-lg-8"></div>
 															</div>
 															<div class="row">
 																<div class="col-lg-4">
@@ -454,11 +461,67 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 												</div>
 											</div>
 										</div>
+
+										<!-- Tabla Zonas STARTS -->
+										<div class="col-md-12">
+											<div class="card">
+												<div class="card-header d-flex align-items-center">
+													<h3 class="h4">ZONAS PERTENECIENTES A LA SEDE</h3> </div>
+												<div class="card-body">
+													
+													<table class="table table-striped table-sm table-hover">
+														<thead>
+															<tr>
+																<th class="text-center">ID</th>
+																<th class="text-center">NOMBRE</th>
+																<th class="text-center">TIPO</th>
+																<th class="text-center">Accion</th>
+															</tr>
+														</thead>
+														<tbody>
+															
+																<tr>
+																	<td class="text-center">1</td>
+																	<td class="text-center">Ensamble de Motor</td>
+																	<td class="text-center">Ensablaje</td>
+																	<td class="text-center">
+																		<a href="" data-toggle="modal" data-target="#ModalZonaEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
+																		<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+																	</td>
+																</tr>
+																<tr>
+																	<td class="text-center">1</td>
+																	<td class="text-center">Ensamble de Motor</td>
+																	<td class="text-center">Ensablaje</td>
+																	<td class="text-center">
+																		<a href="" data-toggle="modal" data-target="#ModalZonaEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
+																		<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+																	</td>
+																</tr>
+																<tr>
+																	<td class="text-center">1</td>
+																	<td class="text-center">Ensamble de Motor</td>
+																	<td class="text-center">Ensablaje</td>
+																	<td class="text-center">
+																		<a href="" data-toggle="modal" data-target="#ModalZonaEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
+																		<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+																	</td>
+																</tr>
+
+																
+															
+														</tbody>
+													</table>
+													
+												</div>
+											</div>
+										</div>
+										<!-- Tabla Zonas ENDS -->
 										
 									</div>
 									<div class="modal-footer">
 										<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
-										<button type="button" data-toggle="modal" data-target="#myModalPiezaEditar" class="btn btn-primary">Editar</button>
+										<button type="button" data-toggle="modal" data-target="#myModalSedeEditar" class="btn btn-primary">Editar</button>
 									</div>
 								</div>
 							</div>
@@ -522,56 +585,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 												</div>
 											</div>
 										</div>
-										<!-- Tabla Piezas STARTS -->
-										<div class="col-md-12">
-											<div class="card">
-												<div class="card-header d-flex align-items-center">
-													<h3 class="h4">MATERIALES NECESARIOS</h3> </div>
-												<div class="card-body">
-													
-													<table class="table table-striped table-sm table-hover">
-														<thead>
-															<tr>
-																<th>ID</th>
-																<th>MATERIAL</th>
-																<th>PRECIO UNITARIO</th>
-																<th>CANTIDAD</th>
-																<th>ESTATUS</th>
-																<th class="text-center">Accion</th>
-															</tr>
-														</thead>
-														<tbody>
-														
-															<tr>
-																<td>3</td>
-																<td>Arena</td>
-																<td>2.00</td>
-																<td>24</td>
-																<td><span class="badge badge-info">DISPONIBLE</span></td>
-																<td class="text-center">
-																	<a href="" data-toggle="modal" data-target="#myModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-																	<a href="" data-toggle="modal" data-target="#myModalBorrarVenta"> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-																</td>
-															</tr>
-															<tr>
-																<td>7</td>
-																<td>Plomo</td>
-																<td>5.00</td>
-																<td>7</td>
-																<td><span class="badge badge-danger">EN TRAYECTO</span></td>
-																<td class="text-center">
-																	<a href="" data-toggle="modal" data-target="#myModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-																	<a href="" data-toggle="modal" data-target="#myModalBorrarVenta"> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-																</td>
-															</tr>
-															
-														</tbody>
-													</table>
-													
-												</div>
-											</div>
-										</div>
-										<!-- Tabla Piezas ENDS -->
+										
 									</div>
 									<div class="modal-footer">
 										<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
@@ -607,24 +621,45 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 															</div>
 															<div class="form-group row">
 																<label class="col-sm-3 form-control-label">
-																	<h3>Fecha Inicio</h3> </label>
+																	<h3>Area</h3> </label>
 																<div class="col-sm-9">
-																	<input type="text" placeholder="Introduzca Fecha de Inicio" class="form-control"> </div>
+																	<input type="text" placeholder="Introduzca Area" class="form-control"> </div>
 															</div>
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h3>Fecha Final</h3> </label>
-																<div class="col-sm-9">
-																	<input type="text" placeholder="Introduzca Fecha Final" class="form-control"> </div>
+															<div id="last" data-num="1" class="row last-pago">
+																
+																
+																	<label class="col-sm-3 form-control-label">
+																	<h3>PRINCIPAL</h3> </label>
+																	<div class="col-sm-9">
+																		<div class="form-check form-check-inline">
+																			<label class="form-check-label">
+																				<input class="form-check-input transferencia" name="tipo_pago" type="radio"> SI
+																			</label>
+																		</div>
+																		<div class="form-check form-check-inline">
+																			<label class="form-check-label">
+																				<input class="form-check-input tarjeta-credito" checked="" name="tipo_pago" type="radio"> NO
+																			</label>
+																		</div>
+																	</div>
+																
+																
 															</div>
+															
+															
 														</div>	
 															
 														<div class=" card-body col-lg-6">
 															<div class="form-group row">
 																<label class="col-sm-3 form-control-label">
-																	<h3>Cantidad</h3> </label>
-																<div class="col-sm-9">
-																	<input type="text" placeholder="Introduzca Cantidad Disponible" class="form-control"> </div>
+																	<h4>Ubicacion</h4>
+																</label>
+																<div class="col-sm-9 select">
+																	<select id="lista_clientes" name="cliente" class="form-control" required>
+																		<option value="NULL">Seleccionar</option>
+																		
+																	</select>
+																</div>
 															</div>
 															<div class="form-group row">
 																<label class="col-sm-3 form-control-label">
