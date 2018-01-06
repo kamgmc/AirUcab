@@ -15,8 +15,9 @@
 - [ ] Acomodar los DELETE de Motor con Traslado
 
 ## FRONTEND
-- [ ] Status (en Pruebas, para poder agregar nuevos estatus) 'WORKING'
-- [ ] Tipo de Contacto (empleado)
+- [ ] Tipo de Contacto (empleado) `WORKING`
+
+:white_check_mark: Status (en Pruebas, para poder agregar nuevos estatus)
 
 :white_check_mark: Agregar `TAB` Marca Motor a Motores
 
