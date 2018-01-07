@@ -292,6 +292,11 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 															</div>
 															<div class="row">
 																<div class="col-lg-4">
+																	<h3>Tipo Material</h3> </div>
+																<div class="col-lg-8"> LEX FDZ CORP. S.A. </div>
+															</div>
+															<div class="row">
+																<div class="col-lg-4">
 																	<h3>Proveedor</h3> </div>
 																<div class="col-lg-8"> LEX FDZ CORP. S.A. </div>
 															</div>
@@ -374,7 +379,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 							<div role="document" class="modal-dialog modal-xl">
 								<div class="modal-content">
 									<div class="modal-header">
-										<h4 id="exampleModalLabel" class="modal-title">DETALLE MATERIAL</h4>
+										<h4 id="exampleModalLabel" class="modal-title">EDICION MATERIAL</h4>
 										<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 									</div>
 									<div class="modal-body">
@@ -400,6 +405,17 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 																		<option>Evaluacion</option>
 																		<option>Distribucion</option>
 																		<option>Finalizado</option>
+																	</select>
+																</div>
+															</div>
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h3>Tipo Material</h3> </label>
+																
+																<div class="col-sm-9 select">
+																	<select name="account" class="form-control">
+																		<option>Seleccionar</option>
+																		
 																	</select>
 																</div>
 															</div>
@@ -519,6 +535,17 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 																		<option>Evaluacion</option>
 																		<option>Distribucion</option>
 																		<option>Finalizado</option>
+																	</select>
+																</div>
+															</div>
+															<div class="form-group row">
+																<label class="col-sm-3 form-control-label">
+																	<h3>Tipo Material</h3> </label>
+																
+																<div class="col-sm-9 select">
+																	<select name="account" class="form-control">
+																		<option>Seleccionar</option>
+																		
 																	</select>
 																</div>
 															</div>
