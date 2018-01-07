@@ -79,10 +79,12 @@ input:checked + label {
   border-bottom: 1px solid #fff;
 }
 
+#tab0:checked ~ #content0,
 #tab1:checked ~ #content1,
 #tab2:checked ~ #content2,
 #tab3:checked ~ #content3,
-#tab4:checked ~ #content4 {
+#tab4:checked ~ #content4,
+#tab5:checked ~ #content5 {
   display: block;
 }
 
