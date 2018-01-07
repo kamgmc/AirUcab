@@ -187,6 +187,11 @@ if( !in_array("em_r", $permiso) && !in_array("sr_c", $permiso) && !in_array("er_
 							<input id="tab4" type="radio" name="tabs" class="no-display" <?php if( $_GET['tab'] == "permiso" ) print "checked";?>>
 							<label for="tab4" class="label"><i class="fa fa-university" aria-hidden="true"></i> Permisos</label>
 							<?php }?>
+							
+
+
+							
+
 							<!-- Tab Empleados -->
 							<section id="content0" class="sectiontab">
 								<!-- Filtrador-->
@@ -956,6 +961,12 @@ if( !in_array("em_r", $permiso) && !in_array("sr_c", $permiso) && !in_array("er_
 							</section>
 							<!-- Tab Permisos ENDS-->
 							<?php }?>
+
+							
+							
+
+
+
 						</div>
 					</section>
 				</div>
