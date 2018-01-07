@@ -15,7 +15,8 @@
 - [ ] Acomodar los DELETE de Motor con Traslado
 
 ## FRONTEND
-- [ ] Tipo de Contacto (empleado) `WORKING`
+
+:white_check_mark: Tipo de Contacto (Cliente)
 
 :white_check_mark: Status (en Pruebas, para poder agregar nuevos estatus)
 
@@ -71,6 +72,9 @@
 - [ ] Hacer algunos
 - [ ] Hacer un tab en el sidebar que sea “REPORTES”
 - [ ] Hacer interfaz de las tablas requerida (con el formato del enunciado)
+
+## BUGS
+- [ ] Agregar TipoContacto en Empleados.php
 
 
 # USO:
