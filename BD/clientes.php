@@ -256,7 +256,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 										<div class="row">
 											<div class="col-sm-10"></div>
 											<div class="col-sm-2 pad-top">
-												<button type="button" data-toggle="modal" data-target="#myModalStatusCrear" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
+												<button type="button" data-toggle="modal" data-target="#myModalTipoContactoCrear" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
 											</div>
 										</div>
 										<div class="card-body">
@@ -270,44 +270,37 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 												<tbody>
 													
 														<tr>
-															<td><span class="badge badge-primary">EN TRAYECTO</span></td>
+															<td>Email</td>
 															<td class="text-center">
-																<a href="" data-toggle="modal" data-target="#myModalStatusEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
+																<a href="" data-toggle="modal" data-target="#myModalTipoContactoEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 																<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 															</td>
 														</tr>
 														<tr>
-															<td><span class="badge badge-primary">EN TRAYECTO</span></td>
+															<td>Email</td>
 															<td class="text-center">
-																<a href="" data-toggle="modal" data-target="#myModalStatusEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
+																<a href="" data-toggle="modal" data-target="#myModalTipoContactoEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 																<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 															</td>
 														</tr>
 														<tr>
-															<td><span class="badge badge-primary">EN TRAYECTO</span></td>
+															<td>Email</td>
 															<td class="text-center">
-																<a href="" data-toggle="modal" data-target="#myModalStatusEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
+																<a href="" data-toggle="modal" data-target="#myModalTipoContactoEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 																<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 															</td>
 														</tr>
 														<tr>
-															<td><span class="badge badge-primary">EN TRAYECTO</span></td>
+															<td>Email</td>
 															<td class="text-center">
-																<a href="" data-toggle="modal" data-target="#myModalStatusEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
+																<a href="" data-toggle="modal" data-target="#myModalTipoContactoEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 																<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 															</td>
 														</tr>
 														<tr>
-															<td><span class="badge badge-primary">EN TRAYECTO</span></td>
+															<td>Email</td>
 															<td class="text-center">
-																<a href="" data-toggle="modal" data-target="#myModalStatusEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-																<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-															</td>
-														</tr>
-														<tr>
-															<td><span class="badge badge-primary">EN TRAYECTO</span></td>
-															<td class="text-center">
-																<a href="" data-toggle="modal" data-target="#myModalStatusEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
+																<a href="" data-toggle="modal" data-target="#myModalTipoContactoEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 																<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 															</td>
 														</tr>
