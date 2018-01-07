@@ -407,7 +407,7 @@ if( !in_array("mb_r", $permiso) && !in_array("mm_r", $permiso) && !in_array("mo_
 										</div>
 									</div>
                                     <?php } if( in_array("mb_r", $permiso) ){?>
-								    <?php $qry = "SELECT mb_id id, mb_nombre nombre FROM Marca_motor ORDER BY id";
+								    <?php $qry = "SELECT mb_id id, mb_nombre nombre FROM Marca_motor ORDER BY nombre";
 									$rs = pg_query( $conexion, $qry );
 									$howMany = pg_num_rows($rs);
 									if( $howMany > 0 ){?>
@@ -415,7 +415,6 @@ if( !in_array("mb_r", $permiso) && !in_array("mm_r", $permiso) && !in_array("mo_
 										<table class="table table-striped table-sm table-hover">
 											<thead>
 												<tr>
-                                                    <th class="text-center">ID</th>
 													<th class="text-center">Nombre</th>
 													<th class="text-center">Accion</th>
 												</tr>
@@ -423,9 +422,6 @@ if( !in_array("mb_r", $permiso) && !in_array("mm_r", $permiso) && !in_array("mo_
 											<tbody>
 												<?php while( $marca = pg_fetch_object($rs) ){?>
 												<tr>
-													<td class="text-center">
-                                                        <?php print $marca->id;?>
-                                                    </td>
                                                     <td class="text-center">
                                                          <?php print $marca->nombre;?>
                                                     </td>
