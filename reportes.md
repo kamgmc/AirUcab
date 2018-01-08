@@ -7,7 +7,13 @@
 - Evolución de la aeronáutica 
 - Modelos de aviones 
 - Cantidad media de aviones producida mensualmente según el modelo. 
-- El modelo mas vendido 
+- :white_check_mark:  El modelo mas vendido 
+```sql
+SELECT am_nombre modelo, COUNT(a_id) cantidad
+FROM avion,submodelo_avion, modelo_avion
+WHERE a_submodelo_avion=as_id AND as_modelo_avion=am_id
+GROUP BY am_nombre
+```
 - El equipo mas eficiente (en base al menor retraso en sus asignaciones ) 
 - Inventario Mensual. 
 - Producto mas pedido al inventario 
