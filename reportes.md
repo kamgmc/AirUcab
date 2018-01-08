@@ -13,6 +13,7 @@ SELECT am_nombre modelo, COUNT(a_id) cantidad
 FROM avion,submodelo_avion, modelo_avion
 WHERE a_submodelo_avion=as_id AND as_modelo_avion=am_id
 GROUP BY am_nombre
+ORDER BY cantidad DESC limit 1
 ```
 - El equipo mas eficiente (en base al menor retraso en sus asignaciones ) 
 - Inventario Mensual. 
