@@ -35,7 +35,12 @@ ORDER BY cantidad DESC limit 1
 ```
 - Cuales fueron los aviones mas rentables en base al cumplimiento de las fechas durante a su producción. 
 - Especificaciones de modelo (con el formato del enunciado ) 
-- Cantidad de productos que no cumplieron con las pruebas de calidad. 
+- :white_check_mark:  Cantidad de productos que no cumplieron con las pruebas de calidad.
+```sql
+SELECT count(pr_id)
+FROM Prueba, Status_prueba, Status
+WHERE sp_prueba=pr_id AND sp_status=st_id AND st_nombre='Rechazado'
+```
 - Promedio de traslados entre las sedes. 
 - :white_check_mark:  Listado de Proveedores
 ```sql
