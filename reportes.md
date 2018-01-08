@@ -23,7 +23,7 @@ ORDER BY cantidad DESC limit 1
 SELECT wt_nombre nombre, COUNT(wt_id) cantidad
 FROM Tipo_ala, Modelo_pieza, Pieza, Avion
 WHERE pm_tipo_ala=wt_id AND p_modelo_pieza=pm_id AND p_avion=a_id
-GROUP BY nombre
+GROUP BY wt_nombre
 ORDER BY cantidad DESC limit 1
 ```
 - Cuales fueron los aviones mas rentables en base al cumplimiento de las fechas durante a su producción. 
