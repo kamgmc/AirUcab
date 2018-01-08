@@ -29,7 +29,13 @@ GROUP BY am_nombre
 ORDER BY cantidad DESC limit 1
 ```
 - El equipo mas eficiente (en base al menor retraso en sus asignaciones ) 
-- Inventario Mensual. 
+- :white_check_mark:  Inventario Mensual.
+```sql
+SELECT mt_nombre material, count(m_id) cantidad
+FROM Material, Tipo_material, Factura_compra
+WHERE m_factura_compra=fc_id AND m_tipo_material=mt_id AND m_pieza IS null AND EXTRACT(Month from fc_fecha)=05
+GROUP BY material
+```
 - Producto mas pedido al inventario 
 - :white_check_mark:  El tipo de alas mas utilizado en los aviones.
 ```sql
