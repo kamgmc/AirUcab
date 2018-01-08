@@ -33,7 +33,15 @@ WHERE pm_tipo_ala=wt_id AND p_modelo_pieza=pm_id AND p_avion=a_id
 GROUP BY wt_nombre
 ORDER BY cantidad DESC limit 1
 ```
-- Cuales fueron los aviones mas rentables en base al cumplimiento de las fechas durante a su producción. 
+- :white_check_mark:  Cuales fueron los aviones mas rentables en base al cumplimiento de las fechas durante a su producción. 
+```sql
+SELECT am_nombre nombre
+FROM Avion, Status_avion, Status, Modelo_avion, Submodelo_avion
+WHERE sa_avion=a_id AND sa_status=st_id AND st_nombre='Listo' AND a_submodelo_avion=as_id 
+AND as_modelo_avion=am_id AND age(sa_fecha_fin, a_fecha_ini) < age(a_fecha_fin, a_fecha_ini)   
+GROUP BY nombre 
+ORDER BY nombre DESC limit 10
+```
 - Especificaciones de modelo (con el formato del enunciado ) 
 - :white_check_mark:  Cantidad de productos que no cumplieron con las pruebas de calidad.
 ```sql
