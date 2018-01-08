@@ -18,7 +18,14 @@ ORDER BY cantidad DESC limit 1
 - El equipo mas eficiente (en base al menor retraso en sus asignaciones ) 
 - Inventario Mensual. 
 - Producto mas pedido al inventario 
-- El tipo de alas mas utilizado en los aviones. 
+- :white_check_mark:  El tipo de alas mas utilizado en los aviones.
+```sql
+SELECT wt_nombre nombre, COUNT(wt_id) cantidad
+FROM Tipo_ala, Modelo_pieza, Pieza, Avion
+WHERE pm_tipo_ala=wt_id AND p_modelo_pieza=pm_id AND p_avion=a_id
+GROUP BY nombre
+ORDER BY cantidad DESC limit 1
+```
 - Cuales fueron los aviones mas rentables en base al cumplimiento de las fechas durante a su producción. 
 - Especificaciones de modelo (con el formato del enunciado ) 
 - Cantidad de productos que no cumplieron con las pruebas de calidad. 
