@@ -37,7 +37,11 @@ ORDER BY cantidad DESC limit 1
 - Especificaciones de modelo (con el formato del enunciado ) 
 - Cantidad de productos que no cumplieron con las pruebas de calidad. 
 - Promedio de traslados entre las sedes. 
-- Listado de Proveedores
+- :white_check_mark:  Listado de Proveedores
+```sql
+SELECT *
+FROM proveedor
+```
 - Planta mas eficiente en base al cumplimiento de las fechas 
 - Descripción de piezas (formato del enunciado) 
 
