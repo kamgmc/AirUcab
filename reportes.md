@@ -36,7 +36,14 @@ FROM Material, Tipo_material, Factura_compra
 WHERE m_factura_compra=fc_id AND m_tipo_material=mt_id AND m_pieza IS null AND EXTRACT(Month from fc_fecha)=05
 GROUP BY material
 ```
-- Producto mas pedido al inventario 
+- :white_check_mark:  Producto mas pedido al inventario 
+```sql
+SELECT mt_nombre material, count(m_id) cantidad
+FROM Material, Tipo_material, Factura_compra
+WHERE m_factura_compra=fc_id AND m_tipo_material=mt_id AND m_pieza IS not null AND EXTRACT(Month from fc_fecha)=05
+GROUP BY material
+ORDER BY cantidad DESC limit 1
+```
 - :white_check_mark:  El tipo de alas mas utilizado en los aviones.
 ```sql
 SELECT wt_nombre nombre, COUNT(wt_id) cantidad
