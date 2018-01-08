@@ -3,18 +3,18 @@
 ## PREGUNTAS A LA PROFE
 - [ ] Los reportes se le tiene que entregar en físico/digital los queries de estos reportes?
 - [ ] Los reportes estarían integrados en la aplicación?
-- [ ] Producción anual. Se refiere a que reporte la cantidad de aviones que se produjeron y ganancia en X año 
-- [ ] Promedio de producción mensual. Al igual que la anual solo que se proporcionaría X mes? (Se se separa la producción de piezas de la de aviones, se hacen juntas? Se omiten las piezas y solo se consideran los aviones?
-- [ ] Evolución aeronáutica. Parecido como se vio en el enunciado? Por ejemplo una lista con los modelos que se fueron creando a través de los años pero con los que existen en la base: AU80, AU801, AU802, AU802A, AU802B, AU802C, ..., AU747SilverB y de haberse creado otros modelos aparecerían luego del AU747SilverB.
-- [ ] El equipo mas eficiente (en base al menor retraso en sus asignaciones ) se esta refiriendo a zonas o sedes? O es una entidad Equipos que no estaba en el enunciado?
-- [ ] Inventario mensual. Sería el inventario que queda disponible luego de un mes de producción? (Este ya sería sólo con el mes pasado más reciente)
-- [ ] Producto más pedido del inventario. Cómo esta definido "Producto" aviones, alas, estabilizadores, motores, materiales? O el inventario es solo de materiales y por ende los productos son los materiales?
-- [ ] Especificaciones de modelo (con el formato del enunciado ), descripción de las piezas, listado de proveedores. Estos tres no serian los mismos CRUDs? Porque en nuestra aplicación hace el Mostrar de estas entidades con el mismo formato del enunciado. Contaría como reporte?
+- [ ] **Producción anual**. Se refiere a que reporte la cantidad de aviones que se produjeron y ganancia en X año 
+- [ ] **Promedio de producción mensual**. Al igual que la anual solo que se proporcionaría X mes? (Se se separa la producción de piezas de la de aviones, se hacen juntas? Se omiten las piezas y solo se consideran los aviones?
+- [ ] **Evolución aeronáutica**. Parecido como se vio en el enunciado? Por ejemplo una lista con los modelos que se fueron creando a través de los años pero con los que existen en la base: AU80, AU801, AU802, AU802A, AU802B, AU802C, ..., AU747SilverB y de haberse creado otros modelos aparecerían luego del AU747SilverB.
+- [ ] **El equipo mas eficiente (en base al menor retraso en sus asignaciones )** se esta refiriendo a zonas o sedes? O es una entidad Equipos que no estaba en el enunciado?
+- [ ] **Inventario mensual**. Sería el inventario que queda disponible luego de un mes de producción? (Este ya sería sólo con el mes pasado más reciente)
+- [ ] **Producto más pedido del inventario**. Cómo esta definido "Producto" aviones, alas, estabilizadores, motores, materiales? O el inventario es solo de materiales y por ende los productos son los materiales?
+- [ ] **Especificaciones de modelo (con el formato del enunciado )**, descripción de las piezas, listado de proveedores. Estos tres no serian los mismos CRUDs? Porque en nuestra aplicación hace el Mostrar de estas entidades con el mismo formato del enunciado. Contaría como reporte?
 ￼![Tabla Modelo Avion](https://image.prntscr.com/image/2u2I2ZiqS0OgSfYm2uJv8w.png)
 ![Detalle Modelo Avion](https://image.prntscr.com/image/gPFTyX0ATjyiwrbmUEtS8A.png)
-- [ ] Promedio de traslados entre las sedes. Es la división entre todos los traslados existentes entre la cantidad de sedes?
-- [ ] Descripción de piezas (formato del enunciado) pero no encuentro la descripción en el enunciado. Es texto plano?
-- [ ] La entidad Lugar se maneja como Permiso? Es decir, solo se crean nuevos lugares mas no se modifican o eliminan?
+- [ ] **Promedio de traslados entre las sedes**. Es la división entre todos los traslados existentes entre la cantidad de sedes?
+- [ ] **Descripción de piezas (formato del enunciado)** pero no encuentro la descripción en el enunciado. Es texto plano?
+- [ ] La entidad **Lugar** se maneja como **Permiso**? Es decir, solo se crean nuevos lugares mas no se modifican o eliminan?
 
 ## HACER SECUNDARIOS
 - [ ] Actualizar iconos de tabs (todos sincronizados)
