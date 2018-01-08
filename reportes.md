@@ -13,7 +13,13 @@ ORDER BY cantidad DESC limit 10
 ```
 - Evolución de la aeronáutica 
 - Modelos de aviones 
-- Cantidad media de aviones producida mensualmente según el modelo. 
+- :white_check_mark:  Cantidad media de aviones producida mensualmente según el modelo. 
+```sql
+SELECT am_nombre modelo, Count(a_id)/12 cantidad
+FROM Avion, Submodelo_avion, Modelo_avion, Status_avion, Status
+WHERE a_submodelo_avion=as_id AND as_modelo_avion=am_id AND sa_avion=a_id AND sa_status=st_id AND st_nombre='Listo' AND EXTRACT(Month from sa_fecha_fin)=10 AND EXTRACT(Year from sa_fecha_fin)=2018
+GROUP BY am_nombre
+```
 - :white_check_mark:  El modelo mas vendido 
 ```sql
 SELECT am_nombre modelo, COUNT(a_id) cantidad
