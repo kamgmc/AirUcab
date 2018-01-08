@@ -3,7 +3,14 @@
 ## Requerimientos
 - Producción anual
 - Promedio de producción mensual 
-- Los mejores 10 clientes en base a la cantidad de compras por año. 
+- :white_check_mark:  Los mejores 10 clientes en base a la cantidad de compras por año.
+```sql
+SELECT cl_nombre, count(cl_id) cantidad
+FROM Cliente, Factura_venta, Avion
+WHERE a_factura_venta=fv_id AND fv_cliente=cl_id AND EXTRACT(Year from fv_fecha)=2017
+GROUP BY cl_nombre
+ORDER BY cantidad DESC limit 10
+```
 - Evolución de la aeronáutica 
 - Modelos de aviones 
 - Cantidad media de aviones producida mensualmente según el modelo. 
