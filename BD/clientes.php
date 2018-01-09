@@ -246,78 +246,6 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 								</div>
 								<!-- TABLE ENDS -->
 							</section>
-
-							<!-- TAB TIPO CONTACTO -->
-							<section id="content1" class="sectiontab">
-								
-								<!-- TABLE STARTS -->
-								<div class="col-md-12">
-									<div class="card">
-										<div class="row">
-											<div class="col-sm-10"></div>
-											<div class="col-sm-2 pad-top">
-												<button type="button" data-toggle="modal" data-target="#myModalTipoContactoCrear" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
-											</div>
-										</div>
-										<div class="card-body">
-											<table class="table table-striped table-sm table-hover">
-												<thead>
-													<tr>
-														<th>NOMBRE</th>
-														<th class="text-center">Accion</th>
-													</tr>
-												</thead>
-												<tbody>
-													
-														<tr>
-															<td>Email</td>
-															<td class="text-center">
-																<a href="" data-toggle="modal" data-target="#myModalTipoContactoEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-																<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-															</td>
-														</tr>
-														<tr>
-															<td>Email</td>
-															<td class="text-center">
-																<a href="" data-toggle="modal" data-target="#myModalTipoContactoEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-																<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-															</td>
-														</tr>
-														<tr>
-															<td>Email</td>
-															<td class="text-center">
-																<a href="" data-toggle="modal" data-target="#myModalTipoContactoEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-																<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-															</td>
-														</tr>
-														<tr>
-															<td>Email</td>
-															<td class="text-center">
-																<a href="" data-toggle="modal" data-target="#myModalTipoContactoEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-																<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-															</td>
-														</tr>
-														<tr>
-															<td>Email</td>
-															<td class="text-center">
-																<a href="" data-toggle="modal" data-target="#myModalTipoContactoEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-																<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-															</td>
-														</tr>
-														
-														
-													
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-								<!-- TABLE ENDS -->
-							</section>
-
-
-
-
 							<!-- Tab Explorador Clientes ENDS -->
 							<!-- Modal Cliente Crear -->
 							<div id="ModalClienteCrear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
@@ -445,51 +373,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 								</div>
 							</div>
 							<!-- Modal Cliente Crear ENDS -->
-
-							<!-- Modal Tipo Contacto Crear -->
-							<div id="myModalTipoContactoCrear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
-								<div role="document" class="modal-dialog modal-xl">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h4 id="exampleModalLabel" class="modal-title">CREAR TIPO CONTACTO</h4>
-											<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-										</div>
-										<div class="modal-body">
-											<div class="container-fluid">
-												<div class="row">
-													<div class="card col-lg-12">
-														<div class="row">
-															
-															<div class="card-body col-lg-6">
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Nombre</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" placeholder="Introduzca Nombre" class="form-control"> </div>
-																</div>
-																
-																
-															</div>	
-																
-															
-
-														</div>
-													</div>
-												</div>
-											</div>
-											
-										</div>
-										<div class="modal-footer">
-											<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
-											<button type="button" class="btn btn-primary">Guardar Cambios</button>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- Modal Tipo Contacto Crear ENDS -->
-
-
-							<!-- Modal Cliente Informacion -->
+<!-- Modal Cliente Informacion -->
 							<div id="ModalDetalleCliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 								<div role="document" class="modal-dialog modal-xl">
 									<div id="detalleClienteBody" class="modal-content">
@@ -505,50 +389,6 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 								</div>
 							</div>
 							<!-- Modal Cliente Editar ENDS -->
-
-							<!-- Modal Tipo Contacto Editar -->
-							<div id="myModalTipoContactoEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
-								<div role="document" class="modal-dialog modal-xl">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h4 id="exampleModalLabel" class="modal-title">EDICION TIPO CONTACTO</h4>
-											<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-										</div>
-										<div class="modal-body">
-											<div class="container-fluid">
-												<div class="row">
-													<div class="card col-lg-12">
-														<div class="row">
-															
-															<div class="card-body col-lg-6">
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Nombre</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" placeholder="Introduzca Nombre" class="form-control"> </div>
-																</div>
-																
-																
-															</div>	
-																
-															
-
-														</div>
-													</div>
-												</div>
-											</div>
-											
-										</div>
-										<div class="modal-footer">
-											<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
-											<button type="button" class="btn btn-primary">Guardar Cambios</button>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- Modal Tipo Contacto Editar ENDS -->
-
-
 						</div>
 					</section>
 					<!-- Section de tabs ENDS -->

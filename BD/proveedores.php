@@ -94,6 +94,11 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 						<a href="ventas.php"> <i class="fa fa-paper-plane-o" aria-hidden="true"></i>Ventas </a>
 					</li>
 					<?php }?>
+					<?php if( in_array("fc_r", $permiso) ){ ?>
+					<li>
+						<a href="compras.php"> <i class="fa fa-shopping-bag " aria-hidden="true"></i>Compras </a>
+					</li>
+					<?php }?>
 					<?php if( in_array("cl_r", $permiso) ){ ?>
 					<li>
 						<a href="clientes.php"> <i class="fa fa-address-book-o" aria-hidden="true"></i>Clientes</a>
@@ -102,11 +107,6 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 					<?php if( in_array("po_r", $permiso) ){ ?>
 					<li class="active">
 						<a href="proveedores.php"> <i class="fa fa-truck" aria-hidden="true"></i>Proveedores</a>
-					</li>
-					<?php }?>
-					<?php if( in_array("fc_r", $permiso) ){ ?>
-					<li>
-						<a href="compras.php"> <i class="fa fa-shopping-bag " aria-hidden="true"></i>Compras </a>
 					</li>
 					<?php }?>
 					<li>

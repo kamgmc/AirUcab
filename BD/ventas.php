@@ -82,14 +82,31 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 						<a href="modeloavion.php"> <i class="fa fa-plane" aria-hidden="true"></i> Aviones </a>
 					</li>
 					<?php }?>
-					<?php if( in_array("em_r", $permiso) || in_array("em_c", $permiso) ){ ?>
 					<li>
-						<a href="empleados.php"><i class="fa fa-id-card-o"></i>Empleados</a>
+						<a href="motores.php"> <i class="fa fa-tachometer " aria-hidden="true"></i>Motores </a>
 					</li>
-					<?php }?>
+					<li>
+						<a href="piezas.php"> <i class="fa fa-puzzle-piece " aria-hidden="true"></i>Piezas </a>
+					</li>
+					<li>
+						<a href="materiales.php"> <i class="fa fa-server " aria-hidden="true"></i>Materiales </a>
+					</li>
 					<?php if( in_array("fv_r", $permiso) || in_array("fv_c", $permiso) ){ ?>
 					<li class="active">
 						<a href="ventas.php"> <i class="fa fa-paper-plane-o" aria-hidden="true"></i>Ventas </a>
+					</li>
+					<?php }?>
+					<?php if( in_array("fc_r", $permiso) ){ ?>
+					<li>
+						<a href="compras.php"> <i class="fa fa-shopping-bag " aria-hidden="true"></i>Compras </a>
+					</li>
+					<?php }?>
+					<li>
+						<a href="Sedes.php"> <i class="fa fa-university " aria-hidden="true"></i>Sedes </a>
+					</li>
+					<?php if( in_array("em_r", $permiso) || in_array("em_c", $permiso) ){ ?>
+					<li>
+						<a href="empleados.php"><i class="fa fa-id-card-o"></i>Empleados</a>
 					</li>
 					<?php }?>
 					<?php if( in_array("cl_r", $permiso) ){ ?>
@@ -102,28 +119,11 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 						<a href="proveedores.php"> <i class="fa fa-truck" aria-hidden="true"></i>Proveedores</a>
 					</li>
 					<?php }?>
-					<?php if( in_array("fc_r", $permiso) ){ ?>
-					<li>
-						<a href="compras.php"> <i class="fa fa-shopping-bag " aria-hidden="true"></i>Compras </a>
-					</li>
-					<?php }?>
-					<li>
-						<a href="materiales.php"> <i class="fa fa-server " aria-hidden="true"></i>Materiales </a>
-					</li>
-					<li>
-						<a href="piezas.php"> <i class="fa fa-puzzle-piece " aria-hidden="true"></i>Piezas </a>
-					</li>
-					<li>
-						<a href="motores.php"> <i class="fa fa-tachometer " aria-hidden="true"></i>Motores </a>
-					</li>
 					<li>
 						<a href="pruebas.php"> <i class="fa fa-check-square-o " aria-hidden="true"></i>Pruebas </a>
 					</li>
 					<li>
 						<a href="traslados.php"> <i class="fa fa-share-square-o " aria-hidden="true"></i>Traslados </a>
-					</li>
-					<li>
-						<a href="Sedes.php"> <i class="fa fa-university " aria-hidden="true"></i>Sedes </a>
 					</li>
 				</ul>
 			</nav>
@@ -440,6 +440,14 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 							</div>
 						</div>
 						<!-- Modal Detalle Pieza ENDS -->
+						<!-- Modal Detalle Motor  -->
+						<div id="ModalDetalleMotor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+							<div role="document" class="modal-dialog">
+								<div id="detalleMotorBody" class="modal-content">
+								</div>
+							</div>
+						</div>
+						<!-- Modal Detalle Motor ENDS -->
 					</div>
 				</section>
 				<!-- Section de TABS ENDS -->

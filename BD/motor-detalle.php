@@ -5,7 +5,7 @@ $qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WH
 $rs = pg_query( $conexion, $qry ); $permiso = array();
 while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }
 $id = htmlentities($_GET['id'], ENT_QUOTES);
-$qry = "Select spi_id AS id, spi_fecha_ini AS fecha_ini, spi_fecha_fin AS fecha_fin, st_nombre AS status, se_nombre||' - '||zo_nombre AS ubicacion, tr_confirmacion AS recibido from Status, Status_pieza LEFT JOIN Traslado ON tr_pieza=spi_pieza LEFT JOIN Zona ON tr_zona_recibe=zo_id LEFT JOIN Sede ON se_id=zo_sede WHERE st_id=spi_status AND spi_pieza=".$id;
+$qry = "Select stm_id AS id, stm_fecha_ini AS fecha_ini, stm_fecha_fin AS fecha_fin, st_nombre AS status, se_nombre||' - '||zo_nombre AS ubicacion, tr_confirmacion AS recibido from Status, Status_motor LEFT JOIN Traslado ON tr_motor=stm_motor LEFT JOIN Zona ON tr_zona_recibe=zo_id LEFT JOIN Sede ON se_id=zo_sede WHERE st_id=stm_status AND stm_motor=".$id;
 $con = pg_query($conexion, $qry);
 $resultado = '<div class="modal-header">
 				<h4 id="exampleModalLabel" class="modal-title">Detalle de '.$_GET['nombre'].' - '.$_GET['id'].'</h4>
@@ -26,20 +26,20 @@ $resultado = '<div class="modal-header">
 										</tr>
 									</thead>
 									<tbody>';
-										while( $statusPieza = pg_fetch_object($con) ){
-											$dateIni = new DateTime($statusPieza->fecha_ini);
-											if(is_null($statusPieza->fecha_fin))
+										while( $statusMotor = pg_fetch_object($con) ){
+											$dateIni = new DateTime($statusMotor->fecha_ini);
+											if(is_null($statusMotor->fecha_fin))
 												$dateFin = "";
 											else{
-												$dateFin = new DateTime($statusPieza->fecha_ini);
+												$dateFin = new DateTime($statusMotor->fecha_ini);
 												$dateFin = $dateFin->format("d/m/Y");
 											}
-											if(is_null($statusPieza->ubicacion))
-												$statusPieza->ubicacion = "Por ensamblar";
+											if(is_null($statusMotor->ubicacion))
+												$statusMotor->ubicacion = "Por ensamblar";
 											$resultado .= '<tr>
-												<td class="text-center">'.$statusPieza->id.'</td>
-												<td>'.$statusPieza->status.'</td>
-												<td class="text-center">'.$statusPieza->ubicacion.'</td>
+												<td class="text-center">'.$statusMotor->id.'</td>
+												<td>'.$statusMotor->status.'</td>
+												<td class="text-center">'.$statusMotor->ubicacion.'</td>
 												<td class="text-center">'.$dateIni->format("d/m/Y").'</td>
 												<td class="text-center">'.$dateFin.'</td>
 											</tr>';
@@ -51,11 +51,6 @@ $resultado = '<div class="modal-header">
 					</div>
 				</div>
 			</div>
-		</div>
-		<script>
-			$("#ModalDetallePieza").on("hidden.bs.modal", function () {
-				$("#ModalDetalleAvion").data("bs.modal").handleUpdate();
-			})
-		</script>';
+		</div>';
 echo $resultado;
 ?>

@@ -1123,6 +1123,23 @@
 	}
 //Prueba_pieza
 //Traslado
+	function insertarTraslado($envia, $recibe, $pieza, $material, $motor){
+		global $conexion;
+		$envia = htmlentities($envia, ENT_QUOTES);
+		$recibe = htmlentities($recibe, ENT_QUOTES);
+		$pieza = htmlentities($pieza, ENT_QUOTES);
+		$material = htmlentities($material, ENT_QUOTES);
+		$motor = htmlentities($motor, ENT_QUOTES);
+		$qry = "INSERT INTO Traslado (tr_fecha_ini, tr_confirmacion, tr_zona_envia, tr_zona_recibe, tr_pieza, tr_material, tr_motor) VALUES (transaction_timestamp(), false, ".$envia.", ".$recibe.", ".$pieza.", ".$material.", ".$motor.")";
+		return pg_query($conexion, $qry);
+	}
+	function editarTraslado($id, $confirmacion){
+		global $conexion;
+		$id = htmlentities($id, ENT_QUOTES);
+		$confirmacion = htmlentities($confirmacion, ENT_QUOTES);
+		$qry = "UPDATE Traslado SET tr_fecha_fin=transaction_timestamp(), tr_confirmacion=".$confirmacion." WHERE tr_id=".$id;
+		return pg_query($conexion, $qry);
+	}
 	function eliminarTraslado($id){
 		global $conexion;
 		$id = htmlentities($id, ENT_QUOTES);

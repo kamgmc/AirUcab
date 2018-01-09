@@ -176,7 +176,7 @@
 		$resultado = '<input name="experiencia_delete[]" type="hidden" value="'.$id.'" class="form-control" required>';
 	}
 	if($_GET['get'] == "fieldAvion"){
-		$resultado = '<div class="row form-avion last-avion">
+		$resultado = '<hr/><div class="row form-avion last-avion">
 			<div class="card-body col-lg-6">
 				<div class="form-group row">
 					<label class="col-sm-3 form-control-label">
@@ -267,7 +267,7 @@
 		}
 	}
 	if($_GET['get'] == "fieldPago"){
-		$resultado = '<div class="row last-pago">
+		$resultado = '<hr/><div class="row last-pago">
 			<div class="card-body col-lg-12">
 				<div class="form-check form-check-inline">
 					<label class="form-check-label">
@@ -368,6 +368,16 @@
 		$cliente = pg_fetch_object($answer);
 		if($id!='NULL')
 			$resultado=$cliente->tipo."-".$cliente->rif;
+		else
+			$resultado="";
+	}
+	if($_GET['get'] == "po_rif"){
+		$id = htmlentities($_GET['id'], ENT_QUOTES);
+		$qry = "SELECT po_tipo_rif AS tipo, po_rif AS rif FROM Proveedor WHERE po_id=".$id;
+		$answer = pg_query( $conexion, $qry );
+		$proveedor = pg_fetch_object($answer);
+		if($id!='NULL')
+			$resultado=$proveedor->tipo."-".$proveedor->rif;
 		else
 			$resultado="";
 	}

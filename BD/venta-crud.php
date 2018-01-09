@@ -45,7 +45,6 @@
 					$Postmotor = "motor".$i;
 					for($x = 0; $x < $iteraciones; $x++){
 						if( insertarAvion( $factura->id, $_POST['distribucion'][$estable], $_POST['submodelo'][$estable], $_POST['precio'][$estable] ) ){// Crea un avión
-							print"Paso</br>";
 							$qry = "SELECT Max(a_id) AS id FROM Avion where a_submodelo_avion=".$_POST['submodelo'][$estable]." AND a_distribucion=".$_POST['distribucion'][$estable]." AND a_precio=".$_POST['precio'][$estable];
 							if($answer = pg_query( $conexion, $qry )){
 								$avion = pg_fetch_object($answer);

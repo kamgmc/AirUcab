@@ -85,6 +85,20 @@ $resultado = '<div class="modal-header">
 			$("#ModalDetallePieza").modal("toggle");
 			$("#ModalDetallePieza").modal("handleUpdate");
 		});
+		$( "a.click-motor-detalle" ).click(function( event ) {
+			event.preventDefault();
+			var href = $(this).attr("href");
+			var nombre = $(this).data("nombre");
+			$.ajax({type: "POST",dataType: "html",url:"motor-detalle.php?id="+href+"&nombre="+nombre,success: function(data){$("#detalleMotorBody").html(data);}});
+			$("#ModalDetalleMotor").modal("toggle");
+			$("#ModalDetalleMotor").modal("handleUpdate");
+		});
+		$("#ModalDetalleMotor").on("hidden.bs.modal", function () {
+			$("#ModalDetalleAvion").modal("handleUpdate");
+		});
+		$("#ModalDetallePieza").on("hidden.bs.modal", function () {
+			$("#ModalDetalleAvion").modal("handleUpdate");
+		});
 		</script>';
 echo $resultado;
 ?>

@@ -83,6 +83,11 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 						<a href="ventas.php"> <i class="fa fa-paper-plane-o" aria-hidden="true"></i>Ventas </a>
 					</li>
 					<?php }?>
+					<?php if( in_array("fc_r", $permiso) ){ ?>
+					<li>
+						<a href="compras.php"> <i class="fa fa-shopping-bag " aria-hidden="true"></i>Compras </a>
+					</li>
+					<?php }?>
 					<?php if( in_array("cl_r", $permiso) ){ ?>
 					<li>
 						<a href="clientes.php"> <i class="fa fa-address-book-o" aria-hidden="true"></i>Clientes</a>
@@ -91,11 +96,6 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 					<?php if( in_array("po_r", $permiso) ){ ?>
 					<li>
 						<a href="proveedores.php"> <i class="fa fa-truck" aria-hidden="true"></i>Proveedores</a>
-					</li>
-					<?php }?>
-					<?php if( in_array("fc_r", $permiso) ){ ?>
-					<li>
-						<a href="compras.php"> <i class="fa fa-shopping-bag " aria-hidden="true"></i>Compras </a>
 					</li>
 					<?php }?>
 					<li>
@@ -124,8 +124,6 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 					<div class="container-fluid">
 						<input id="tab0" type="radio" name="tabs" class="no-display" checked>
 						<label for="tab0" class="label"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> Pruebas</label>
-						<input id="tab1" type="radio" name="tabs" class="no-display">
-						<label for="tab1" class="label"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> Status</label>
 						
 						
 						<!-- TAB Pruebas -->
@@ -145,7 +143,6 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 											<thead>
 												<tr>
 													<th>NOMBRE</th>
-													<th class="text-center">Duracion Estimada</th>
 													<th class="text-center">Accion</th>
 												</tr>
 											</thead>
@@ -153,7 +150,6 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 												
 													<tr>
 														<td>Prueba de Calidad</td>
-														<td class="text-center">30 dias</td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
@@ -161,7 +157,6 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 													</tr>
 													<tr>
 														<td>Prueba de Calidad</td>
-														<td class="text-center">30 dias</td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
@@ -169,7 +164,6 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 													</tr>
 													<tr>
 														<td>Prueba de Calidad</td>
-														<td class="text-center">30 dias</td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
@@ -177,7 +171,6 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 													</tr>
 													<tr>
 														<td>Prueba de Calidad</td>
-														<td class="text-center">30 dias</td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
@@ -185,7 +178,6 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 													</tr>
 													<tr>
 														<td>Prueba de Calidad</td>
-														<td class="text-center">30 dias</td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
@@ -193,7 +185,6 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 													</tr>
 													<tr>
 														<td>Prueba de Calidad</td>
-														<td class="text-center">30 dias</td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
@@ -201,7 +192,6 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 													</tr>
 													<tr>
 														<td>Prueba de Calidad</td>
-														<td class="text-center">30 dias</td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
@@ -209,7 +199,6 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 													</tr>
 													<tr>
 														<td>Prueba de Calidad</td>
-														<td class="text-center">30 dias</td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
@@ -217,88 +206,11 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 													</tr>
 													<tr>
 														<td>Prueba de Calidad</td>
-														<td class="text-center">30 dias</td>
 														<td class="text-center">
 															<a href="" data-toggle="modal" data-target="#myModalPrueba"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
 															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
 														</td>
 													</tr>
-													
-												
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-							<!-- TABLE ENDS -->
-						</section>
-
-
-						<!-- TAB Pruebas -->
-						<section id="content1" class="sectiontab">
-							
-							<!-- TABLE STARTS -->
-							<div class="col-md-12">
-								<div class="card">
-									<div class="row">
-										<div class="col-sm-10"></div>
-										<div class="col-sm-2 pad-top">
-											<button type="button" data-toggle="modal" data-target="#myModalStatusCrear" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
-										</div>
-									</div>
-									<div class="card-body">
-										<table class="table table-striped table-sm table-hover">
-											<thead>
-												<tr>
-													<th>NOMBRE</th>
-													<th class="text-center">Accion</th>
-												</tr>
-											</thead>
-											<tbody>
-												
-													<tr>
-														<td><span class="badge badge-primary">EN TRAYECTO</span></td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#myModalStatusEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td><span class="badge badge-primary">EN TRAYECTO</span></td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#myModalStatusEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td><span class="badge badge-primary">EN TRAYECTO</span></td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#myModalStatusEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td><span class="badge badge-primary">EN TRAYECTO</span></td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#myModalStatusEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td><span class="badge badge-primary">EN TRAYECTO</span></td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#myModalStatusEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td><span class="badge badge-primary">EN TRAYECTO</span></td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#myModalStatusEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													
 													
 												
 											</tbody>
@@ -366,49 +278,6 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 						</div>
 						<!-- Modal Prueba Editar ENDS -->
 
-
-						<!-- Modal Status Editar -->
-						<div id="myModalStatusEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
-							<div role="document" class="modal-dialog modal-xl">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h4 id="exampleModalLabel" class="modal-title">EDITAR STATUS</h4>
-										<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-									</div>
-									<div class="modal-body">
-										<div class="container-fluid">
-											<div class="row">
-												<div class="card col-lg-12">
-													<div class="row">
-														
-														<div class="card-body col-lg-6">
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h3>Nombre</h3> </label>
-																<div class="col-sm-9">
-																	<input type="text" placeholder="Introduzca Nombre" class="form-control"> </div>
-															</div>
-															
-															
-														</div>	
-															
-														
-
-													</div>
-												</div>
-											</div>
-										</div>
-										
-									</div>
-									<div class="modal-footer">
-										<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
-										<button type="button" class="btn btn-primary">Guardar Cambios</button>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- Modal Status Editar ENDS -->
-
 					
 
 						
@@ -459,48 +328,6 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 							</div>
 						</div>
 						<!-- Modal Prueba Crear ENDS -->
-
-						<!-- Modal Status Crear -->
-						<div id="myModalStatusCrear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
-							<div role="document" class="modal-dialog modal-xl">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h4 id="exampleModalLabel" class="modal-title">CREAR STATUS</h4>
-										<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-									</div>
-									<div class="modal-body">
-										<div class="container-fluid">
-											<div class="row">
-												<div class="card col-lg-12">
-													<div class="row">
-														
-														<div class="card-body col-lg-6">
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h3>Nombre</h3> </label>
-																<div class="col-sm-9">
-																	<input type="text" placeholder="Introduzca Nombre" class="form-control"> </div>
-															</div>
-															
-															
-														</div>	
-															
-														
-
-													</div>
-												</div>
-											</div>
-										</div>
-										
-									</div>
-									<div class="modal-footer">
-										<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
-										<button type="button" class="btn btn-primary">Guardar Cambios</button>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- Modal Status Crear ENDS -->
 
 						
 
