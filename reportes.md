@@ -1,7 +1,7 @@
 # Reportes
 
 ## Requerimientos
-- :green_check_mark:  Producción anual
+- :white_check_mark:  Producción anual
 ```sql
 SELECT count(a_id) cantidad
 FROM Avion, Status_avion, Status
