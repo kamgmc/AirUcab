@@ -1,11 +1,33 @@
 # Reportes
 
 ## Requerimientos
-- Producción anual
-- Promedio de producción mensual 
+- :white_check_mark:  Producción anual
+```sql
+SELECT count(a_id) cantidad
+FROM Avion, Status_avion, Status
+WHERE EXTRACT(Year from a_fecha_fin)=2017
+AND sa_avion=a_id AND sa_status=st_id AND st_nombre='Listo'
+
+SELECT count(p_id) cantidad
+FROM Pieza, Status_pieza, Status
+WHERE EXTRACT(Year from p_fecha_fin)=2017
+AND spi_pieza=p_id AND spi_status=st_id AND st_nombre='Listo'
+```
+- :white_check_mark: Promedio de producción mensual 
+```sql
+SELECT count(a_id)/12::real cantidad
+FROM Avion, Status_avion, Status
+WHERE EXTRACT(Year from a_fecha_fin)=2017
+AND sa_avion=a_id AND sa_status=st_id AND st_nombre='Listo'
+
+SELECT count(p_id)/12::real cantidad
+FROM Pieza, Status_pieza, Status
+WHERE EXTRACT(Year from p_fecha_fin)=2017
+AND spi_pieza=p_id AND spi_status=st_id AND st_nombre='Listo'
+```
 - :white_check_mark:  Los mejores 10 clientes en base a la cantidad de compras por año.
 ```sql
-SELECT cl_nombre, count(cl_id) cantidad
+SELECT cl_nombre, count(fv_id) cantidad
 FROM Cliente, Factura_venta, Avion
 WHERE a_factura_venta=fv_id AND fv_cliente=cl_id AND EXTRACT(Year from fv_fecha)=2017
 GROUP BY cl_nombre
@@ -32,8 +54,8 @@ ORDER BY cantidad DESC limit 1
 - :white_check_mark:  Inventario Mensual.
 ```sql
 SELECT mt_nombre material, count(m_id) cantidad
-FROM Material, Tipo_material, Factura_compra
-WHERE m_factura_compra=fc_id AND m_tipo_material=mt_id AND m_pieza IS null AND EXTRACT(Month from fc_fecha)=05
+FROM Material, Tipo_material
+WHERE m_factura_compra=0 AND m_tipo_material=mt_id AND m_pieza IS null AND EXTRACT(Month from m_fecha)=05
 GROUP BY material
 ```
 - :white_check_mark:  Producto mas pedido al inventario 
@@ -75,6 +97,20 @@ SELECT *
 FROM proveedor
 ```
 - Planta mas eficiente en base al cumplimiento de las fechas 
+```sql
+SELECT zo_nombre zona, se_nombre sede, AVG(age(sp_fecha_ini,prm_fecha_ini)-age(prm_fecha_fin,prm_fecha_ini)) eficiencia
+FROM Zona, Sede, Prueba, Prueba_material, Status_prueba, Status
+WHERE zo_sede=se_id AND pr_zona=zo_id AND prm_prueba=pr_id AND sp_prueba=pr_id 
+AND sp_status=st_id AND st_nombre='Aprobada' 
+Group by zo_nombre, se_nombre 
+UNION
+SELECT zo_nombre zona, se_nombre sede, AVG(age(sp_fecha_ini,pp_fecha_ini)-age(pp_fecha_fin, pp_fecha_ini)) eficiencia
+FROM Zona, Sede, Prueba, Prueba_pieza, Status_prueba, Status
+WHERE zo_sede=se_id AND pr_zona=zo_id AND pp_prueba=pr_id AND sp_prueba=pr_id 
+AND sp_status=st_id AND st_nombre='Aprobada' 
+Group by zo_nombre, se_nombre
+Order By eficiencia
+```
 - Descripción de piezas (formato del enunciado) 
 
 ## Requerimientos Secundarios
