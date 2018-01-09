@@ -85,6 +85,9 @@ if( !in_array("am_r", $permiso) && !in_array("as_r", $permiso) && !in_array("di_
 					<?php } ?>
 					<!-- Sidebar Navidation Menus-->
 					<ul class="list-unstyled">
+						<li>
+							<a href="index.php"> <i class="fa fa-space-shuttle" aria-hidden="true"></i> Reportes</a>
+						</li>
 						<?php if( in_array("am_r", $permiso) || in_array("as_r", $permiso) || in_array("di_r", $permiso) ){ ?>
 						<li class="active">
 							<a href="modeloavion.php"> <i class="fa fa-plane" aria-hidden="true"></i> Aviones </a>

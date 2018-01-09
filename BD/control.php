@@ -16,7 +16,7 @@ if(empty($_SESSION['code'])){
 		$_SESSION['cargo'] = $empleado->cargo;
 		$_SESSION['rol'] = $empleado->rol;
 		$_SESSION['code'] = "9d5e3ecdeb4cdb7acfd63075ae046672";?>
-		<meta content="0,modeloavion.php" http-equiv="refresh"/>
+		<meta content="0,index.php" http-equiv="refresh"/>
 	<?php 
 	}
 	else{?> 
@@ -24,5 +24,5 @@ if(empty($_SESSION['code'])){
 	}
 }
 else{?>
-	<meta content="0,modeloavion.php" http-equiv="refresh"/><?php 
+	<meta content="0,index.php" http-equiv="refresh"/><?php 
 }?>

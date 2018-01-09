@@ -85,54 +85,69 @@ if( !in_array("em_r", $permiso) && !in_array("sr_c", $permiso) && !in_array("er_
 					<?php } ?>
 					<!-- Sidebar Navidation Menus-->
 					<ul class="list-unstyled">
+						<li>
+							<a href="index.php"> <i class="fa fa-space-shuttle" aria-hidden="true"></i> Reportes</a>
+						</li>
 						<?php if( in_array("am_r", $permiso) || in_array("as_r", $permiso) || in_array("di_r", $permiso) ){ ?>
 						<li>
 							<a href="modeloavion.php"> <i class="fa fa-plane" aria-hidden="true"></i> Aviones </a>
 						</li>
-						<?php }?>
-						<?php if( in_array("em_r", $permiso) || in_array("em_c", $permiso) ){ ?>
-						<li class="active">
-							<a href="empleados.php"><i class="fa fa-id-card-o"></i>Empleados</a>
+						<?php } ?>
+                        <?php if (in_array("mb_r", $permiso) || in_array("mm_r", $permiso) || in_array("mo_r", $permiso) ) { ?>
+                        <li>
+							<a href="motores.php"> <i class="fa fa-tachometer " aria-hidden="true"></i>Motores </a>
 						</li>
-						<?php }?>
-						<?php if( in_array("fv_r", $permiso) || in_array("fv_c", $permiso) ){ ?>
+                        <?php } ?>
+                        <?php if( in_array("p_r", $permiso) || in_array("pm_r", $permiso) || in_array("wt_r", $permiso) || in_array("et_r", $permiso) ) { ?>
+                        <li>
+							<a href="piezas.php"> <i class="fa fa-puzzle-piece " aria-hidden="true"></i>Piezas </a>
+						</li>
+                        <?php } ?>
+                        <?php if( in_array("m_r", $permiso) || in_array("tm_r", $permiso) ) { ?>
+                        <li>
+							<a href="materiales.php"> <i class="fa fa-server " aria-hidden="true"></i>Materiales </a>
+						</li>
+                        <?php } ?>
+                        <?php if( in_array("fv_r", $permiso) ){ ?>
 						<li>
 							<a href="ventas.php"> <i class="fa fa-paper-plane-o" aria-hidden="true"></i>Ventas </a>
 						</li>
-						<?php }?>
-						<?php if( in_array("fc_r", $permiso) ){ ?>
+						<?php } ?>
+                        <?php if( in_array("fc_r", $permiso) ){ ?>
 						<li>
 							<a href="compras.php"> <i class="fa fa-shopping-bag " aria-hidden="true"></i>Compras </a>
 						</li>
-						<?php }?>
+						<?php } ?>
+                        <?php if( in_array("se_r", $permiso) || in_array("zo_r", $permiso) ){ ?>
+                        <li>
+							<a href="Sedes.php"> <i class="fa fa-university " aria-hidden="true"></i>Sedes </a>
+						</li>
+                        <?php } ?>
+						<?php if( in_array("em_r", $permiso) || in_array("sr_r", $permiso) || in_array("er_r", $permiso) || in_array("ti_r", $permiso) || in_array("pe_r", $permiso) ){ ?>
+						<li class="active">
+							<a href="empleados.php"><i class="fa fa-id-card-o"></i>Empleados</a>
+						</li>
+						<?php } ?>
 						<?php if( in_array("cl_r", $permiso) ){ ?>
 						<li>
 							<a href="clientes.php"> <i class="fa fa-address-book-o" aria-hidden="true"></i>Clientes</a>
 						</li>
-						<?php }?>
+						<?php } ?>
 						<?php if( in_array("po_r", $permiso) ){ ?>
 						<li>
 							<a href="proveedores.php"> <i class="fa fa-truck" aria-hidden="true"></i>Proveedores</a>
 						</li>
-						<?php }?>
-						<li>
-							<a href="materiales.php"> <i class="fa fa-server " aria-hidden="true"></i>Materiales </a>
-						</li>
-						<li>
-							<a href="piezas.php"> <i class="fa fa-puzzle-piece " aria-hidden="true"></i>Piezas </a>
-						</li>
-						<li>
-							<a href="motores.php"> <i class="fa fa-tachometer " aria-hidden="true"></i>Motores </a>
-						</li>
+						<?php } ?>
+						<?php if( in_array("pr_r", $permiso) ){ ?>
 						<li>
 							<a href="pruebas.php"> <i class="fa fa-check-square-o " aria-hidden="true"></i>Pruebas </a>
 						</li>
+                        <?php } ?>
+                        <?php if( in_array("tr_r", $permiso) ){ ?>
 						<li>
 							<a href="traslados.php"> <i class="fa fa-share-square-o " aria-hidden="true"></i>Traslados </a>
 						</li>
-						<li>
-							<a href="Sedes.php"> <i class="fa fa-university " aria-hidden="true"></i>Sedes </a>
-						</li>
+						<?php } ?>
 					</ul>
 				</nav>
 				<div class="content-inner">
@@ -417,7 +432,7 @@ if( !in_array("em_r", $permiso) && !in_array("sr_c", $permiso) && !in_array("er_
 																		<div class="col-sm-9 select">
 																			<select name="rol" class="form-control" required>
 																				<option value="NULL">Seleccionar</option>
-																				<?php $qry = "SELECT sr_id id, sr_nombre nombre FROM Rol_sistema WHERE sr_nombre<>'Usuario Anónimo' ORDER BY sr_nombre";
+																				<?php $qry = "SELECT sr_id id, sr_nombre nombre FROM Rol_sistema sr WHERE (Select Count(*) From Rol_permiso, Permiso Where rp_rol=sr.sr_id AND pe_iniciales LIKE '%_r' )>0 AND  sr_nombre<>'Usuario Anónimo' ORDER BY sr_nombre";
 																				$rs = pg_query( $conexion, $qry );
 																				while( $rol = pg_fetch_object($rs) ){?>
 																				<option value="<?php print $rol->id;?>">
