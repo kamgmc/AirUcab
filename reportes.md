@@ -52,7 +52,7 @@ WHERE a_submodelo_avion=as_id AND as_modelo_avion=am_id
 GROUP BY am_nombre
 ORDER BY cantidad DESC limit 1
 ```
-- El equipo mas eficiente (en base al menor retraso en sus asignaciones ) 
+- :white_check_mark:  El equipo mas eficiente (en base al menor retraso en sus asignaciones ) 
 ```sql
   SELECT zo_nombre zona,se_nombre sede, AVG(age(sp_fecha_ini,prm_fecha_ini)-age(prm_fecha_fin,prm_fecha_ini)) eficiencia
   FROM Zona, Sede, Prueba, Prueba_material, Status_prueba, Status
