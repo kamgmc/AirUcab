@@ -109,7 +109,7 @@ SELECT count(pr_id)
 FROM Prueba, Status_prueba, Status
 WHERE sp_prueba=pr_id AND sp_status=st_id AND st_nombre='Rechazado'
 ```
-- Promedio de traslados entre las sedes. 
+- :white_check_mark:  Promedio de traslados entre las sedes. 
 ```sql
 Select se_nombre AS sede, Count(tr_id) AS cantidad
 From Traslado, Zona envia,Zona recibe, Sede
@@ -128,7 +128,7 @@ FROM proveedor po
 LEFT JOIN Lugar ON lu_id=po_direccion 
 ORDER BY nombre
 ```
-- Planta mas eficiente en base al cumplimiento de las fechas 
+- :white_check_mark:  Planta mas eficiente en base al cumplimiento de las fechas 
 ```sql
 SELECT se_nombre sede, AVG(age(sp_fecha_ini,prm_fecha_ini)-age(prm_fecha_fin,prm_fecha_ini)) eficiencia
 FROM Zona, Sede, Prueba, Prueba_material, Status_prueba, Status
