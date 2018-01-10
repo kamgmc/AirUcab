@@ -6,11 +6,15 @@ if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'
 $qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$_SESSION['rol']; 
 $rs = pg_query( $conexion, $qry ); $permiso = array();
 while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }
-if( !in_array("em_r", $permiso) && !in_array("sr_c", $permiso) && !in_array("er_r", $permiso) && !in_array("ti_c", $permiso) && !in_array("rp_c", $permiso) && !in_array("rp_u", $permiso) && !in_array("rp_r", $permiso) ){
+if( !in_array("em_r", $permiso) && !in_array("sr_c", $permiso) && !in_array("er_r", $permiso) && !in_array("ti_c", $permiso) && !in_array("rp_c", $permiso) && !in_array("rp_u", $permiso) && !in_array("rp_r", $permiso) && !in_array("ct_r", $permiso) ){
 	if( !isset($_SESSION['code']) ){
 		header('Location: login.php');
 		exit;
 	}
+    else{
+        header('Location: clientes.php');
+		exit;
+    }
 }?>
 <!DOCTYPE html>
 	<html>
@@ -123,7 +127,7 @@ if( !in_array("em_r", $permiso) && !in_array("sr_c", $permiso) && !in_array("er_
 							<a href="Sedes.php"> <i class="fa fa-university " aria-hidden="true"></i>Sedes </a>
 						</li>
                         <?php } ?>
-						<?php if( in_array("em_r", $permiso) || in_array("sr_r", $permiso) || in_array("er_r", $permiso) || in_array("ti_r", $permiso) || in_array("pe_r", $permiso) ){ ?>
+						<?php if( in_array("em_r", $permiso) || in_array("sr_r", $permiso) || in_array("er_r", $permiso) || in_array("ti_r", $permiso) || in_array("pe_r", $permiso) || in_array("ct_r", $permiso) ){ ?>
 						<li class="active">
 							<a href="empleados.php"><i class="fa fa-id-card-o"></i>Empleados</a>
 						</li>
@@ -202,7 +206,7 @@ if( !in_array("em_r", $permiso) && !in_array("sr_c", $permiso) && !in_array("er_
 							<input id="tab4" type="radio" name="tabs" class="no-display" <?php if( $_GET['tab'] == "permiso" ) print "checked";?>>
 							<label for="tab4" class="label"><i class="fa fa-university" aria-hidden="true"></i> Permisos</label>
 							<?php }?>
-							<?php if( in_array("rp_r", $permiso) || ( in_array("rp_c", $permiso) && in_array("rp_u", $permiso) ) ){?>
+							<?php if( in_array("ct_r", $permiso) || ( in_array("ct_c", $permiso) && in_array("ct_u", $permiso) ) ){?>
 							<input id="tab5" type="radio" name="tabs" class="no-display" <?php if( $_GET['tab'] == "permiso" ) print "checked";?>>
 							<label for="tab5" class="label"><i class="fa fa-wifi" aria-hidden="true"></i> Tipo de Contacto</label>
 							<?php }?>
@@ -977,7 +981,6 @@ if( !in_array("em_r", $permiso) && !in_array("sr_c", $permiso) && !in_array("er_
 							<?php }?>
 							<!-- TAB TIPO CONTACTO -->
 							<section id="content5" class="sectiontab">
-								
 								<!-- TABLE STARTS -->
 								<div class="col-md-12">
 									<div class="card">
@@ -992,49 +995,45 @@ if( !in_array("em_r", $permiso) && !in_array("sr_c", $permiso) && !in_array("er_
 												<thead>
 													<tr>
 														<th>NOMBRE</th>
-														<th class="text-center">Accion</th>
+														<th class="text-center">Acción</th>
 													</tr>
 												</thead>
 												<tbody>
-													
-														<tr>
-															<td>Email</td>
-															<td class="text-center">
-																<a href="" data-toggle="modal" data-target="#myModalTipoContactoEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-																<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-															</td>
-														</tr>
-														<tr>
-															<td>Email</td>
-															<td class="text-center">
-																<a href="" data-toggle="modal" data-target="#myModalTipoContactoEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-																<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-															</td>
-														</tr>
-														<tr>
-															<td>Email</td>
-															<td class="text-center">
-																<a href="" data-toggle="modal" data-target="#myModalTipoContactoEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-																<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-															</td>
-														</tr>
-														<tr>
-															<td>Email</td>
-															<td class="text-center">
-																<a href="" data-toggle="modal" data-target="#myModalTipoContactoEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-																<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-															</td>
-														</tr>
-														<tr>
-															<td>Email</td>
-															<td class="text-center">
-																<a href="" data-toggle="modal" data-target="#myModalTipoContactoEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-																<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-															</td>
-														</tr>
-														
-														
-													
+													<tr>
+														<td>Email</td>
+														<td class="text-center">
+															<a href="" data-toggle="modal" data-target="#myModalTipoContactoEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
+															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+														</td>
+													</tr>
+													<tr>
+														<td>Email</td>
+														<td class="text-center">
+															<a href="" data-toggle="modal" data-target="#myModalTipoContactoEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
+															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+														</td>
+													</tr>
+													<tr>
+														<td>Email</td>
+														<td class="text-center">
+															<a href="" data-toggle="modal" data-target="#myModalTipoContactoEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
+															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+														</td>
+													</tr>
+													<tr>
+														<td>Email</td>
+														<td class="text-center">
+															<a href="" data-toggle="modal" data-target="#myModalTipoContactoEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
+															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+														</td>
+													</tr>
+													<tr>
+														<td>Email</td>
+														<td class="text-center">
+															<a href="" data-toggle="modal" data-target="#myModalTipoContactoEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
+															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+														</td>
+													</tr>
 												</tbody>
 											</table>
 										</div>
@@ -1043,7 +1042,6 @@ if( !in_array("em_r", $permiso) && !in_array("sr_c", $permiso) && !in_array("er_
 								<!-- TABLE ENDS -->
 							</section>
 							<!-- Tab Explorador Clientes ENDS -->
-							
 							<!-- Modal Tipo Contacto Crear -->
 							<div id="myModalTipoContactoCrear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 								<div role="document" class="modal-dialog modal-xl">
@@ -1057,7 +1055,6 @@ if( !in_array("em_r", $permiso) && !in_array("sr_c", $permiso) && !in_array("er_
 												<div class="row">
 													<div class="card col-lg-12">
 														<div class="row">
-															
 															<div class="card-body col-lg-6">
 																<div class="form-group row">
 																	<label class="col-sm-3 form-control-label">
@@ -1065,17 +1062,11 @@ if( !in_array("em_r", $permiso) && !in_array("sr_c", $permiso) && !in_array("er_
 																	<div class="col-sm-9">
 																		<input type="text" placeholder="Introduzca Nombre" class="form-control"> </div>
 																</div>
-																
-																
-															</div>	
-																
-															
-
+															</div>
 														</div>
 													</div>
 												</div>
 											</div>
-											
 										</div>
 										<div class="modal-footer">
 											<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
@@ -1085,7 +1076,6 @@ if( !in_array("em_r", $permiso) && !in_array("sr_c", $permiso) && !in_array("er_
 								</div>
 							</div>
 							<!-- Modal Tipo Contacto Crear ENDS -->
-
 							<!-- Modal Tipo Contacto Editar -->
 							<div id="myModalTipoContactoEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 								<div role="document" class="modal-dialog modal-xl">
@@ -1099,7 +1089,6 @@ if( !in_array("em_r", $permiso) && !in_array("sr_c", $permiso) && !in_array("er_
 												<div class="row">
 													<div class="card col-lg-12">
 														<div class="row">
-															
 															<div class="card-body col-lg-6">
 																<div class="form-group row">
 																	<label class="col-sm-3 form-control-label">
@@ -1107,17 +1096,11 @@ if( !in_array("em_r", $permiso) && !in_array("sr_c", $permiso) && !in_array("er_
 																	<div class="col-sm-9">
 																		<input type="text" placeholder="Introduzca Nombre" class="form-control"> </div>
 																</div>
-																
-																
-															</div>	
-																
-															
-
+															</div>
 														</div>
 													</div>
 												</div>
 											</div>
-											
 										</div>
 										<div class="modal-footer">
 											<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
@@ -1126,7 +1109,7 @@ if( !in_array("em_r", $permiso) && !in_array("sr_c", $permiso) && !in_array("er_
 									</div>
 								</div>
 							</div>
-							<!-- Modal Tipo Contacto Editar ENDS -->							
+							<!-- Modal Tipo Contacto Editar ENDS -->						
 						</div>
 					</section>
 				</div>

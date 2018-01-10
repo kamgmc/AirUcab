@@ -5,7 +5,17 @@ include 'conexion.php';
 if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'] = 5;} 
 $qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$_SESSION['rol']; 
 $rs = pg_query( $conexion, $qry ); $permiso = array();
-while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
+while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }
+if( !in_array("se_r", $permiso) && !in_array("zo_r", $permiso) ){
+	if( !isset($_SESSION['code']) ){
+		header('Location: login.php');
+		exit;
+	}
+    else{
+        header('Location: empleados.php');
+        exit;
+    }
+}?>
 <!DOCTYPE html>
 <html>
 
@@ -49,7 +59,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 						<!-- Navbar Menu -->
 						<ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
 							<!-- Logout    -->
-							<li class="nav-item"><a href="login.html" class="nav-link logout">Cerrar Sesion<i class="fa fa-sign-out"></i></a></li>
+							<li class="nav-item"><a href="login.php" class="nav-link logout">Cerrar Sesion<i class="fa fa-sign-out"></i></a></li>
 						</ul>
 					</div>
 				</div>
@@ -58,14 +68,16 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 		<div class="page-content d-flex align-items-stretch">
 			<!-- Side Navbar -->
 			<nav class="side-navbar">
+				<?php if( isset($_SESSION['code']) ){ ?>
 				<!-- Sidebar Header-->
 				<div class="sidebar-header d-flex align-items-center">
 					<div class="avatar"><img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
 					<div class="title">
-						<h1 class="h4">Abuelo Fdz</h1>
-						<p>Director Operaciones</p>
+						<h1 class="h4"><?php print $_SESSION['usuario']; ?></h1>
+						<p><?php print $_SESSION['cargo']; ?></p>
 					</div>
 				</div>
+					<?php } ?>
 				<!-- Sidebar Navidation Menus-->
 				<ul class="list-unstyled">
 					<li>
@@ -106,7 +118,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 						<a href="Sedes.php"> <i class="fa fa-university " aria-hidden="true"></i>Sedes </a>
 					</li>
 					<?php } ?>
-					<?php if( in_array("em_r", $permiso) || in_array("sr_r", $permiso) || in_array("er_r", $permiso) || in_array("ti_r", $permiso) || in_array("pe_r", $permiso) ){ ?>
+					<?php if( in_array("em_r", $permiso) || in_array("sr_r", $permiso) || in_array("er_r", $permiso) || in_array("ti_r", $permiso) || in_array("pe_r", $permiso) || in_array("ct_r", $permiso) ){ ?>
 					<li>
 						<a href="empleados.php"><i class="fa fa-id-card-o"></i>Empleados</a>
 					</li>
@@ -137,11 +149,14 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 				<!-- Section de TABS -->
 				<section>
 					<div class="container-fluid">
+                        <?php if( in_array("se_r", $permiso) ){ ?>
 						<input id="tab0" type="radio" name="tabs" class="no-display" checked>
 						<label for="tab0" class="label"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> Sedes</label>
+                        <?php } ?>
+                        <?php if( in_array("zo_r", $permiso) ){ ?>
 						<input id="tab1" type="radio" name="tabs" class="no-display" >
 						<label for="tab1" class="label"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> Zonas</label>
-
+                        <?php } ?>
 						<!-- TAB SEDES -->
 						<section id="content0" class="sectiontab">
 							<!-- Accionista -->
@@ -171,115 +186,71 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 							<!-- TABLE STARTS -->
 							<div class="col-md-12">
 								<div class="card">
+                                    <?php if( in_array("se_c", $permiso) ) { ?>
 									<div class="row">
 										<div class="col-sm-10"></div>
 										<div class="col-sm-2 pad-top">
 											<button type="button" data-toggle="modal" data-target="#myModalSedeCrear" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
 										</div>
 									</div>
+                                    <?php } ?>
+                                    <?php if( in_array("se_r", $permiso) ) { ?>
+                                    <?php $qry = "SELECT se_id id, se_nombre nombre, se_area area, se_principal principal, lu_nombre ubicacion, COUNT(zo_id) zonas FROM Sede LEFT JOIN Lugar on se_lugar=lu_id LEFT JOIN Zona on zo_sede=se_id GROUP BY se_id, se_nombre, se_area, se_principal, lu_nombre ORDER BY se_id";
+								    $rs = pg_query( $conexion, $qry );
+								    $howMany = pg_num_rows($rs);
+								    if( $howMany > 0 ){?>
 									<div class="card-body">
 										<table class="table table-striped table-sm table-hover">
 											<thead>
 												<tr>
 													<th class="text-center">ID</th>
-													<th class="text-center">NOMBRE</th>
-													<th class="text-center">AREA</th>
-													<th class="text-center">PRINCIPAL</th>
-													<th class="text-center">UBICACION</th>
-													<th class="text-center">ZONAS</th>
+													<th class="text-center">Nombre</th>
+													<th class="text-center">Area</th>
+													<th class="text-center">Principal</th>
+													<th class="text-center">Ubicacion</th>
+													<th class="text-center"># de Zonas</th>
 													<th class="text-center">Accion</th>
 												</tr>
 											</thead>
 											<tbody>
-												
+												<?php while( $sede = pg_fetch_object($rs) ){?>
 													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">AirUcab Catia La Mar</td>
-														<td class="text-center">5.000 m</td>
-														<td class="text-center">NO</td>
-														<td class="text-center">Vargas</td>
-														<td class="text-center">7</td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalSede"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+                                                            <?php print $sede->id;?>
+                                                        </td>
+														<td class="text-center">
+                                                            <?php print $sede->nombre;?>
+                                                        </td>
+														<td class="text-center">
+                                                            <?php print number_format($sede->area, 0, ',', '.')." m";?><sup>2</sup>
+                                                        </td>
+														<td class="text-center">
+                                                            <?php if($sede->principal == 't'){?>Si<?php } ?>
+                                                            <?php if($sede->principal == 'f'){?>No<?php } ?>
+                                                        </td>
+														<td class="text-center">
+                                                            <?php print $sede->ubicacion;?>
+                                                        </td>
+														<td class="text-center">
+                                                            <?php print $sede->zonas;?>
+                                                        </td>
+														<td class="text-center">
+															<a class="click-sede-detalle" href="<?php print $sede->id;?>"> 
+												                <i class="fa fa-file-text-o" aria-hidden="true" title="Ver mas"></i> 
+												            </a>&emsp;
+															<?php if( in_array("se_d", $permiso) ){ ?>&emsp;
+												            <a href="empleado-crud.php?delete=<?php print $empleado->id;?>">
+																<i class="fa fa-trash-o" aria-hidden="true" title="Eliminar"></i> 
+															</a>
+												            <?php }?>
 														</td>
 													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">AirUcab Catia La Mar</td>
-														<td class="text-center">5.000 m</td>
-														<td class="text-center">NO</td>
-														<td class="text-center">Vargas</td>
-														<td class="text-center">7</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalSede"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">AirUcab Catia La Mar</td>
-														<td class="text-center">5.000 m</td>
-														<td class="text-center">NO</td>
-														<td class="text-center">Vargas</td>
-														<td class="text-center">7</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalSede"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">AirUcab Catia La Mar</td>
-														<td class="text-center">5.000 m</td>
-														<td class="text-center">NO</td>
-														<td class="text-center">Vargas</td>
-														<td class="text-center">7</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalSede"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">AirUcab Catia La Mar</td>
-														<td class="text-center">5.000 m</td>
-														<td class="text-center">NO</td>
-														<td class="text-center">Vargas</td>
-														<td class="text-center">7</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalSede"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">AirUcab Catia La Mar</td>
-														<td class="text-center">5.000 m</td>
-														<td class="text-center">NO</td>
-														<td class="text-center">Vargas</td>
-														<td class="text-center">7</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalSede"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">AirUcab Catia La Mar</td>
-														<td class="text-center">5.000 m</td>
-														<td class="text-center">NO</td>
-														<td class="text-center">Vargas</td>
-														<td class="text-center">7</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalSede"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													
-												
+                                                    <?php }?>
 											</tbody>
 										</table>
+                                        <?php }else{?>
+										<h3>&emsp;No se han encontrado resultados.</h3>
+										<?php }}?>
 									</div>
 								</div>
 							</div>
@@ -323,99 +294,62 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 							<!-- TABLE STARTS -->
 							<div class="col-md-12">
 								<div class="card">
+                                    <?php if( in_array("zo_c", $permiso) ) { ?>
 									<div class="row">
 										<div class="col-sm-10"></div>
 										<div class="col-sm-2 pad-top">
 											<button type="button" data-toggle="modal" data-target="#myModalZonaCrear" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
 										</div>
 									</div>
+                                    <?php } ?>
+                                    <?php if( in_array("zo_r", $permiso) ) { ?>
+                                    <?php $qry = "SELECT zo_id id, zo_nombre nombre, zo_tipo tipo, se_nombre sede FROM Zona LEFT JOIN Sede on zo_sede=se_id GROUP BY zo_id, se_nombre ORDER BY zo_id";
+								    $rs = pg_query( $conexion, $qry );
+								    $howMany = pg_num_rows($rs);
+								    if( $howMany > 0 ){?>
 									<div class="card-body">
 										<table class="table table-striped table-sm table-hover">
 											<thead>
 												<tr>
 													<th class="text-center">ID</th>
-													<th class="text-center">NOMBRE</th>
-													<th class="text-center">TIPO</th>
-													<th class="text-center">SEDE P.</th>
+													<th class="text-center">Nombre</th>
+													<th class="text-center">Tipo</th>
+													<th class="text-center">Sede</th>
 													<th class="text-center">Accion</th>
 												</tr>
 											</thead>
 											<tbody>
-												
+												<?php while( $zona = pg_fetch_object($rs) ){?>
 													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Ensamble de Motor</td>
-														<td class="text-center">Ensablaje</td>
-														<td class="text-center">Maiquetia</td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalZonaEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+                                                            <?php print $zona->id;?>
+                                                        </td>
+														<td class="text-center">
+                                                            <?php print $zona->nombre;?>
+                                                        </td>
+														<td class="text-center">
+                                                            <?php print $zona->tipo;?>
+                                                        </td>
+														<td class="text-center">
+                                                            <?php print $zona->sede ?>
+                                                        </td>
+														<td class="text-center">
+															<a class="click-zona-detalle" href="<?php print $zona->id;?>"> 
+												                <i class="fa fa-file-text-o" aria-hidden="true" title="Ver mas"></i> 
+												            </a>&emsp;
+															<?php if( in_array("zo_d", $permiso) ){ ?>&emsp;
+												            <a href="empleado-crud.php?delete=<?php print $empleado->id;?>">
+																<i class="fa fa-trash-o" aria-hidden="true" title="Eliminar"></i> 
+															</a>
+												            <?php }?>
 														</td>
 													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Ensamble de Motor</td>
-														<td class="text-center">Ensablaje</td>
-														<td class="text-center">Maiquetia</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalZonaEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Ensamble de Motor</td>
-														<td class="text-center">Ensablaje</td>
-														<td class="text-center">Maiquetia</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalZonaEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Ensamble de Motor</td>
-														<td class="text-center">Ensablaje</td>
-														<td class="text-center">Maiquetia</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalZonaEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Ensamble de Motor</td>
-														<td class="text-center">Ensablaje</td>
-														<td class="text-center">Maiquetia</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalZonaEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Ensamble de Motor</td>
-														<td class="text-center">Ensablaje</td>
-														<td class="text-center">Maiquetia</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalZonaEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Ensamble de Motor</td>
-														<td class="text-center">Ensablaje</td>
-														<td class="text-center">Maiquetia</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalZonaEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													
-												
+                                                    <?php }?>
 											</tbody>
 										</table>
+                                        <?php }else{?>
+										<h3>&emsp;No se han encontrado resultados.</h3>
+										<?php }}?>
 									</div>
 								</div>
 							</div>
@@ -848,14 +782,6 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 							</div>
 						</div>
 						<!-- Modal Zona Crear ENDS -->
-
-						
-
-
-
-
-
-
 					</div>
 				</section>
 				<!-- Section de TABS ENDS -->
@@ -876,12 +802,10 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 		</footer>
 	</div>
 	<!-- Javascript files-->
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script src="vendor/popper.js/umd/popper.min.js">
-	</script>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="vendor/popper.js/umd/popper.min.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="vendor/jquery.cookie/jquery.cookie.js">
-	</script>
+    <script src="vendor/jquery.cookie/jquery.cookie.js"></script>
 	<script src="vendor/jquery-validation/jquery.validate.min.js"></script>
 	<script src="js/front.js"></script>
 </body>

@@ -5,7 +5,17 @@ include 'conexion.php';
 if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'] = 5;} 
 $qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$_SESSION['rol']; 
 $rs = pg_query( $conexion, $qry ); $permiso = array();
-while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
+while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }
+if( !in_array("mb_r", $permiso) && !in_array("mm_r", $permiso) && !in_array("mo_r", $permiso) ){
+	if( !isset($_SESSION['code']) ){
+		header('Location: login.php');
+		exit;
+	}
+    else{
+        header('Location: piezas.php');
+		exit;
+    }
+}?>
 <!DOCTYPE html>
 <html>
 
@@ -58,14 +68,16 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 		<div class="page-content d-flex align-items-stretch">
 			<!-- Side Navbar -->
 			<nav class="side-navbar">
+				<?php if( isset($_SESSION['code']) ){ ?>
 				<!-- Sidebar Header-->
 				<div class="sidebar-header d-flex align-items-center">
 					<div class="avatar"><img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
 					<div class="title">
-						<h1 class="h4">Abuelo Fdz</h1>
-						<p>Director Operaciones</p>
+						<h1 class="h4"><?php print $_SESSION['usuario']; ?></h1>
+						<p><?php print $_SESSION['cargo']; ?></p>
 					</div>
 				</div>
+				<?php } ?>
 				<!-- Sidebar Navidation Menus-->
 				<ul class="list-unstyled">
 					<li>
@@ -76,37 +88,37 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 						<a href="modeloavion.php"> <i class="fa fa-plane" aria-hidden="true"></i> Aviones </a>
 					</li>
 					<?php } ?>
-					<?php if (in_array("mb_r", $permiso) || in_array("mm_r", $permiso) || in_array("mo_r", $permiso) ) { ?>
-					<li class="active">
+                    <?php if (in_array("mb_r", $permiso) || in_array("mm_r", $permiso) || in_array("mo_r", $permiso) ) { ?>
+                    <li class="active">
 						<a href="motores.php"> <i class="fa fa-tachometer " aria-hidden="true"></i>Motores </a>
 					</li>
-					<?php } ?>
-					<?php if( in_array("p_r", $permiso) || in_array("pm_r", $permiso) || in_array("wt_r", $permiso) || in_array("et_r", $permiso) ) { ?>
-					<li>
+                    <?php } ?>
+                    <?php if( in_array("p_r", $permiso) || in_array("pm_r", $permiso) || in_array("wt_r", $permiso) || in_array("et_r", $permiso) ) { ?>
+                    <li>
 						<a href="piezas.php"> <i class="fa fa-puzzle-piece " aria-hidden="true"></i>Piezas </a>
 					</li>
-					<?php } ?>
-					<?php if( in_array("m_r", $permiso) || in_array("tm_r", $permiso) ) { ?>
-					<li>
+                    <?php } ?>
+                    <?php if( in_array("m_r", $permiso) || in_array("tm_r", $permiso) ) { ?>
+                    <li>
 						<a href="materiales.php"> <i class="fa fa-server " aria-hidden="true"></i>Materiales </a>
 					</li>
-					<?php } ?>
-					<?php if( in_array("fv_r", $permiso) ){ ?>
+                    <?php } ?>
+                    <?php if( in_array("fv_r", $permiso) ){ ?>
 					<li>
 						<a href="ventas.php"> <i class="fa fa-paper-plane-o" aria-hidden="true"></i>Ventas </a>
 					</li>
 					<?php } ?>
-					<?php if( in_array("fc_r", $permiso) ){ ?>
+                    <?php if( in_array("fc_r", $permiso) ){ ?>
 					<li>
 						<a href="compras.php"> <i class="fa fa-shopping-bag " aria-hidden="true"></i>Compras </a>
 					</li>
 					<?php } ?>
-					<?php if( in_array("se_r", $permiso) || in_array("zo_r", $permiso) ){ ?>
-					<li>
+                    <?php if( in_array("se_r", $permiso) || in_array("zo_r", $permiso) ){ ?>
+                    <li>
 						<a href="Sedes.php"> <i class="fa fa-university " aria-hidden="true"></i>Sedes </a>
 					</li>
-					<?php } ?>
-					<?php if( in_array("em_r", $permiso) || in_array("sr_r", $permiso) || in_array("er_r", $permiso) || in_array("ti_r", $permiso) || in_array("pe_r", $permiso) ){ ?>
+                    <?php } ?>
+					<?php if( in_array("em_r", $permiso) || in_array("sr_r", $permiso) || in_array("er_r", $permiso) || in_array("ti_r", $permiso) || in_array("pe_r", $permiso) || in_array("ct_r", $permiso) ){ ?>
 					<li>
 						<a href="empleados.php"><i class="fa fa-id-card-o"></i>Empleados</a>
 					</li>
@@ -122,11 +134,11 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 					</li>
 					<?php } ?>
 					<?php if( in_array("pr_r", $permiso) ){ ?>
-					<li>
-						<a href="pruebas.php"> <i class="fa fa-check-square-o " aria-hidden="true"></i>Pruebas </a>
+				    <li>
+					   <a href="pruebas.php"> <i class="fa fa-check-square-o " aria-hidden="true"></i>Pruebas </a>
 					</li>
-					<?php } ?>
-					<?php if( in_array("tr_r", $permiso) ){ ?>
+                    <?php } ?>
+                    <?php if( in_array("tr_r", $permiso) ){ ?>
 					<li>
 						<a href="traslados.php"> <i class="fa fa-share-square-o " aria-hidden="true"></i>Traslados </a>
 					</li>
@@ -137,13 +149,18 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 				<!-- Section de TABS -->
 				<section>
 					<div class="container-fluid">
+                        <?php if( in_array("mo_r", $permiso) ){ ?>
 						<input id="tab0" type="radio" name="tabs" class="no-display" checked>
 						<label for="tab0" class="label"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> Motores</label>
+                        <?php } ?>
+                        <?php if( in_array("mm_r", $permiso) ){ ?>
 						<input id="tab1" type="radio" name="tabs" class="no-display" >
 						<label for="tab1" class="label"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> Modelo Motores</label>
+                        <?php } ?>
+                        <?php if( in_array("mb_r", $permiso) ){ ?>
 						<input id="tab2" type="radio" name="tabs" class="no-display" >
 						<label for="tab2" class="label"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> Marca Motores</label>
-						
+						<?php } ?>
 						<!-- TAB Piezas -->
 						<section id="content0" class="sectiontab">
 							<!-- Accionista -->
@@ -173,105 +190,83 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 							<!-- TABLE STARTS -->
 							<div class="col-md-12">
 								<div class="card">
+                                    <?php if( in_array("mo_c", $permiso) ){ ?>
 									<div class="row">
 										<div class="col-sm-10"></div>
 										<div class="col-sm-2 pad-top">
 											<button type="button" data-toggle="modal" data-target="#myModalMotorCrear" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
 										</div>
 									</div>
+                                    <?php } ?>
+                                    <?php if( in_array("mo_r", $permiso) ){ ?>
+                                    <?php $qry = "SELECT mo_id id, mb_nombre ||' - '|| mm_nombre AS nombre, mo_fecha_fin fin, mo_fecha_ini inicio, (SELECT MAX(st_nombre) FROM Status,Status_motor WHERE stm_motor=mo_id AND stm_status=st_id) status, am_nombre ||' - '|| as_nombre AS avion FROM Motor LEFT JOIN Modelo_motor ON mo_modelo_motor=mm_id LEFT JOIN Marca_motor ON mm_marca=mb_id LEFT JOIN Status_motor ON stm_motor=mo_id LEFT JOIN Avion ON mo_avion=a_id LEFT JOIN Submodelo_avion ON a_submodelo_avion=as_id LEFT JOIN Modelo_avion ON as_modelo_avion=am_id GROUP BY mo_id, nombre, avion ORDER BY mo_id";
+									$rs = pg_query( $conexion, $qry );
+									$howMany = pg_num_rows($rs);
+									if( $howMany > 0 ){?>
 									<div class="card-body">
 										<table class="table table-striped table-sm table-hover">
 											<thead>
 												<tr>
 													<th class="text-center">ID</th>
-													<!-- Modelo Motor -->
-													<th class="text-center">NOMBRE</th>
-													<th class="text-center">FECHA FINAL</th>
-													<th class="text-center">FECHA INICIO</th>
-													<th class="text-center">STATUS</th>
-													<th class="text-center">AVION P.</th>
+													<th class="text-center">Nombre</th>
+													<th class="text-center">Fecha Inicio</th>
+													<th class="text-center">Fecha Fin</th>
+													<th class="text-center">Status</th>
+													<th class="text-center">Avion P.</th>
 													<th class="text-center">Accion</th>
 												</tr>
 											</thead>
 											<tbody>
-												
+												<?php while( $motor = pg_fetch_object($rs) ){?>
 													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Winston C</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">Hawk 421</td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalMotor"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+                                                            <?php print $motor->id;?>
+                                                        </td>
+														<td class="text-center">
+                                                            <?php print $motor->nombre;?>
+                                                        </td>
+														<td class="text-center">
+                                                            <?php print $motor->inicio;?>
+                                                        </td>
+														<td class="text-center">
+                                                            <?php print $motor->fin;?>
+                                                        </td>
+														<td class="text-center">
+                                                            <?php if($motor->status == "Listo") {?>
+                                                            <span class="badge badge-success">
+                                                                <?php print $motor->status;?>
+                                                            </span>                                                        
+                                                            <?php } elseif($motor->status == "Rechazado") {?>
+                                                            <span class="badge badge-danger">
+                                                                <?php print $motor->status;?>
+                                                            </span>                                                          
+                                                            <?php } else {?>
+                                                            <span class="badge badge-info">
+                                                                <?php print $motor->status;?>
+                                                            </span>
+                                                            <?php } ?>
+                                                        </td>
+														<td class="text-center">
+                                                            <?php print $motor->avion;?>
+                                                        </td>
+														<td class="text-center">
+															<a href="<?php print $motor->id;?>" data-toggle="modal" data-target="#ModalMotor"> 
+                                                                <i class="fa fa-file-text-o" aria-hidden="true" title="Ver mas"></i> 
+                                                            </a>
+                                                            <?php if( in_array("mo_d", $permiso) ) {?>&emsp;
+															<a href="motor-crud.php?delete=<?php print $motor->id;?>"> 
+                                                                <i class="fa fa-trash-o" aria-hidden="true" title="Eliminar"></i> 
+                                                            </a>
+                                                            <?php }?>
 														</td>
 													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Winston C</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">Hawk 421</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalMotor"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Winston C</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">Hawk 421</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalMotor"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Winston C</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">Hawk 421</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalMotor"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Winston C</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">Hawk 421</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalMotor"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Winston C</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">Hawk 421</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalMotor"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													
-												
-											</tbody>
+												<?php }?>
+								            </tbody>
 										</table>
 									</div>
+                                    <?php }else{?>
+									<h3>&emsp;No se han encontrado resultados.</h3>
+									<?php }}?>
 								</div>
 							</div>
 							<!-- TABLE ENDS -->
@@ -323,132 +318,78 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 							<!-- TABLE STARTS -->
 							<div class="col-md-12">
 								<div class="card">
+                                    <?php if( in_array("mm_c", $permiso) ) { ?>
 									<div class="row">
 										<div class="col-sm-10"></div>
 										<div class="col-sm-2 pad-top">
 											<button type="button" data-toggle="modal" data-target="#myModalModeloMotorCrear" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
 										</div>
 									</div>
+                                    <?php } if( in_array("mm_r", $permiso) ){?>
+								    <?php $qry = "SELECT mm_id id, mm_nombre nombre, mb_nombre marca, mm_tipo tipo, mm_empuje_max maximo, mm_empuje_normal normal, mm_empuje_max crucero, mm_longitud longitud, mm_diametro_aspa aspa FROM Modelo_motor LEFT JOIN Marca_motor ON mm_marca=mb_id ORDER BY marca";
+									$rs = pg_query( $conexion, $qry );
+									$howMany = pg_num_rows($rs);
+									if( $howMany > 0 ){?>
 									<div class="card-body">
 										<table class="table table-striped table-sm table-hover">
 											<thead>
 												<tr>
-													<th class="text-center">ID</th>
-													<th class="text-center">NOMBRE</th>
-													<th class="text-center">MARCA</th>
-													<th class="text-center">TIPO</th>
-													<th class="text-center">EMPUJE MAX</th>
-													<th class="text-center">EMPUJE NORMA</th>
-													<th class="text-center">EMPUJE CRUCERO</th>
-													<th class="text-center">LONGITUD</th>
-													<th class="text-center">DIAMETRO ASPA</th>
-													<th class="text-center">STATUS</th>
+													<th class="text-center">Marca</th>
+													<th class="text-center">Nombre</th>
+													<th class="text-center">Tipo</th>
+													<th class="text-center">Empuje Max</th>
+													<th class="text-center">Empuje Normal</th>
+													<th class="text-center">Empuje Crucero</th>
+													<th class="text-center">Longitud</th>
+													<th class="text-center">Diametro Aspa</th>
 													<th class="text-center">Accion</th>
 												</tr>
 											</thead>
 											<tbody>
-												
+												<?php while( $modelo = pg_fetch_object($rs) ){?>
 													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Modelo A</td>
-														<td class="text-center">Oxford</td>
-														<td class="text-center">Reactor</td>
-														<td class="text-center">15</td>
-														<td class="text-center">11</td>
-														<td class="text-center">8</td>
-														<td class="text-center">35 m</td>
-														<td class="text-center">78 m</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
+													    <td class="text-center">
+                                                            <?php print $modelo->marca;?>
+                                                        </td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalModeloMotor"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+                                                            <?php print $modelo->nombre;?>
+                                                        </td>														
+														<td class="text-center">
+                                                            <?php print $modelo->tipo;?>
+                                                        </td>
+														<td class="text-center">
+                                                            <?php print number_format($modelo->maximo, 2, ',', '.');?>kN
+                                                        </td>
+														<td class="text-center">
+                                                            <?php print number_format($modelo->normal, 2, ',', '.');?>kN
+                                                        </td>
+														<td class="text-center">
+                                                            <?php print number_format($modelo->crucero, 2, ',', '.');?>kN
+                                                        </td>
+														<td class="text-center">
+                                                            <?php print number_format($modelo->longitud, 2, ',', '.');?>m
+                                                        </td>
+														<td class="text-center">
+                                                            <?php if($modelo->aspa != null){print number_format($modelo->aspa, 2, ',', '.')."m";}?>
+                                                        </td>
+														<td class="text-center">
+															<a href="<?php print $modelo->id;?>" data-toggle="modal" data-target="#ModalModeloMotor"> 
+                                                                <i class="fa fa-file-text-o" aria-hidden="true" title="Ver mas"></i> 
+                                                            </a>
+                                                            <?php if( in_array("mm_d", $permiso) ){ ?> &emsp;
+															<a href="modelo_motor-crud.php?delete=<?php print $modelo->id;?>"> 
+                                                                <i class="fa fa-trash-o" aria-hidden="true" title="Eliminar"></i> 
+                                                            </a>
+                                                            <?php } ?>
 														</td>
 													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Modelo A</td>
-														<td class="text-center">Oxford</td>
-														<td class="text-center">Reactor</td>
-														<td class="text-center">15</td>
-														<td class="text-center">11</td>
-														<td class="text-center">8</td>
-														<td class="text-center">35 m</td>
-														<td class="text-center">78 m</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalModeloMotor"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Modelo A</td>
-														<td class="text-center">Oxford</td>
-														<td class="text-center">Reactor</td>
-														<td class="text-center">15</td>
-														<td class="text-center">11</td>
-														<td class="text-center">8</td>
-														<td class="text-center">35 m</td>
-														<td class="text-center">78 m</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalModeloMotor"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Modelo A</td>
-														<td class="text-center">Oxford</td>
-														<td class="text-center">Reactor</td>
-														<td class="text-center">15</td>
-														<td class="text-center">11</td>
-														<td class="text-center">8</td>
-														<td class="text-center">35 m</td>
-														<td class="text-center">78 m</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalModeloMotor"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Modelo A</td>
-														<td class="text-center">Oxford</td>
-														<td class="text-center">Reactor</td>
-														<td class="text-center">15</td>
-														<td class="text-center">11</td>
-														<td class="text-center">8</td>
-														<td class="text-center">35 m</td>
-														<td class="text-center">78 m</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalModeloMotor"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Modelo A</td>
-														<td class="text-center">Oxford</td>
-														<td class="text-center">Reactor</td>
-														<td class="text-center">15</td>
-														<td class="text-center">11</td>
-														<td class="text-center">8</td>
-														<td class="text-center">35 m</td>
-														<td class="text-center">78 m</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalModeloMotor"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													
-												
+												<?php } ?>						
 											</tbody>
 										</table>
 									</div>
+                                    <?php }else{?>
+									<h3>&emsp;No se han encontrado resultados.</h3>
+									<?php }}?>
 								</div>
 							</div>
 							<!-- TABLE ENDS -->
@@ -461,62 +402,50 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 							<!-- TABLE STARTS -->
 							<div class="col-md-12">
 								<div class="card">
+                                    <?php if( in_array("mm_c", $permiso) ) { ?>
 									<div class="row">
 										<div class="col-sm-10"></div>
 										<div class="col-sm-2 pad-top">
 											<button type="button" data-toggle="modal" data-target="#myModalMarcaMotorCrear" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
 										</div>
 									</div>
+                                    <?php } if( in_array("mb_r", $permiso) ){?>
+								    <?php $qry = "SELECT mb_id id, mb_nombre nombre FROM Marca_motor ORDER BY nombre";
+									$rs = pg_query( $conexion, $qry );
+									$howMany = pg_num_rows($rs);
+									if( $howMany > 0 ){?>
 									<div class="card-body">
 										<table class="table table-striped table-sm table-hover">
 											<thead>
 												<tr>
-													<th class="text-center">NOMBRE</th>
+													<th class="text-center">Nombre</th>
 													<th class="text-center">Accion</th>
 												</tr>
 											</thead>
 											<tbody>
-												
+												<?php while( $marca = pg_fetch_object($rs) ){?>
 												<tr>
-													<td class="text-center">Pratt & Whitney</td>
+                                                    <td class="text-center">
+                                                         <?php print $marca->nombre;?>
+                                                    </td>
 													<td class="text-center">
-														<a href="" data-toggle="modal" data-target="#myModalMarcaMotor"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-														<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+														<a href="<?php print $marca->id;?>" data-toggle="modal" data-target="#myModalMarcaMotor"> 
+                                                            <i class="fa fa-pencil" aria-hidden="true" title="Editar"></i> 
+                                                        </a>
+                                                        <?php if( in_array("mb_d", $permiso) ) { ?> &emsp;
+												        <a href="marca_motor-crud.php?delete=<?php print $marca->id;?>">
+                                                            <i class="fa fa-trash-o" aria-hidden="true" title="Eliminar"></i> 
+                                                        </a>
+                                                        <?php } ?>
 													</td>
 												</tr>
-												<tr>
-													<td class="text-center">Pratt & Whitney</td>
-													<td class="text-center">
-														<a href="" data-toggle="modal" data-target="#myModalMarcaMotor"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-														<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-													</td>
-												</tr>
-												<tr>
-													<td class="text-center">Pratt & Whitney</td>
-													<td class="text-center">
-														<a href="" data-toggle="modal" data-target="#myModalMarcaMotor"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-														<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-													</td>
-												</tr>
-												<tr>
-													<td class="text-center">Pratt & Whitney</td>
-													<td class="text-center">
-														<a href="" data-toggle="modal" data-target="#myModalMarcaMotor"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-														<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-													</td>
-												</tr>
-												<tr>
-													<td class="text-center">Pratt & Whitney</td>
-													<td class="text-center">
-														<a href="" data-toggle="modal" data-target="#myModalMarcaMotor"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-														<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-													</td>
-												</tr>
-													
-												
+												<?php }?>											
 											</tbody>
 										</table>
 									</div>
+                                    <?php }else{?>
+									<h3>&emsp;No se han encontrado resultados.</h3>
+									<?php }}?>
 								</div>
 							</div>
 							<!-- TABLE ENDS -->
@@ -1272,12 +1201,10 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 		</footer>
 	</div>
 	<!-- Javascript files-->
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script src="vendor/popper.js/umd/popper.min.js">
-	</script>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="vendor/popper.js/umd/popper.min.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="vendor/jquery.cookie/jquery.cookie.js">
-	</script>
+	<script src="vendor/jquery.cookie/jquery.cookie.js"></script>
 	<script src="vendor/jquery-validation/jquery.validate.min.js"></script>
 	<script src="js/front.js"></script>
 </body>

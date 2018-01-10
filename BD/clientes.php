@@ -5,7 +5,17 @@ include 'conexion.php';
 if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'] = 5;} 
 $qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$_SESSION['rol']; 
 $rs = pg_query( $conexion, $qry ); $permiso = array();
-while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
+while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }
+if( !in_array("cl_r", $permiso)){
+	if( !isset($_SESSION['code']) ){
+		header('Location: login.php');
+		exit;
+	}
+    else{
+        header('Location: proveedores.php');
+        exit;
+    }
+}?>
 <!DOCTYPE html>
 	<html>
 
@@ -117,7 +127,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 							<a href="Sedes.php"> <i class="fa fa-university " aria-hidden="true"></i>Sedes </a>
 						</li>
                         <?php } ?>
-						<?php if( in_array("em_r", $permiso) || in_array("sr_r", $permiso) || in_array("er_r", $permiso) || in_array("ti_r", $permiso) || in_array("pe_r", $permiso) ){ ?>
+						<?php if( in_array("em_r", $permiso) || in_array("sr_r", $permiso) || in_array("er_r", $permiso) || in_array("ti_r", $permiso) || in_array("pe_r", $permiso) || in_array("ct_r", $permiso) ){ ?>
 						<li>
 							<a href="empleados.php"><i class="fa fa-id-card-o"></i>Empleados</a>
 						</li>
@@ -163,10 +173,6 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 						<div class="container-fluid">
 							<input id="tab0" type="radio" name="tabs" class="no-display" checked>
 							<label for="tab0" class="label"><i class="fa fa-address-book-o" aria-hidden="true"></i> Clientes</label>
-							<input id="tab1" type="radio" name="tabs" class="no-display">
-							<label for="tab1" class="label"><i class="fa fa-wifi" aria-hidden="true"></i> Tipo Contacto</label>
-
-
 							<!-- TAB Explorador Clientes -->
 							<section id="content0" class="sectiontab">
 								<!-- Accionista -->
@@ -196,12 +202,14 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 								<!-- TABLE STARTS -->
 								<div class="col-md-12">
 									<div class="card">
+                                        <?php if( in_array("cl_c", $permiso) ){ ?>
 										<div class="row">
 											<div class="col-sm-10"></div>
 											<div class="col-sm-2 pad-top">
-												<button type="button" data-toggle="modal" data-target="#ModalClienteCrear" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
+												<button type="button" data-toggle="modal" data-target="#ModalClienteCrear" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>                                                
 											</div>
 										</div>
+                                        <?php } ?>
 										<div class="card-body">
 											<table class="table table-striped table-sm table-hover">
 												<thead>
@@ -247,10 +255,11 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 																<a href="<?php print $cliente->id;?>" class="click-cliente-detalle">
 																	<i class="fa fa-file-text-o" aria-hidden="true"></i> 
 																</a>
-																&emsp;
+																<?php if( in_array("cl_d", $permiso) ){ ?>&emsp;
 																<a href="cliente-crud.php?delete=<?php print $cliente->id;?>">
 																	<i class="fa fa-trash-o" aria-hidden="true"></i>
 																</a>
+                                                                <?php }?>
 															</td>
 														</tr>
 														<?php }?>
@@ -388,7 +397,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 								</div>
 							</div>
 							<!-- Modal Cliente Crear ENDS -->
-<!-- Modal Cliente Informacion -->
+							<!-- Modal Cliente Informacion -->
 							<div id="ModalDetalleCliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 								<div role="document" class="modal-dialog modal-xl">
 									<div id="detalleClienteBody" class="modal-content">
@@ -502,4 +511,4 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 		</script>
 	</body>
 
-	</html>
+</html>

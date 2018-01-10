@@ -5,7 +5,17 @@ include 'conexion.php';
 if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'] = 5;} 
 $qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$_SESSION['rol']; 
 $rs = pg_query( $conexion, $qry ); $permiso = array();
-while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
+while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }
+if( !in_array("po_r", $permiso) && !in_array("fc_r", $permiso) && !in_array("m_r", $permiso) && !in_array("pa_r", $permiso) ){
+	if( !isset($_SESSION['code']) ){
+		header('Location: login.php');
+		exit;
+	}
+    else{
+        header('Location: sedes.php');
+		exit;
+    }
+}?>
 <!DOCTYPE html>
 <html>
 
@@ -107,7 +117,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 						<a href="ventas.php"> <i class="fa fa-paper-plane-o" aria-hidden="true"></i>Ventas </a>
 					</li>
 					<?php } ?>
-					<?php if( in_array("fc_r", $permiso) ){ ?>
+					<?php if( in_array("po_r", $permiso) && in_array("fc_r", $permiso) && in_array("m_r", $permiso) && in_array("pa_r", $permiso) ){ ?>
 					<li class="active">
 						<a href="compras.php"> <i class="fa fa-shopping-bag " aria-hidden="true"></i>Compras </a>
 					</li>
@@ -117,7 +127,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 						<a href="Sedes.php"> <i class="fa fa-university " aria-hidden="true"></i>Sedes </a>
 					</li>
 					<?php } ?>
-					<?php if( in_array("em_r", $permiso) || in_array("sr_r", $permiso) || in_array("er_r", $permiso) || in_array("ti_r", $permiso) || in_array("pe_r", $permiso) ){ ?>
+					<?php if( in_array("em_r", $permiso) || in_array("sr_r", $permiso) || in_array("er_r", $permiso) || in_array("ti_r", $permiso) || in_array("pe_r", $permiso) || in_array("ct_r", $permiso) ){ ?>
 					<li>
 						<a href="empleados.php"><i class="fa fa-id-card-o"></i>Empleados</a>
 					</li>
@@ -148,8 +158,10 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 				<!-- Section de TABS-->
 				<section>
 					<div class="container-fluid">
+                        <?php if( in_array("po_r", $permiso) && in_array("fc_r", $permiso) && in_array("m_r", $permiso) && in_array("pa_r", $permiso) ){ ?>
 						<input id="tab0" type="radio" name="tabs" class="no-display" checked>
 						<label for="tab0" class="label"><i class="fa fa-shopping-bag " aria-hidden="true"></i> Compras</label>
+                        <?php } ?>
 						<!-- TAB Compras -->
 						<section id="content0" class="sectiontab">
 							<!-- Filtrador-->
@@ -207,6 +219,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 							<!-- TABLE STARTS -->
 							<div class="col-md-12">
 								<div class="card">
+                                    <?php if( in_array("po_r", $permiso) && in_array("fc_c", $permiso) && in_array("m_r", $permiso) && in_array("pa_c", $permiso) ){ ?>
 									<div class="row">
 										<div class="col-sm-10"></div>
 										<div class="col-sm-2 pad-top">
@@ -215,6 +228,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 											</button>
 										</div>
 									</div>
+                                    <?php } if( in_array("po_r", $permiso) && in_array("fc_r", $permiso) && in_array("m_r", $permiso) && in_array("pa_r", $permiso) ){ ?>
 									<div class="card-body">
 										<table class="table table-striped table-sm table-hover">
 											<thead>
@@ -239,18 +253,23 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 													<td class="text-center"><?php print number_format($compra->total, 2, ',', '.')." Bs";?></td>
 													<td class="text-center"><?php if($venta->pagado >= $venta->total) print "Pagado"; else print "Pendiente de pago";?></td>
 													<td class="text-center">
+                                                        <?php } if( in_array("po_r", $permiso) && in_array("fc_r", $permiso) && in_array("m_r", $permiso) && in_array("pa_r", $permiso) && in_array("pt_r", $permiso) ){ ?>
 														<a href="<?php print $compra->id;?>" title="Ver mas" class="click-compra-detalle">
 															<i class="fa fa-file-text-o" aria-hidden="true"></i> 
-														</a>&emsp;
+														</a>
+                                                        <? } php if( in_array("fc_d", $permiso) ){ ?>&emsp;
 														<a href="compra-crud.php?delete=<?php print $compra->id;?>">
 															<i class="fa fa-trash-o" aria-hidden="true"></i>
 														</a>
+                                                        <?php }?>
 													</td>
 												</tr>
-												<?php }?>
 											</tbody>
 										</table>
 									</div>
+                                    <?php }else{?>
+									<h3>&emsp;No se han encontrado resultados.</h3>
+									<?php }?>
 								</div>
 							</div>
 							<!-- TABLE ENDS -->
@@ -449,7 +468,9 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 									</div>
 									<div class="modal-footer">
 										<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
+                                        <?php if(in_array("fc_u", $permiso) ){ ?>
 										<button type="button" data-toggle="modal" data-target="#myModalCompraEditar" class="btn btn-primary">Editar</button>
+                                        <?php }?>
 									</div>
 								</div>
 							</div>
