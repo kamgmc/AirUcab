@@ -12,7 +12,7 @@ if( !in_array("am_r", $permiso) && !in_array("as_r", $permiso) && !in_array("di_
 		exit;
 	}
 	else{
-		header('Location: motores.php');
+		header('Location: modeloavion.php');
 		exit;
 	}
 }?>
@@ -155,118 +155,317 @@ if( !in_array("am_r", $permiso) && !in_array("as_r", $permiso) && !in_array("di_
 					<section>
 						<div class="container-fluid">
 							<div class="card-columns">
+                                <?php if( in_array("a_r", $permiso) && in_array("sa_r", $permiso) && in_array("st_r", $permiso) && in_array("p_r", $permiso) && in_array("spi_r", $permiso) ){
+                                $qry = "SELECT count(a_id) cantidad FROM Avion, Status_avion, Status WHERE EXTRACT(Year from a_fecha_fin)=2017 AND sa_avion=a_id AND sa_status=st_id AND st_nombre='Listo'";
+								$rs = pg_query( $conexion, $qry );
+                                $qry2="SELECT count(p_id) cantidad FROM Pieza, Status_pieza, Status WHERE EXTRACT(Year from p_fecha_fin)=2017 AND spi_pieza=p_id AND spi_status=st_id AND st_nombre='Listo'";
+                                $rs2 = pg_query( $conexion, $qry ); 
+                                $avion = pg_fetch_object($rs);
+                                $pieza = pg_fetch_object($rs2);?>
 								<div class="card">
-									
 									<div class="card-body">
 										<h5 class="blockquote card-title">Producción anual</h5>
-										<p class="card-text">Aqui ponemos lo que se necesita mostrar</p>
+										<p class="card-text">
+                                            Cantidad de aviones: <?php print $avion->cantidad; ?><br>Cantidad de piezas: <?php print $pieza->cantidad; ?>
+                                        </p>
 									</div>
 								</div>
+                                    <?php } if( in_array("a_r", $permiso) && in_array("sa_r", $permiso) && in_array("st_r", $permiso) && in_array("p_r", $permiso) && in_array("spi_r", $permiso) ){?>
 								<div class="card">
-									
+								    <?php
+                                    $qry = "SELECT count(a_id)/12::real cantidad FROM Avion, Status_avion, Status WHERE EXTRACT(Year from a_fecha_fin)=2017 AND sa_avion=a_id AND sa_status=st_id AND st_nombre='Listo'";
+								    $rs = pg_query( $conexion, $qry );
+                                    $qry2="SELECT count(p_id)/12::real cantidad FROM Pieza, Status_pieza, Status WHERE EXTRACT(Year from p_fecha_fin)=2017 AND spi_pieza=p_id AND spi_status=st_id AND st_nombre='Listo'";
+                                    $rs2 = pg_query( $conexion, $qry ); 
+                                    $avion = pg_fetch_object($rs);
+                                    $pieza = pg_fetch_object($rs2);?>
 									<div class="card-body">
 										<h5 class="blockquote card-title">Promedio de producción mensual</h5>
-										<p class="card-text">Aqui ponemos lo que se necesita mostrar</p>
+										<p class="card-text">
+                                            Cantidad de aviones: <?php print number_format($avion->cantidad, 2, ',', '.'); ?><br>Cantidad de piezas: <?php print number_format($pieza->cantidad, 2, ',', '.'); ?>
+                                        </p>
 									</div>
 								</div>
+                                <?php } if( in_array("cl_r", $permiso) && in_array("fv_r", $permiso) && in_array("a_r", $permiso) ){?>
 								<div class="card">
-									
+								    <?php
+                                    $qry = "SELECT cl_nombre nombre, count(fv_id) cantidad FROM Cliente, Factura_venta, Avion WHERE a_factura_venta=fv_id AND fv_cliente=cl_id AND EXTRACT(Year from fv_fecha)=2017 GROUP BY cl_nombre ORDER BY cantidad DESC limit 10";
+								    $rs = pg_query( $conexion, $qry );
+                                    $howMany = pg_num_rows($rs);
+								    if( $howMany > 0 ){?>
 									<div class="card-body">
 										<h5 class="blockquote card-title">Los mejores 10 clientes en base a la cantidad de compras por año.</h5>
-										<p class="card-text">Aqui ponemos lo que se necesita mostrar</p>
+                                        <?php while( $cliente = pg_fetch_object($rs) ){?>
+										<p class="card-text">
+                                           Cliente: <?php print $cliente->nombre; ?><br>Cantidad de ventas: <?php print $cliente->cantidad; ?>
+                                        </p>
+                                        <?php }?>
 									</div>
 								</div>
+                                <?php }}?>
 								<div class="card">
-									
+								    <?php $qry = "SELECT am_id id, am_nombre nombre, am_longitud longitud, am_altura altura, am_envergadura envergadura, am_velocidad_max velocidad, am_carga_volumen carga, am_capacidad_pilotos pilotos, am_capacidad_asistentes asistentes, am_tiempo_estimado tiempo FROM Modelo_avion ORDER BY am_id";
+									$rs = pg_query( $conexion, $qry );
+									$howMany = pg_num_rows($rs);
+									if( $howMany > 0 ){?>
 									<div class="card-body">
 										<h5 class="blockquote card-title">Modelos de aviones</h5>
-										<p class="card-text">Aqui ponemos lo que se necesita mostrar</p>
+										
+                                        <table class="table table-striped table-sm table-hover pad-right">
+												<thead>
+													<tr>
+														<th class="text-center text-middle">Nombre</th>
+														<th class="text-center text-middle">Longitud</th>
+														<th class="text-center text-middle">Altura</th>
+														<th class="text-center text-middle">Envergadura</th>
+														<th class="text-center text-middle">Velocidad Max</th>
+														<th class="text-center text-middle">Volumen Carga</th>
+														<th class="text-center text-middle">Capacidad Pilotos</th>
+														<th class="text-center text-middle">Capacidad Asistentes</th>
+														<th class="text-center text-middle">Tiempo Estimado</th>
+													</tr>
+												</thead>
+												<tbody>
+													<?php 	
+														
+														while( $avion = pg_fetch_object($rs) ){
+															$dias = $avion->tiempo + 1;
+															$hoy = new DateTime();
+															$fin = new DateTime(date('Y-m-d', strtotime($hoy->format("Y-m-d"). ' + '.$dias.' days')));
+															$interval = $hoy->diff($fin);?>
+														<tr>
+															<td class="text-center text-middle">
+																<?php print $avion->nombre;?>
+															</td>
+															<td class="text-center text-middle">
+																<?php print number_format($avion->longitud, 2, ',', '.')." m";?>
+															</td>
+															<td class="text-center text-middle">
+																<?php print number_format($avion->altura, 1, ',', '.')." m";?>
+															</td>
+															<td class="text-center text-middle">
+																<?php print number_format($avion->envergadura, 2, ',', '.')." m";?>
+															</td>
+															<td class="text-center text-middle">
+																<?php print number_format($avion->velocidad, 0, ',', '.')." km/h";?>
+															</td>
+															<td class="text-center text-middle">
+																<?php print number_format($avion->carga, 1, ',', '.')." m<sup>3</sup>";?></td>
+															<td class="text-center text-middle">
+																<?php print $avion->pilotos;?>
+															</td>
+															<td class="text-center text-middle">
+																<?php print $avion->asistentes;?>
+															</td>
+															<td>
+																<?php print $interval->format('%m meses y %d días'); ?>
+															</td>
+														</tr>
+														<?php }?>
+												</tbody>
+											</table>
+                                        <?php }?>
 									</div>
 								</div>
+                                <?php if( in_array("cl_r", $permiso) && in_array("fv_r", $permiso) && in_array("a_r", $permiso) ){?>
 								<div class="card">
-									
+								    <?php
+                                    $qry = "SELECT am_nombre modelo, Count(a_id)/12::real cantidad FROM Avion, Submodelo_avion, Modelo_avion, Status_avion, Status WHERE a_submodelo_avion=as_id AND as_modelo_avion=am_id AND sa_avion=a_id AND sa_status=st_id AND st_nombre='Listo' AND EXTRACT(Month from sa_fecha_fin)=10 AND EXTRACT(Year from sa_fecha_fin)=2018 GROUP BY am_nombre";
+								    $rs = pg_query( $conexion, $qry );
+                                    $howMany = pg_num_rows($rs);
+								    if( $howMany > 0 ){?>
 									<div class="card-body">
 										<h5 class="blockquote card-title">Cantidad media de aviones producida mensualmente según el modelo</h5>
-										<p class="card-text">Aqui ponemos lo que se necesita mostrar</p>
+                                        <?php while( $cliente = pg_fetch_object($rs) ){?>
+										<p class="card-text">
+                                            Modelo: <?php print $cliente->nombre; ?><br>Cantidad: <?php print $cliente->cantidad; ?>
+                                        </p>
+                                        <?php }?>
 									</div>
 								</div>
+                                <?php }} if( in_array("a_r", $permiso) && in_array("as_r", $permiso) && in_array("am_r", $permiso) ){?>
 								<div class="card">
-									
+								    <?php
+                                    $qry = "SELECT am_nombre modelo, COUNT(a_id) cantidad FROM avion,submodelo_avion, modelo_avion WHERE a_submodelo_avion=as_id AND as_modelo_avion=am_id GROUP BY am_nombre ORDER BY cantidad DESC limit 1";
+								    $rs = pg_query( $conexion, $qry );
+                                    $modelo = pg_fetch_object($rs);?>
 									<div class="card-body">
 										<h5 class="blockquote card-title">El modelo mas vendido</h5>
-										<p class="card-text">Aqui ponemos lo que se necesita mostrar</p>
+										<p class="card-text">
+                                            Modelo: <?php print $modelo->modelo; ?><br>Cantidad de ventas: <?php print $modelo->cantidad; ?>
+                                        </p>
 									</div>
 								</div>
+                                <?php } if( in_array("zo_r", $permiso) && in_array("se_r", $permiso) && in_array("pr_r", $permiso) && in_array("prm_r", $permiso) && in_array("st_r", $permiso) && in_array("sp_r", $permiso) && in_array("pp_r", $permiso) ){?>
 								<div class="card">
-									
+								    <?php
+                                    $qry = "SELECT zo_nombre zona,se_nombre sede, AVG(age(sp_fecha_ini,prm_fecha_ini)-age(prm_fecha_fin,prm_fecha_ini)) eficiencia FROM Zona, Sede, Prueba, Prueba_material, Status_prueba, Status WHERE zo_sede=se_id AND pr_zona=zo_id AND prm_prueba=pr_id AND sp_prueba=pr_id AND sp_status=st_id AND st_nombre='Aprobada' Group by se_nombre,zo_nombre UNION SELECT zo_nombre zona, se_nombre sede, AVG(age(sp_fecha_ini,pp_fecha_ini)-age(pp_fecha_fin, pp_fecha_ini)) eficiencia FROM Zona, Sede, Prueba, Prueba_pieza, Status_prueba, Status WHERE zo_sede=se_id AND pr_zona=zo_id AND pp_prueba=pr_id AND sp_prueba=pr_id AND sp_status=st_id AND st_nombre='Aprobada' Group by se_nombre, zo_nombre Order By eficiencia Limit 1";
+								    $rs = pg_query( $conexion, $qry );
+                                    $equipo = pg_fetch_object($rs);?>
 									<div class="card-body">
 										<h5 class="blockquote card-title">El equipo mas eficiente</h5>
-										<p class="card-text">Aqui ponemos lo que se necesita mostrar</p>
+										<p class="card-text">
+                                            Equipo: <?php print $equipo->zona; ?><br> De la sede: <?php print $equipo->sede; ?>
+                                        </p>
 									</div>
 								</div>
+                                <?php } if( in_array("m_r", $permiso) && in_array("mt_r", $permiso) ){?>
 								<div class="card">
-									
+								<?php
+                                $qry = "SELECT mt_nombre material, count(m_id) cantidad FROM Material, Tipo_material WHERE m_tipo_material=mt_id AND m_pieza IS null AND EXTRACT(Month from m_fecha)=05 GROUP BY material";
+								$rs = pg_query( $conexion, $qry );?>
 									<div class="card-body">
 										<h5 class="blockquote card-title">Inventario Mensual</h5>
 										<p class="card-text">Aqui ponemos lo que se necesita mostrar</p>
 									</div>
 								</div>
+                                <?php } if( in_array("m_r", $permiso) && in_array("mt_r", $permiso) && in_array("fv_r", $permiso) ){?>
 								<div class="card">
-									
+                                    <?php
+									$qry = "SELECT mt_nombre material, count(m_id) cantidad FROM Material, Tipo_material, Factura_compra WHERE m_factura_compra=fc_id AND m_tipo_material=mt_id GROUP BY material ORDER BY cantidad DESC limit 1";
+								    $rs = pg_query( $conexion, $qry );
+                                    $material = pg_fetch_object($rs);?>
 									<div class="card-body">
 										<h5 class="blockquote card-title">Producto mas pedido al inventario</h5>
-										<p class="card-text">Aqui ponemos lo que se necesita mostrar</p>
+										<p class="card-text">
+                                            Material: <?php print $material->material; ?><br> Cantidad: <?php print $material->cantidad; ?>
+                                        </p>
 									</div>
 								</div>
+                                <?php } if( in_array("wt_r", $permiso) && in_array("pm_r", $permiso) && in_array("p_r", $permiso) ){?>
 								<div class="card">
-									
+									<?php
+									$qry = "SELECT 'Ala '||wt_nombre nombre, COUNT(a_id) cantidad FROM Tipo_ala, Modelo_pieza, Pieza, Avion WHERE pm_tipo_ala=wt_id AND p_modelo_pieza=pm_id AND p_avion=a_id GROUP BY wt_nombre ORDER BY cantidad DESC limit 1";
+								    $rs = pg_query( $conexion, $qry );
+                                    $ala = pg_fetch_object($rs);?>
 									<div class="card-body">
 										<h5 class="blockquote card-title">El tipo de alas mas utilizado en los aviones</h5>
-										<p class="card-text">Aqui ponemos lo que se necesita mostrar</p>
+										<p class="card-text">
+                                            <?php print $ala->nombre; ?><br> Cantidad: <?php print $ala->cantidad; ?>
+                                        </p>
 									</div>
 								</div>
+                                <?php } if( in_array("a_r", $permiso) && in_array("am_r", $permiso) && in_array("as_r", $permiso) && in_array("sa_r", $permiso) && in_array("st_r", $permiso) ){?>
 								<div class="card">
-									
+									<?php
+                                    $qry = "SELECT a_id||' - '||am_nombre nombre, AVG(age(sa_fecha_ini,a_fecha_ini)-age(a_fecha_fin,a_fecha_ini)) eficiencia FROM Avion, Status_avion, Status, Modelo_avion, Submodelo_avion WHERE sa_avion=a_id AND sa_status=st_id AND st_nombre='Listo' AND a_submodelo_avion=as_id AND as_modelo_avion=am_id AND age(sa_fecha_fin, a_fecha_ini) < age(a_fecha_fin, a_fecha_ini) GROUP BY a_id, nombre ORDER BY eficiencia limit 10";
+								    $rs = pg_query( $conexion, $qry );
+                                    $howMany = pg_num_rows($rs);
+								    if( $howMany > 0 ){?>
 									<div class="card-body">
 										<h5 class="blockquote card-title">Cuales fueron los aviones mas rentables en base al cumplimiento de las fechas durante a su producción</h5>
-										<p class="card-text">Aqui ponemos lo que se necesita mostrar</p>
+                                        <?php while( $avion = pg_fetch_object($rs) ){?>
+										<p class="card-text">
+                                            <?php print $avion->nombre;?>
+                                        </p>
+                                        <?php }?>
 									</div>
 								</div>
-								<div class="card">
-									
+                                <?php }}?>
+								<div class="card">									
 									<div class="card-body">
-										<h5 class="blockquote card-title">Especificaciones de modelo</h5>
-										<p class="card-text">Aqui ponemos lo que se necesita mostrar</p>
+										<h5 class="blockquote card-title">Especificaciones de modelo</h5>                                        
+										<p class="card-text">Aqui ponemos lo que se necesita mostrar</p>                                        
 									</div>
 								</div>
+                                <?php if( in_array("pr_r", $permiso) && in_array("sp_r", $permiso) && in_array("st_r", $permiso) ){?>
 								<div class="card">
-									
+									<?php
+                                    $qry = "SELECT count(pr_id) cantidad FROM Prueba, Status_prueba, Status WHERE sp_prueba=pr_id AND sp_status=st_id AND st_nombre='Rechazado'";
+								    $rs = pg_query( $conexion, $qry );
+                                    $pieza = pg_fetch_object($rs);?>
 									<div class="card-body">
 										<h5 class="blockquote card-title">Cantidad de productos que no cumplieron con las pruebas de calidad</h5>
-										<p class="card-text">Aqui ponemos lo que se necesita mostrar</p>
-									</div>
+										<p class="card-text">
+                                            Cantidad: <?php print $pieza->cantidad;?>
+                                        </p>
+									</div>                                    
 								</div>
-								<div class="card">
-									
+                                <?php } if( in_array("tr_r", $permiso) && in_array("zo_r", $permiso) && in_array("se_r", $permiso) ){?>
+								<div class="card">				
+                                    <?php
+                                    $qry = "Select se_nombre AS sede, Count(tr_id) AS cantidad From Traslado, Zona envia,Zona recibe, Sede Where (envia.zo_sede=se_id OR recibe.zo_sede=se_id) AND tr_zona_envia=envia.zo_id AND tr_zona_recibe=recibe.zo_id Group By se_nombre";
+								    $rs = pg_query( $conexion, $qry );
+                                    $howMany = pg_num_rows($rs);
+                                    if( $howMany > 0 ){?>
 									<div class="card-body">
-										<h5 class="blockquote card-title">Promedio de traslados entre las sedes</h5>
-										<p class="card-text">Aqui ponemos lo que se necesita mostrar</p>
+										<h5 class="blockquote card-title">Promedio de traslados entre las sedes</h5>     
+                                        <?php while( $sede = pg_fetch_object($rs) ){?>
+										<p class="card-text">
+                                            Sede: <?php print $sede->sede;?><br> Traslados: <?php print $sede->cantidad;?>
+                                        </p>    
+                                        <?php }?>
 									</div>
 								</div>
+                                <?php }} if( in_array("po_r", $permiso) && in_array("m_r", $permiso) && in_array("fc_r", $permiso) && in_array("lu_r", $permiso)){?>
 								<div class="card">
-									
+									<?php
+                                    $qry = "SELECT po_id id, po_tipo_rif||'-'||po_rif AS rif, po_nombre nombre, (Select SUM(m_precio) From Material, Factura_compra Where m_factura_compra=fc_id AND fc_proveedor=po.po_id) as monto, po_fecha_ini as fecha, (SELECT COUNT(fc_id) FROM Factura_compra WHERE fc_proveedor=po.po_id) as compras, lu_nombre direccion FROM proveedor po LEFT JOIN Lugar ON lu_id=po_direccion ORDER BY nombre";
+								    $rs = pg_query( $conexion, $qry );
+                                    $howMany = pg_num_rows($rs);
+                                    if( $howMany > 0 ){?>
 									<div class="card-body">
 										<h5 class="blockquote card-title">Listado de Proveedores</h5>
-										<p class="card-text">Aqui ponemos lo que se necesita mostrar</p>
+                                        
+										
+                                            <table class="table table-striped table-sm table-hover">
+												<thead>
+													<tr>
+														<th class="text-center">RIF</th>
+														<th class="text-center">Nombre</th>
+														<th class="text-center">Monto</th>
+														<th class="text-center">Fecha de Ingreso</th>
+														<th class="text-center"># de Compras</th>
+														<th class="text-center">Dirección</th>
+													</tr>
+												</thead>
+												<tbody>
+													<?php while( $proveedor = pg_fetch_object($rs) ){?>
+														<tr>
+															<td>
+																<?php print $proveedor->rif;?>
+															</td>
+															<td class="text-center">
+																<?php print $proveedor->nombre;?>
+															</td>
+															<td class="text-center">
+																<?php print $proveedor->monto;?>
+															</td>
+															<td class="text-center">
+																<?php print $proveedor->fecha;?>
+															</td>
+															<td class="text-center">
+																<?php print $proveedor->compras;?>
+															</td>
+															<td class="text-center">
+																<?php print $proveedor->direccion;?>
+															</td>
+															<td class="text-center">
+																<?php print $empleado->direccion;?>
+															</td>
+														</tr>
+														<?php }?>
+												</tbody>
+											</table>
+                                        
+                                        <?php }?>
 									</div>
 								</div>
+                                <?php }?>
+                                <?php if( in_array("tr_r", $permiso) && in_array("zo_r", $permiso) && in_array("se_r", $permiso) ){?>
 								<div class="card">
-									
+									<?php
+                                    $qry = "Select se_nombre AS sede, Count(tr_id) AS cantidad From Traslado, Zona envia,Zona recibe, Sede Where (envia.zo_sede=se_id OR recibe.zo_sede=se_id) AND tr_zona_envia=envia.zo_id AND tr_zona_recibe=recibe.zo_id Group By se_nombre";
+								    $rs = pg_query( $conexion, $qry );
+                                    $sede = pg_fetch_object($rs);?>
 									<div class="card-body">
 										<h5 class="blockquote card-title">Planta mas eficiente en base al cumplimiento de las fechas</h5>
-										<p class="card-text">Aqui ponemos lo que se necesita mostrar</p>
+										<p class="card-text">
+                                            Sede: <?php print $sede->sede;?>
+                                        </p>
 									</div>
 								</div>
+                                <?php }?>
 								<div class="card">
 									
 									<div class="card-body">
