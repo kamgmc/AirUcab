@@ -80,6 +80,9 @@ if( !in_array("p_r", $permiso) && !in_array("pm_r", $permiso) && !in_array("wt_r
 				<?php } ?>
 				<!-- Sidebar Navidation Menus-->
 				<ul class="list-unstyled">
+                    <li>
+						<a href="index.php"> <i class="fa fa-space-shuttle" aria-hidden="true"></i> Reportes </a>
+					</li>
 				    <?php if( in_array("am_r", $permiso) || in_array("as_r", $permiso) || in_array("di_r", $permiso) ){ ?>
 				    <li>
 						<a href="modeloavion.php"> <i class="fa fa-plane" aria-hidden="true"></i> Aviones </a>
@@ -195,8 +198,8 @@ if( !in_array("p_r", $permiso) && !in_array("pm_r", $permiso) && !in_array("wt_r
 											<button type="button" data-toggle="modal" data-target="#myModalPiezaCrear" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
 										</div>
 									</div>
-                                    <?} php if( in_array("em_r", $permiso) ){?>
-								    <?php $qry = "SELECT em_id id,em_nombre ||' '|| em_apellido AS nombre, em_nacionalidad nac, em_ci ci, em_fecha_ingreso fecha,COUNT(be_id) beneficiarios, er_nombre cargo, se_nombre sede, lu_nombre direccion FROM Empleado LEFT JOIN Beneficiario ON be_empleado=em_id LEFT JOIN Cargo ON er_id=em_cargo LEFT JOIN Zona ON em_zona=zo_id LEFT JOIN Sede ON se_id=zo_sede LEFT JOIN Lugar on em_direccion=lu_id GROUP BY em_id ,em_nombre, em_nacionalidad, em_ci, em_fecha_ingreso, er_nombre, se_nombre, lu_nombre ORDER BY em_id";
+                                    <?php } if( in_array("p_r", $permiso) ){?>
+								    <?php $qry = "SELECT p_id id, pm_nombre nombre, p_fecha_fin fin, (SELECT MAX(st_nombre) FROM Status,Status_pieza WHERE spi_pieza=p_id AND spi_status=st_id) status, a_id ||' - '|| am_nombre ||'/'|| as_nombre AS avion FROM Pieza LEFT JOIN Modelo_pieza ON p_modelo_pieza=pm_id LEFT JOIN Status_pieza ON spi_pieza=p_id LEFT JOIN Avion ON p_avion=a_id LEFT JOIN Submodelo_avion ON a_submodelo_avion=as_id LEFT JOIN Modelo_avion ON as_modelo_avion=am_id GROUP BY id, nombre, avion ORDER BY p_id";
 									$rs = pg_query( $conexion, $qry );
 									$howMany = pg_num_rows($rs);
 									if( $howMany > 0 ){?>
@@ -206,29 +209,56 @@ if( !in_array("p_r", $permiso) && !in_array("pm_r", $permiso) && !in_array("wt_r
 												<tr>
 													<th class="text-center">ID</th>
 													<th class="text-center">Nombre</th>
-													<th class="text-center">Fecha Final</th>
-													<th class="text-center">Fecha Inicio</th>
 													<th class="text-center">Status</th>
-													<th class="text-center">Cantidad</th>
+													<th class="text-center">Tiempo Estimado</th>
 													<th class="text-center">Accion</th>
 												</tr>
 											</thead>
 											<tbody>
-												
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Tornillo</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">24</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-																									
+												<?php while( $pieza = pg_fetch_object($rs) ){
+                                                $dias = $pieza->tiempo + 1;
+												$hoy = new DateTime();
+                                                $fin = new DateTime($pieza->fin);
+												$interval = $hoy->diff($fin);?>
+												<tr>
+													<td class="text-center">
+                                                        <?php print $pieza->id;?>
+                                                    </td>
+													<td class="text-center">
+                                                        <?php print $pieza->nombre;?>
+                                                    </td>
+													<td class="text-center">
+                                                        <?php if($pieza->status == "Listo") {?>
+                                                            <span class="badge badge-success">
+                                                                <?php print $pieza->status;?>
+                                                            </span>                                                        
+                                                            <?php } elseif($pieza->status == "Rechazado") {?>
+                                                            <span class="badge badge-danger">
+                                                                <?php print $pieza->status;?>
+                                                            </span>                                                          
+                                                            <?php } else {?>
+                                                            <span class="badge badge-info">
+                                                                <?php print $pieza->status;?>
+                                                            </span>
+                                                            <?php } ?>    
+                                                    </td>
+													<td class="text-center">
+                                                        <?php print $interval->format('%m meses y %d días');?>
+                                                    </td>
+													<td class="text-center">
+														<a href="<?php print $pieza->id ?>" data-toggle="modal" data-target="#ModalPieza"> 
+                                                            <i class="fa fa-file-text-o" aria-hidden="true" title="Ver mas"></i> 
+                                                        </a>
+                                                        <?php if( in_array("p_d", $permiso) ){ ?>&emsp;
+														<a href="pieza-crud.php?delete=<?php print $pieza->id ?>"> 
+                                                            <i class="fa fa-trash-o" aria-hidden="true" title="Eliminar"></i> 
+                                                        </a>
+                                                        <?php }?>
+													</td>
+												</tr>
+												<?php }?>													
 											</tbody>
+                                            
 										</table>
 									</div>
                                     <?php }}?>
@@ -274,104 +304,70 @@ if( !in_array("p_r", $permiso) && !in_array("pm_r", $permiso) && !in_array("wt_r
 							<!-- TABLE STARTS -->
 							<div class="col-md-12">
 								<div class="card">
+                                    <?php if( in_array("pm_c", $permiso) ){?>
 									<div class="row">
 										<div class="col-sm-10"></div>
 										<div class="col-sm-2 pad-top">
 											<button type="button" data-toggle="modal" data-target="#myModalModeloPiezaCrear" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
 										</div>
 									</div>
+                                    <?php } if( in_array("pm_r", $permiso) ){
+                                    $qry="SELECT pm.pm_id id, pm.pm_nombre nombre, wt_nombre ala, et_nombre estabilizador, count(pm2.pm_modelo_pieza) subcomponente, pm.pm_tiempo_estimado tiempo FROM modelo_pieza pm2 FULL JOIN Modelo_pieza pm ON pm2.pm_modelo_pieza = pm.pm_id LEFT JOIN Tipo_ala ON pm.pm_tipo_ala=wt_id LEFT JOIN Tipo_estabilizador ON pm.pm_tipo_estabilizador=et_id GROUP BY pm.pm_id, ala, estabilizador ORDER BY pm.pm_id";
+                                    $rs = pg_query($conexion, $qry);
+                                    $howMany = pg_num_rows($rs);
+                                    if( $howMany > 0 ){?>
 									<div class="card-body">
 										<table class="table table-striped table-sm table-hover">
 											<thead>
 												<tr>
 													<th class="text-center">ID</th>
-													<th class="text-center">NOMBRE</th>
-													<th class="text-center">FECHA FINAL</th>
-													<th class="text-center">FECHA INICIO</th>
-													<th class="text-center">STATUS</th>
-													<th class="text-center">CANTIDAD</th>
+													<th class="text-center">Nombre</th>
+													<th class="text-center"># de Subcomponentes</th>
+													<th class="text-center">Tiempo estimado</th>
 													<th class="text-center">Accion</th>
 												</tr>
 											</thead>
 											<tbody>
-												
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Tornillo</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">24</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalModeloPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Tornillo</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">24</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalModeloPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Tornillo</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">24</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalModeloPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Tornillo</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">24</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalModeloPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Tornillo</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">24</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalModeloPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Tornillo</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">24</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalModeloPieza"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													
-												
+												<?php while( $modelo_pieza = pg_fetch_object( $rs) ){
+                                                $dias = $modelo_pieza->tiempo + 1;
+												$hoy = new DateTime();
+												$fin = new DateTime(date('Y-m-d', strtotime($hoy->format("Y-m-d"). ' + '.$dias.' days')));
+												$interval = $hoy->diff($fin);?>
+												<tr>
+													<td class="text-center">
+                                                        <?php print $modelo_pieza->id;?>
+                                                    </td>
+													<td class="text-center">
+                                                        <?php 
+                                                        print $modelo_pieza->nombre;
+                                                        if( isset($modelo_pieza->ala) || isset($modelo_pieza->estabilizador)){
+                                                            print " - $modelo_pieza->ala $modelo_pieza->estabilizador";
+                                                        }?>
+                                                    </td>
+													<td class="text-center">
+                                                        <?php if($modelo_pieza->subcomponente > 0)print $modelo_pieza->subcomponente;?>
+                                                    </td>
+													<td class="text-center">
+                                                        <?php print $interval->format('%m meses y %d días'); ?>
+                                                    </td>
+													<td class="text-center">
+                                                        <?php if( $modelo_pieza->subcomponente > 0){?>
+														<a href="<?php print $modelo_pieza->id;?>" data-toggle="modal" data-target="#ModalModeloPieza"> 
+                                                            <i class="fa fa-file-text-o" aria-hidden="true" title="Ver mas"></i> 
+                                                        </a>
+                                                        <?php }?>
+                                                        <?php if( in_array("pm_d", $permiso) ){?> &emsp;
+														<a href="modelo_pieza.php?delete=<?php print $modelo_pieza->id;?>"> 
+                                                            <i class="fa fa-trash-o" aria-hidden="true" title="Eliminar"></i> 
+                                                        </a>
+                                                        <?php }?>
+													</td>
+												</tr>													
+												<?php }?>
 											</tbody>
 										</table>
 									</div>
+                                    <?php }}?>
 								</div>
 							</div>
 							<!-- TABLE ENDS -->
@@ -406,104 +402,53 @@ if( !in_array("p_r", $permiso) && !in_array("pm_r", $permiso) && !in_array("wt_r
 							<!-- TABLE STARTS -->
 							<div class="col-md-12">
 								<div class="card">
+                                    <?php if( in_array("wt_c", $permiso)){?>
 									<div class="row">
 										<div class="col-sm-10"></div>
 										<div class="col-sm-2 pad-top">
 											<button type="button" data-toggle="modal" data-target="#myModalTipoAlaCrear" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
 										</div>
 									</div>
+                                    <?php }?>
+                                    <?php if( in_array("wt_r", $permiso) ){
+                                    $qry="SELECT wt_id id, wt_nombre nombre FROM Tipo_ala";
+                                    $rs = pg_query($conexion, $qry);
+                                    $howMany = pg_num_rows($rs);
+                                    if( $howMany > 0 ){?>
 									<div class="card-body">
 										<table class="table table-striped table-sm table-hover">
 											<thead>
 												<tr>
 													<th class="text-center">ID</th>
-													<th class="text-center">NOMBRE</th>
-													<th class="text-center">FECHA FINAL</th>
-													<th class="text-center">FECHA INICIO</th>
-													<th class="text-center">STATUS</th>
-													<th class="text-center">CANTIDAD</th>
-													<th class="text-center">Accion</th>
+													<th class="text-center">Nombre</th>
+													<th class="text-right">Accion</th>
 												</tr>
 											</thead>
 											<tbody>
-												
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Tornillo</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">24</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalTipoAla"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Tornillo</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">24</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalTipoAla"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Tornillo</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">24</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalTipoAla"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Tornillo</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">24</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalTipoAla"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Tornillo</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">24</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalTipoAla"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Tornillo</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">24</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalTipoAla"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													
-												
+												<?php while( $ala = pg_fetch_object($rs) ){?>
+												<tr>
+													<td class="text-center">
+                                                        <?php print $ala->id;?>
+                                                    </td>
+													<td class="text-center">
+                                                        <?php print $ala->nombre;?>
+                                                    </td>
+													<td class="text-right">
+														<a href="<?php print $ala->id;?>" data-toggle="modal" data-target="#ModalTipoAla">
+                                                            <i class="fa fa-pencil" aria-hidden="true" title="Editar"></i>
+                                                        </a>
+                                                        <?php if( in_array("wt_d", $permiso)){?> &emsp;
+														<a href="tipo_ala-crud.php?delete=<?php print $ala->id;?>"> 
+                                                            <i class="fa fa-trash-o" aria-hidden="true" title="Eliminar"></i>
+                                                        </a>
+                                                        <?php }?>
+													</td>
+												</tr>
+												<?php }?>
 											</tbody>
 										</table>
 									</div>
+                                    <?php }}?>
 								</div>
 							</div>
 							<!-- TABLE ENDS -->
@@ -538,104 +483,53 @@ if( !in_array("p_r", $permiso) && !in_array("pm_r", $permiso) && !in_array("wt_r
 							<!-- TABLE STARTS -->
 							<div class="col-md-12">
 								<div class="card">
+                                    <?php if( in_array("et_r", $permiso) ){?>
 									<div class="row">
 										<div class="col-sm-10"></div>
 										<div class="col-sm-2 pad-top">
 											<button type="button" data-toggle="modal" data-target="#myModalTipoEstabilizadorCrear" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
 										</div>
 									</div>
+                                    <?php }?>
+                                    <?php if( in_array("et_r", $permiso) ){?>
+									<?php $qry = "SELECT et_id id, et_nombre nombre FROM Tipo_estabilizador";
+									$rs = pg_query( $conexion, $qry );
+									$howMany = pg_num_rows($rs);
+									if( $howMany > 0 ){?>
 									<div class="card-body">
 										<table class="table table-striped table-sm table-hover">
 											<thead>
 												<tr>
 													<th class="text-center">ID</th>
-													<th class="text-center">NOMBRE</th>
-													<th class="text-center">FECHA FINAL</th>
-													<th class="text-center">FECHA INICIO</th>
-													<th class="text-center">STATUS</th>
-													<th class="text-center">CANTIDAD</th>
-													<th class="text-center">Accion</th>
+													<th class="text-center">Nombre</th>
+													<th class="text-right">Accion</th>
 												</tr>
 											</thead>
 											<tbody>
-												
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Tornillo</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">24</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalTipoEstabilizador"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Tornillo</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">24</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalTipoEstabilizador"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Tornillo</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">24</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalTipoEstabilizador"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Tornillo</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">24</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalTipoEstabilizador"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Tornillo</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">24</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalTipoEstabilizador"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td class="text-center">1</td>
-														<td class="text-center">Tornillo</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center">14/11/2018</td>
-														<td class="text-center"><span class="badge badge-info">Listo</span></td>
-														<td class="text-center">24</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#ModalTipoEstabilizador"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													
-												
+												<?php while( $estabilizador = pg_fetch_object($rs) ){?>
+												<tr>
+													<td class="text-center">
+                                                        <?php print $estabilizador->id;?>
+                                                    </td>
+													<td class="text-center">
+                                                        <?php print $estabilizador->nombre;?>
+                                                    </td>
+													<td class="text-right">
+														<a href="<?php print $estabilizador->id;?>" data-toggle="modal" data-target="#ModalTipoEstabilizador"> 
+                                                            <i class="fa fa-pencil" aria-hidden="true" title="Editar"></i> 
+                                                        </a>
+                                                        <?php if( in_array("et_d", $permiso)){?> &emsp;
+														<a href="tipo_estabilizador-crud.php?delete=<?php print $estabilizador->id;?>"> 
+                                                            <i class="fa fa-trash-o" aria-hidden="true" title="Eliminar"></i> 
+                                                        </a>
+                                                        <?php }?>
+													</td>
+												</tr>
+												<?php }?>
 											</tbody>
 										</table>
 									</div>
+                                    <?php }}?>
 								</div>
 							</div>
 							<!-- TABLE ENDS -->
@@ -702,7 +596,9 @@ if( !in_array("p_r", $permiso) && !in_array("pm_r", $permiso) && !in_array("wt_r
 									</div>
 									<div class="modal-footer">
 										<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
+                                        <?php if( in_array("p_u", $permiso)){?>
 										<button type="button" data-toggle="modal" data-target="#myModalPiezaEditar" class="btn btn-primary">Editar</button>
+                                        <?php }?>
 									</div>
 								</div>
 							</div>
@@ -819,7 +715,9 @@ if( !in_array("p_r", $permiso) && !in_array("pm_r", $permiso) && !in_array("wt_r
 									</div>
 									<div class="modal-footer">
 										<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
+                                        <?php if( in_array("pm_u", $permiso)){?>
 										<button type="button" data-toggle="modal" data-target="#myModalModeloPiezaEditar" class="btn btn-primary">Editar</button>
+                                        <?php }?>
 									</div>
 								</div>
 							</div>
@@ -935,7 +833,9 @@ if( !in_array("p_r", $permiso) && !in_array("pm_r", $permiso) && !in_array("wt_r
 									</div>
 									<div class="modal-footer">
 										<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
+                                        <?php if( in_array("wt_u", $permiso)){?>
 										<button type="button" data-toggle="modal" data-target="#myModalTipoAlaEditar" class="btn btn-primary">Editar</button>
+                                        <?php }?>
 									</div>
 								</div>
 							</div>
@@ -1051,7 +951,9 @@ if( !in_array("p_r", $permiso) && !in_array("pm_r", $permiso) && !in_array("wt_r
 									</div>
 									<div class="modal-footer">
 										<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
+                                        <?php if(in_array("et_u", $permiso)){?>
 										<button type="button" data-toggle="modal" data-target="#myModalTipoEstabilizadorEditar" class="btn btn-primary">Editar</button>
+                                        <?php }?>
 									</div>
 								</div>
 							</div>
