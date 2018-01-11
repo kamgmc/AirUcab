@@ -2383,7 +2383,7 @@ INSERT INTO Status (st_nombre) VALUES ('En espera');
 INSERT INTO Status (st_nombre) VALUES ('En Proceso');
 INSERT INTO Status (st_nombre) VALUES ('Evaluación');
 INSERT INTO Status (st_nombre) VALUES ('Ensamblando');
-INSERT INTO Status (st_nombre) VALUES ('Pruebas');
+INSERT INTO Status (st_nombre) VALUES ('En prueba');
 INSERT INTO Status (st_nombre) VALUES ('Aprobada');
 INSERT INTO Status (st_nombre) VALUES ('Listo');
 INSERT INTO Status (st_nombre) VALUES ('Rechazado');
@@ -2846,6 +2846,8 @@ INSERT INTO Prueba (pr_nombre,pr_tipo,pr_zona,pr_empleado) VALUES ('Resistecia a
 INSERT INTO Prueba (pr_nombre,pr_tipo,pr_zona,pr_empleado) VALUES ('Resistecia al calor','Prueba',2,3);
 INSERT INTO Prueba (pr_nombre,pr_tipo,pr_zona,pr_empleado) VALUES ('Resistecia al frío','Prueba',2,3);
 INSERT INTO Prueba (pr_nombre,pr_tipo,pr_zona,pr_empleado) VALUES ('Punto de quiebre','Prueba',2,3);
+INSERT INTO Prueba (pr_nombre,pr_tipo,pr_zona,pr_empleado) VALUES ('Resistecia electrica','Prueba',2,4);
+INSERT INTO Prueba (pr_nombre,pr_tipo,pr_zona,pr_empleado) VALUES ('Resistecia a misiles','Prueba',2,4);
 --STATUS_PRUEBA
 INSERT INTO Status_prueba (sp_fecha_ini,sp_fecha_fin,sp_prueba,sp_status) VALUES ('2017-05-21','2017-06-21',1,5);
 INSERT INTO Status_prueba (sp_fecha_ini,sp_prueba,sp_status) VALUES ('2017-06-22',1,6);
@@ -2859,12 +2861,16 @@ INSERT INTO Status_prueba (sp_fecha_ini,sp_prueba,sp_status) VALUES ('2017-06-22
 INSERT INTO Status_prueba (sp_fecha_ini,sp_prueba,sp_status) VALUES ('2017-06-22',5,8);
 INSERT INTO Status_prueba (sp_fecha_ini,sp_prueba,sp_status) VALUES ('2017-06-22',5,8);
 INSERT INTO Status_prueba (sp_fecha_ini,sp_prueba,sp_status) VALUES ('2017-06-22',5,8);
+INSERT INTO Status_prueba (sp_fecha_ini,sp_fecha_fin,sp_prueba,sp_status) VALUES ('2017-05-21','2017-06-21',6,5);
+INSERT INTO Status_prueba (sp_fecha_ini,sp_fecha_fin,sp_prueba,sp_status) VALUES ('2017-05-21','2017-06-21',7,8);
 --PRUEBA_PIEZA
 INSERT INTO Prueba_pieza (pp_fecha_ini,pp_fecha_fin,pp_pieza,pp_prueba,pp_status) VALUES ('2017-12-21','2018-01-21',5,1,6);
 INSERT INTO Prueba_pieza (pp_fecha_ini,pp_fecha_fin,pp_pieza,pp_prueba,pp_status) VALUES ('2017-12-21','2018-01-21',6,5,6);
 INSERT INTO Prueba_pieza (pp_fecha_ini,pp_fecha_fin,pp_pieza,pp_prueba,pp_status) VALUES ('2017-12-21','2018-01-21',30,4,6);
 INSERT INTO Prueba_pieza (pp_fecha_ini,pp_fecha_fin,pp_pieza,pp_prueba,pp_status) VALUES ('2017-12-21','2018-01-21',32,3,6);
 INSERT INTO Prueba_pieza (pp_fecha_ini,pp_fecha_fin,pp_pieza,pp_prueba,pp_status) VALUES ('2017-12-21','2018-01-21',40,2,6);
+INSERT INTO Prueba_pieza (pp_fecha_ini,pp_fecha_fin,pp_pieza,pp_prueba,pp_status) VALUES ('2017-12-21','2018-01-21',35,6,5);
+INSERT INTO Prueba_pieza (pp_fecha_ini,pp_fecha_fin,pp_pieza,pp_prueba,pp_status) VALUES ('2017-12-21','2018-01-21',36,7,8);
 --PRUEBA_MATERIAL
 INSERT INTO Prueba_material (prm_fecha_ini,prm_fecha_fin,prm_material,prm_prueba,prm_status) VALUES ('2017-12-21','2018-01-21',1,1,6);
 INSERT INTO Prueba_material (prm_fecha_ini,prm_fecha_fin,prm_material,prm_prueba,prm_status) VALUES ('2017-12-21','2018-01-21',2,5,6);
