@@ -253,7 +253,7 @@ if( !in_array("po_r", $permiso) && !in_array("fc_r", $permiso) && !in_array("m_r
 													<td class="text-center"><?php print number_format($compra->total, 2, ',', '.')." Bs";?></td>
 													<td class="text-center"><?php if($venta->pagado >= $venta->total) print "Pagado"; else print "Pendiente de pago";?></td>
 													<td class="text-center">
-                                                        <?php } if( in_array("po_r", $permiso) && in_array("fc_r", $permiso) && in_array("m_r", $permiso) && in_array("pa_r", $permiso) && in_array("pt_r", $permiso) ){ ?>
+                                                        <?php  if( in_array("po_r", $permiso) && in_array("fc_r", $permiso) && in_array("m_r", $permiso) && in_array("pa_r", $permiso) && in_array("pt_r", $permiso) ){ ?>
 														<a href="<?php print $compra->id;?>" title="Ver mas" class="click-compra-detalle">
 															<i class="fa fa-file-text-o" aria-hidden="true"></i> 
 														</a>
@@ -264,6 +264,7 @@ if( !in_array("po_r", $permiso) && !in_array("fc_r", $permiso) && !in_array("m_r
                                                         <?php }?>
 													</td>
 												</tr>
+												<?php }?>
 											</tbody>
 										</table>
 									</div>
@@ -284,104 +285,106 @@ if( !in_array("po_r", $permiso) && !in_array("fc_r", $permiso) && !in_array("m_r
 										<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 									</div>
 									<div class="modal-body">
-										<div class="container-fluid">
-											<div class="row">
-												<div class="card col-lg-12">
-													<div class="row">
-														<div class="col-sm-12">
-															<h4>Información del Proveedor</h4>
-														</div>
-													</div>
-													<div class="row">
-														<div class="card-body col-lg-6">
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h4>Proveedor</h4>
-																</label>
-																<div class="col-sm-9 select">
-																	<select id="lista-proveedores" name="proveedor" class="form-control" required>
-																		<option value="NULL">Seleccionar</option>
-																		<?php $qry = "SELECT po_id AS id, po_nombre AS nombre FROM Proveedor ORDER BY nombre";
-																		$rs = pg_query( $conexion, $qry );
-																		while( $proveedor = pg_fetch_object($rs) ){?>
-																		<option value="<?php print $proveedor->id;?>">
-																			<?php print $proveedor->nombre;?>
-																		</option>
-																		<?php }?>
-																	</select>
-																</div>
+										<form action="compra-crud.php?create=true" method="post">
+											<div class="container-fluid">
+												<div class="row">
+													<div class="card col-lg-12">
+														<div class="row">
+															<div class="col-sm-12">
+																<h4>Información del Proveedor</h4>
 															</div>
 														</div>
-														<div class=" card-body col-lg-6">
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h4>CI/RIF Proveedor</h4> </label>
-																<div class="col-sm-9">
-																	<input id="po_rif" type="text" disabled class="form-control"> </div>
+														<div class="row">
+															<div class="card-body col-lg-6">
+																<div class="form-group row">
+																	<label class="col-sm-3 form-control-label">
+																		<h4>Proveedor</h4>
+																	</label>
+																	<div class="col-sm-9 select">
+																		<select id="lista-proveedores" name="proveedor" class="form-control" required>
+																			<option value="NULL">Seleccionar</option>
+																			<?php $qry = "SELECT po_id AS id, po_nombre AS nombre FROM Proveedor ORDER BY nombre";
+																			$rs = pg_query( $conexion, $qry );
+																			while( $proveedor = pg_fetch_object($rs) ){?>
+																			<option value="<?php print $proveedor->id;?>">
+																				<?php print $proveedor->nombre;?>
+																			</option>
+																			<?php }?>
+																		</select>
+																	</div>
+																</div>
+															</div>
+															<div class=" card-body col-lg-6">
+																<div class="form-group row">
+																	<label class="col-sm-3 form-control-label">
+																		<h4>CI/RIF Proveedor</h4> </label>
+																	<div class="col-sm-9">
+																		<input id="po_rif" type="text" disabled class="form-control"> </div>
+																</div>
 															</div>
 														</div>
 													</div>
 												</div>
-											</div>
-											<div class="row">
-												<div class="card col-lg-12">
-													<div class="row">
-														<div class="col-sm-12">
-															<h4>Información de Material</h4>
-														</div>
-													</div>
-													<div class="row form-material last-material">
-														<div class="card-body col-lg-6">
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h3>Material</h3> </label>
-																<!-- Traer de la tabla de materiales -->
-																<div class="col-sm-9 select">
-																	<select name="material[]" class="form-control" required>
-																		<option value="NULL">Seleccionar</option>
-																		<?php $qry = "SELECT mt_id AS id, mt_nombre AS nombre FROM Tipo_material ORDER BY nombre";
-																		$rs = pg_query( $conexion, $qry );
-																		while( $material = pg_fetch_object($rs) ){?>
-																		<option value="<?php print $material->id;?>">
-																			<?php print $material->nombre;?>
-																		</option>
-																		<?php }?>
-																	</select>
-																</div>
-															</div>
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h3>Cantidad</h3>
-																</label>
-																<div class="col-sm-9">
-																	<input type="text" placeholder="Introduzca cantidad" pattern="\d+" class="form-control" required> 
-																</div>
+												<div class="row">
+													<div class="card col-lg-12">
+														<div class="row">
+															<div class="col-sm-12">
+																<h4>Información de Material</h4>
 															</div>
 														</div>
-														<div class=" card-body col-lg-6">
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h3>Precio Unitario</h3>
-																</label>
-																<div class="col-sm-9">
-																	<input type="text" placeholder="Introduzca precio por unidad" pattern="([0-9]+\.[0-9]+)|([0-9]+)" class="form-control" required>
+														<div class="row form-material last-material">
+															<div class="card-body col-lg-6">
+																<div class="form-group row">
+																	<label class="col-sm-3 form-control-label">
+																		<h3>Material</h3> </label>
+																	<!-- Traer de la tabla de materiales -->
+																	<div class="col-sm-9 select">
+																		<select name="material[]" class="form-control" required>
+																			<option value="NULL">Seleccionar</option>
+																			<?php $qry = "SELECT mt_id AS id, mt_nombre AS nombre FROM Tipo_material ORDER BY nombre";
+																			$rs = pg_query( $conexion, $qry );
+																			while( $material = pg_fetch_object($rs) ){?>
+																			<option value="<?php print $material->id;?>">
+																				<?php print $material->nombre;?>
+																			</option>
+																			<?php }?>
+																		</select>
+																	</div>
+																</div>
+																<div class="form-group row">
+																	<label class="col-sm-3 form-control-label">
+																		<h3>Cantidad</h3>
+																	</label>
+																	<div class="col-sm-9">
+																		<input type="text" name="cantidad[]" placeholder="Introduzca cantidad" pattern="\d+" class="form-control" required> 
+																	</div>
+																</div>
+															</div>
+															<div class=" card-body col-lg-6">
+																<div class="form-group row">
+																	<label class="col-sm-3 form-control-label">
+																		<h3>Precio Unitario</h3>
+																	</label>
+																	<div class="col-sm-9">
+																		<input type="text" name="precio[]" placeholder="Introduzca precio por unidad" pattern="([0-9]+\.[0-9]+)|([0-9]+)" class="form-control" required>
+																	</div>
 																</div>
 															</div>
 														</div>
-													</div>
-													<div class="form-group row">
-														<div class="col-sm-12 text-right">
-															<i id="add-material" class="fa fa-plus"></i>&emsp;
+														<div class="form-group row">
+															<div class="col-sm-12 text-right">
+																<i id="add-material" class="fa fa-plus"></i>&emsp;
+															</div>
 														</div>
 													</div>
 												</div>
 											</div>
 										</div>
-									</div>
-									<div class="modal-footer">
-										<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
-										<button type="button" class="btn btn-primary">Guardar Cambios</button>
-									</div>
+										<div class="modal-footer">
+											<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
+											<button type="submit" class="btn btn-primary">Guardar Cambios</button>
+										</div>
+									</form>
 								</div>
 							</div>
 						</div>
@@ -634,7 +637,7 @@ if( !in_array("po_r", $permiso) && !in_array("fc_r", $permiso) && !in_array("m_r
 			$.ajax({
 				type: "POST",
 				dataType: "html",
-				url: "getter.php?get=fieldAvion",
+				url: "getter.php?get=fieldMaterial",
 				success: function(data){
 					$last.after(data);
 				}
