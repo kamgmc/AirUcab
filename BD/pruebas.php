@@ -39,7 +39,7 @@ if( !in_array("pr_r", $permiso) && !in_array("st_r", $permiso) ){
 	<!-- Custom stylesheet - for your changes-->
 	<link rel="stylesheet" href="css/custom.css">
 	<!-- Favicon-->
-	<link rel="shortcut icon" href="favicon.png"> </head>
+	<link rel="shortcut icon" href="img/airucab.ico"> </head>
 
 <body>
 	<div class="page home-page">
