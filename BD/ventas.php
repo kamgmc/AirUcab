@@ -495,6 +495,9 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 				var id = $( "option:selected", this ).val();
 				var $targetS = $(this).closest(".form-avion").find(".lista_submodelos");
 				var $targetD = $(this).closest(".form-avion").find(".lista_distribuciones");
+				$(this).closest(".form-avion").find(".motorField").each(function(){
+					$(this).remove();
+				});
 				$.ajax({type: "POST",dataType: "html",url:"getter.php?get=submodelosLimited&id="+id,success: function(data){$targetS.html(data); $targetS.removeAttr("disabled");}});
 				$.ajax({type: "POST",dataType: "html",url:"getter.php?get=distribuciones&id="+id,success: function(data){$targetD.html(data); $targetD.removeAttr("disabled");}});
 			}

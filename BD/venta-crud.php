@@ -50,14 +50,29 @@
 								$avion = pg_fetch_object($answer);
 								//Inicializa el status cada Avión
 								if( insertarStatusAvion( 1, $avion->id ) ){
+									$qry = "Select am_tiempo_estimado AS estimado from modelo_avion, submodelo_avion, avion where am_id=as_modelo_avion and a_submodelo_avion=as_id and a_id=".$avion->id;
+									$anwsermodelo = pg_query($conexion, $qry);
+									$tiempo = pg_fetch_object($anwsermodelo);
+									$hoy = new DateTime();
+									$fin = new DateTime(date('Y-m-d', strtotime($hoy->format("Y-m-d"). ' + '.$tiempo->estimado.' days')));
+									$qry = "Update Avion SET a_fecha_fin='".$fin->format('Y-m-d')."' Where a_id=".$avion->id;
+									pg_query($conexion, $qry);
 									$qry = "Select pm_id AS id, pm_cantidad AS cantidad from s_avion_m_pieza INNER JOIN Modelo_pieza ON smp_modelo_pieza=pm_modelo_pieza Where smp_submodelo_avion=".$_POST['submodelo'][$estable]." UNION Select smp_modelo_pieza AS id, smp_cantidad AS cantidad from s_avion_m_pieza Where smp_submodelo_avion=".$_POST['submodelo'][$estable]." ORDER BY id";
 									$anwsermodelo = pg_query($conexion, $qry);
 									while( $modelo_pieza = pg_fetch_object($anwsermodelo) ){
 										for($j = 1; $j <= $modelo_pieza->cantidad; $j++ ){
+											print $modelo_pieza->id."<br/>";
 											if(insertarPieza( $modelo_pieza->id, $avion->id )){//Crea una nueva pieza
 												$qry = "SELECT Max(p_id) AS id FROM Pieza where p_avion=".$avion->id." AND p_modelo_pieza=".$modelo_pieza->id;
 												if($answer = pg_query( $conexion, $qry )){
 													$pieza = pg_fetch_object($answer);//Pieza especifica
+													$qryx = "Select pm_tiempo_estimado as estimado from modelo_pieza, pieza where pm_id=p_modelo_pieza and p_id=".$pieza->id;
+													$anwserx = pg_query($conexion, $qryx);
+													$tiempo = pg_fetch_object($anwserx);
+													$hoy = new DateTime();
+													$fin = new DateTime(date('Y-m-d', strtotime($hoy->format("Y-m-d"). ' + '.$tiempo->estimado.' days')));
+													$qry = "Update Pieza SET p_fecha_fin='".$fin->format('Y-m-d')."' Where p_id=".$pieza->id;
+													pg_query($conexion, $qry);
 													$qry2 = "SELECT tmm_id id, tmm_cantidad cantidad, tmm_tipo_material material FROM t_material_m_pieza WHERE tmm_modelo_pieza=".$modelo_pieza->id;
 													//Hace una lista de los materiales necesarios
 													$anwser = pg_query($conexion, $qry2); $materiales = array();
@@ -93,11 +108,37 @@
 														}
 													}
 													insertarStatusPieza( 1, $pieza->id );
+													$qryp = 'SELECT p_id AS id, UPPER(mp.pm_nombre) AS nombre, UPPER(pm.pm_nombre) AS compuesto FROM pieza, modelo_pieza mp LEFT JOIN modelo_pieza pm ON mp.pm_modelo_pieza=pm.pm_id WHERE p_modelo_pieza=mp.pm_id AND p_id='.$pieza->id;
+													$anwserp = pg_query($conexion, $qryp);
+													$part = pg_fetch_object($anwserp);
+													//Pa' Maracay
+													if(stristr($part->nombre, 'ALA') !== FALSE || stristr($part->compuesto, 'ALA') !== FALSE ){
+														insertarTraslado(9, 9, $pieza->id, 'NULL', 'NULL');
+													}
+													//Pa' Maracay
+													if(stristr($part->nombre, 'ESTABILIZADOR') !== FALSE || stristr($part->compuesto, 'ESTABILIZADOR') !== FALSE){
+														insertarTraslado(10, 10, $pieza->id, 'NULL', 'NULL');
+													}
+													//Pa' Colon
+													if(stristr($part->nombre, 'FUSELAJE') !== FALSE || stristr($part->compuesto, 'FUSELAJE') !== FALSE){
+														insertarTraslado(18, 18, $pieza->id, 'NULL', 'NULL');
+													}
+													//Pa' Guatire
+													if(stristr($part->nombre, 'CABINA') !== FALSE || stristr($part->compuesto, 'CABINA') !== FALSE){
+														insertarTraslado(14, 14, $pieza->id, 'NULL', 'NULL');
+													}
+													if(stristr($part->nombre, 'TREN DE ATERRIZAJE') !== FALSE || stristr($part->compuesto, 'TREN DE ATERRIZAJE') !== FALSE){
+														insertarTraslado(18, 18, $pieza->id, 'NULL', 'NULL');
+													}
+													$qryp = 'SELECT MAX(tr_id) AS id From Traslado Where tr_pieza='.$pieza->id;
+													$anwserp = pg_query($conexion, $qryp);
+													$id = pg_fetch_object($anwserp);
+													editarTraslado($id->id, 'TRUE');
 												}
 											}
 										}
 									}
-									$qry = "SELECT pm_id AS id FROM modelo_pieza WHERE pm_nombre='Asiento'";
+									$qry = "SELECT MAX(pm_id) AS id FROM modelo_pieza WHERE UPPER(pm_nombre) like '%ASIENTO%'";
 									$anwser = pg_query($conexion, $qry);
 									$asiento = pg_fetch_object($anwser);
 
@@ -119,7 +160,7 @@
 												$anwser = pg_query($conexion, $qry2);
 												while($pm = pg_fetch_object($anwser)){
 													// Busca si hay materiales ya creados disponibles
-													$qry = "SELECT m_id id FROM Material, Status_material, Status WHERE m_tipo_material=".$pm->material." AND m_pieza=NULL AND sm_material=m_id AND sm_status=st_id AND st_nombre<>'Rechazado'";
+													$qry = "SELECT m_id id FROM Material, Status_material, Status WHERE m_tipo_material=".$pm->material." AND m_pieza is NULL AND sm_material=m_id AND sm_status=st_id AND st_nombre<>'Rechazado'";
 													$anwser = pg_query($conexion, $qry);
 													while($material = pg_fetch_object($anwser)){
 														if( isset($materiales[$pm->id]) ){
@@ -145,6 +186,12 @@
 													}
 												}
 												insertarStatusPieza( 1, $pieza->id );
+												//ID 5 Zona de ensamble, Valencia
+												insertarTraslado(5, 5, $pieza->id, 'NULL', 'NULL');
+												$qryp = 'SELECT MAX(tr_id) AS id From Traslado Where tr_pieza='.$pieza->id;
+												$anwserp = pg_query($conexion, $qryp);
+												$id = pg_fetch_object($anwserp);
+												editarTraslado($id->id, 'TRUE');
 											}
 										}
 									}
@@ -158,16 +205,22 @@
 											if($answer = pg_query( $conexion, $qry )){
 												$motor = pg_fetch_object($answer);//Motor especifico
 												insertarStatusMotor( 1, $motor->id );
+												//ID 1 Zona de ensamble, Catia la mar
+												insertarTraslado(1, 1, 'NULL', 'NULL', $motor->id);
+												$qryp = 'SELECT MAX(tr_id) AS id From Traslado Where tr_motor='.$motor->id;
+												$anwserp = pg_query($conexion, $qryp);
+												$id = pg_fetch_object($anwserp);
+												editarTraslado($id->id, 'TRUE');
 											}
 										}
 									}
 									$i++;
 								}
-								//else{header('Location: ventas.php?error=2');exit;}
+								else{header('Location: ventas.php?error=2');exit;}
 							}
-							//else{header('Location: ventas.php?error=2');exit;}
+							else{header('Location: ventas.php?error=2');exit;}
 						}
-						//else{header('Location: ventas.php?error=2');exit;}
+						else{header('Location: ventas.php?error=2');exit;}
 					}
 				}
 				else $exit = true;
@@ -182,11 +235,11 @@
 							$tipo_pago = pg_fetch_object($answer);
 							if(insertarPago( $_POST['transferencia_monto'][$i], $tipo_pago->id, $factura->id, 'NULL' ))//Inserta el pago con el monto
 								$i++;
-							//else{header('Location: ventas.php?error=3');exit;}
+							else{header('Location: ventas.php?error=3');exit;}
 						}
-						//else{header('Location: ventas.php?error=3');exit;}
+						else{header('Location: ventas.php?error=3');exit;}
 					}
-					//else{header('Location: ventas.php?error=3');exit;}
+					else{header('Location: ventas.php?error=3');exit;}
 				}
 				else $exit = true;
 			}
@@ -200,22 +253,24 @@
 							$tipo_pago = pg_fetch_object($answer);
 							if(insertarPago( $_POST['tarjeta_monto'][$i], $tipo_pago->id, $factura->id, 'NULL' ))//Inserta el pago con el monto
 								$i++;
-							//else{header('Location: ventas.php?error=3');exit;}
+							else{header('Location: ventas.php?error=3');exit;}
 						}
-						//else{header('Location: ventas.php?error=3');exit;}
+						else{header('Location: ventas.php?error=3');exit;}
 					}
-					//else{header('Location: ventas.php?error=3');exit;}
+					else{header('Location: ventas.php?error=3');exit;}
 				}
 				else $exit = true;
 			}
-			//header('Location: ventas.php');exit;
+			header('Location: ventas.php');exit;
 		}
-		//else header('Location: ventas.php?error=1');exit;
+		else header('Location: ventas.php?error=1');exit;
 	}
 	if(isset($_GET['delete'])){
 		$id = $_GET['delete'];
-		eliminarFacturaVenta($id);
-		header('Location: ' . $_SERVER['HTTP_REFERER']);
+		if(eliminarFacturaVenta($id))
+			header('Location: ventas.php');
+		else
+			header('Location: ventas.php?error=5');
 		exit;
 	}
 ?>

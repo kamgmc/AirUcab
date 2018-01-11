@@ -22,7 +22,7 @@ if( !in_array("se_r", $permiso) && !in_array("zo_r", $permiso) ){
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>AirUCAB - Main</title>
+	<title>AirUCAB - Sedes</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="robots" content="all,follow">
@@ -39,7 +39,7 @@ if( !in_array("se_r", $permiso) && !in_array("zo_r", $permiso) ){
 	<!-- Custom stylesheet - for your changes-->
 	<link rel="stylesheet" href="css/custom.css">
 	<!-- Favicon-->
-	<link rel="shortcut icon" href="favicon.png"> </head>
+	<link rel="shortcut icon" href="img/airucab.ico"> </head>
 
 <body>
 	<div class="page home-page">
@@ -151,7 +151,7 @@ if( !in_array("se_r", $permiso) && !in_array("zo_r", $permiso) ){
 					<div class="container-fluid">
                         <?php if( in_array("se_r", $permiso) ){ ?>
 						<input id="tab0" type="radio" name="tabs" class="no-display" checked>
-						<label for="tab0" class="label"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> Sedes</label>
+						<label for="tab0" class="label"><i class="fa fa-university" aria-hidden="true"></i> Sedes</label>
                         <?php } ?>
                         <?php if( in_array("zo_r", $permiso) ){ ?>
 						<input id="tab1" type="radio" name="tabs" class="no-display" >
@@ -804,7 +804,7 @@ if( !in_array("se_r", $permiso) && !in_array("zo_r", $permiso) ){
 		</footer>
 	</div>
 	<!-- Javascript files-->
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="js/jquery-3.2.1.min.js"></script>
 	<script src="vendor/popper.js/umd/popper.min.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="vendor/jquery.cookie/jquery.cookie.js"></script>

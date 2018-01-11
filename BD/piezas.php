@@ -22,7 +22,7 @@ if( !in_array("p_r", $permiso) && !in_array("pm_r", $permiso) && !in_array("wt_r
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>AirUCAB - Main</title>
+	<title>AirUCAB - Piezas</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="robots" content="all,follow">
@@ -1793,12 +1793,10 @@ if( !in_array("p_r", $permiso) && !in_array("pm_r", $permiso) && !in_array("wt_r
 		</footer>
 	</div>
 	<!-- Javascript files-->
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script src="vendor/popper.js/umd/popper.min.js">
-	</script>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="vendor/popper.js/umd/popper.min.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="vendor/jquery.cookie/jquery.cookie.js">
-	</script>
+	<script src="vendor/jquery.cookie/jquery.cookie.js"></script>
 	<script src="vendor/jquery-validation/jquery.validate.min.js"></script>
 	<script src="js/front.js"></script>
 </body>

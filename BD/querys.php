@@ -333,61 +333,6 @@
 		$qry = "DELETE FROM Rol_permiso WHERE rp_rol=".$rol." AND rp_permiso=".$permiso;
 		return pg_query($conexion, $qry);
 	}
-
-
-//Querys de Status
-	function insertarStatus( $nombre ){
-		global $conexion;
-		$nombre = htmlentities($nombre, ENT_QUOTES);
-		$qry = "INSERT INTO Status (st_nombre) VALUES ('".$nombre."')";
-		return pg_query($conexion, $qry);
-	}
-	function editarStatus( $id, $nombre ){
-		global $conexion;
-		$nombre = htmlentities($nombre, ENT_QUOTES);
-		$qry = "UPDATE Status SET st_nombre='".$nombre."' WHERE st_id=".$id;
-		return pg_query($conexion, $qry);
-	}
-	function eliminarStatus( $id ){
-		global $conexion;
-		$id = htmlentities($id, ENT_QUOTES);
-		$qry = "DELETE FROM Status WHERE st_id=".$id;
-		$qry2 = "DELETE FROM Status_pieza WHERE spi_status=".$id;
-		$qry3 = "DELETE FROM Status_material WHERE sm_status=".$id;
-		$qry4 = "DELETE FROM Prueba_material WHERE prm_status=".$id;
-		$qry5 = "DELETE FROM Status_prueba WHERE sp_status=".$id;
-		$qry6 = "DELETE FROM Status_avion WHERE sa_status=".$id;
-		$qry7 = "DELETE FROM Prueba_pieza WHERE pp_status=".$id;
-		$qry8 = "DELETE FROM Status_motor WHERE stm_status=".$id;
-		if(pg_query($conexion, $qry8))
-			if(pg_query($conexion, $qry7))
-				if(pg_query($conexion, $qry6))
-					if(pg_query($conexion, $qry5))
-						if(pg_query($conexion, $qry4))
-							if(pg_query($conexion, $qry3))
-								if(pg_query($conexion, $qry2))
-									return pg_query($conexion, $qry);
-		return false;
-	}
-// Querys de Lugar
-	function insertarLugar( $nombre , $tipo, $lugar ){
-		global $conexion;
-		$nombre = htmlentities($nombre, ENT_QUOTES);
-		$qry = "INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('".$nombre."','".$tipo."',".$lugar.")";
-		return pg_query($conexion, $qry);
-	}
-	function editarLugar( $id, $nombre, $tipo, $lugar ){
-		global $conexion;
-		$nombre = htmlentities($nombre, ENT_QUOTES);
-		$qry = "UPDATE Lugar SET lu_nombre ='".$nombre."', lu_tipo='".$tipo."', lu_lugar=".$lugar." where lu_id=".$id;
-		return pg_query($conexion, $qry);
-	}
-	function eliminarLugar( $id ){
-		global $conexion;
-		$id = htmlentities($id, ENT_QUOTES);
-		$qry = "DELETE FROM Lugar where lu_id=".$id;
-		return pg_query($conexion, $qry);
-	}
 // Querys de Sede
 	function insertarSede( $nombre , $area, $principal, $lugar ){
 		global $conexion;
@@ -856,6 +801,12 @@
 	}
 //Status_prueba
 //Factura_compra
+	function insertarFacturaCompra( $proveedor ){
+		global $conexion;
+		$proveedor = htmlentities($proveedor, ENT_QUOTES);
+		$qry = "INSERT INTO Factura_compra (fc_proveedor,fc_fecha) VALUES (".$proveedor.",transaction_timestamp())";
+		return ( pg_query( $conexion, $qry ) );
+	}
 	function eliminarFacturaCompra($id){
 		global $conexion;
 		$id = htmlentities($id, ENT_QUOTES);
@@ -1032,11 +983,11 @@
 		return pg_query($conexion, $qry);
 	}
 //Pieza
-	function insertarPieza( $pieza, $avion ){
+	function insertarPieza( $pieza, $avion){
 		global $conexion;
 		$pieza = htmlentities($pieza, ENT_QUOTES);
 		$avion = htmlentities($avion, ENT_QUOTES);
-		$qry = "INSERT INTO Pieza (p_fecha_ini,p_modelo_pieza,p_avion) VALUES (transaction_timestamp(),".$pieza.",".$avion.")";
+		$qry = "INSERT INTO Pieza (p_fecha_ini,p_modelo_pieza,p_avion) VALUES (transaction_timestamp(), ".$pieza.", ".$avion.")";
 		return pg_query($conexion, $qry);
 	}
 	function eliminarPieza($id){

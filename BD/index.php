@@ -5,17 +5,7 @@ include 'conexion.php';
 if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'] = 5;} 
 $qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$_SESSION['rol']; 
 $rs = pg_query( $conexion, $qry ); $permiso = array();
-while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }
-if( !in_array("am_r", $permiso) && !in_array("as_r", $permiso) && !in_array("di_r", $permiso) ){
-	if( !isset($_SESSION['code']) ){
-		header('Location: login.php');
-		exit;
-	}
-	else{
-		header('Location: modeloavion.php');
-		exit;
-	}
-}?>
+while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 	<!DOCTYPE html>
 	<html>
 
@@ -59,12 +49,12 @@ if( !in_array("am_r", $permiso) && !in_array("as_r", $permiso) && !in_array("di_
 							<!-- Navbar Menu -->
 							<ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
 								<?php if( isset($_SESSION['code']) ){ ?>
-									<!-- Logout    -->
-									<li class="nav-item"><a href="close.php" class="nav-link logout">Cerrar Sesión<i class="fa fa-sign-out"></i></a></li>
-									<?php }else{ ?>
-									<!-- Login -->
-									<li class="nav-item"><a href="login.php" class="nav-link logout">Iniciar Sesión<i class="fa fa-sign-in"></i></a></li>
-									<?php } ?>
+								<!-- Logout    -->
+								<li class="nav-item"><a href="close.php" class="nav-link logout">Cerrar Sesión<i class="fa fa-sign-out"></i></a></li>
+								<?php }else{ ?>
+								<!-- Login -->
+								<li class="nav-item"><a href="login.php" class="nav-link logout">Iniciar Sesión<i class="fa fa-sign-in"></i></a></li>
+								<?php } ?>
 							</ul>
 						</div>
 					</div>
@@ -156,17 +146,31 @@ if( !in_array("am_r", $permiso) && !in_array("as_r", $permiso) && !in_array("di_
 						<div class="container-fluid">
 							<div class="card-columns">
                                 <?php if( in_array("a_r", $permiso) && in_array("sa_r", $permiso) && in_array("st_r", $permiso) && in_array("p_r", $permiso) && in_array("spi_r", $permiso) ){
-                                $qry = "SELECT count(a_id) cantidad FROM Avion, Status_avion, Status WHERE EXTRACT(Year from a_fecha_fin)=2017 AND sa_avion=a_id AND sa_status=st_id AND st_nombre='Listo'";
+                                $qry = "SELECT count(a_id) cantidad FROM Avion, Status_avion, Status WHERE EXTRACT(Year from a_fecha_fin)=".date('Y')." AND sa_avion=a_id AND sa_status=st_id AND st_nombre='Listo'";
 								$rs = pg_query( $conexion, $qry );
-                                $qry2="SELECT count(p_id) cantidad FROM Pieza, Status_pieza, Status WHERE EXTRACT(Year from p_fecha_fin)=2017 AND spi_pieza=p_id AND spi_status=st_id AND st_nombre='Listo'";
+                                $qry2="SELECT count(p_id) cantidad FROM Pieza, Status_pieza, Status WHERE EXTRACT(Year from p_fecha_fin)=".date('Y')." AND spi_pieza=p_id AND spi_status=st_id AND st_nombre='Listo'";
                                 $rs2 = pg_query( $conexion, $qry ); 
                                 $avion = pg_fetch_object($rs);
                                 $pieza = pg_fetch_object($rs2);?>
 								<div class="card">
 									<div class="card-body">
-										<h5 class="blockquote card-title">Producción anual</h5>
+										<h6 class="blockquote card-title">Producción anual</h6>
+										<form>
+											<div class="col-sm-8 select">
+												<select id="filtro_submodelo" name="submodelo" class="form-control">
+													<?php $qry = "Select distinct Fecha from(select EXTRACT(Year from p_fecha_fin) fecha From Pieza Union Select EXTRACT(Year from a_fecha_fin) Fecha From Avion) AS Tiempo Order By fecha ASC";
+													$rs = pg_query( $conexion, $qry );
+													while( $tiempo = pg_fetch_object($rs) ){?>
+													<option <?php if($tiempo->fecha == date('Y')) print 'selected';?> value="<?php print $tiempo->fecha;?>">
+														<?php print $tiempo->fecha;?>
+													</option>
+													<?php }?>
+												</select>
+											</div>
+										</form>
 										<p class="card-text">
-                                            Cantidad de aviones: <?php print $avion->cantidad; ?><br>Cantidad de piezas: <?php print $pieza->cantidad; ?>
+                                            Aviones: <?php print $avion->cantidad.'<br/>';?>
+											Piezas: <?php print $pieza->cantidad; ?>
                                         </p>
 									</div>
 								</div>
@@ -182,14 +186,15 @@ if( !in_array("am_r", $permiso) && !in_array("as_r", $permiso) && !in_array("di_
 									<div class="card-body">
 										<h5 class="blockquote card-title">Promedio de producción mensual</h5>
 										<p class="card-text">
-                                            Cantidad de aviones: <?php print number_format($avion->cantidad, 2, ',', '.'); ?><br>Cantidad de piezas: <?php print number_format($pieza->cantidad, 2, ',', '.'); ?>
+                                            Aviones: <?php print number_format($avion->cantidad, 2, ',', '.'); ?><br>
+											Piezas: <?php print number_format($pieza->cantidad, 2, ',', '.'); ?>
                                         </p>
 									</div>
 								</div>
                                 <?php } if( in_array("cl_r", $permiso) && in_array("fv_r", $permiso) && in_array("a_r", $permiso) ){?>
 								<div class="card">
 								    <?php
-                                    $qry = "SELECT cl_nombre nombre, count(fv_id) cantidad FROM Cliente, Factura_venta, Avion WHERE a_factura_venta=fv_id AND fv_cliente=cl_id AND EXTRACT(Year from fv_fecha)=2017 GROUP BY cl_nombre ORDER BY cantidad DESC limit 10";
+                                    $qry = "SELECT cl_nombre nombre, count(fv_id) cantidad FROM Cliente, Factura_venta, Avion WHERE a_factura_venta=fv_id AND fv_cliente=cl_id AND EXTRACT(Year from fv_fecha)=2018 GROUP BY cl_nombre ORDER BY cantidad DESC limit 10";
 								    $rs = pg_query( $conexion, $qry );
                                     $howMany = pg_num_rows($rs);
 								    if( $howMany > 0 ){?>
@@ -203,74 +208,10 @@ if( !in_array("am_r", $permiso) && !in_array("as_r", $permiso) && !in_array("di_
 									</div>
 								</div>
                                 <?php }}?>
-								<div class="card">
-								    <?php $qry = "SELECT am_id id, am_nombre nombre, am_longitud longitud, am_altura altura, am_envergadura envergadura, am_velocidad_max velocidad, am_carga_volumen carga, am_capacidad_pilotos pilotos, am_capacidad_asistentes asistentes, am_tiempo_estimado tiempo FROM Modelo_avion ORDER BY am_id";
-									$rs = pg_query( $conexion, $qry );
-									$howMany = pg_num_rows($rs);
-									if( $howMany > 0 ){?>
-									<div class="card-body">
-										<h5 class="blockquote card-title">Modelos de aviones</h5>
-										
-                                        <table class="table table-striped table-sm table-hover pad-right">
-												<thead>
-													<tr>
-														<th class="text-center text-middle">Nombre</th>
-														<th class="text-center text-middle">Longitud</th>
-														<th class="text-center text-middle">Altura</th>
-														<th class="text-center text-middle">Envergadura</th>
-														<th class="text-center text-middle">Velocidad Max</th>
-														<th class="text-center text-middle">Volumen Carga</th>
-														<th class="text-center text-middle">Capacidad Pilotos</th>
-														<th class="text-center text-middle">Capacidad Asistentes</th>
-														<th class="text-center text-middle">Tiempo Estimado</th>
-													</tr>
-												</thead>
-												<tbody>
-													<?php 	
-														
-														while( $avion = pg_fetch_object($rs) ){
-															$dias = $avion->tiempo + 1;
-															$hoy = new DateTime();
-															$fin = new DateTime(date('Y-m-d', strtotime($hoy->format("Y-m-d"). ' + '.$dias.' days')));
-															$interval = $hoy->diff($fin);?>
-														<tr>
-															<td class="text-center text-middle">
-																<?php print $avion->nombre;?>
-															</td>
-															<td class="text-center text-middle">
-																<?php print number_format($avion->longitud, 2, ',', '.')." m";?>
-															</td>
-															<td class="text-center text-middle">
-																<?php print number_format($avion->altura, 1, ',', '.')." m";?>
-															</td>
-															<td class="text-center text-middle">
-																<?php print number_format($avion->envergadura, 2, ',', '.')." m";?>
-															</td>
-															<td class="text-center text-middle">
-																<?php print number_format($avion->velocidad, 0, ',', '.')." km/h";?>
-															</td>
-															<td class="text-center text-middle">
-																<?php print number_format($avion->carga, 1, ',', '.')." m<sup>3</sup>";?></td>
-															<td class="text-center text-middle">
-																<?php print $avion->pilotos;?>
-															</td>
-															<td class="text-center text-middle">
-																<?php print $avion->asistentes;?>
-															</td>
-															<td>
-																<?php print $interval->format('%m meses y %d días'); ?>
-															</td>
-														</tr>
-														<?php }?>
-												</tbody>
-											</table>
-                                        <?php }?>
-									</div>
-								</div>
                                 <?php if( in_array("cl_r", $permiso) && in_array("fv_r", $permiso) && in_array("a_r", $permiso) ){?>
 								<div class="card">
 								    <?php
-                                    $qry = "SELECT am_nombre modelo, Count(a_id)/12::real cantidad FROM Avion, Submodelo_avion, Modelo_avion, Status_avion, Status WHERE a_submodelo_avion=as_id AND as_modelo_avion=am_id AND sa_avion=a_id AND sa_status=st_id AND st_nombre='Listo' AND EXTRACT(Month from sa_fecha_fin)=10 AND EXTRACT(Year from sa_fecha_fin)=2018 GROUP BY am_nombre";
+                                    $qry = "SELECT am_nombre modelo, Count(a_id)/12::real cantidad FROM Avion Right Join Submodelo_avion on a_submodelo_avion=as_id, Modelo_avion, Status_avion, Status WHERE as_modelo_avion=am_id AND sa_avion=a_id AND sa_status=st_id AND st_nombre='Listo' AND EXTRACT(Month from sa_fecha_fin)=10 AND EXTRACT(Year from sa_fecha_fin)=2018 GROUP BY am_nombre";
 								    $rs = pg_query( $conexion, $qry );
                                     $howMany = pg_num_rows($rs);
 								    if( $howMany > 0 ){?>
@@ -384,7 +325,7 @@ if( !in_array("am_r", $permiso) && !in_array("as_r", $permiso) && !in_array("di_
                                 <?php } if( in_array("tr_r", $permiso) && in_array("zo_r", $permiso) && in_array("se_r", $permiso) ){?>
 								<div class="card">				
                                     <?php
-                                    $qry = "Select se_nombre AS sede, Count(tr_id) AS cantidad From Traslado, Zona envia,Zona recibe, Sede Where (envia.zo_sede=se_id OR recibe.zo_sede=se_id) AND tr_zona_envia=envia.zo_id AND tr_zona_recibe=recibe.zo_id Group By se_nombre";
+                                    $qry = "Select se_nombre AS sede, Count(tr_id) AS cantidad From Traslado, Zona envia,Zona recibe, Sede Where (envia.zo_sede=se_id OR recibe.zo_sede=se_id) AND tr_zona_envia<>tr_zona_recibe AND tr_zona_envia=envia.zo_id AND tr_zona_recibe=recibe.zo_id Group By se_nombre";
 								    $rs = pg_query( $conexion, $qry );
                                     $howMany = pg_num_rows($rs);
                                     if( $howMany > 0 ){?>
@@ -397,61 +338,7 @@ if( !in_array("am_r", $permiso) && !in_array("as_r", $permiso) && !in_array("di_
                                         <?php }?>
 									</div>
 								</div>
-                                <?php }} if( in_array("po_r", $permiso) && in_array("m_r", $permiso) && in_array("fc_r", $permiso) && in_array("lu_r", $permiso)){?>
-								<div class="card">
-									<?php
-                                    $qry = "SELECT po_id id, po_tipo_rif||'-'||po_rif AS rif, po_nombre nombre, (Select SUM(m_precio) From Material, Factura_compra Where m_factura_compra=fc_id AND fc_proveedor=po.po_id) as monto, po_fecha_ini as fecha, (SELECT COUNT(fc_id) FROM Factura_compra WHERE fc_proveedor=po.po_id) as compras, lu_nombre direccion FROM proveedor po LEFT JOIN Lugar ON lu_id=po_direccion ORDER BY nombre";
-								    $rs = pg_query( $conexion, $qry );
-                                    $howMany = pg_num_rows($rs);
-                                    if( $howMany > 0 ){?>
-									<div class="card-body">
-										<h5 class="blockquote card-title">Listado de Proveedores</h5>
-                                        
-										
-                                            <table class="table table-striped table-sm table-hover">
-												<thead>
-													<tr>
-														<th class="text-center">RIF</th>
-														<th class="text-center">Nombre</th>
-														<th class="text-center">Monto</th>
-														<th class="text-center">Fecha de Ingreso</th>
-														<th class="text-center"># de Compras</th>
-														<th class="text-center">Dirección</th>
-													</tr>
-												</thead>
-												<tbody>
-													<?php while( $proveedor = pg_fetch_object($rs) ){?>
-														<tr>
-															<td>
-																<?php print $proveedor->rif;?>
-															</td>
-															<td class="text-center">
-																<?php print $proveedor->nombre;?>
-															</td>
-															<td class="text-center">
-																<?php print $proveedor->monto;?>
-															</td>
-															<td class="text-center">
-																<?php print $proveedor->fecha;?>
-															</td>
-															<td class="text-center">
-																<?php print $proveedor->compras;?>
-															</td>
-															<td class="text-center">
-																<?php print $proveedor->direccion;?>
-															</td>
-															<td class="text-center">
-																<?php print $empleado->direccion;?>
-															</td>
-														</tr>
-														<?php }?>
-												</tbody>
-											</table>
-                                        
-                                        <?php }?>
-									</div>
-								</div>
-                                <?php }?>
+                                <?php }}?>
                                 <?php if( in_array("tr_r", $permiso) && in_array("zo_r", $permiso) && in_array("se_r", $permiso) ){?>
 								<div class="card">
 									<?php
@@ -466,141 +353,74 @@ if( !in_array("am_r", $permiso) && !in_array("as_r", $permiso) && !in_array("di_
 									</div>
 								</div>
                                 <?php }?>
-								<div class="card">
-									
-									<div class="card-body">
-										<h5 class="blockquote card-title">Descripción de piezas</h5>
-										<p class="card-text">Aqui ponemos lo que se necesita mostrar</p>
-									</div>
-								</div>
 							</div>
 							<div class="card-columns1">
 							<div class="card p-3">
-									
 									<div class="card-body">
 										<h5 class=" blockquote card-title">Historia de la Aviación en Venezuela</h5>
-										<p class="card-text">
-											Después del 29 de septiembre de 1912, cuando el célebre vuelo de Frank Boland sobre Caracas, estábamos en el umbral
-											de la I Guerra Mundial y será en ese conflicto cuando la aviación pasa a convertirse en un arma poderosa. A comienzos del año
-											1920 el empresario caraqueño Eloy Pérez suscribe un contrato con el teniente italiano Cosme Renella, con el fin de ofrecer en la
-											capital y otras ciudades del interior del país, una serie de espectáculos que prácticamente eran maniobras ejecutadas por el
-											referido piloto.
-											A partir de este momento recobra una gran importancia la necesidad de contar con una aviación militar para el país.
-											Por lo que el Presidente de la República, General Juan Vicente Gómez, ordena preparar un decreto creando la Escuela de
-											Aviación Militar de Venezuela, lo cual ocurrió el 17 de abril de 1920. Venezuela ya está en el umbral de la naciente aeronáutica.
-											En la década del 20 suceden interesantes acontecimientos
-											tanto en la naciente aviación militar como en lo civil. Ya para el 14 de
-											junio de 1920, la fábrica francesa de aviones entregó al Agregado
-											Comercial de Venezuela en París, Emilio Posse Rivas los primeros
-											aviones –Caudron G3para
-											la naciente Escuela de Aviación.
-											Posteriormente, el 19 de diciembre el General Gómez inaugura
-											solemnemente la Escuela de Aviación Militar.
-											Para 1929, la aviación comercial europea y estadounidense
-											estaban interesadas en incursionar en nuestro país para incluirlo en
-											sus rutas internacionales. Así el 26 de septiembre de ese año, regresa Lindbergh, pero esta vez en un vuelo experimental de la
-											Pan American. Luego de un corto análisis, solicitan permiso para iniciar sus vuelos que comenzaron el 6 de mayo de 1930, desde
-											Maiquetía donde arrendaron a la Familia Luy una franja de terreno para construir un campo de aterrizaje y una pequeña oficina
-											para atender a los arriesgados pasajeros, hoy Aeropuerto Internacional de Maiquetía.
-											También a fines de 1929 la Compagnie Generales Aeropostale FrancesCGAFque
-											estaba ya operando en Brasil, manda
-											por barco un avión Potez de 8 puestos el cual es armado en Maracay cuya finalidad era igualmente estudiar las posibilidades de
-											establecerse aquí, pero desde la capital aragüeña. La empresa es autorizada a volar en las rutas MaracayBarquisimeto,
-											Barinas, San Fernando de Apure, Coro, Maracaibo y Ciudad Bolívar, con el nombre de Aviación Nacional Venezolana.
-											Para 1931, el gobierno había concluido la construcción del campo de Boca de Río para la
-											aviación comercial. El 1 de enero de 1934, ya el país contaba con la Línea Aeropostal
-											Venezolana (LAV), pasando a depender directamente del Ministerio de Guerra y Marina,
-											siendo todos sus pilotos militares. Entre 19401945
-											Pan American hace entrega de los
-											aeropuertos de Maiquetía, Maturín y Maracaibo. En junio de 1943, con el apoyo de Pan
-											American Airways Inc. y Mexicana de Aviación, firmaron el contrato para la explotación
-											del transporte aéreo de servicio general entre Aerovías Venezolanas S.A., AVENSA, y el
-											Gobierno Nacional. Se funda también la empresa Taca.
-											Entre 19451950,
-											a raíz del golpe de Estado del 18 de octubre de 1945, significativos cambios se producen en la vida
-											2
-											UCABIngeniería
-											Informática Sist.
-											De Base de Datos I – Prof. Ana K Fernandes
-											política, social, económica y militar venezolanas. Así tenemos que el Ministerio del Trabajo y Comunicaciones se divide en dos, y
-											este último abarcó entre sus áreas el sector aéreo. De la misma manera, el 17 de junio de 1946 es decretada la creación de la
+										<p class="card-text text-justify">
+											&emsp;Después del 29 de septiembre de 1912, cuando el célebre vuelo de Frank Boland sobre Caracas, estábamos en el umbral de la I Guerra Mundial y será en ese conflicto cuando la aviación pasa a convertirse en un arma poderosa. A comienzos del año 1920 el empresario caraqueño Eloy Pérez suscribe un contrato con el teniente italiano Cosme Renella, con el fin de ofrecer en la capital y otras ciudades del interior del país, una serie de espectáculos que prácticamente eran maniobras ejecutadas por el referido piloto.
+										</p>
+										<p class="card-text text-justify">
+											&emsp;A partir de este momento recobra una gran importancia la necesidad de contar con una aviación militar para el país. Por lo que el Presidente de la República, General Juan Vicente Gómez, ordena preparar un decreto creando la Escuela de Aviación Militar de Venezuela, lo cual ocurrió el 17 de abril de 1920. Venezuela ya está en el umbral de la naciente aeronáutica.
+										</p>
+										<p class="card-text text-justify">
+											&emsp;En la década del 20 suceden interesantes acontecimientos tanto en la naciente aviación militar como en lo civil. Ya para el 14 de junio de 1920, la fábrica francesa de aviones entregó al Agregado Comercial de Venezuela en París, Emilio Posse Rivas los primeros aviones –Caudron G3- para la naciente Escuela de Aviación. Posteriormente, el 19 de diciembre el General Gómez inaugura solemnemente la Escuela de Aviación Militar.
+										</p>
+										<p class="card-text text-justify">
+											&emsp;Para 1929, la aviación comercial europea y estadounidense estaban interesadas en incursionar en nuestro país para incluirlo en sus rutas internacionales. Así el 26 de septiembre de ese año, regresa Lindbergh, pero esta vez en un vuelo experimental de la Pan American. Luego de un corto análisis, solicitan permiso para iniciar sus vuelos que comenzaron el 6 de mayo de 1930, desde Maiquetía donde arrendaron a la Familia Luy una franja de terreno para construir un campo de aterrizaje y una pequeña oficina para atender a los arriesgados pasajeros, hoy Aeropuerto Internacional de Maiquetía.
+										</p>
+										<p class="card-text text-justify">
+											&emsp;También a fines de 1929 la Compagnie Generales Aeropostale Frances-CGAF que estaba ya operando en Brasil, manda por barco un avión Potez de 8 puestos el cual es armado en Maracay cuya finalidad era igualmente estudiar las posibilidades de establecerse aquí, pero desde la capital aragüeña. La empresa es autorizada a volar en las rutas MaracayBarquisimeto, Barinas, San Fernando de Apure, Coro, Maracaibo y Ciudad Bolívar, con el nombre de Aviación Nacional Venezolana.
+										</p>
+										<p class="card-text text-justify">
+											&emsp;Para 1931, el gobierno había concluido la construcción del campo de Boca de Río para la aviación comercial. El 1 de enero de 1934, ya el país contaba con la Línea Aeropostal Venezolana (LAV), pasando a depender directamente del Ministerio de Guerra y Marina, siendo todos sus pilotos militares. Entre 1940-1945 Pan American hace entrega de los aeropuertos de Maiquetía, Maturín y Maracaibo. En junio de 1943, con el apoyo de Pan American Airways Inc. y Mexicana de Aviación, firmaron el contrato para la explotación del transporte aéreo de servicio general entre Aerovías Venezolanas S.A., AVENSA, y el Gobierno Nacional. Se funda también la empresa Taca.
+										</p>
+										<p class="card-text text-justify">
+											&emsp;Entre 1945-1950, a raíz del golpe de Estado del 18 de octubre de 1945, significativos cambios se producen en la vida política, social, económica y militar venezolanas. Así tenemos que el Ministerio del Trabajo y Comunicaciones se divide en dos, y este último abarcó entre sus áreas el sector aéreo. De la misma manera, el 17 de junio de 1946 es decretada la creación de la
 											Fuerza Aérea Venezolana.
-											LAV compra una flota de DC3,
-											cuatro DC4
-											y dos Martin 202, los cuales
-											son vendidos ya reformados para uso civil. Asimismo, se planifica extender sus
-											vuelos al exterior para lo cual negocia la adquisición de dos Constellation 049,
-											primeras y modernas aeronaves cuatrimotores de la posguerra, con los cuales crea
-											la División Internacional e inicia sus vuelos a Nueva York, Curazao, y Trinidad.
-											Asimismo, el Gobierno nacionaliza todos los aeropuertos que estaban administrados
-											por la LAV. Como no existía aun una buena red de carreteras en el país, LAV se encarga de conectar a los sitios mas apartados
-											de nuestra geografía con la capital.
-											En 1948 se funda RANSA, una empresa dedicada al transporte de carga. Es importante señalar que para 1952 los
-											ingleses habían
-											iniciado los
-											vuelos con
-											aviones a
-											reacción, los
-											Comets.
-											Entre 19551959,
-											el anuncio de BOEING de sacar al mercado una aeronave comercial a reacción, creó una
-											expectativa en casi todas las aerolíneas del mundo. En Maiquetía aterrizó el primer B707
-											en vuelo de demostración de PANAM
-											en 1958 e inició sus vuelos comerciales Nueva YorkCaracasBuenos
-											Aires en 1959.
-											3
-											UCABIngeniería
-											Informática Sist.
-											De Base de Datos I – Prof. Ana K Fernandes
-											En la década de 19601970,
-											la aparición de Viasa constituyó todo un acontecimiento. Es indiscutible que esta aerolínea
-											nació con buen pie y una excelente gerencia que la pudo colocar entre las 12 primeras aerolíneas del mundo.
-											El tráfico de pasajeros domésticos e internacionales se incrementó en el país y el aeropuerto de Maiquetía se va haciendo más
-											pequeño e incómodo. Por lo que el Ministerio de Obras Públicas (MOP) trabajó en la construcción de un moderno aeropuerto para
-											Caracas, a fin de desarrollar un moderno Terminal aéreo para Maiquetía en el marco de un Plan Maestro que es elaborado por
-											profesionales venezolanos.
-											El Estado adquiere una parte accionaria de Viasa, y compra una flotilla de
-											aviones DC9
-											para Aeropostal así como equipos DC10
-											para Viasa. Igualmente, en
-											1974 fue fundada la aerolínea Rutaca, que en sus inicios, abarcó rutas que
-											comprendían las zonas mineras y misiones indígenas al sur de Venezuela
-											Entre 19701980
-											se
-											construye un edificio
-											administrativo para la sede del Instituto Autónomo Aeropuerto
-											Internacional de Maiquetía, y un Terminal Internacional de Llegada, ambos
-											provisionales, hasta tanto no se iniciara la construcción definitiva de los
-											terminales nacional e internacional, y la sede del IAAIM respectivamente.
-											Se inaugura la nueva torre de control del aeropuerto y una segunda pista de
-											tres mil metros de longitud.
-											Igualmente, entre 19801990
-											se inauguran las nuevas instalaciones del Terminal Nacional y el edificio sede del IAAIM.
-											Viasa deja de ser privada y pasa a manos del Estado, y continúa el crecimiento de las aerolíneas en el país. Así, en 1.982 inicia
-											sus operaciones la Línea Turística Aerotuy (LTA) con el objetivo de ofrecer transporte aéreo en Venezuela y el Caribe y proveer
-											servicios turísticos integrados en áreas de belleza natural y extraordinaria, conservando sus condiciones ambientales.
-											Por su parte, en 1986 se funda Venezolana de Servicios Expresos de Carga Internacional (VENSECAR), que cuenta con
-											una flota variada de aviones cargueros y forma parte de la Red Aérea Internacional DHL Aviation.
-											En la década del 90 la Agencia Federal de Aviación de los Estados Unidos (FAA) ubica
-											al país en la Categoría 2, a causa de una serie de irregularidades en algunas aerolíneas
-											domésticas que volaban a ese país, al igual que una serie de fallas en los reglamentos
-											4
-											UCABIngeniería
-											Informática Sist.
-											De Base de Datos I – Prof. Ana K Fernandes
-											aplicados y la certificación de las empresas domésticas.
-											La aerolínea Aserca Airlines comienza sus actividades en 1992 y tan sólo dos años después, en 1994, se incorporan al
-											mercado las empresas Láser y Avior, y a mediados del 1995 abre sus puertas Santa Bárbara Airlines, siendo en principio una
-											aerolínea regional y luego nacional e internacional desde 1998.
-											En 1999 se celebra una auditoría por parte de técnicos de la Organización de Aviación Civil Internacional (OACI), ente
-											rector de la aviación civil a nivel mundial y adscrito a las Naciones Unidas, quienes señalan las fallas todavía presentes en
-											materia de seguridad. En el año 2001 se decreta la creación del Instituto Nacional de Aviación Civil, y en el año 2005 la
-											Asamblea Nacional promulga una nueva Ley de Aeronáutica Civil, asimismo nace el Instituto Nacional de Aeronáutica Civil
-											–INACque
-											sustituye al Instituto Nacional de Aviación Civil.
-											Desde finales del año 2003 se incorpora al mercado un nuevo explotador, Rutas Aéreas de Venezuela S.A. (RAVSA),
-											para brindar servicio de Transporte Aéreo Regular de Pasajeros, consolidando varias rutas a nivel nacional. A mediados de 2006
-											cambia su nombre por el de VENEZOLANA, con nuevos accionistas y un renovado equipo directivo.
+										</p>
+										<p class="card-text text-justify">
+											&emsp;LAV compra una flota de DC3, cuatro DC4 y dos Martin 202, los cuales son vendidos ya reformados para uso civil. Asimismo, se planifica extender sus vuelos al exterior para lo cual negocia la adquisición de dos Constellation 049, primeras y modernas aeronaves cuatrimotores de la posguerra, con los cuales crea la División Internacional e inicia sus vuelos a Nueva York, Curazao, y Trinidad. Asimismo, el Gobierno nacionaliza todos los aeropuertos que estaban administrados por la LAV. Como no existía aun una buena red de carreteras en el país, LAV se encarga de conectar a los sitios mas apartados de nuestra geografía con la capital.
+										</p>
+										<p class="card-text text-justify">
+											&emsp;En 1948 se funda RANSA, una empresa dedicada al transporte de carga. Es importante señalar que para 1952 los ingleses habían iniciado los vuelos con aviones a reacción, los Comets.
+										</p>
+										<p class="card-text text-justify">
+											&emsp;Entre 1955-1959, el anuncio de BOEING de sacar al mercado una aeronave comercial a reacción, creó una expectativa en casi todas las aerolíneas del mundo. En Maiquetía aterrizó el primer B707 en vuelo de demostración de PANAM en 1958 e inició sus vuelos comerciales Nueva York - Caracas - Buenos Aires en 1959.
+										</p>
+										<p class="card-text text-justify">
+											&emsp;En la década de 1960-1970, la aparición de Viasa constituyó todo un acontecimiento. Es indiscutible que esta aerolínea nació con buen pie y una excelente gerencia que la pudo colocar entre las 12 primeras aerolíneas del mundo.
+										</p>
+										<p class="card-text text-justify">
+											&emsp;El tráfico de pasajeros domésticos e internacionales se incrementó en el país y el aeropuerto de Maiquetía se va haciendo más pequeño e incómodo. Por lo que el Ministerio de Obras Públicas (MOP) trabajó en la construcción de un moderno aeropuerto para Caracas, a fin de desarrollar un moderno Terminal aéreo para Maiquetía en el marco de un Plan Maestro que es elaborado por profesionales venezolanos.
+										</p>
+										<p class="card-text text-justify">
+											&emsp;El Estado adquiere una parte accionaria de Viasa, y compra una flotilla de aviones DC-9 para Aeropostal así como equipos DC-10 para Viasa. Igualmente, en 1974 fue fundada la aerolínea Rutaca, que en sus inicios, abarcó rutas que comprendían las zonas mineras y misiones indígenas al sur de Venezuela.
+										</p>
+										<p class="card-text text-justify">
+											&emsp;Entre 1970-1980 se construye un edificio administrativo para la sede del Instituto Autónomo Aeropuerto Internacional de Maiquetía, y un Terminal Internacional de Llegada, ambos provisionales, hasta tanto no se iniciara la construcción definitiva de los terminales nacional e internacional, y la sede del IAAIM respectivamente. Se inaugura la nueva torre de control del aeropuerto y una segunda pista de tres mil metros de longitud.
+										</p>
+										<p class="card-text text-justify">
+											&emsp;Igualmente, entre 1980-1990 se inauguran las nuevas instalaciones del Terminal Nacional y el edificio sede del IAAIM. Viasa deja de ser privada y pasa a manos del Estado, y continúa el crecimiento de las aerolíneas en el país. Así, en 1982 inicia sus operaciones la Línea Turística Aerotuy (LTA) con el objetivo de ofrecer transporte aéreo en Venezuela y el Caribe y proveer servicios turísticos integrados en áreas de belleza natural y extraordinaria, conservando sus condiciones ambientales.
+										</p>
+										<p class="card-text text-justify">
+											&emsp;Por su parte, en 1986 se funda Venezolana de Servicios Expresos de Carga Internacional (VENSECAR), que cuenta con una flota variada de aviones cargueros y forma parte de la Red Aérea Internacional DHL Aviation.
+										</p>
+										<p class="card-text text-justify">
+											&emsp;En la década del 90 la Agencia Federal de Aviación de los Estados Unidos (FAA) ubica al país en la Categoría 2, a causa de una serie de irregularidades en algunas aerolíneas domésticas que volaban a ese país, al igual que una serie de fallas en los reglamentos aplicados y la certificación de las empresas domésticas.
+										</p>
+										<p class="card-text text-justify">
+											&emsp;La aerolínea Aserca Airlines comienza sus actividades en 1992 y tan sólo dos años después, en 1994, se incorporan al mercado las empresas Láser y Avior, y a mediados del 1995 abre sus puertas Santa Bárbara Airlines, siendo en principio una aerolínea regional y luego nacional e internacional desde 1998.
+										</p>
+										<p class="card-text text-justify">
+											&emsp;En 1999 se celebra una auditoría por parte de técnicos de la Organización de Aviación Civil Internacional (OACI), ente rector de la aviación civil a nivel mundial y adscrito a las Naciones Unidas, quienes señalan las fallas todavía presentes en materia de seguridad. En el año 2001 se decreta la creación del Instituto Nacional de Aviación Civil, y en el año 2005 la Asamblea Nacional promulga una nueva Ley de Aeronáutica Civil, asimismo nace el Instituto Nacional de Aeronáutica Civil –INAC- que sustituye al Instituto Nacional de Aviación Civil.
+										</p>
+										<p class="card-text text-justify">
+											&emsp;Desde finales del año 2003 se incorpora al mercado un nuevo explotador, Rutas Aéreas de Venezuela S.A. (RAVSA), para brindar servicio de Transporte Aéreo Regular de Pasajeros, consolidando varias rutas a nivel nacional. A mediados de 2006 cambia su nombre por el de VENEZOLANA, con nuevos accionistas y un renovado equipo directivo.
+										</p>
+										
+										<p class="card-text">
 											En el ínterin, para el año 2004 Venezuela recibe la visita de los técnicos de la OACI para hacer el seguimiento al proceso
 											de Auditoría de la Seguridad Operacional realizada por este organismo, determinándose que Venezuela había alcanzado un
 											grado de cumplimiento del 89% de las normas y métodos recomendados en materia de seguridad operacional, en un espectacular
@@ -624,10 +444,8 @@ if( !in_array("am_r", $permiso) && !in_array("as_r", $permiso) && !in_array("di_
 											reemplazando equipos que datan de 1977. A través del Proyecto de Modernización y Gestión del Tránsito Aéreo (Proyecto
 											MAGTA) – bajo los auspicios de la Oficina de Cooperación Técnica de la OACI – se adquieren radares de última tecnología y
 											otros equipamientos técnicos tanto para Maiquetía, como para otros aeropuertos. Se mejoran sustancialmente los servicios de
-											5
-											UCABIngeniería
-											Informática Sist.
-											De Base de Datos I – Prof. Ana K Fernandes
+											
+											
 											Búsqueda y Salvamento, con la adquisición de helicópteros especialmente destinados a esas labores. Se contrata la adquisición
 											de vehículos contra incendio para los Bomberos Aeronáuticos, a fin de dotar a otros aeropuertos de estos servicios, entre otros
 											proyectos de envergadura para el fortalecimiento de la plataforma aeronáutica del país. En 2004 se crea el Consorcio Venezolano

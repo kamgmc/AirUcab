@@ -238,6 +238,45 @@
 			</div>
 		</div>';
 	}
+	if($_GET['get'] == "fieldMaterial"){
+		$resultado = '<hr/><div class="row form-material last-material">
+							<div class="card-body col-lg-6">
+								<div class="form-group row">
+									<label class="col-sm-3 form-control-label">
+										<h3>Material</h3> </label>
+									<!-- Traer de la tabla de materiales -->
+									<div class="col-sm-9 select">
+										<select name="material[]" class="form-control" required>
+											<option value="NULL">Seleccionar</option>';
+										$qry = "SELECT mt_id AS id, mt_nombre AS nombre FROM Tipo_material ORDER BY nombre";
+										$rs = pg_query( $conexion, $qry );
+										while( $material = pg_fetch_object($rs) )
+											$resultado .= '<option value="'.$material->id.'">'.$material->nombre.'</option>';
+
+										$resultado .= '</select>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-sm-3 form-control-label">
+										<h3>Cantidad</h3>
+									</label>
+									<div class="col-sm-9">
+										<input type="text" name="cantidad[]" placeholder="Introduzca cantidad" pattern="\d+" class="form-control" required> 
+									</div>
+								</div>
+							</div>
+							<div class=" card-body col-lg-6">
+								<div class="form-group row">
+									<label class="col-sm-3 form-control-label">
+										<h3>Precio Unitario</h3>
+									</label>
+									<div class="col-sm-9">
+										<input type="text" name="precio[]" placeholder="Introduzca precio por unidad" pattern="([0-9]+\.[0-9]+)|([0-9]+)" class="form-control" required>
+									</div>
+								</div>
+							</div>
+						</div>';
+	}
 	if($_GET['get'] == "motorField"){
 		$id = htmlentities($_GET['id'], ENT_QUOTES);
 		$num = htmlentities($_GET['num'], ENT_QUOTES);

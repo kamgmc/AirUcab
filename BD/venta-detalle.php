@@ -116,7 +116,7 @@ $resultado = '<div class="modal-header">
 												<th>Avión</th>
 												<th class="text-center">Distribución</th>
 												<th class="text-center">Inicio de fabricación</th>
-												<th class="text-center">Fecha de finalización</th>
+												<th class="text-center">Fecha de entrega (Aprox)</th>
 												<th class="text-center">Precio</th>
 												<th class="text-center">Status</th>
 												<th class="text-center">Acción</th>

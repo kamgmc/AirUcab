@@ -5,14 +5,21 @@ $qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WH
 $rs = pg_query( $conexion, $qry ); $permiso = array();
 while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }
 $id = htmlentities($_GET['id'], ENT_QUOTES);
-$qry = "Select spi_id AS id, spi_fecha_ini AS fecha_ini, spi_fecha_fin AS fecha_fin, st_nombre AS status, se_nombre||' - '||zo_nombre AS ubicacion, tr_confirmacion AS recibido from Status, Status_pieza LEFT JOIN Traslado ON tr_pieza=spi_pieza LEFT JOIN Zona ON tr_zona_recibe=zo_id LEFT JOIN Sede ON se_id=zo_sede WHERE st_id=spi_status AND spi_pieza=".$id;
+$qry = "Select spi_id AS id, spi_fecha_ini AS fecha_ini, spi_fecha_fin AS fecha_fin,p_fecha_fin as p_fin, st_nombre AS status, se_nombre||' - '||zo_nombre AS ubicacion, tr_confirmacion AS recibido from Pieza, Status, Status_pieza LEFT JOIN Traslado ON tr_pieza=spi_pieza LEFT JOIN Zona ON tr_zona_recibe=zo_id LEFT JOIN Sede ON se_id=zo_sede WHERE p_id=spi_pieza and st_id=spi_status AND spi_pieza=".$id;
 $con = pg_query($conexion, $qry);
+$statusPieza = pg_fetch_object($con);
+$fin = new DateTime($statusPieza->p_fin);
 $resultado = '<div class="modal-header">
 				<h4 id="exampleModalLabel" class="modal-title">Detalle de '.$_GET['nombre'].' - '.$_GET['id'].'</h4>
 				<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
 			</div>
 			<div class="modal-body">
 				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-12 text-left">
+						<h6>Fecha de finalización (Aprox) <small>'.$fin->format('d/m/Y').'</small></h6>
+						</div>
+					</div>
 					<div class="row">
 							<div class="col-md-12">
 								<table class="table table-striped table-sm table-hover">
@@ -26,6 +33,7 @@ $resultado = '<div class="modal-header">
 										</tr>
 									</thead>
 									<tbody>';
+										$con = pg_query($conexion, $qry);
 										while( $statusPieza = pg_fetch_object($con) ){
 											$dateIni = new DateTime($statusPieza->fecha_ini);
 											if(is_null($statusPieza->fecha_fin))
