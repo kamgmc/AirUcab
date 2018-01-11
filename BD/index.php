@@ -5,7 +5,8 @@ include 'conexion.php';
 if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'] = 5;} 
 $qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$_SESSION['rol']; 
 $rs = pg_query( $conexion, $qry ); $permiso = array();
-while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
+while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso;}
+$meses = array(1 => 'Enero', 2 => 'Febrero', 3 => 'Marzo', 4 => 'Abril', 5 => 'mayo', 6 => 'junio', 7 => 'julio', 8 => 'agosto', 9 => 'septiembre', 10 => 'octubre', 11 => 'noviembre', 12 => 'diciembre');?>
 	<!DOCTYPE html>
 	<html>
 
@@ -145,7 +146,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 					<section>
 						<div class="container-fluid">
 							<div class="card-columns">
-                                <?php if( in_array("a_r", $permiso) && in_array("sa_r", $permiso) && in_array("st_r", $permiso) && in_array("p_r", $permiso) && in_array("spi_r", $permiso) ){
+                                <?php if( in_array("a_r", $permiso) && in_array("p_r", $permiso) ){
                                 $qry = "SELECT count(a_id) cantidad FROM Avion, Status_avion, Status WHERE EXTRACT(Year from a_fecha_fin)=".date('Y')." AND sa_avion=a_id AND sa_status=st_id AND st_nombre='Listo'";
 								$rs = pg_query( $conexion, $qry );
                                 $qry2="SELECT count(p_id) cantidad FROM Pieza, Status_pieza, Status WHERE EXTRACT(Year from p_fecha_fin)=".date('Y')." AND spi_pieza=p_id AND spi_status=st_id AND st_nombre='Listo'";
@@ -155,10 +156,10 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 								<div class="card">
 									<div class="card-body">
 										<h6 class="blockquote card-title">Producción anual</h6>
-										<form>
-											<div class="col-sm-8 select">
-												<select id="filtro_submodelo" name="submodelo" class="form-control">
-													<?php $qry = "Select distinct Fecha from(select EXTRACT(Year from p_fecha_fin) fecha From Pieza Union Select EXTRACT(Year from a_fecha_fin) Fecha From Avion) AS Tiempo Order By fecha ASC";
+										<form id="form-produccion-anual">
+											<div class="col-sm-12 select">
+												<select id="year-produccion-anual" class="form-control">
+													<?php $qry = "Select distinct fecha from(select EXTRACT(Year from spi_fecha_ini) fecha From Pieza, Status_pieza, Status Where p_id=spi_pieza and spi_status=st_id and st_nombre='Listo' Union Select EXTRACT(Year from sa_fecha_ini) fecha From Avion,Status_avion, Status Where a_id=sa_avion and sa_status=st_id and st_nombre='Listo') AS Tiempo Order By fecha ASC";
 													$rs = pg_query( $conexion, $qry );
 													while( $tiempo = pg_fetch_object($rs) ){?>
 													<option <?php if($tiempo->fecha == date('Y')) print 'selected';?> value="<?php print $tiempo->fecha;?>">
@@ -168,7 +169,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 												</select>
 											</div>
 										</form>
-										<p class="card-text">
+										<p id="produccion-anual-target" class="card-text">
                                             Aviones: <?php print $avion->cantidad.'<br/>';?>
 											Piezas: <?php print $pieza->cantidad; ?>
                                         </p>
@@ -177,99 +178,171 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
                                     <?php } if( in_array("a_r", $permiso) && in_array("sa_r", $permiso) && in_array("st_r", $permiso) && in_array("p_r", $permiso) && in_array("spi_r", $permiso) ){?>
 								<div class="card">
 								    <?php
-                                    $qry = "SELECT count(a_id)/12::real cantidad FROM Avion, Status_avion, Status WHERE EXTRACT(Year from a_fecha_fin)=2017 AND sa_avion=a_id AND sa_status=st_id AND st_nombre='Listo'";
+                                    $qry = "SELECT count(a_id)/12::real cantidad FROM Avion, Status_avion, Status WHERE EXTRACT(Year from a_fecha_fin)=".date('Y')." AND sa_avion=a_id AND sa_status=st_id AND st_nombre='Listo'";
 								    $rs = pg_query( $conexion, $qry );
-                                    $qry2="SELECT count(p_id)/12::real cantidad FROM Pieza, Status_pieza, Status WHERE EXTRACT(Year from p_fecha_fin)=2017 AND spi_pieza=p_id AND spi_status=st_id AND st_nombre='Listo'";
+                                    $qry2="SELECT count(p_id)/12::real cantidad FROM Pieza, Status_pieza, Status WHERE EXTRACT(Year from p_fecha_fin)=".date('Y')." AND spi_pieza=p_id AND spi_status=st_id AND st_nombre='Listo'";
                                     $rs2 = pg_query( $conexion, $qry ); 
                                     $avion = pg_fetch_object($rs);
                                     $pieza = pg_fetch_object($rs2);?>
 									<div class="card-body">
 										<h5 class="blockquote card-title">Promedio de producción mensual</h5>
-										<p class="card-text">
+										<form>
+											<div class="col-sm-12 select">
+												<select id="year-produccion-mensual" name="submodelo" class="form-control">
+													<?php $qry = "Select distinct fecha from(select EXTRACT(Year from spi_fecha_ini) fecha From Pieza, Status_pieza, Status Where p_id=spi_pieza and spi_status=st_id and st_nombre='Listo' Union Select EXTRACT(Year from sa_fecha_ini) fecha From Avion,Status_avion, Status Where a_id=sa_avion and sa_status=st_id and st_nombre='Listo') AS Tiempo Order By fecha ASC";
+													$rs = pg_query( $conexion, $qry );
+													while( $tiempo = pg_fetch_object($rs) ){?>
+													<option <?php if($tiempo->fecha == date('Y')) print 'selected';?> value="<?php print $tiempo->fecha;?>">
+														<?php print $tiempo->fecha;?>
+													</option>
+													<?php }?>
+												</select>
+											</div>
+										</form>
+										<p id="produccion-mensual-target" class="card-text">
                                             Aviones: <?php print number_format($avion->cantidad, 2, ',', '.'); ?><br>
 											Piezas: <?php print number_format($pieza->cantidad, 2, ',', '.'); ?>
                                         </p>
 									</div>
 								</div>
-                                <?php } if( in_array("cl_r", $permiso) && in_array("fv_r", $permiso) && in_array("a_r", $permiso) ){?>
+                                <?php } if( in_array("cl_r", $permiso) ){?>
 								<div class="card">
 								    <?php
-                                    $qry = "SELECT cl_nombre nombre, count(fv_id) cantidad FROM Cliente, Factura_venta, Avion WHERE a_factura_venta=fv_id AND fv_cliente=cl_id AND EXTRACT(Year from fv_fecha)=2018 GROUP BY cl_nombre ORDER BY cantidad DESC limit 10";
+                                    $qry = "SELECT cl_nombre nombre, count(a_id) cantidad FROM Cliente, Factura_venta, Avion WHERE a_factura_venta=fv_id AND fv_cliente=cl_id AND EXTRACT(Year from fv_fecha)=".date('Y')." GROUP BY cl_nombre ORDER BY cantidad DESC limit 10";
 								    $rs = pg_query( $conexion, $qry );
                                     $howMany = pg_num_rows($rs);
 								    if( $howMany > 0 ){?>
 									<div class="card-body">
 										<h5 class="blockquote card-title">Los mejores 10 clientes en base a la cantidad de compras por año.</h5>
-                                        <?php while( $cliente = pg_fetch_object($rs) ){?>
-										<p class="card-text">
-                                           Cliente: <?php print $cliente->nombre; ?><br>Cantidad de ventas: <?php print $cliente->cantidad; ?>
-                                        </p>
-                                        <?php }?>
+                                       <form>
+											<div class="col-sm-12 select">
+												<select id="year-mejores-clientes" name="submodelo" class="form-control">
+													<?php $qry2 = "Select distinct EXTRACT(Year from fv_fecha) fecha FROM Cliente, Factura_venta, Avion WHERE a_factura_venta=fv_id Order By fecha ASC";
+													$rs2 = pg_query( $conexion, $qry2 );
+													while( $tiempo = pg_fetch_object($rs2) ){?>
+													<option <?php if($tiempo->fecha == date('Y')) print 'selected';?> value="<?php print $tiempo->fecha;?>">
+														<?php print $tiempo->fecha;?>
+													</option>
+													<?php }?>
+												</select>
+											</div>
+										</form>
+                                       <div id="mejores-clientes-target">
+                                       		<?php while( $cliente = pg_fetch_object($rs) ){?>
+											<p class="card-text">
+												<strong><?php print $cliente->nombre; ?></strong> <?php print $cliente->cantidad; ?> ventas.
+											</p>
+											<?php }?>
+                                       </div>
 									</div>
 								</div>
                                 <?php }}?>
-                                <?php if( in_array("cl_r", $permiso) && in_array("fv_r", $permiso) && in_array("a_r", $permiso) ){?>
+                                <?php if(  in_array("am_r", $permiso) && in_array("a_r", $permiso) ){?>
 								<div class="card">
 								    <?php
-                                    $qry = "SELECT am_nombre modelo, Count(a_id)/12::real cantidad FROM Avion Right Join Submodelo_avion on a_submodelo_avion=as_id, Modelo_avion, Status_avion, Status WHERE as_modelo_avion=am_id AND sa_avion=a_id AND sa_status=st_id AND st_nombre='Listo' AND EXTRACT(Month from sa_fecha_fin)=10 AND EXTRACT(Year from sa_fecha_fin)=2018 GROUP BY am_nombre";
+                                    $qry = "SELECT am_nombre nombre, (Select Count(a_id)/12::real From Avion, Submodelo_avion, Status_avion, Status Where a_submodelo_avion=as_id and as_modelo_avion=ma.am_id and sa_avion=a_id and sa_status=st_id and st_nombre='Listo' AND EXTRACT(Year from sa_fecha_ini)=".date('Y').") cantidad FROM  Modelo_avion ma Order By nombre";
 								    $rs = pg_query( $conexion, $qry );
                                     $howMany = pg_num_rows($rs);
 								    if( $howMany > 0 ){?>
 									<div class="card-body">
 										<h5 class="blockquote card-title">Cantidad media de aviones producida mensualmente según el modelo</h5>
-                                        <?php while( $cliente = pg_fetch_object($rs) ){?>
-										<p class="card-text">
-                                            Modelo: <?php print $cliente->nombre; ?><br>Cantidad: <?php print $cliente->cantidad; ?>
-                                        </p>
-                                        <?php }?>
+                                       <form>
+											<div class="col-sm-12 select">
+												<select id="year-modelos-producidos" name="submodelo" class="form-control">
+													<?php $qry2 = "Select Distinct EXTRACT(Year from sa_fecha_ini) fecha From Avion, Submodelo_avion, Modelo_avion, Status_avion, Status Where a_submodelo_avion=as_id and as_modelo_avion=am_id and sa_avion=a_id and sa_status=st_id and st_nombre='Listo' Order By fecha ASC";
+													$rs2 = pg_query( $conexion, $qry2 );
+													while( $tiempo = pg_fetch_object($rs2) ){?>
+													<option <?php if($tiempo->fecha == date('Y')) print 'selected';?> value="<?php print $tiempo->fecha;?>">
+														<?php print $tiempo->fecha;?>
+													</option>
+													<?php }?>
+												</select>
+											</div>
+										</form>
+                                       <div id="modelos-producidos-target">
+											<?php while( $modelo = pg_fetch_object($rs) ){?>
+											<p class="card-text">
+												<strong><?php print $modelo->nombre;?></strong> <?php print number_format($modelo->cantidad, 2, ',', '.'); ?>
+											</p>
+											<?php }?>
+                                       </div>
 									</div>
 								</div>
-                                <?php }} if( in_array("a_r", $permiso) && in_array("as_r", $permiso) && in_array("am_r", $permiso) ){?>
+                                <?php }} if( in_array("am_r", $permiso) ){?>
 								<div class="card">
 								    <?php
-                                    $qry = "SELECT am_nombre modelo, COUNT(a_id) cantidad FROM avion,submodelo_avion, modelo_avion WHERE a_submodelo_avion=as_id AND as_modelo_avion=am_id GROUP BY am_nombre ORDER BY cantidad DESC limit 1";
+                                    $qry = "SELECT am_nombre nombre, COUNT(a_id) cantidad FROM avion,submodelo_avion, modelo_avion WHERE a_submodelo_avion=as_id AND as_modelo_avion=am_id GROUP BY am_nombre ORDER BY cantidad DESC limit 1";
 								    $rs = pg_query( $conexion, $qry );
                                     $modelo = pg_fetch_object($rs);?>
 									<div class="card-body">
 										<h5 class="blockquote card-title">El modelo mas vendido</h5>
 										<p class="card-text">
-                                            Modelo: <?php print $modelo->modelo; ?><br>Cantidad de ventas: <?php print $modelo->cantidad; ?>
+                                            <strong><?php print $modelo->nombre; ?></strong> <?php print $modelo->cantidad; ?> Unds.
                                         </p>
 									</div>
 								</div>
-                                <?php } if( in_array("zo_r", $permiso) && in_array("se_r", $permiso) && in_array("pr_r", $permiso) && in_array("prm_r", $permiso) && in_array("st_r", $permiso) && in_array("sp_r", $permiso) && in_array("pp_r", $permiso) ){?>
+                                <?php } if( in_array("zo_r", $permiso) && in_array("se_r", $permiso) ){?>
 								<div class="card">
 								    <?php
-                                    $qry = "SELECT zo_nombre zona,se_nombre sede, AVG(age(sp_fecha_ini,prm_fecha_ini)-age(prm_fecha_fin,prm_fecha_ini)) eficiencia FROM Zona, Sede, Prueba, Prueba_material, Status_prueba, Status WHERE zo_sede=se_id AND pr_zona=zo_id AND prm_prueba=pr_id AND sp_prueba=pr_id AND sp_status=st_id AND st_nombre='Aprobada' Group by se_nombre,zo_nombre UNION SELECT zo_nombre zona, se_nombre sede, AVG(age(sp_fecha_ini,pp_fecha_ini)-age(pp_fecha_fin, pp_fecha_ini)) eficiencia FROM Zona, Sede, Prueba, Prueba_pieza, Status_prueba, Status WHERE zo_sede=se_id AND pr_zona=zo_id AND pp_prueba=pr_id AND sp_prueba=pr_id AND sp_status=st_id AND st_nombre='Aprobada' Group by se_nombre, zo_nombre Order By eficiencia Limit 1";
+                                    $qry = "SELECT zo_nombre zona,se_nombre sede, AVG(age(prm_fecha_fin,prm_fecha_ini)-age(sp_fecha_ini,prm_fecha_ini)) eficiencia FROM Zona, Sede, Prueba, Prueba_material, Status_prueba, Status WHERE zo_sede=se_id AND pr_zona=zo_id AND prm_prueba=pr_id AND sp_prueba=pr_id AND sp_status=st_id AND st_nombre='Aprobada' Group by se_nombre,zo_nombre UNION SELECT zo_nombre zona, se_nombre sede, AVG(age(pp_fecha_fin, pp_fecha_ini)-age(sp_fecha_ini,pp_fecha_ini)) eficiencia FROM Zona, Sede, Prueba, Prueba_pieza, Status_prueba, Status WHERE zo_sede=se_id AND pr_zona=zo_id AND pp_prueba=pr_id AND sp_prueba=pr_id AND sp_status=st_id AND st_nombre='Aprobada' Group by se_nombre, zo_nombre Order By eficiencia desc Limit 1";
 								    $rs = pg_query( $conexion, $qry );
                                     $equipo = pg_fetch_object($rs);?>
 									<div class="card-body">
 										<h5 class="blockquote card-title">El equipo mas eficiente</h5>
 										<p class="card-text">
-                                            Equipo: <?php print $equipo->zona; ?><br> De la sede: <?php print $equipo->sede; ?>
+                                            <strong><?php print $equipo->zona; ?></strong> de la sede <?php print $equipo->sede; ?>
                                         </p>
 									</div>
 								</div>
                                 <?php } if( in_array("m_r", $permiso) && in_array("mt_r", $permiso) ){?>
 								<div class="card">
 								<?php
-                                $qry = "SELECT mt_nombre material, count(m_id) cantidad FROM Material, Tipo_material WHERE m_tipo_material=mt_id AND m_pieza IS null AND EXTRACT(Month from m_fecha)=05 GROUP BY material";
+                                $qry = "SELECT mt_nombre nombre, count(m_id) cantidad FROM Material, Tipo_material WHERE m_tipo_material=mt_id AND m_pieza IS null AND EXTRACT(Month from m_fecha)=".date('n')." AND EXTRACT(Year from m_fecha)=".date('Y')." GROUP BY nombre";
 								$rs = pg_query( $conexion, $qry );?>
 									<div class="card-body">
 										<h5 class="blockquote card-title">Inventario Mensual</h5>
-										<p class="card-text">Aqui ponemos lo que se necesita mostrar</p>
+										 <form>
+											<div class="col-sm-12 select">
+												<select id="year-inventario-mensual" name="submodelo" class="form-control">
+													<?php $qry2 = "SELECT Distinct EXTRACT(Year from m_fecha) fecha FROM Material WHERE m_pieza IS null Order by fecha ASC";
+													$rs2 = pg_query( $conexion, $qry2 );
+													while( $tiempo = pg_fetch_object($rs2) ){?>
+													<option <?php if($tiempo->fecha == date('Y')) print 'selected';?> value="<?php print $tiempo->fecha;?>">
+														<?php print $tiempo->fecha;?>
+													</option>
+													<?php }?>
+												</select>
+											</div>
+											<div class="col-sm-12 select">
+												<select id="month-inventario-mensual" name="submodelo" class="form-control">
+													<?php 
+													for($x=1; $x < 13; $x++){?>
+													<option <?php if($x == date('n')) print 'selected';?> value="<?php print $x;?>">
+														<?php print $meses[$x];?>
+													</option>
+													<?php }?>
+												</select>
+											</div>
+										</form>
+										<div id="inventario-mensual-target">
+											<?php while( $material = pg_fetch_object($rs) ){?>
+											<p class="card-text">
+												<strong><?php print $material->nombre;?></strong> <?php print number_format($material->cantidad, 0, ',', '.'); ?> unds
+											</p>
+											<?php }?>
+										</div>
 									</div>
 								</div>
                                 <?php } if( in_array("m_r", $permiso) && in_array("mt_r", $permiso) && in_array("fv_r", $permiso) ){?>
 								<div class="card">
                                     <?php
-									$qry = "SELECT mt_nombre material, count(m_id) cantidad FROM Material, Tipo_material, Factura_compra WHERE m_factura_compra=fc_id AND m_tipo_material=mt_id GROUP BY material ORDER BY cantidad DESC limit 1";
+									$qry = "SELECT mt_nombre material, count(m_id) cantidad FROM Material, Tipo_material, Factura_compra WHERE m_factura_compra=fc_id AND m_tipo_material=mt_id AND m_pieza is not null GROUP BY material ORDER BY cantidad DESC limit 1";
 								    $rs = pg_query( $conexion, $qry );
                                     $material = pg_fetch_object($rs);?>
 									<div class="card-body">
 										<h5 class="blockquote card-title">Producto mas pedido al inventario</h5>
 										<p class="card-text">
-                                            Material: <?php print $material->material; ?><br> Cantidad: <?php print $material->cantidad; ?>
+                                            <strong><?php print $material->material; ?></strong> <?php print $material->cantidad; ?> unds
                                         </p>
 									</div>
 								</div>
@@ -282,14 +355,14 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 									<div class="card-body">
 										<h5 class="blockquote card-title">El tipo de alas mas utilizado en los aviones</h5>
 										<p class="card-text">
-                                            <?php print $ala->nombre; ?><br> Cantidad: <?php print $ala->cantidad; ?>
+                                            <strong><?php print $ala->nombre; ?></strong> se utiliza en <?php print $ala->cantidad;?> aviones
                                         </p>
 									</div>
 								</div>
                                 <?php } if( in_array("a_r", $permiso) && in_array("am_r", $permiso) && in_array("as_r", $permiso) && in_array("sa_r", $permiso) && in_array("st_r", $permiso) ){?>
 								<div class="card">
 									<?php
-                                    $qry = "SELECT a_id||' - '||am_nombre nombre, AVG(age(sa_fecha_ini,a_fecha_ini)-age(a_fecha_fin,a_fecha_ini)) eficiencia FROM Avion, Status_avion, Status, Modelo_avion, Submodelo_avion WHERE sa_avion=a_id AND sa_status=st_id AND st_nombre='Listo' AND a_submodelo_avion=as_id AND as_modelo_avion=am_id AND age(sa_fecha_fin, a_fecha_ini) < age(a_fecha_fin, a_fecha_ini) GROUP BY a_id, nombre ORDER BY eficiencia limit 10";
+                                    $qry = "SELECT am_nombre||' ID '||a_id nombre, AVG(age(a_fecha_fin,a_fecha_ini)-age(sa_fecha_ini,a_fecha_ini)) eficiencia FROM Avion, Status_avion, Status, Modelo_avion, Submodelo_avion WHERE sa_avion=a_id AND sa_status=st_id AND st_nombre='Listo' AND a_submodelo_avion=as_id AND as_modelo_avion=am_id GROUP BY a_id, nombre ORDER BY eficiencia Desc limit 10";
 								    $rs = pg_query( $conexion, $qry );
                                     $howMany = pg_num_rows($rs);
 								    if( $howMany > 0 ){?>
@@ -303,29 +376,23 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 									</div>
 								</div>
                                 <?php }}?>
-								<div class="card">									
-									<div class="card-body">
-										<h5 class="blockquote card-title">Especificaciones de modelo</h5>                                        
-										<p class="card-text">Aqui ponemos lo que se necesita mostrar</p>                                        
-									</div>
-								</div>
                                 <?php if( in_array("pr_r", $permiso) && in_array("sp_r", $permiso) && in_array("st_r", $permiso) ){?>
 								<div class="card">
 									<?php
-                                    $qry = "SELECT count(pr_id) cantidad FROM Prueba, Status_prueba, Status WHERE sp_prueba=pr_id AND sp_status=st_id AND st_nombre='Rechazado'";
+                                    $qry = "Select Sum(cantidad) rechazados From(SELECT Count(pp_id) cantidad FROM Prueba_pieza, Prueba, Status WHERE pp_prueba=pr_id AND pp_status=st_id AND st_nombre='Rechazado' Union SELECT(prm_id) cantidad FROM Prueba_material, Prueba, Status WHERE prm_prueba=pr_id AND prm_status=st_id AND st_nombre='Rechazado') total";
 								    $rs = pg_query( $conexion, $qry );
                                     $pieza = pg_fetch_object($rs);?>
 									<div class="card-body">
 										<h5 class="blockquote card-title">Cantidad de productos que no cumplieron con las pruebas de calidad</h5>
 										<p class="card-text">
-                                            Cantidad: <?php print $pieza->cantidad;?>
+                                            <strong><?php print $pieza->rechazados;?></strong> unds
                                         </p>
 									</div>                                    
 								</div>
                                 <?php } if( in_array("tr_r", $permiso) && in_array("zo_r", $permiso) && in_array("se_r", $permiso) ){?>
 								<div class="card">				
                                     <?php
-                                    $qry = "Select se_nombre AS sede, Count(tr_id) AS cantidad From Traslado, Zona envia,Zona recibe, Sede Where (envia.zo_sede=se_id OR recibe.zo_sede=se_id) AND tr_zona_envia<>tr_zona_recibe AND tr_zona_envia=envia.zo_id AND tr_zona_recibe=recibe.zo_id Group By se_nombre";
+                                    $qry = "Select se_nombre AS nombre, (Select Count(tr_id) From Traslado, Zona Where tr_zona_envia=zo_id and zo_sede=se.se_id and tr_zona_envia<>tr_zona_recibe)/(Select Count(tr_id) From Traslado Where tr_zona_envia<>tr_zona_recibe) AS promedio From Sede se";
 								    $rs = pg_query( $conexion, $qry );
                                     $howMany = pg_num_rows($rs);
                                     if( $howMany > 0 ){?>
@@ -333,22 +400,22 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 										<h5 class="blockquote card-title">Promedio de traslados entre las sedes</h5>     
                                         <?php while( $sede = pg_fetch_object($rs) ){?>
 										<p class="card-text">
-                                            Sede: <?php print $sede->sede;?><br> Traslados: <?php print $sede->cantidad;?>
+                                            <strong><?php print $sede->nombre;?></strong> <?php print $sede->promedio;?> en promedio.
                                         </p>    
                                         <?php }?>
 									</div>
 								</div>
                                 <?php }}?>
-                                <?php if( in_array("tr_r", $permiso) && in_array("zo_r", $permiso) && in_array("se_r", $permiso) ){?>
+                                <?php if( in_array("se_r", $permiso) ){?>
 								<div class="card">
 									<?php
-                                    $qry = "Select se_nombre AS sede, Count(tr_id) AS cantidad From Traslado, Zona envia,Zona recibe, Sede Where (envia.zo_sede=se_id OR recibe.zo_sede=se_id) AND tr_zona_envia=envia.zo_id AND tr_zona_recibe=recibe.zo_id Group By se_nombre";
+                                    $qry = "SELECT se_nombre nombre, AVG(age(sp_fecha_ini,prm_fecha_ini)-age(prm_fecha_fin,prm_fecha_ini)) eficiencia FROM Zona, Sede, Prueba, Prueba_material, Status_prueba, Status WHERE zo_sede=se_id AND pr_zona=zo_id AND prm_prueba=pr_id AND sp_prueba=pr_id AND sp_status=st_id AND st_nombre='Aprobada' Group by se_nombre UNION SELECT se_nombre sede, AVG(age(sp_fecha_ini,pp_fecha_ini)-age(pp_fecha_fin, pp_fecha_ini)) eficiencia FROM Zona, Sede, Prueba, Prueba_pieza, Status_prueba, Status WHERE zo_sede=se_id AND pr_zona=zo_id AND pp_prueba=pr_id AND sp_prueba=pr_id AND sp_status=st_id AND st_nombre='Aprobada' Group by se_nombre Order By eficiencia Limit 1";
 								    $rs = pg_query( $conexion, $qry );
                                     $sede = pg_fetch_object($rs);?>
 									<div class="card-body">
-										<h5 class="blockquote card-title">Planta mas eficiente en base al cumplimiento de las fechas</h5>
+										<h5 class="blockquote card-title">Sede mas eficiente en base al cumplimiento de las fechas</h5>
 										<p class="card-text">
-                                            Sede: <?php print $sede->sede;?>
+                                            <?php print $sede->nombre;?>
                                         </p>
 									</div>
 								</div>
@@ -490,6 +557,76 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 		<script src="vendor/jquery.cookie/jquery.cookie.js"></script>
 		<script src="vendor/jquery-validation/jquery.validate.min.js"></script>
 		<script src="js/front.js"></script>
+		<script>
+			$("#year-produccion-anual").change(function () {
+				var href = $("#year-produccion-anual option:selected").val();
+				$.ajax({
+					type: "POST"
+					, dataType: "html"
+					, url: "getter-reportes.php?get=produccion-anual&year=" + href
+					, success: function (data) {
+						$("#produccion-anual-target").html(data);
+					}
+				});
+			});
+			$("#year-produccion-mensual").change(function () {
+				var href = $("#year-produccion-mensual option:selected").val();
+				$.ajax({
+					type: "POST"
+					, dataType: "html"
+					, url: "getter-reportes.php?get=produccion-mensual&year=" + href
+					, success: function (data) {
+						$("#produccion-mensual-target").html(data);
+					}
+				});
+			});
+			$("#year-mejores-clientes").change(function () {
+				var href = $("#year-mejores-clientes option:selected").val();
+				$.ajax({
+					type: "POST"
+					, dataType: "html"
+					, url: "getter-reportes.php?get=mejores-clientes&year=" + href
+					, success: function (data) {
+						$("#mejores-clientes-target").html(data);
+					}
+				});
+			});
+			$("#year-modelos-producidos").change(function () {
+				var href = $("#year-modelos-producidos option:selected").val();
+				$.ajax({
+					type: "POST"
+					, dataType: "html"
+					, url: "getter-reportes.php?get=modelos-producidos&year=" + href
+					, success: function (data) {
+						$("#modelos-producidos-target").html(data);
+					}
+				});
+			});
+			$("#year-inventario-mensual").change(function () {
+				var year = $("#year-inventario-mensual option:selected").val();
+				var month = $("#month-inventario-mensual option:selected").val();
+				$.ajax({
+					type: "POST"
+					, dataType: "html"
+					, url: "getter-reportes.php?get=inventario-mensual&year="+year+"&month="+month
+					, success: function (data) {
+						$("#inventario-mensual-target").html(data);
+					}
+				});
+			});
+			$("#month-inventario-mensual").change(function () {
+				var year = $("#year-inventario-mensual option:selected").val();
+				var month = $("#month-inventario-mensual option:selected").val();
+				$.ajax({
+					type: "POST"
+					, dataType: "html"
+					, url: "getter-reportes.php?get=inventario-mensual&year="+year+"&month="+month
+					, success: function (data) {
+						$("#inventario-mensual-target").html(data);
+					}
+				});
+			});
+		</script>
 	</body>
 
 	</html>
