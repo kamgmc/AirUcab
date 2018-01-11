@@ -5,7 +5,17 @@ include 'conexion.php';
 if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'] = 5;} 
 $qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$_SESSION['rol']; 
 $rs = pg_query( $conexion, $qry ); $permiso = array();
-while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
+while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }
+if( !in_array("m_r", $permiso) && !in_array("mt_r", $permiso) ){
+	if( !isset($_SESSION['code']) ){
+		header('Location: login.php');
+		exit;
+	}
+    else{
+        header('Location: ventas.php');
+		exit;
+    }
+}?>
 	<!DOCTYPE html>
 	<html>
 
@@ -49,7 +59,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 							<!-- Navbar Menu -->
 							<ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
 								<!-- Logout    -->
-								<li class="nav-item"><a href="login.html" class="nav-link logout">Cerrar Sesion<i class="fa fa-sign-out"></i></a></li>
+								<li class="nav-item"><a href="login.php" class="nav-link logout">Cerrar Sesion<i class="fa fa-sign-out"></i></a></li>
 							</ul>
 						</div>
 					</div>
@@ -58,14 +68,16 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 			<div class="page-content d-flex align-items-stretch">
 				<!-- Side Navbar -->
 				<nav class="side-navbar">
-					<!-- Sidebar Header-->
-					<div class="sidebar-header d-flex align-items-center">
-						<div class="avatar"><img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
-						<div class="title">
-							<h1 class="h4">Abuelo Fdz</h1>
-							<p>Director Operaciones</p>
-						</div>
-					</div>
+					<?php if( isset($_SESSION['code']) ){ ?>
+				    <!-- Sidebar Header-->
+				    <div class="sidebar-header d-flex align-items-center">
+                        <div class="avatar"><img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
+					   <div class="title">
+                           <h1 class="h4"><?php print $_SESSION['usuario']; ?></h1>
+						  <p><?php print $_SESSION['cargo']; ?></p>
+					   </div>
+				    </div>
+				    <?php } ?>
 					<!-- Sidebar Navidation Menus-->
 					<ul class="list-unstyled">
 						<li>
@@ -135,8 +147,10 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 					<!-- Section de TABS-->
 					<section>
 						<div class="container-fluid">
+                            <?php if( in_array("m_r", $permiso) && in_array("mt_r", $permiso) ){?>
 							<input id="tab0" type="radio" name="tabs" class="no-display" checked>
 							<label for="tab0" class="label"><i class="fa fa-server " aria-hidden="true"></i> Materiales</label>
+                            <?php }?>
 							<!-- TAB Materiales -->
 							<section id="content0" class="sectiontab">
 								<!-- Filtrador-->
@@ -175,101 +189,44 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 								<!-- TABLE STARTS -->
 								<div class="col-md-12">
 									<div class="card">
-										<div class="row">
-											<div class="col-sm-10"></div>
+                                        <?php if(in_array("m_c",$permiso)){?>
+								       <div class="row">
+				                            <div class="col-sm-10"></div>
 											<div class="col-sm-2 pad-top">
 												<button type="button" data-toggle="modal" data-target="#myModalMaterialCrear" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
 											</div>
-										</div>
+								       </div>
+                                       <?php }?>
+                                       <?php if( in_array("pr_r", $permiso) ){?>
+									   <?php $qry = "SELECT mt_nombre nombre, count(m_id) cantidad FROM Material LEFT JOIN Tipo_material ON m_tipo_material=mt_id GROUP BY mt_nombre";
+									   $rs = pg_query( $conexion, $qry );
+									   $howMany = pg_num_rows($rs);
+									   if( $howMany > 0 ){?>
 										<div class="card-body">
 											<table class="table table-striped table-sm table-hover">
 												<thead>
 													<tr>
-														<th>ID</th>
-														<th>NOMBRE</th>
-														<th>FECHA</th>
-														<th>PRECIO UNITARIO</th>
-														<th>CANTIDAD</th>
-														<th>STATUS</th>
-														<th class="text-center">Accion</th>
+														<th class="text-center">Nombre</th>
+														<th class="text-center">CANTIDAD</th>												
 													</tr>
 												</thead>
 												<tbody>
+                                                    <?php while( $material = pg_fetch_object($rs)){ ?>
 													<tr>
-														<td>1</td>
-														<td>Arena</td>
-														<td>14/12/2017</td>
-														<td>23.00</td>
-														<td>3</td>
-														<td><span class="badge badge-primary">DISPONIBLE</span></td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#myModalDetalle"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href="" data-toggle="modal" data-target="#myModalBorrarVenta"> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td>1</td>
-														<td>Arena</td>
-														<td>14/12/2017</td>
-														<td>23.00</td>
-														<td>3</td>
-														<td><span class="badge badge-primary">DISPONIBLE</span></td>
+                                                            <?php print $material->nombre;?>
+                                                        </td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#myModalDetalle"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href="" data-toggle="modal" data-target="#myModalBorrarVenta"> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
+                                                            <?php print $material->cantidad;?>
+                                                        </td>												
 													</tr>
-													<tr>
-														<td>1</td>
-														<td>Arena</td>
-														<td>14/12/2017</td>
-														<td>23.00</td>
-														<td>3</td>
-														<td><span class="badge badge-primary">DISPONIBLE</span></td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#myModalDetalle"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href="" data-toggle="modal" data-target="#myModalBorrarVenta"> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td>1</td>
-														<td>Arena</td>
-														<td>14/12/2017</td>
-														<td>23.00</td>
-														<td>3</td>
-														<td><span class="badge badge-primary">DISPONIBLE</span></td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#myModalDetalle"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href="" data-toggle="modal" data-target="#myModalBorrarVenta"> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td>1</td>
-														<td>Arena</td>
-														<td>14/12/2017</td>
-														<td>23.00</td>
-														<td>3</td>
-														<td><span class="badge badge-primary">DISPONIBLE</span></td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#myModalDetalle"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href="" data-toggle="modal" data-target="#myModalBorrarVenta"> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td>1</td>
-														<td>Arena</td>
-														<td>14/12/2017</td>
-														<td>23.00</td>
-														<td>3</td>
-														<td><span class="badge badge-primary">DISPONIBLE</span></td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#myModalDetalle"> <i class="fa fa-file-text-o" aria-hidden="true"></i> </a>&emsp;
-															<a href="" data-toggle="modal" data-target="#myModalBorrarVenta"> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
+													<?php }?>
 												</tbody>
 											</table>
 										</div>
+                                        <?php }else{?>
+									   <h3>&emsp;No se han encontrado resultados.</h3>
+									   <?php }}?>
 									</div>
 								</div>
 								<!-- TABLE ENDS -->
@@ -665,4 +622,4 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 		<script src="js/front.js"></script>
 	</body>
 
-	</html>
+	</html>    
