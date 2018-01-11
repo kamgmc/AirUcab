@@ -1531,11 +1531,6 @@ INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Rafael Urdaneta','Parr
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('La Victoria','Parroquia','360');
 INSERT INTO Lugar (lu_nombre, lu_tipo, lu_lugar) VALUES ('Raúl Cuenca','Parroquia','360');
 --PERMISOS DEL SISTEMA
---STATUS
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear status','st_c');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver status','st_r');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar status','st_u');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar status','st_d');
 --ROL_SISTEMA
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear rol de sistema','sr_c');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver rol de sistema','sr_r');
@@ -1546,11 +1541,6 @@ INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear rol - permiso','rp_c
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver rol - permiso','rp_r');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar rol - permiso','rp_u');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar rol - permiso','rp_d');
---LUGAR
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear lugar','lu_c');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver lugar','lu_r');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar lugar','lu_u');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar lugar','lu_d');
 --SEDE
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear sede','se_c');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver sede','se_r');
@@ -1927,14 +1917,6 @@ INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,165);
 INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,166);
 INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,167);
 INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,168);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,169);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,170);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,171);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,172);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,173);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,174);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,175);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,176);
 --USUARIO ANONIMO
 INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(2,74);
 INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(2,78);
@@ -2005,14 +1987,6 @@ INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,165);
 INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,166);
 INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,167);
 INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,168);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,169);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,170);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,171);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,172);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,173);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,174);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,175);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,176);
 --EMPLEADO
 INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,105);
 INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,106);
@@ -2056,14 +2030,6 @@ INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,165);
 INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,166);
 INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,167);
 INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,168);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,169);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,170);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,171);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,172);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,173);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,174);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,175);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,176);
 --TIPO_CONTACTO
 INSERT INTO Tipo_contacto (ct_nombre) VALUES ('Movil');
 INSERT INTO Tipo_contacto (ct_nombre) VALUES ('Fijo');
