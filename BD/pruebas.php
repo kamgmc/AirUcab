@@ -507,14 +507,6 @@ if( !in_array("pr_r", $permiso) && !in_array("st_r", $permiso) ){
 							</div>
 						</div>
 						<!-- Modal Status Crear ENDS -->
-
-						
-
-
-
-
-
-
 					</div>
 				</section>
 				<!-- Section de TABS ENDS -->

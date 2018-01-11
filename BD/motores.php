@@ -1207,7 +1207,7 @@ if( !in_array("mb_r", $permiso) && !in_array("mm_r", $permiso) && !in_array("mo_
 		</footer>
 	</div>
 	<!-- Javascript files-->
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="js/jquery-3.2.1.min.js"></script>
 	<script src="vendor/popper.js/umd/popper.min.js">
 	</script>
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
