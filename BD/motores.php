@@ -59,7 +59,7 @@ if( !in_array("mb_r", $permiso) && !in_array("mm_r", $permiso) && !in_array("mo_
 						<!-- Navbar Menu -->
 						<ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
 							<!-- Logout    -->
-							<li class="nav-item"><a href="login.html" class="nav-link logout">Cerrar Sesion<i class="fa fa-sign-out"></i></a></li>
+							<li class="nav-item"><a href="login.php" class="nav-link logout">Cerrar Sesion<i class="fa fa-sign-out"></i></a></li>
 						</ul>
 					</div>
 				</div>
@@ -80,8 +80,8 @@ if( !in_array("mb_r", $permiso) && !in_array("mm_r", $permiso) && !in_array("mo_
 				<?php } ?>
 				<!-- Sidebar Navidation Menus-->
 				<ul class="list-unstyled">
-					<li>
-						<a href="index.php"> <i class="fa fa-space-shuttle" aria-hidden="true"></i> Reportes</a>
+                    <li>
+						<a href="index.php"> <i class="fa fa-space-shuttle" aria-hidden="true"></i> Reportes </a>
 					</li>
 					<?php if( in_array("am_r", $permiso) || in_array("as_r", $permiso) || in_array("di_r", $permiso) ){ ?>
 					<li>
@@ -118,7 +118,7 @@ if( !in_array("mb_r", $permiso) && !in_array("mm_r", $permiso) && !in_array("mo_
 						<a href="Sedes.php"> <i class="fa fa-university " aria-hidden="true"></i>Sedes </a>
 					</li>
                     <?php } ?>
-					<?php if( in_array("em_r", $permiso) || in_array("sr_r", $permiso) || in_array("er_r", $permiso) || in_array("ti_r", $permiso) || in_array("pe_r", $permiso) || in_array("ct_r", $permiso) ){ ?>
+					<?php if( in_array("em_r", $permiso) || in_array("sr_r", $permiso) || in_array("er_r", $permiso) || in_array("ti_r", $permiso) || in_array("pe_r", $permiso) ){ ?>
 					<li>
 						<a href="empleados.php"><i class="fa fa-id-card-o"></i>Empleados</a>
 					</li>
@@ -402,7 +402,7 @@ if( !in_array("mb_r", $permiso) && !in_array("mm_r", $permiso) && !in_array("mo_
 							<!-- TABLE STARTS -->
 							<div class="col-md-12">
 								<div class="card">
-                                    <?php if( in_array("mm_c", $permiso) ) { ?>
+                                    <?php if( in_array("mb_c", $permiso) ) { ?>
 									<div class="row">
 										<div class="col-sm-10"></div>
 										<div class="col-sm-2 pad-top">
@@ -419,7 +419,7 @@ if( !in_array("mb_r", $permiso) && !in_array("mm_r", $permiso) && !in_array("mo_
 											<thead>
 												<tr>
 													<th class="text-center">Nombre</th>
-													<th class="text-center">Accion</th>
+													<th class="text-right">Accion</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -428,10 +428,12 @@ if( !in_array("mb_r", $permiso) && !in_array("mm_r", $permiso) && !in_array("mo_
                                                     <td class="text-center">
                                                          <?php print $marca->nombre;?>
                                                     </td>
-													<td class="text-center">
+													<td class="text-right">
+                                                        <?php if(in_array("mb_u", $permiso)){?>
 														<a href="<?php print $marca->id;?>" data-toggle="modal" data-target="#myModalMarcaMotor"> 
                                                             <i class="fa fa-pencil" aria-hidden="true" title="Editar"></i> 
                                                         </a>
+                                                        <?php }?>
                                                         <?php if( in_array("mb_d", $permiso) ) { ?> &emsp;
 												        <a href="marca_motor-crud.php?delete=<?php print $marca->id;?>">
                                                             <i class="fa fa-trash-o" aria-hidden="true" title="Eliminar"></i> 
@@ -512,7 +514,9 @@ if( !in_array("mb_r", $permiso) && !in_array("mm_r", $permiso) && !in_array("mo_
 									</div>
 									<div class="modal-footer">
 										<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
+                                        <?php if(in_array("m_u", $permiso)){?>
 										<button type="button" data-toggle="modal" data-target="#myModalMotorEditar" class="btn btn-primary">Editar</button>
+                                        <?php }?>
 									</div>
 								</div>
 							</div>
@@ -665,7 +669,9 @@ if( !in_array("mb_r", $permiso) && !in_array("mm_r", $permiso) && !in_array("mo_
 									</div>
 									<div class="modal-footer">
 										<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
+                                        <?php if(in_array("mm_u", $permiso)){?>
 										<button type="button" data-toggle="modal" data-target="#myModalModeloMotorEditar" class="btn btn-primary">Editar</button>
+                                        <?php }?>
 									</div>
 								</div>
 							</div>
@@ -1201,10 +1207,12 @@ if( !in_array("mb_r", $permiso) && !in_array("mm_r", $permiso) && !in_array("mo_
 		</footer>
 	</div>
 	<!-- Javascript files-->
-	<script src="js/jquery-3.2.1.min.js"></script>
-	<script src="vendor/popper.js/umd/popper.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="vendor/popper.js/umd/popper.min.js">
+	</script>
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="vendor/jquery.cookie/jquery.cookie.js"></script>
+	<script src="vendor/jquery.cookie/jquery.cookie.js">
+	</script>
 	<script src="vendor/jquery-validation/jquery.validate.min.js"></script>
 	<script src="js/front.js"></script>
 </body>
