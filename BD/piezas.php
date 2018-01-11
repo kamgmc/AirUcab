@@ -261,6 +261,8 @@ if( !in_array("p_r", $permiso) && !in_array("pm_r", $permiso) && !in_array("wt_r
                                             
 										</table>
 									</div>
+                                    <?php }else{?>
+									<h3>&emsp;No se han encontrado resultados.</h3>
                                     <?php }}?>
 								</div>
 							</div>
@@ -367,6 +369,8 @@ if( !in_array("p_r", $permiso) && !in_array("pm_r", $permiso) && !in_array("wt_r
 											</tbody>
 										</table>
 									</div>
+                                    <?php }else{?>
+									<h3>&emsp;No se han encontrado resultados.</h3>
                                     <?php }}?>
 								</div>
 							</div>
@@ -448,6 +452,8 @@ if( !in_array("p_r", $permiso) && !in_array("pm_r", $permiso) && !in_array("wt_r
 											</tbody>
 										</table>
 									</div>
+                                    <?php }else{?>
+									<h3>&emsp;No se han encontrado resultados.</h3>
                                     <?php }}?>
 								</div>
 							</div>
@@ -529,6 +535,8 @@ if( !in_array("p_r", $permiso) && !in_array("pm_r", $permiso) && !in_array("wt_r
 											</tbody>
 										</table>
 									</div>
+                                    <?php }else{?>
+									<h3>&emsp;No se han encontrado resultados.</h3>
                                     <?php }}?>
 								</div>
 							</div>
