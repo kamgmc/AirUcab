@@ -2447,26 +2447,32 @@ INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pie
 INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Aerofreno',62,1,3,' es reducir la velocidad mínima que el avión necesita para despegar o aterrizar.');
 INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Punta de ala',62,1,4,' formas geométricas instaladas en el extremo del ala, su misión es reducir la resistencia inducida del ala ya que
 evita la conexión entre intradós y el extradós.');
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Aleron baja velocidad',62,1,4);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Aleron alta velocidad',62,1,4);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Carenados de los flaps',62,1,4);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Flap krueger',62,2,4);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Stats',62,1,4);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Flap 3 partes interior',62,1,4);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Flap 3 partes exterior',62,1,4);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Spoiler',62,1,4);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Aerofreno',62,1,4);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Punta de ala',62,1,5);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Aleron baja velocidad',62,1,5);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Aleron alta velocidad',62,1,5);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Carenados de los flaps',62,1,5);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Flap krueger',62,2,5);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Stats',62,1,5);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Flap 3 partes interior',62,1,5);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Flap 3 partes exterior',62,1,5);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Spoiler',62,1,5);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Aerofreno',62,1,5);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Punta de ala',62,1,6);
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Aleron baja velocidad',62,1,4,'se encargar de controlar el movimiento de balance en vuelo del avión, mediante una deflexión de manera asimétrica
+(un alerón hacia arriba y otro hacia abajo) se consigue que el avión gire sobre su eje longitudinal. Usado para realizar giros con el avión a bajo Mach');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Aleron alta velocidad',62,1,4,'se encargar de controlar el movimiento de balance en vuelo del avión, mediante una deflexión de manera asimétrica
+(un alerón hacia arriba y otro hacia abajo) se consigue que el avión gire sobre su eje longitudinal. Usado para realizar giros con el avión a Mach de crucero');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Carenados de los flaps',62,1,4,' es reducir la velocidad mínima que el avión necesita para despegar o aterrizar.');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Flap krueger',62,2,4,' es reducir la velocidad mínima que el avión necesita para despegar o aterrizar.');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Stats',62,1,4,' es reducir la velocidad mínima que el avión necesita para despegar o aterrizar.');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Flap 3 partes interior',62,1,4,' es reducir la velocidad mínima que el avión necesita para despegar o aterrizar.');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Flap 3 partes exterior',62,1,4,' es reducir la velocidad mínima que el avión necesita para despegar o aterrizar.');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Spoiler',62,1,4,' es reducir la velocidad mínima que el avión necesita para despegar o aterrizar.');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Aerofreno',62,1,4,' es reducir la velocidad mínima que el avión necesita para despegar o aterrizar.');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Punta de ala',62,1,5,' formas geométricas instaladas en el extremo del ala, su misión es reducir la resistencia inducida del ala ya que
+evita la conexión entre intradós y el extradós.');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Aleron baja velocidad',62,1,5,'se encargar de controlar el movimiento de balance en vuelo del avión, mediante una deflexión de manera asimétrica
+(un alerón hacia arriba y otro hacia abajo) se consigue que el avión gire sobre su eje longitudinal. Usado para realizar giros con el avión a bajo Mach');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Aleron alta velocidad',62,1,5,'se encargar de controlar el movimiento de balance en vuelo del avión, mediante una deflexión de manera asimétrica
+(un alerón hacia arriba y otro hacia abajo) se consigue que el avión gire sobre su eje longitudinal. Usado para realizar giros con el avión a Mach de crucero');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Carenados de los flaps',62,1,5,' es reducir la velocidad mínima que el avión necesita para despegar o aterrizar.');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Flap krueger',62,2,5,' es reducir la velocidad mínima que el avión necesita para despegar o aterrizar.');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Stats',62,1,5,' es reducir la velocidad mínima que el avión necesita para despegar o aterrizar.');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Flap 3 partes interior',62,1,5,' es reducir la velocidad mínima que el avión necesita para despegar o aterrizar.');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Flap 3 partes exterior',62,1,5,' es reducir la velocidad mínima que el avión necesita para despegar o aterrizar.');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Spoiler',62,1,5,' es reducir la velocidad mínima que el avión necesita para despegar o aterrizar.');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Aerofreno',62,1,5,' es reducir la velocidad mínima que el avión necesita para despegar o aterrizar.');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Punta de ala',62,1,6,' formas geométricas instaladas en el extremo del ala, su misión es reducir la resistencia inducida del ala ya que
+evita la conexión entre intradós y el extradós.');
 INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Aleron baja velocidad',62,1,6);
 INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Aleron alta velocidad',62,1,6);
 INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Carenados de los flaps',62,1,6);
