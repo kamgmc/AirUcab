@@ -80,70 +80,70 @@ if( !in_array("se_r", $permiso) && !in_array("zo_r", $permiso) ){
 					<?php } ?>
 				<!-- Sidebar Navidation Menus-->
 				<ul class="list-unstyled">
-					<li>
-						<a href="index.php"> <i class="fa fa-space-shuttle" aria-hidden="true"></i> Reportes</a>
-					</li>
-					<?php if( in_array("am_r", $permiso) || in_array("as_r", $permiso) || in_array("di_r", $permiso) ){ ?>
-					<li>
-						<a href="modeloavion.php"> <i class="fa fa-plane" aria-hidden="true"></i> Aviones </a>
-					</li>
-					<?php } ?>
-					<?php if (in_array("mb_r", $permiso) || in_array("mm_r", $permiso) || in_array("mo_r", $permiso) ) { ?>
-					<li>
-						<a href="motores.php"> <i class="fa fa-tachometer " aria-hidden="true"></i>Motores </a>
-					</li>
-					<?php } ?>
-					<?php if( in_array("p_r", $permiso) || in_array("pm_r", $permiso) || in_array("wt_r", $permiso) || in_array("et_r", $permiso) ) { ?>
-					<li>
-						<a href="piezas.php"> <i class="fa fa-puzzle-piece " aria-hidden="true"></i>Piezas </a>
-					</li>
-					<?php } ?>
-					<?php if( in_array("m_r", $permiso) || in_array("tm_r", $permiso) ) { ?>
-					<li>
-						<a href="materiales.php"> <i class="fa fa-server " aria-hidden="true"></i>Materiales </a>
-					</li>
-					<?php } ?>
-					<?php if( in_array("fv_r", $permiso) ){ ?>
-					<li>
-						<a href="ventas.php"> <i class="fa fa-paper-plane-o" aria-hidden="true"></i>Ventas </a>
-					</li>
-					<?php } ?>
-					<?php if( in_array("fc_r", $permiso) ){ ?>
-					<li>
-						<a href="compras.php"> <i class="fa fa-shopping-bag " aria-hidden="true"></i>Compras </a>
-					</li>
-					<?php } ?>
-					<?php if( in_array("se_r", $permiso) || in_array("zo_r", $permiso) ){ ?>
-					<li class="active">
-						<a href="Sedes.php"> <i class="fa fa-university " aria-hidden="true"></i>Sedes </a>
-					</li>
-					<?php } ?>
-					<?php if( in_array("em_r", $permiso) || in_array("sr_r", $permiso) || in_array("er_r", $permiso) || in_array("ti_r", $permiso) || in_array("pe_r", $permiso) || in_array("ct_r", $permiso) ){ ?>
-					<li>
-						<a href="empleados.php"><i class="fa fa-id-card-o"></i>Empleados</a>
-					</li>
-					<?php } ?>
-					<?php if( in_array("cl_r", $permiso) ){ ?>
-					<li>
-						<a href="clientes.php"> <i class="fa fa-address-book-o" aria-hidden="true"></i>Clientes</a>
-					</li>
-					<?php } ?>
-					<?php if( in_array("po_r", $permiso) ){ ?>
-					<li>
-						<a href="proveedores.php"> <i class="fa fa-truck" aria-hidden="true"></i>Proveedores</a>
-					</li>
-					<?php } ?>
-					<?php if( in_array("pr_r", $permiso) ){ ?>
-					<li>
-						<a href="pruebas.php"> <i class="fa fa-check-square-o " aria-hidden="true"></i>Pruebas </a>
-					</li>
-					<?php } ?>
-					<?php if( in_array("tr_r", $permiso) ){ ?>
-					<li>
-						<a href="traslados.php"> <i class="fa fa-share-square-o " aria-hidden="true"></i>Traslados </a>
-					</li>
-					<?php } ?>
-				</ul>
+                        <li>
+						  <a href="index.php"> <i class="fa fa-space-shuttle" aria-hidden="true"></i> Reportes </a>
+					    </li>
+						<?php if( in_array("am_r", $permiso) || in_array("as_r", $permiso) || in_array("di_r", $permiso) ){ ?>
+						<li>
+							<a href="modeloavion.php"> <i class="fa fa-plane" aria-hidden="true"></i> Aviones </a>
+						</li>
+						<?php } ?>
+                        <?php if (in_array("mb_r", $permiso) || in_array("mm_r", $permiso) || in_array("mo_r", $permiso) ) { ?>
+                        <li>
+							<a href="motores.php"> <i class="fa fa-tachometer " aria-hidden="true"></i>Motores </a>
+						</li>
+                        <?php } ?>
+                        <?php if( in_array("p_r", $permiso) || in_array("pm_r", $permiso) || in_array("wt_r", $permiso) || in_array("et_r", $permiso) ) { ?>
+                        <li>
+							<a href="piezas.php"> <i class="fa fa-puzzle-piece " aria-hidden="true"></i>Piezas </a>
+						</li>
+                        <?php } ?>
+                        <?php if( in_array("m_r", $permiso) || in_array("tm_r", $permiso) ) { ?>
+                        <li>
+							<a href="materiales.php"> <i class="fa fa-server " aria-hidden="true"></i>Materiales </a>
+						</li>
+                        <?php } ?>
+                        <?php if( in_array("fv_r", $permiso) ){ ?>
+						<li>
+							<a href="ventas.php"> <i class="fa fa-paper-plane-o" aria-hidden="true"></i>Ventas </a>
+						</li>
+						<?php } ?>
+                        <?php if( in_array("fc_r", $permiso) ){ ?>
+						<li>
+							<a href="compras.php"> <i class="fa fa-shopping-bag " aria-hidden="true"></i>Compras </a>
+						</li>
+						<?php } ?>
+                        <?php if( in_array("se_r", $permiso) || in_array("zo_r", $permiso) ){ ?>
+                        <li class="active">
+							<a href="Sedes.php"> <i class="fa fa-university " aria-hidden="true"></i>Sedes </a>
+						</li>
+                        <?php } ?>
+						<?php if( in_array("em_r", $permiso) || in_array("sr_r", $permiso) || in_array("er_r", $permiso) || in_array("ti_r", $permiso) || in_array("pe_r", $permiso) ){ ?>
+						<li>
+							<a href="empleados.php"><i class="fa fa-id-card-o"></i>Empleados</a>
+						</li>
+						<?php } ?>
+						<?php if( in_array("cl_r", $permiso) ){ ?>
+						<li>
+							<a href="clientes.php"> <i class="fa fa-address-book-o" aria-hidden="true"></i>Clientes</a>
+						</li>
+						<?php } ?>
+						<?php if( in_array("po_r", $permiso) ){ ?>
+						<li>
+							<a href="proveedores.php"> <i class="fa fa-truck" aria-hidden="true"></i>Proveedores</a>
+						</li>
+						<?php } ?>
+						<?php if( in_array("pr_r", $permiso) ){ ?>
+						<li>
+							<a href="pruebas.php"> <i class="fa fa-check-square-o " aria-hidden="true"></i>Pruebas </a>
+						</li>
+                        <?php } ?>
+                        <?php if( in_array("tr_r", $permiso) ){ ?>
+						<li>
+							<a href="traslados.php"> <i class="fa fa-share-square-o " aria-hidden="true"></i>Traslados </a>
+						</li>
+						<?php } ?>
+					</ul>
 			</nav>
 			<div class="content-inner">
 				<!-- Section de TABS -->
@@ -239,7 +239,7 @@ if( !in_array("se_r", $permiso) && !in_array("zo_r", $permiso) ){
 												                <i class="fa fa-file-text-o" aria-hidden="true" title="Ver mas"></i> 
 												            </a>&emsp;
 															<?php if( in_array("se_d", $permiso) ){ ?>&emsp;
-												            <a href="empleado-crud.php?delete=<?php print $empleado->id;?>">
+												            <a href="sede-crud.php?delete=<?php print $sede->id;?>">
 																<i class="fa fa-trash-o" aria-hidden="true" title="Eliminar"></i> 
 															</a>
 												            <?php }?>
@@ -313,8 +313,8 @@ if( !in_array("se_r", $permiso) && !in_array("zo_r", $permiso) ){
 												<tr>
 													<th class="text-center">ID</th>
 													<th class="text-center">Nombre</th>
-													<th class="text-center">Tipo</th>
-													<th class="text-center">Sede</th>
+                                                    <th class="text-center">Sede</th>
+													<th class="text-center">Tipo</th>													
 													<th class="text-center">Accion</th>
 												</tr>
 											</thead>
@@ -327,18 +327,18 @@ if( !in_array("se_r", $permiso) && !in_array("zo_r", $permiso) ){
 														<td class="text-center">
                                                             <?php print $zona->nombre;?>
                                                         </td>
-														<td class="text-center">
-                                                            <?php print $zona->tipo;?>
-                                                        </td>
-														<td class="text-center">
+                                                        <td class="text-center">
                                                             <?php print $zona->sede ?>
                                                         </td>
+														<td class="text-center">
+                                                            <?php print $zona->tipo;?>
+                                                        </td>														
 														<td class="text-center">
 															<a class="click-zona-detalle" href="<?php print $zona->id;?>"> 
 												                <i class="fa fa-file-text-o" aria-hidden="true" title="Ver mas"></i> 
 												            </a>&emsp;
 															<?php if( in_array("zo_d", $permiso) ){ ?>&emsp;
-												            <a href="empleado-crud.php?delete=<?php print $empleado->id;?>">
+												            <a href="zona-crud.php?delete=<?php print $zona->id;?>">
 																<i class="fa fa-trash-o" aria-hidden="true" title="Eliminar"></i> 
 															</a>
 												            <?php }?>
@@ -470,7 +470,9 @@ if( !in_array("se_r", $permiso) && !in_array("zo_r", $permiso) ){
 									</div>
 									<div class="modal-footer">
 										<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
+                                        <?php if(in_array("se_u", $permiso)){?>
 										<button type="button" data-toggle="modal" data-target="#myModalSedeEditar" class="btn btn-primary">Editar</button>
+                                        <?php }?>
 									</div>
 								</div>
 							</div>
@@ -802,7 +804,7 @@ if( !in_array("se_r", $permiso) && !in_array("zo_r", $permiso) ){
 		</footer>
 	</div>
 	<!-- Javascript files-->
-	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script src="vendor/popper.js/umd/popper.min.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="vendor/jquery.cookie/jquery.cookie.js"></script>
