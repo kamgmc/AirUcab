@@ -23,6 +23,8 @@
 ![ver rol-permiso 2](https://image.prntscr.com/image/8uZGdou7RgaxOUuZYQ6_6w.png)
 :x: Ver tipo ala (**error al presionar la pestana Piezas - Captura- -> arreglar**) <br>
 ![ver tipo ala](https://image.prntscr.com/image/LVzIIwy3QNyFEUY2yWrpsA.png)
+:x: Ver tipo estabilizador (**error al presionar la pestana Piezas - Captura- -> arreglar**) <br>
+![ver tipo estabilizador](https://image.prntscr.com/image/sV4zj_wLRfO8o9pArIy-WQ.png)
 
 :o: Ver modelo motores (**se ve la tabla bien, al abrir detalle esta vacio -> No implementado**)<br>
 ![ver modelo motores](https://image.prntscr.com/image/epUE871iRWWTjgMkMnLg8g.png)
