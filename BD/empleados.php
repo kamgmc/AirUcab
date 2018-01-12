@@ -6,7 +6,7 @@ if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'
 $qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$_SESSION['rol']; 
 $rs = pg_query( $conexion, $qry ); $permiso = array();
 while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }
-if( !in_array("em_r", $permiso) && !in_array("sr_r", $permiso) && !in_array("er_r", $permiso) && !in_array("rp_r", $permiso) && !in_array("ti_r", $permiso) && !in_array("pe_r", $permiso) && !in_array("ct_r", $permiso) ){
+if( !in_array("em_r", $permiso) && !in_array("sr_r", $permiso) && !in_array("er_r", $permiso) && !in_array("ti_r", $permiso) && !in_array("pe_r", $permiso) && !in_array("ct_r", $permiso) ){
 	if( !isset($_SESSION['code']) ){
 		header('Location: login.php');
 		exit;
@@ -127,7 +127,7 @@ if( !in_array("em_r", $permiso) && !in_array("sr_r", $permiso) && !in_array("er_
 							<a href="Sedes.php"> <i class="fa fa-university " aria-hidden="true"></i>Sedes </a>
 						</li>
                         <?php } ?>
-						<?php if( in_array("em_r", $permiso) || in_array("sr_r", $permiso) || in_array("er_r", $permiso) || in_array("ti_r", $permiso) || in_array("pe_r", $permiso) || in_array("rp_r", $permiso) || in_array("ct_r", $permiso) ){ ?>
+						<?php if( in_array("em_r", $permiso) || in_array("sr_r", $permiso) || in_array("er_r", $permiso) || in_array("ti_r", $permiso) || in_array("pe_r", $permiso) || in_array("ct_r", $permiso) ){ ?>
 						<li class="active">
 							<a href="empleados.php"><i class="fa fa-id-card-o"></i>Empleados</a>
 						</li>
@@ -984,59 +984,49 @@ if( !in_array("em_r", $permiso) && !in_array("sr_r", $permiso) && !in_array("er_
 								<!-- TABLE STARTS -->
 								<div class="col-md-12">
 									<div class="card">
-										<div class="row">
+                                        <?php if(in_array("ct_c", $permiso)){?>
+										<div class="row">                                            
 											<div class="col-sm-10"></div>
 											<div class="col-sm-2 pad-top">
 												<button type="button" data-toggle="modal" data-target="#myModalTipoContactoCrear" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
 											</div>
 										</div>
+                                        <?php }?>
+                                        <?php if(in_array("ct_r", $permiso)){?>
+                                        <?php 	
+								        $qry = "SELECT ct_id id, ct_nombre nombre FROM Tipo_contacto";
+										$rs = pg_query( $conexion, $qry );?>										
 										<div class="card-body">
 											<table class="table table-striped table-sm table-hover">
 												<thead>
 													<tr>
-														<th>NOMBRE</th>
+														<th class="text-center">Nombre</th>
 														<th class="text-center">Acción</th>
 													</tr>
 												</thead>
 												<tbody>
+                                                    <?php while( $contacto = pg_fetch_object($rs) ){?>
 													<tr>
-														<td>Email</td>
 														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#myModalTipoContactoEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+                                                            <?php print $contacto->nombre;?>
+                                                        </td>
+														<td class="text-center">
+                                                            <?php if(in_array("ct_u", $permiso)){?>
+															<a href="<?php print $contacto->id;?>" data-toggle="modal" data-target="#myModalTipoContactoEditar"> 
+                                                                <i class="fa fa-pencil" aria-hidden="true"></i> 
+                                                            </a>
+                                                            <?php } if(in_array("ct_d", $permiso)){?>&emsp;
+															<a href="tipo_contacto.php?delete=<?php print $contacto->id;?>"> 
+                                                                <i class="fa fa-trash-o" aria-hidden="true"></i> 
+                                                            </a>
+                                                            <?php }?>
 														</td>
 													</tr>
-													<tr>
-														<td>Email</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#myModalTipoContactoEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td>Email</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#myModalTipoContactoEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td>Email</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#myModalTipoContactoEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td>Email</td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#myModalTipoContactoEditar"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
+                                                    <?php }?>
 												</tbody>
 											</table>
 										</div>
+                                        <?php }?>
 									</div>
 								</div>
 								<!-- TABLE ENDS -->
