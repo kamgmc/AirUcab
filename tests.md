@@ -39,4 +39,6 @@
 :o: Ver status prueba (**No implementado y No necesario**)<br>
 :o: Ver tipo de pago (**No implementado?**)<br>
 :o: Ver pago (**No implementado?**)<br>
+:o: Ver tipo de material (**No implementado?**)<br>
+:o: Ver t material - m pieza (**No implementado?**)<br>
 
