@@ -330,7 +330,7 @@ if( !in_array("em_r", $permiso) && !in_array("sr_c", $permiso) && !in_array("er_
 							<div id="ModalCrearEmpleado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 								<div role="document" class="modal-dialog modal-xl">
 									<div class="modal-content">
-										<form action="empleado-crud?create=true" method="post">
+										<form action="empleado-crud.php?create=true" method="post">
 											<div class="modal-header">
 												<h4 id="exampleModalLabel" class="modal-title">Crear Empleado</h4>
 												<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
