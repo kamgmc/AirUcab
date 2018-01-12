@@ -5,14 +5,24 @@ include 'conexion.php';
 if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'] = 5;} 
 $qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$_SESSION['rol']; 
 $rs = pg_query( $conexion, $qry ); $permiso = array();
-while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
+while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso;}
+if( !in_array("tr_r", $permiso) ){
+	if( !isset($_SESSION['code']) ){
+		header('Location: login.php');
+		exit;
+	}
+    else{
+        header('Location: index.php');
+        exit;
+    }
+}?>
 <!DOCTYPE html>
 <html>
 
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>AirUCAB - Main</title>
+	<title>AirUCAB - Traslados</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="robots" content="all,follow">
@@ -29,7 +39,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 	<!-- Custom stylesheet - for your changes-->
 	<link rel="stylesheet" href="css/custom.css">
 	<!-- Favicon-->
-	<link rel="shortcut icon" href="favicon.png"> </head>
+	<link rel="shortcut icon" href="img/airucab.ico"> </head>
 
 <body>
 	<div class="page home-page">
@@ -49,7 +59,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 						<!-- Navbar Menu -->
 						<ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
 							<!-- Logout    -->
-							<li class="nav-item"><a href="login.html" class="nav-link logout">Cerrar Sesion<i class="fa fa-sign-out"></i></a></li>
+							<li class="nav-item"><a href="login.php" class="nav-link logout">Cerrar Sesion<i class="fa fa-sign-out"></i></a></li>
 						</ul>
 					</div>
 				</div>
@@ -58,14 +68,16 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 		<div class="page-content d-flex align-items-stretch">
 			<!-- Side Navbar -->
 			<nav class="side-navbar">
+				<?php if( isset($_SESSION['code']) ){ ?>
 				<!-- Sidebar Header-->
 				<div class="sidebar-header d-flex align-items-center">
 					<div class="avatar"><img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
 					<div class="title">
-						<h1 class="h4">Abuelo Fdz</h1>
-						<p>Director Operaciones</p>
+						<h1 class="h4"><?php print $_SESSION['usuario']; ?></h1>
+						<p><?php print $_SESSION['cargo']; ?></p>
 					</div>
 				</div>
+				<?php } ?>
 				<!-- Sidebar Navidation Menus-->
 				<ul class="list-unstyled">
 					<li>
@@ -137,10 +149,10 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 				<!-- Section de TABS -->
 				<section>
 					<div class="container-fluid">
+                        <?php if(in_array("tr_r", $permiso)){?>
 						<input id="tab0" type="radio" name="tabs" class="no-display" checked>
 						<label for="tab0" class="label"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> Traslados</label>
-						
-						
+						<?php }?>
 						<!-- TAB Traslado -->
 						<section id="content0" class="sectiontab">
 							<!-- Filtrador-->
@@ -195,18 +207,24 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 							<!-- TABLE STARTS -->
 							<div class="col-md-12">
 								<div class="card">
+                                    <?php if( in_array("tr_c", $permiso) ){?>
 									<div class="row">
 										<div class="col-sm-10"></div>
 										<div class="col-sm-2 pad-top">
 											<button type="button" data-toggle="modal" data-target="#myModalTrasladoCrear" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
 										</div>
 									</div>
+                                    <?php }?>
+                                    <?php if( in_array("tr_r", $permiso) ){?>
+								    <?php $qry = "SELECT tr_id id, tr_fecha_ini inicio, tr_fecha_fin fin, see.se_nombre ||' - '|| envia.zo_nombre envia, ser.se_nombre ||' - '|| recibe.zo_nombre recibe, tr_pieza pieza, tr_material material, tr_motor motor FROM Traslado LEFT JOIN Zona envia ON tr_zona_envia=envia.zo_id LEFT JOIN Sede see ON envia.zo_sede=see.se_id LEFT JOIN Zona recibe ON tr_zona_recibe=recibe.zo_id LEFT JOIN Sede ser ON recibe.zo_sede=ser.se_id";
+									$rs = pg_query( $conexion, $qry );
+									$howMany = pg_num_rows($rs);
+									if( $howMany > 0 ){?>
 									<div class="card-body">
 										<table class="table table-striped table-sm table-hover">
 											<thead>
 												<tr>
 													<th>ID</th>
-													<th>Nombre</th>
 													<th>Fecha Salida</th>
 													<th>Fecha Llegada</th>
 													<th>Zona Salida</th>
@@ -216,131 +234,53 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 												</tr>
 											</thead>
 											<tbody>
-												
-													<tr>
-														<td>1</td>
-														<td>Tornillos</td>
-														<td>11/11/2017</td>
-														<td>11/11/2017</td>
-														<td>Margarita</td>
-														<td>Bogota</td>
-														<td class="text-center"><span class="badge badge-info">Entregado</span></td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#myModalTraslado"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td>1</td>
-														<td>Tornillos</td>
-														<td>11/11/2017</td>
-														<td>11/11/2017</td>
-														<td>Margarita</td>
-														<td>Bogota</td>
-														<td class="text-center"><span class="badge badge-info">Entregado</span></td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#myModalTraslado"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td>1</td>
-														<td>Tornillos</td>
-														<td>11/11/2017</td>
-														<td>11/11/2017</td>
-														<td>Margarita</td>
-														<td>Bogota</td>
-														<td class="text-center"><span class="badge badge-info">Entregado</span></td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#myModalTraslado"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td>1</td>
-														<td>Tornillos</td>
-														<td>11/11/2017</td>
-														<td>11/11/2017</td>
-														<td>Margarita</td>
-														<td>Bogota</td>
-														<td class="text-center"><span class="badge badge-info">Entregado</span></td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#myModalTraslado"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td>1</td>
-														<td>Tornillos</td>
-														<td>11/11/2017</td>
-														<td>11/11/2017</td>
-														<td>Margarita</td>
-														<td>Bogota</td>
-														<td class="text-center"><span class="badge badge-info">Entregado</span></td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#myModalTraslado"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td>1</td>
-														<td>Tornillos</td>
-														<td>11/11/2017</td>
-														<td>11/11/2017</td>
-														<td>Margarita</td>
-														<td>Bogota</td>
-														<td class="text-center"><span class="badge badge-info">Entregado</span></td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#myModalTraslado"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td>1</td>
-														<td>Tornillos</td>
-														<td>11/11/2017</td>
-														<td>11/11/2017</td>
-														<td>Margarita</td>
-														<td>Bogota</td>
-														<td class="text-center"><span class="badge badge-info">Entregado</span></td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#myModalTraslado"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													<tr>
-														<td>1</td>
-														<td>Tornillos</td>
-														<td>11/11/2017</td>
-														<td>11/11/2017</td>
-														<td>Margarita</td>
-														<td>Bogota</td>
-														<td class="text-center"><span class="badge badge-info">Entregado</span></td>
-														<td class="text-center">
-															<a href="" data-toggle="modal" data-target="#myModalTraslado"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>&emsp;
-															<a href=""> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-														</td>
-													</tr>
-													
-												
+												<?php while( $traslado = pg_fetch_object($rs) ){?>
+												<tr>
+													<td>
+                                                        <?php print $traslado->id;?>
+                                                    </td>
+													<td>
+                                                        <?php print $traslado->inicio;?>
+                                                    </td>
+													<td>
+                                                        <?php print $traslado->fin;?>
+                                                    </td>
+													<td>
+                                                        <?php print $traslado->envia;?>
+                                                    </td>
+													<td>
+                                                        <?php print $traslado->recibe;?>
+                                                    </td>
+													<td class="text-center">
+                                                        <?php if(isset($traslado->recibe)){?>
+                                                        <span class="badge badge-success">Entregado</span>
+                                                        <?php }else{?>
+                                                        <span class="badge badge-info">En camino</span>
+                                                        <?php }?>
+                                                    </td>
+													<td class="text-center">
+                                                        <?php if(in_array("tr_u", $permiso)){?>
+														<a href="" data-toggle="modal" data-target="#myModalTraslado"> 
+                                                            <i class="fa fa-pencil" aria-hidden="true" title="Editar"></i> 
+                                                        </a>
+                                                        <?php } if(in_array("tr_d", $permiso)){?>&emsp;
+														<a href=""> 
+                                                            <i class="fa fa-trash-o" aria-hidden="true" title="Eliminar"></i> 
+                                                        </a>
+                                                        <?php }?>
+													</td>
+												</tr>													
+												<?php }?>
 											</tbody>
 										</table>
 									</div>
+                                    <?php }else{?>
+									<h3>&emsp;No se han encontrado resultados.</h3>
+									<?php }}?>
 								</div>
 							</div>
 							<!-- TABLE ENDS -->
 						</section>
-
-
-						
-
-						
-
-
-						
-						
-
-												
 						<!-- Modal Traslado Editar -->
 						<div id="myModalTraslado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 							<div role="document" class="modal-dialog modal-xl">
@@ -449,11 +389,6 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 							</div>
 						</div>
 						<!-- Modal Traslado Editar ENDS -->
-
-					
-
-						
-
 						<!-- Modal Traslado Crear -->
 						<div id="myModalTrasladoCrear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 							<div role="document" class="modal-dialog modal-xl">
@@ -545,13 +480,6 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 							</div>
 						</div>
 						<!-- Modal Traslado Crear ENDS -->
-
-						
-
-
-
-
-
 
 					</div>
 				</section>
