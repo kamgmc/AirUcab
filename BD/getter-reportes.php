@@ -24,7 +24,7 @@
 		$qry = "SELECT cl_nombre nombre, count(a_id) cantidad FROM Cliente, Factura_venta, Avion WHERE a_factura_venta=fv_id AND fv_cliente=cl_id AND EXTRACT(Year from fv_fecha)=".$year." GROUP BY cl_nombre ORDER BY cantidad DESC limit 10";
 		$rs = pg_query( $conexion, $qry ); $resultado = "";
 		while($cliente = pg_fetch_object($rs))
-			$resultado.='<p class="card-text"><strong>'.$cliente->nombre.'</strong> '.$cliente->cantidad.' ventas.</p>';
+			$resultado.='<p><strong>'.$cliente->nombre.'</strong> '.$cliente->cantidad.' ventas.</p>';
 	}
 	if($_GET['get'] == "modelos-producidos"){
 		$year = htmlentities($_GET['year'], ENT_QUOTES);
@@ -33,7 +33,7 @@
 		$resultado="<option value='NULL'>Seleccionar</option>";
 		$rs = pg_query( $conexion, $qry ); $resultado = "";
 		while($modelo = pg_fetch_object($rs))
-			$resultado.='<p class="card-text"><strong>'.$modelo->nombre.'</strong> '.number_format($modelo->cantidad, 2, ',', '.').' ventas.</p>';
+			$resultado.='<p><strong>'.$modelo->nombre.'</strong> '.number_format($modelo->cantidad, 2, ',', '.').' ventas.</p>';
 	}
 	if($_GET['get'] == "inventario-mensual"){
 		$year = htmlentities($_GET['year'], ENT_QUOTES);
@@ -42,9 +42,13 @@
 		$answer = pg_query( $conexion, $qry );
 		$resultado="<option value='NULL'>Seleccionar</option>";
 		$rs = pg_query( $conexion, $qry ); $resultado = "";
-		while($material = pg_fetch_object($rs))
-			$resultado.='<p class="card-text"><strong>'.$material->nombre.'</strong> '.number_format($material->cantidad, 0, ',', '.').' ventas.</p>';
+		if(pg_num_rows($rs) > 0){
+			while($material = pg_fetch_object($rs))
+				$resultado.='<p><strong>'.$material->nombre.'</strong> '.number_format($material->cantidad, 0, ',', '.').' unds .</p>';
+		}
+		else print "<p>Sin inventario.</p>";
+				
+		
 	}
-	
 	echo $resultado;
 ?>
