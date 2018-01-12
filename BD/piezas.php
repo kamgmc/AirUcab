@@ -152,13 +152,13 @@ if( !in_array("p_r", $permiso) && !in_array("pm_r", $permiso) && !in_array("wt_r
                         <?php if( in_array("p_r", $permiso) ){?>
 						<input id="tab0" type="radio" name="tabs" class="no-display" checked>
 						<label for="tab0" class="label"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> Piezas</label>
-                        <?} php if( in_array("pm_r", $permiso) ){?>
+                        <?php } if( in_array("pm_r", $permiso) ){?>
 						<input id="tab1" type="radio" name="tabs" class="no-display" >
 						<label for="tab1" class="label"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> Modelo Piezas</label>
-                        <?} php if( in_array("wt_r", $permiso) ){?>
+                        <?php } if( in_array("wt_r", $permiso) ){?>
 						<input id="tab2" type="radio" name="tabs" class="no-display" >
 						<label for="tab2" class="label"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> Tipo Ala</label>
-                        <?} php if( in_array("et_r", $permiso) ){?>
+                        <?php } if( in_array("et_r", $permiso) ){?>
 						<input id="tab3" type="radio" name="tabs" class="no-display" >
 						<label for="tab3" class="label"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> Tipo Estabilizador</label>
                         <?php }?>
