@@ -29,6 +29,8 @@
 :x: Ver modelo de pieza (**error al presionar la pestana Piezas - Captura- -> arreglar**) <br>
 ![ver modelo de pieza](https://image.prntscr.com/image/Y65sPrOtSJ_1c1-IDUECag.png)
 
+:interrobang: Ver status prueba (**No implementado o depende de prueba y no esta implementado**)<br>
+
 :o: Ver modelo motores (**se ve la tabla bien, al abrir detalle esta vacio -> No implementado**)<br>
 ![ver modelo motores](https://image.prntscr.com/image/epUE871iRWWTjgMkMnLg8g.png)
 :o: Ver s avion - m motor (**No implementado**)<br>
