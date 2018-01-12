@@ -2393,18 +2393,18 @@ INSERT INTO Status_motor (stm_fecha_ini,stm_motor,stm_status) VALUES ('2017-12-2
 INSERT INTO Status_motor (stm_fecha_ini,stm_motor,stm_status) VALUES ('2017-12-21',6,2);
 --MODELO_PIEZA
 --ALAS
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_tipo_ala) VALUES ('Ala',93,1);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_tipo_ala) VALUES ('Ala',93,2);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_tipo_ala) VALUES ('Ala',93,3);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_tipo_ala) VALUES ('Ala',93,4);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_tipo_ala) VALUES ('Ala',93,5);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_tipo_ala) VALUES ('Ala',93,6);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_tipo_ala) VALUES ('Ala',93,7);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_tipo_ala) VALUES ('Ala',93,8);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_tipo_ala) VALUES ('Ala',93,9);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_tipo_ala) VALUES ('Ala',93,10);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_tipo_ala) VALUES ('Ala',93,11);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_tipo_ala) VALUES ('Ala',93,12);
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_tipo_ala,pm_descripcion) VALUES ('Ala',93,1,'Es un cuerpo aerodinámico formado por una estructura muy fuerte, compuesta por un perfil aerodinámico1 o perfil alar envolviendo a uno o más largueros2 y que es capaz de generar una diferencia de presiones entre su cara superior (extradós3) y su cara inferior (intradós4) al desplazarse por el aire lo que produce la fuerza ascendente de sustentación que mantiene al avión en vuelo.');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_tipo_ala,pm_descripcion) VALUES ('Ala',93,2,'Es un cuerpo aerodinámico formado por una estructura muy fuerte, compuesta por un perfil aerodinámico1 o perfil alar envolviendo a uno o más largueros2 y que es capaz de generar una diferencia de presiones entre su cara superior (extradós3) y su cara inferior (intradós4) al desplazarse por el aire lo que produce la fuerza ascendente de sustentación que mantiene al avión en vuelo.');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_tipo_ala,pm_descripcion) VALUES ('Ala',93,3,'Es un cuerpo aerodinámico formado por una estructura muy fuerte, compuesta por un perfil aerodinámico1 o perfil alar envolviendo a uno o más largueros2 y que es capaz de generar una diferencia de presiones entre su cara superior (extradós3) y su cara inferior (intradós4) al desplazarse por el aire lo que produce la fuerza ascendente de sustentación que mantiene al avión en vuelo.');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_tipo_ala,pm_descripcion) VALUES ('Ala',93,4,'Es un cuerpo aerodinámico formado por una estructura muy fuerte, compuesta por un perfil aerodinámico1 o perfil alar envolviendo a uno o más largueros2 y que es capaz de generar una diferencia de presiones entre su cara superior (extradós3) y su cara inferior (intradós4) al desplazarse por el aire lo que produce la fuerza ascendente de sustentación que mantiene al avión en vuelo.');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_tipo_ala,pm_descripcion) VALUES ('Ala',93,5,'Es un cuerpo aerodinámico formado por una estructura muy fuerte, compuesta por un perfil aerodinámico1 o perfil alar envolviendo a uno o más largueros2 y que es capaz de generar una diferencia de presiones entre su cara superior (extradós3) y su cara inferior (intradós4) al desplazarse por el aire lo que produce la fuerza ascendente de sustentación que mantiene al avión en vuelo.');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_tipo_ala,pm_descripcion) VALUES ('Ala',93,6,'Es un cuerpo aerodinámico formado por una estructura muy fuerte, compuesta por un perfil aerodinámico1 o perfil alar envolviendo a uno o más largueros2 y que es capaz de generar una diferencia de presiones entre su cara superior (extradós3) y su cara inferior (intradós4) al desplazarse por el aire lo que produce la fuerza ascendente de sustentación que mantiene al avión en vuelo.');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_tipo_ala,pm_descripcion) VALUES ('Ala',93,7,'Es un cuerpo aerodinámico formado por una estructura muy fuerte, compuesta por un perfil aerodinámico1 o perfil alar envolviendo a uno o más largueros2 y que es capaz de generar una diferencia de presiones entre su cara superior (extradós3) y su cara inferior (intradós4) al desplazarse por el aire lo que produce la fuerza ascendente de sustentación que mantiene al avión en vuelo.');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_tipo_ala,pm_descripcion) VALUES ('Ala',93,8,'Es un cuerpo aerodinámico formado por una estructura muy fuerte, compuesta por un perfil aerodinámico1 o perfil alar envolviendo a uno o más largueros2 y que es capaz de generar una diferencia de presiones entre su cara superior (extradós3) y su cara inferior (intradós4) al desplazarse por el aire lo que produce la fuerza ascendente de sustentación que mantiene al avión en vuelo.');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_tipo_ala,pm_descripcion) VALUES ('Ala',93,9,'Es un cuerpo aerodinámico formado por una estructura muy fuerte, compuesta por un perfil aerodinámico1 o perfil alar envolviendo a uno o más largueros2 y que es capaz de generar una diferencia de presiones entre su cara superior (extradós3) y su cara inferior (intradós4) al desplazarse por el aire lo que produce la fuerza ascendente de sustentación que mantiene al avión en vuelo.');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_tipo_ala,pm_descripcion) VALUES ('Ala',93,10,'Es un cuerpo aerodinámico formado por una estructura muy fuerte, compuesta por un perfil aerodinámico1 o perfil alar envolviendo a uno o más largueros2 y que es capaz de generar una diferencia de presiones entre su cara superior (extradós3) y su cara inferior (intradós4) al desplazarse por el aire lo que produce la fuerza ascendente de sustentación que mantiene al avión en vuelo.');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_tipo_ala,pm_descripcion) VALUES ('Ala',93,11,'Es un cuerpo aerodinámico formado por una estructura muy fuerte, compuesta por un perfil aerodinámico1 o perfil alar envolviendo a uno o más largueros2 y que es capaz de generar una diferencia de presiones entre su cara superior (extradós3) y su cara inferior (intradós4) al desplazarse por el aire lo que produce la fuerza ascendente de sustentación que mantiene al avión en vuelo.');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_tipo_ala,pm_descripcion) VALUES ('Ala',93,12,'Es un cuerpo aerodinámico formado por una estructura muy fuerte, compuesta por un perfil aerodinámico1 o perfil alar envolviendo a uno o más largueros2 y que es capaz de generar una diferencia de presiones entre su cara superior (extradós3) y su cara inferior (intradós4) al desplazarse por el aire lo que produce la fuerza ascendente de sustentación que mantiene al avión en vuelo.');
 --COMPONENTES DE LAS ALAS
 INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Punta de ala',62,1,1,' formas geométricas instaladas en el extremo del ala, su misión es reducir la resistencia inducida del ala ya que
 evita la conexión entre intradós y el extradós.');
@@ -2563,39 +2563,39 @@ INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pie
 INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Spoiler',62,1,12,' es reducir la velocidad mínima que el avión necesita para despegar o aterrizar.');
 INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Aerofreno',62,1,12,' es reducir la velocidad mínima que el avión necesita para despegar o aterrizar.');
 --ESTABILIZADORES
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_tipo_estabilizador) VALUES ('Estabilizador',93,1,1);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_tipo_estabilizador) VALUES ('Estabilizador',93,1,2);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_tipo_estabilizador) VALUES ('Estabilizador',93,1,3);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_tipo_estabilizador) VALUES ('Estabilizador',93,1,4);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_tipo_estabilizador) VALUES ('Estabilizador',93,1,5);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_tipo_estabilizador) VALUES ('Estabilizador',93,1,6);
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_tipo_estabilizador,pm_descripcion) VALUES ('Estabilizador',93,1,1,'Son pequeñas alas que garantizan la estabilidad del avión. Podemos mencionar aquí los diversos tipos de colas de aviones que nosotros también fabricamos.');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_tipo_estabilizador,pm_descripcion) VALUES ('Estabilizador',93,1,2,'Son pequeñas alas que garantizan la estabilidad del avión. Podemos mencionar aquí los diversos tipos de colas de aviones que nosotros también fabricamos.');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_tipo_estabilizador,pm_descripcion) VALUES ('Estabilizador',93,1,3,'Son pequeñas alas que garantizan la estabilidad del avión. Podemos mencionar aquí los diversos tipos de colas de aviones que nosotros también fabricamos.');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_tipo_estabilizador,pm_descripcion) VALUES ('Estabilizador',93,1,4,'Son pequeñas alas que garantizan la estabilidad del avión. Podemos mencionar aquí los diversos tipos de colas de aviones que nosotros también fabricamos.');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_tipo_estabilizador,pm_descripcion) VALUES ('Estabilizador',93,1,5,'Son pequeñas alas que garantizan la estabilidad del avión. Podemos mencionar aquí los diversos tipos de colas de aviones que nosotros también fabricamos.');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_tipo_estabilizador,pm_descripcion) VALUES ('Estabilizador',93,1,6,'Son pequeñas alas que garantizan la estabilidad del avión. Podemos mencionar aquí los diversos tipos de colas de aviones que nosotros también fabricamos.');
 --TREN DE ATERRIZAJE
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad) VALUES ('Tren de aterrizaje Fijo',93,1);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad) VALUES ('Tren de aterrizaje Retráctil',93,1);
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_descripcion) VALUES ('Tren de aterrizaje Fijo',93,1,'Son unos dispositivos que permiten a la aeronave desplazarse por tierra. La función del tren es absorber la energía cinética producida por el impacto.');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_descripcion) VALUES ('Tren de aterrizaje Retractil',93,2,'Son unos dispositivos que permiten a la aeronave desplazarse por tierra. La función del tren es absorber la energía cinética producida por el impacto.');
 --CABINA DE CONTROL
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado) VALUES ('Cabina de control',93);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza) VALUES ('Anemometro',62,1,141);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza) VALUES ('Altímetro',62,1,141);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza) VALUES ('Variómetro',62,1,141);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza) VALUES ('Inclinómetro',62,1,141);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza) VALUES ('Horizonte artificial',62,1,141);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza) VALUES ('Brújula',62,1,141);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza) VALUES ('Indicador de rumbos',62,1,141);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza) VALUES ('ADF',62,1,141);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza) VALUES ('DME',62,1,141);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza) VALUES ('CDI',62,1,141);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza) VALUES ('ILS',62,1,141);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza) VALUES ('Piloto',62,1,141);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza) VALUES ('Sistema de gestion de vuelo',62,1,141);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza) VALUES ('Manómetro',62,1,141);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza) VALUES ('Termómetro de aceite',62,1,141);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza) VALUES ('Caudal de combustible',62,1,141);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza) VALUES ('Temperatura de culatas',62,1,141);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza) VALUES ('Nivel de combustible',62,1,141);
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_descripcion) VALUES ('Cabina de control',93,'Son dispositivos tanto mecánicos como electrónicos, que permiten al piloto tener conocimiento de los parámetros de vuelo principales, como la velocidad, altura, rumbo, ritmo de ascenso o descenso, y del estado de los sistemas del avión durante el vuelo, como los motores, el sistema hidráulico, el eléctrico, las condiciones meteorológicas, el rumbo programado del vuelo, la ruta seguida.');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Anemometro',62,1,141,'utilizado para medir la velocidad del viento y así ayudar en la predicción del clima.');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Altímetro',62,1,141,'Instrumento de medición que indica la diferencia de altitud entre el punto donde se encuentra localizado y un punto de referencia');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Variómetro',62,1,141,'aparato dotado de un sensor de presión atmosférica');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Inclinómetro',62,1,141,'para medir la inclinación del plano con respecto de la horizontal (superficie terrestre)');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Horizonte artificial',62,1,141,'es un instrumento de vuelo que muestra la orientación de la aeronave respecto al horizonte');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Brújula',62,1,141,'instrumento de orientación que utiliza una aguja imantada para señalar el norte magnético terrestre');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Indicador de rumbos',62,1,141,'instrumento giro utilizado para indicar el rumbo que lleva la aeronave.');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('ADF',62,1,141,'El ADF o Automatic Direction Finder es un instrumento de Navegación muy utilizado generalmente por pilotos de aeronaves ligeras');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('DME',62,1,141,'sistema electrónico que permite establecer la distancia entre éste y una estación emisora, reemplazando a las radiobalizas en muchas instalaciones.');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('CDI',62,1,141,'Es un componente utilizado para dar la indicación del navegador  VOR,  generalmente VHF NAV, consta de una rosa giratoria que trabaja independientemente del rumbo del avión.');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('ILS',62,1,141,'sistema de ayuda a la aproximación y el aterrizaje establecido por OACI ');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Piloto Automatico',62,1,141,'sistema mecánico, eléctrico o hidráulico usado para guiar un vehículo sin la ayuda de un ser humano.');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Sistema de gestion de vuelo',62,1,141,'conocido por el acrónimo en inglés FMS (Flight Management System),1​ es un componente de la aviónica de una aeronave que permite automatizar una variedad de tareas a realizar durante un vuelo');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Manómetro',62,1,141,'instrumento de medición para la presión de fluidos contenidos en recipientes cerrados');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Termómetro de aceite',62,1,141,'instrumento de medición para la presión de fluidos contenidos en recipientes cerrados');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Caudal de combustible',62,1,141,'La cantidad de combustible a inyectar en los cilindros es determinada en todo momento por la unidad de control (EDC)');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Temperatura de culatas',62,1,141,'Este indicador presenta sobre una escala graduada en libras por pulgada (psi) la presión de aceite en el motor. ');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Nivel de combustible',62,1,141,'indicador de aguja o digital que lo hace');
 --FUSELAJE
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado) VALUES ('Fuselaje',93);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza) VALUES ('Portaequipaje',62,12,160);
-INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado) VALUES ('Asientos',62);
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_descripcion) VALUES ('Fuselaje',93,'Es el cuerpo del avión al que se encuentran unidas las alas y los estabilizadores tanto horizontales como verticales. Su interior es hueco, para poder albergar dentro a la cabina de pasajeros, la de mandos y los compartimentos de carga.');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_cantidad,pm_modelo_pieza,pm_descripcion) VALUES ('Portaequipaje',62,12,160,'Espacio cerrado en un avion para llevar el equipaje.');
+INSERT INTO Modelo_pieza (pm_nombre,pm_tiempo_estimado,pm_descripcion) VALUES ('Asientos',62,'Lugar, objeto o mueble, que se utiliza para sentarse.');
 --S_AVION_M_PIEZA
 --AU802
 INSERT INTO S_avion_m_pieza (smp_cantidad,smp_submodelo_avion,smp_modelo_pieza) VALUES (2,1,11);
