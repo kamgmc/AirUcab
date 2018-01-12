@@ -208,7 +208,7 @@ if( !in_array("p_r", $permiso) && !in_array("pm_r", $permiso) && !in_array("wt_r
 											<thead>
 												<tr>
 													<th class="text-center">ID</th>
-													<th class="text-center">Nombre</th>
+													<th>Nombre</th>
 													<th class="text-center">Status</th>
 													<th class="text-center">Tiempo Estimado</th>
 													<th class="text-center">Accion</th>
@@ -224,7 +224,7 @@ if( !in_array("p_r", $permiso) && !in_array("pm_r", $permiso) && !in_array("wt_r
 													<td class="text-center">
                                                         <?php print $pieza->id;?>
                                                     </td>
-													<td class="text-center">
+													<td>
                                                         <?php print $pieza->nombre;?>
                                                     </td>
 													<td class="text-center">
@@ -314,7 +314,7 @@ if( !in_array("p_r", $permiso) && !in_array("pm_r", $permiso) && !in_array("wt_r
 										</div>
 									</div>
                                     <?php } if( in_array("pm_r", $permiso) ){
-                                    $qry="SELECT pm.pm_id id, pm.pm_nombre nombre, wt_nombre ala, et_nombre estabilizador, count(pm2.pm_modelo_pieza) subcomponente, pm.pm_tiempo_estimado tiempo FROM modelo_pieza pm2 FULL JOIN Modelo_pieza pm ON pm2.pm_modelo_pieza = pm.pm_id LEFT JOIN Tipo_ala ON pm.pm_tipo_ala=wt_id LEFT JOIN Tipo_estabilizador ON pm.pm_tipo_estabilizador=et_id GROUP BY pm.pm_id, ala, estabilizador ORDER BY pm.pm_id";
+                                    $qry="Select pm_id id, pm_nombre nombre, pm_descripcion descripcion, wt_nombre ala, et_nombre estabilizador, pm_tiempo_estimado tiempo, (Select Count(*) From Modelo_pieza Where pm_modelo_pieza=mp.pm_id) subcomponente From Modelo_pieza mp Left Join Tipo_ala On pm_tipo_ala=wt_id Left Join Tipo_estabilizador On pm_tipo_estabilizador=et_id Order by pm_nombre";
                                     $rs = pg_query($conexion, $qry);
                                     $howMany = pg_num_rows($rs);
                                     if( $howMany > 0 ){?>
@@ -323,7 +323,8 @@ if( !in_array("p_r", $permiso) && !in_array("pm_r", $permiso) && !in_array("wt_r
 											<thead>
 												<tr>
 													<th class="text-center">ID</th>
-													<th class="text-center">Nombre</th>
+													<th>Nombre</th>
+													<th class="text-center">Descripción</th>
 													<th class="text-center"># de Subcomponentes</th>
 													<th class="text-center">Tiempo estimado</th>
 													<th class="text-center">Accion</th>
@@ -339,12 +340,15 @@ if( !in_array("p_r", $permiso) && !in_array("pm_r", $permiso) && !in_array("wt_r
 													<td class="text-center">
                                                         <?php print $modelo_pieza->id;?>
                                                     </td>
-													<td class="text-center">
+													<td>
                                                         <?php 
                                                         print $modelo_pieza->nombre;
                                                         if( isset($modelo_pieza->ala) || isset($modelo_pieza->estabilizador)){
                                                             print " - $modelo_pieza->ala $modelo_pieza->estabilizador";
                                                         }?>
+                                                    </td>
+													<td class="text-justify">
+                                                        <?php print $modelo_pieza->descripcion;?>
                                                     </td>
 													<td class="text-center">
                                                         <?php if($modelo_pieza->subcomponente > 0)print $modelo_pieza->subcomponente;?>
