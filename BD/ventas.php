@@ -220,10 +220,12 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 							<div class="col-md-12">
 								<div class="card">
 									<div class="row">
+                                        <?php if(in_array("fv_c", $permiso)){?>
 										<div class="col-sm-10"></div>
 										<div class="col-sm-2 pad-top">
 											<button type="button" data-toggle="modal" data-target="#ModalVentaCrear" class="btn btn-primary"> <i class="fa fa-plus" aria-hidden="true"></i> Crear</button>
 										</div>
+                                        <?php }?>
 									</div>
 									<div class="card-body">
 										<table class="table table-striped table-sm table-hover">
