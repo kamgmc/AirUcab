@@ -57,3 +57,5 @@
 ## CREAR (requieren el ver correspondiente)
 
 :white_check_mark: Crear rol de sistema<br>
+
+:o: Ver rol-permiso (**No implementado**)<br>
