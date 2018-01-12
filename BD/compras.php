@@ -378,6 +378,36 @@ if( !in_array("po_r", $permiso) && !in_array("fc_r", $permiso) && !in_array("m_r
 														</div>
 													</div>
 												</div>
+												<div class="row">
+													<div class="card col-lg-12">
+														<div class="row">
+															<div class="col-sm-12">
+																<h4>Información de Pago</h4>
+															</div>
+														</div>
+														<div id="last" data-num="1" class="row last-pago">
+															<div class="card-body col-lg-12">
+																<div class="form-check form-check-inline">
+																	<label class="form-check-label">
+																		<input class="form-check-input transferencia" name="tipo_pago" type="radio"> Transferencia
+																	</label>
+																</div>
+																<div class="form-check form-check-inline">
+																	<label class="form-check-label">
+																		<input class="form-check-input tarjeta-credito" name="tipo_pago" type="radio"> Tarjeta de Crédito 
+																	</label>
+																</div>
+																<div class="pago-space row">
+																</div>
+															</div>
+														</div>
+														<div class="form-group row">
+															<div class="col-sm-12 text-right">
+																<i id="add-pago" class="fa fa-plus"></i>&emsp;
+															</div>
+														</div>
+													</div>
+												</div>
 											</div>
 										</div>
 										<div class="modal-footer">
@@ -642,6 +672,27 @@ if( !in_array("po_r", $permiso) && !in_array("fc_r", $permiso) && !in_array("m_r
 					$last.after(data);
 				}
 			});
+		});
+		$("#add-pago").click(function(){
+			var $last = $(".last-pago");
+			$last.removeClass("last-pago");
+			var num = $("#last").data("num");
+			$("#last").data("num",num+1);
+			$.ajax({
+				type: "POST",
+				dataType: "html",
+				url: "getter.php?get=fieldPago&last="+num,
+				success: function(data){
+					$last.after(data);
+				}
+			});
+		});
+		$('input[type=radio][name=tipo_pago]').change(function() {
+			var $space = $(this).closest(".row").find(".pago-space");
+			if( $(this).hasClass("transferencia") )
+				$.ajax({type: "POST",dataType: "html",url:"getter.php?get=fieldTransferencia",success: function(data){$space.html(data);}});
+			if( $(this).hasClass("tarjeta-credito") )
+				$.ajax({type: "POST",dataType: "html",url:"getter.php?get=fieldTarjeta",success: function(data){$space.html(data);}});
 		});
 	</script>
 </body>

@@ -76,8 +76,9 @@
 													$qry2 = "SELECT tmm_id id, tmm_cantidad cantidad, tmm_tipo_material material FROM t_material_m_pieza WHERE tmm_modelo_pieza=".$modelo_pieza->id;
 													//Hace una lista de los materiales necesarios
 													$anwser = pg_query($conexion, $qry2); $materiales = array();
-													while( $material = pg_fetch_object($anwser) )
+													while( $material = pg_fetch_object($anwser) ){
 														$materiales[$material->id] = $material->cantidad;
+													}
 													//Recorre todos los materiales necesarios
 													$anwser = pg_query($conexion, $qry2);
 													while($pm = pg_fetch_object($anwser)){
@@ -145,8 +146,9 @@
 									$qry = "SELECT di_capacidad_pasajeros AS capacidad FROM distribucion WHERE di_id=".$_POST['distribucion'][$estable];
 									$anwser = pg_query($conexion, $qry);
 									$distribucion = pg_fetch_object($anwser);
-
-									for($h = 0; $h < $distribucion->capacidad; $h++){
+									$limit = $distribucion->capacidad;
+									print $limit;
+									for($q = 0; $q < $limit; $q++){
 										if(insertarPieza( $asiento->id, $avion->id )){//Crea una nueva pieza
 											$qry = "SELECT Max(p_id) AS id FROM Pieza where p_avion=".$avion->id." AND p_modelo_pieza=".$asiento->id;
 											if($answer = pg_query( $conexion, $qry )){

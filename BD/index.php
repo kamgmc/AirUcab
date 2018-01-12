@@ -258,7 +258,7 @@ $meses = array(1 => 'Enero', 2 => 'Febrero', 3 => 'Marzo', 4 => 'Abril', 5 => 'm
 								<?php if( in_array("m_r", $permiso) && in_array("mt_r", $permiso) ){?>
 								<div class="card">
 									<?php
-									$qry = "SELECT mt_nombre nombre, count(m_id) cantidad FROM Material, Tipo_material, Factura_compra WHERE m_tipo_material=mt_id AND fc_id=m_factura_compra AND m_pieza IS null AND EXTRACT(Month from fc_fecha)=".date('n')." AND EXTRACT(Year from fc_fecha)=".date('Y')." GROUP BY nombre";
+									$qry = "Select nombre, Count(*) cantidad From(SELECT mt_nombre nombre FROM Material, Tipo_material, Status_material, Status, Factura_compra Where m_tipo_material=mt_id AND m_pieza is null AND sm_material=m_id AND m_factura_compra=fc_id AND EXTRACT(Month from fc_fecha)=".date('n')." AND EXTRACT(Year from fc_fecha)=".date('Y')." AND sm_status=st_id AND st_nombre<>'Rechazado' Group By m_id, mt_nombre) AS Materiales Group By nombre";
 									$rs = pg_query( $conexion, $qry );?>
 									<div class="card-body">
 										<h5 class="blockquote card-title">Inventario Mensual</h5>
@@ -387,7 +387,7 @@ $meses = array(1 => 'Enero', 2 => 'Febrero', 3 => 'Marzo', 4 => 'Abril', 5 => 'm
 									</div>
 								</div>
 								<?php }?>
-								<?php if( in_array("pr_r", $permiso) && in_array("sp_r", $permiso) && in_array("st_r", $permiso) ){?>
+								<?php if( in_array("pr_r", $permiso) ){?>
 								<div class="card">
 									<?php
                                     $qry = "Select Sum(cantidad) rechazados From(SELECT Count(pp_id) cantidad FROM Prueba_pieza, Prueba, Status WHERE pp_prueba=pr_id AND pp_status=st_id AND st_nombre='Rechazado' Union SELECT(prm_id) cantidad FROM Prueba_material, Prueba, Status WHERE prm_prueba=pr_id AND prm_status=st_id AND st_nombre='Rechazado') total";

@@ -4,7 +4,7 @@
 		$exit = false; $i = 0;
 		while(!$exit){
 			if( isset($_POST['material'][$i]) && isset($_POST['cantidad'][$i]) && isset($_POST['precio'][$i]) ){
-				if( $_POST['cantidad'][$i] <= 0 ){header('Location: ventas.php?error=2');exit;}
+				if( $_POST['cantidad'][$i] <= 0 ){header('Location: compras.php?error=2');exit;}
 				$i++;
 			}
 			else $exit = true;
@@ -13,8 +13,8 @@
 		$exit = false; $i = 0;
 		while(!$exit){
 			if( isset($_POST['transferencia'][$i]) && isset($_POST['transferencia_monto'][$i]) ){
-				if( strlen($_POST['transferencia'][$i]) <= 3 ){header('Location: ventas.php?error=3');exit;}
-				if( $_POST['transferencia_monto'][$i] <= 0 ){header('Location: ventas.php?error=3');exit;}
+				if( strlen($_POST['transferencia'][$i]) <= 3 ){header('Location: compras.php?error=3');exit;}
+				if( $_POST['transferencia_monto'][$i] <= 0 ){header('Location: compras.php?error=3');exit;}
 				$i++;
 			}
 			else $exit = true;
@@ -23,9 +23,9 @@
 		$exit = false; $i = 0;
 		while(!$exit){
 			if( isset($_POST['tarjeta_numero'][$i]) && isset($_POST['tarjeta_nombre'][$i]) && isset($_POST['tarjeta_cod'][$i]) && isset($_POST['tarjeta_fecha'][$i]) && isset($_POST['tarjeta_monto'][$i]) ){
-				if(strlen($_POST['tarjeta_numero'][$i]) != 16 ){header('Location: ventas.php?error=3');exit;}
-				if(strlen($_POST['tarjeta_cod'][$i]) != 3 ){header('Location: ventas.php?error=3');exit;}
-				if( $_POST['tarjeta_monto'][$i] <= 0 ){header('Location: ventas.php?error=3');exit;}
+				if(strlen($_POST['tarjeta_numero'][$i]) != 16 ){header('Location: compras.php?error=3');exit;}
+				if(strlen($_POST['tarjeta_cod'][$i]) != 3 ){header('Location: compras.php?error=3');exit;}
+				if( $_POST['tarjeta_monto'][$i] <= 0 ){header('Location: compras.php?error=3');exit;}
 				$i++;
 			}
 			else $exit = true;
@@ -45,7 +45,6 @@
 						$qry2 = "SELECT m_id id FROM material WHERE m_factura_compra=0 and m_tipo_material=".$_POST['material'][$estable]." order by id";
 						$anwser = pg_query($conexion, $qry2); 
 						if(pg_num_rows($anwser) > 0){
-							print "HAY<br/>";
 							$material = pg_fetch_object($anwser);
 							$qry = "UPDATE Material SET m_factura_compra=".$factura->id.", m_precio=".$_POST['precio'][$estable]." WHERE m_id=".$material->id;
 							if(pg_query($conexion, $qry)){
@@ -55,10 +54,9 @@
 								$id = pg_fetch_object($anwserp);
 								editarTraslado($id->id, 'TRUE');
 							}
-							//else{header('Location: ventas.php?error=2');exit;}
+							else{header('Location: compras.php?error=2');exit;}
 						}
 						else{
-							print "NO HAY<br/>";
 							if(insertarMaterial( $_POST['material'][$estable], $factura->id, 'NULL', $_POST['precio'][$estable] )){//Material nuevo
 								$qry = "SELECT MAX(m_id) AS id FROM Material WHERE m_factura_compra=".$factura->id." AND m_tipo_material=".$_POST['material'][$estable]." AND m_pieza is NULL";
 								$anwser = pg_query($conexion, $qry);
@@ -70,7 +68,7 @@
 								$id = pg_fetch_object($anwserp);
 								editarTraslado($id->id, 'TRUE');
 							}
-							//else{header('Location: ventas.php?error=2');exit;}
+							else{header('Location: compras.php?error=2');exit;}
 						}
 					}
 					$i++;
@@ -85,13 +83,13 @@
 						$qry = "SELECT Max(pt_id) AS id FROM Tipo_pago where pt_numero=".$_POST['transferencia'][$i];
 						if($answer = pg_query( $conexion, $qry )){
 							$tipo_pago = pg_fetch_object($answer);
-							if(insertarPago( $_POST['transferencia_monto'][$i], $tipo_pago->id, $factura->id, 'NULL' ))//Inserta el pago con el monto
+							if(insertarPago( $_POST['transferencia_monto'][$i], $tipo_pago->id, 'NULL', $factura->id ))//Inserta el pago con el monto
 								$i++;
-							else{header('Location: ventas.php?error=3');exit;}
+							else{header('Location: compras.php?error=3');exit;}
 						}
-						else{header('Location: ventas.php?error=3');exit;}
+						else{header('Location: compras.php?error=3');exit;}
 					}
-					else{header('Location: ventas.php?error=3');exit;}
+					else{header('Location: compras.php?error=3');exit;}
 				}
 				else $exit = true;
 			}
@@ -103,19 +101,19 @@
 						$qry = "SELECT Max(pt_id) AS id FROM Tipo_pago where pt_numero=".$_POST['tarjeta_numero'][$i]." AND pt_tc_nombre='".$_POST['tarjeta_nombre'][$i]."'";
 						if($answer = pg_query( $conexion, $qry )){
 							$tipo_pago = pg_fetch_object($answer);
-							if(insertarPago( $_POST['tarjeta_monto'][$i], $tipo_pago->id, $factura->id, 'NULL' ))//Inserta el pago con el monto
+							if(insertarPago( $_POST['tarjeta_monto'][$i], $tipo_pago->id, 'NULL', $factura->id ))//Inserta el pago con el monto
 								$i++;
-							else{header('Location: ventas.php?error=3');exit;}
+							else{header('Location: compras.php?error=3');exit;}
 						}
-						else{header('Location: ventas.php?error=3');exit;}
+						else{header('Location: compras.php?error=3');exit;}
 					}
-					else{header('Location: ventas.php?error=3');exit;}
+					else{header('Location: compras.php?error=3');exit;}
 				}
 				else $exit = true;
 			}
-			//header('Location: ventas.php');exit;
+			header('Location: compras.php');exit;
 		}
-		else header('Location: ventas.php?error=1');exit;
+		else header('Location: compras.php?error=1');exit;
 	}
 	if(isset($_GET['delete'])){
 		$id = $_GET['delete'];

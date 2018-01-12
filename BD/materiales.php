@@ -151,6 +151,10 @@ if( !in_array("m_r", $permiso) && !in_array("mt_r", $permiso) ){
 							<input id="tab0" type="radio" name="tabs" class="no-display" checked>
 							<label for="tab0" class="label"><i class="fa fa-server " aria-hidden="true"></i> Materiales</label>
                             <?php }?>
+                            <?php if( in_array("m_r", $permiso) && in_array("mt_r", $permiso) ){?>
+							<input id="tab1" type="radio" name="tabs" class="no-display">
+							<label for="tab1" class="label"><i class="fa fa-server " aria-hidden="true"></i> Pendientes de Compra</label>
+                            <?php }?>
 							<!-- TAB Materiales -->
 							<section id="content0" class="sectiontab">
 								<!-- Filtrador-->
@@ -198,7 +202,7 @@ if( !in_array("m_r", $permiso) && !in_array("mt_r", $permiso) ){
 								       </div>
                                        <?php }?>
                                        <?php if( in_array("m_r", $permiso) && in_array("mt_r", $permiso) ){?>
-									   <?php $qry = "SELECT mt_nombre nombre, count(m_id) cantidad FROM Material LEFT JOIN Tipo_material ON m_tipo_material=mt_id GROUP BY mt_nombre";
+									   <?php $qry = "Select nombre, Count(*) cantidad From(SELECT mt_nombre nombre FROM Material, Tipo_material, Status_material, Status Where m_tipo_material=mt_id AND m_pieza is null AND sm_material=m_id AND sm_status=st_id AND st_nombre<>'Rechazado' Group By m_id, mt_nombre) AS Materiales Group By nombre";
 									   $rs = pg_query( $conexion, $qry );
 									   $howMany = pg_num_rows($rs);
 									   if( $howMany > 0 ){?>
@@ -206,14 +210,54 @@ if( !in_array("m_r", $permiso) && !in_array("mt_r", $permiso) ){
 											<table class="table table-striped table-sm table-hover">
 												<thead>
 													<tr>
-														<th class="text-center">Nombre</th>
-														<th class="text-center">CANTIDAD</th>												
+														<th>Nombre</th>
+														<th class="text-center">Cantidad</th>												
 													</tr>
 												</thead>
 												<tbody>
                                                     <?php while( $material = pg_fetch_object($rs)){ ?>
 													<tr>
+														<td>
+                                                            <?php print $material->nombre;?>
+                                                        </td>
 														<td class="text-center">
+                                                            <?php print $material->cantidad;?>
+                                                        </td>												
+													</tr>
+													<?php }?>
+												</tbody>
+											</table>
+										</div>
+                                        <?php }else{?>
+									   <h3>&emsp;No se han encontrado resultados.</h3>
+									   <?php }}?>
+									</div>
+								</div>
+								<!-- TABLE ENDS -->
+							</section>
+							<!-- TAB Material ENDS -->
+							<!-- TAB Materiales -->
+							<section id="content1" class="sectiontab">
+								<!-- TABLE STARTS -->
+								<div class="col-md-12">
+									<div class="card">
+                                       <?php if( in_array("m_r", $permiso) && in_array("mt_r", $permiso) ){?>
+									   <?php $qry = "SELECT mt_nombre nombre, count(m_id) cantidad FROM Material LEFT JOIN Tipo_material ON m_tipo_material=mt_id Where m_factura_compra=0 GROUP BY mt_id, mt_nombre";
+									   $rs = pg_query( $conexion, $qry );
+									   $howMany = pg_num_rows($rs);
+									   if( $howMany > 0 ){?>
+										<div class="card-body">
+											<table class="table table-striped table-sm table-hover">
+												<thead>
+													<tr>
+														<th>Nombre</th>
+														<th class="text-center">Cantidad</th>												
+													</tr>
+												</thead>
+												<tbody>
+                                                    <?php while( $material = pg_fetch_object($rs)){ ?>
+													<tr>
+														<td>
                                                             <?php print $material->nombre;?>
                                                         </td>
 														<td class="text-center">
