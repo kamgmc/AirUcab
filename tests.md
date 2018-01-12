@@ -23,8 +23,7 @@
 :x: Ver proveedor (**deja CREAR -> remover**) <br>
 ![ver proveedor](https://image.prntscr.com/image/zcVgD6JATLmlI8knAg8imQ.png)
 
-:interrobang: Ver modelo motores (**se ve la tabla bien, al abrir detalle esta vacio -> fix?**)<br>
+:o: Ver modelo motores (**se ve la tabla bien, al abrir detalle esta vacio -> No implementado**)<br>
 ![ver modelo motores](https://image.prntscr.com/image/epUE871iRWWTjgMkMnLg8g.png)
+:o: Ver s avion - m motor (**No implementado**)<br>
 
-:interrobang: Ver s avion - m motor (**no se ve nada por si solo -> intencional?**)<br>
-![ver s avion-m motor](https://image.prntscr.com/image/VB-DLF_AQDCpYuH5LeMZ9g.png)
