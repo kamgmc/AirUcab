@@ -2,7 +2,7 @@
 date_default_timezone_set('America/Port_of_Spain'); 
 error_reporting('E_ALL ^ E_NOTICE'); 
 include 'conexion.php'; 
-if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'] = 5;} 
+if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'] = 2;} 
 $qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$_SESSION['rol']; 
 $rs = pg_query( $conexion, $qry ); $permiso = array();
 while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }
@@ -39,7 +39,7 @@ if( !in_array("pr_r", $permiso) && !in_array("st_r", $permiso) ){
 	<!-- Custom stylesheet - for your changes-->
 	<link rel="stylesheet" href="css/custom.css">
 	<!-- Favicon-->
-	<link rel="shortcut icon" href="favicon.png"> </head>
+	<link rel="shortcut icon" href="img/airucab.ico"> </head>
 
 <body>
 	<div class="page home-page">

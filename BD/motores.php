@@ -2,7 +2,7 @@
 date_default_timezone_set('America/Port_of_Spain'); 
 error_reporting('E_ALL ^ E_NOTICE'); 
 include 'conexion.php'; 
-if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'] = 5;} 
+if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'] = 2;} 
 $qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$_SESSION['rol']; 
 $rs = pg_query( $conexion, $qry ); $permiso = array();
 while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }
@@ -22,7 +22,7 @@ if( !in_array("mb_r", $permiso) && !in_array("mm_r", $permiso) && !in_array("mo_
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>AirUCAB - Main</title>
+	<title>AirUCAB - Motores</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="robots" content="all,follow">
@@ -39,7 +39,7 @@ if( !in_array("mb_r", $permiso) && !in_array("mm_r", $permiso) && !in_array("mo_
 	<!-- Custom stylesheet - for your changes-->
 	<link rel="stylesheet" href="css/custom.css">
 	<!-- Favicon-->
-	<link rel="shortcut icon" href="favicon.png"> </head>
+	<link rel="shortcut icon" href="img/airucab.ico"> </head>
 
 <body>
 	<div class="page home-page">
@@ -118,7 +118,7 @@ if( !in_array("mb_r", $permiso) && !in_array("mm_r", $permiso) && !in_array("mo_
 						<a href="Sedes.php"> <i class="fa fa-university " aria-hidden="true"></i>Sedes </a>
 					</li>
                     <?php } ?>
-					<?php if( in_array("em_r", $permiso) || in_array("sr_r", $permiso) || in_array("er_r", $permiso) || in_array("ti_r", $permiso) || in_array("pe_r", $permiso) ){ ?>
+					<?php if( in_array("em_r", $permiso) || in_array("sr_r", $permiso) || in_array("er_r", $permiso) || in_array("ti_r", $permiso) || in_array("pe_r", $permiso) || in_array("ct_r", $permiso) ){ ?>
 					<li>
 						<a href="empleados.php"><i class="fa fa-id-card-o"></i>Empleados</a>
 					</li>
@@ -601,6 +601,7 @@ if( !in_array("mb_r", $permiso) && !in_array("mm_r", $permiso) && !in_array("mo_
 											</div>
 										</div>
 										<!-- Tabla Piezas STARTS -->
+										<?php if(in_array("a_r",$permiso)){?>
 										<div class="col-md-12">
 											<div class="card">
 												<div class="card-header d-flex align-items-center">
@@ -666,6 +667,7 @@ if( !in_array("mb_r", $permiso) && !in_array("mm_r", $permiso) && !in_array("mo_
 											</div>
 										</div>
 										<!-- Tabla Piezas ENDS -->
+										<?php }?>
 									</div>
 									<div class="modal-footer">
 										<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>

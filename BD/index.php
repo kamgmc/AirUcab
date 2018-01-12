@@ -2,7 +2,7 @@
 date_default_timezone_set('America/Port_of_Spain'); 
 error_reporting('E_ALL ^ E_NOTICE'); 
 include 'conexion.php'; 
-if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'] = 5;} 
+if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'] = 2;} 
 $qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$_SESSION['rol']; 
 $rs = pg_query( $conexion, $qry ); $permiso = array();
 while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso;}
@@ -241,7 +241,7 @@ $meses = array(1 => 'Enero', 2 => 'Febrero', 3 => 'Marzo', 4 => 'Abril', 5 => 'm
 									<?php }?>
 								</div>
 								<?php }?>
-								<?php if( in_array("am_r", $permiso) ){?>
+								<?php if( in_array("am_r", $permiso) && in_array("a_r", $permiso) ){?>
 								<div class="card">
 									<?php
 									$qry = "SELECT am_nombre nombre, COUNT(a_id) cantidad FROM avion,submodelo_avion, modelo_avion WHERE a_submodelo_avion=as_id AND as_modelo_avion=am_id GROUP BY am_nombre ORDER BY cantidad DESC limit 1";
