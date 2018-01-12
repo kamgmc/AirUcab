@@ -6,7 +6,7 @@ if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'
 $qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$_SESSION['rol']; 
 $rs = pg_query( $conexion, $qry ); $permiso = array();
 while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }
-if( !in_array("em_r", $permiso) && !in_array("sr_r", $permiso) && !in_array("er_r", $permiso) && !in_array("ti_r", $permiso) && !in_array("pe_r", $permiso) && !in_array("ct_r", $permiso) ){
+if( !in_array("em_r", $permiso) && !in_array("sr_r", $permiso) && !in_array("er_r", $permiso) && !in_array("rp_r", $permiso) && !in_array("ti_r", $permiso) && !in_array("pe_r", $permiso) && !in_array("ct_r", $permiso) ){
 	if( !isset($_SESSION['code']) ){
 		header('Location: login.php');
 		exit;
@@ -127,7 +127,7 @@ if( !in_array("em_r", $permiso) && !in_array("sr_r", $permiso) && !in_array("er_
 							<a href="Sedes.php"> <i class="fa fa-university " aria-hidden="true"></i>Sedes </a>
 						</li>
                         <?php } ?>
-						<?php if( in_array("em_r", $permiso) || in_array("sr_r", $permiso) || in_array("er_r", $permiso) || in_array("ti_r", $permiso) || in_array("pe_r", $permiso) || in_array("ct_r", $permiso) ){ ?>
+						<?php if( in_array("em_r", $permiso) || in_array("sr_r", $permiso) || in_array("er_r", $permiso) || in_array("ti_r", $permiso) || in_array("pe_r", $permiso) || in_array("rp_r", $permiso) || in_array("ct_r", $permiso) ){ ?>
 						<li class="active">
 							<a href="empleados.php"><i class="fa fa-id-card-o"></i>Empleados</a>
 						</li>
