@@ -51,7 +51,6 @@
 :o: Ver avion (**No implementado -> AVION se ve en el VER MAS de la VENTA**)<br>
 :o: Ver status avion (**No implementado -> STATUS AVION se ve en el VER MAS de la VENTA**)<br>
 :o: Ver status piezas (**No implementado**)<br>
-:o: Ver Prueba Material (**No implementado**)<br>
 :o: Ver Status Material (**No implementado**)<br>
 :o: Ver Prueba piezas (**No implementado**)<br>
 
