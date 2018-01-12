@@ -2,6 +2,7 @@
 
 :white_check_mark: Ver factura venta <br>
 :white_check_mark: Ver Rol de sistema <br>
+:white_check_mark: Ver rol - permiso<br>
 :white_check_mark: Ver sede <br>
 :white_check_mark: Ver zona <br>
 :white_check_mark: Ver titulacion <br>
@@ -26,9 +27,6 @@
 :white_check_mark: Ver Traslado<br>
 
 
-:x: Ver rol-permiso (**error al presionar la pestana Empleado -2da Captura- -> arreglar**) <br>
-![ver rol-permiso 1](https://image.prntscr.com/image/9cAvJnpFRTaeJxe-I369mw.png)
-![ver rol-permiso 2](https://image.prntscr.com/image/8uZGdou7RgaxOUuZYQ6_6w.png)
 :x: Ver tipo ala (**error al presionar la pestana Piezas - Captura- -> arreglar**) <br>
 ![ver tipo ala](https://image.prntscr.com/image/LVzIIwy3QNyFEUY2yWrpsA.png)
 :x: Ver tipo estabilizador (**error al presionar la pestana Piezas - Captura- -> arreglar**) <br>
@@ -61,12 +59,14 @@
 :x: Crear sede (**error al presionar `Guardar Cambios` -Captura- -> arreglar** y **error al presionar ubicacion, no se expande**) <br>
 ![crear sede](https://image.prntscr.com/image/pFBxJsU1R4qoiKCfZtMOMg.png)
 
-:o: Ver rol-permiso (**No implementado**)<br>
+:o: Crear rol-permiso (**No implementado o No tiene logica crear permisos a lo random**)<br>
 
 ## EDITAR (requieren el ver correspondiente)
 
 :white_check_mark: Editar rol de sistema<br>
+:white_check_mark: Editar rol - permiso<br>
 
 ## BORRAR (requieren el ver correspondiente)
 
 :white_check_mark: Borrar rol de sistema<br>
+:white_check_mark: Borrar rol - permiso<br>
