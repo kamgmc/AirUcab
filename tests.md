@@ -36,4 +36,5 @@
 :o: Ver modelo motores (**se ve la tabla bien, al abrir detalle esta vacio -> No implementado**)<br>
 ![ver modelo motores](https://image.prntscr.com/image/epUE871iRWWTjgMkMnLg8g.png)
 :o: Ver s avion - m motor (**No implementado**)<br>
+:o: Ver status prueba (**No implementado y No necesario**)<br>
 
