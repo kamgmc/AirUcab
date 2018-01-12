@@ -18,6 +18,8 @@
 :white_check_mark: Ver submodelo de aviones<br>
 :white_check_mark: Ver proveedor<br>
 :white_check_mark: Ver pruebas<br>
+:white_check_mark: Ver piezas<br>
+
 
 :x: Ver rol-permiso (**error al presionar la pestana Empleado -2da Captura- -> arreglar**) <br>
 ![ver rol-permiso 1](https://image.prntscr.com/image/9cAvJnpFRTaeJxe-I369mw.png)
