@@ -28,6 +28,8 @@
 ![ver tipo estabilizador](https://image.prntscr.com/image/sV4zj_wLRfO8o9pArIy-WQ.png)
 :x: Ver modelo de pieza (**error al presionar la pestana Piezas - Captura- -> arreglar**) <br>
 ![ver modelo de pieza](https://image.prntscr.com/image/Y65sPrOtSJ_1c1-IDUECag.png)
+:x: Ver factura compra (**error al presionar la pestana Compra -Captura- -> arreglar**) <br>
+![ver factura compra](https://image.prntscr.com/image/79mhcOiJQqOydu-YQaQQJA.png)
 
 :interrobang: Ver status prueba (**No implementado o depende de prueba y no esta implementado**)<br>
 
