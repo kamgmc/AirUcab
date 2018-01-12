@@ -314,7 +314,7 @@ if( !in_array("p_r", $permiso) && !in_array("pm_r", $permiso) && !in_array("wt_r
 										</div>
 									</div>
                                     <?php } if( in_array("pm_r", $permiso) ){
-                                    $qry="Select pm_id id, pm_nombre nombre, pm_descripcion descripcion, wt_nombre ala, et_nombre estabilizador, pm_tiempo_estimado tiempo, (Select Count(*) From Modelo_pieza Where pm_modelo_pieza=mp.pm_id) subcomponente From Modelo_pieza mp Left Join Tipo_ala On pm_tipo_ala=wt_id Left Join Tipo_estabilizador On pm_tipo_estabilizador=et_id Order by pm_nombre";
+                                    $qry="Select Distinct pm_nombre nombre, pm_descripcion descripcion, wt_nombre ala, et_nombre estabilizador, pm_tiempo_estimado tiempo, (Select Count(*) From Modelo_pieza Where pm_modelo_pieza=mp.pm_id) subcomponente From Modelo_pieza mp Left Join Tipo_ala On pm_tipo_ala=wt_id Left Join Tipo_estabilizador On pm_tipo_estabilizador=et_id Order by pm_nombre";
                                     $rs = pg_query($conexion, $qry);
                                     $howMany = pg_num_rows($rs);
                                     if( $howMany > 0 ){?>
@@ -322,12 +322,11 @@ if( !in_array("p_r", $permiso) && !in_array("pm_r", $permiso) && !in_array("wt_r
 										<table class="table table-striped table-sm table-hover">
 											<thead>
 												<tr>
-													<th class="text-center">ID</th>
 													<th>Nombre</th>
 													<th class="text-center">Descripción</th>
 													<th class="text-center"># de Subcomponentes</th>
 													<th class="text-center">Tiempo estimado</th>
-													<th class="text-center">Accion</th>
+													<th class="text-center">Acción</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -337,9 +336,6 @@ if( !in_array("p_r", $permiso) && !in_array("pm_r", $permiso) && !in_array("wt_r
 												$fin = new DateTime(date('Y-m-d', strtotime($hoy->format("Y-m-d"). ' + '.$dias.' days')));
 												$interval = $hoy->diff($fin);?>
 												<tr>
-													<td class="text-center">
-                                                        <?php print $modelo_pieza->id;?>
-                                                    </td>
 													<td>
                                                         <?php 
                                                         print $modelo_pieza->nombre;

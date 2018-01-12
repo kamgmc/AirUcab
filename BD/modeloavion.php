@@ -1199,10 +1199,17 @@ if( !in_array("am_r", $permiso) && !in_array("as_r", $permiso) && !in_array("di_
 															<?php }?>
 														</tr>
 														<tr>
-															<th class="text-center text-middle">Tripulación</th>
+															<th class="text-center text-middle">Pilotos</th>
 															<?php $rs = pg_query( $conexion, $qry );
 															   while( $avion = pg_fetch_object($rs) ){?>
-															<td class="text-center text-middle"><?php print $avion->capacidad_pilotos.$avion->capacidad_asistentes;?></td>
+															<td class="text-center text-middle"><?php print $avion->capacidad_pilotos;?></td>
+															<?php }?>
+														</tr>
+														<tr>
+															<th class="text-center text-middle">Asistentes de Vuelo</th>
+															<?php $rs = pg_query( $conexion, $qry );
+															   while( $avion = pg_fetch_object($rs) ){?>
+															<td class="text-center text-middle"><?php print $avion->capacidad_asistentes;?></td>
 															<?php }?>
 														</tr>
 														<tr>
