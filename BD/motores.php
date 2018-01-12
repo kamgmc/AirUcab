@@ -22,7 +22,7 @@ if( !in_array("mb_r", $permiso) && !in_array("mm_r", $permiso) && !in_array("mo_
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>AirUCAB - Motores</title>
+	<title>AirUCAB - Main</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="robots" content="all,follow">
@@ -39,7 +39,7 @@ if( !in_array("mb_r", $permiso) && !in_array("mm_r", $permiso) && !in_array("mo_
 	<!-- Custom stylesheet - for your changes-->
 	<link rel="stylesheet" href="css/custom.css">
 	<!-- Favicon-->
-	<link rel="shortcut icon" href="img/airucab.ico"> </head>
+	<link rel="shortcut icon" href="favicon.png"> </head>
 
 <body>
 	<div class="page home-page">
@@ -118,7 +118,7 @@ if( !in_array("mb_r", $permiso) && !in_array("mm_r", $permiso) && !in_array("mo_
 						<a href="Sedes.php"> <i class="fa fa-university " aria-hidden="true"></i>Sedes </a>
 					</li>
                     <?php } ?>
-					<?php if( in_array("em_r", $permiso) || in_array("sr_r", $permiso) || in_array("er_r", $permiso) || in_array("ti_r", $permiso) || in_array("pe_r", $permiso) || in_array("ct_r", $permiso)){ ?>
+					<?php if( in_array("em_r", $permiso) || in_array("sr_r", $permiso) || in_array("er_r", $permiso) || in_array("ti_r", $permiso) || in_array("pe_r", $permiso) ){ ?>
 					<li>
 						<a href="empleados.php"><i class="fa fa-id-card-o"></i>Empleados</a>
 					</li>
@@ -602,7 +602,6 @@ if( !in_array("mb_r", $permiso) && !in_array("mm_r", $permiso) && !in_array("mo_
 										</div>
 										<!-- Tabla Piezas STARTS -->
 										<div class="col-md-12">
-											 <?php if(in_array("a_r",$permiso)){?>
 											<div class="card">
 												<div class="card-header d-flex align-items-center">
 													<h3 class="h4">AVIONES QUE LO USAN</h3> </div>
@@ -665,7 +664,6 @@ if( !in_array("mb_r", $permiso) && !in_array("mm_r", $permiso) && !in_array("mo_
 													
 												</div>
 											</div>
-						    					<?php }?>
 										</div>
 										<!-- Tabla Piezas ENDS -->
 									</div>
