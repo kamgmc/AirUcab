@@ -41,4 +41,6 @@
 :o: Ver pago (**No implementado?**)<br>
 :o: Ver tipo de material (**No implementado?**)<br>
 :o: Ver t material - m pieza (**No implementado?**)<br>
+:o: Ver avion (**No implementado?**)<br>
+:o: Ver status avion (**No implementado?**)<br>
 
