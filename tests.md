@@ -58,4 +58,7 @@
 
 :white_check_mark: Crear rol de sistema<br>
 
+:x: Crear sede (**error al presionar `Guardar Cambios` -Captura- -> arreglar**) <br>
+![crear sede](https://image.prntscr.com/image/pFBxJsU1R4qoiKCfZtMOMg.png)
+
 :o: Ver rol-permiso (**No implementado**)<br>
