@@ -118,7 +118,7 @@ if( !in_array("m_r", $permiso) && !in_array("mt_r", $permiso) ){
 																				<a href="Sedes.php"> <i class="fa fa-university " aria-hidden="true"></i>Sedes </a>
 																			</li>
 																			<?php } ?>
-																				<?php if( in_array("em_r", $permiso) || in_array("sr_r", $permiso) || in_array("er_r", $permiso) || in_array("ti_r", $permiso) || in_array("pe_r", $permiso) || in_array("ct_r", $permiso) ){ ?>
+																				<?php if( in_array("em_r", $permiso) || in_array("sr_r", $permiso) || in_array("er_r", $permiso) || in_array("ti_r", $permiso) || in_array("pe_r", $permiso) || in_array("rp_r", $permiso) || in_array("ct_r", $permiso) ){ ?>
 																					<li> <a href="empleados.php"><i class="fa fa-id-card-o"></i>Empleados</a> </li>
 																					<?php } ?>
 																						<?php if( in_array("cl_r", $permiso) ){ ?>
