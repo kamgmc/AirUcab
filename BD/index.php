@@ -258,7 +258,7 @@ $meses = array(1 => 'Enero', 2 => 'Febrero', 3 => 'Marzo', 4 => 'Abril', 5 => 'm
 								<?php if( in_array("m_r", $permiso) && in_array("mt_r", $permiso) ){?>
 								<div class="card">
 									<?php
-									$qry = "SELECT mt_nombre nombre, count(m_id) cantidad FROM Material, Tipo_material WHERE m_tipo_material=mt_id AND m_pieza IS null AND EXTRACT(Month from m_fecha)=".date('n')." AND EXTRACT(Year from m_fecha)=".date('Y')." GROUP BY nombre";
+									$qry = "SELECT mt_nombre nombre, count(m_id) cantidad FROM Material, Tipo_material, Factura_compra WHERE m_tipo_material=mt_id AND fc_id=m_factura_compra AND m_pieza IS null AND EXTRACT(Month from fc_fecha)=".date('n')." AND EXTRACT(Year from fc_fecha)=".date('Y')." GROUP BY nombre";
 									$rs = pg_query( $conexion, $qry );?>
 									<div class="card-body">
 										<h5 class="blockquote card-title">Inventario Mensual</h5>

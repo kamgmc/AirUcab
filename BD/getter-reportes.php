@@ -38,7 +38,7 @@
 	if($_GET['get'] == "inventario-mensual"){
 		$year = htmlentities($_GET['year'], ENT_QUOTES);
 		$month = htmlentities($_GET['month'], ENT_QUOTES);
-		$qry = "SELECT mt_nombre nombre, count(m_id) cantidad FROM Material, Tipo_material WHERE m_tipo_material=mt_id AND m_pieza IS null AND EXTRACT(Month from m_fecha)=".$month." AND EXTRACT(Year from m_fecha)=".$year." GROUP BY nombre";
+		$qry = "SELECT mt_nombre nombre, count(m_id) cantidad FROM Material, Tipo_material, Factura_compra WHERE m_tipo_material=mt_id AND fc_id=m_factura_compra AND m_pieza IS null AND EXTRACT(Month from fc_fecha)=".$month." AND EXTRACT(Year from fc_fecha)=".$year." GROUP BY nombre";
 		$answer = pg_query( $conexion, $qry );
 		$resultado="<option value='NULL'>Seleccionar</option>";
 		$rs = pg_query( $conexion, $qry ); $resultado = "";
