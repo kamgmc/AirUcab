@@ -60,6 +60,7 @@
 ![crear sede](https://image.prntscr.com/image/pFBxJsU1R4qoiKCfZtMOMg.png)
 
 :o: Crear rol-permiso (**No implementado o No tiene logica crear permisos a lo random**)<br>
+:o: crear zona (**No testeado, requiere fix en ver zona**)<br>
 
 ## EDITAR (requieren el ver correspondiente)
 
@@ -69,6 +70,8 @@
 :x: Editar sede (**error al presionar `Detalles` -Captura- -> arreglar****) <br>
 ![editar sede](https://image.prntscr.com/image/Ev9dHKr4T1CamjfT_SF7iw.png)
 
+:o: editar zona (**No testeado, requiere fix en ver zona**)<br>
+
 ## BORRAR (requieren el ver correspondiente)
 
 :white_check_mark: Borrar rol de sistema<br>
@@ -76,3 +79,5 @@
 
 :x: Borrar sede (**error al presionar `Detalles` -Captura- -> arreglar****) <br>
 ![borrar sede](https://image.prntscr.com/image/Ev9dHKr4T1CamjfT_SF7iw.png)
+
+:o: borrar zona (**No testeado, requiere fix en ver zona**)<br>
