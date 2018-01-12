@@ -62,3 +62,11 @@
 ![crear sede](https://image.prntscr.com/image/pFBxJsU1R4qoiKCfZtMOMg.png)
 
 :o: Ver rol-permiso (**No implementado**)<br>
+
+## EDITAR (requieren el ver correspondiente)
+
+:white_check_mark: Editar rol de sistema<br>
+
+## BORRAR (requieren el ver correspondiente)
+
+:white_check_mark: Borrar rol de sistema<br>
