@@ -14,6 +14,8 @@
 :white_check_mark: Ver tipo contacto<br>
 :white_check_mark: Ver marca motores<br>
 :white_check_mark: Ver modelo aviones<br>
+:white_check_mark: Ver distribucion<br>
+:white_check_mark: Ver submodelo de aviones<br>
 
 :x: Ver rol-permiso (**error al presionar la pestana Empleado -2da Captura- -> arreglar**) <br>
 ![ver rol-permiso 1](https://image.prntscr.com/image/9cAvJnpFRTaeJxe-I369mw.png)
@@ -24,4 +26,5 @@
 :interrobang: Ver modelo motores (**se ve la tabla bien, al abrir detalle esta vacio -> fix?**)<br>
 ![ver modelo motores](https://image.prntscr.com/image/epUE871iRWWTjgMkMnLg8g.png)
 
-
+:interrobang: Ver s avion - m motor (**no se ve nada por si solo -> intencional?**)<br>
+![ver s avion-m motor](https://image.prntscr.com/image/VB-DLF_AQDCpYuH5LeMZ9g.png)
