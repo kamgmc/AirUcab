@@ -202,12 +202,15 @@ if( !in_array("po_r", $permiso)){
 							<!-- TABLE STARTS -->
 							<div class="col-md-12">
 								<div class="card">
+                                    <?php if(in_array("po_c", $permiso)){?>
 									<div class="row">
 										<div class="col-sm-10"></div>
 										<div class="col-sm-2 pad-top">
 											<button type="button" data-toggle="modal" data-target="#ModalProveedorCrear" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
 										</div>
 									</div>
+                                    <?php }?>
+                                    <?php if(in_array("po_r", $permiso)){?>
 									<div class="card-body">
 										<table class="table table-striped table-sm table-hover">
 											<thead>
@@ -239,16 +242,18 @@ if( !in_array("po_r", $permiso)){
 															<a href="<?php print $proveedor->id;?>" class="click-proveedor-detalle">
 																<i class="fa fa-file-text-o" aria-hidden="true"></i> 
 															</a>
-															&emsp;
+															<?php if(in_array("po_d", $permiso)){ ?>&emsp;
 															<a href="proveedor-crud.php?delete=<?php print $proveedor->id;?>">
 																<i class="fa fa-trash-o" aria-hidden="true"></i>
 															</a>
+                                                            <?php }?>
 														</td>
 													</tr>
 												<?php }?>
 											</tbody>
 										</table>
 									</div>
+                                    <?php }?>
 								</div>
 							</div>
 							<!-- TABLE ENDS -->
@@ -477,7 +482,9 @@ if( !in_array("po_r", $permiso)){
 									</div>
 									<div class="modal-footer">
 										<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
+                                        <?php if(in_array("po_u", $permiso)){?>
 										<button type="button" data-toggle="modal" data-target="#myModalProveedorEditar" class="btn btn-primary">Editar</button>
+                                        <?php }?>
 									</div>
 								</div>
 							</div>
