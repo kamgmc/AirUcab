@@ -4,7 +4,6 @@
 :white_check_mark: Ver Rol de sistema <br>
 :white_check_mark: Ver rol - permiso<br>
 :white_check_mark: Ver sede <br>
-:white_check_mark: Ver zona <br>
 :white_check_mark: Ver titulacion <br>
 :white_check_mark: Ver cargo <br>
 :white_check_mark: Ver empleado <br>
@@ -35,7 +34,8 @@
 ![ver modelo de pieza](https://image.prntscr.com/image/Y65sPrOtSJ_1c1-IDUECag.png)
 :x: Ver factura compra (**error al presionar la pestana Compra -Captura- -> arreglar**) <br>
 ![ver factura compra](https://image.prntscr.com/image/79mhcOiJQqOydu-YQaQQJA.png)
-
+:x: Ver zona (**error al presionar la pestana Sedes -Captura- -> arreglar**) <br>
+![ver zona](https://image.prntscr.com/image/Cm_Lf3AcRmqav0Pmqghdlw.png)
 
 
 :interrobang: Ver status prueba (**No implementado o depende de prueba y no esta implementado**)<br>
