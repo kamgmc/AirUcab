@@ -39,11 +39,11 @@
 ![ver modelo motores](https://image.prntscr.com/image/epUE871iRWWTjgMkMnLg8g.png)
 :o: Ver s avion - m motor (**No implementado**)<br>
 :o: Ver status prueba (**No implementado y No necesario**)<br>
-:o: Ver tipo de pago (**No implementado?**)<br>
-:o: Ver pago (**No implementado?**)<br>
-:o: Ver tipo de material (**No implementado?**)<br>
-:o: Ver t material - m pieza (**No implementado?**)<br>
-:o: Ver avion (**No implementado?**)<br>
-:o: Ver status avion (**No implementado?**)<br>
+:o: Ver tipo de pago (**No implementado**)<br>
+:o: Ver pago (**No implementado -> PAGO se ve en el VER MAS de la VENTA**)<br>
+:o: Ver tipo de material (**No implementado**)<br>
+:o: Ver t material - m pieza (**No implementado**)<br>
+:o: Ver avion (**No implementado -> AVION se ve en el VER MAS de la VENTA**)<br>
+:o: Ver status avion (**No implementado -> STATUS AVION se ve en el VER MAS de la VENTA**)<br>
 :o: Ver status piezas (**No implementado**)<br>
 
