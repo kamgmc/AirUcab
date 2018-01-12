@@ -4,6 +4,9 @@
 :white_check_mark: Ver Rol de sistema <br>
 :white_check_mark: Ver sede <br>
 :white_check_mark: Ver zona <br>
+:white_check_mark: Ver titulacion <br>
+:white_check_mark: Ver cargo <br>
+:white_check_mark: Ver empleado <br>
 
 :x: Ver rol-permiso
 
