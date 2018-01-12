@@ -1,9 +1,9 @@
 ## VER
 
-:white_check_mark: Ver factura venta
-:white_check_mark: Ver Rol de sistema
-:white_check_mark: Ver sede
-:white_check_mark: Ver zona
+:white_check_mark: Ver factura venta <br>
+:white_check_mark: Ver Rol de sistema <br>
+:white_check_mark: Ver sede <br>
+:white_check_mark: Ver zona <br>
 
 :x: Ver rol-permiso
 
