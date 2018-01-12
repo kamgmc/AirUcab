@@ -32,6 +32,8 @@
 ![ver modelo de pieza](https://image.prntscr.com/image/Y65sPrOtSJ_1c1-IDUECag.png)
 :x: Ver factura compra (**error al presionar la pestana Compra -Captura- -> arreglar**) <br>
 ![ver factura compra](https://image.prntscr.com/image/79mhcOiJQqOydu-YQaQQJA.png)
+:x: Ver materiales (**pantalla sin informacion -Captura- -> arreglar**) <br>
+![ver materiales](https://image.prntscr.com/image/56wmvivgSd6KCngK9i9SEw.png)
 
 :interrobang: Ver status prueba (**No implementado o depende de prueba y no esta implementado**)<br>
 
