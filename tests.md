@@ -18,6 +18,7 @@
 :white_check_mark: Ver submodelo de aviones<br>
 :white_check_mark: Ver proveedor<br>
 :white_check_mark: Ver pruebas<br>
+:white_check_mark: Ver prueba piezas (**depende de Ver Pruebas**)<br>
 :white_check_mark: Ver piezas<br>
 :white_check_mark: Ver prueba material (**depende de Ver Pruebas**)<br>
 :white_check_mark: Ver tipo material (**depende de Ver Material**)<br>
@@ -52,7 +53,6 @@
 :o: Ver status avion (**No implementado -> STATUS AVION se ve en el VER MAS de la VENTA**)<br>
 :o: Ver status piezas (**No implementado**)<br>
 :o: Ver Status Material (**No implementado**)<br>
-:o: Ver Prueba piezas (**No implementado**)<br>
 
 ## CREAR (requieren el ver correspondiente)
 
