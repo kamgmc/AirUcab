@@ -25,6 +25,8 @@
 ![ver tipo ala](https://image.prntscr.com/image/LVzIIwy3QNyFEUY2yWrpsA.png)
 :x: Ver tipo estabilizador (**error al presionar la pestana Piezas - Captura- -> arreglar**) <br>
 ![ver tipo estabilizador](https://image.prntscr.com/image/sV4zj_wLRfO8o9pArIy-WQ.png)
+:x: Ver modelo de pieza (**error al presionar la pestana Piezas - Captura- -> arreglar**) <br>
+![ver modelo de pieza](https://image.prntscr.com/image/Y65sPrOtSJ_1c1-IDUECag.png)
 
 :o: Ver modelo motores (**se ve la tabla bien, al abrir detalle esta vacio -> No implementado**)<br>
 ![ver modelo motores](https://image.prntscr.com/image/epUE871iRWWTjgMkMnLg8g.png)
