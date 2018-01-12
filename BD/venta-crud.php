@@ -61,7 +61,6 @@
 									$anwsermodelo = pg_query($conexion, $qry);
 									while( $modelo_pieza = pg_fetch_object($anwsermodelo) ){
 										for($j = 1; $j <= $modelo_pieza->cantidad; $j++ ){
-											print $modelo_pieza->id."<br/>";
 											if(insertarPieza( $modelo_pieza->id, $avion->id )){//Crea una nueva pieza
 												$qry = "SELECT Max(p_id) AS id FROM Pieza where p_avion=".$avion->id." AND p_modelo_pieza=".$modelo_pieza->id;
 												if($answer = pg_query( $conexion, $qry )){
@@ -83,9 +82,9 @@
 													$anwser = pg_query($conexion, $qry2);
 													while($pm = pg_fetch_object($anwser)){
 														// Busca si hay materiales ya creados disponibles
-														$qry = "SELECT m_id id FROM Material, Status_material, Status WHERE m_tipo_material=".$pm->material." AND m_pieza=NULL AND sm_material=m_id AND sm_status=st_id AND st_nombre<>'Rechazado'";
-														$anwser = pg_query($conexion, $qry);
-														while($material = pg_fetch_object($anwser)){
+														$qryfx = "SELECT m_id id FROM Material, Status_material, Status WHERE m_tipo_material=".$pm->material." AND m_pieza=NULL AND sm_material=m_id AND sm_status=st_id AND st_nombre<>'Rechazado'";
+														$anwserfx = pg_query($conexion, $qryfx);
+														while($material = pg_fetch_object($anwserfx)){
 															if( isset($materiales[$pm->id]) ){
 																editarMaterial( $material->id, $pieza->id, 0 );
 																$materiales[$pm->id]--;
@@ -101,9 +100,9 @@
 														if( isset($materiales[$pm->id]) && $materiales[$pm->id] > 0 ){
 															for($h = 0; $h < $materiales[$pm->id]; $h++){
 																insertarMaterial( $pm->material, 0, $pieza->id, 1 );//Material nuevo
-																$qry = "SELECT MAX(m_id) AS id FROM Material WHERE m_factura_compra=0 AND m_tipo_material=".$pm->material." AND m_pieza=".$pieza->id;
-																$anwser = pg_query($conexion, $qry);
-																$materialc = pg_fetch_object($anwser);
+																$qryfx = "SELECT MAX(m_id) AS id FROM Material WHERE m_factura_compra=0 AND m_tipo_material=".$pm->material." AND m_pieza=".$pieza->id;
+																$anwserfx = pg_query($conexion, $qryfx);
+																$materialc = pg_fetch_object($anwserfx);
 																insertarStatusMaterial( 1, $materialc->id);//Status del material inicialmente
 															}
 														}
@@ -147,7 +146,6 @@
 									$anwser = pg_query($conexion, $qry);
 									$distribucion = pg_fetch_object($anwser);
 									$limit = $distribucion->capacidad;
-									print $limit;
 									for($q = 0; $q < $limit; $q++){
 										if(insertarPieza( $asiento->id, $avion->id )){//Crea una nueva pieza
 											$qry = "SELECT Max(p_id) AS id FROM Pieza where p_avion=".$avion->id." AND p_modelo_pieza=".$asiento->id;
@@ -162,27 +160,24 @@
 												$anwser = pg_query($conexion, $qry2);
 												while($pm = pg_fetch_object($anwser)){
 													// Busca si hay materiales ya creados disponibles
-													$qry = "SELECT m_id id FROM Material, Status_material, Status WHERE m_tipo_material=".$pm->material." AND m_pieza is NULL AND sm_material=m_id AND sm_status=st_id AND st_nombre<>'Rechazado'";
-													$anwser = pg_query($conexion, $qry);
-													while($material = pg_fetch_object($anwser)){
-														if( isset($materiales[$pm->id]) ){
+													$qryfx = "SELECT m_id id FROM Material, Status_material, Status WHERE m_tipo_material=".$pm->material." AND m_pieza is NULL AND sm_material=m_id AND sm_status=st_id AND st_nombre<>'Rechazado'";
+													$anwserfx = pg_query($conexion, $qryfx);
+													while($material = pg_fetch_object($anwserfx)){
+														if( isset($materiales[$pm->id]) && $materiales[$pm->id] > 0 ){
 															editarMaterial( $material->id, $pieza->id, 0 );
 															$materiales[$pm->id]--;
-															if($materiales[$pm->id] == 0){
-																unset($materiales[$pm->id]);
-
-															}
 														}
 													}
 												}
 												$anwser = pg_query($conexion, $qry2);
 												while($pm = pg_fetch_object($anwser)){
 													if( isset($materiales[$pm->id]) && $materiales[$pm->id] > 0 ){
-														for($h = 0; $h < $materiales[$pm->id]; $h++){
+														$iteration = $materiales[$pm->id];
+														for($h = 0; $h < $iteration; $h++){
 															insertarMaterial( $pm->material, 0, $pieza->id, 1 );//Material nuevo
-															$qry = "SELECT MAX(m_id) AS id FROM Material WHERE m_factura_compra=0 AND m_tipo_material=".$pm->material." AND m_pieza=".$pieza->id;
-															$anwser = pg_query($conexion, $qry);
-															$materialc = pg_fetch_object($anwser);
+															$qryfx = "SELECT MAX(m_id) AS id FROM Material WHERE m_factura_compra=0 AND m_tipo_material=".$pm->material." AND m_pieza=".$pieza->id;
+															$anwserfx = pg_query($conexion, $qryfx);
+															$materialc = pg_fetch_object($anwserfx);
 															insertarStatusMaterial( 1, $materialc->id);//Status del material inicialmente
 														}
 													}

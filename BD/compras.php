@@ -117,7 +117,7 @@ if( !in_array("po_r", $permiso) && !in_array("fc_r", $permiso) && !in_array("m_r
 						<a href="ventas.php"> <i class="fa fa-paper-plane-o" aria-hidden="true"></i>Ventas </a>
 					</li>
 					<?php } ?>
-					<?php if( in_array("po_r", $permiso) && in_array("fc_r", $permiso) && in_array("m_r", $permiso) && in_array("pa_r", $permiso) ){ ?>
+					<?php if( in_array("fc_r", $permiso) ){ ?>
 					<li class="active">
 						<a href="compras.php"> <i class="fa fa-shopping-bag " aria-hidden="true"></i>Compras </a>
 					</li>
@@ -158,7 +158,7 @@ if( !in_array("po_r", $permiso) && !in_array("fc_r", $permiso) && !in_array("m_r
 				<!-- Section de TABS-->
 				<section>
 					<div class="container-fluid">
-                        <?php if( in_array("po_r", $permiso) && in_array("fc_r", $permiso) && in_array("m_r", $permiso) && in_array("pa_r", $permiso) ){ ?>
+                        <?php if( in_array("fc_r", $permiso) ){ ?>
 						<input id="tab0" type="radio" name="tabs" class="no-display" checked>
 						<label for="tab0" class="label"><i class="fa fa-shopping-bag " aria-hidden="true"></i> Compras</label>
                         <?php } ?>
@@ -219,7 +219,7 @@ if( !in_array("po_r", $permiso) && !in_array("fc_r", $permiso) && !in_array("m_r
 							<!-- TABLE STARTS -->
 							<div class="col-md-12">
 								<div class="card">
-                                    <?php if( in_array("po_r", $permiso) && in_array("fc_c", $permiso) && in_array("m_r", $permiso) && in_array("pa_c", $permiso) ){ ?>
+                                    <?php if( in_array("fc_c", $permiso) ){ ?>
 									<div class="row">
 										<div class="col-sm-10"></div>
 										<div class="col-sm-2 pad-top">
@@ -228,7 +228,7 @@ if( !in_array("po_r", $permiso) && !in_array("fc_r", $permiso) && !in_array("m_r
 											</button>
 										</div>
 									</div>
-                                    <?php } if( in_array("po_r", $permiso) && in_array("fc_r", $permiso) && in_array("m_r", $permiso) && in_array("pa_r", $permiso) ){ ?>
+                                    <?php } if( in_array("fc_r", $permiso) ){ ?>
 									<div class="card-body">
 										<table class="table table-striped table-sm table-hover">
 											<thead>

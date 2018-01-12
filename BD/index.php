@@ -357,7 +357,7 @@ $meses = array(1 => 'Enero', 2 => 'Febrero', 3 => 'Marzo', 4 => 'Abril', 5 => 'm
 								<?php if( in_array("wt_r", $permiso) && in_array("pm_r", $permiso) && in_array("p_r", $permiso) ){?>
 								<div class="card">
 									<?php
-									$qry = "SELECT 'Ala '||wt_nombre nombre, COUNT(a_id) cantidad FROM Tipo_ala, Modelo_pieza, Pieza, Avion WHERE pm_tipo_ala=wt_id AND p_modelo_pieza=pm_id AND p_avion=a_id GROUP BY wt_nombre ORDER BY cantidad DESC limit 1";
+									$qry = "Select 'Ala '||wt_nombre nombre, Count(wt_nombre) cantidad From (SELECT wt_nombre, a_id FROM Tipo_ala, Modelo_pieza, Pieza, Avion WHERE pm_tipo_ala=wt_id AND p_modelo_pieza=pm_id AND p_avion=a_id Group By wt_id, a_id) Alas Group By nombre ORDER BY cantidad DESC limit 1";
 									$rs = pg_query( $conexion, $qry );
 									$ala = pg_fetch_object($rs);?>
 									<div class="card-body">

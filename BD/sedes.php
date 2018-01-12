@@ -250,8 +250,9 @@ if( !in_array("se_r", $permiso) && !in_array("zo_r", $permiso) ){
 										</table>
                                         <?php }else{?>
 										<h3>&emsp;No se han encontrado resultados.</h3>
-										<?php }}?>
+										<?php }?>
 									</div>
+									<?php }?>
 								</div>
 							</div>
 							<!-- TABLE ENDS -->
@@ -302,7 +303,7 @@ if( !in_array("se_r", $permiso) && !in_array("zo_r", $permiso) ){
 										</div>
 									</div>
                                     <?php } ?>
-                                    <?php if( in_array("zo_r", $permiso) ) { ?>
+                                    <?php if( in_array("zo_r", $permiso) ){ ?>
                                     <?php $qry = "SELECT zo_id id, zo_nombre nombre, zo_tipo tipo, se_nombre sede FROM Zona LEFT JOIN Sede on zo_sede=se_id GROUP BY zo_id, se_nombre ORDER BY zo_id";
 								    $rs = pg_query( $conexion, $qry );
 								    $howMany = pg_num_rows($rs);
@@ -349,8 +350,9 @@ if( !in_array("se_r", $permiso) && !in_array("zo_r", $permiso) ){
 										</table>
                                         <?php }else{?>
 										<h3>&emsp;No se han encontrado resultados.</h3>
-										<?php }}?>
+										<?php }?>
 									</div>
+									<?php }?>
 								</div>
 							</div>
 							<!-- TABLE ENDS -->
