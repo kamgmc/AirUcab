@@ -215,7 +215,7 @@ if( !in_array("pr_r", $permiso) && !in_array("st_r", $permiso) ){
 														<a href="<?php print $prueba->id;?>" data-toggle="modal" data-target="#myModalPrueba"> 
                                                             <i class="fa fa-pencil" aria-hidden="true" title="Editar"></i> 
                                                         </a>
-                                                        <?php} if(in_array("pr_d", $permiso)){ ?>&emsp;
+                                                        <?php } if(in_array("pr_d", $permiso)){ ?>&emsp;
 														<a href="
                                                             <?php 
                                                             if($prueba->type == "pieza")print "prueba_pieza-crud.php?delete=".$prueba->id;
