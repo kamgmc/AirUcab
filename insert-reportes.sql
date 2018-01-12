@@ -1641,7 +1641,7 @@ INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear tipo de estabilizado
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver tipo de estabilizador','et_r');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar tipo de estabilizador','et_u');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar tipo de estabilizador','et_d');
---MODELO_
+--MODELO_PIEZA
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear modelo de pieza','pm_c');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver modelo de pieza','pm_r');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar modelo de pieza','pm_u');
@@ -1918,9 +1918,9 @@ INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,166);
 INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,167);
 INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,168);
 --USUARIO ANONIMO
+INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(2,66);
+INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(2,70);
 INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(2,74);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(2,78);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(2,82);
 --SUPERVISOR
 INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,22);
 INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,26);
