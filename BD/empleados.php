@@ -6,7 +6,7 @@ if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'
 $qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$_SESSION['rol']; 
 $rs = pg_query( $conexion, $qry ); $permiso = array();
 while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }
-if( !in_array("em_r", $permiso) && !in_array("sr_c", $permiso) && !in_array("er_r", $permiso) && !in_array("ti_c", $permiso) && !in_array("rp_c", $permiso) && !in_array("rp_u", $permiso) && !in_array("rp_r", $permiso) && !in_array("ct_r", $permiso) ){
+if( !in_array("em_r", $permiso) && !in_array("sr_r", $permiso) && !in_array("er_r", $permiso) && !in_array("ti_r", $permiso) && !in_array("pe_r", $permiso) && !in_array("ct_r", $permiso) ){
 	if( !isset($_SESSION['code']) ){
 		header('Location: login.php');
 		exit;
@@ -207,7 +207,7 @@ if( !in_array("em_r", $permiso) && !in_array("sr_c", $permiso) && !in_array("er_
 							<label for="tab4" class="label"><i class="fa fa-university" aria-hidden="true"></i> Permisos</label>
 							<?php }?>
 							<?php if( in_array("ct_r", $permiso) || ( in_array("ct_c", $permiso) && in_array("ct_u", $permiso) ) ){?>
-							<input id="tab5" type="radio" name="tabs" class="no-display" <?php if( $_GET['tab'] == "permiso" ) print "checked";?>>
+							<input id="tab5" type="radio" name="tabs" class="no-display" <?php if( $_GET['tab'] == "contacto" ) print "checked";?>>
 							<label for="tab5" class="label"><i class="fa fa-wifi" aria-hidden="true"></i> Tipo de Contacto</label>
 							<?php }?>
 							<!-- Tab Empleados -->
@@ -913,7 +913,7 @@ if( !in_array("em_r", $permiso) && !in_array("sr_c", $permiso) && !in_array("er_
 							<!-- Modal Editar Titulacion ENDS -->
 							<?php }?>
 							
-							<?php if( in_array("rp_r", $permiso) || (in_array("rp_c", $permiso) && in_array("rp_u", $permiso)) ){?>
+							<?php if( in_array("rp_r", $permiso) || (in_array("rp_c", $permiso) && in_array("rp_u", $permiso) && in_array("rp_d", $permiso)) ){?>
 							<?php $qry = "SELECT pe_id id, pe_nombre nombre, pe_iniciales iniciales FROM Permiso";
 							$rs = pg_query( $conexion, $qry );
 							$qre = "SELECT sr_id id, sr_nombre nombre FROM Rol_sistema";
@@ -952,7 +952,7 @@ if( !in_array("em_r", $permiso) && !in_array("sr_c", $permiso) && !in_array("er_
 																<td class="text-center">
 																	<div class="form-check">
 																	  <label class="form-check-label">
-																		<input name="<?php print $permisos->iniciales."_".$rol->id;?>" class="form-check-input position-static" type="checkbox" <?php if( !in_array("rp_c", $permiso) || !in_array("rp_u", $permiso) || $rol->id == 1 || $rol->id == 2 ) print "disabled";?> <?php if( in_array($permisos->iniciales, $permisoCheck[$rol->id])) print "checked";?>/>
+																		<input name="<?php print $permisos->iniciales."_".$rol->id;?>" class="form-check-input position-static" type="checkbox" <?php if( !in_array("rp_c", $permiso) || !in_array("rp_u", $permiso) || !in_array("rp_d", $permiso) || $rol->id == 1 || $rol->id == 2 ) print "disabled";?> <?php if( in_array($permisos->iniciales, $permisoCheck[$rol->id])) print "checked";?>/>
 																	  </label>
 																	</div>
 																</td>
@@ -961,7 +961,7 @@ if( !in_array("em_r", $permiso) && !in_array("sr_c", $permiso) && !in_array("er_
 															<?php }?>
 														</tbody>
 													</table>
-													<?php if( in_array("rp_c", $permiso) || in_array("rp_u", $permiso) ){?>
+													<?php if( in_array("rp_c", $permiso) && in_array("rp_u", $permiso) && in_array("rp_d", $permiso) ){?>
 													<div class="row">
 														<div class="col-sm-12 text-right">
 															<button type="submit" class="btn btn-primary">

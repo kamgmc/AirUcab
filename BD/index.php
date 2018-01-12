@@ -319,7 +319,7 @@ $meses = array(1 => 'Enero', 2 => 'Febrero', 3 => 'Marzo', 4 => 'Abril', 5 => 'm
 										<div id="modelos-producidos-target" class="card-text">
 											<?php while( $modelo = pg_fetch_object($rs) ){?>
 											<p>
-												<strong><?php print $modelo->nombre;?></strong> <?php print number_format($modelo->cantidad, 2, ',', '.'); ?> ventas.
+												<strong><?php print $modelo->nombre;?></strong> <?php print number_format($modelo->cantidad, 2, ',', '.'); ?> aviones.
 											</p>
 											<?php }?>
 										</div>

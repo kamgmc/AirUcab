@@ -33,7 +33,7 @@
 		$resultado="<option value='NULL'>Seleccionar</option>";
 		$rs = pg_query( $conexion, $qry ); $resultado = "";
 		while($modelo = pg_fetch_object($rs))
-			$resultado.='<p><strong>'.$modelo->nombre.'</strong> '.number_format($modelo->cantidad, 2, ',', '.').' ventas.</p>';
+			$resultado.='<p><strong>'.$modelo->nombre.'</strong> '.number_format($modelo->cantidad, 2, ',', '.').' aviones.</p>';
 	}
 	if($_GET['get'] == "inventario-mensual"){
 		$year = htmlentities($_GET['year'], ENT_QUOTES);
