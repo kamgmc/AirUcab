@@ -66,7 +66,13 @@
 :white_check_mark: Editar rol de sistema<br>
 :white_check_mark: Editar rol - permiso<br>
 
+:x: Editar sede (**error al presionar `Detalles` -Captura- -> arreglar****) <br>
+![editar sede](https://image.prntscr.com/image/Ev9dHKr4T1CamjfT_SF7iw.png)
+
 ## BORRAR (requieren el ver correspondiente)
 
 :white_check_mark: Borrar rol de sistema<br>
 :white_check_mark: Borrar rol - permiso<br>
+
+:x: Borrar sede (**error al presionar `Detalles` -Captura- -> arreglar****) <br>
+![borrar sede](https://image.prntscr.com/image/Ev9dHKr4T1CamjfT_SF7iw.png)
