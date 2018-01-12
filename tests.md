@@ -22,6 +22,7 @@
 :white_check_mark: Ver prueba material (**depende de Ver Pruebas**)<br>
 :white_check_mark: Ver tipo material (**depende de Ver Material**)<br>
 :white_check_mark: Ver material (**depende de Ver Tipo Material**)<br>
+:white_check_mark: Ver Traslado<br>
 
 
 :x: Ver rol-permiso (**error al presionar la pestana Empleado -2da Captura- -> arreglar**) <br>
@@ -52,5 +53,6 @@
 :o: Ver status piezas (**No implementado**)<br>
 :o: Ver Prueba Material (**No implementado**)<br>
 :o: Ver Status Material (**No implementado**)<br>
+:o: Ver Prueba piezas (**No implementado**)<br>
 
 
