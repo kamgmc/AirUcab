@@ -185,6 +185,10 @@ if( !in_array("am_r", $permiso) && !in_array("as_r", $permiso) && !in_array("di_
 							<input id="tab2" type="radio" name="tabs" class="no-display" <?php if( $_GET['tab'] == "distribucion" || ( !in_array("as_r", $permiso) && !in_array("am_r", $permiso) ) ) print "checked";?>>
 							<label for="tab2" class="label"><i class="fa fa-fighter-jet" aria-hidden="true"></i> Distribucion</label>
 							<?php }?>
+							<?php if( in_array("am_r", $permiso) && in_array("as_r", $permiso) && in_array("di_r", $permiso) ){?>
+							<input id="tab3" type="radio" name="tabs" class="no-display" <?php if( $_GET['tab'] == "reporte") print "checked";?>>
+							<label for="tab3" class="label"><i class="fa fa-fighter-jet" aria-hidden="true"></i> Modelos - Reporte</label>
+							<?php }?>
 							<!-- TAB Modelos Aviones -->
 							<section id="content0" class="sectiontab">
 								<!-- Filtrador-->
@@ -1053,6 +1057,435 @@ if( !in_array("am_r", $permiso) && !in_array("as_r", $permiso) && !in_array("di_
 								</div>
 							</div>
 							<!-- Modal Distribucion Avion Editar ENDS -->
+							<section id="content3" class="sectiontab">
+								<!-- TABLE STARTS -->
+								<div class="col-md-12">
+									<div class="card">
+										<?php if( in_array("di_r", $permiso) ){?>
+										<?php $qry = "Select am_id id, am_nombre nombre, am_longitud longitud, am_envergadura envergadura, am_altura altura, am_ala_superficie superficie_alar, am_ala_flecha flecha_alar, am_peso_aterrizaje_max peso_maximo_aterrizaje, am_alcance alcance, am_velocidad_max velocidad_max, am_techo_servicio techo_servicio, am_regimen_ascenso regimen_ascenso, am_numero_pasillos numero_pasillos, am_fuselaje_tipo tipo_fuselaje, am_fuselaje_altura altura_fuselaje, am_fuselaje_ancho ancho_fuselaje, am_cabina_altura altura_cabina, am_cabina_ancho ancho_cabina, am_carga_volumen volumen_carga, am_capacidad_pilotos capacidad_pilotos, am_capacidad_asistentes capacidad_asistentes, am_carrera_despegue carrera_despegue, am_tiempo_estimado tiempo_estimado from modelo_avion Order by am_nombre";
+										$rs = pg_query( $conexion, $qry );
+										$howMany = pg_num_rows($rs);
+										if( $howMany > 0 ){?>
+										<div class="card-body">
+											<div class="table-responsive-md">
+												<table class="table table-bordered table-striped table-sm table-hover pad-right">
+													<thead>
+														<tr>
+															<th class="text-center text-middle">Medidas</th>
+															<?php $rs = pg_query( $conexion, $qry );
+															   while( $avion = pg_fetch_object($rs) ){?>
+															<th class="text-center text-middle"><?php print $avion->nombre;?></th>
+															<?php }?>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<th class="text-center text-middle">Longitud</th>
+															<?php $rs = pg_query( $conexion, $qry );
+															   while( $avion = pg_fetch_object($rs) ){?>
+															<td class="text-center text-middle"><?php print number_format($avion->longitud, 2, ',', '.')." m";?></td>
+															<?php }?>
+														</tr>
+														<tr>
+															<th class="text-center text-middle">Envergadura</th>
+															<?php $rs = pg_query( $conexion, $qry );
+															   while( $avion = pg_fetch_object($rs) ){?>
+															<td class="text-center text-middle"><?php print number_format($avion->envergadura, 2, ',', '.')." m";?></td>
+															<?php }?>
+														</tr>
+														<tr>
+															<th class="text-center text-middle">Altura</th>
+															<?php $rs = pg_query( $conexion, $qry );
+															   while( $avion = pg_fetch_object($rs) ){?>
+															<td class="text-center text-middle"><?php print number_format($avion->altura, 1, ',', '.')." m";?></td>
+															<?php }?>
+														</tr>
+														<tr>
+															<th class="text-center text-middle">Superficie Alar</th>
+															<?php $rs = pg_query( $conexion, $qry );
+															   while( $avion = pg_fetch_object($rs) ){?>
+															<td class="text-center text-middle"><?php print number_format($avion->superficie_alar, 0, ',', '.')." m<sup>2</sup>";?></td>
+															<?php }?>
+														</tr>
+														<tr>
+															<th class="text-center text-middle">Flecha Alar</th>
+															<?php $rs = pg_query( $conexion, $qry );
+															   while( $avion = pg_fetch_object($rs) ){?>
+															<td class="text-center text-middle"><?php print number_format($avion->flecha_alar, 2, ',', '.')."°";?></td>
+															<?php }?>
+														</tr>
+														<tr>
+															<th class="text-center text-middle">Peso Maximo de Aterrizaje</th>
+															<?php $rs = pg_query( $conexion, $qry );
+															   while( $avion = pg_fetch_object($rs) ){?>
+															<td class="text-center text-middle"><?php print number_format($avion->peso_maximo_aterrizaje, 0, ',', '.')." Kg";?></td>
+															<?php }?>
+														</tr>
+														<tr>
+															<th class="text-center text-middle">Alcance</th>
+															<?php $rs = pg_query( $conexion, $qry );
+															   while( $avion = pg_fetch_object($rs) ){?>
+															<td class="text-center text-middle"><?php print number_format($avion->alcance, 0, ',', '.')." Km";?></td>
+															<?php }?>
+														</tr>
+														<tr>
+															<th class="text-center text-middle">Velocidad Maxima</th>
+															<?php $rs = pg_query( $conexion, $qry );
+															   while( $avion = pg_fetch_object($rs) ){?>
+															<td class="text-center text-middle"><?php print number_format($avion->velocidad_max, 0, ',', '.')." Km/h";?></td>
+															<?php }?>
+														</tr>
+														<tr>
+															<th class="text-center text-middle">Techo de Servicio</th>
+															<?php $rs = pg_query( $conexion, $qry );
+															   while( $avion = pg_fetch_object($rs) ){?>
+															<td class="text-center text-middle"><?php print number_format($avion->techo_servicio, 0, ',', '.')." m";?></td>
+															<?php }?>
+														</tr>
+														<tr>
+															<th class="text-center text-middle">Regimen de Ascenso</th>
+															<?php $rs = pg_query( $conexion, $qry );
+															   while( $avion = pg_fetch_object($rs) ){?>
+															<td class="text-center text-middle"><?php print number_format($avion->regimen_ascenso, 1, ',', '.')." m/s";?></td>
+															<?php }?>
+														</tr>
+														<tr>
+															<th class="text-center text-middle">Numero de Pasillos</th>
+															<?php $rs = pg_query( $conexion, $qry );
+															   while( $avion = pg_fetch_object($rs) ){?>
+															<td class="text-center text-middle"><?php print number_format($avion->numero_pasillos, 0, ',', '.');?></td>
+															<?php }?>
+														</tr>
+														<tr>
+															<th class="text-center text-middle">Tipo de Fuselaje</th>
+															<?php $rs = pg_query( $conexion, $qry );
+															   while( $avion = pg_fetch_object($rs) ){?>
+															<td class="text-center text-middle"><?php print $avion->tipo_fuselaje;?></td>
+															<?php }?>
+														</tr>
+														<tr>
+															<th class="text-center text-middle">Altura de Fuselaje</th>
+															<?php $rs = pg_query( $conexion, $qry );
+															   while( $avion = pg_fetch_object($rs) ){?>
+															<td class="text-center text-middle"><?php print number_format($avion->altura_fuselaje, 2, ',', '.')." m";?></td>
+															<?php }?>
+														</tr>
+														<tr>
+															<th class="text-center text-middle">Ancho de Fuselaje</th>
+															<?php $rs = pg_query( $conexion, $qry );
+															   while( $avion = pg_fetch_object($rs) ){?>
+															<td class="text-center text-middle"><?php print number_format($avion->ancho_fuselaje, 2, ',', '.')." m";?></td>
+															<?php }?>
+														</tr>
+														<tr>
+															<th class="text-center text-middle">Altura de Cabina</th>
+															<?php $rs = pg_query( $conexion, $qry );
+															   while( $avion = pg_fetch_object($rs) ){?>
+															<td class="text-center text-middle"><?php print number_format($avion->altura_cabina, 2, ',', '.')." m";?></td>
+															<?php }?>
+														</tr>
+														<tr>
+															<th class="text-center text-middle">Ancho de Cabina</th>
+															<?php $rs = pg_query( $conexion, $qry );
+															   while( $avion = pg_fetch_object($rs) ){?>
+															<td class="text-center text-middle"><?php print number_format($avion->ancho_cabina, 2, ',', '.')." m";?></td>
+															<?php }?>
+														</tr>
+														<tr>
+															<th class="text-center text-middle">Volumen de Carga</th>
+															<?php $rs = pg_query( $conexion, $qry );
+															   while( $avion = pg_fetch_object($rs) ){?>
+															<td class="text-center text-middle"><?php print number_format($avion->volumen_carga, 1, ',', '.')." m<sup>3</sup>";?></td>
+															<?php }?>
+														</tr>
+														<tr>
+															<th class="text-center text-middle">Tripulación</th>
+															<?php $rs = pg_query( $conexion, $qry );
+															   while( $avion = pg_fetch_object($rs) ){?>
+															<td class="text-center text-middle"><?php print $avion->capacidad_pilotos.$avion->capacidad_asistentes;?></td>
+															<?php }?>
+														</tr>
+														<tr>
+															<th class="text-center text-middle">Carrera de Despegue</th>
+															<?php $rs = pg_query( $conexion, $qry );
+															   while( $avion = pg_fetch_object($rs) ){?>
+															<td class="text-center text-middle"><?php print number_format($avion->carrera_despegue, 0, ',', '.')." m";?></td>
+															<?php }?>
+														</tr>
+														<tr>
+															<th class="text-center text-middle">Peso Maximo de Despegue</th>
+															<?php $qry2 = "Select am_id id From modelo_avion Order by am_nombre";
+														   		$ids = pg_query( $conexion, $qry2 );
+															   	while( $avion = pg_fetch_object($ids) ){?>
+																<td class="text-center text-middle">
+																	<?php
+																	$qry3 = "select as_nombre nombre, as_peso_maximo_despegue peso_maximo_despegue, as_peso_vacio peso_vacio, as_velocidad_crucero velocidad_crucero, as_carrera_despegue_peso_maximo carrera_despegue, as_autonomia_peso_maximo_despegue autonomia_peso_max, as_capacidad_combustible capacidad_combustible, as_alcance_carga_maxima alcance_carga_maxima, as_cantidad_motor cantidad_motores From submodelo_avion Where as_modelo_avion=".$avion->id;
+																	$sub = pg_query( $conexion, $qry3 );
+																	if(pg_num_rows($sub)>1){
+																		while( $submodelo = pg_fetch_object($sub) )
+																			print "<strong>".$submodelo->nombre.":</strong> ".number_format($submodelo->peso_maximo_despegue, 0, ',', '.')." Kg <br/>";
+																	}
+																	else{
+																		$submodelo = pg_fetch_object($sub);
+																		print number_format($submodelo->peso_maximo_despegue, 0, ',', '.')." Kg";
+																	}
+																	?>
+																</td>
+																<?php }?>
+														</tr>
+														<tr>
+															<th class="text-center text-middle">Peso Vacio</th>
+															<?php $qry2 = "Select am_id id From modelo_avion Order by am_nombre";
+														   		$ids = pg_query( $conexion, $qry2 );
+															   	while( $avion = pg_fetch_object($ids) ){?>
+																<td class="text-center text-middle">
+																	<?php
+																	$qry3 = "select as_nombre nombre, as_peso_maximo_despegue peso_maximo_despegue, as_peso_vacio peso_vacio, as_velocidad_crucero velocidad_crucero, as_carrera_despegue_peso_maximo carrera_despegue, as_autonomia_peso_maximo_despegue autonomia_peso_max, as_capacidad_combustible capacidad_combustible, as_alcance_carga_maxima alcance_carga_maxima, as_cantidad_motor cantidad_motores From submodelo_avion Where as_modelo_avion=".$avion->id;
+																	$sub = pg_query( $conexion, $qry3 );
+																	if(pg_num_rows($sub)>1){
+																		while( $submodelo = pg_fetch_object($sub) )
+																			print "<strong>".$submodelo->nombre.":</strong> ".number_format($submodelo->peso_vacio, 0, ',', '.')." Kg <br/>";
+																	}
+																	else{
+																		$submodelo = pg_fetch_object($sub);
+																		print number_format($submodelo->peso_vacio, 0, ',', '.')." Kg";
+																	}
+																	?>
+																</td>
+																<?php }?>
+														</tr>
+														<tr>
+															<th class="text-center text-middle">Velocidad Crucero</th>
+															<?php $qry2 = "Select am_id id From modelo_avion Order by am_nombre";
+														   		$ids = pg_query( $conexion, $qry2 );
+															   	while( $avion = pg_fetch_object($ids) ){?>
+																<td class="text-center text-middle">
+																	<?php
+																	$qry3 = "select as_nombre nombre, as_peso_maximo_despegue peso_maximo_despegue, as_peso_vacio peso_vacio, as_velocidad_crucero velocidad_crucero, as_carrera_despegue_peso_maximo carrera_despegue, as_autonomia_peso_maximo_despegue autonomia_peso_max, as_capacidad_combustible capacidad_combustible, as_alcance_carga_maxima alcance_carga_maxima, as_cantidad_motor cantidad_motores From submodelo_avion Where as_modelo_avion=".$avion->id;
+																	$sub = pg_query( $conexion, $qry3 );
+																	if(pg_num_rows($sub)>1){
+																		while( $submodelo = pg_fetch_object($sub) )
+																			print "<strong>".$submodelo->nombre.":</strong> ".number_format($submodelo->velocidad_crucero, 0, ',', '.')." Km/h <br/>";
+																	}
+																	else{
+																		$submodelo = pg_fetch_object($sub);
+																		print number_format($submodelo->velocidad_crucero, 0, ',', '.')." Km/h";
+																	}
+																	?>
+																</td>
+																<?php }?>
+														</tr>
+														<tr>
+															<th class="text-center text-middle">Carrera de despegue con Peso Max</th>
+															<?php $qry2 = "Select am_id id From modelo_avion Order by am_nombre";
+														   		$ids = pg_query( $conexion, $qry2 );
+															   	while( $avion = pg_fetch_object($ids) ){?>
+																<td class="text-center text-middle">
+																	<?php
+																	$qry3 = "select as_nombre nombre, as_peso_maximo_despegue peso_maximo_despegue, as_peso_vacio peso_vacio, as_velocidad_crucero velocidad_crucero, as_carrera_despegue_peso_maximo carrera_despegue, as_autonomia_peso_maximo_despegue autonomia_peso_max, as_capacidad_combustible capacidad_combustible, as_alcance_carga_maxima alcance_carga_maxima, as_cantidad_motor cantidad_motores From submodelo_avion Where as_modelo_avion=".$avion->id;
+																	$sub = pg_query( $conexion, $qry3 );
+																	if(pg_num_rows($sub)>1){
+																		while( $submodelo = pg_fetch_object($sub) )
+																			print "<strong>".$submodelo->nombre.":</strong> ".number_format($submodelo->carrera_despegue, 0, ',', '.')." m <br/>";
+																	}
+																	else{
+																		$submodelo = pg_fetch_object($sub);
+																		print number_format($submodelo->carrera_despegue, 0, ',', '.')." m";
+																	}
+																	?>
+																</td>
+																<?php }?>
+														</tr>
+														<tr>
+															<th class="text-center text-middle">Autonomia de Peso Max de Despegue</th>
+															<?php $qry2 = "Select am_id id From modelo_avion Order by am_nombre";
+														   		$ids = pg_query( $conexion, $qry2 );
+															   	while( $avion = pg_fetch_object($ids) ){?>
+																<td class="text-center text-middle">
+																	<?php
+																	$qry3 = "select as_nombre nombre, as_peso_maximo_despegue peso_maximo_despegue, as_peso_vacio peso_vacio, as_velocidad_crucero velocidad_crucero, as_carrera_despegue_peso_maximo carrera_despegue, as_autonomia_peso_maximo_despegue autonomia_peso_max, as_capacidad_combustible capacidad_combustible, as_alcance_carga_maxima alcance_carga_maxima, as_cantidad_motor cantidad_motores From submodelo_avion Where as_modelo_avion=".$avion->id;
+																	$sub = pg_query( $conexion, $qry3 );
+																	if(pg_num_rows($sub)>1){
+																		while( $submodelo = pg_fetch_object($sub) )
+																			print "<strong>".$submodelo->nombre.":</strong> ".number_format($submodelo->autonomia_peso_max, 0, ',', '.')." Km <br/>";
+																	}
+																	else{
+																		$submodelo = pg_fetch_object($sub);
+																		print number_format($submodelo->autonomia_peso_max, 0, ',', '.')." Km";
+																	}
+																	?>
+																</td>
+																<?php }?>
+														</tr>
+														<tr>
+															<th class="text-center text-middle">Capacidad de Combustible</th>
+															<?php $qry2 = "Select am_id id From modelo_avion Order by am_nombre";
+														   		$ids = pg_query( $conexion, $qry2 );
+															   	while( $avion = pg_fetch_object($ids) ){?>
+																<td class="text-center text-middle">
+																	<?php
+																	$qry3 = "select as_nombre nombre, as_peso_maximo_despegue peso_maximo_despegue, as_peso_vacio peso_vacio, as_velocidad_crucero velocidad_crucero, as_carrera_despegue_peso_maximo carrera_despegue, as_autonomia_peso_maximo_despegue autonomia_peso_max, as_capacidad_combustible capacidad_combustible, as_alcance_carga_maxima alcance_carga_maxima, as_cantidad_motor cantidad_motores From submodelo_avion Where as_modelo_avion=".$avion->id;
+																	$sub = pg_query( $conexion, $qry3 );
+																	if(pg_num_rows($sub)>1){
+																		while( $submodelo = pg_fetch_object($sub) )
+																			print "<strong>".$submodelo->nombre.":</strong> ".number_format($submodelo->capacidad_combustible, 0, ',', '.')." Lts <br/>";
+																	}
+																	else{
+																		$submodelo = pg_fetch_object($sub);
+																		print number_format($submodelo->capacidad_combustible, 0, ',', '.')." Lts";
+																	}
+																	?>
+																</td>
+																<?php }?>
+														</tr>
+														<tr>
+															<th class="text-center text-middle">Alcance con Carga Maxima</th>
+															<?php $qry2 = "Select am_id id From modelo_avion Order by am_nombre";
+														   		$ids = pg_query( $conexion, $qry2 );
+															   	while( $avion = pg_fetch_object($ids) ){?>
+																<td class="text-center text-middle">
+																	<?php
+																	$qry3 = "select as_nombre nombre, as_peso_maximo_despegue peso_maximo_despegue, as_peso_vacio peso_vacio, as_velocidad_crucero velocidad_crucero, as_carrera_despegue_peso_maximo carrera_despegue, as_autonomia_peso_maximo_despegue autonomia_peso_max, as_capacidad_combustible capacidad_combustible, as_alcance_carga_maxima alcance_carga_maxima, as_cantidad_motor cantidad_motores From submodelo_avion Where as_modelo_avion=".$avion->id;
+																	$sub = pg_query( $conexion, $qry3 );
+																	if(pg_num_rows($sub)>1){
+																		while( $submodelo = pg_fetch_object($sub) )
+																			print "<strong>".$submodelo->nombre.":</strong> ".number_format($submodelo->alcance_carga_maxima, 0, ',', '.')." Km <br/>";
+																	}
+																	else{
+																		$submodelo = pg_fetch_object($sub);
+																		print number_format($submodelo->alcance_carga_maxima, 0, ',', '.')." Km";
+																	}
+																	?>
+																</td>
+																<?php }?>
+														</tr>
+														<tr>
+															<th class="text-center text-middle">Cantidad de Motores</th>
+															<?php $qry2 = "Select am_id id From modelo_avion Order by am_nombre";
+														   		$ids = pg_query( $conexion, $qry2 );
+															   	while( $avion = pg_fetch_object($ids) ){?>
+																<td class="text-center text-middle">
+																	<?php
+																	$qry3 = "select as_nombre nombre, as_peso_maximo_despegue peso_maximo_despegue, as_peso_vacio peso_vacio, as_velocidad_crucero velocidad_crucero, as_carrera_despegue_peso_maximo carrera_despegue, as_autonomia_peso_maximo_despegue autonomia_peso_max, as_capacidad_combustible capacidad_combustible, as_alcance_carga_maxima alcance_carga_maxima, as_cantidad_motor cantidad_motores From submodelo_avion Where as_modelo_avion=".$avion->id;
+																	$sub = pg_query( $conexion, $qry3 );
+																	if(pg_num_rows($sub)>1){
+																		while( $submodelo = pg_fetch_object($sub) )
+																			print "<strong>".$submodelo->nombre.":</strong> ".number_format($submodelo->cantidad_motores, 0, ',', '.')." <br/>";
+																	}
+																	else{
+																		$submodelo = pg_fetch_object($sub);
+																		print number_format($submodelo->cantidad_motores, 0, ',', '.');
+																	}
+																	?>
+																</td>
+																<?php }?>
+														</tr>
+														<tr>
+															<th class="text-center text-middle">Numero de Clases</th>
+															<?php $qry2 = "Select am_id id From modelo_avion Order by am_nombre";
+														   		$ids = pg_query( $conexion, $qry2 );
+															   	while( $avion = pg_fetch_object($ids) ){?>
+																<td class="text-center text-middle">
+																	<?php
+																	$qry3 = "Select di_nombre nombre, di_numero_clases numero_clases, di_capacidad_pasajeros capacidad_pasajeros, di_distancia_asientos distancia_asientos, di_ancho_asientos ancho_asientos from Distribucion Where di_modelo_avion=".$avion->id;
+																	$sub = pg_query( $conexion, $qry3 );
+																	if(pg_num_rows($sub)>1){
+																		while( $submodelo = pg_fetch_object($sub) )
+																			print $submodelo->nombre.": ".number_format($submodelo->numero_clases, 0, ',', '.')." <br/>";
+																	}
+																	else{
+																		$submodelo = pg_fetch_object($sub);
+																		print number_format($submodelo->numero_clases, 0, ',', '.');
+																	}
+																	?>
+																</td>
+																<?php }?>
+														</tr>
+														<tr>
+															<th class="text-center text-middle">Capacidad de Pasajeros</th>
+															<?php $qry2 = "Select am_id id From modelo_avion Order by am_nombre";
+														   		$ids = pg_query( $conexion, $qry2 );
+															   	while( $avion = pg_fetch_object($ids) ){?>
+																<td class="text-center text-middle">
+																	<?php
+																	$qry3 = "Select di_nombre nombre, di_numero_clases numero_clases, di_capacidad_pasajeros capacidad_pasajeros, di_distancia_asientos distancia_asientos, di_ancho_asientos ancho_asientos from Distribucion Where di_modelo_avion=".$avion->id;
+																	$sub = pg_query( $conexion, $qry3 );
+																	if(pg_num_rows($sub)>1){
+																		while( $submodelo = pg_fetch_object($sub) )
+																			print $submodelo->nombre.": ".number_format($submodelo->capacidad_pasajeros, 0, ',', '.')." <br/>";
+																	}
+																	else{
+																		$submodelo = pg_fetch_object($sub);
+																		print number_format($submodelo->capacidad_pasajeros, 0, ',', '.');
+																	}
+																	?>
+																</td>
+																<?php }?>
+														</tr>
+														<tr>
+															<th class="text-center text-middle">Distancia entre Asientos</th>
+															<?php $qry2 = "Select am_id id From modelo_avion Order by am_nombre";
+														   		$ids = pg_query( $conexion, $qry2 );
+															   	while( $avion = pg_fetch_object($ids) ){?>
+																<td class="text-center text-middle">
+																	<?php
+																	$qry3 = "Select di_nombre nombre, di_numero_clases numero_clases, di_capacidad_pasajeros capacidad_pasajeros, di_distancia_asientos distancia_asientos, di_ancho_asientos ancho_asientos from Distribucion Where di_modelo_avion=".$avion->id;
+																	$sub = pg_query( $conexion, $qry3 );
+																	if(pg_num_rows($sub)>1){
+																		while( $submodelo = pg_fetch_object($sub) )
+																			print $submodelo->nombre.": ".number_format($submodelo->distancia_asientos, 1, ',', '.')." cm<br/>";
+																	}
+																	else{
+																		$submodelo = pg_fetch_object($sub);
+																		print number_format($submodelo->distancia_asientos, 1, ',', '.')." cm";
+																	}
+																	?>
+																</td>
+																<?php }?>
+														</tr>
+														<tr>
+															<th class="text-center text-middle">Ancho de Asientos</th>
+															<?php $qry2 = "Select am_id id From modelo_avion Order by am_nombre";
+														   		$ids = pg_query( $conexion, $qry2 );
+															   	while( $avion = pg_fetch_object($ids) ){?>
+																<td class="text-center text-middle">
+																	<?php
+																	$qry3 = "Select di_nombre nombre, di_numero_clases numero_clases, di_capacidad_pasajeros capacidad_pasajeros, di_distancia_asientos distancia_asientos, di_ancho_asientos ancho_asientos from Distribucion Where di_modelo_avion=".$avion->id;
+																	$sub = pg_query( $conexion, $qry3 );
+																	if(pg_num_rows($sub)>1){
+																		while( $submodelo = pg_fetch_object($sub) )
+																			print $submodelo->nombre.": ".number_format($submodelo->ancho_asientos, 1, ',', '.')." cm<br/>";
+																	}
+																	else{
+																		$submodelo = pg_fetch_object($sub);
+																		print number_format($submodelo->ancho_asientos, 1, ',', '.')." cm";
+																	}
+																	?>
+																</td>
+																<?php }?>
+														</tr>
+														<tr>
+															<th class="text-center text-middle">Tiempo de Fabricación (Aprox)</th>
+															<?php $rs = pg_query( $conexion, $qry );
+																while( $avion = pg_fetch_object($rs) ){
+																$dias = $avion->tiempo_estimado + 1;
+																$hoy = new DateTime();
+																$fin = new DateTime(date('Y-m-d', strtotime($hoy->format("Y-m-d"). ' + '.$dias.' days')));
+																$interval = $hoy->diff($fin);?>
+															<td class="text-center text-middle"><?php print $interval->format('%m meses y %d días');?></td>
+															<?php }?>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+										<?php }else{?>
+										<h3>&emsp;No se han encontrado resultados.</h3>
+										<?php }}?>
+									</div>
+								</div>
+								<!-- TABLE ENDS -->
+							</section>
 						</div>
 					</section>
 					<!-- Section de TABS ENDS -->

@@ -156,7 +156,7 @@ $resultado = '<div class="modal-header">
 						<div class="col-lg-4">
 							<h4>Carrera de Despegue</h4>
 						</div>
-						<div class="col-lg-8">'.number_format($modelo->am_carrera_despegue, 0, ',', '.')." Km".'</div>
+						<div class="col-lg-8">'.number_format($modelo->am_carrera_despegue, 0, ',', '.')." m".'</div>
 					</div>
 					<div class="row">
 						<div class="col-lg-4">
