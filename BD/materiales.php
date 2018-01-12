@@ -197,7 +197,7 @@ if( !in_array("m_r", $permiso) && !in_array("mt_r", $permiso) ){
 											</div>
 								       </div>
                                        <?php }?>
-                                       <?php if( in_array("pr_r", $permiso) ){?>
+                                       <?php if( in_array("m_r", $permiso) && in_array("mt_r", $permiso) ){?>
 									   <?php $qry = "SELECT mt_nombre nombre, count(m_id) cantidad FROM Material LEFT JOIN Tipo_material ON m_tipo_material=mt_id GROUP BY mt_nombre";
 									   $rs = pg_query( $conexion, $qry );
 									   $howMany = pg_num_rows($rs);
