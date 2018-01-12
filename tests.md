@@ -54,4 +54,6 @@
 :o: Ver Status Material (**No implementado**)<br>
 :o: Ver Prueba piezas (**No implementado**)<br>
 
+## CREAR (requieren el ver correspondiente)
 
+:white_check_mark: Crear rol de sistema<br>
