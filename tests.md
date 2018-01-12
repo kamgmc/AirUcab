@@ -37,4 +37,6 @@
 ![ver modelo motores](https://image.prntscr.com/image/epUE871iRWWTjgMkMnLg8g.png)
 :o: Ver s avion - m motor (**No implementado**)<br>
 :o: Ver status prueba (**No implementado y No necesario**)<br>
+:o: Ver tipo de pago (**No implementado?**)<br>
+:o: Ver pago (**No implementado?**)<br>
 
