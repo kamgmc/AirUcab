@@ -45,4 +45,5 @@
 :o: Ver t material - m pieza (**No implementado?**)<br>
 :o: Ver avion (**No implementado?**)<br>
 :o: Ver status avion (**No implementado?**)<br>
+:o: Ver status piezas (**No implementado**)<br>
 
