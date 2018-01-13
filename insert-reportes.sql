@@ -1537,10 +1537,8 @@ INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver rol de sistema','sr_r'
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar rol de sistema','sr_u');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar rol de sistema','sr_d');
 --ROL_PERMISO
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear rol - permiso','rp_c');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver rol - permiso','rp_r');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar rol - permiso','rp_u');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar rol - permiso','rp_d');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver permisos por rol','rp_r');
+INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar permisos por rol','rp_u');
 --SEDE
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear sede','se_c');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver sede','se_r');
@@ -1566,16 +1564,6 @@ INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear empleado','em_c');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver empleado','em_r');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar empleado','em_u');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar empleado','em_d');
---BENEFICIARIO
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear beneficiario','be_c');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver beneficiario','be_r');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar beneficiario','be_u');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar beneficiario','be_d');
---EXPERIENCIA
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear experiencia','ex_c');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver experiencia','ex_r');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar experiencia','ex_u');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar experiencia','ex_d');
 --CLIENTE
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear cliente','cl_c');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver cliente','cl_r');
@@ -1596,11 +1584,6 @@ INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear tipo de contacto','c
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver tipo de contacto','ct_r');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar tipo de contacto','ct_u');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar tipo de contacto','ct_d');
---CONTACTO
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear contacto','co_c');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver contacto','co_r');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar contacto','co_u');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar contacto','co_d');
 --MARCA_MOTOR
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear marca de motor','mb_c');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver marca de motor','mb_r');
@@ -1626,11 +1609,6 @@ INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear submodelo de avion',
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver submodelo de avion','as_r');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar submodelo de avion','as_u');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar submodelo de avion','as_d');
---S_AVION_M_MOTOR
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear s avion - m motor','smt_c');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver s avion - m motor','smt_r');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar s avion - m motor','smt_u');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar s avion - m motor','smt_d');
 --TIPO_ALA
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear tipo de ala','wt_c');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver tipo de ala','wt_r');
@@ -1646,31 +1624,16 @@ INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear modelo de pieza','pm
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver modelo de pieza','pm_r');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar modelo de pieza','pm_u');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar modelo de pieza','pm_d');
---S_AVION_M_PIEZA
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear s avion - m pieza','smp_c');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver s avion - m pieza','smp_r');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar s avion - m pieza','smp_u');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar s avion - m pieza','smp_d');
 --PRUEBA
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear prueba','pr_c');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver prueba','pr_r');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar prueba','pr_u');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar prueba','pr_d');
---STATUS_PRUEBA
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear status prueba','sp_c');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver status prueba','sp_r');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar status prueba','sp_u');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar status prueba','sp_d');
 --FACTURA_COMPRA
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear factura de compra','fc_c');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver factura de compra','fc_r');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar factura de compra','fc_u');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar factura de compra','fc_d');
---TIPO_PAGO
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear tipo de pago','pt_c');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver tipo de pago','pt_r');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar tipo de pago','pt_u');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar tipo de pago','pt_d');
 --PAGO
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear pago','pa_c');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver pago','pa_r');
@@ -1681,41 +1644,21 @@ INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear tipo de material','m
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver tipo de material','mt_r');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar tipo de material','mt_u');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar tipo de material','mt_d');
---T_MATERIAL_M_PIEZA
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear t material - m pieza','tmm_c');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver t material - m pieza','tmm_r');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar t material - m pieza','tmm_u');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar t material - m pieza','tmm_d');
 --AVION
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear avion','a_c');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver avion','a_r');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar avion','a_u');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar avion','a_d');
---STATUS_AVION
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear status avion','sa_c');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver status avion','sa_r');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar status avion','sa_u');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar status avion','sa_d');
 --MOTOR
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear motor','mo_c');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver motor','mo_r');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar motor','mo_u');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar motor','mo_d');
---STATUS_MOTOR
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear status motor','stm_c');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver status motor','stm_r');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar status motor','stm_u');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar status motor','stm_d');
 --PIEZA
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear pieza','p_c');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver pieza','p_r');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar pieza','p_u');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar pieza','p_d');
---STATUS_PIEZA
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear status pieza','spi_c');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver status pieza','spi_r');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar status pieza','spi_u');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar status pieza','spi_d');
 --MATERIAL
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear material','m_c');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver material','m_r');
@@ -1726,11 +1669,6 @@ INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear prueba material','pr
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver prueba material','prm_r');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar prueba material','prm_u');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar prueba material','prm_d');
---STATUS_MATERIAL
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear status material','sm_c');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver status material','sm_r');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Editar status material','sm_u');
-INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Eliminar status material','sm_d');
 --PRUEBA_PIEZA
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Crear prueba pieza','pp_c');
 INSERT INTO Permiso (pe_nombre,pe_iniciales) VALUES ('Ver prueba pieza','pp_r');
@@ -1867,126 +1805,28 @@ INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,115);
 INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,116);
 INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,117);
 INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,118);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,119);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,120);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,121);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,122);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,123);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,124);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,125);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,126);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,127);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,128);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,129);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,130);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,131);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,132);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,133);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,134);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,135);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,136);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,137);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,138);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,139);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,140);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,141);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,142);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,143);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,144);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,145);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,146);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,147);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,148);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,149);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,150);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,151);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,152);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,153);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,154);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,155);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,156);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,157);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,158);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,159);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,160);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,161);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,162);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,163);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,164);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,165);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,166);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,167);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(1,168);
 --USUARIO ANONIMO
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(2,66);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(2,70);
-INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(2,74);
+INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(2,52);
+INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(2,56);
+INSERT INTO Rol_permiso (rp_rol,rp_permiso) VALUES(2,60);
 --SUPERVISOR
+INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,8);
+INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,12);
+INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,15);
+INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,16);
+INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,17);
+INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,18);
+INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,19);
+INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,20);
+INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,21);
 INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,22);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,26);
+INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,24);
+INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,27);
+INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,28);
+INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,29);
 INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,30);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,34);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,38);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,42);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,46);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,50);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,54);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,62);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,66);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,70);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,74);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,78);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,82);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,86);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,90);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,94);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,98);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,102);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,105);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,106);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,107);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,108);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,109);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,110);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,111);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,112);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,114);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,118);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,122);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,126);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,130);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,134);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,137);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,138);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,139);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,140);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,141);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,142);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,143);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,144);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,145);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,146);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,147);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,148);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,149);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,150);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,151);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,152);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,153);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,154);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,155);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,156);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,157);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,158);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,160);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,161);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,162);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,163);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,164);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,165);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,166);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,167);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,168);
+INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,32);
+INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (4,116);
 --EMPLEADO
 INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,105);
 INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,106);
@@ -1996,40 +1836,6 @@ INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,109);
 INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,110);
 INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,111);
 INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,112);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,126);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,130);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,134);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,137);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,138);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,139);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,140);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,141);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,142);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,143);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,144);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,145);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,146);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,147);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,148);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,149);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,150);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,151);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,152);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,153);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,154);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,155);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,156);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,157);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,158);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,160);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,161);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,162);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,163);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,164);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,165);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,166);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,167);
-INSERT INTO Rol_permiso (rp_rol, rp_permiso) VALUES (5,168);
 --TIPO_CONTACTO
 INSERT INTO Tipo_contacto (ct_nombre) VALUES ('Movil');
 INSERT INTO Tipo_contacto (ct_nombre) VALUES ('Fijo');
