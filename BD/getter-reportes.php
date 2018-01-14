@@ -23,8 +23,13 @@
 		$year = htmlentities($_GET['year'], ENT_QUOTES);
 		$qry = "SELECT cl_nombre nombre, count(a_id) cantidad FROM Cliente, Factura_venta, Avion WHERE a_factura_venta=fv_id AND fv_cliente=cl_id AND EXTRACT(Year from fv_fecha)=".$year." GROUP BY cl_nombre ORDER BY cantidad DESC limit 10";
 		$rs = pg_query( $conexion, $qry ); $resultado = "";
-		while($cliente = pg_fetch_object($rs))
-			$resultado.='<p><strong>'.$cliente->nombre.'</strong> '.$cliente->cantidad.' ventas.</p>';
+		$howMany = pg_num_rows($rs);
+		if($howMany > 0){
+			while($cliente = pg_fetch_object($rs))
+				$resultado.='<p><strong>'.$cliente->nombre.'</strong> '.$cliente->cantidad.' ventas.</p>';
+		}
+		else
+			$resultado = "<p>No se han registrado ventas para el año indicado</p>";
 	}
 	if($_GET['get'] == "modelos-producidos"){
 		$year = htmlentities($_GET['year'], ENT_QUOTES);
@@ -46,9 +51,7 @@
 			while($material = pg_fetch_object($rs))
 				$resultado.='<p><strong>'.$material->nombre.'</strong> '.number_format($material->cantidad, 0, ',', '.').' unds .</p>';
 		}
-		else print "<p>Sin inventario.</p>";
-				
-		
+		else $qry = "<p>Sin inventario.</p>";		
 	}
 	echo $resultado;
 ?>

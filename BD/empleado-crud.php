@@ -1,14 +1,22 @@
-<?php include 'querys.php';
-	if(isset($_GET['create'])){
+<?php 
+session_start(); error_reporting('E_ALL ^ E_NOTICE'); 
+include 'querys.php';
+if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'] = 2;} 
+$qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$_SESSION['rol']; 
+$rs = pg_query( $conexion, $qry ); $permiso = array();
+while( $rol = pg_fetch_object($rs) ) $permiso[] = $rol->permiso;
+
+if(isset($_GET['create'])){
+	if(in_array("em_c", $permiso)){
 		if(isset($_POST['sepervisa'])) $supervisa = 'true';
 		else $supervisa = 'false';
-		
+
 		if(isset($_POST['gerencia'])) $gerencia = 'true';
 		else $gerencia = 'false';
-		
+
 		if( !isset($_POST['nota']) || strlen($_POST['nota']) <= 0 ) $nota = 'NULL';
 		else $nota = $_POST['nota'];
-		
+
 		$exit = false; $i = 0;
 		while(!$exit){
 			if(isset($_POST['contacto'][$i]) && isset($_POST['tipo_contacto'][$i])){
@@ -73,17 +81,21 @@
 		else
 			header('Location: empleados.php?error=1');
 	}
-	if(isset($_GET['edit'])){
+	else
+		header('Location: empleados.php?error=1');
+}
+if(isset($_GET['edit'])){
+	if(in_array("em_u", $permiso)){
 		$id = $_GET['edit'];
 		if(isset($_POST['sepervisa'])) $supervisa = 'true';
 		else $supervisa = 'false';
-		
+
 		if(isset($_POST['gerencia'])) $gerencia = 'true';
 		else $gerencia = 'false';
-		
+
 		if( !isset($_POST['nota']) || strlen($_POST['nota']) <= 0 ) $nota = 'NULL';
 		else $nota = $_POST['nota'];
-		
+
 		$exit = false; $i = 0;
 		while(!$exit){
 			if(isset($_POST['contacto'][$i]) && isset($_POST['tipo_contacto'][$i])){
@@ -221,12 +233,19 @@
 		else
 			header('Location: empleados.php?error=5');
 	}
-	if(isset($_GET['delete'])){
+	else
+		header('Location: empleados.php?error=5');
+}
+if(isset($_GET['delete'])){
+	if(in_array("em_u", $permiso)){
 		$id = $_GET['delete'];
 		if(eliminarEmpleado($id))
 			header('Location: empleados.php');
 		else
 			header('Location: empleados.php?error=9');
 	}
-	exit;
+	else
+		header('Location: empleados.php?error=9');
+}
+exit;
 ?>

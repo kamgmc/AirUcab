@@ -1,11 +1,22 @@
-<!DOCTYPE html><?php session_start(); 
+<?php session_start(); 
 date_default_timezone_set('America/Port_of_Spain'); 
 error_reporting('E_ALL ^ E_NOTICE'); 
 include 'conexion.php'; 
 if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'] = 2;} 
 $qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$_SESSION['rol']; 
 $rs = pg_query( $conexion, $qry ); $permiso = array();
-while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
+while( $rol = pg_fetch_object($rs) ) $permiso[] = $rol->permiso;
+if( !in_array("fv_r", $permiso) ){
+	if( !isset($_SESSION['code']) ){
+		header('Location: login.php');
+		exit;
+	}
+    else{
+        header('Location: compras.php');
+		exit;
+    }
+}?>
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -27,7 +38,8 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 	<!-- Custom stylesheet - for your changes-->
 	<link rel="stylesheet" href="css/custom.css">
 	<!-- Favicon-->
-	<link rel="shortcut icon" href="img/airucab.ico"> </head>
+	<link rel="shortcut icon" href="img/airucab.ico">
+</head>
 
 <body>
 	<div class="page home-page">
@@ -84,62 +96,62 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 					<li>
 						<a href="modeloavion.php"> <i class="fa fa-plane" aria-hidden="true"></i> Aviones </a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if (in_array("mb_r", $permiso) || in_array("mm_r", $permiso) || in_array("mo_r", $permiso) ) { ?>
 					<li>
-						<a href="motores.php"> <i class="fa fa-tachometer " aria-hidden="true"></i>Motores </a>
+						<a href="motores.php"> <i class="fa fa-tachometer" aria-hidden="true"></i>Motores </a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if( in_array("p_r", $permiso) || in_array("pm_r", $permiso) || in_array("wt_r", $permiso) || in_array("et_r", $permiso) ) { ?>
 					<li>
 						<a href="piezas.php"> <i class="fa fa-puzzle-piece " aria-hidden="true"></i>Piezas </a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if( in_array("m_r", $permiso) || in_array("tm_r", $permiso) ) { ?>
 					<li>
 						<a href="materiales.php"> <i class="fa fa-server " aria-hidden="true"></i>Materiales </a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if( in_array("fv_r", $permiso) ){ ?>
 					<li class="active">
 						<a href="ventas.php"> <i class="fa fa-paper-plane-o" aria-hidden="true"></i>Ventas </a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if( in_array("fc_r", $permiso) ){ ?>
 					<li>
 						<a href="compras.php"> <i class="fa fa-shopping-bag " aria-hidden="true"></i>Compras </a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if( in_array("se_r", $permiso) || in_array("zo_r", $permiso) ){ ?>
 					<li>
 						<a href="Sedes.php"> <i class="fa fa-university " aria-hidden="true"></i>Sedes </a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if( in_array("em_r", $permiso) || in_array("sr_r", $permiso) || in_array("er_r", $permiso) || in_array("ti_r", $permiso) || in_array("pe_r", $permiso) || in_array("rp_r", $permiso) || in_array("ct_r", $permiso) ){ ?>
 					<li>
 						<a href="empleados.php"><i class="fa fa-id-card-o"></i>Empleados</a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if( in_array("cl_r", $permiso) ){ ?>
 					<li>
 						<a href="clientes.php"> <i class="fa fa-address-book-o" aria-hidden="true"></i>Clientes</a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if( in_array("po_r", $permiso) ){ ?>
 					<li>
 						<a href="proveedores.php"> <i class="fa fa-truck" aria-hidden="true"></i>Proveedores</a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if( in_array("pr_r", $permiso) ){ ?>
 					<li>
 						<a href="pruebas.php"> <i class="fa fa-check-square-o " aria-hidden="true"></i>Pruebas </a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if( in_array("tr_r", $permiso) ){ ?>
 					<li>
 						<a href="traslados.php"> <i class="fa fa-share-square-o " aria-hidden="true"></i>Traslados </a>
 					</li>
-					<?php } ?>
+					<?php }?>
 				</ul>
 			</nav>
 			<div class="content-inner">
@@ -150,7 +162,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 					<?php if($_GET['error']==2){?>Error al insertar <strong>Avion</strong>.<?php }?>
 					<?php if($_GET['error']==3){?>Error al insertar <strong>Pago</strong>.<?php }?>
 					<?php if($_GET['error']==4){?>Error al insertar <strong>Experiencia</strong>.<?php }?>
-					<?php if($_GET['error']==5){?>Error al editar <strong>Empleado</strong>.<?php }?>
+					<?php if($_GET['error']==5){?>Error al eliminar <strong>Factura de Venta</strong>.<?php }?>
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -249,7 +261,21 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 														<td><?php print $venta->cliente;?></td>
 														<td class="text-center"><?php $date = new DateTime($venta->fecha); print $date->format('d/m/Y');?></td>
 														<td class="text-center"><?php print number_format($venta->total, 2, ',', '.')." Bs";?></td>
-														<td class="text-center"><?php if($venta->pagado >= $venta->total) print "Pagado"; else print "Pendiente de pago";?></td>
+														<td class="text-center">
+															<?php if($venta->pagado == $venta->total) {?>
+															<span class="badge badge-success">
+																Pagado
+															</span>                                                        
+															<?php } if($venta->pagado < $venta->total) {?>
+															<span class="badge badge-danger">
+																Pendiente de Pago
+															</span>                                                          
+															<?php } if($venta->pagado > $venta->total) {?>
+															<span class="badge badge-info">
+																Exedente de pago
+															</span>
+															<?php } ?> 
+														</td>
 														<td class="text-center">
 															<a href="<?php print $venta->id;?>" title="Ver mas" class="click-venta-detalle">
 																<i class="fa fa-file-text-o" aria-hidden="true"></i> 
@@ -268,6 +294,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 							<!-- TABLE ENDS -->
 						</section>
 						<!-- TAB Ventas ENDS -->
+						<?php if(in_array("fv_c", $permiso)){?>
 						<!-- Modal Venta Crear -->
 						<div id="ModalVentaCrear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 							<div role="document" class="modal-dialog modal-xl">
@@ -432,6 +459,7 @@ while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }?>
 							</div>
 						</div>
 						<!-- Modal Venta Crear ENDS -->
+						<?php }?>
 						<!-- Modal Detalle Venta  -->
 						<div id="ModalDetalleVenta" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 							<div role="document" class="modal-dialog modal-xl">

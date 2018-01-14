@@ -3,15 +3,18 @@ include 'conexion.php';
 if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'] = 2;} 
 $qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$_SESSION['rol']; 
 $rs = pg_query( $conexion, $qry ); $permiso = array();
-while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }
+while( $rol = pg_fetch_object($rs) ) $permiso[] = $rol->permiso;
+
 $id = htmlentities($_GET['id'], ENT_QUOTES);
 $qry = "SELECT * FROM Modelo_avion WHERE am_id=".$id;
 $con = pg_query($conexion, $qry);
 $modelo = pg_fetch_object($con);
+//Calculo de Tiempo estimado
 $dias = $modelo->am_tiempo_estimado + 1;
 $hoy = new DateTime();
 $fin = new DateTime(date('Y-m-d', strtotime($hoy->format("Y-m-d"). ' + '.$dias.' days')));
 $interval = $hoy->diff($fin);
+//Contenido del Modal
 $resultado = '<div class="modal-header">
 <h4 id="exampleModalLabel" class="modal-title">Detalle Modelo de Avión</h4>
 <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
@@ -174,15 +177,17 @@ $resultado = '<div class="modal-header">
 	<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>';
 	if( in_array("am_u", $permiso) )
 		$resultado.='<a href="'.$modelo->am_id.'" class="click-modelo-editar btn btn-primary">Editar</a>';
-$resultado.='</div>
-<script>
-$( "a.click-modelo-editar" ).click(function( event ) {
-	event.preventDefault();
-	var href = $(this).attr("href");
-	$.ajax({type: "POST",dataType: "html",url:"modeloavion-editar.php?id="+href,success: function(data){$("#editarModeloBody").html(data);}});
-	$("#ModalEditarModelo").modal("show");
-	$("#ModalEditarModelo").modal("handleUpdate");
-});
-</script>';
+$resultado.='</div>';
+if( in_array("am_u", $permiso) )
+$resultado.='<script>
+	//Control Editar Modelo
+	$( "a.click-modelo-editar" ).click(function( event ) {
+		event.preventDefault();
+		var href = $(this).attr("href");
+		$.ajax({type: "POST",dataType: "html",url:"modeloavion-editar.php?id="+href,success: function(data){$("#editarModeloBody").html(data);}});
+		$("#ModalEditarModelo").modal("show");
+		$("#ModalEditarModelo").modal("handleUpdate");
+	});
+	</script>';
 echo $resultado;
 ?>

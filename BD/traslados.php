@@ -5,7 +5,7 @@ include 'conexion.php';
 if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'] = 2;} 
 $qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$_SESSION['rol']; 
 $rs = pg_query( $conexion, $qry ); $permiso = array();
-while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso;}
+while( $rol = pg_fetch_object($rs) ) $permiso[] = $rol->permiso;
 if( !in_array("tr_r", $permiso) ){
 	if( !isset($_SESSION['code']) ){
 		header('Location: login.php');
@@ -39,8 +39,8 @@ if( !in_array("tr_r", $permiso) ){
 	<!-- Custom stylesheet - for your changes-->
 	<link rel="stylesheet" href="css/custom.css">
 	<!-- Favicon-->
-	<link rel="shortcut icon" href="img/airucab.ico"> </head>
-
+	<link rel="shortcut icon" href="img/airucab.ico">
+</head>
 <body>
 	<div class="page home-page">
 		<!-- Main Navbar-->
@@ -58,8 +58,17 @@ if( !in_array("tr_r", $permiso) ){
 							<!-- Toggle Button--><a id="toggle-btn" href="#" class="menu-btn active"><span></span><span></span><span></span></a> </div>
 						<!-- Navbar Menu -->
 						<ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+							<?php if( isset($_SESSION['code']) ){ ?>
 							<!-- Logout    -->
-							<li class="nav-item"><a href="login.php" class="nav-link logout">Cerrar Sesion<i class="fa fa-sign-out"></i></a></li>
+							<li class="nav-item">
+								<a href="close.php" class="nav-link logout">Cerrar Sesión<i class="fa fa-sign-out"></i></a>
+							</li>
+							<?php }else{?>
+							<!-- Login -->
+							<li class="nav-item">
+								<a href="login.php" class="nav-link logout">Iniciar Sesión<i class="fa fa-sign-in"></i></a>
+							</li>
+							<?php }?>
 						</ul>
 					</div>
 				</div>
@@ -87,62 +96,62 @@ if( !in_array("tr_r", $permiso) ){
 					<li>
 						<a href="modeloavion.php"> <i class="fa fa-plane" aria-hidden="true"></i> Aviones </a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if (in_array("mb_r", $permiso) || in_array("mm_r", $permiso) || in_array("mo_r", $permiso) ) { ?>
 					<li>
-						<a href="motores.php"> <i class="fa fa-tachometer " aria-hidden="true"></i>Motores </a>
+						<a href="motores.php"> <i class="fa fa-tachometer" aria-hidden="true"></i>Motores </a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if( in_array("p_r", $permiso) || in_array("pm_r", $permiso) || in_array("wt_r", $permiso) || in_array("et_r", $permiso) ) { ?>
 					<li>
 						<a href="piezas.php"> <i class="fa fa-puzzle-piece " aria-hidden="true"></i>Piezas </a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if( in_array("m_r", $permiso) || in_array("tm_r", $permiso) ) { ?>
 					<li>
 						<a href="materiales.php"> <i class="fa fa-server " aria-hidden="true"></i>Materiales </a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if( in_array("fv_r", $permiso) ){ ?>
 					<li>
 						<a href="ventas.php"> <i class="fa fa-paper-plane-o" aria-hidden="true"></i>Ventas </a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if( in_array("fc_r", $permiso) ){ ?>
 					<li>
 						<a href="compras.php"> <i class="fa fa-shopping-bag " aria-hidden="true"></i>Compras </a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if( in_array("se_r", $permiso) || in_array("zo_r", $permiso) ){ ?>
 					<li>
 						<a href="Sedes.php"> <i class="fa fa-university " aria-hidden="true"></i>Sedes </a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if( in_array("em_r", $permiso) || in_array("sr_r", $permiso) || in_array("er_r", $permiso) || in_array("ti_r", $permiso) || in_array("pe_r", $permiso) || in_array("rp_r", $permiso) || in_array("ct_r", $permiso) ){ ?>
 					<li>
 						<a href="empleados.php"><i class="fa fa-id-card-o"></i>Empleados</a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if( in_array("cl_r", $permiso) ){ ?>
 					<li>
 						<a href="clientes.php"> <i class="fa fa-address-book-o" aria-hidden="true"></i>Clientes</a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if( in_array("po_r", $permiso) ){ ?>
-					<li>
+					<li class="active">
 						<a href="proveedores.php"> <i class="fa fa-truck" aria-hidden="true"></i>Proveedores</a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if( in_array("pr_r", $permiso) ){ ?>
 					<li>
 						<a href="pruebas.php"> <i class="fa fa-check-square-o " aria-hidden="true"></i>Pruebas </a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if( in_array("tr_r", $permiso) ){ ?>
 					<li class="active">
 						<a href="traslados.php"> <i class="fa fa-share-square-o " aria-hidden="true"></i>Traslados </a>
 					</li>
-					<?php } ?>
+					<?php }?>
 				</ul>
 			</nav>
 			<div class="content-inner">
@@ -215,8 +224,7 @@ if( !in_array("tr_r", $permiso) ){
 										</div>
 									</div>
                                     <?php }?>
-                                    <?php if( in_array("tr_r", $permiso) ){?>
-								    <?php $qry = "SELECT tr_id id, tr_fecha_ini inicio, tr_fecha_fin fin, see.se_nombre ||' - '|| envia.zo_nombre envia, ser.se_nombre ||' - '|| recibe.zo_nombre recibe, tr_pieza pieza, tr_material material, tr_motor motor FROM Traslado LEFT JOIN Zona envia ON tr_zona_envia=envia.zo_id LEFT JOIN Sede see ON envia.zo_sede=see.se_id LEFT JOIN Zona recibe ON tr_zona_recibe=recibe.zo_id LEFT JOIN Sede ser ON recibe.zo_sede=ser.se_id";
+								    <?php $qry = "SELECT tr_id id, tr_fecha_ini inicio, tr_fecha_fin fin, see.se_nombre ||' - '|| envia.zo_nombre envia, ser.se_nombre ||' - '|| recibe.zo_nombre recibe, tr_pieza pieza, tr_material material, tr_motor motor, tr_confirmacion confirmacion FROM Traslado LEFT JOIN Zona envia ON tr_zona_envia=envia.zo_id LEFT JOIN Sede see ON envia.zo_sede=see.se_id LEFT JOIN Zona recibe ON tr_zona_recibe=recibe.zo_id LEFT JOIN Sede ser ON recibe.zo_sede=ser.se_id Where tr_zona_envia<>tr_zona_recibe Order By tr_id Desc";
 									$rs = pg_query( $conexion, $qry );
 									$howMany = pg_num_rows($rs);
 									if( $howMany > 0 ){?>
@@ -252,7 +260,7 @@ if( !in_array("tr_r", $permiso) ){
                                                         <?php print $traslado->recibe;?>
                                                     </td>
 													<td class="text-center">
-                                                        <?php if(isset($traslado->recibe)){?>
+                                                        <?php if( $traslado->confirmacion == "t" ){?>
                                                         <span class="badge badge-success">Entregado</span>
                                                         <?php }else{?>
                                                         <span class="badge badge-info">En camino</span>
@@ -260,11 +268,11 @@ if( !in_array("tr_r", $permiso) ){
                                                     </td>
 													<td class="text-center">
                                                         <?php if(in_array("tr_u", $permiso)){?>
-														<a href="" data-toggle="modal" data-target="#myModalTraslado"> 
+														<a href="<?php print $traslado->id;?>" data-toggle="modal" data-target="#myModalTraslado"> 
                                                             <i class="fa fa-pencil" aria-hidden="true" title="Editar"></i> 
                                                         </a>
                                                         <?php } if(in_array("tr_d", $permiso)){?>&emsp;
-														<a href=""> 
+														<a href="traslado-crud.php?delete=<?php print $traslado->id;?>"> 
                                                             <i class="fa fa-trash-o" aria-hidden="true" title="Eliminar"></i> 
                                                         </a>
                                                         <?php }?>
@@ -275,8 +283,8 @@ if( !in_array("tr_r", $permiso) ){
 										</table>
 									</div>
                                     <?php }else{?>
-									<h3>&emsp;No se han encontrado resultados.</h3>
-									<?php }}?>
+									<h4>&emsp;No se han encontrado resultados.</h4>
+									<?php }?>
 								</div>
 							</div>
 							<!-- TABLE ENDS -->

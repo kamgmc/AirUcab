@@ -7,9 +7,8 @@ $qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WH
 $rs = pg_query( $conexion, $qry ); $permiso = array();
 while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso;}
 $meses = array(1 => 'Enero', 2 => 'Febrero', 3 => 'Marzo', 4 => 'Abril', 5 => 'mayo', 6 => 'junio', 7 => 'julio', 8 => 'agosto', 9 => 'septiembre', 10 => 'octubre', 11 => 'noviembre', 12 => 'diciembre');?>
-	<!DOCTYPE html>
-	<html>
-
+<!DOCTYPE html>
+<html>
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,8 +29,8 @@ $meses = array(1 => 'Enero', 2 => 'Febrero', 3 => 'Marzo', 4 => 'Abril', 5 => 'm
 		<!-- Custom stylesheet - for your changes-->
 		<link rel="stylesheet" href="css/custom.css">
 		<!-- Favicon-->
-		<link rel="shortcut icon" href="img/airucab.ico"> </head>
-
+		<link rel="shortcut icon" href="img/airucab.ico">
+	</head>
 	<body>
 		<div class="page home-page">
 			<!-- Main Navbar-->
@@ -177,7 +176,7 @@ $meses = array(1 => 'Enero', 2 => 'Febrero', 3 => 'Marzo', 4 => 'Abril', 5 => 'm
 									</div>
 								</div>
 								<?php }?>
-								<?php if( in_array("a_r", $permiso) && in_array("sa_r", $permiso) && in_array("p_r", $permiso) ){?>
+								<?php if( in_array("a_r", $permiso) && in_array("p_r", $permiso) ){?>
 								<div class="card">
 									<?php
 									$qry = "SELECT count(a_id)/12::real cantidad FROM Avion, Status_avion, Status WHERE EXTRACT(Year from a_fecha_fin)=".date('Y')." AND sa_avion=a_id AND sa_status=st_id AND st_nombre='Listo'";
@@ -208,13 +207,12 @@ $meses = array(1 => 'Enero', 2 => 'Febrero', 3 => 'Marzo', 4 => 'Abril', 5 => 'm
 									</div>
 								</div>
 								<?php }?>
-								<?php if( in_array("cl_r", $permiso) ){?>
+								<?php if( in_array("cl_r", $permiso) && in_array("fv_r", $permiso) ){?>
 								<div class="card">
 									<?php
 									$qry = "SELECT cl_nombre nombre, count(a_id) cantidad FROM Cliente, Factura_venta, Avion WHERE a_factura_venta=fv_id AND fv_cliente=cl_id AND EXTRACT(Year from fv_fecha)=".date('Y')." GROUP BY cl_nombre ORDER BY cantidad DESC limit 10";
 									$rs = pg_query( $conexion, $qry );
-									$howMany = pg_num_rows($rs);
-									if( $howMany > 0 ){?>
+									$howMany = pg_num_rows($rs);?>
 									<div class="card-body">
 										<h5 class="blockquote card-title">Los mejores 10 clientes en base a la cantidad de compras por año.</h5>
 										<form>
@@ -231,16 +229,18 @@ $meses = array(1 => 'Enero', 2 => 'Febrero', 3 => 'Marzo', 4 => 'Abril', 5 => 'm
 											</div>
 										</form>
 										<div id="mejores-clientes-target" class="card-text">
-											<?php while( $cliente = pg_fetch_object($rs) ){?>
+											<?php if( $howMany > 0 ){
+												while( $cliente = pg_fetch_object($rs) ){?>
 											<p>
 												<strong><?php print $cliente->nombre; ?></strong> <?php print $cliente->cantidad; ?> ventas. 
 											</p>
+											<?php }}else{?>
+											<p>No se han registrado ventas para el año indicado</p>
 											<?php }?>
 										</div>
 									</div>
 									<?php }?>
 								</div>
-								<?php }?>
 								<?php if( in_array("am_r", $permiso) && in_array("a_r", $permiso) ){?>
 								<div class="card">
 									<?php
@@ -296,6 +296,34 @@ $meses = array(1 => 'Enero', 2 => 'Febrero', 3 => 'Marzo', 4 => 'Abril', 5 => 'm
 									</div>
 								</div>
 								<?php }?>
+								<?php if( in_array("zo_r", $permiso) && in_array("se_r", $permiso) ){?>
+								<div class="card">
+									<?php
+									$qry = "Select zona, sede, AVG(diferencia) eficiencia From (SELECT zo_nombre zona,se_nombre sede, age(prm_fecha_fin,prm_fecha_ini)-age(sp_fecha_ini,prm_fecha_ini) diferencia FROM Zona, Sede, Prueba, Prueba_material, Status_prueba, Status WHERE zo_sede=se_id AND pr_zona=zo_id AND prm_prueba=pr_id AND sp_prueba=pr_id AND sp_status=st_id AND st_nombre='Aprobada' UNION SELECT zo_nombre zona, se_nombre sede, age(pp_fecha_fin, pp_fecha_ini)-age(sp_fecha_ini,pp_fecha_ini) diferencia FROM Zona, Sede, Prueba, Prueba_pieza, Status_prueba, Status WHERE zo_sede=se_id AND pr_zona=zo_id AND pp_prueba=pr_id AND sp_prueba=pr_id AND sp_status=st_id AND st_nombre='Aprobada' ) Pruebas Group By sede, zona Order By eficiencia desc Limit 1";
+									$rs = pg_query( $conexion, $qry );
+									$equipo = pg_fetch_object($rs);?>
+									<div class="card-body">
+										<h5 class="blockquote card-title">El equipo mas eficiente</h5>
+										<p class="card-text">
+											<strong><?php print $equipo->zona; ?></strong> de la sede <?php print $equipo->sede; ?>
+										</p>
+									</div>
+								</div>
+								<?php }?>
+								<?php if( in_array("se_r", $permiso) ){?>
+								<div class="card">
+									<?php
+									$qry = "Select sede nombre, AVG(diferencia) eficiencia From (SELECT se_nombre sede, age(prm_fecha_fin,prm_fecha_ini)-age(sp_fecha_ini,prm_fecha_ini) diferencia FROM Zona, Sede, Prueba, Prueba_material, Status_prueba, Status WHERE zo_sede=se_id AND pr_zona=zo_id AND prm_prueba=pr_id AND sp_prueba=pr_id AND sp_status=st_id AND st_nombre='Aprobada' UNION SELECT se_nombre sede, age(pp_fecha_fin, pp_fecha_ini)-age(sp_fecha_ini,pp_fecha_ini) diferencia FROM Zona, Sede, Prueba, Prueba_pieza, Status_prueba, Status WHERE zo_sede=se_id AND pr_zona=zo_id AND pp_prueba=pr_id AND sp_prueba=pr_id AND sp_status=st_id AND st_nombre='Aprobada' ) Pruebas Group By sede Order By eficiencia desc Limit 1";
+									$rs = pg_query( $conexion, $qry );
+									$sede = pg_fetch_object($rs);?>
+									<div class="card-body">
+										<h5 class="blockquote card-title">Sede mas eficiente en base al cumplimiento de las fechas</h5>
+										<p class="card-text">
+											<?php print $sede->nombre;?>
+										</p>
+									</div>
+								</div>
+								<?php }?>
 								<?php if(  in_array("am_r", $permiso) && in_array("a_r", $permiso) ){?>
 								<div class="card">
 									<?php
@@ -326,21 +354,7 @@ $meses = array(1 => 'Enero', 2 => 'Febrero', 3 => 'Marzo', 4 => 'Abril', 5 => 'm
 									</div>
 								</div>
 								<?php }?>
-								<?php if( in_array("zo_r", $permiso) && in_array("se_r", $permiso) ){?>
-								<div class="card">
-									<?php
-									$qry = "SELECT zo_nombre zona,se_nombre sede, AVG(age(prm_fecha_fin,prm_fecha_ini)-age(sp_fecha_ini,prm_fecha_ini)) eficiencia FROM Zona, Sede, Prueba, Prueba_material, Status_prueba, Status WHERE zo_sede=se_id AND pr_zona=zo_id AND prm_prueba=pr_id AND sp_prueba=pr_id AND sp_status=st_id AND st_nombre='Aprobada' Group by se_nombre,zo_nombre UNION SELECT zo_nombre zona, se_nombre sede, AVG(age(pp_fecha_fin, pp_fecha_ini)-age(sp_fecha_ini,pp_fecha_ini)) eficiencia FROM Zona, Sede, Prueba, Prueba_pieza, Status_prueba, Status WHERE zo_sede=se_id AND pr_zona=zo_id AND pp_prueba=pr_id AND sp_prueba=pr_id AND sp_status=st_id AND st_nombre='Aprobada' Group by se_nombre, zo_nombre Order By eficiencia desc Limit 1";
-									$rs = pg_query( $conexion, $qry );
-									$equipo = pg_fetch_object($rs);?>
-									<div class="card-body">
-										<h5 class="blockquote card-title">El equipo mas eficiente</h5>
-										<p class="card-text">
-											<strong><?php print $equipo->zona; ?></strong> de la sede <?php print $equipo->sede; ?>
-										</p>
-									</div>
-								</div>
-								<?php }?>
-								<?php if( in_array("m_r", $permiso) && in_array("mt_r", $permiso) && in_array("fv_r", $permiso) ){?>
+								<?php if( in_array("m_r", $permiso) && in_array("mt_r", $permiso) ){?>
 								<div class="card">
 									<?php
 									$qry = "SELECT mt_nombre material, count(m_id) cantidad FROM Material, Tipo_material, Factura_compra WHERE m_factura_compra=fc_id AND m_tipo_material=mt_id AND m_pieza is not null GROUP BY material ORDER BY cantidad DESC limit 1";
@@ -349,14 +363,14 @@ $meses = array(1 => 'Enero', 2 => 'Febrero', 3 => 'Marzo', 4 => 'Abril', 5 => 'm
 									<div class="card-body">
 										<h5 class="blockquote card-title">Producto mas pedido al inventario</h5>
 										<p class="card-text">
-											<strong><?php print $material->material; ?></strong> <?php print $material->cantidad; ?> unds 
+											<strong><?php print $material->material; ?></strong> <?php print $material->cantidad; ?> unds.
 										</p>
 									</div>
 								</div>
 								<?php }?>
 								<?php if( in_array("wt_r", $permiso) && in_array("pm_r", $permiso) && in_array("p_r", $permiso) ){?>
 								<div class="card">
-									<?php
+									<?php 
 									$qry = "Select 'Ala '||wt_nombre nombre, Count(wt_nombre) cantidad From (SELECT wt_nombre, a_id FROM Tipo_ala, Modelo_pieza, Pieza, Avion WHERE pm_tipo_ala=wt_id AND p_modelo_pieza=pm_id AND p_avion=a_id Group By wt_id, a_id) Alas Group By nombre ORDER BY cantidad DESC limit 1";
 									$rs = pg_query( $conexion, $qry );
 									$ala = pg_fetch_object($rs);?>
@@ -375,7 +389,7 @@ $meses = array(1 => 'Enero', 2 => 'Febrero', 3 => 'Marzo', 4 => 'Abril', 5 => 'm
 								    $rs = pg_query( $conexion, $qry );
                                     $howMany = pg_num_rows($rs);?>
 									<div class="card-body">
-										<h5 class="blockquote card-title">Cuales fueron los aviones mas rentables en base al cumplimiento de las fechas durante a su producción</h5>
+										<h5 class="blockquote card-title">Aviones mas rentables en base al cumplimiento de las fechas durante su producción</h5>
 										<?php 
 								    	if( $howMany > 0 ){
 										while( $avion = pg_fetch_object($rs) ){?>
@@ -401,10 +415,28 @@ $meses = array(1 => 'Enero', 2 => 'Febrero', 3 => 'Marzo', 4 => 'Abril', 5 => 'm
 									</div>
 								</div>
 								<?php }?>
-								<?php if( in_array("tr_r", $permiso) && in_array("zo_r", $permiso) && in_array("se_r", $permiso) ){?>
+								<?php if( in_array("tr_r", $permiso) && in_array("se_r", $permiso) ){?>
 								<div class="card">
 									<?php
-                                    $qry = "Select se_nombre AS nombre, (Select Count(tr_id) From Traslado, Zona Where tr_zona_envia=zo_id and zo_sede=se.se_id and tr_zona_envia<>tr_zona_recibe)/(Select Count(tr_id) From Traslado Where tr_zona_envia<>tr_zona_recibe) AS promedio From Sede se";
+                                    $qry = "Select se_nombre AS nombre, (Select Count(tr_id) From Traslado, Zona Where tr_zona_envia=zo_id and zo_sede=se.se_id and tr_zona_envia<>tr_zona_recibe) AS cantidad From Sede se";
+								    $rs = pg_query( $conexion, $qry );
+                                    $howMany = pg_num_rows($rs);?>
+									<div class="card-body">
+										<h5 class="blockquote card-title">Cantidad de Traslados por Sede</h5>
+										<div class="card-text">
+											<?php while( $sede = pg_fetch_object($rs) ){?>
+											<p>
+												<strong><?php print $sede->nombre;?></strong> <?php print $sede->cantidad;?>
+											</p>
+											<?php }?>
+										</div>
+									</div>
+								</div>
+								<?php }?>
+								<?php if( in_array("tr_r", $permiso) && in_array("se_r", $permiso) ){?>
+								<div class="card">
+									<?php
+                                    $qry = "Select se_nombre AS nombre, (Select Count(tr_id) From Traslado, Zona Where tr_zona_envia=zo_id and zo_sede=se.se_id and tr_zona_envia<>tr_zona_recibe)/(Select Count(se_id) From Sede)::real AS promedio From Sede se";
 								    $rs = pg_query( $conexion, $qry );
                                     $howMany = pg_num_rows($rs);?>
 									<div class="card-body">
@@ -412,24 +444,10 @@ $meses = array(1 => 'Enero', 2 => 'Febrero', 3 => 'Marzo', 4 => 'Abril', 5 => 'm
 										<div class="card-text">
 											<?php while( $sede = pg_fetch_object($rs) ){?>
 											<p>
-												<strong><?php print $sede->nombre;?></strong> <?php print $sede->promedio;?> en promedio.
+												<strong><?php print $sede->nombre;?></strong> <?php print number_format($sede->promedio, 1, ',', '.'); ?> traslados.
 											</p>
 											<?php }?>
 										</div>
-									</div>
-								</div>
-								<?php }?>
-								<?php if( in_array("se_r", $permiso) ){?>
-								<div class="card">
-									<?php
-									$qry = "SELECT se_nombre nombre, AVG(age(sp_fecha_ini,prm_fecha_ini)-age(prm_fecha_fin,prm_fecha_ini)) eficiencia FROM Zona, Sede, Prueba, Prueba_material, Status_prueba, Status WHERE zo_sede=se_id AND pr_zona=zo_id AND prm_prueba=pr_id AND sp_prueba=pr_id AND sp_status=st_id AND st_nombre='Aprobada' Group by se_nombre UNION SELECT se_nombre sede, AVG(age(sp_fecha_ini,pp_fecha_ini)-age(pp_fecha_fin, pp_fecha_ini)) eficiencia FROM Zona, Sede, Prueba, Prueba_pieza, Status_prueba, Status WHERE zo_sede=se_id AND pr_zona=zo_id AND pp_prueba=pr_id AND sp_prueba=pr_id AND sp_status=st_id AND st_nombre='Aprobada' Group by se_nombre Order By eficiencia Limit 1";
-									$rs = pg_query( $conexion, $qry );
-									$sede = pg_fetch_object($rs);?>
-									<div class="card-body">
-										<h5 class="blockquote card-title">Sede mas eficiente en base al cumplimiento de las fechas</h5>
-										<p class="card-text">
-											<?php print $sede->nombre;?>
-										</p>
 									</div>
 								</div>
 								<?php }?>
@@ -486,6 +504,13 @@ $meses = array(1 => 'Enero', 2 => 'Febrero', 3 => 'Marzo', 4 => 'Abril', 5 => 'm
 				</div>
 			</footer>
 		</div>
+		<!--OPTIONAL QUERY
+			Select nombre, AVG(diferencia) eficiencia
+			From (SELECT am_nombre||' ID '||a_id nombre, age(a_fecha_fin,a_fecha_ini)-age(sa_fecha_ini,a_fecha_ini) diferencia FROM Avion, Status_avion, Status, Modelo_avion, Submodelo_avion WHERE sa_avion=a_id AND sa_status=st_id AND st_nombre='Listo' AND a_submodelo_avion=as_id AND as_modelo_avion=am_id 
+				 Union
+				 Select am_nombre||' ID '||a_id nombre, age(p_fecha_fin,p_fecha_ini)-age(spi_fecha_ini,p_fecha_ini) diferencia From Avion, Status_avion, Status, Modelo_avion, Submodelo_avion, Pieza, Status_pieza Where sa_avion=a_id AND sa_status=st_id AND st_nombre='Listo' AND a_submodelo_avion=as_id AND as_modelo_avion=am_id AND p_avion=a_id AND spi_pieza=p_id AND spi_status=7) Procesos 
+			Group By nombre
+			ORDER BY eficiencia Desc limit 10-->
 		<!-- Javascript files-->
 		<script src="js/jquery-3.2.1.min.js"></script>
 		<script src="vendor/popper.js/umd/popper.min.js"></script>

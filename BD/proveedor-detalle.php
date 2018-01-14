@@ -3,7 +3,8 @@ include 'conexion.php';
 if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'] = 2;} 
 $qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$_SESSION['rol']; 
 $rs = pg_query( $conexion, $qry ); $permiso = array();
-while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }
+while( $rol = pg_fetch_object($rs) ) $permiso[] = $rol->permiso;
+
 $id = htmlentities($_GET['id'], ENT_QUOTES);
 $qry = "SELECT po_id AS id, po_tipo_rif||'-'||po_rif AS rif, po_nombre AS nombre, (Select SUM(m_precio) From Material, Factura_compra Where m_factura_compra=fc_id AND fc_proveedor=po.po_id) as monto, po_fecha_ini as fecha, pa.lu_nombre AS parroquia, mu.lu_nombre AS municipio, es.lu_nombre AS estado, po_pagina_web AS web FROM proveedor po LEFT JOIN Lugar pa ON pa.lu_id=po_direccion LEFT JOIN Lugar mu ON pa.lu_lugar=mu.lu_id LEFT JOIN Lugar es ON mu.lu_lugar=es.lu_id WHERE po_id=".$id;
 $con = pg_query($conexion, $qry);
@@ -87,8 +88,9 @@ $resultado = '<div class="modal-header">
 				<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>';
 				if( in_array("po_u", $permiso) )
 				$resultado.='<a href="'.$proveedor->id.'" class="click-proveedor-editar btn btn-primary">Editar</a>';
-			$resultado.='</div>
-			<script>
+			$resultado.='</div>';
+			if( in_array("po_u", $permiso) )
+				$resultado.='<script>
 		$( "a.click-proveedor-editar" ).click(function( event ) {
 			event.preventDefault();
 			var href = $(this).attr("href");

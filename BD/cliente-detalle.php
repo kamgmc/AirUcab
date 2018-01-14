@@ -3,12 +3,14 @@ include 'conexion.php';
 if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'] = 2;} 
 $qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$_SESSION['rol']; 
 $rs = pg_query( $conexion, $qry ); $permiso = array();
-while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }
+while( $rol = pg_fetch_object($rs) ) $permiso[] = $rol->permiso;
+
 $id = htmlentities($_GET['id'], ENT_QUOTES);
 $qry = "SELECT cl_id AS id, cl_tipo_rif AS tipo_rif, cl_rif AS rif, cl_nombre AS nombre, (Select SUM(a_precio) From Avion, Factura_venta Where a_factura_venta=fv_id AND fv_cliente=cl.cl_id) as monto, cl_fecha_inicio AS fecha, pa.lu_nombre as parroquia, pa.lu_id as id_parroquia, mu.lu_nombre as municipio, mu.lu_id as id_municipio, es.lu_nombre as estado, es.lu_id as id_estado, cl_pagina_web AS web FROM Cliente cl LEFT JOIN Lugar pa ON lu_id=cl_direccion LEFT JOIN Lugar mu ON mu.lu_id=pa.lu_lugar LEFT JOIN Lugar es ON es.lu_id=mu.lu_lugar WHERE cl_id=".$id;
 $con = pg_query($conexion, $qry);
 $cliente = pg_fetch_object($con);
 $date = new DateTime($cliente->fecha);
+
 $resultado = '<div class="modal-header">
 			<h4 id="exampleModalLabel" class="modal-title">Detalle Cliente</h4>
 			<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
@@ -87,8 +89,9 @@ $resultado = '<div class="modal-header">
 			<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>';
 			if( in_array("cl_u", $permiso) )
 			$resultado.='<a href="'.$cliente->id.'" class="click-cliente-editar btn btn-primary">Editar</a>';
-		$resultado.='</div>
-		<script>
+		$resultado.='</div>';
+		if( in_array("cl_u", $permiso) )
+			$resultado.='<script>
 		$( "a.click-cliente-editar" ).click(function( event ) {
 			event.preventDefault();
 			var href = $(this).attr("href");

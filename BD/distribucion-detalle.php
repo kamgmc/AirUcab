@@ -3,11 +3,13 @@ include 'conexion.php';
 if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'] = 2;} 
 $qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$_SESSION['rol']; 
 $rs = pg_query( $conexion, $qry ); $permiso = array();
-while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }
+while( $rol = pg_fetch_object($rs) ) $permiso[] = $rol->permiso;
+
 $id = htmlentities($_GET['id'], ENT_QUOTES);
 $qry = "select di_id, di_nombre, di_numero_clases, di_capacidad_pasajeros, di_distancia_asientos, di_ancho_asientos, am_nombre AS modelo from distribucion, modelo_avion where am_id=di_modelo_avion AND di_id=".$id;
 $con = pg_query($conexion, $qry);
 $distribucion = pg_fetch_object($con);
+
 $resultado = '<div class="modal-header">
 				<h4 id="exampleModalLabel" class="modal-title">Detalle Distribución de Avión</h4>
 				<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
@@ -67,9 +69,10 @@ $resultado = '<div class="modal-header">
 			<div class="modal-footer">
 				<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>';
 				if( in_array("di_u", $permiso) )
-				$resultado.='<a href="'.$distribucion->di_id.'" class="click-distribucion-editar btn btn-primary">Editar</a>';
-			$resultado.='</div>
-			<script>
+					$resultado.='<a href="'.$distribucion->di_id.'" class="click-distribucion-editar btn btn-primary">Editar</a>';
+			$resultado.='</div>';
+			if( in_array("di_u", $permiso) )
+				$resultado.='<script>
 			$( "a.click-distribucion-editar" ).click(function( event ) {
 				event.preventDefault();
 				var href = $(this).attr("href");

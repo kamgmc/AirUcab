@@ -1,5 +1,13 @@
-<?php include 'querys.php';
-	if(isset($_GET['create'])){
+<?php 
+session_start(); error_reporting('E_ALL ^ E_NOTICE'); 
+include 'querys.php';
+if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'] = 2;} 
+$qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$_SESSION['rol']; 
+$rs = pg_query( $conexion, $qry ); $permiso = array();
+while( $rol = pg_fetch_object($rs) ) $permiso[] = $rol->permiso;
+
+if(isset($_GET['create'])){
+	if( in_array("fv_c", $permiso) ){
 		//Busca Errores en las variables de Avión 
 		$exit = false; $i = 0;
 		while(!$exit){
@@ -262,12 +270,18 @@
 		}
 		else header('Location: ventas.php?error=1');exit;
 	}
-	if(isset($_GET['delete'])){
+	else header('Location: ventas.php?error=1');exit;
+}
+if(isset($_GET['delete'])){
+	if( in_array("fv_d", $permiso) ){
 		$id = $_GET['delete'];
 		if(eliminarFacturaVenta($id))
 			header('Location: ventas.php');
 		else
 			header('Location: ventas.php?error=5');
-		exit;
 	}
+	else
+		header('Location: ventas.php?error=5'); 
+	exit;
+}
 ?>

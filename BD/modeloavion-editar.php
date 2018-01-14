@@ -4,7 +4,7 @@ $id = htmlentities($_GET['id'], ENT_QUOTES);
 $qry = "SELECT * FROM Modelo_avion WHERE am_id=".$id;
 $con = pg_query($conexion, $qry);
 $modelo = pg_fetch_object($con);
-$result ='<form action="modeloavion-crud.php?edit='.$modelo->am_id.'" method="post">
+$resultado ='<form action="modeloavion-crud.php?edit='.$modelo->am_id.'" method="post">
 	<div class="modal-header">
 		<h4 id="exampleModalLabel" class="modal-title">Editar Modelo de Avión</h4>
 		<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
@@ -121,12 +121,12 @@ $result ='<form action="modeloavion-crud.php?edit='.$modelo->am_id.'" method="po
 									<select name="tipo_fuselaje" class="form-control" required>
 										<option ';
 										if($modelo->am_fuselaje_tipo == "Ancho")
-											$result .= 'selected';
-										$result .=' value="Ancho">Ancho</option>
+											$resultado .= 'selected';
+										$resultado .=' value="Ancho">Ancho</option>
 										<option '; 
 										if($modelo->am_fuselaje_tipo == "Normal")
-											$result .= 'selected';
-										$result .= ' value="Normal">Normal</option>
+											$resultado .= 'selected';
+										$resultado .= ' value="Normal">Normal</option>
 									</select>
 								</div>
 							</div>
@@ -214,5 +214,5 @@ $result ='<form action="modeloavion-crud.php?edit='.$modelo->am_id.'" method="po
 		<button type="submit" class="btn btn-primary">Guardar Cambios</button>
 	</div>
 </form>';
-echo $result;
+echo $resultado;
 ?>

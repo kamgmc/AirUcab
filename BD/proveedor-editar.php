@@ -3,6 +3,7 @@ $id = htmlentities($_GET['id'], ENT_QUOTES);
 $qry = "SELECT po_id AS id, po_nombre AS nombre, po_tipo_rif AS tipo_rif, po_rif AS rif, po_pagina_web AS web, pa.lu_id AS parroquia, mu.lu_id AS municipio, es.lu_id AS estado FROM Proveedor LEFT JOIN Lugar pa ON pa.lu_id=po_direccion LEFT JOIN Lugar mu ON mu.lu_id=pa.lu_lugar LEFT JOIN Lugar es ON es.lu_id=mu.lu_lugar WHERE po_id=".$id;
 $con = pg_query($conexion, $qry);
 $proveedor = pg_fetch_object($con);
+
 $result = '<form action="cliente-crud?edit='.$proveedor->id.'" method="post">
 				<div class="modal-header">
 					<h4 id="exampleModalLabel" class="modal-title">Editar Cliente</h4>

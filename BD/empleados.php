@@ -17,8 +17,7 @@ if( !in_array("em_r", $permiso) && !in_array("sr_r", $permiso) && !in_array("er_
     }
 }?>
 <!DOCTYPE html>
-	<html>
-
+<html>
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -39,8 +38,8 @@ if( !in_array("em_r", $permiso) && !in_array("sr_r", $permiso) && !in_array("er_
 		<!-- Custom stylesheet - for your changes-->
 		<link rel="stylesheet" href="css/custom.css">
 		<!-- Favicon-->
-		<link rel="shortcut icon" href="img/airucab.ico"> </head>
-
+		<link rel="shortcut icon" href="img/airucab.ico">
+	</head>
 	<body>
 		<div class="page home-page">
 			<!-- Main Navbar-->
@@ -96,62 +95,62 @@ if( !in_array("em_r", $permiso) && !in_array("sr_r", $permiso) && !in_array("er_
 						<li>
 							<a href="modeloavion.php"> <i class="fa fa-plane" aria-hidden="true"></i> Aviones </a>
 						</li>
-						<?php } ?>
-                        <?php if (in_array("mb_r", $permiso) || in_array("mm_r", $permiso) || in_array("mo_r", $permiso) ) { ?>
-                        <li>
-							<a href="motores.php"> <i class="fa fa-tachometer " aria-hidden="true"></i>Motores </a>
+						<?php }?>
+						<?php if (in_array("mb_r", $permiso) || in_array("mm_r", $permiso) || in_array("mo_r", $permiso) ) { ?>
+						<li>
+							<a href="motores.php"> <i class="fa fa-tachometer" aria-hidden="true"></i>Motores </a>
 						</li>
-                        <?php } ?>
-                        <?php if( in_array("p_r", $permiso) || in_array("pm_r", $permiso) || in_array("wt_r", $permiso) || in_array("et_r", $permiso) ) { ?>
-                        <li>
+						<?php }?>
+						<?php if( in_array("p_r", $permiso) || in_array("pm_r", $permiso) || in_array("wt_r", $permiso) || in_array("et_r", $permiso) ) { ?>
+						<li>
 							<a href="piezas.php"> <i class="fa fa-puzzle-piece " aria-hidden="true"></i>Piezas </a>
 						</li>
-                        <?php } ?>
-                        <?php if( in_array("m_r", $permiso) || in_array("tm_r", $permiso) ) { ?>
-                        <li>
+						<?php }?>
+						<?php if( in_array("m_r", $permiso) || in_array("tm_r", $permiso) ) { ?>
+						<li>
 							<a href="materiales.php"> <i class="fa fa-server " aria-hidden="true"></i>Materiales </a>
 						</li>
-                        <?php } ?>
-                        <?php if( in_array("fv_r", $permiso) ){ ?>
+						<?php }?>
+						<?php if( in_array("fv_r", $permiso) ){ ?>
 						<li>
 							<a href="ventas.php"> <i class="fa fa-paper-plane-o" aria-hidden="true"></i>Ventas </a>
 						</li>
-						<?php } ?>
-                        <?php if( in_array("fc_r", $permiso) ){ ?>
+						<?php }?>
+						<?php if( in_array("fc_r", $permiso) ){ ?>
 						<li>
 							<a href="compras.php"> <i class="fa fa-shopping-bag " aria-hidden="true"></i>Compras </a>
 						</li>
-						<?php } ?>
-                        <?php if( in_array("se_r", $permiso) || in_array("zo_r", $permiso) ){ ?>
-                        <li>
+						<?php }?>
+						<?php if( in_array("se_r", $permiso) || in_array("zo_r", $permiso) ){ ?>
+						<li>
 							<a href="Sedes.php"> <i class="fa fa-university " aria-hidden="true"></i>Sedes </a>
 						</li>
-                        <?php } ?>
+						<?php }?>
 						<?php if( in_array("em_r", $permiso) || in_array("sr_r", $permiso) || in_array("er_r", $permiso) || in_array("ti_r", $permiso) || in_array("pe_r", $permiso) || in_array("rp_r", $permiso) || in_array("ct_r", $permiso) ){ ?>
 						<li class="active">
 							<a href="empleados.php"><i class="fa fa-id-card-o"></i>Empleados</a>
 						</li>
-						<?php } ?>
+						<?php }?>
 						<?php if( in_array("cl_r", $permiso) ){ ?>
 						<li>
 							<a href="clientes.php"> <i class="fa fa-address-book-o" aria-hidden="true"></i>Clientes</a>
 						</li>
-						<?php } ?>
+						<?php }?>
 						<?php if( in_array("po_r", $permiso) ){ ?>
 						<li>
 							<a href="proveedores.php"> <i class="fa fa-truck" aria-hidden="true"></i>Proveedores</a>
 						</li>
-						<?php } ?>
+						<?php }?>
 						<?php if( in_array("pr_r", $permiso) ){ ?>
 						<li>
 							<a href="pruebas.php"> <i class="fa fa-check-square-o " aria-hidden="true"></i>Pruebas </a>
 						</li>
-                        <?php } ?>
-                        <?php if( in_array("tr_r", $permiso) ){ ?>
+						<?php }?>
+						<?php if( in_array("tr_r", $permiso) ){ ?>
 						<li>
 							<a href="traslados.php"> <i class="fa fa-share-square-o " aria-hidden="true"></i>Traslados </a>
 						</li>
-						<?php } ?>
+						<?php }?>
 					</ul>
 				</nav>
 				<div class="content-inner">
@@ -186,30 +185,31 @@ if( !in_array("em_r", $permiso) && !in_array("sr_r", $permiso) && !in_array("er_
 					<!-- TABS SECTION-->
 					<section>
 						<div class="container-fluid">
-							<?php if( in_array("em_r", $permiso) || in_array("em_c", $permiso) ){?>
+							<?php if( in_array("em_r", $permiso) ){?>
 							<input id="tab0" type="radio" name="tabs" class="no-display" <?php if( !isset($_GET['tab']) ) print "checked";?>>
 							<label for="tab0" class="label"><i class="fa fa-id-card-o" aria-hidden="true"></i> Empleados</label>
 							<?php }?>
-							<?php if( in_array("sr_r", $permiso) || in_array("sr_c", $permiso) ){?>
-							<input id="tab1" type="radio" name="tabs" class="no-display" <?php if( $_GET['tab'] == "rol" ) print "checked";?>>
+							<?php if( in_array("sr_r", $permiso) ){?>
+							<input id="tab1" type="radio" name="tabs" class="no-display" <?php if( $_GET['tab'] == "rol" || !in_array("em_r", $permiso) ) print "checked";?>>
 							<label for="tab1" class="label"><i class="fa fa-street-view" aria-hidden="true"></i> Roles</label>
 							<?php }?>
-							<?php if( in_array("er_r", $permiso) || in_array("er_c", $permiso) ){?>
-							<input id="tab2" type="radio" name="tabs" class="no-display" <?php if( $_GET['tab'] == "cargo" ) print "checked";?>>
+							<?php if( in_array("er_r", $permiso) ){?>
+							<input id="tab2" type="radio" name="tabs" class="no-display" <?php if( $_GET['tab'] == "cargo" || !in_array("sr_r", $permiso) ) print "checked";?>>
 							<label for="tab2" class="label"><i class="fa fa-briefcase" aria-hidden="true"></i> Cargo</label>
 							<?php }?>
-							<?php if( in_array("ti_r", $permiso) || in_array("ti_c", $permiso) ){?>
-							<input id="tab3" type="radio" name="tabs" class="no-display" <?php if( $_GET['tab'] == "titulacion" ) print "checked";?>>
+							<?php if( in_array("ti_r", $permiso) ){?>
+							<input id="tab3" type="radio" name="tabs" class="no-display" <?php if( $_GET['tab'] == "titulacion" || !in_array("er_r", $permiso) ) print "checked";?>>
 							<label for="tab3" class="label"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Titulación</label>
 							<?php }?>
-							<?php if( in_array("rp_r", $permiso) || ( in_array("rp_c", $permiso) && in_array("rp_u", $permiso) ) ){?>
-							<input id="tab4" type="radio" name="tabs" class="no-display" <?php if( $_GET['tab'] == "permiso" ) print "checked";?>>
+							<?php if( in_array("rp_r", $permiso) ){?>
+							<input id="tab4" type="radio" name="tabs" class="no-display" <?php if( $_GET['tab'] == "permiso" || !in_array("ti_r", $permiso) ) print "checked";?>>
 							<label for="tab4" class="label"><i class="fa fa-university" aria-hidden="true"></i> Permisos</label>
 							<?php }?>
-							<?php if( in_array("ct_r", $permiso) || ( in_array("ct_c", $permiso) && in_array("ct_u", $permiso) ) ){?>
-							<input id="tab5" type="radio" name="tabs" class="no-display" <?php if( $_GET['tab'] == "contacto" ) print "checked";?>>
+							<?php if( in_array("ct_r", $permiso) ){?>
+							<input id="tab5" type="radio" name="tabs" class="no-display" <?php if( $_GET['tab'] == "contacto" || !in_array("rp_r", $permiso) ) print "checked";?>>
 							<label for="tab5" class="label"><i class="fa fa-wifi" aria-hidden="true"></i> Tipo de Contacto</label>
 							<?php }?>
+							<?php if( in_array("em_r", $permiso) ){?>
 							<!-- Tab Empleados -->
 							<section id="content0" class="sectiontab">
 								<!-- Filtrador-->
@@ -260,7 +260,6 @@ if( !in_array("em_r", $permiso) && !in_array("sr_r", $permiso) && !in_array("er_
 											</div>
 										</div>
 										<?php }?>
-										<?php if( in_array("em_r", $permiso) ){?>
 										<?php $qry = "SELECT em_id id,em_nombre ||' '|| em_apellido AS nombre, em_nacionalidad nac, em_ci ci, em_fecha_ingreso fecha,COUNT(be_id) beneficiarios, er_nombre cargo, se_nombre sede, lu_nombre direccion FROM Empleado LEFT JOIN Beneficiario ON be_empleado=em_id LEFT JOIN Cargo ON er_id=em_cargo LEFT JOIN Zona ON em_zona=zo_id LEFT JOIN Sede ON se_id=zo_sede LEFT JOIN Lugar on em_direccion=lu_id GROUP BY em_id ,em_nombre, em_nacionalidad, em_ci, em_fecha_ingreso, er_nombre, se_nombre, lu_nombre ORDER BY em_id";
 										$rs = pg_query( $conexion, $qry );
 										$howMany = pg_num_rows($rs);
@@ -319,13 +318,14 @@ if( !in_array("em_r", $permiso) && !in_array("sr_r", $permiso) && !in_array("er_
 											</table>
 										</div>
 										<?php }else{?>
-										<h3>&emsp;No se han encontrado resultados.</h3>
-										<?php }}?>
+										<h4>&emsp;No se han encontrado resultados.</h4>
+										<?php }?>
 									</div>
 								</div>
 								<!-- TABLE ENDS -->
 							</section>
 							<!-- Tab Empleados ENDS -->
+							<?php if( in_array("em_c", $permiso) ){?>
 							<!-- Modal Empleado Crear -->
 							<div id="ModalCrearEmpleado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 								<div role="document" class="modal-dialog modal-xl">
@@ -586,6 +586,7 @@ if( !in_array("em_r", $permiso) && !in_array("sr_r", $permiso) && !in_array("er_
 								</div>
 							</div>
 							<!-- Modal Empleado Crear ENDS -->
+							<?php }?>
 							<!-- Modal Detalle Empleado -->
 							<div id="ModalDetalleEmpleado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 								<div role="document" class="modal-dialog modal-xl">
@@ -594,6 +595,7 @@ if( !in_array("em_r", $permiso) && !in_array("sr_r", $permiso) && !in_array("er_
 								</div>
 							</div>
 							<!-- Modal Detalle Empleado ENDS -->
+							<?php if( in_array("em_u", $permiso) ){?>
 							<!-- Modal Empleado Editar -->
 							<div id="ModalEditarEmpleado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 								<div role="document" class="modal-dialog modal-xl">
@@ -602,6 +604,9 @@ if( !in_array("em_r", $permiso) && !in_array("sr_r", $permiso) && !in_array("er_
 								</div>
 							</div>
 							<!-- Modal Empleado Editar ENDS -->
+							<?php }?>
+							<?php }?>
+							<?php if( in_array("sr_r", $permiso) ){?>
 							<!--Tab Roles de Usuario-->
 							<section id="content1" class="sectiontab">
 								<div class="pad-left">
@@ -616,7 +621,6 @@ if( !in_array("em_r", $permiso) && !in_array("sr_r", $permiso) && !in_array("er_
 												</div>
 											</div>
 											<?php }?>
-											<?php if( in_array("sr_r", $permiso) ){?>
 											<?php $qry = "SELECT sr_id id, sr_nombre nombre FROM Rol_sistema";
 											$rs = pg_query( $conexion, $qry );
 											$howMany = pg_num_rows($rs);
@@ -655,15 +659,15 @@ if( !in_array("em_r", $permiso) && !in_array("sr_r", $permiso) && !in_array("er_
 												</table>
 											</div>
 											<?php }else{?>
-											<h3>&emsp;No se han encontrado resultados.</h3>
-											<?php }}?>
+											<h4>&emsp;No se han encontrado resultados.</h4>
+											<?php }?>
 										</div>
 									</div>
 									<!-- TABLE ENDS -->
 								</div>
 							</section>
 							<!-- Tab Rol de Sistema ENDS -->
-							<?php if( in_array("sr_c", $permiso) ){ ?>
+							<?php if( in_array("sr_c", $permiso) ){?>
 							<!-- Modal Crear Rol de Sistema-->
 							<div id="ModalCrearRol" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 								<div role="document" class="modal-dialog">
@@ -705,6 +709,8 @@ if( !in_array("em_r", $permiso) && !in_array("sr_r", $permiso) && !in_array("er_
 							</div>
 							<!-- Modal Editar Rol de Sistema ENDS -->
 							<?php }?>
+							<?php }?>
+							<?php if( in_array("er_r", $permiso) ){ ?>
 							<!--Tab Cargos-->
 							<section id="content2" class="sectiontab">
 								<div class="pad-left">
@@ -719,7 +725,6 @@ if( !in_array("em_r", $permiso) && !in_array("sr_r", $permiso) && !in_array("er_
 												</div>
 											</div>
 											<?php }?>
-											<?php if( in_array("er_r", $permiso) ){?>
 											<?php $qry = "SELECT er_id id, er_nombre nombre FROM Cargo Where er_id>1";
 											$rs = pg_query( $conexion, $qry );
 											$howMany = pg_num_rows($rs);
@@ -758,8 +763,8 @@ if( !in_array("em_r", $permiso) && !in_array("sr_r", $permiso) && !in_array("er_
 												</table>
 											</div>
 											<?php }else{?>
-											<h3>&emsp;No se han encontrado resultados.</h3>
-											<?php }}?>
+											<h4>&emsp;No se han encontrado resultados.</h4>
+											<?php }?>
 										</div>
 									</div>
 									<!-- TABLE ENDS -->
@@ -808,7 +813,8 @@ if( !in_array("em_r", $permiso) && !in_array("sr_r", $permiso) && !in_array("er_
 							</div>
 							<!-- Modal Editar Cargo ENDS -->
 							<?php }?>
-							
+							<?php }?>
+							<?php if( in_array("ti_r", $permiso) ){?>
 							<!--Tab Titulacion-->
 							<section id="content3" class="sectiontab">
 								<div class="pad-left">
@@ -823,7 +829,6 @@ if( !in_array("em_r", $permiso) && !in_array("sr_r", $permiso) && !in_array("er_
 												</div>
 											</div>
 											<?php }?>
-											<?php if( in_array("ti_r", $permiso) ){?>
 											<?php $qry = "SELECT ti_id id, ti_nombre nombre FROM Titulacion WHERE ti_id>1";
 											$rs = pg_query( $conexion, $qry );
 											$howMany = pg_num_rows($rs);
@@ -863,7 +868,7 @@ if( !in_array("em_r", $permiso) && !in_array("sr_r", $permiso) && !in_array("er_
 											</div>
 											<?php }else{?>
 											<h3>&emsp;No se han encontrado resultados.</h3>
-											<?php }}?>
+											<?php }?>
 										</div>
 									</div>
 									<!-- TABLE ENDS -->
@@ -912,8 +917,8 @@ if( !in_array("em_r", $permiso) && !in_array("sr_r", $permiso) && !in_array("er_
 							</div>
 							<!-- Modal Editar Titulacion ENDS -->
 							<?php }?>
-							
-							<?php if( in_array("rp_r", $permiso) || (in_array("rp_c", $permiso) && in_array("rp_u", $permiso) && in_array("rp_d", $permiso)) ){?>
+							<?php }?>
+							<?php if( in_array("rp_r", $permiso) ||  in_array("rp_u", $permiso) ){?>
 							<?php $qry = "SELECT pe_id id, pe_nombre nombre, pe_iniciales iniciales FROM Permiso";
 							$rs = pg_query( $conexion, $qry );
 							$qre = "SELECT sr_id id, sr_nombre nombre FROM Rol_sistema";
@@ -923,7 +928,7 @@ if( !in_array("em_r", $permiso) && !in_array("sr_r", $permiso) && !in_array("er_
 								$permisoCheck[$rol->id] = array();
 								$qri = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$rol->id;
 								$rsi = pg_query( $conexion, $qri ); 
-								while( $rolp = pg_fetch_object($rsi) ){ $permisoCheck[$rol->id][] = $rolp->permiso; }
+								while( $rolp = pg_fetch_object($rsi) ) $permisoCheck[$rol->id][] = $rolp->permiso; 
 							}?>
 							<!-- Tab Permisos -->
 							<section id="content4" class="sectiontab">
@@ -952,7 +957,7 @@ if( !in_array("em_r", $permiso) && !in_array("sr_r", $permiso) && !in_array("er_
 																<td class="text-center">
 																	<div class="form-check">
 																	  <label class="form-check-label">
-																		<input name="<?php print $permisos->iniciales."_".$rol->id;?>" class="form-check-input position-static" type="checkbox" <?php if( !in_array("rp_c", $permiso) || !in_array("rp_u", $permiso) || !in_array("rp_d", $permiso) || $rol->id == 1 || $rol->id == 2 ) print "disabled";?> <?php if( in_array($permisos->iniciales, $permisoCheck[$rol->id])) print "checked";?>/>
+																		<input name="<?php print $permisos->iniciales."_".$rol->id;?>" class="form-check-input position-static" type="checkbox" <?php if( !in_array("rp_u", $permiso) || $rol->id == 1 || $rol->id == 2 ) print "disabled";?> <?php if( in_array($permisos->iniciales, $permisoCheck[$rol->id])) print "checked";?>/>
 																	  </label>
 																	</div>
 																</td>
@@ -961,7 +966,7 @@ if( !in_array("em_r", $permiso) && !in_array("sr_r", $permiso) && !in_array("er_
 															<?php }?>
 														</tbody>
 													</table>
-													<?php if( in_array("rp_c", $permiso) && in_array("rp_u", $permiso) && in_array("rp_d", $permiso) ){?>
+													<?php if( in_array("rp_u", $permiso) ){?>
 													<div class="row">
 														<div class="col-sm-12 text-right">
 															<button type="submit" class="btn btn-primary">
@@ -979,6 +984,7 @@ if( !in_array("em_r", $permiso) && !in_array("sr_r", $permiso) && !in_array("er_
 							</section>
 							<!-- Tab Permisos ENDS-->
 							<?php }?>
+                            <?php if(in_array("ct_r", $permiso)){?>
 							<!-- TAB TIPO CONTACTO -->
 							<section id="content5" class="sectiontab">
 								<!-- TABLE STARTS -->
@@ -992,7 +998,6 @@ if( !in_array("em_r", $permiso) && !in_array("sr_r", $permiso) && !in_array("er_
 											</div>
 										</div>
                                         <?php }?>
-                                        <?php if(in_array("ct_r", $permiso)){?>
                                         <?php 	
 								        $qry = "SELECT ct_id id, ct_nombre nombre FROM Tipo_contacto";
 										$rs = pg_query( $conexion, $qry );?>										
@@ -1000,14 +1005,14 @@ if( !in_array("em_r", $permiso) && !in_array("sr_r", $permiso) && !in_array("er_
 											<table class="table table-striped table-sm table-hover">
 												<thead>
 													<tr>
-														<th class="text-center">Nombre</th>
-														<th class="text-center">Acción</th>
+														<th class="col-sm-10">Nombre</th>
+														<th class="col-sm-2 text-center">Acción</th>
 													</tr>
 												</thead>
 												<tbody>
                                                     <?php while( $contacto = pg_fetch_object($rs) ){?>
 													<tr>
-														<td class="text-center">
+														<td>
                                                             <?php print $contacto->nombre;?>
                                                         </td>
 														<td class="text-center">
@@ -1026,12 +1031,12 @@ if( !in_array("em_r", $permiso) && !in_array("sr_r", $permiso) && !in_array("er_
 												</tbody>
 											</table>
 										</div>
-                                        <?php }?>
 									</div>
 								</div>
 								<!-- TABLE ENDS -->
 							</section>
 							<!-- Tab Explorador Clientes ENDS -->
+							<?php if(in_array("ct_c", $permiso)){?>
 							<!-- Modal Tipo Contacto Crear -->
 							<div id="myModalTipoContactoCrear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 								<div role="document" class="modal-dialog modal-xl">
@@ -1066,6 +1071,8 @@ if( !in_array("em_r", $permiso) && !in_array("sr_r", $permiso) && !in_array("er_
 								</div>
 							</div>
 							<!-- Modal Tipo Contacto Crear ENDS -->
+							<?php }?>
+							<?php if(in_array("ct_u", $permiso)){?>
 							<!-- Modal Tipo Contacto Editar -->
 							<div id="myModalTipoContactoEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 								<div role="document" class="modal-dialog modal-xl">
@@ -1099,7 +1106,9 @@ if( !in_array("em_r", $permiso) && !in_array("sr_r", $permiso) && !in_array("er_
 									</div>
 								</div>
 							</div>
-							<!-- Modal Tipo Contacto Editar ENDS -->						
+							<!-- Modal Tipo Contacto Editar ENDS -->
+							<?php }?>
+							<?php }?>					
 						</div>
 					</section>
 				</div>

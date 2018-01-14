@@ -3,11 +3,13 @@ include 'conexion.php';
 if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'] = 2;} 
 $qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$_SESSION['rol']; 
 $rs = pg_query( $conexion, $qry ); $permiso = array();
-while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }
+while( $rol = pg_fetch_object($rs) ) $permiso[] = $rol->permiso; 
+
 $id = htmlentities($_GET['id'], ENT_QUOTES);
 $qry = "SELECT fv_id id, fv_fecha fecha, cl_nombre cliente, cl_tipo_rif||'-'||cl_rif AS rif, (Select SUM(a_precio) From Avion Where a_factura_venta=".$_GET['id'].") AS  total, (Select SUM(pa_monto) from Pago WHERE pa_factura_venta=".$id.") AS pagado FROM Factura_venta LEFT JOIN Cliente ON fv_cliente=cl_id WHERE fv_id=".$id;
 $con = pg_query($conexion, $qry);
 $venta = pg_fetch_object($con);
+
 $resultado = '<div class="modal-header">
 				<h4 id="exampleModalLabel" class="modal-title">Detalle de Venta</h4>
 				<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>

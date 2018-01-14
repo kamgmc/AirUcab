@@ -4,7 +4,8 @@ $id = htmlentities($_GET['id'], ENT_QUOTES);
 $qry = "select di_id, di_nombre, di_numero_clases, di_capacidad_pasajeros, di_distancia_asientos, di_ancho_asientos, di_modelo_avion from distribucion where di_id=".$id;
 $con = pg_query($conexion, $qry);
 $distribucion = pg_fetch_object($con);
-$result = '<form action="distribucion-crud.php?edit='.$distribucion->di_id.'" method="post">
+
+$resultado = '<form action="distribucion-crud.php?edit='.$distribucion->di_id.'" method="post">
 				<div class="modal-header">
 					<h4 id="exampleModalLabel" class="modal-title">Editar Distribución de Avión</h4>
 					<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
@@ -24,12 +25,12 @@ $result = '<form action="distribucion-crud.php?edit='.$distribucion->di_id.'" me
 												$qry = "SELECT am_id AS id, am_nombre AS nombre FROM Modelo_avion";
 												$rs = pg_query( $conexion, $qry );
 												while( $modelo = pg_fetch_object($rs) ){
-													$result .= '<option value="'.$modelo->id.'" '; 
+													$resultado .= '<option value="'.$modelo->id.'" '; 
 													if($modelo->id == $distribucion->di_modelo_avion)
-														$result .= 'selected';
-													$result .='>'.$modelo->nombre.'</option>';
+														$resultado .= 'selected';
+													$resultado .='>'.$modelo->nombre.'</option>';
 												}
-												$result .= '</select>
+												$resultado .= '</select>
 											</div>
 										</div>
 										<div class="form-group row">
@@ -85,5 +86,5 @@ $result = '<form action="distribucion-crud.php?edit='.$distribucion->di_id.'" me
 					<button type="submit" class="btn btn-primary">Guardar Cambios</button>
 				</div>
 			</form>';
-echo $result;
+echo $resultado;
 ?>

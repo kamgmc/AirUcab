@@ -16,9 +16,8 @@ if( !in_array("m_r", $permiso) && !in_array("mt_r", $permiso) ){
 		exit;
     }
 }?>
-	<!DOCTYPE html>
-	<html>
-
+<!DOCTYPE html>
+<html>
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -39,8 +38,8 @@ if( !in_array("m_r", $permiso) && !in_array("mt_r", $permiso) ){
 		<!-- Custom stylesheet - for your changes-->
 		<link rel="stylesheet" href="css/custom.css">
 		<!-- Favicon-->
-		<link rel="shortcut icon" href="img/airucab.ico"> </head>
-
+		<link rel="shortcut icon" href="img/airucab.ico">
+	</head>
 	<body>
 		<div class="page home-page">
 			<!-- Main Navbar-->
@@ -58,8 +57,13 @@ if( !in_array("m_r", $permiso) && !in_array("mt_r", $permiso) ){
 								<!-- Toggle Button--><a id="toggle-btn" href="#" class="menu-btn active"><span></span><span></span><span></span></a> </div>
 							<!-- Navbar Menu -->
 							<ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+								<?php if( isset($_SESSION['code']) ){ ?>
 								<!-- Logout    -->
-								<li class="nav-item"><a href="login.php" class="nav-link logout">Cerrar Sesion<i class="fa fa-sign-out"></i></a></li>
+								<li class="nav-item"><a href="close.php" class="nav-link logout">Cerrar Sesión<i class="fa fa-sign-out"></i></a></li>
+								<?php }else{ ?>
+								<!-- Login -->
+								<li class="nav-item"><a href="login.php" class="nav-link logout">Iniciar Sesión<i class="fa fa-sign-in"></i></a></li>
+								<?php } ?>
 							</ul>
 						</div>
 					</div>
@@ -84,81 +88,84 @@ if( !in_array("m_r", $permiso) && !in_array("mt_r", $permiso) ){
 							<a href="index.php"> <i class="fa fa-space-shuttle" aria-hidden="true"></i> Reportes</a>
 						</li>
 						<?php if( in_array("am_r", $permiso) || in_array("as_r", $permiso) || in_array("di_r", $permiso) ){ ?>
-							<li>
-								<a href="modeloavion.php"> <i class="fa fa-plane" aria-hidden="true"></i> Aviones </a>
-							</li>
-							<?php } ?>
-								<?php if (in_array("mb_r", $permiso) || in_array("mm_r", $permiso) || in_array("mo_r", $permiso) ) { ?>
-									<li>
-										<a href="motores.php"> <i class="fa fa-tachometer " aria-hidden="true"></i>Motores </a>
-									</li>
-									<?php } ?>
-										<?php if( in_array("p_r", $permiso) || in_array("pm_r", $permiso) || in_array("wt_r", $permiso) || in_array("et_r", $permiso) ) { ?>
-											<li>
-												<a href="piezas.php"> <i class="fa fa-puzzle-piece " aria-hidden="true"></i>Piezas </a>
-											</li>
-											<?php } ?>
-												<?php if( in_array("m_r", $permiso) || in_array("tm_r", $permiso) ) { ?>
-													<li class="active">
-														<a href="materiales.php"> <i class="fa fa-server " aria-hidden="true"></i>Materiales </a>
-													</li>
-													<?php } ?>
-														<?php if( in_array("fv_r", $permiso) ){ ?>
-															<li>
-																<a href="ventas.php"> <i class="fa fa-paper-plane-o" aria-hidden="true"></i>Ventas </a>
-															</li>
-															<?php } ?>
-																<?php if( in_array("fc_r", $permiso) ){ ?>
-																	<li>
-																		<a href="compras.php"> <i class="fa fa-shopping-bag " aria-hidden="true"></i>Compras </a>
-																	</li>
-																	<?php } ?>
-																		<?php if( in_array("se_r", $permiso) || in_array("zo_r", $permiso) ){ ?>
-																			<li>
-																				<a href="Sedes.php"> <i class="fa fa-university " aria-hidden="true"></i>Sedes </a>
-																			</li>
-																			<?php } ?>
-																				<?php if( in_array("em_r", $permiso) || in_array("sr_r", $permiso) || in_array("er_r", $permiso) || in_array("ti_r", $permiso) || in_array("pe_r", $permiso) || in_array("rp_r", $permiso) || in_array("ct_r", $permiso) ){ ?>
-																					<li> <a href="empleados.php"><i class="fa fa-id-card-o"></i>Empleados</a> </li>
-																					<?php } ?>
-																						<?php if( in_array("cl_r", $permiso) ){ ?>
-																							<li>
-																								<a href="clientes.php"> <i class="fa fa-address-book-o" aria-hidden="true"></i>Clientes</a>
-																							</li>
-																							<?php } ?>
-																								<?php if( in_array("po_r", $permiso) ){ ?>
-																									<li>
-																										<a href="proveedores.php"> <i class="fa fa-truck" aria-hidden="true"></i>Proveedores</a>
-																									</li>
-																									<?php } ?>
-																										<?php if( in_array("pr_r", $permiso) ){ ?>
-																											<li>
-																												<a href="pruebas.php"> <i class="fa fa-check-square-o " aria-hidden="true"></i>Pruebas </a>
-																											</li>
-																											<?php } ?>
-																												<?php if( in_array("tr_r", $permiso) ){ ?>
-																													<li>
-																														<a href="traslados.php"> <i class="fa fa-share-square-o " aria-hidden="true"></i>Traslados </a>
-																													</li>
-																													<?php } ?>
+						<li>
+							<a href="modeloavion.php"> <i class="fa fa-plane" aria-hidden="true"></i> Aviones </a>
+						</li>
+						<?php }?>
+						<?php if (in_array("mb_r", $permiso) || in_array("mm_r", $permiso) || in_array("mo_r", $permiso) ) { ?>
+						<li>
+							<a href="motores.php"> <i class="fa fa-tachometer" aria-hidden="true"></i>Motores </a>
+						</li>
+						<?php }?>
+						<?php if( in_array("p_r", $permiso) || in_array("pm_r", $permiso) || in_array("wt_r", $permiso) || in_array("et_r", $permiso) ) { ?>
+						<li>
+							<a href="piezas.php"> <i class="fa fa-puzzle-piece " aria-hidden="true"></i>Piezas </a>
+						</li>
+						<?php }?>
+						<?php if( in_array("m_r", $permiso) || in_array("tm_r", $permiso) ) { ?>
+						<li class="active">
+							<a href="materiales.php"> <i class="fa fa-server " aria-hidden="true"></i>Materiales </a>
+						</li>
+						<?php }?>
+						<?php if( in_array("fv_r", $permiso) ){ ?>
+						<li>
+							<a href="ventas.php"> <i class="fa fa-paper-plane-o" aria-hidden="true"></i>Ventas </a>
+						</li>
+						<?php }?>
+						<?php if( in_array("fc_r", $permiso) ){ ?>
+						<li>
+							<a href="compras.php"> <i class="fa fa-shopping-bag " aria-hidden="true"></i>Compras </a>
+						</li>
+						<?php }?>
+						<?php if( in_array("se_r", $permiso) || in_array("zo_r", $permiso) ){ ?>
+						<li>
+							<a href="Sedes.php"> <i class="fa fa-university " aria-hidden="true"></i>Sedes </a>
+						</li>
+						<?php }?>
+						<?php if( in_array("em_r", $permiso) || in_array("sr_r", $permiso) || in_array("er_r", $permiso) || in_array("ti_r", $permiso) || in_array("pe_r", $permiso) || in_array("rp_r", $permiso) || in_array("ct_r", $permiso) ){ ?>
+						<li>
+							<a href="empleados.php"><i class="fa fa-id-card-o"></i>Empleados</a>
+						</li>
+						<?php }?>
+						<?php if( in_array("cl_r", $permiso) ){ ?>
+						<li>
+							<a href="clientes.php"> <i class="fa fa-address-book-o" aria-hidden="true"></i>Clientes</a>
+						</li>
+						<?php }?>
+						<?php if( in_array("po_r", $permiso) ){ ?>
+						<li>
+							<a href="proveedores.php"> <i class="fa fa-truck" aria-hidden="true"></i>Proveedores</a>
+						</li>
+						<?php }?>
+						<?php if( in_array("pr_r", $permiso) ){ ?>
+						<li>
+							<a href="pruebas.php"> <i class="fa fa-check-square-o " aria-hidden="true"></i>Pruebas </a>
+						</li>
+						<?php }?>
+						<?php if( in_array("tr_r", $permiso) ){ ?>
+						<li>
+							<a href="traslados.php"> <i class="fa fa-share-square-o " aria-hidden="true"></i>Traslados </a>
+						</li>
+						<?php }?>
 					</ul>
 				</nav>
 				<div class="content-inner">
 					<!-- Section de TABS-->
 					<section>
 						<div class="container-fluid">
-                            <?php if( in_array("m_r", $permiso) && in_array("mt_r", $permiso) ){?>
-							<input id="tab0" type="radio" name="tabs" class="no-display" checked>
+                            <?php if( in_array("m_r", $permiso) ){?>
+							<input id="tab0" type="radio" name="tabs" class="no-display" <?php if( !isset($_GET['tab']) ) print "checked";?>>
 							<label for="tab0" class="label"><i class="fa fa-server " aria-hidden="true"></i> Materiales</label>
                             <?php }?>
-                            <?php if( in_array("m_r", $permiso) && in_array("mt_r", $permiso) ){?>
-							<input id="tab1" type="radio" name="tabs" class="no-display">
-							<label for="tab1" class="label"><i class="fa fa-server " aria-hidden="true"></i> Inventario</label>
+                            <?php if( in_array("mt_r", $permiso) ){?>
+							<input id="tab1" type="radio" name="tabs" class="no-display" <?php if( $_GET['tab'] == "inventario" || !in_array("m_r", $permiso) ) print "checked";?>>
+							<label for="tab1" class="label"><i class="fa fa-server " aria-hidden="true"></i> Tipo de Materiales</label>
                             <?php }?>
                             <?php if( in_array("m_r", $permiso) && in_array("mt_r", $permiso) ){?>
-							<input id="tab2" type="radio" name="tabs" class="no-display">
-							<label for="tab2" class="label"><i class="fa fa-server " aria-hidden="true"></i> Pendientes de Compra</label>
+							<input id="tab2" type="radio" name="tabs" class="no-display" <?php if( $_GET['tab'] == "inventario" || !in_array("m_r", $permiso) ) print "checked";?>>
+							<label for="tab2" class="label"><i class="fa fa-server " aria-hidden="true"></i> Inventario</label>
                             <?php }?>
+                            <?php if( in_array("m_r", $permiso) ){?>
 							<!-- TAB Materiales -->
 							<section id="content0" class="sectiontab">
 								<!-- Filtrador-->
@@ -167,7 +174,7 @@ if( !in_array("m_r", $permiso) && !in_array("mt_r", $permiso) ){
 										<div class="card col-lg-12">
 											<div class="row">
 												<div class="card-body col-lg-5">
-													<h3 class="h4">MOSTRAR SOLO MATERIALES QUE</h3>
+													<h3 class="h4">Filtrar Materiales por:</h3>
 													<form class="form-horizontal">
 														<div class="row">
 															<label class="col-sm-3 form-control-label">Proveedor</label>
@@ -186,7 +193,8 @@ if( !in_array("m_r", $permiso) && !in_array("mt_r", $permiso) ){
 													<div class="form-group row">
 														<div class="col-sm-9">
 															<br>
-															<input type="submit" value="Filtrar" class="btn btn-primary"> </div>
+															<input type="submit" value="Filtrar" class="btn btn-primary">
+														</div>
 													</div>
 												</div>
 											</div>
@@ -197,16 +205,7 @@ if( !in_array("m_r", $permiso) && !in_array("mt_r", $permiso) ){
 								<!-- TABLE STARTS -->
 								<div class="col-md-12">
 									<div class="card">
-                                        <?php if(in_array("m_c",$permiso)){?>
-								       <div class="row">
-				                            <div class="col-sm-10"></div>
-											<div class="col-sm-2 pad-top">
-												<button type="button" data-toggle="modal" data-target="#myModalMaterialCrear" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>
-											</div>
-								       </div>
-                                       <?php }?>
-                                       <?php if( in_array("m_r", $permiso) && in_array("mt_r", $permiso) ){?>
-									   <?php $qry = "Select nombre, Count(*) cantidad From(SELECT mt_nombre nombre FROM Material, Tipo_material, Status_material, Status Where m_tipo_material=mt_id AND m_pieza is null AND sm_material=m_id AND sm_status=st_id AND st_nombre<>'Rechazado' Group By m_id, mt_nombre) AS Materiales Group By nombre";
+									   <?php $qry = "SELECT m_id id, mt_nombre nombre, m_fecha fecha, st_nombre status, pm_nombre ||' ID '|| p_id AS pieza FROM Material ma LEFT JOIN Tipo_material ON m_tipo_material=mt_id LEFT JOIN Status_material ON sm_material=m_id LEFT JOIN Status ON sm_status=st_id LEFT JOIN Pieza ON m_pieza=p_id LEFT JOIN Modelo_pieza ON p_modelo_pieza=pm_id Where (SELECT MAX(sm_id) FROM Status,Status_material WHERE sm_material=ma.m_id AND sm_status=st_id)=sm_id And m_pieza is not null ORDER BY p_id Desc";
 									   $rs = pg_query( $conexion, $qry );
 									   $howMany = pg_num_rows($rs);
 									   if( $howMany > 0 ){?>
@@ -214,18 +213,54 @@ if( !in_array("m_r", $permiso) && !in_array("mt_r", $permiso) ){
 											<table class="table table-striped table-sm table-hover">
 												<thead>
 													<tr>
+														<th class="text-center">ID</th>
 														<th>Nombre</th>
-														<th class="text-center">Cantidad</th>												
+														<th class="text-center">Fecha</th>
+														<th class="text-center">Pieza</th>
+														<th class="text-center">Status</th>
+														<th class="text-center">Acción</th>												
 													</tr>
 												</thead>
 												<tbody>
-                                                    <?php while( $material = pg_fetch_object($rs)){ ?>
+                                                    <?php while( $material = pg_fetch_object($rs)){ 
+													$fecha = new DateTime($material->fecha);?>
 													<tr>
+														<td class="text-center">
+                                                            <?php print $material->id;?>
+                                                        </td>
 														<td>
                                                             <?php print $material->nombre;?>
                                                         </td>
 														<td class="text-center">
-                                                            <?php print $material->cantidad;?>
+                                                            <?php print $fecha->format('d/m/Y');?>
+                                                        </td>	
+														<td class="text-center">
+                                                            <?php print $material->pieza;?>
+                                                        </td>
+														<td class="text-center">
+                                                            <?php if($material->status == "Listo") {?>
+															<span class="badge badge-success">
+															<?php print $material->status;?>
+															</span>                                                        
+															<?php } elseif($material->status == "Rechazado") {?>
+															<span class="badge badge-danger">
+																<?php print $pieza->status;?>
+															</span>                                                          
+															<?php } else {?>
+															<span class="badge badge-info">
+																<?php print $material->status;?>
+															</span>
+															<?php } ?> 
+                                                        </td>	
+														<td class="text-center">
+                                                            <a href="<?php print $material->id ?>" data-toggle="modal" data-target="#ModalPieza"> 
+																<i class="fa fa-file-text-o" aria-hidden="true" title="Ver mas"></i> 
+															</a>
+															<?php if( in_array("m_d", $permiso) ){ ?>&emsp;
+															<a href="material-crud.php?delete=<?php print $material->id ?>"> 
+																<i class="fa fa-trash-o" aria-hidden="true" title="Eliminar"></i> 
+															</a>
+															<?php }?>
                                                         </td>												
 													</tr>
 													<?php }?>
@@ -233,88 +268,8 @@ if( !in_array("m_r", $permiso) && !in_array("mt_r", $permiso) ){
 											</table>
 										</div>
                                         <?php }else{?>
-									   <h3>&emsp;No se han encontrado resultados.</h3>
-									   <?php }}?>
-									</div>
-								</div>
-								<!-- TABLE ENDS -->
-							</section>
-							<!-- TAB Material ENDS -->
-							<!-- TAB Materiales -->
-							<section id="content1" class="sectiontab">
-								<!-- TABLE STARTS -->
-								<div class="col-md-12">
-									<div class="card">
-                                       <?php if( in_array("m_r", $permiso) && in_array("mt_r", $permiso) ){?>
-									   <?php $qry = "Select nombre, Count(*) cantidad From(SELECT mt_nombre nombre FROM Material, Tipo_material, Status_material, Status Where m_tipo_material=mt_id AND m_pieza is null AND sm_material=m_id AND sm_status=st_id AND st_nombre<>'Rechazado' Group By m_id, mt_nombre) AS Materiales Group By nombre";
-									   $rs = pg_query( $conexion, $qry );
-									   $howMany = pg_num_rows($rs);
-									   if( $howMany > 0 ){?>
-										<div class="card-body">
-											<table class="table table-striped table-sm table-hover">
-												<thead>
-													<tr>
-														<th>Nombre</th>
-														<th class="text-center">Cantidad</th>												
-													</tr>
-												</thead>
-												<tbody>
-                                                    <?php while( $material = pg_fetch_object($rs)){ ?>
-													<tr>
-														<td>
-                                                            <?php print $material->nombre;?>
-                                                        </td>
-														<td class="text-center">
-                                                            <?php print $material->cantidad;?>
-                                                        </td>												
-													</tr>
-													<?php }?>
-												</tbody>
-											</table>
-										</div>
-                                        <?php }else{?>
-									   <h4>&emsp;Sin inventario.</h4>
-									   <?php }}?>
-									</div>
-								</div>
-								<!-- TABLE ENDS -->
-							</section>
-							<!-- TAB Material ENDS -->
-							<!-- TAB Materiales -->
-							<section id="content2" class="sectiontab">
-								<!-- TABLE STARTS -->
-								<div class="col-md-12">
-									<div class="card">
-                                       <?php if( in_array("m_r", $permiso) && in_array("mt_r", $permiso) ){?>
-									   <?php $qry = "SELECT mt_nombre nombre, count(m_id) cantidad FROM Material LEFT JOIN Tipo_material ON m_tipo_material=mt_id Where m_factura_compra=0 GROUP BY mt_id, mt_nombre";
-									   $rs = pg_query( $conexion, $qry );
-									   $howMany = pg_num_rows($rs);
-									   if( $howMany > 0 ){?>
-										<div class="card-body">
-											<table class="table table-striped table-sm table-hover">
-												<thead>
-													<tr>
-														<th>Nombre</th>
-														<th class="text-center">Cantidad</th>												
-													</tr>
-												</thead>
-												<tbody>
-                                                    <?php while( $material = pg_fetch_object($rs)){ ?>
-													<tr>
-														<td>
-                                                            <?php print $material->nombre;?>
-                                                        </td>
-														<td class="text-center">
-                                                            <?php print $material->cantidad;?>
-                                                        </td>												
-													</tr>
-													<?php }?>
-												</tbody>
-											</table>
-										</div>
-                                        <?php }else{?>
-									   <h3>&emsp;No se han encontrado resultados.</h3>
-									   <?php }}?>
+									   <h4>&emsp;No se han encontrado resultados.</h4>
+									   <?php }?>
 									</div>
 								</div>
 								<!-- TABLE ENDS -->
@@ -413,275 +368,100 @@ if( !in_array("m_r", $permiso) && !in_array("mt_r", $permiso) ){
 								</div>
 							</div>
 							<!-- Modal Detalle Venta ENDS -->
-							<!-- Modal Borrar Venta -->
-							<div id="myModalBorrarVenta" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
-								<div role="document" class="modal-dialog">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h4 id="exampleModalLabel" class="modal-title">Esta seguro que desea borrar la Venta?</h4>
-											<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+							<?php }?>
+							<?php if( in_array("mt_r", $permiso) ){?>
+							<!-- TAB Materiales -->
+							<section id="content1" class="sectiontab">
+								<!-- TABLE STARTS -->
+								<div class="col-md-12">
+									<div class="card">
+									   <?php $qry = "select mt_id id, mt_nombre nombre from tipo_material Order By mt_nombre";
+									   $rs = pg_query( $conexion, $qry );
+									   $howMany = pg_num_rows($rs);
+									   if( $howMany > 0 ){?>
+										<div class="card-body">
+											<table class="table table-striped table-sm table-hover">
+												<thead>
+													<tr>
+														<th class="text-center">ID</th>
+														<th>Nombre</th>
+														<th class="text-center">Acción</th>												
+													</tr>
+												</thead>
+												<tbody>
+                                                    <?php while( $material = pg_fetch_object($rs)){ ?>
+													<tr>
+														<td class="text-center">
+                                                            <?php print $material->id;?>
+                                                        </td>
+														<td>
+                                                            <?php print $material->nombre;?>
+                                                        </td>
+														<td class="text-center">
+                                                            <a href="<?php print $material->id ?>" data-toggle="modal" data-target="#ModalPieza"> 
+																<i class="fa fa-file-text-o" aria-hidden="true" title="Ver mas"></i> 
+															</a>
+															<?php if( in_array("mt_d", $permiso) ){ ?>&emsp;
+															<a href="material-crud.php?delete=<?php print $material->id ?>"> 
+																<i class="fa fa-trash-o" aria-hidden="true" title="Eliminar"></i> 
+															</a>
+															<?php }?>
+                                                        </td>												
+													</tr>
+													<?php }?>
+												</tbody>
+											</table>
 										</div>
-										<div class="modal-footer">
-											<button type="button" data-dismiss="modal" class="btn btn-secondary">Cancelar</button>
-											<button type="button" class="btn btn-primary">Borrar</button>
-										</div>
+                                        <?php }else{?>
+									   <h4>&emsp;No se han encontrado resultados.</h4>
+									   <?php }?>
 									</div>
 								</div>
-							</div>
-							<!-- Modal Borrar Venta ENDS -->
-							<!-- Modal Material Editar -->
-							<div id="myModalMaterialEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
-								<div role="document" class="modal-dialog modal-xl">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h4 id="exampleModalLabel" class="modal-title">EDICION MATERIAL</h4>
-											<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+								<!-- TABLE ENDS -->
+							</section>
+							<!-- TAB Material ENDS -->
+							<?php }?>
+							<?php if( in_array("m_r", $permiso) && in_array("mt_r", $permiso) ){?>
+							<!-- TAB Materiales -->
+							<section id="content2" class="sectiontab">
+								<!-- TABLE STARTS -->
+								<div class="col-md-12">
+									<div class="card">
+									   <?php $qry = "Select nombre, Count(*) cantidad From(SELECT mt_nombre nombre FROM Material, Tipo_material, Status_material, Status Where m_tipo_material=mt_id AND m_pieza is null AND sm_material=m_id AND sm_status=st_id AND st_nombre<>'Rechazado' Group By m_id, mt_nombre) AS Materiales Group By nombre";
+									   $rs = pg_query( $conexion, $qry );
+									   $howMany = pg_num_rows($rs);
+									   if( $howMany > 0 ){?>
+										<div class="card-body">
+											<table class="table table-striped table-sm table-hover">
+												<thead>
+													<tr>
+														<th>Nombre</th>
+														<th class="text-center">Cantidad</th>												
+													</tr>
+												</thead>
+												<tbody>
+                                                    <?php while( $material = pg_fetch_object($rs)){ ?>
+													<tr>
+														<td>
+                                                            <?php print $material->nombre;?>
+                                                        </td>
+														<td class="text-center">
+                                                            <?php print $material->cantidad;?>
+                                                        </td>												
+													</tr>
+													<?php }?>
+												</tbody>
+											</table>
 										</div>
-										<div class="modal-body">
-											<div class="container-fluid">
-												<div class="row">
-													<div class="card col-lg-12">
-														<div class="row">
-															<div class="card-body col-lg-6">
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Factura Compra</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" disabled="" placeholder="No modificable" class="form-control"> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>ESTATUS</h3> </label>
-																	<!-- Traer de la tabla de Status las opciones -->
-																	<div class="col-sm-9 select">
-																		<select name="account" class="form-control">
-																			<option>En Progreso</option>
-																			<option>Evaluacion</option>
-																			<option>Distribucion</option>
-																			<option>Finalizado</option>
-																		</select>
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Tipo Material</h3> </label>
-																	<div class="col-sm-9 select">
-																		<select name="account" class="form-control">
-																			<option>Seleccionar</option>
-																		</select>
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Proveedor</h3> </label>
-																	<!-- Traer de la tabla de proveedor las opciones -->
-																	<div class="col-sm-9 select">
-																		<select name="account" class="form-control">
-																			<option>Lex Fdz</option>
-																			<option>Alexander K</option>
-																			<option>Kevin M</option>
-																			<option>Boris Tor</option>
-																		</select>
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>CI/RIF Cliente</h3> </label>
-																	<!-- Se debe rellenar automaticamente despues de seleccionar al proveedor -->
-																	<div class="col-sm-9">
-																		<input type="text" disabled="" placeholder="No modificable" class="form-control"> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Material</h3> </label>
-																	<!-- Traer de la tabla de materiales las opciones -->
-																	<div class="col-sm-9 select">
-																		<select name="account" class="form-control">
-																			<option>Arena Blanca</option>
-																			<option>Cal</option>
-																			<option>Tornillos</option>
-																		</select>
-																	</div>
-																</div>
-															</div>
-															<div class=" card-body col-lg-6">
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Cantidad</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" placeholder="Introduzca cantidad de unidades" class="form-control"> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Precio Unitario</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" placeholder="Introduzca precio por unidad" class="form-control"> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Fecha</h3> </label>
-																	<!-- Esto podemos hacerlo automatizado, que salve la fecha de creacion como fecha inicio -->
-																	<div class="col-sm-9">
-																		<input type="text" disabled="" placeholder="No modificable" class="form-control"> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Tipo de Pago</h3> </label>
-																	<div class="col-sm-9 select">
-																		<select name="account" class="form-control">
-																			<option>Transfencia</option>
-																			<!-- La opcion TDC deberia expandir otros requerimientos, pero esto lo dejare para cuando implementemos el -->
-																			<!-- hardcore de JS y PHP (2da entrega)-->
-																			<option>TDC</option>
-																		</select>
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Nota</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" placeholder="Aqui puedes escribir..." class="form-control form-control-lg" rows="4" cols="50"> </div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="modal-footer">
-											<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
-											<button type="button" class="btn btn-primary">Guardar Cambios</button>
-										</div>
+                                        <?php }else{?>
+									   <h4>&emsp;Sin inventario.</h4>
+									   <?php }?>
 									</div>
 								</div>
-							</div>
-							<!-- Modal Material Editar ENDS -->
-							<!-- Modal Material Crear -->
-							<div id="myModalMaterialCrear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
-								<div role="document" class="modal-dialog modal-xl">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h4 id="exampleModalLabel" class="modal-title">MATERIAL</h4>
-											<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-										</div>
-										<div class="modal-body">
-											<div class="container-fluid">
-												<div class="row">
-													<div class="card col-lg-12">
-														<div class="row">
-															<div class="card-body col-lg-6">
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Factura Compra</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" disabled="" placeholder="No modificable" class="form-control"> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>ESTATUS</h3> </label>
-																	<!-- Traer de la tabla de Status las opciones -->
-																	<div class="col-sm-9 select">
-																		<select name="account" class="form-control">
-																			<option>En Progreso</option>
-																			<option>Evaluacion</option>
-																			<option>Distribucion</option>
-																			<option>Finalizado</option>
-																		</select>
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Tipo Material</h3> </label>
-																	<div class="col-sm-9 select">
-																		<select name="account" class="form-control">
-																			<option>Seleccionar</option>
-																		</select>
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Proveedor</h3> </label>
-																	<!-- Traer de la tabla de proveedor las opciones -->
-																	<div class="col-sm-9 select">
-																		<select name="account" class="form-control">
-																			<option>Lex Fdz</option>
-																			<option>Alexander K</option>
-																			<option>Kevin M</option>
-																			<option>Boris Tor</option>
-																		</select>
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>CI/RIF Cliente</h3> </label>
-																	<!-- Se debe rellenar automaticamente despues de seleccionar al proveedor -->
-																	<div class="col-sm-9">
-																		<input type="text" disabled="" placeholder="No modificable" class="form-control"> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Material</h3> </label>
-																	<!-- Traer de la tabla de materiales -->
-																	<div class="col-sm-9 select">
-																		<select name="account" class="form-control">
-																			<option>Arena Blanca</option>
-																			<option>Cal</option>
-																			<option>Tornillos</option>
-																		</select>
-																	</div>
-																</div>
-															</div>
-															<div class=" card-body col-lg-6">
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Cantidad</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" placeholder="Introduzca cantidad de unidades" class="form-control"> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Precio Unitario</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" placeholder="Introduzca precio por unidad" class="form-control"> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Fecha</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" placeholder="Introduzca Fecha" class="form-control"> </div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Tipo de Pago</h3> </label>
-																	<div class="col-sm-9 select">
-																		<select name="account" class="form-control">
-																			<option>Transfencia</option>
-																			<!-- La opcion TDC deberia expandir otros requerimientos, pero esto lo dejare para cuando implementemos el -->
-																			<!-- hardcore de JS y PHP (2da entrega)-->
-																			<option>TDC</option>
-																		</select>
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<label class="col-sm-3 form-control-label">
-																		<h3>Nota</h3> </label>
-																	<div class="col-sm-9">
-																		<input type="text" placeholder="Aqui puedes escribir..." class="form-control form-control-lg" rows="4" cols="50"> </div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="modal-footer">
-											<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
-											<button type="button" class="btn btn-primary">Guardar Cambios</button>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- Modal Material Crear ENDS -->
+								<!-- TABLE ENDS -->
+							</section>
+							<!-- TAB Material ENDS -->
+							<?php }?>
 						</div>
 					</section>
 					<!-- Section de TABS ENDS -->
@@ -709,5 +489,4 @@ if( !in_array("m_r", $permiso) && !in_array("mt_r", $permiso) ){
 		<script src="vendor/jquery-validation/jquery.validate.min.js"></script>
 		<script src="js/front.js"></script>
 	</body>
-
-	</html>    
+</html>    

@@ -5,8 +5,8 @@ include 'conexion.php';
 if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'] = 2;} 
 $qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$_SESSION['rol']; 
 $rs = pg_query( $conexion, $qry ); $permiso = array();
-while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }
-if( !in_array("po_r", $permiso) && !in_array("fc_r", $permiso) && !in_array("m_r", $permiso) && !in_array("pa_r", $permiso) ){
+while( $rol = pg_fetch_object($rs) ) $permiso[] = $rol->permiso;
+if( !in_array("fc_r", $permiso) ){
 	if( !isset($_SESSION['code']) ){
 		header('Location: login.php');
 		exit;
@@ -18,7 +18,6 @@ if( !in_array("po_r", $permiso) && !in_array("fc_r", $permiso) && !in_array("m_r
 }?>
 <!DOCTYPE html>
 <html>
-
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -39,8 +38,8 @@ if( !in_array("po_r", $permiso) && !in_array("fc_r", $permiso) && !in_array("m_r
 	<!-- Custom stylesheet - for your changes-->
 	<link rel="stylesheet" href="css/custom.css">
 	<!-- Favicon-->
-	<link rel="shortcut icon" href="img/airucab.ico"> </head>
-
+	<link rel="shortcut icon" href="img/airucab.ico">
+</head>
 <body>
 	<div class="page home-page">
 		<!-- Main Navbar-->
@@ -96,62 +95,62 @@ if( !in_array("po_r", $permiso) && !in_array("fc_r", $permiso) && !in_array("m_r
 					<li>
 						<a href="modeloavion.php"> <i class="fa fa-plane" aria-hidden="true"></i> Aviones </a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if (in_array("mb_r", $permiso) || in_array("mm_r", $permiso) || in_array("mo_r", $permiso) ) { ?>
 					<li>
-						<a href="motores.php"> <i class="fa fa-tachometer " aria-hidden="true"></i>Motores </a>
+						<a href="motores.php"> <i class="fa fa-tachometer" aria-hidden="true"></i>Motores </a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if( in_array("p_r", $permiso) || in_array("pm_r", $permiso) || in_array("wt_r", $permiso) || in_array("et_r", $permiso) ) { ?>
 					<li>
 						<a href="piezas.php"> <i class="fa fa-puzzle-piece " aria-hidden="true"></i>Piezas </a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if( in_array("m_r", $permiso) || in_array("tm_r", $permiso) ) { ?>
 					<li>
 						<a href="materiales.php"> <i class="fa fa-server " aria-hidden="true"></i>Materiales </a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if( in_array("fv_r", $permiso) ){ ?>
 					<li>
 						<a href="ventas.php"> <i class="fa fa-paper-plane-o" aria-hidden="true"></i>Ventas </a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if( in_array("fc_r", $permiso) ){ ?>
 					<li class="active">
 						<a href="compras.php"> <i class="fa fa-shopping-bag " aria-hidden="true"></i>Compras </a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if( in_array("se_r", $permiso) || in_array("zo_r", $permiso) ){ ?>
 					<li>
 						<a href="Sedes.php"> <i class="fa fa-university " aria-hidden="true"></i>Sedes </a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if( in_array("em_r", $permiso) || in_array("sr_r", $permiso) || in_array("er_r", $permiso) || in_array("ti_r", $permiso) || in_array("pe_r", $permiso) || in_array("rp_r", $permiso) || in_array("ct_r", $permiso) ){ ?>
 					<li>
 						<a href="empleados.php"><i class="fa fa-id-card-o"></i>Empleados</a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if( in_array("cl_r", $permiso) ){ ?>
 					<li>
 						<a href="clientes.php"> <i class="fa fa-address-book-o" aria-hidden="true"></i>Clientes</a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if( in_array("po_r", $permiso) ){ ?>
 					<li>
 						<a href="proveedores.php"> <i class="fa fa-truck" aria-hidden="true"></i>Proveedores</a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if( in_array("pr_r", $permiso) ){ ?>
 					<li>
 						<a href="pruebas.php"> <i class="fa fa-check-square-o " aria-hidden="true"></i>Pruebas </a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if( in_array("tr_r", $permiso) ){ ?>
 					<li>
 						<a href="traslados.php"> <i class="fa fa-share-square-o " aria-hidden="true"></i>Traslados </a>
 					</li>
-					<?php } ?>
+					<?php }?>
 				</ul>
 			</nav>
 			<div class="content-inner">
@@ -162,6 +161,11 @@ if( !in_array("po_r", $permiso) && !in_array("fc_r", $permiso) && !in_array("m_r
 						<input id="tab0" type="radio" name="tabs" class="no-display" checked>
 						<label for="tab0" class="label"><i class="fa fa-shopping-bag " aria-hidden="true"></i> Compras</label>
                         <?php } ?>
+                        <?php if( in_array("m_r", $permiso) && in_array("fc_r", $permiso) ){?>
+						<input id="tab1" type="radio" name="tabs" class="no-display">
+						<label for="tab1" class="label"><i class="fa fa-server " aria-hidden="true"></i> Pendientes de Compra</label>
+						<?php }?>
+						<?php if( in_array("fc_r", $permiso) ){?>
 						<!-- TAB Compras -->
 						<section id="content0" class="sectiontab">
 							<!-- Filtrador-->
@@ -219,7 +223,7 @@ if( !in_array("po_r", $permiso) && !in_array("fc_r", $permiso) && !in_array("m_r
 							<!-- TABLE STARTS -->
 							<div class="col-md-12">
 								<div class="card">
-                                    <?php if( in_array("fc_c", $permiso) ){ ?>
+                                    <?php if( in_array("fc_c", $permiso) ){?>
 									<div class="row">
 										<div class="col-sm-10"></div>
 										<div class="col-sm-2 pad-top">
@@ -228,7 +232,11 @@ if( !in_array("po_r", $permiso) && !in_array("fc_r", $permiso) && !in_array("m_r
 											</button>
 										</div>
 									</div>
-                                    <?php } if( in_array("fc_r", $permiso) ){ ?>
+                                    <?php }?>
+                                    <?php $qry = "SELECT fc_id AS id, po_nombre AS proveedor, fc_fecha AS fecha, (Select SUM(m_precio) From Material Where m_factura_compra=fc.fc_id) AS total, (Select SUM(pa_monto) from Pago WHERE pa_factura_compra=fc.fc_id) AS pagado FROM Factura_compra fc LEFT JOIN Proveedor ON fc_proveedor=po_id WHERE fc_id>0 ORDER BY fc_id";
+									$rs = pg_query( $conexion, $qry );
+									$howMany = pg_num_rows($rs);
+									if( $howMany > 0 ){?>
 									<div class="card-body">
 										<table class="table table-striped table-sm table-hover">
 											<thead>
@@ -242,10 +250,7 @@ if( !in_array("po_r", $permiso) && !in_array("fc_r", $permiso) && !in_array("m_r
 												</tr>
 											</thead>
 											<tbody>
-												<?php 	
-												$qry = "SELECT fc_id AS id, po_nombre AS proveedor, fc_fecha AS fecha, (Select SUM(m_precio) From Material Where m_factura_compra=fc.fc_id) AS total, (Select SUM(pa_monto) from Pago WHERE pa_factura_compra=fc.fc_id) AS pagado FROM Factura_compra fc LEFT JOIN Proveedor ON fc_proveedor=po_id WHERE fc_id>0 ORDER BY fc_id";
-												$rs = pg_query( $conexion, $qry );
-												while( $compra = pg_fetch_object($rs) ){?>
+												<?php while( $compra = pg_fetch_object($rs) ){?>
 												<tr>
 													<td class="text-center"><?php print $compra->id;?></td>
 													<td><?php print $compra->proveedor;?></td>
@@ -253,11 +258,10 @@ if( !in_array("po_r", $permiso) && !in_array("fc_r", $permiso) && !in_array("m_r
 													<td class="text-center"><?php print number_format($compra->total, 2, ',', '.')." Bs";?></td>
 													<td class="text-center"><?php if($venta->pagado >= $venta->total) print "Pagado"; else print "Pendiente de pago";?></td>
 													<td class="text-center">
-                                                        <?php  if( in_array("po_r", $permiso) && in_array("fc_r", $permiso) && in_array("m_r", $permiso) && in_array("pa_r", $permiso) && in_array("pt_r", $permiso) ){ ?>
 														<a href="<?php print $compra->id;?>" title="Ver mas" class="click-compra-detalle">
 															<i class="fa fa-file-text-o" aria-hidden="true"></i> 
 														</a>
-                                                        <? } php if( in_array("fc_d", $permiso) ){ ?>&emsp;
+                                                        <?php if( in_array("fc_d", $permiso) ){?>&emsp;
 														<a href="compra-crud.php?delete=<?php print $compra->id;?>">
 															<i class="fa fa-trash-o" aria-hidden="true"></i>
 														</a>
@@ -269,13 +273,56 @@ if( !in_array("po_r", $permiso) && !in_array("fc_r", $permiso) && !in_array("m_r
 										</table>
 									</div>
                                     <?php }else{?>
-									<h3>&emsp;No se han encontrado resultados.</h3>
+									<h4>&emsp;No se han encontrado resultados.</h4>
 									<?php }?>
 								</div>
 							</div>
 							<!-- TABLE ENDS -->
 						</section>
 						<!-- TAB Compra ENDS -->
+						<?php }?>
+						<?php if( in_array("m_r", $permiso) && in_array("fc_r", $permiso) ){?>
+						<!-- TAB Pendiente de Compra -->
+						<section id="content1" class="sectiontab">
+							<!-- TABLE STARTS -->
+							<div class="col-md-12">
+								<div class="card">
+								   <?php $qry = "SELECT mt_nombre nombre, count(m_id) cantidad FROM Material LEFT JOIN Tipo_material ON m_tipo_material=mt_id Where m_factura_compra=0 GROUP BY mt_id, mt_nombre";
+								   $rs = pg_query( $conexion, $qry );
+								   $howMany = pg_num_rows($rs);
+								   if( $howMany > 0 ){?>
+									<div class="card-body">
+										<table class="table table-striped table-sm table-hover">
+											<thead>
+												<tr>
+													<th>Nombre</th>
+													<th class="text-center">Cantidad</th>												
+												</tr>
+											</thead>
+											<tbody>
+												<?php while( $material = pg_fetch_object($rs)){ ?>
+												<tr>
+													<td>
+														<?php print $material->nombre;?>
+													</td>
+													<td class="text-center">
+														<?php print $material->cantidad;?>
+													</td>												
+												</tr>
+												<?php }?>
+											</tbody>
+										</table>
+									</div>
+									<?php }else{?>
+								   <h3>&emsp;No se han encontrado resultados.</h3>
+								   <?php }?>
+								</div>
+							</div>
+							<!-- TABLE ENDS -->
+						</section>
+						<!-- TAB Pendiente de Compra ENDS -->
+						<?php }?>
+						<?php if( in_array("fc_c", $permiso) ){?>
 						<!-- Modal Compra Crear -->
 						<div id="ModalCompraCrear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 							<div role="document" class="modal-dialog modal-xl">
@@ -419,6 +466,7 @@ if( !in_array("po_r", $permiso) && !in_array("fc_r", $permiso) && !in_array("m_r
 							</div>
 						</div>
 						<!-- Modal Compra Crear ENDS -->
+						<?php }?>
 						<!-- Modal Detalle Compra  -->
 						<div id="myModalDetalle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 							<div role="document" class="modal-dialog modal-xl">
@@ -509,6 +557,7 @@ if( !in_array("po_r", $permiso) && !in_array("fc_r", $permiso) && !in_array("m_r
 							</div>
 						</div>
 						<!-- Modal Detalle Venta ENDS -->
+						<?php if( in_array("fc_u", $permiso) ){?>
 						<!-- Modal Compra Editar -->
 						<div id="myModalCompraEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 							<div role="document" class="modal-dialog modal-xl">
@@ -629,6 +678,7 @@ if( !in_array("po_r", $permiso) && !in_array("fc_r", $permiso) && !in_array("m_r
 							</div>
 						</div>
 						<!-- Modal Compra Editar ENDS -->
+						<?php }?>
 					</div>
 				</section>
 				<!-- Section de TABS ENDS -->

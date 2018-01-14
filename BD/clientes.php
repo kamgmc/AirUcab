@@ -5,7 +5,7 @@ include 'conexion.php';
 if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'] = 2;} 
 $qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$_SESSION['rol']; 
 $rs = pg_query( $conexion, $qry ); $permiso = array();
-while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }
+while( $rol = pg_fetch_object($rs) ) $permiso[] = $rol->permiso;
 if( !in_array("cl_r", $permiso)){
 	if( !isset($_SESSION['code']) ){
 		header('Location: login.php');
@@ -17,8 +17,7 @@ if( !in_array("cl_r", $permiso)){
     }
 }?>
 <!DOCTYPE html>
-	<html>
-
+<html>
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -39,8 +38,8 @@ if( !in_array("cl_r", $permiso)){
 		<!-- Custom stylesheet - for your changes-->
 		<link rel="stylesheet" href="css/custom.css">
 		<!-- Favicon-->
-		<link rel="shortcut icon" href="img/airucab.ico"> </head>
-
+		<link rel="shortcut icon" href="img/airucab.ico">
+	</head>
 	<body>
 		<div class="page home-page">
 			<!-- Main Navbar-->
@@ -96,62 +95,62 @@ if( !in_array("cl_r", $permiso)){
 						<li>
 							<a href="modeloavion.php"> <i class="fa fa-plane" aria-hidden="true"></i> Aviones </a>
 						</li>
-						<?php } ?>
-                        <?php if (in_array("mb_r", $permiso) || in_array("mm_r", $permiso) || in_array("mo_r", $permiso) ) { ?>
-                        <li>
-							<a href="motores.php"> <i class="fa fa-tachometer " aria-hidden="true"></i>Motores </a>
+						<?php }?>
+						<?php if (in_array("mb_r", $permiso) || in_array("mm_r", $permiso) || in_array("mo_r", $permiso) ) { ?>
+						<li>
+							<a href="motores.php"> <i class="fa fa-tachometer" aria-hidden="true"></i>Motores </a>
 						</li>
-                        <?php } ?>
-                        <?php if( in_array("p_r", $permiso) || in_array("pm_r", $permiso) || in_array("wt_r", $permiso) || in_array("et_r", $permiso) ) { ?>
-                        <li>
+						<?php }?>
+						<?php if( in_array("p_r", $permiso) || in_array("pm_r", $permiso) || in_array("wt_r", $permiso) || in_array("et_r", $permiso) ) { ?>
+						<li>
 							<a href="piezas.php"> <i class="fa fa-puzzle-piece " aria-hidden="true"></i>Piezas </a>
 						</li>
-                        <?php } ?>
-                        <?php if( in_array("m_r", $permiso) || in_array("tm_r", $permiso) ) { ?>
-                        <li>
+						<?php }?>
+						<?php if( in_array("m_r", $permiso) || in_array("tm_r", $permiso) ) { ?>
+						<li>
 							<a href="materiales.php"> <i class="fa fa-server " aria-hidden="true"></i>Materiales </a>
 						</li>
-                        <?php } ?>
-                        <?php if( in_array("fv_r", $permiso) ){ ?>
+						<?php }?>
+						<?php if( in_array("fv_r", $permiso) ){ ?>
 						<li>
 							<a href="ventas.php"> <i class="fa fa-paper-plane-o" aria-hidden="true"></i>Ventas </a>
 						</li>
-						<?php } ?>
-                        <?php if( in_array("fc_r", $permiso) ){ ?>
+						<?php }?>
+						<?php if( in_array("fc_r", $permiso) ){ ?>
 						<li>
 							<a href="compras.php"> <i class="fa fa-shopping-bag " aria-hidden="true"></i>Compras </a>
 						</li>
-						<?php } ?>
-                        <?php if( in_array("se_r", $permiso) || in_array("zo_r", $permiso) ){ ?>
-                        <li>
+						<?php }?>
+						<?php if( in_array("se_r", $permiso) || in_array("zo_r", $permiso) ){ ?>
+						<li>
 							<a href="Sedes.php"> <i class="fa fa-university " aria-hidden="true"></i>Sedes </a>
 						</li>
-                        <?php } ?>
+						<?php }?>
 						<?php if( in_array("em_r", $permiso) || in_array("sr_r", $permiso) || in_array("er_r", $permiso) || in_array("ti_r", $permiso) || in_array("pe_r", $permiso) || in_array("rp_r", $permiso) || in_array("ct_r", $permiso) ){ ?>
 						<li>
 							<a href="empleados.php"><i class="fa fa-id-card-o"></i>Empleados</a>
 						</li>
-						<?php } ?>
+						<?php }?>
 						<?php if( in_array("cl_r", $permiso) ){ ?>
 						<li class="active">
 							<a href="clientes.php"> <i class="fa fa-address-book-o" aria-hidden="true"></i>Clientes</a>
 						</li>
-						<?php } ?>
+						<?php }?>
 						<?php if( in_array("po_r", $permiso) ){ ?>
 						<li>
 							<a href="proveedores.php"> <i class="fa fa-truck" aria-hidden="true"></i>Proveedores</a>
 						</li>
-						<?php } ?>
+						<?php }?>
 						<?php if( in_array("pr_r", $permiso) ){ ?>
 						<li>
 							<a href="pruebas.php"> <i class="fa fa-check-square-o " aria-hidden="true"></i>Pruebas </a>
 						</li>
-                        <?php } ?>
-                        <?php if( in_array("tr_r", $permiso) ){ ?>
+						<?php }?>
+						<?php if( in_array("tr_r", $permiso) ){ ?>
 						<li>
 							<a href="traslados.php"> <i class="fa fa-share-square-o " aria-hidden="true"></i>Traslados </a>
 						</li>
-						<?php } ?>
+						<?php }?>
 					</ul>
 				</nav>
 				<div class="content-inner">
@@ -209,7 +208,7 @@ if( !in_array("cl_r", $permiso)){
 												<button type="button" data-toggle="modal" data-target="#ModalClienteCrear" class="btn btn-primary"> <i class="fa fa-user-plus" aria-hidden="true"></i> Crear</button>                                                
 											</div>
 										</div>
-                                        <?php } ?>
+                                        <?php }?>
 										<div class="card-body">
 											<table class="table table-striped table-sm table-hover">
 												<thead>
@@ -271,6 +270,7 @@ if( !in_array("cl_r", $permiso)){
 								<!-- TABLE ENDS -->
 							</section>
 							<!-- Tab Explorador Clientes ENDS -->
+							<?php if( in_array("cl_c", $permiso) ){ ?>
 							<!-- Modal Cliente Crear -->
 							<div id="ModalClienteCrear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 								<div role="document" class="modal-dialog modal-xl">
@@ -397,6 +397,7 @@ if( !in_array("cl_r", $permiso)){
 								</div>
 							</div>
 							<!-- Modal Cliente Crear ENDS -->
+							<?php }?>
 							<!-- Modal Cliente Informacion -->
 							<div id="ModalDetalleCliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 								<div role="document" class="modal-dialog modal-xl">
@@ -405,6 +406,7 @@ if( !in_array("cl_r", $permiso)){
 								</div>
 							</div>
 							<!-- Modal Cliente Informacion ENDS -->
+							<?php if( in_array("cl_u", $permiso) ){ ?>
 							<!-- Modal Cliente Editar -->
 							<div id="ModalEditarCliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 								<div role="document" class="modal-dialog modal-xl">
@@ -413,6 +415,7 @@ if( !in_array("cl_r", $permiso)){
 								</div>
 							</div>
 							<!-- Modal Cliente Editar ENDS -->
+							<?php }?>
 						</div>
 					</section>
 					<!-- Section de tabs ENDS -->

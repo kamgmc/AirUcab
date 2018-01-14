@@ -5,7 +5,7 @@ include 'conexion.php';
 if(!isset($_SESSION['rol'])){ $nombre = session_name("AirUCAB"); $_SESSION['rol'] = 2;} 
 $qry = "SELECT pe_iniciales AS permiso FROM Rol_permiso, permiso, rol_sistema WHERE rp_permiso=pe_id AND rp_rol=sr_id AND sr_id=".$_SESSION['rol']; 
 $rs = pg_query( $conexion, $qry ); $permiso = array();
-while( $rol = pg_fetch_object($rs) ){ $permiso[] = $rol->permiso; }
+while( $rol = pg_fetch_object($rs) ) $permiso[] = $rol->permiso; 
 if( !in_array("po_r", $permiso)){
 	if( !isset($_SESSION['code']) ){
 		header('Location: login.php');
@@ -18,7 +18,6 @@ if( !in_array("po_r", $permiso)){
 }?>
 <!DOCTYPE html>
 <html>
-
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -39,8 +38,8 @@ if( !in_array("po_r", $permiso)){
 	<!-- Custom stylesheet - for your changes-->
 	<link rel="stylesheet" href="css/custom.css">
 	<!-- Favicon-->
-	<link rel="shortcut icon" href="img/airucab.ico"> </head>
-
+	<link rel="shortcut icon" href="img/airucab.ico">
+</head>
 <body>
 	<div class="page home-page">
 		<!-- Main Navbar-->
@@ -96,62 +95,62 @@ if( !in_array("po_r", $permiso)){
 					<li>
 						<a href="modeloavion.php"> <i class="fa fa-plane" aria-hidden="true"></i> Aviones </a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if (in_array("mb_r", $permiso) || in_array("mm_r", $permiso) || in_array("mo_r", $permiso) ) { ?>
 					<li>
-						<a href="motores.php"> <i class="fa fa-tachometer " aria-hidden="true"></i>Motores </a>
+						<a href="motores.php"> <i class="fa fa-tachometer" aria-hidden="true"></i>Motores </a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if( in_array("p_r", $permiso) || in_array("pm_r", $permiso) || in_array("wt_r", $permiso) || in_array("et_r", $permiso) ) { ?>
 					<li>
 						<a href="piezas.php"> <i class="fa fa-puzzle-piece " aria-hidden="true"></i>Piezas </a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if( in_array("m_r", $permiso) || in_array("tm_r", $permiso) ) { ?>
 					<li>
 						<a href="materiales.php"> <i class="fa fa-server " aria-hidden="true"></i>Materiales </a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if( in_array("fv_r", $permiso) ){ ?>
 					<li>
 						<a href="ventas.php"> <i class="fa fa-paper-plane-o" aria-hidden="true"></i>Ventas </a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if( in_array("fc_r", $permiso) ){ ?>
 					<li>
 						<a href="compras.php"> <i class="fa fa-shopping-bag " aria-hidden="true"></i>Compras </a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if( in_array("se_r", $permiso) || in_array("zo_r", $permiso) ){ ?>
 					<li>
 						<a href="Sedes.php"> <i class="fa fa-university " aria-hidden="true"></i>Sedes </a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if( in_array("em_r", $permiso) || in_array("sr_r", $permiso) || in_array("er_r", $permiso) || in_array("ti_r", $permiso) || in_array("pe_r", $permiso) || in_array("rp_r", $permiso) || in_array("ct_r", $permiso) ){ ?>
 					<li>
 						<a href="empleados.php"><i class="fa fa-id-card-o"></i>Empleados</a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if( in_array("cl_r", $permiso) ){ ?>
 					<li>
 						<a href="clientes.php"> <i class="fa fa-address-book-o" aria-hidden="true"></i>Clientes</a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if( in_array("po_r", $permiso) ){ ?>
 					<li class="active">
 						<a href="proveedores.php"> <i class="fa fa-truck" aria-hidden="true"></i>Proveedores</a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if( in_array("pr_r", $permiso) ){ ?>
 					<li>
 						<a href="pruebas.php"> <i class="fa fa-check-square-o " aria-hidden="true"></i>Pruebas </a>
 					</li>
-					<?php } ?>
+					<?php }?>
 					<?php if( in_array("tr_r", $permiso) ){ ?>
 					<li>
 						<a href="traslados.php"> <i class="fa fa-share-square-o " aria-hidden="true"></i>Traslados </a>
 					</li>
-					<?php } ?>
+					<?php }?>
 				</ul>
 			</nav>
 			<div class="content-inner">
@@ -210,7 +209,6 @@ if( !in_array("po_r", $permiso)){
 										</div>
 									</div>
                                     <?php }?>
-                                    <?php if(in_array("po_r", $permiso)){?>
 									<div class="card-body">
 										<table class="table table-striped table-sm table-hover">
 											<thead>
@@ -253,11 +251,11 @@ if( !in_array("po_r", $permiso)){
 											</tbody>
 										</table>
 									</div>
-                                    <?php }?>
 								</div>
 							</div>
 							<!-- TABLE ENDS -->
 						</section>
+						<?php if(in_array("po_c", $permiso)){?>
 						<!-- Modal Proveedor Crear -->
 						<div id="ModalProveedorCrear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 							<div role="document" class="modal-dialog modal-xl">
@@ -384,6 +382,7 @@ if( !in_array("po_r", $permiso)){
 							</div>
 						</div>
 						<!-- Modal Proveedor Crear ENDS -->
+						<?php }?>
 						<!-- Modal Proveedor Informacion -->
 						<div id="ModalDetalleProveedor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 							<div role="document" class="modal-dialog modal-xl">
@@ -392,6 +391,7 @@ if( !in_array("po_r", $permiso)){
 							</div>
 						</div>
 						<!-- Modal Proveedor Informacion ENDS -->
+						<?php if(in_array("po_u", $permiso)){?>
 						<!-- Modal Proveedor Editar -->
 						<div id="ModalEditarProveedor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
 							<div role="document" class="modal-dialog modal-xl">
@@ -400,201 +400,7 @@ if( !in_array("po_r", $permiso)){
 							</div>
 						</div>
 						<!-- Modal Proveedor Editar ENDS -->
-						<?php 	
-						$qry = "SELECT po_id id, po_tipo_rif t_rif, po_rif rif, po_nombre nombre, SUM(m_precio) as monto, po_fecha_ini as fecha, COUNT(fc_id) as compras, pa.lu_nombre parroquia, mu.lu_nombre municipio, es.lu_nombre estado, po_pagina_web web, po_nota nota FROM proveedor LEFT JOIN Factura_compra ON fc_proveedor=po_id LEFT JOIN Material ON m_factura_compra=fc_id LEFT JOIN Lugar pa ON pa.lu_id=po_direccion LEFT JOIN Lugar mu ON pa.lu_lugar=mu.lu_id LEFT JOIN Lugar es ON mu.lu_lugar=es.lu_id GROUP BY po_id, po_tipo_rif, po_rif, po_nombre, po_fecha_ini, pa.lu_nombre, mu.lu_nombre, es.lu_nombre, po_pagina_web ORDER BY po_id";
-						$rs = pg_query( $conexion, $qry );
-						while( $proveedor = pg_fetch_object($rs) ){?>
-						<!-- Modal Proveedor Informacion -->
-						<div id="ModalProveedor<?php print $proveedor->id;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
-							<div role="document" class="modal-dialog modal-xl">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h4 id="exampleModalLabel" class="modal-title">INFORMACION PROVEEDOR</h4>
-										<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-									</div>
-									<div class="modal-body">
-										<div class="container-fluid">
-											<div class="row">
-												<div class="card col-lg-12">
-													<div class="row">
-														<!-- Columna Izquierda   -->
-														<div class="card-body col-lg-6">
-															<div class="row">
-																<div class="col-lg-4">
-																	<h4>Nombre</h4> </div>
-																<div class="col-lg-8"><?php print $proveedor->nombre;?></div>
-															</div>
-															<div class="row">
-																<div class="col-lg-4">
-																	<h4>CI/RIF</h4> </div>
-																<div class="col-lg-8"><?php print $proveedor->t_rif."-".$proveedor->rif;?></div>
-															</div>
-															<div class="row">
-																<div class="col-lg-4">
-																	<h4>Direccion</h4> </div>
-																<div class="col-lg-8"><?php print $proveedor->parroquia.", ".$proveedor->municipio.", ".$proveedor->estado;?></div>
-															</div>
-															<?php  $qry = "SELECT ct_nombre AS tipo, co_valor AS valor FROM Contacto, Tipo_contacto WHERE ct_id=co_tipo AND co_proveedor=".$proveedor->id;
-															$answer = pg_query( $conexion, $qry );
-															$num = pg_num_rows($answer);
-															if($num > 0){?>
-															<div class="row">
-																<div class="col-lg-12">
-																	<h4>Contacto</h4> 
-																</div>
-																<div class="col-lg-12">
-																	<?php 
-																	while( $contacto = pg_fetch_object($answer) ){?>
-																	<?php print $contacto->tipo." - ".$contacto->valor."</br>";?> 
-																	<?php }?>
-																</div>
-															</div>
-															<?php }?>
-															<div class="row">
-																<div class="col-lg-4">
-																	<h4>Pagina Web</h4> </div>
-																<div class="col-lg-8"> <a href="<?php print $proveedor->web;?>" class="external"><?php print $proveedor->web;?></a> </div>
-															</div>
-														</div>
-														<!-- Columna izquierda ENDS -->
-														<!-- Columna derecha -->
-														<div class=" card-body col-lg-6">
-															<div class="row">
-																<div class="col-lg-4">
-																	<h4>Monto Pagado</h4> </div>
-																<div class="col-lg-8"> <?php print number_format($proveedor->monto, 2, ',', '.')." Bs";?> </div>
-															</div>
-															<div class="row">
-																<div class="col-lg-4">
-																	<h4>Fecha Inicio</h4> </div>
-																<div class="col-lg-8"> <?php print $date->format('d/m/Y');?> </div>
-															</div>
-															<div class="row">
-																<div class="col-lg-4">
-																	<h4>Nota</h4> </div>
-																<div class="col-lg-8"> <?php print $proveedor->nota;?> </div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="modal-footer">
-										<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
-                                        <?php if(in_array("po_u", $permiso)){?>
-										<button type="button" data-toggle="modal" data-target="#myModalProveedorEditar" class="btn btn-primary">Editar</button>
-                                        <?php }?>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- Modal Proveedor Informacion ENDS -->
 						<?php }?>
-						<!-- Modal Proveedor Editar -->
-						<div id="myModalProveedorEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
-							<div role="document" class="modal-dialog modal-xl">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h4 id="exampleModalLabel" class="modal-title">INFORMACION PERSONAL</h4>
-										<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-									</div>
-									<div class="modal-body">
-										<div class="container-fluid">
-											<div class="row">
-												<div class="card col-lg-12">
-													<div class="row">
-														<div class="card-body col-lg-6">
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h4>Nombre</h4> </label>
-																<div class="col-sm-9">
-																	<input type="text" placeholder="Introduzca Nombre" class="form-control"> </div>
-															</div>
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h4>Fecha Inicio</h4> </label>
-																<div class="col-sm-9">
-																	<input type="text" placeholder="Introduzca Fecha de Inicio" class="form-control"> </div>
-															</div>
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h4>Direccion</h4> </label>
-																<div class="col-sm-9">
-																	<input type="text" placeholder="Introduzca la Direccion asociada" class="form-control"> </div>
-															</div>
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h4>CI/RIF</h4> </label>
-																<div class="col-sm-9">
-																	<input type="text" disabled="" placeholder="No modificable" class="form-control"> </div>
-															</div>
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h4>Contacto</h4> </label>
-																<div class="col-sm-9">
-																	<div class="input-group">
-																		<div class="input-group-btn">
-																			<button data-toggle="dropdown" type="button" class="btn btn-white dropdown-toggle"><i class="fa fa-facebook" aria-hidden="true"></i><span class="caret"></span></button>
-																			<ul class="dropdown-menu">
-																				<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-																				<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-																				<li><a href="#"><i class="fa fa-medium" aria-hidden="true"></i></a></li>
-																				<li><a href="#"><i class="fa fa-flickr" aria-hidden="true"></i></a></li>
-																				<li><a href="#"><i class="fa fa-github" aria-hidden="true"></i></a></li>
-																			</ul>
-																		</div>
-																		<input type="text" class="form-control"> </div>
-																	<br>
-																	<div class="input-group">
-																		<div class="input-group-btn">
-																			<button data-toggle="dropdown" type="button" class="btn btn-white dropdown-toggle"><i class="fa fa-facebook" aria-hidden="true"></i><span class="caret"></span></button>
-																			<ul class="dropdown-menu">
-																				<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-																				<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-																				<li><a href="#"><i class="fa fa-medium" aria-hidden="true"></i></a></li>
-																				<li><a href="#"><i class="fa fa-flickr" aria-hidden="true"></i></a></li>
-																				<li><a href="#"><i class="fa fa-github" aria-hidden="true"></i></a></li>
-																			</ul>
-																		</div>
-																		<input type="text" class="form-control"> </div>
-																	<br>
-																	<div class="input-group">
-																		<div class="input-group-btn">
-																			<button data-toggle="dropdown" type="button" class="btn btn-white dropdown-toggle"><i class="fa fa-facebook" aria-hidden="true"></i><span class="caret"></span></button>
-																			<ul class="dropdown-menu">
-																				<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-																				<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-																				<li><a href="#"><i class="fa fa-medium" aria-hidden="true"></i></a></li>
-																				<li><a href="#"><i class="fa fa-flickr" aria-hidden="true"></i></a></li>
-																				<li><a href="#"><i class="fa fa-github" aria-hidden="true"></i></a></li>
-																			</ul>
-																		</div>
-																		<input type="text" class="form-control"> </div>
-																</div>
-															</div>
-														</div>
-														<div class=" card-body col-lg-6">
-															<div class="form-group row">
-																<label class="col-sm-3 form-control-label">
-																	<h4>Nota</h4> </label>
-																<div class="col-sm-9">
-																	<input type="text" placeholder="Aqui puedes escribir..." class="form-control form-control-lg" rows="4" cols="50"> </div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="modal-footer">
-										<button type="button" data-dismiss="modal" class="btn btn-secondary">Cerrar</button>
-										<button type="button" class="btn btn-primary">Guardar Cambios</button>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- Modal Proveedor Editar ENDS -->
 					</div>
 				</section>
 				<!-- Section de TABS ENDS -->
