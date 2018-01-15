@@ -144,6 +144,7 @@ $meses = array(1 => 'Enero', 2 => 'Febrero', 3 => 'Marzo', 4 => 'Abril', 5 => 'm
 				</nav>
 				<div class="content-inner">
 					<section>
+						<?php if( (in_array("a_r", $permiso) && in_array("p_r", $permiso)) || (in_array("cl_r", $permiso) && in_array("fv_r", $permiso)) || (in_array("am_r", $permiso) && in_array("a_r", $permiso)) || (in_array("m_r", $permiso) && in_array("mt_r", $permiso)) || (in_array("zo_r", $permiso) && in_array("se_r", $permiso)) || (in_array("se_r", $permiso)) || (in_array("wt_r", $permiso) && in_array("pm_r", $permiso) && in_array("p_r", $permiso)) || (in_array("a_r", $permiso) && in_array("am_r", $permiso) && in_array("as_r", $permiso)) || (in_array("pr_r", $permiso)) || (in_array("tr_r", $permiso) && in_array("se_r", $permiso)) ){?>
 						<div class="container-fluid">
 							<div class="card-columns">
 								<?php if( in_array("a_r", $permiso) && in_array("p_r", $permiso) ){
@@ -453,8 +454,9 @@ $meses = array(1 => 'Enero', 2 => 'Febrero', 3 => 'Marzo', 4 => 'Abril', 5 => 'm
 								<?php }?>
 							</div>
 						</div>
-						<div class="card-columns1">
-							<div class="card p-3">
+						<?php }?>
+						<div class="col-md-12">
+							<div class="card">
 								<div class="card-body">
 									<h5 class=" blockquote card-title">Historia de la Aviación en Venezuela</h5>
 									<p class="card-text text-justify"> &emsp;Después del 29 de septiembre de 1912, cuando el célebre vuelo de Frank Boland sobre Caracas, estábamos en el umbral de la I Guerra Mundial y será en ese conflicto cuando la aviación pasa a convertirse en un arma poderosa. A comienzos del año 1920 el empresario caraqueño Eloy Pérez suscribe un contrato con el teniente italiano Cosme Renella, con el fin de ofrecer en la capital y otras ciudades del interior del país, una serie de espectáculos que prácticamente eran maniobras ejecutadas por el referido piloto. </p>
