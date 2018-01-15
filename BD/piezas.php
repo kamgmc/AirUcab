@@ -170,6 +170,10 @@ if( !in_array("p_r", $permiso) && !in_array("pm_r", $permiso) && !in_array("wt_r
 						<input id="tab3" type="radio" name="tabs" class="no-display" <?php if( $_GET['tab'] == "estabilizador" || !in_array("wt_r", $permiso) ) print "checked";?>>
 						<label for="tab3" class="label"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> Tipo Estabilizador</label>
                         <?php }?>
+                        <?php if( in_array("pm_r", $permiso) ){?>
+						<input id="tab4" type="radio" name="tabs" class="no-display" <?php if( $_GET['tab'] == "reporte" ) print "checked";?>>
+						<label for="tab4" class="label"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> Modelo de Piezas - Reporte</label>
+                        <?php }?>
 						<!-- TAB Piezas -->
 						<?php if( in_array("p_r", $permiso) ){?>
 						<section id="content0" class="sectiontab">
@@ -1272,6 +1276,41 @@ if( !in_array("p_r", $permiso) && !in_array("pm_r", $permiso) && !in_array("wt_r
 						</div>
 						<!-- Modal Tipo Estabilizador Editar ENDS -->
 						<?php }?>
+						<?php }?>
+						<?php if( in_array("pm_r", $permiso)){?>
+						<section id="content4" class="sectiontab">
+							<div class="col-md-12">
+								<div class="card">
+									<div class="card-body">
+										<?php $qry = "Select Distinct pm_nombre nombre, pm_descripcion descripcion 
+													From Modelo_pieza mp
+													Where pm_modelo_pieza is null
+													Order by pm_nombre";
+										$rs = pg_query( $conexion, $qry );
+										while( $pieza = pg_fetch_object($rs) ){?>
+										<h4><?php print $pieza->nombre; if(!is_null($pieza->ala)) print " ".$pieza->ala; if(!is_null($pieza->estabilizador)) print " ".$pieza->estabilizador;?></h4>
+										<p class="text-justify">
+											&emsp;<?php print $pieza->descripcion;?>
+										</p>
+										<?php  $qry2 = "Select Distinct pm.pm_nombre nombre, pm.pm_descripcion descripcion 
+										From Modelo_pieza pm, Modelo_pieza up
+										Where pm.pm_modelo_pieza=up.pm_id And up.pm_nombre='".$pieza->nombre."'
+										Order by pm.pm_nombre";
+										$rs2 = pg_query( $conexion, $qry2 );
+										if(pg_num_rows($rs2) > 0){?>
+										<h5>Se compone de:</h5>
+										<p class="text-justify">
+										<?php while( $pieza2 = pg_fetch_object($rs2) ){?>
+											&emsp;&emsp;<strong><?php print $pieza2->nombre;?>:</strong> <?php print $pieza2->descripcion;?><br/>
+										<?php }?>
+										</p>
+										<?php }?>
+										<?php }?>
+									</div>
+								</div>
+							</div>
+							<!-- TABLE ENDS -->
+						</section>
 						<?php }?>
 					</div>
 				</section>

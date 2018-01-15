@@ -31,7 +31,8 @@
 						<div class="info d-flex align-items-center">
 							<div class="content center-block">
 								<div class="logo">
-									<h1>Air<strong>UCAB</strong></h1> </div>
+									<a style="color: white; text-decoration: none;" href="index.php"><h1>Air<strong>UCAB</strong></h1></a> 
+								</div>
 								<hr class="style-hr"> </div>
 						</div>
 					</div>
